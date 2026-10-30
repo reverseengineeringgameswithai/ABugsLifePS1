@@ -1,0 +1,66 @@
+{
+  "schema": "abl.phase4.d03.capsule.v1",
+  "preservation_index": "analysis/phase4_trace_capsule_set.json",
+  "capsule_manifest_control": {
+    "all_control_match": true,
+    "all_preservation_required": true,
+    "d11_grub_manifest_sha256": "2e9ea2379f7dda3cbcafd3bd444a95a5627652f5ba08a91b40a391c3c13a84bb"
+  },
+  "totals": {
+    "capsules": 6,
+    "boundary_records": 2692,
+    "ram_vram_spu_hash_checks": 8076,
+    "hash_mismatches": 0,
+    "natural_damage_events": 3,
+    "natural_heal_events": 1
+  },
+  "positive_contact_events": [
+    {
+      "capsule": "D08_fly_contact_kill",
+      "movie_frame": 190,
+      "health": [4, 3],
+      "timer": 45,
+      "timer_zero_movie_frame": 280,
+      "state": 5,
+      "ground": 0,
+      "air_timer": 0,
+      "velocity": [561, -1024, 859],
+      "horizontal_magnitude_approx": 1026
+    },
+    {
+      "capsule": "D11_grub_contact_kill",
+      "movie_frame": 201,
+      "health": [4, 3],
+      "timer": 45,
+      "timer_zero_movie_frame": 291,
+      "state": 5,
+      "ground": 0,
+      "air_timer": 0,
+      "velocity": [-466, -1024, -913],
+      "horizontal_magnitude_approx": 1025
+    },
+    {
+      "capsule": "D11_mite_contact_kill",
+      "movie_frame": 111,
+      "health": [4, 3],
+      "timer": 45,
+      "timer_zero_movie_frame": 201,
+      "state": 5,
+      "ground": 0,
+      "air_timer": 0,
+      "velocity": [-244, -1024, -996],
+      "horizontal_magnitude_approx": 1025
+    }
+  ],
+  "timer_result": {
+    "ticks_consumed_per_event": 45,
+    "movie_frames_until_zero": 90,
+    "cadence": "one tick per two 60 Hz movie frames",
+    "duration_seconds": 1.5,
+    "nonmonotonic_steps": 0
+  },
+  "controls": [
+    "B07_health_partial_full changes health 3->4 at movie frame 77 with timer remaining zero, separating healing from contact damage.",
+    "D09_cockroach_contact_kill and D15_daddy_long_legs_contact_kill contain no true-health transition and are not treated as immunity evidence because collision admission was not proven."
+  ]
+}

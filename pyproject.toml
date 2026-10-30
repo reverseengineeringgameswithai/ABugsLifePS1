@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+minversion = "9.1"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+  "gpu: optional local GPU/OpenGL test; excluded from safe CI",
+  "live: requires the local DuckStation fork, state, or emulator API",
+  "local_media: requires copyrighted owner-supplied media; never run in CI",
+]

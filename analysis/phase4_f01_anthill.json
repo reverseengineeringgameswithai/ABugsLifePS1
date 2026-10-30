@@ -1,0 +1,189 @@
+{
+  "schema": "phase4_row_evidence_v1",
+  "row": "F01",
+  "subject": "Anthill representative full-stage completion and results handoff",
+  "date": "2026-08-04",
+  "status": "substantiated_partial",
+  "closure": "bounded_exhausted",
+  "disposition": "move_on",
+  "capsule_gate": {
+    "checked_first": true,
+    "usable_capsule_found": false,
+    "available_level01_capsules": "A09/A10/A11 seed-mechanics scope only",
+    "live_replay_reason": "No retained capsule covers the F01 natural goal trigger, timer lifecycle, teardown, or results-overlay handoff. Exact instruction attribution was a named missing domain."
+  },
+  "identities": {
+    "retail_cue": {
+      "path": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+    },
+    "mounted_cached_cue": {
+      "path": "~/.cache/abl-phase4-i12-clean-Hu6j43/Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+      "byte_equal_to_workspace_cue": true
+    },
+    "duckstation_binary": {
+      "path": "~/duckstation/build-release/bin/duckstation-qt",
+      "sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+      "fork_head": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5"
+    },
+    "movie": {
+      "path": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.json",
+      "sha256": "0b9110f770da96660150fad65a2fd44d9db4683bfecaa5384af6d2593c5530db",
+      "save_path": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.sav",
+      "save_sha256": "a035bd39a62d4217a23fa2e5a020e81d5cd6d1571f606ab7ac9dd6a7510a32a8",
+      "movie_version": 4,
+      "frames": 3267,
+      "armed_while_paused": false,
+      "phase_delay_owed": false,
+      "truncated": false,
+      "execution_mode": "Interpreter",
+      "anchor_frame": 138881,
+      "anchor_pc": "0x8003f33c",
+      "anchor_sp": "0x801ffee0",
+      "clean_normal_speed_user_confirmed_sync": true,
+      "armed_normal_speed_user_confirmed_sync": true
+    },
+    "source_files": {
+      "level_bin_sha256": "f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21",
+      "level1_bin_sha256": "43c80f86eef71a3b51bef593889cfc1a3ef5a766c2eb1fd168b01db570073fd6",
+      "level_dat_sha256": "786b7a964129d4fee6a1983b356e172d406b17663d87b8befe645b92dbf08b53",
+      "level1_dat_sha256": "20a8fd66de234e5ce30131cb3997f33dd75527c1fb18c5ffed5f33681cf6da15",
+      "memory_bin_sha256": "e3f8697223e3a1a1bdfa385d417ce87928eaff40ea3e26d1a64f6f25234d8e37"
+    }
+  },
+  "static_c_analysis": {
+    "tool": "tools/phase4_f01_static.c",
+    "tool_source_sha256": "a27103ac451c2fc272c5fa8b097da8566c704d4c50253f6f80bdecc160e13834",
+    "temporary_binary_sha256": "6336a0f436a808e66b40011b8cde5d8ee739151aed9a12dcdfa81a08e686459d",
+    "temporary_output_sha256": "05622892e1da519fb8712fd13e5ccb52fe1306d9ccb66b1310a24bda3a04f284",
+    "asm_assertions": 12,
+    "asm_mismatches": 0,
+    "chunk": 32,
+    "declared_and_decoded_bytes": 236944,
+    "authored_sector_count": 189,
+    "nonzero_region_code_count": 1,
+    "code_2_sector_count": 1,
+    "code_2_sector": 177,
+    "source_origin": [-5094, -5309, -3901],
+    "runtime_origin": [-163008, -169888, -124832],
+    "results_finalizer_callsite": "0x800b8750",
+    "results_finalizer_call_word": "0x0c011698"
+  },
+  "runtime_observations": {
+    "goal_trigger": {
+      "emulator_frame": 140814,
+      "movie_relative_frame": 1933,
+      "cycle": "79728950068/69",
+      "query_return_region_code": 2,
+      "query_callsite": "0x80049644",
+      "latch_store_pc": "0x800496d8",
+      "latch": "0x800823a0: 0 -> 1",
+      "timer_store_pc": "0x80049704",
+      "timer": "0x80082470: 0 -> 23",
+      "sfx_id_register": 58
+    },
+    "countdown": {
+      "decrement_pc": "0x800553f8",
+      "frames": "140814..140858",
+      "range": "23 -> 0"
+    },
+    "goal_teardown": {
+      "frame": 140859,
+      "finalizer": "0x80045a60",
+      "caller_return_address": "0x8004ff50",
+      "scene_state": "0x80082504: 1 -> 0 at 0x800503ac"
+    },
+    "results_entry": {
+      "frame": 141061,
+      "function": "0x800b7da0",
+      "caller_return_address": "0x800b975c",
+      "hit_count": 1
+    },
+    "results_exit": {
+      "frame": 141863,
+      "finalizer": "0x80045a60",
+      "callsite": "0x800b8750",
+      "caller_return_address": "0x800b8758",
+      "scene_state": "0x80082504: 0 -> 1 -> 0"
+    },
+    "negative_controls": {
+      "level_complete_finale_0x8004da94_hits": 0,
+      "level1_completion_store_0x800b4100_hits": 0,
+      "level1_completion_store_0x800b410c_hits": 0,
+      "level1_completion_call_0x800b4164_hits": 0
+    }
+  },
+  "mechanism": {
+    "query": "FUNC_80038F38 returns zero unless player+0x82 equals 1; otherwise it maps the current player sector through the runtime sector table and returns its signed region code at +0x2e.",
+    "dispatch": "The player update calls the query, rejects an already-set completion latch, and takes the region-code-2 branch. It stores latch 1, timer 23, and requests SFX 58.",
+    "consumer": "scene_flow_dispatcher observes the latch and timer; after the timer reaches zero it calls transition_finalizer_subsystem_reset.",
+    "handoff": "The MEMORY results overlay enters FUNC_800B7DA0 and later calls the same finalizer at 0x800b8750 to continue.",
+    "classification": "F01 uses the resident collision-sector completion path, not the LEVEL1.BIN generic finale path."
+  },
+  "declarative_scenario": {
+    "path": "tools/scenarios/duckstation/phase4_f01_anthill_completion.yaml",
+    "sha256": "7a6891f84639cff5fb338147b45eca866735a1e5b6e88cfad5f6316f8833af31",
+    "status": "passed",
+    "execution_mode": "Interpreter",
+    "phase_transport": "movie.advanceToFrame only to the pre-goal anchor, then debugger.resume plus movie.status polling",
+    "assertions_passed": 13,
+    "assertions_failed": 0,
+    "report_path": "/tmp/phase4_f01_realtime_probe_report.json",
+    "report_sha256": "b36bf40c18ee2e38e7140db1174c4916af165b891364c36c31dbf45d4a5e55cb",
+    "command": "python3 tools/run_ps1_scenario.py tools/scenarios/duckstation/phase4_f01_anthill_completion.yaml --output-dir /tmp/phase4_f01_scenario_final",
+    "boundary_results": {
+      "movie_frame_1932": "scene=1 latch=0 timer=0",
+      "movie_frame_1940": "latch-store hits=1 timer-store hits=1 latch=1 timer=18",
+      "movie_frame_1982": "timer=0 resident-finalizer hits=1 scene=0",
+      "movie_frame_2190": "results-entry hits=1",
+      "movie_frame_2992": "results-finalizer call hits=1 total finalizer entries=2"
+    }
+  },
+  "causal_confirmation": {
+    "prior_experiment": "The existing LEVEL01 exit relocation control moved region code 2 from sector 177 to sector 108 on a pristine-derived rebuild. Natural traversal into 108 then completed the stage, while the same route on pristine media was inert.",
+    "confound_ruled_out": "A prior candidate proximity actor produced death/respawn when teleported to and did not complete the stage."
+  },
+  "evidence": {
+    "exact_exec": {
+      "path": "/tmp/phase4_f01_exact_exec.json",
+      "sha256": "a7aede3d719e90b68ec0cd1aaed9f68b1a9d89d03377ecc2d7c7ed64c8391f64",
+      "truncated": false,
+      "events": 7
+    },
+    "all_access": {
+      "path": "/tmp/phase4_f01_all_access.json",
+      "sha256": "1fad52deb9f99d8ba98b98d597e4fee6802917b90fc85702b6caba8e6082a72d",
+      "truncated": false
+    },
+    "excluded": [
+      "/tmp/phase4_f01_exact_access.jsonl used incorrectly configured watches and is not positive evidence.",
+      "Earlier sparse captures and phase4_f01_final.png preceded the user-confirmed synchronized replay and are not evidence for this conclusion."
+      ,"The CachedInterpreter/frame-stepped scenario probe is excluded: arming execTrace switched modes and reproduced the known instrumentation desync."
+    ]
+  },
+  "evidence_classes": {
+    "observation": "The synchronized armed replay produced the exact register, instruction, RAM-write, countdown, teardown, and results-overlay events listed above.",
+    "inference": "Because the unique authored code-2 sector is sector 177 and the live branch value is 2, the natural movie route crossed sector 177 to complete Anthill.",
+    "causal_confirmation": "The prior 177-to-108 relocation changed the natural completion location only on the rebuilt disc."
+  },
+  "phase4_metrics": {
+    "campaign_breadth": "partial: one synchronized natural route plus the prior relocation control",
+    "complete_frontier": "met for the high-value trigger-to-results scope",
+    "cross_system_behavior": "met: collision sector -> player update -> scene flow -> results overlay",
+    "durable_evidence": "met: replay hashes, C verifier, passing declarative real-time scenario, structured record, and Obsidian note",
+    "lifecycle": "substantiated partial: natural completion/reset/results observed; exhaustive death/restart permutations omitted",
+    "original_interfaces": "met",
+    "original_oracle": "met for the natural route",
+    "source_closure": "substantiated partial: matching query C plus instruction-checked dispatch/consumer; whole updater not compiler-matched",
+    "typed_state": "met for the latch, timer, sector code, and scene state"
+  },
+  "bounded_residuals": [
+    "Exact polygon footprint and topology of sector 177.",
+    "Exact SPU sample/cue identity behind SFX 58.",
+    "Every death, pause, restart, and alternate-route lifecycle combination.",
+    "Compiler matching of the complete 6004-byte player updater."
+  ],
+  "movie_requirement": "No additional Interpreter movie is required for the bounded F01 claim.",
+  "cold_boot_requirement": "Not required for this pristine original-runtime finding because no disc, code, or asset was changed."
+}

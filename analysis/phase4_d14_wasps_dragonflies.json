@@ -1,0 +1,111 @@
+{
+  "row": "D14_wasps_dragonflies",
+  "date": "2026-08-03",
+  "status": "bounded_exhausted",
+  "disposition": "move_on",
+  "movie_required": false,
+  "cold_boot_required": false,
+  "scope": [
+    "flight navigation",
+    "wasp/bee sting and contact transition",
+    "dragonfly species callback",
+    "homing-berry targetability"
+  ],
+  "capsule_preflight": {
+    "manifest": "analysis/phase4_trace_capsule_set.json",
+    "capsule_entries": 50,
+    "d14_identity_matches": 0,
+    "reason_for_live_escalation": "No D14 capsule exists; exact actor flags, VM transitions, health loss, and frame-attributed execution were missing domains."
+  },
+  "identity": {
+    "repo_head": "4b805a63beaf4ab6d20e625773bd5189a429cd88",
+    "retail_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+    "media_serial": "SCUS-94288",
+    "execution_mode": "Interpreter",
+    "config": "/tmp/abl-d14-live-20260803-1",
+    "port": 23530,
+    "token": "d14-20260803",
+    "cleanup": "Owned PID 178870 stopped through the config-scoped launcher."
+  },
+  "fixtures": {
+    "dragonfly.sav": "2b84be04cdd60b3b848bce011aaf64d6a8cfb4d481d3bf22eabb02f388877fb3",
+    "dragonfly_2.sav": "8a6a976fa6d77d04fcf68384595d02a9c922b2cbf12bce96a48520c4ac18a93c",
+    "bee.sav": "2cfe892546b1e7ed04f9b3bcb6c957e7230ead06c36cacd03be36ddc3cf75b5b",
+    "bee_1_homing.sav": "b34addb0b67257b9d670b18037a1183df76dd9cc92930a771c7db5d19a1df504",
+    "bee_2_homing.sav": "a648ec992f4c6af46921428442087f7db1ed91cca5385e61e5563f06bd705068"
+  },
+  "family_bindings": {
+    "dragonfly": {
+      "actor_id": 34,
+      "callback": "0x8004A20C",
+      "vm_region": "0x8007755C..0x80077578"
+    },
+    "wasp_internal_bee": {
+      "actor_id": 13,
+      "callback": "0x8004A144",
+      "vm_region": "0x80077578..0x800775C8"
+    }
+  },
+  "static_findings": {
+    "dragonfly_navigation": "set_byte_params(64,65472), animation 1/2, random wait 32..95, random direction, park_seek, loop to 0x80077568; there is no species strike section.",
+    "dragonfly_callback": "0x8004A20C only calls 0x8005044C with sound/event id 42 and actor X+4; it adds no dragonfly-specific strike state.",
+    "bee_navigation_and_strike": "flags mask installs 0x6, random flight parks on opcode 18 at 0x80077592; contact advances +6 at writer 0x8004CA18 into 0x80077598, animation/wait/arrival stages call native subroutine 2 at 0x80057920, then loop.",
+    "contact_gate": "0x8004C9F0 loads threshold 0x9C3F and 0x8004CA10 adds 6 to actor +0x70 before 0x8004CA18 stores it.",
+    "homing_filter": "0x8005747C reads actor +0x5C; 0x80057484 requires bit 0x1; 0x8005748C/90 reject bits 0xA0. Selection then ranks X/Z distance only."
+  },
+  "runtime_findings": {
+    "dragonfly_navigation": {
+      "fixture": "dragonfly_2.sav",
+      "actor": "ID 34 at 0x800A0098",
+      "window_frames": 120,
+      "delta_xyz": [4704, 0, -9842],
+      "vm_before_after": ["0x80077570", "0x80077570"],
+      "flags_before_after": ["0x4005", "0x4005"],
+      "family_count": 4,
+      "moving_active_instances": 1
+    },
+    "bee_contact": {
+      "fixture": "bee.sav",
+      "actor": "ID 13 at 0x800A0098",
+      "input": "Up for 60 frames, release, then 120 traced frames",
+      "contact_transition_frame": 25958,
+      "contact_writer": "0x8004CA18",
+      "vm_contact_transition": ["0x80077592", "0x80077598"],
+      "native_strike_frame": 25994,
+      "native_strike_pc": "0x80057920",
+      "native_a0_s0": "0x800A0098",
+      "health_before_after": [4, 3],
+      "trace_truncated": false
+    },
+    "targetability": {
+      "dragonfly": "dragonfly_2.sav damageable table includes 0x800A0098, ID 34, flags 0x4005; dragonfly.sav also exposes targetable ID-34 instances with flags 0x4007.",
+      "bee_positive": "bee_1_homing.sav table 0x80090748 points to ID 13 slot 6 at 0x800A0098 with flags 0x4007.",
+      "bee_negative_switch": "bee_2_homing.sav removes slot 6 after flags become 0x1006 and points 0x80090748 to targetable ID 13 slot 3 at 0x8009FF0C with flags 0x4007."
+    }
+  },
+  "negative_controls": {
+    "bee_no_input": "600 frames from bee.sav kept VM 0x80077592, produced 300 non-truncated VM writes and zero 0x80057920 hits.",
+    "dragonfly_square": "One Square plus 180 frames from dragonfly_2.sav produced zero 0x8005743C..0x80057620 hits; this bounds the fixture as not equipped/triggered and is not negative species evidence."
+  },
+  "evidence_hashes": {
+    "static_c_source": "27c8b1979c736e2deddd9032439b94db8f28923094d3e461488b34dbd6aeeafa",
+    "static_c_binary": "10eda7c889ec708697645d6d959428db016794ee6c8832f93832acd594cfaf2f",
+    "static_c_output": "25e751c30fd7c9d320c17f78aa84fc01364af04df431689b2cbd1b405f8ea950",
+    "runtime_reducer_source": "b5ecc60dc5db0945cb42402b241ca7153d381051e5700b8f48115b958a346a45",
+    "runtime_reducer_binary": "db942df52c5138274ae0b385fa8a60fc8e7ff69c16d15907ef4c6f44110f6d2d",
+    "runtime_reducer_output": "c0cf292541dab77d4f20b2c49389a6313542057ff5a76518bfe127951aedce44",
+    "bee_access_trace": "f83adb0992f1e7329192d2ce57a6f4cbc4054c7aecfec5f2ced385c2f3509b75",
+    "bee_exec_trace": "713ed329665bd9761b2734fc6ee196bbf56d6731b286806fd1f5939149559d0b",
+    "bee_final_player": "b41ea22bd74d6c30dd46050d69934dcf1ed2ef64b381355d96fc350eed1f090f",
+    "bee_final_actor": "72d3586a78c325ee8f808bd154577ab3ce5456ebc3893b4968294d8a4f1b1592",
+    "dragonfly_before": "d74d137a1c21ea181c231a0fdef035892363a2eeca7a3c0d19e2f78817a87826",
+    "dragonfly_after": "1ff98ea889289977de843933019bb739d1217297c4c0bbdee7ec8b75c26d3b2a",
+    "dragonfly_damageable_table": "e086d3b4535bf9aefd5c635f302ce4742f024e09cd21e1139a517bafc3ef36df",
+    "homing_pointer_controls": "a469c2988fe91eb96b864dccdea63486a92308291b23e7523cf1fc2aacd87a6a",
+    "bee_no_input_control": "8be915c56ac5e7951cc1a4c8cfc034b517bbef97d1e4b035b6be5c59a3cda430",
+    "dragonfly_nontrigger_control": "fac34c9ebeae6287274fb49b57fd3455b1d5649d5d939d27619c16edfadf454e"
+  },
+  "closure_rationale": "All named D14 gaps have exact static ownership and relevant live confirmation. The bee has a species strike path and causal health-loss replay; dragonfly has a wander-only species program and sound-only callback; both families have positive targetability states and the bee has a negative eligibility switch. Remaining generic enemy collision behavior is shared-system work, not a D14-specific unknown."
+}

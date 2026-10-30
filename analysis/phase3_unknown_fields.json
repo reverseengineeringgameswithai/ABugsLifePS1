@@ -1,0 +1,497 @@
+{
+ "_comment": "Phase-3 WP5 unknown-byte drainer. EXACT-MATCH hypothesis testing: a candidate is promoted only if it equals the per-frame position delta on EVERY captured frame (one mismatch kills it). The berry's known gravity (128/frame^2) is the built-in control \u2014 a run that cannot rediscover it should not be trusted. Regenerate: tools/phase3_unknown_fields.py.",
+ "generated": "2026-07-14",
+ "run_provenance": {
+  "command": "/usr/bin/python3 tools/phase3_unknown_fields.py --port 25783 --token '<redacted-token>' --config-dir /tmp/duckstation-phase3-i6b-unknown-JKEotX --instance-state recreated",
+  "generator_sha256": "e8e61a0ebec735e52884ae1dc504b7b174defcfa3752310194e8c4e1e50b6c7c",
+  "provenance_helper_sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678",
+  "launcher_helper_sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821",
+  "repository_head": "67c1b6db21fb728fd65fe6697a193b4a097faf1d",
+  "recorded_utc": "2026-07-14T21:55:05.923834+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "status": "M EXTERNAL_DEBUGGER_CONTROL.md\n M docs/external-debugger-determinism.md\n M docs/external-debugger-experiment-runner.md\n M docs/external-debugger-movie.md\n M docs/external-debugger.md\n M scripts/debugger-client/README.md\n M scripts/debugger-client/duckstation_debug_client.py\n M scripts/debugger-client/mcp_bridge.py\n M src/CMakeLists.txt\n M src/core/CMakeLists.txt\n M src/core/achievements.cpp\n M src/core/analog_controller.cpp\n M src/core/analog_controller.h\n M src/core/analog_joystick.cpp\n M src/core/analog_joystick.h\n M src/core/cdrom.cpp\n M src/core/cdrom.h\n M src/core/controller.cpp\n M src/core/controller.h\n M src/core/core.vcxproj\n M src/core/core.vcxproj.filters\n M src/core/cpu_core.cpp\n M src/core/cpu_core.h\n M src/core/debugger_control_service.cpp\n M src/core/debugger_control_service.h\n M src/core/dma.cpp\n M src/core/fullscreenui_settings.cpp\n M src/core/gpu.cpp\n M src/core/gpu.h\n M src/core/gpu_backend.cpp\n M src/core/gpu_backend.h\n M src/core/imgui_overlays.cpp\n M src/core/input_movie.cpp\n M src/core/input_movie.h\n M src/core/negcon.cpp\n M src/core/negcon.h\n M src/core/negcon_rumble.cpp\n M src/core/negcon_rumble.h\n M src/core/settings.cpp\n M src/core/settings.h\n M src/core/spu.cpp\n M src/core/spu.h\n M src/core/system.cpp\n M src/core/system.h\n M src/core/system_private.h\n M src/duckstation-qt/debuggerrpc.cpp\n M src/duckstation-qt/debuggerrpc.h\n M src/duckstation-qt/debuggerserver.cpp\n M src/duckstation-qt/debuggerserver.h\n M src/duckstation-qt/input_movie_file.cpp\n M src/duckstation-qt/input_movie_file.h\n M src/duckstation-qt/interfacesettingswidget.cpp\n M src/duckstation-qt/interfacesettingswidget.ui\n M src/duckstation-qt/logwindow.cpp\n M src/duckstation-qt/mainwindow.cpp\n M src/duckstation-qt/mainwindow.h\n M src/duckstation-qt/mainwindow.ui\n M src/duckstation-qt/osdsettingswidget.cpp\n M src/duckstation-qt/osdsettingswidget.ui\n M src/duckstation-qt/qthost.cpp\n M src/duckstation-qt/qtutils.cpp\n M src/duckstation-qt/qtutils.h\n M src/duckstation-regtest/regtest_host.cpp\n M src/scmversion/gen_scmversion.bat\n M src/scmversion/gen_scmversion.sh\n M src/scmversion/scmversion.h\n?? api-hardening-artifacts-20260714/\n?? docs/external-debugger-scenarios.md\n?? scripts/debugger-client/launch_debugger_instance.sh\n?? scripts/debugger-client/test_code_patch_invalidation.py\n?? scripts/debugger-client/test_framebuffer_capture.py\n?? scripts/debugger-client/test_function_bounds.py\n?? scripts/debugger-client/test_gp0trace_dma.py\n?? src/core-tests/\n?? src/core/cd_provenance.cpp\n?? src/core/cd_provenance.h\n?? src/core/code_analysis.cpp\n?? src/core/code_analysis.h\n?? src/core/frame_diff.cpp\n?? src/core/frame_diff.h\n?? src/core/gpu_object_picker.cpp\n?? src/core/gpu_object_picker.h\n?? src/core/gte_camera.cpp\n?? src/core/gte_camera.h\n?? src/core/movie_edit.cpp\n?? src/core/movie_edit.h\n?? src/core/write_index.cpp\n?? src/core/write_index.h",
+   "binary_path": "~/duckstation/build-release/bin/duckstation-qt",
+   "binary_sha256": "27d064bcbdfefadf91fd9401d158a2756dc6bbf6d52a0bb2d3a3dfad7129cb54"
+  },
+  "rpc_manifest": {
+   "path": "analysis/phase3_duckstation_rpc_manifest.json",
+   "semantic_sha256": "e2597de77dc56ff2dc4c4b9d2ff72b9abccb76b203a6d7d2c180aeba29fdd80b",
+   "source": {
+    "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "status_sha256": "1c1a325041c78e0545816a605a2dbc7c41a08549642d4f4b8289d9df87baf130",
+    "dispatcher_sha256": "b1be4d512eae5c67608453adcbabb32e03612c3ead51856c41ab9c0d140f47be",
+    "method_count": 203
+   },
+   "binary": {
+    "path": "~/duckstation/build-release/bin/duckstation-qt",
+    "sha256": "27d064bcbdfefadf91fd9401d158a2756dc6bbf6d52a0bb2d3a3dfad7129cb54",
+    "size": 37860600
+   }
+  },
+  "debugger": {
+   "config_dir": "/tmp/duckstation-phase3-i6b-unknown-JKEotX",
+   "port": 25783,
+   "transport": "ws",
+   "token_sha256": "c973ea044f0d0398f9cf7e09af0006b38fb589acae7cf22ac8c6fe07d76aa4ee",
+   "recreated": true,
+   "owned_pid": 1869415
+  },
+  "anchor": {
+   "saves": [
+    "level01.sav",
+    "red_berry_thrown.sav"
+   ],
+   "fixture_sha256": {
+    "level01.sav": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+    "red_berry_thrown.sav": "febe3e7f52f3dc43b74d8f3b6140b5c408cfddd81ce1a46479a16f088c3c0d81",
+    "REBUILD/files/SCUS_942.88": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+   },
+   "state_inspections": [
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level01.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1939333,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level01.sav",
+      "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+      "size": 1939333,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/red_berry_thrown.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1920517,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "red_berry_thrown.sav",
+      "sha256": "febe3e7f52f3dc43b74d8f3b6140b5c408cfddd81ce1a46479a16f088c3c0d81",
+      "size": 1920517,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    }
+   ],
+   "media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   }
+  },
+  "timing": {
+   "player_frames": 40,
+   "actor_frames": 40,
+   "contact_frames": 24
+  },
+  "cleanup": {
+   "owned_pid_stopped": true,
+   "launcher_returncode": 0,
+   "launcher_output": "Stopped isolated instance (pid 1869415).\nowned cleanup: pid=1869415 stopped=true final_state=None waited_ms=0",
+   "process_final_state": null
+  }
+ },
+ "media": {
+  "serial": "SCUS-94288"
+ },
+ "media_identity_after_connect": {
+  "game_serial": "SCUS-94288",
+  "game_title": "Disney-Pixar A Bug's Life",
+  "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+  "rpc_before_hash": {
+   "cd_overlays_removed": 0,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_media": true,
+   "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "subimage_count": 0,
+   "subimage_index": 0
+  },
+  "rpc_after_hash": {
+   "cd_overlays_removed": 0,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_media": true,
+   "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "subimage_count": 0,
+   "subimage_index": 0
+  },
+  "hash_verification": {
+   "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "pin_source": "tools/build_baselines.json",
+   "pristine_verified": true,
+   "files": {
+    "Disney-Pixar A Bug's Life (v1.0).cue": {
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "matches_pin": true
+    },
+    "Disney-Pixar A Bug's Life (v1.0).bin": {
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+     "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "matches_pin": true
+    }
+   }
+  }
+ },
+ "fixture_sha256": {
+  "level01.sav": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+  "red_berry_thrown.sav": "febe3e7f52f3dc43b74d8f3b6140b5c408cfddd81ce1a46479a16f088c3c0d81",
+  "REBUILD/files/SCUS_942.88": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+ },
+ "subjects": {
+  "player_block": {
+   "anchor": "level01.sav",
+   "input": "up held (running)",
+   "frames": 40,
+   "findings": [
+    {
+     "exact_velocity": "x",
+     "alignment": "written_after_move",
+     "longest_exact_run": 10,
+     "match": "16/19 moved frames",
+     "mismatches_are": "frames where the integrator clamped the position (collision/ground) while the velocity persisted",
+     "offset": "0x2C",
+     "width": "s32",
+     "declared_as": "velocity_x",
+     "sample": [
+      -660,
+      -660,
+      -723,
+      -723,
+      -785,
+      -785
+     ]
+    },
+    {
+     "exact_velocity": "z",
+     "alignment": "written_after_move",
+     "longest_exact_run": 10,
+     "match": "17/19 moved frames",
+     "mismatches_are": "frames where the integrator clamped the position (collision/ground) while the velocity persisted",
+     "offset": "0x34",
+     "width": "u32",
+     "declared_as": "velocity_z",
+     "sample": [
+      517,
+      517,
+      565,
+      565,
+      614,
+      614
+     ]
+    },
+    {
+     "constant_delta_per_move": -256,
+     "offset": "0xA4",
+     "width": "u16",
+     "declared_as": null,
+     "sample": [
+      8448,
+      8448,
+      8192,
+      8192,
+      7936,
+      7936
+     ]
+    },
+    {
+     "constant_delta_per_move": 1,
+     "offset": "0xA8",
+     "width": "u32",
+     "declared_as": null,
+     "sample": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      0
+     ]
+    }
+   ]
+  },
+  "player_block_jump": {
+   "anchor": "level01.sav",
+   "input": "cross (jump) \u2014 vertical motion",
+   "frames": 40,
+   "findings": [
+    {
+     "exact_velocity": "y",
+     "alignment": "written_after_move",
+     "longest_exact_run": 7,
+     "match": "8/17 moved frames",
+     "mismatches_are": "frames where the integrator clamped the position (collision/ground) while the velocity persisted",
+     "offset": "0x30",
+     "width": "u32",
+     "declared_as": "velocity_y",
+     "sample": [
+      4294964736,
+      4294964736,
+      4294966208,
+      4294966208,
+      4294966464,
+      4294966464
+     ]
+    },
+    {
+     "constant_delta_per_move": -256,
+     "offset": "0xA4",
+     "width": "u16",
+     "declared_as": null,
+     "sample": [
+      10496,
+      10496,
+      10240,
+      10240,
+      9984,
+      9984
+     ]
+    },
+    {
+     "constant_delta_per_move": 1,
+     "offset": "0xA8",
+     "width": "u32",
+     "declared_as": null,
+     "sample": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      0
+     ]
+    }
+   ]
+  },
+  "actor_record": {
+   "anchor": "level01.sav",
+   "moving_actor_index": 24,
+   "actor_id": 14,
+   "frames": 40,
+   "findings": [
+    {
+     "exact_velocity": "x",
+     "alignment": "written_after_move",
+     "longest_exact_run": 19,
+     "match": "19/19 moved frames",
+     "mismatches_are": "none",
+     "offset": "0x1C",
+     "width": "s32",
+     "declared_as": "velocity_x",
+     "sample": [
+      447,
+      447,
+      335,
+      335,
+      229,
+      229
+     ]
+    },
+    {
+     "exact_velocity": "z",
+     "alignment": "written_after_move",
+     "longest_exact_run": 12,
+     "match": "12/19 moved frames",
+     "mismatches_are": "frames where the integrator clamped the position (collision/ground) while the velocity persisted",
+     "offset": "0x24",
+     "width": "u32",
+     "declared_as": "velocity_z",
+     "sample": [
+      621,
+      621,
+      621,
+      621,
+      606,
+      606
+     ]
+    }
+   ]
+  },
+  "contact_record": {
+   "anchor": "red_berry_thrown.sav",
+   "moving_slot": 37,
+   "frames": 24,
+   "findings": [
+    {
+     "exact_velocity": "x",
+     "caveat": "the field is CONSTANT over the window (a steady velocity) \u2014 exact equality, but weaker evidence than a varying field",
+     "alignment": "written_after_move",
+     "longest_exact_run": 9,
+     "match": "9/9 moved frames",
+     "mismatches_are": "none",
+     "offset": "0x0C",
+     "width": "s32",
+     "declared_as": "velocity_x",
+     "sample": [
+      -984,
+      -984,
+      -984,
+      -984,
+      -984,
+      -984
+     ]
+    },
+    {
+     "exact_velocity": "y",
+     "alignment": "written_before_move (pre-integrated)",
+     "longest_exact_run": 7,
+     "match": "7/8 moved frames",
+     "mismatches_are": "frames where the integrator clamped the position (collision/ground) while the velocity persisted",
+     "constant_delta_per_move": 128,
+     "offset": "0x10",
+     "width": "u32",
+     "declared_as": "velocity_y",
+     "sample": [
+      1464,
+      1464,
+      1592,
+      1592,
+      1720,
+      1720
+     ]
+    },
+    {
+     "exact_velocity": "z",
+     "caveat": "the field is CONSTANT over the window (a steady velocity) \u2014 exact equality, but weaker evidence than a varying field",
+     "alignment": "written_after_move",
+     "longest_exact_run": 9,
+     "match": "9/9 moved frames",
+     "mismatches_are": "none",
+     "offset": "0x14",
+     "width": "u32",
+     "declared_as": "velocity_z",
+     "sample": [
+      664,
+      664,
+      664,
+      664,
+      664,
+      664
+     ]
+    },
+    {
+     "constant_delta_per_move": -65536,
+     "offset": "0x24",
+     "width": "u32",
+     "declared_as": "contact_kind",
+     "sample": [
+      11862226,
+      11862226,
+      11796690,
+      11796690,
+      11731154,
+      11731154
+     ]
+    },
+    {
+     "constant_delta_per_move": -1,
+     "offset": "0x26",
+     "width": "u16",
+     "declared_as": "contact_kind",
+     "sample": [
+      181,
+      181,
+      180,
+      180,
+      179,
+      179
+     ]
+    }
+   ]
+  }
+ }
+}

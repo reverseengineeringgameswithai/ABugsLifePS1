@@ -1,0 +1,154 @@
+{
+ "rows": [
+  "D16_thumper",
+  "F03_council_chamber"
+ ],
+ "generated_by": "tools/phase4_d16_f03_census.py",
+ "pin_tool": "tools/phase4_d16_f03_static.c",
+ "pin_tool_exit_code": 0,
+ "exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+ "method": "Two independent censuses (immediate-match and constant-propagation dataflow) implemented TWICE -- once in C, once here -- and compared as SETS. Counts are never compared, because the two scan methods legitimately see different addressing forms.",
+ "second_implementation_agrees": true,
+ "disagreements": null,
+ "FINDING_0x80090BEE_IS_THE_CINEMATIC_CAMERA_FLAGS_FIELD": {
+  "what_it_is": "the FLAGS halfword at +0x2E of the shared cinematic/setpiece camera block 0x80090BC0 -- the same block C14 (telescope) and D17 (bird) use",
+  "access_width": "lhu / sh (HALFWORD). An earlier pass recorded lbu/sb.",
+  "writers": {
+   "0x8004DA7C": "in cinematic_camera_start 0x8004D9E8; flags := arg7",
+   "0x8004DB44": "in cinematic_camera_start_polar 0x8004DA94; flags := arg8",
+   "0x8004EB1C": "selector case 1: flags |= 0x01",
+   "0x8004EBAC": "selector case 3: flags &= ~0x01"
+  },
+  "readers": [
+   "0x8004EB0C",
+   "0x8004EB40",
+   "0x8004EB98",
+   "0x8004EBF4",
+   "0x8004F3D0",
+   "0x8004F6DC",
+   "0x800B4560 (LEVEL02/LEVEL1.BIN)"
+  ],
+  "bit_0x01": "cinematic camera ACTIVE. Selects the camera SOURCE at 0x8004EBFC (setpiece block vs the ordinary follow camera 0x80095358), and in gameplay_state_machine makes both HUD sites call 0x80053638 (draw_mirrored_fullscreen_quads = letterboxing) instead of 0x800526F4 (hud_draw).",
+  "bit_0x02": "hold 0x800A6590 bit 0x04 for the duration: ORed in on entry (0x8004EB64) and cleared on exit (0x8004EBC8).",
+  "why_the_value_2_is_not_a_defeat_code": "both writers take the value as a CALLER-SUPPLIED argument. The resident telescope setpiece path passes 2 unconditionally (0x8004D6F4), and so do several level overlays."
+ },
+ "FINDING_POWER_BIT_0x04_IS_A_SUPPRESSION_GATE_NOT_A_POWER_UP": {
+  "readers": [
+   "0x8004EED0",
+   "0x80050C84",
+   "0x80051138",
+   "0x80054F38",
+   "0x80056550"
+  ],
+  "shape": "every one of the five branches PAST its body when the bit is set; none enables anything",
+  "enclosing": [
+   "gameplay_state_machine",
+   "contact_pickup_sfx",
+   "ambient_sfx_sequence_update",
+   "sfx_nearest_pickup_f_glue",
+   "actor_skinned_update"
+  ],
+  "gameplay_effect": "taking the branch in gameplay_state_machine masks the player action word 0x80082488 down to 0x309",
+  "corrects": "the earlier reading that boss defeat 'grants a previously unidentified power'"
+ },
+ "FINDING_THE_LEVEL_EXIT_IS_A_DIFFERENT_STORE": {
+  "resident_overlay_during_the_fight": "REBUILD/files/LEVEL02/LEVEL.BIN",
+  "overlay_identity_was_measured": "region A 0x800B39A0 is a SHARED swap buffer, so an overlay address is meaningless without knowing the resident blob. This was verified live by hashing the resident window; an earlier draft of this analysis attributed the code to LEVEL03/LEVEL1.BIN and was wrong.",
+  "defeat_gate": "0x800B4070 lh [0x8009FE72] (Thumper HP) ; 0x800B4078 slti 21",
+  "thumper_hp_address": "0x8009FE72 = chunk-31 actor 0x8009FE04 + 0x6E",
+  "once_only_guard": "0x800B4090 bne [0x800823A0],0 -- skip if already latched",
+  "camera_start": "0x800B4118 flags:=2 ; 0x800B4138 jal 0x8004DA94",
+  "the_level_exit": "0x800B4190 sh v0,[0x800823A0] with v0 = 1",
+  "order": "camera start FIRST, goal latch SECOND, one straight-line block, same frame",
+  "no_path_from_the_flags_word": "the complete consumer set of 0x80090BEE (above) contains no read or write of 0x800823A0, the scene id 0x80082504, or any loader entry"
+ },
+ "census_0x80090BEE": {
+  "dataflow_hits": [
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004DA7C",
+    "word": "0xA4300BEE",
+    "kind": "store"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004DB44",
+    "word": "0xA4290BEE",
+    "kind": "store"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004EB0C",
+    "word": "0x94420BEE",
+    "kind": "load"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004EB1C",
+    "word": "0xA4220BEE",
+    "kind": "store"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004EB40",
+    "word": "0x94420BEE",
+    "kind": "load"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004EB98",
+    "word": "0x94420BEE",
+    "kind": "load"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004EBAC",
+    "word": "0xA4230BEE",
+    "kind": "store"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004EBF4",
+    "word": "0x96020000",
+    "kind": "load"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004F3D0",
+    "word": "0x94420BEE",
+    "kind": "load"
+   },
+   {
+    "file": "REBUILD/files/SCUS_942.88",
+    "pc": "0x8004F6DC",
+    "word": "0x94420BEE",
+    "kind": "load"
+   },
+   {
+    "file": "REBUILD/files/LEVEL02/LEVEL1.BIN",
+    "pc": "0x800B4560",
+    "word": "0x94420BEE",
+    "kind": "load"
+   }
+  ],
+  "immediate_candidates": 12,
+  "immediate_false_positives_resolved_elsewhere": [
+   {
+    "file": "REBUILD/files/LEVEL07/LEVEL1.BIN",
+    "pc": "0x800B4888",
+    "word": "0x84420BEE",
+    "resolves_to": "0x800B0BEE"
+   },
+   {
+    "file": "REBUILD/files/LEVEL07/LEVEL1.BIN",
+    "pc": "0x800B4904",
+    "word": "0xA4220BEE",
+    "resolves_to": "0x800B0BEE"
+   }
+  ],
+  "overlay_touching_it": [
+   "REBUILD/files/LEVEL02/LEVEL1.BIN"
+  ],
+  "known_blind_spot": "neither scan can see an access through a pointer loaded from memory; that possibility is NOT claimed against"
+ }
+}

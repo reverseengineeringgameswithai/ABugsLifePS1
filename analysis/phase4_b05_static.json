@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "row": "B05",
+  "mechanic": "green leaf platforms and traversal uses",
+  "date": "2026-08-03",
+  "source_scope": [
+    "asm/hand_written/8005bfbc_plant_behavior_walker.s",
+    "asm/hand_written/8005cce8_seed_plant_passive_handler.s",
+    "asm/hand_written/8005cd2c_sub_8005cd2c.s",
+    "asm/hand_written/8005bc64_sub_8005bc64.s",
+    "asm/hand_written/8005bdbc_plant_spawn.s"
+  ],
+  "selector": {
+    "green_count_to_type": {"1": 4, "2": 10, "3": 9, "4": 1},
+    "plant_pool": "0x80090BF0, 20 slots, stride 0x30",
+    "type_dispatch_table": "0x8001B848"
+  },
+  "static_findings": [
+    "0x8005BFBC calls player_sector_lookup at 0x80038E48, walks the plant pool, requires extra_state bit 0x04, and dispatches by type.",
+    "Green types 1, 4, 9, and 10 route through 0x8005CCE8, which is only the walker continuation; the common animation, reaction, and render loop continues at 0x8005CD2C.",
+    "The growth-contact gate requires slot state 0, animation accumulator 0x00030000, extra_state bit 0x04, and quantized squared 3D distance below 900.",
+    "Type 4 writes player VY=-3584 at 0x8005D01C. Green types 1, 9, and 10 use the generic radial reaction with VY=-2048 and horizontal push. The type 3/5 VY=-3328 branch is not a green-tier law.",
+    "Mature leaf support is supplied through ordinary sector/collision and player Y-commit paths. Per-tier surface heights are model/collision-asset data rather than constants in a separate resident green handler.",
+    "The lifecycle loop advances the animation accumulator by 0x8000, manages slot+0x26 and extra-state bits, and can release the slot at an animation terminator."
+  ],
+  "correction": "The earlier shorthand that all green behavior is passive and has no special VY writer is too broad. Mature support is passive collision, but the common growth-reaction loop contains explicit green-type VY writes.",
+  "closure_role": "Static ASM closes selection, dispatch, reaction, lifecycle, and mature-collision ownership. Runtime evidence remains necessary only for asset-defined surface reachability and hold behavior."
+}

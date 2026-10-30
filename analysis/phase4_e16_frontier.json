@@ -1,0 +1,63 @@
+{
+ "_comment": "Phase-4 E16 static frontier against exit-gate item 2. Regenerate: tools/phase4_e16_frontier.py",
+ "generated": "2026-08-04",
+ "row": "E16_streaming_overlays",
+ "question": "Exit-gate item 2 -- is every access that could reach E16's registered-chunk state either resolved or explicitly bounded?",
+ "scope": {
+  "covered": "the three registered-chunk pointer tables ONLY -- the part of E16 whose state is a small, absolutely-addressed region",
+  "NOT_covered": "the rest of the row's universe: overlay region A and its 42 entries, the resident streaming table 0x8007EFE8, the high heap holding decompressed chunks, and the LEVEL.RAW/DAT/BIN assets. Item 2 is a per-SUBSYSTEM bar, so closing the tables alone would not close the row."
+ },
+ "per_table": {
+  "markers_0x30_0x57": {
+   "window": "0x8009B5A8..0x8009B647",
+   "hits": 0,
+   "unresolved_after_region": 12146,
+   "exclusions_total": 890,
+   "indirect_unresolved": 149,
+   "full_width_escaping_stores": 0,
+   "arg_passing_call_sites": 0,
+   "partial_width_stores": 0,
+   "undecided_unbounded_regions": 20397
+  },
+  "markers_0x28_0x2F": {
+   "window": "0x8009C210..0x8009C22F",
+   "hits": 1,
+   "unresolved_after_region": 11869,
+   "exclusions_total": 1167,
+   "indirect_unresolved": 149,
+   "full_width_escaping_stores": 0,
+   "arg_passing_call_sites": 0,
+   "partial_width_stores": 0,
+   "undecided_unbounded_regions": 20389
+  },
+  "markers_0x58_0x5F": {
+   "window": "0x800A65B0..0x800A65CF",
+   "hits": 1,
+   "unresolved_after_region": 12175,
+   "exclusions_total": 861,
+   "indirect_unresolved": 149,
+   "full_width_escaping_stores": 0,
+   "arg_passing_call_sites": 0,
+   "partial_width_stores": 0,
+   "undecided_unbounded_regions": 20389
+  }
+ },
+ "the_escape_argument": {
+  "statement": "If no store anywhere writes a pointer to this region into memory, and no call passes one as an argument, then no memory location can hold one, so no lw-loaded base can be one -- and the entire unresolved-base residual is excluded at a stroke.",
+  "decidable_result": "0 full-width escaping stores and 0 argument-passing call sites across all three tables.",
+  "why_that_is_NOT_enough": "Those zeroes range over DECIDABLE values only. ~20,180 region values per run carry no proven index bound, so the analyser cannot say whether they may point into the table. An arithmetic progression with an unknown index reaches everything; treating those as escapes makes the test a tautology (measured: 57 stores / 258 call sites flagged for a 160-byte stride-4 window), and treating them as non-escapes assumes the conclusion. They are therefore COUNTED as undecided.",
+  "established": false
+ },
+ "verdict": {
+  "item_2_met": false,
+  "reason": "The escape argument is not established, so ~12063 unresolved-base accesses per table remain merely possible rather than bounded.",
+  "wall": "Same class of wall B06/B08 stopped against, reached through a different door. B06's blocker was 4,490 image-wide stores with unresolved DESTINATIONS; E16's is ~20,180 region values with no proven INDEX BOUND. Both are the same deficiency -- the image does not statically yield the bounds the argument needs -- and neither is row-specific.",
+  "what_this_says_about_the_gate": "E16 was the best-positioned candidate left and it fails for a non-row-specific reason. That is a second independent data point (after B06/B08 and E15) that item 2 as written is not reachable with current technique, and the next move is a general capability -- index/pointer bound recovery -- not another row."
+ },
+ "what_DID_improve": [
+  "TIER 3 EXCLUDED_OUT_OF_BOUND was unsound and is fixed; 35 unsound image-wide exclusions disappeared. B06's committed 416/165/251 is byte-identical (its artifact records 0 in-scope out-of-bound exclusions).",
+  "The escape test no longer reports a vacuous 0 for region-addressed targets; undecidable values are counted and surfaced instead of silently dropped.",
+  "region_provenance.c takes an optional --block LO HI, so a subsystem other than B06's can be analysed without editing the tool."
+ ],
+ "any_undecided": true
+}

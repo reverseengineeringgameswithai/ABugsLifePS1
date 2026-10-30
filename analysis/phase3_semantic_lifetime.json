@@ -1,0 +1,1100 @@
+{
+ "_comment": "Phase-3 init/reset/overlay-lifetime for every owned entry. RAM-scalar state is MEASURED across a real scene transition (poll-only, world-ready aware); ROM tables and overlay entries are DERIVED from their address and labelled measured:false \u2014 an honest derivation beats a fake probe. Regenerate: tools/phase3_semantic_lifetime.py",
+ "generated": "2026-07-14",
+ "run_provenance": {
+  "command": "/usr/bin/python3 tools/phase3_semantic_lifetime.py --port 25776 --token '<redacted-token>' --config-dir /tmp/duckstation-phase3-i6b-lifetime-f57Lo5 --instance-state recreated --stage stage01_anthill",
+  "generator_sha256": "b5e8db75f289e0b8e9e70344577d73f046b0774d53bc282e3e7e647aa78225a1",
+  "provenance_helper_sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678",
+  "launcher_helper_sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821",
+  "repository_head": "67c1b6db21fb728fd65fe6697a193b4a097faf1d",
+  "recorded_utc": "2026-07-14T21:54:15.941686+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "status": "M EXTERNAL_DEBUGGER_CONTROL.md\n M docs/external-debugger-determinism.md\n M docs/external-debugger-experiment-runner.md\n M docs/external-debugger-movie.md\n M docs/external-debugger.md\n M scripts/debugger-client/README.md\n M scripts/debugger-client/duckstation_debug_client.py\n M scripts/debugger-client/mcp_bridge.py\n M src/CMakeLists.txt\n M src/core/CMakeLists.txt\n M src/core/achievements.cpp\n M src/core/analog_controller.cpp\n M src/core/analog_controller.h\n M src/core/analog_joystick.cpp\n M src/core/analog_joystick.h\n M src/core/cdrom.cpp\n M src/core/cdrom.h\n M src/core/controller.cpp\n M src/core/controller.h\n M src/core/core.vcxproj\n M src/core/core.vcxproj.filters\n M src/core/cpu_core.cpp\n M src/core/cpu_core.h\n M src/core/debugger_control_service.cpp\n M src/core/debugger_control_service.h\n M src/core/dma.cpp\n M src/core/fullscreenui_settings.cpp\n M src/core/gpu.cpp\n M src/core/gpu.h\n M src/core/gpu_backend.cpp\n M src/core/gpu_backend.h\n M src/core/imgui_overlays.cpp\n M src/core/input_movie.cpp\n M src/core/input_movie.h\n M src/core/negcon.cpp\n M src/core/negcon.h\n M src/core/negcon_rumble.cpp\n M src/core/negcon_rumble.h\n M src/core/settings.cpp\n M src/core/settings.h\n M src/core/spu.cpp\n M src/core/spu.h\n M src/core/system.cpp\n M src/core/system.h\n M src/core/system_private.h\n M src/duckstation-qt/debuggerrpc.cpp\n M src/duckstation-qt/debuggerrpc.h\n M src/duckstation-qt/debuggerserver.cpp\n M src/duckstation-qt/debuggerserver.h\n M src/duckstation-qt/input_movie_file.cpp\n M src/duckstation-qt/input_movie_file.h\n M src/duckstation-qt/interfacesettingswidget.cpp\n M src/duckstation-qt/interfacesettingswidget.ui\n M src/duckstation-qt/logwindow.cpp\n M src/duckstation-qt/mainwindow.cpp\n M src/duckstation-qt/mainwindow.h\n M src/duckstation-qt/mainwindow.ui\n M src/duckstation-qt/osdsettingswidget.cpp\n M src/duckstation-qt/osdsettingswidget.ui\n M src/duckstation-qt/qthost.cpp\n M src/duckstation-qt/qtutils.cpp\n M src/duckstation-qt/qtutils.h\n M src/duckstation-regtest/regtest_host.cpp\n M src/scmversion/gen_scmversion.bat\n M src/scmversion/gen_scmversion.sh\n M src/scmversion/scmversion.h\n?? api-hardening-artifacts-20260714/\n?? docs/external-debugger-scenarios.md\n?? scripts/debugger-client/launch_debugger_instance.sh\n?? scripts/debugger-client/test_code_patch_invalidation.py\n?? scripts/debugger-client/test_framebuffer_capture.py\n?? scripts/debugger-client/test_function_bounds.py\n?? scripts/debugger-client/test_gp0trace_dma.py\n?? src/core-tests/\n?? src/core/cd_provenance.cpp\n?? src/core/cd_provenance.h\n?? src/core/code_analysis.cpp\n?? src/core/code_analysis.h\n?? src/core/frame_diff.cpp\n?? src/core/frame_diff.h\n?? src/core/gpu_object_picker.cpp\n?? src/core/gpu_object_picker.h\n?? src/core/gte_camera.cpp\n?? src/core/gte_camera.h\n?? src/core/movie_edit.cpp\n?? src/core/movie_edit.h\n?? src/core/write_index.cpp\n?? src/core/write_index.h",
+   "binary_path": "~/duckstation/build-release/bin/duckstation-qt",
+   "binary_sha256": "27d064bcbdfefadf91fd9401d158a2756dc6bbf6d52a0bb2d3a3dfad7129cb54"
+  },
+  "rpc_manifest": {
+   "path": "analysis/phase3_duckstation_rpc_manifest.json",
+   "semantic_sha256": "e2597de77dc56ff2dc4c4b9d2ff72b9abccb76b203a6d7d2c180aeba29fdd80b",
+   "source": {
+    "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "status_sha256": "1c1a325041c78e0545816a605a2dbc7c41a08549642d4f4b8289d9df87baf130",
+    "dispatcher_sha256": "b1be4d512eae5c67608453adcbabb32e03612c3ead51856c41ab9c0d140f47be",
+    "method_count": 203
+   },
+   "binary": {
+    "path": "~/duckstation/build-release/bin/duckstation-qt",
+    "sha256": "27d064bcbdfefadf91fd9401d158a2756dc6bbf6d52a0bb2d3a3dfad7129cb54",
+    "size": 37860600
+   }
+  },
+  "debugger": {
+   "config_dir": "/tmp/duckstation-phase3-i6b-lifetime-f57Lo5",
+   "port": 25776,
+   "transport": "ws",
+   "token_sha256": "3d092c5b84dc80e919d9f79d27927b8078ae348996f4f9f56ce42263055a976d",
+   "recreated": true,
+   "owned_pid": 1868417
+  },
+  "anchor": {
+   "movie": "movies/go_to_end/LEVEL01.movie.json",
+   "fixture_sha256": {
+    "movies/go_to_end/LEVEL01.movie.json": "bfedc0d0f4828998fc598257b35ad090180ad6cb01ea317bc40229f977dc40fb"
+   },
+   "media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "has_media": true,
+    "serials_agree": true,
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   }
+  },
+  "timing": {
+   "before_frame": 4450,
+   "after_frame": 5770,
+   "scene_transition": [
+    0,
+    1
+   ],
+   "poll_step_frames": 30
+  },
+  "cleanup": {
+   "owned_pid_stopped": true,
+   "launcher_returncode": 0,
+   "launcher_output": "Stopped isolated instance (pid 1868417).\nowned cleanup: pid=1868417 stopped=true final_state=None waited_ms=0",
+   "process_final_state": null
+  }
+ },
+ "media_identity_before_playback": {
+  "game_serial": "SCUS-94288",
+  "game_title": "Disney-Pixar A Bug's Life",
+  "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+  "has_media": true,
+  "serials_agree": true,
+  "rpc_before_hash": {
+   "cd_overlays_removed": 0,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_media": true,
+   "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "subimage_count": 0,
+   "subimage_index": 0
+  },
+  "rpc_after_hash": {
+   "cd_overlays_removed": 0,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_media": true,
+   "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "subimage_count": 0,
+   "subimage_index": 0
+  },
+  "hash_verification": {
+   "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "pin_source": "tools/build_baselines.json",
+   "pristine_verified": true,
+   "files": {
+    "Disney-Pixar A Bug's Life (v1.0).cue": {
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "matches_pin": true
+    },
+    "Disney-Pixar A Bug's Life (v1.0).bin": {
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+     "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "matches_pin": true
+    }
+   }
+  }
+ },
+ "fixture_sha256": {
+  "movies/go_to_end/LEVEL01.movie.json": "bfedc0d0f4828998fc598257b35ad090180ad6cb01ea317bc40229f977dc40fb",
+  "build/SCUS_942.88.patched": "991fc38c131fe1139df30e9719a222a06a140054f1f8ee46b6321bbd9c0e6808"
+ },
+ "playback_provenance": {
+  "oracle_stage": "stage01_anthill",
+  "movie": "movies/go_to_end/LEVEL01.movie.json",
+  "movie_load": {
+   "frame_count": 10348,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_movie": true,
+   "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/movies/go_to_end/LEVEL01.movie.json",
+   "playback_index": 0,
+   "playing": false,
+   "ports": [
+    0
+   ],
+   "recording": false,
+   "reproducible": false,
+   "start_state": {
+    "file_size": 0,
+    "frame": 0,
+    "from_boot": true,
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "loaded_before_recording": false,
+    "path": "",
+    "pc": "0x00000000",
+    "reproducible_only_from_state": false,
+    "sha256": null,
+    "sp": "0x00000000"
+   },
+   "truncated": false
+  },
+  "movie_start": {
+   "frame_count": 10348,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_movie": true,
+   "playback_index": 0,
+   "playing": true,
+   "ports": [
+    0
+   ],
+   "recording": false,
+   "reproducible": true,
+   "start_state": {
+    "file_size": 0,
+    "frame": 0,
+    "from_boot": true,
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "loaded_before_recording": false,
+    "path": "",
+    "pc": "0x00000000",
+    "reproducible_only_from_state": false,
+    "sha256": null,
+    "sp": "0x00000000"
+   },
+   "truncated": false
+  },
+  "target_scene": 1,
+  "timeline_source": "analysis/phase2_completion_oracle.json"
+ },
+ "stage": "stage01_anthill",
+ "transition": {
+  "scene": [
+   0,
+   1
+  ],
+  "frames": [
+   4450,
+   5770
+  ]
+ },
+ "entries_total": 63,
+ "measured_live": 35,
+ "derived": 28,
+ "overlay_lifetime_counts": {
+  "resident_ram": 50,
+  "resident_rom": 12,
+  "overlay": 1
+ },
+ "reset_counts": {
+  "reloaded": 20,
+  "carried_over": 4,
+  "unchanged_zero": 11,
+  "never (immutable const in ROM)": 12,
+  "on_overlay_swap": 1,
+  "unknown": 3,
+  "runtime (mutable BSS/heap RAM, 1 static writers) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json": 4,
+  "runtime (mutable BSS/heap RAM, written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json": 7,
+  "runtime (mutable BSS/heap RAM, 2 static writers) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json": 1
+ },
+ "entries": {
+  "original.current_scene_id": {
+   "address": "0x80082504",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 10,
+   "declared_writers": 2,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 1,
+   "measured": true
+  },
+  "original.player_x": {
+   "address": "0x800A6500",
+   "width": "s32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 195407,
+   "measured": true
+  },
+  "original.player_y": {
+   "address": "0x800A6504",
+   "width": "s32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 2622,
+   "measured": true
+  },
+  "original.player_z": {
+   "address": "0x800A6508",
+   "width": "s32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 491941,
+   "measured": true
+  },
+  "original.player_health_display": {
+   "address": "0x800A7E2A",
+   "width": "s16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 2,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 5,
+   "measured": true
+  },
+  "original.player_lives": {
+   "address": "0x800A65A0",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 10,
+   "declared_writers": 1,
+   "init": "preserved_across_load",
+   "reset": "carried_over",
+   "before": 5,
+   "after": 5,
+   "measured": true,
+   "corroborated_by": "session-owned per the 16-stage transition sweep (analysis/phase3_transition_reset.json), which is authoritative; this single-transition sample read 5->5, which one transition cannot interpret"
+  },
+  "original.player_equipped_berry": {
+   "address": "0x800A6597",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 10,
+   "declared_writers": 1,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.bonus1_stomp_streak": {
+   "address": "0x8008223C",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 7,
+   "declared_writers": 2,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.bonus3_blue_grasshopper_streak": {
+   "address": "0x80082240",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 5,
+   "declared_writers": 4,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.bonus2_mushroom_slot_0": {
+   "address": "0x80082248",
+   "width": "s8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 3,
+   "declared_writers": 2,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": -1,
+   "measured": true
+  },
+  "original.bonus_transition_latch": {
+   "address": "0x800823A0",
+   "width": "s16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 16,
+   "declared_writers": 3,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.bonus_progress_command": {
+   "address": "0x80082444",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 6,
+   "declared_writers": 4,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 113,
+   "measured": true
+  },
+  "original.bonus_fade_timer": {
+   "address": "0x80082470",
+   "width": "s16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 14,
+   "declared_writers": 3,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 24,
+   "measured": true
+  },
+  "original.bonus_unlock_flags": {
+   "address": "0x8009B889",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 5,
+   "declared_writers": 4,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.player_health_true": {
+   "address": "0x800A6594",
+   "width": "s16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 5,
+   "declared_writers": 1,
+   "init": "preserved_across_load",
+   "reset": "carried_over",
+   "before": 0,
+   "after": 4,
+   "measured": true,
+   "corroborated_by": "session-owned per the 16-stage transition sweep (analysis/phase3_transition_reset.json), which is authoritative; this single-transition sample read 0->4, which one transition cannot interpret"
+  },
+  "original.player_state_word": {
+   "address": "0x800A6580",
+   "width": "u16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 6,
+   "declared_writers": 1,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.player_grounded": {
+   "address": "0x800A6582",
+   "width": "u16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 9,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 257,
+   "measured": true
+  },
+  "original.kick_timer": {
+   "address": "0x800A657A",
+   "width": "s16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 8,
+   "declared_writers": 1,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.player_berries_in_flight": {
+   "address": "0x800A6596",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 8,
+   "declared_writers": 1,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.pad_held_word": {
+   "address": "0x80082488",
+   "width": "u16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 13,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 144,
+   "measured": true
+  },
+  "original.pad_prev_word": {
+   "address": "0x80082380",
+   "width": "u16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 2,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 144,
+   "measured": true
+  },
+  "original.plant_slot_cursor": {
+   "address": "0x800822B8",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 3,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 2,
+   "measured": true
+  },
+  "original.contact_alloc_cursor": {
+   "address": "0x8008234C",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 9,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 57,
+   "measured": true
+  },
+  "original.pass3_decor_visibility_bitmap": {
+   "address": "0x800902C7",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 255,
+   "measured": true
+  },
+  "original.thumper_defeat_flag": {
+   "address": "0x80090BEE",
+   "width": "u16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 4,
+   "declared_writers": 1,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.player_velocity_y": {
+   "address": "0x800A6530",
+   "width": "s32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 13,
+   "declared_writers": 2,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": -44,
+   "measured": true
+  },
+  "original.player_velocity_x": {
+   "address": "0x800A652C",
+   "width": "s32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 12,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": -441,
+   "measured": true
+  },
+  "original.player_velocity_z": {
+   "address": "0x800A6534",
+   "width": "s32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 12,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": -249,
+   "measured": true
+  },
+  "original.player_anim_frame_pair": {
+   "address": "0x800A6542",
+   "width": "u16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 1,
+   "measured": true
+  },
+  "original.player_floor_y": {
+   "address": "0x800A6548",
+   "width": "s32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 0,
+   "after": 2748,
+   "measured": true
+  },
+  "original.enemy_permanence_quota": {
+   "address": "0x800A658E",
+   "width": "u16",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 2,
+   "declared_writers": 1,
+   "init": "preserved_across_load",
+   "reset": "carried_over",
+   "before": 0,
+   "after": 21,
+   "measured": true,
+   "corroborated_by": "session-owned per the 16-stage transition sweep (analysis/phase3_transition_reset.json), which is authoritative; this single-transition sample read 0->21, which one transition cannot interpret"
+  },
+  "original.player_powerup_flags": {
+   "address": "0x800A6590",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 16,
+   "declared_writers": 1,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.grain_count": {
+   "address": "0x800A65A1",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 1,
+   "init": "preserved_across_load",
+   "reset": "carried_over",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "corroborated_by": "session-owned per the 16-stage transition sweep (analysis/phase3_transition_reset.json), which is authoritative; this single-transition sample read 0->0, which one transition cannot interpret"
+  },
+  "original.music_id": {
+   "address": "0x8008245C",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 7,
+   "declared_writers": 1,
+   "init": "loaded_from_level_data",
+   "reset": "reloaded",
+   "before": 65435,
+   "after": 1,
+   "measured": true
+  },
+  "original.checkpoint_fp_save": {
+   "address": "0x800823CC",
+   "width": "u32",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 2,
+   "declared_writers": 1,
+   "init": "unknown",
+   "reset": "unchanged_zero",
+   "before": 0,
+   "after": 0,
+   "measured": true,
+   "blocker": {
+    "kind": "insufficient_transition_evidence",
+    "observation": "single transition observed 0->0 (0->0)",
+    "why": "0->0 proves neither initialization nor reset behavior",
+    "next": "establish a nonzero precondition, trigger the relevant load/reset, and observe whether the owner clears, preserves, or reloads it"
+   }
+  },
+  "original.berry_throw": {
+   "address": "0x80047170",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.training_step": {
+   "address": "0x800B4A3C",
+   "width": "s32",
+   "overlay_lifetime": "overlay",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "overlay_load (swapped in with its level)",
+   "reset": "on_overlay_swap",
+   "measured": false,
+   "derivation": "overlay-resident \u2014 lifetime is its overlay's load/unload"
+  },
+  "mod_private.blackberry_spawn_fast_flag": {
+   "address": "0x80081230",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "above_loaded_image": false,
+   "init": "load_time_zero_from_pinned_MOD_image",
+   "reset": "unknown",
+   "initial_value_in_pinned_MOD_image": 0,
+   "patched_image_sha256": "991fc38c131fe1139df30e9719a222a06a140054f1f8ee46b6321bbd9c0e6808",
+   "patched_image_matches_pin": true,
+   "measured": false,
+   "derivation": "MOD-private resident RAM: registry-declared MOD cave writers make it mutable even though the pristine static xref scan sees zero writers; cold-boot byte derived from the pinned full MOD image",
+   "blocker": {
+    "kind": "mod_private_reset_unmeasured",
+    "observation": "pristine-media transition probes cannot exercise MOD-private writers",
+    "why": "scene-transition reset/retention has not been measured on the pinned MOD build",
+    "next": "cold-boot the pinned MOD image, drive a scene transition, and trace the declared owner writers"
+   }
+  },
+  "mod_private.blackberry_equipped": {
+   "address": "0x80081231",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 2,
+   "above_loaded_image": false,
+   "init": "load_time_zero_from_pinned_MOD_image",
+   "reset": "unknown",
+   "initial_value_in_pinned_MOD_image": 0,
+   "patched_image_sha256": "991fc38c131fe1139df30e9719a222a06a140054f1f8ee46b6321bbd9c0e6808",
+   "patched_image_matches_pin": true,
+   "measured": false,
+   "derivation": "MOD-private resident RAM: registry-declared MOD cave writers make it mutable even though the pristine static xref scan sees zero writers; cold-boot byte derived from the pinned full MOD image",
+   "blocker": {
+    "kind": "mod_private_reset_unmeasured",
+    "observation": "pristine-media transition probes cannot exercise MOD-private writers",
+    "why": "scene-transition reset/retention has not been measured on the pinned MOD build",
+    "next": "cold-boot the pinned MOD image, drive a scene transition, and trace the declared owner writers"
+   }
+  },
+  "mod_private.blackberry_effective_index": {
+   "address": "0x80081232",
+   "width": "u8",
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 2,
+   "above_loaded_image": false,
+   "init": "load_time_zero_from_pinned_MOD_image",
+   "reset": "unknown",
+   "initial_value_in_pinned_MOD_image": 0,
+   "patched_image_sha256": "991fc38c131fe1139df30e9719a222a06a140054f1f8ee46b6321bbd9c0e6808",
+   "patched_image_matches_pin": true,
+   "measured": false,
+   "derivation": "MOD-private resident RAM: registry-declared MOD cave writers make it mutable even though the pristine static xref scan sees zero writers; cold-boot byte derived from the pinned full MOD image",
+   "blocker": {
+    "kind": "mod_private_reset_unmeasured",
+    "observation": "pristine-media transition probes cannot exercise MOD-private writers",
+    "why": "scene-transition reset/retention has not been measured on the pinned MOD build",
+    "next": "cold-boot the pinned MOD image, drive a scene transition, and trace the declared owner writers"
+   }
+  },
+  "original.contact_pool": {
+   "address": "0x800B0D18",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, 1 static writers) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (1 static writers); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.plant_slots": {
+   "address": "0x80090BF0",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.enemy_live_table": {
+   "address": "0x80090748",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 2,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, 2 static writers) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (2 static writers); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.chunk31_actor_records": {
+   "address": "0x8009FE04",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.camera_struct": {
+   "address": "0x80095358",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.berry_throw_jump_table": {
+   "address": "0x8001B1C0",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.mover_vm_opcode_table": {
+   "address": "0x8001B2F4",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.spawn_coord_table": {
+   "address": "0x80077314",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.mover_vm_program_bank": {
+   "address": "0x8007745C",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.plant_type_table": {
+   "address": "0x8007A448",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.overlay_streaming_table": {
+   "address": "0x8007EFE8",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.fmv_boot_buffer_start": {
+   "address": "0x800814BC",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, 1 static writers) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (1 static writers); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.fmv_boot_buffer_end": {
+   "address": "0x80081530",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.enemy_spawn_source_table": {
+   "address": "0x80094A38",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 0,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, 1 static writers) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (1 static writers); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.worm_anchor": {
+   "address": "0x800A0C9C",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.player_prev_pos": {
+   "address": "0x800A6510",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 1,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, 1 static writers) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (1 static writers); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.plant_behavior_jump_table": {
+   "address": "0x8001B848",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.scene_asset_table": {
+   "address": "0x8001AD0C",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.gfx_loadscreen_table": {
+   "address": "0x8001AE98",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.level_bin_table": {
+   "address": "0x8001B174",
+   "width": null,
+   "overlay_lifetime": "resident_rom",
+   "static_writers": 0,
+   "declared_writers": 0,
+   "above_loaded_image": false,
+   "init": "load_time (const in the EXE/ROM image)",
+   "reset": "never (immutable const in ROM)",
+   "measured": false,
+   "derivation": "EXE/const table with NO static writers, WITHIN the loaded image \u2014 value lives in the image, not written at runtime"
+  },
+  "original.object_pointer_list": {
+   "address": "0x80096B98",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.shared_mesh_vertex_buffer": {
+   "address": "0x8012C1D0",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)); non-scalar or a table \u2014 measured per-record, not as one value"
+  },
+  "original.skeleton_bone_transform_bank": {
+   "address": "0x8008A1F8",
+   "width": null,
+   "overlay_lifetime": "resident_ram",
+   "static_writers": 0,
+   "declared_writers": 1,
+   "above_loaded_image": true,
+   "init": "runtime (BSS zero at load, then written by the code)",
+   "reset": "runtime (mutable BSS/heap RAM, written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)) \u2014 non-scalar/table, so not probed as a single value; per-record reset is in phase3_transition_reset.json",
+   "measured": false,
+   "derivation": "mutable BSS/heap RAM (written via pointer (base+offset) \u2014 0 static writers because the xref scan cannot resolve pointer-based stores; it is RAM by location (above the 0x80082800 image end)); non-scalar or a table \u2014 measured per-record, not as one value"
+  }
+ }
+}

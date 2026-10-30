@@ -1,0 +1,126 @@
+{
+  "row": "A11_seed_as_weapon",
+  "generated": "2026-08-03",
+  "status": "partial",
+  "disposition": "partial_bounded_exhausted_move_on",
+  "method": [
+    "validate and query the relevant retained trace capsule",
+    "reconstruct RAM and passive block flow with compiled C",
+    "scan the hash-pinned pristine PS-X EXE with compiled C",
+    "reuse the retained Phase 2 no-press causal control"
+  ],
+  "capsule": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/a10-a11-v2-20260719/seed_as_enemy",
+    "manifest_sha256": "84b553e7a1712076b80ead43a452fd4638f2661e03adf419fc386a554f4a854a",
+    "movie": "movies/seed_as_enemy.movie.json",
+    "movie_sha256": "6073e177ef57b485bec83c8afdd7b7a7650fd15ee589991fdbf9138b0f4ba915",
+    "state": "movies/seed_as_enemy.movie.sav",
+    "state_sha256": "772d9e49507cc0565314fb1a6d3bfb54b79af2b3f405aa48712e7dd26bf2944b",
+    "media_serial": "SCUS-94288",
+    "complete": true,
+    "truncated": false,
+    "error": "",
+    "forced_cached_interpreter": true,
+    "block_mode": "counts",
+    "frame_boundaries": 462,
+    "movie_frames": [0, 461],
+    "emulator_frames": [6799, 7260],
+    "instructions": 115244526,
+    "blocks": 16860106,
+    "domain_hash_checks": 1386,
+    "control_mismatches": {}
+  },
+  "pristine_executable": {
+    "path": "REBUILD/files/SCUS_942.88",
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "psx_load_address": "0x80010000",
+    "payload_bytes": 468992
+  },
+  "timeline": {
+    "pickup_square_edge": 58,
+    "carry_attached": 61,
+    "drop_square_edge": 327,
+    "carry_detached": 329,
+    "seed_target_contact": 349,
+    "seed_zero_motion": 369,
+    "target_terminal_unlink": 389
+  },
+  "target": {
+    "record": "0x8009FD80",
+    "actor_id": 9,
+    "family": "spider_chaser",
+    "flags_at_hit": "0x4011",
+    "hp_before": 2,
+    "hp_during_reaction": 2,
+    "knockback_transition": "0 -> -20 at movie frame 349, then +1 each 30 Hz actor tick",
+    "terminal_state": "At frame 389 knockback reaches 0, HP becomes 0, and the pointer is removed from the live table; actor ID remains 9 because permanence +0x62 is nonzero.",
+    "classification": "HP-bypassing temporary KO, not direct damage and not a permanent kill"
+  },
+  "seed": {
+    "record": "0x800A07D0",
+    "actor_id": 11,
+    "impact_motion_before": [977, 2560, 306],
+    "impact_motion_after": [979, 271, 994],
+    "settled_position": [76495, -17302, 544652],
+    "settled_motion": [0, 0, 0],
+    "hp_unchanged": 1,
+    "remains_live_through_frame": 461,
+    "outcome": "The released seed deflects, settles, and remains a live movable seed."
+  },
+  "executed_arm": {
+    "function": "contact_vs_actor_handler",
+    "blocks_at_impact": ["0x80058DE4", "0x80058DF4", "0x80058E08", "0x80058E10", "0x80058E2C", "0x80058E38"],
+    "negative_20_constant": "0x80058E14",
+    "negative_20_store": "0x80058E18",
+    "contact_kind": 4,
+    "alternate_dropped_arm_blocks": 0,
+    "interpretation": "The contact remains kind 4 after release; 'carried-contact arm' names the contact variant, not the physical carry state at impact."
+  },
+  "static_frontier": {
+    "negative_20_to_actor_6c_writers_in_resident_executable": [
+      ["0x8004B2CC", "0x8004B2D0"],
+      ["0x80058E14", "0x80058E18"]
+    ],
+    "writer_count": 2,
+    "executed_writer": ["0x80058E14", "0x80058E18"],
+    "generic_prefilter": "actor (+0x5C & 0x00A0) == 0 and +0x6C >= 0",
+    "kind4_guard": "contact +0x27 == 4 and actor (+0x5C & 0x0040) == 0",
+    "alternate_guard": "collision subtype halfword +0x0A < 2; not executed by this fixture",
+    "id_switch_in_hit_arm": false,
+    "direct_hp_store_in_hit_arms": false,
+    "presentation": "reaction +0x54/+0x58 := 4096, eight-object impact burst via 0x80057F44, cue 17 via 0x8005044C"
+  },
+  "negative_control": {
+    "source": "analysis/phase2_final_action_pairs.json",
+    "no_press_carry_broken": false,
+    "no_press_hit_frame": null,
+    "no_press_knockback_write": 0,
+    "no_press_target_removed": false
+  },
+  "corrections": [
+    "The -20 field is actor knockback/lifecycle state +0x6C; HP is +0x6E.",
+    "The fixture is an HP-bypassing temporary KO, not a direct-damage kill.",
+    "The contact occurs at frame 349; final zero motion at frame 369 is later settling, so the older phrase 'landing frame' was too broad.",
+    "The executed arm is 0x80058E14/18; 0x8004B2CC/D0 is a real static twin but is not traversed here."
+  ],
+  "closure": {
+    "original_oracle": "advanced",
+    "complete_frontier": "advanced",
+    "typed_state": "met",
+    "lifecycle": "advanced",
+    "original_interfaces": "advanced",
+    "campaign_breadth": "deferred",
+    "cross_system": "advanced",
+    "source_closure": "met",
+    "durable_evidence": "advanced"
+  },
+  "bounded_residuals": [
+    "Natural execution across every enemy family and variant is not enumerated; the reusable code boundary is flag/contact based rather than ID based.",
+    "Exact per-model reaction animation pose and timing are not identified beyond reaction fields, burst, cue, and generic terminal unlink.",
+    "The target's eventual distance-triggered respawn is owned by the shared enemy lifecycle campaign and is not replayed here.",
+    "The alternate 0x8004B2CC/D0 subtype arm is statically decoded but not exercised by this A11 fixture."
+  ],
+  "movie_required": false,
+  "movie_escalation_boundary": "Request an Interpreter movie only if a named enemy family, the alternate collision subtype, exact rendered animation timing, or post-KO respawn is promoted to an active requirement."
+}
+

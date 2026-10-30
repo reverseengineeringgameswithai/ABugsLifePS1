@@ -1,0 +1,26 @@
+[
+ {
+  "overlay": "LEVEL06_LEVEL1",
+  "address": "0x800b3af4",
+  "name": "level06_select_grid_offset",
+  "tier": "proven",
+  "evidence": ["byte_matched:src/overlays/LEVEL06_LEVEL1/800b3af4_select_grid_offset.c"],
+  "rationale": "copies table[index].x/z byte pair to the active level offset globals"
+ },
+ {
+  "overlay": "MEMORY",
+  "address": "0x800ba1f0",
+  "name": "memcard_directory_load_for_slot",
+  "tier": "proven",
+  "evidence": ["byte_matched:src/overlays/MEMORY/800ba1f0_memcard_directory_load.c", "BIOS:A0:AC=_card_load"],
+  "rationale": "maps slot index to BIOS port 0/0x10 and invokes _card_load"
+ },
+ {
+  "overlay": "MEMORY",
+  "address": "0x800bd6d8",
+  "name": "memcard_ack_card_change",
+  "tier": "proven",
+  "evidence": ["byte_matched:src/overlays/MEMORY/800bd6d8_memcard_ack_card_change.c", "BIOS:B0:50=_new_card", "BIOS:B0:4E=_card_write"],
+  "rationale": "acknowledges card-change state before a dummy write to sector 0x3f"
+ }
+]

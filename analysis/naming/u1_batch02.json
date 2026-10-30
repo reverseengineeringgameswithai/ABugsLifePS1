@@ -1,0 +1,16 @@
+[
+  {
+    "address": "0x8002d674",
+    "name": "object_mesh_draw",
+    "tier": "proven",
+    "evidence": ["dynamic:LEVEL01 bee.sav (execTrace live, 3 hits/3 frames)", "callers:dirt_object_dispatch,scene_geometry_draw_dispatcher", "callees:SetRotMatrix,SetTransMatrix,RotTransPers", "args:a0=0x8008a63c object data, a2=0x00c09030 packed color/attr"],
+    "rationale": "Per-object 3D mesh transform + draw for dynamic objects: both object-render dispatchers (dirt_object_dispatch, scene_geometry_draw_dispatcher) call it; it builds rotation+translation matrices and perspective-transforms the object's mesh (SetRotMatrix/SetTransMatrix/RotTransPers). Largest resident unknown (9756 B); runtime-confirmed drawing objects in bee.sav (absent in the terrain-only ramp view)."
+  },
+  {
+    "address": "0x800526fc",
+    "name": "results_screen_render",
+    "tier": "proven",
+    "evidence": ["dynamic:LEVEL01 (execTrace live)", "callees:hud_draw_sprite_tile,hud_draw_glyph,result_draw_glyph_dim,result_upload_anim_frame,play_sound"],
+    "rationale": "Draws the level-results / HUD screen: composites sprite tiles + glyphs (hud_draw_sprite_tile, hud_draw_glyph, result_draw_glyph_dim), uploads animation frames (result_upload_anim_frame) and plays sounds. The result_* callees are specific to the results screen."
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "schema": "abl-phase4-row-methodology-audit-v1",
+  "row": "E06_contact_object_pool",
+  "audit_date": "2026-08-02",
+  "authorities": [
+    "ObsidianVault/Playbooks/Game Solving Roadmap - From Reconstruction to Reliable Modding.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 4 - Solve Every Gameplay and Engine Subsystem.md",
+    "engineering-specs/phase4-closure.md",
+    "engineering-specs/phase4-re-methodology-ratchet.md"
+  ],
+  "nine_dimension_dod": {
+    "original_oracle": {
+      "status": "advanced_not_met",
+      "reason": "Phase 2 has a native allocator capacity A/B control, but E06 lacks a dedicated deterministic cold-boot natural-lifecycle oracle with row-specific assertions."
+    },
+    "complete_frontier": {
+      "status": "advanced_not_met",
+      "reason": "Resident allocator call sites and core dispatch tables are enumerated; overlay producers, all data-derived constructor ranges, complete field readers/writers, and reset/clear writers are not closed."
+    },
+    "typed_state": {
+      "status": "advanced_not_met",
+      "reason": "Pool geometry, cursor, liveness predicates, metadata bounds, action dispatch, and render kinds are typed; remaining record fields, initialization/reset ownership, and some action side effects are not."
+    },
+    "lifecycle": {
+      "status": "advanced_not_met",
+      "reason": "Natural activation, retirement, reactivation, reuse, cursor wrap, and behavioral 64-slot saturation are established; pause, scene transition, reload, death/respawn applicability, and unload/reset ownership are incomplete."
+    },
+    "original_interfaces": {
+      "status": "advanced_not_met",
+      "reason": "Allocator, walker, dispatch, descriptor, and renderer interfaces are substantially decoded, but complete ABI/memory effects, action-handler side effects, overlay crossings, and asset initialization are not all bounded."
+    },
+    "campaign_breadth": {
+      "status": "not_met",
+      "reason": "The descriptor census spans all levels, but row-specific natural lifecycle assertions do not cover every applicable stage, variant, and exceptional path."
+    },
+    "cross_system_behavior": {
+      "status": "advanced_not_met",
+      "reason": "Known pickup, power, seed, enemy-drop, and render consumers join the substrate, but their complete physics, animation, audio, HUD, objective, persistence, and transition contracts are not validated as one E06 campaign."
+    },
+    "source_closure": {
+      "status": "advanced_not_met",
+      "reason": "Several reviewed semantic C files and byte-exact ASM exist; complete matching/reviewed semantic coverage of every producer, action, field, reset, and overlay does not."
+    },
+    "durable_evidence": {
+      "status": "advanced_not_met",
+      "reason": "C analyzers, machine summaries, Canon, Experiment, campaign, capsule index, and capacity proof exist; a dedicated executable E06 gate, inventory binding, freshness guard, and clean-checkout proof do not."
+    }
+  },
+  "child_campaign_contract": {
+    "scope_family_row": "met",
+    "pristine_oracle": "not_met",
+    "semantic_frontier": "advanced_not_met",
+    "lifecycle_capacity_reset": "advanced_not_met",
+    "native_positive_negative_controls": "advanced_not_met",
+    "stage_variant_exception_breadth": "not_met",
+    "cross_system_consumption_contract": "advanced_not_met",
+    "source_and_decompilation_status": "advanced_not_met",
+    "findings_residuals_supersession": "met",
+    "executable_campaign_gate_and_exit": "advanced_not_met"
+  },
+  "corrections": [
+    "The strict status partial was correct.",
+    "The phrase high-value E06 scope exhausted was too broad and is narrowed to allocator-core bounded exhaustion.",
+    "The 64-of-64 non-return behavior is not merely static: analysis/phase2_capacity_hang_proof.json contains a native debugger.callFunction A/B control.",
+    "Typed state and original interfaces were previously marked met too strongly; both remain advanced_not_met under the roadmap definition.",
+    "The authoritative human and machine baseline E06 rows required explicit synchronization."
+  ],
+  "next_offline_batch": [
+    "C scan of every resident and overlay image for direct/indirect allocator producers and bounded constructor expressions.",
+    "C access census for all 0x38 record fields, metadata tables, cursor, pool clears, and reset/scene-transition writers.",
+    "Offline cross-capsule queries for natural pool lifecycle and clear/reset behavior across stages before any live replay."
+  ],
+  "later_behavioral_work": [
+    "Build a dedicated cold-boot E06 oracle from an existing Interpreter movie if the inventory already covers the required lifecycle.",
+    "Add native positive/negative row assertions and a derived executable campaign gate.",
+    "Cover representative normal, traversal, boss, interior/exterior, and transition paths."
+  ],
+  "scheduling_decision": {
+    "strict_status": "partial",
+    "allocator_core": "bounded_exhausted",
+    "row_offline_frontier": "open",
+    "move_to_another_row_allowed": true,
+    "reason": "The Phase 4 method explicitly discourages repeatedly deepening one partial row while other high-ranked offline work remains. E06 residuals are now named and do not invalidate the allocator-core conclusions."
+  },
+  "movie_decision": {
+    "new_movie_required_now": false,
+    "next_step": "Use static C and retained capsules first. Inventory existing Interpreter cold-boot movies before requesting a recording.",
+    "request_condition": "Request a new Interpreter movie only when a named oracle, reset, transition, or exceptional-path assertion is absent from retained fixtures and cannot be answered statically or from a capsule."
+  }
+}

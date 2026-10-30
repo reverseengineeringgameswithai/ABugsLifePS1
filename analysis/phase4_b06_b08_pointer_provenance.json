@@ -1,0 +1,257 @@
+{
+ "_comment": "Pointer-provenance resolution of the slot census residual. Finding an access is sound; EXCLUDING one is not sound from this tool alone -- quote unresolved_stores as the hole in any disjointness argument. Regenerate: tools/census_pointer_provenance.py",
+ "target": "0x800A657E",
+ "baseline": {
+  "hits": 14,
+  "unresolved": 12956
+ },
+ "with_provenance": {
+  "hits": 14,
+  "unresolved": 12918,
+  "indirect_calls": 75
+ },
+ "residual_reduction": 38,
+ "unresolved_stores": 4473,
+ "soundness": "globals_map is optimistic: 4473 stores still have an unresolved destination and could write any global, so a base proven disjoint here is disjoint ONLY under the assumption that none of those 4473 stores plants this address in a global.",
+ "rounds": [
+  {
+   "round": 0,
+   "hits": 14,
+   "unresolved": 12956,
+   "indirect_calls": 149,
+   "globals_resolved": 307,
+   "globals_tainted": 622,
+   "globals_over_cap": 156,
+   "stores_seen": 79176
+  },
+  {
+   "round": 1,
+   "hits": 14,
+   "unresolved": 12918,
+   "indirect_calls": 75,
+   "globals_resolved": 312,
+   "globals_tainted": 620,
+   "globals_over_cap": 154,
+   "stores_seen": 79519
+  },
+  {
+   "round": 2,
+   "hits": 14,
+   "unresolved": 12918,
+   "indirect_calls": 75,
+   "globals_resolved": 313,
+   "globals_tainted": 619,
+   "globals_over_cap": 154,
+   "stores_seen": 79519
+  },
+  {
+   "round": 3,
+   "hits": 14,
+   "unresolved": 12918,
+   "indirect_calls": 75,
+   "globals_resolved": 313,
+   "globals_tainted": 619,
+   "globals_over_cap": 154,
+   "stores_seen": 79519
+  }
+ ],
+ "newly_resolved_accesses": [],
+ "all_accesses": [
+  {
+   "pc": "0x80048640",
+   "insn": "lh v0, 0x7e(s1)",
+   "kind": "read",
+   "width": 2,
+   "function": "player_vertical_update",
+   "address": "0x800A657E",
+   "base_value": "0x800A6500",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x80048654",
+   "insn": "sh v0, 0x7e(s1)",
+   "kind": "write",
+   "width": 2,
+   "function": "player_vertical_update",
+   "address": "0x800A657E",
+   "base_value": "0x800A6500",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x80049718",
+   "insn": "lh v0, 0x7e(s1)",
+   "kind": "read",
+   "width": 2,
+   "function": "player_vertical_update",
+   "address": "0x800A657E",
+   "base_value": "0x800A6500",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x8004A7A4",
+   "insn": "lh v1, 0x657e(v1)",
+   "kind": "read",
+   "width": 2,
+   "function": "resident_level_transition_initiator",
+   "address": "0x800A657E",
+   "base_value": "0x800A0000",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x8004A7E0",
+   "insn": "lh v0, 0x0(a0)",
+   "kind": "read",
+   "width": 2,
+   "function": "resident_level_transition_initiator",
+   "address": "0x800A657E",
+   "base_value": "0x800A657E",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x8004A808",
+   "insn": "sh v0, 0x0(a0)",
+   "kind": "write",
+   "width": 2,
+   "function": "resident_level_transition_initiator",
+   "address": "0x800A657E",
+   "base_value": "0x800A657E",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x80051C3C",
+   "insn": "lh a3, 0x657e(a3)",
+   "kind": "read",
+   "width": 2,
+   "function": "effect_render_stage",
+   "address": "0x800A657E",
+   "base_value": "0x800A0000",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x80051EA0",
+   "insn": "sh v0, -0x4(s0)",
+   "kind": "write",
+   "width": 2,
+   "function": "harvester_equip_and_active_update",
+   "address": "0x800A657E",
+   "base_value": "0x800A6582",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x80051F60",
+   "insn": "sh v0, 0x657e(at)",
+   "kind": "write",
+   "width": 2,
+   "function": "harvester_equip_and_active_update",
+   "address": "0x800A657E",
+   "base_value": "0x800A0000",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x80055BC4",
+   "insn": "lh v0, 0x657e(v0)",
+   "kind": "read",
+   "width": 2,
+   "function": "player_action_effects_update",
+   "address": "0x800A657E",
+   "base_value": "0x800A0000",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x800588B0",
+   "insn": "lh v0, 0x0(fp)",
+   "kind": "read",
+   "width": 2,
+   "function": "contact_pickup_walker",
+   "address": "0x800A657E",
+   "base_value": "0x800A657E",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x800588D0",
+   "insn": "sh v0, 0x0(fp)",
+   "kind": "write",
+   "width": 2,
+   "function": "contact_pickup_walker",
+   "address": "0x800A657E",
+   "base_value": "0x800A657E",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x800589A8",
+   "insn": "sh v0, 0x657e(at)",
+   "kind": "write",
+   "width": 2,
+   "function": "contact_pickup_walker",
+   "address": "0x800A657E",
+   "base_value": "0x800A0000",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  },
+  {
+   "pc": "0x8005B268",
+   "insn": "sh zero, 0x657e(at)",
+   "kind": "write",
+   "width": 2,
+   "function": "respawn_transition_state_handler",
+   "address": "0x800A657E",
+   "base_value": "0x800A0000",
+   "covers": [
+    "0x800A657E",
+    "0x800A657F"
+   ],
+   "straddles": false
+  }
+ ]
+}

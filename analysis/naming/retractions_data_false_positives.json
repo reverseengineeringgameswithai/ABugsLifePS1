@@ -1,0 +1,26 @@
+{
+ "generated_by": "manual evidence review after whole-image build validation",
+ "retractions": [
+  {
+   "address": "0x800749a8",
+   "old_name": "vab_bank_stage",
+   "classification": "data",
+   "evidence": [
+    "3236-byte monotonic halfword metadata table",
+    "no callers, entry trace, prologue, or return",
+    "generated hand-asm does not reproduce the original data words"
+   ]
+  },
+  {
+   "address": "0x800769a8",
+   "old_name": "vab_bank_stage_69a8",
+   "classification": "data",
+   "evidence": [
+    "1752-byte monotonic halfword metadata table",
+    "no callers, entry trace, prologue, or return",
+    "generated hand-asm does not reproduce the original data words"
+   ]
+  }
+ ],
+ "note": "The u2 callee fingerprint was caused by jal-looking data words. The names are removed from re_symbols.sym and the starts are explicit resident-data overrides."
+}

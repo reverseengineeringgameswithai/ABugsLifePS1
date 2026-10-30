@@ -1,0 +1,53 @@
+{
+  "row": "C04_enemy_token",
+  "date": "2026-08-04",
+  "status": "substantiated_partial",
+  "bounded_exhausted": true,
+  "method": "C-only offline constant-address census plus instruction pins against pristine SCUS_942.88, all staged level overlays, and BITS/MEMORY.BIN; no DuckStation replay required",
+  "correction": "The earlier resident-only/no-overlay-touch model is superseded. Ten direct overlay or MEMORY writers touch the live quota in addition to the resident constructor and resident death paths.",
+  "addresses": {
+    "remaining_quota": "0x800A658E",
+    "initial_total_snapshot": "0x80082258",
+    "objective_latch": "0x800823A0",
+    "bird_nest_progress_counter": "0x800A0316"
+  },
+  "constructor": {
+    "function": "0x80046B20",
+    "caller": "0x8005BAA4 in 0x8005B714 scene-runtime reset",
+    "pool": "0x8009FD80, 64 records, stride 0x84",
+    "filter": "nonzero actor id and (actor_flags_plus_0x5C & 0x08A0) == 0",
+    "total_snapshot": "0x8005BADC reads rebuilt quota; 0x8005BAE4 writes it to 0x80082258"
+  },
+  "resident_consumers": [
+    "0x800498F8..0x80049904: qualifying death path decrements quota and tests the post-decrement value",
+    "0x800592F4..0x80059300: second qualifying death path decrements quota",
+    "0x80052CC8: HUD path computes initial_total - remaining",
+    "0x8004AE94 -> 0x8004B0C4: actor +0x5C flag 0x0800 bypasses the resident interaction/update tail"
+  ],
+  "overlay_writers": [
+    "BITS/MEMORY.BIN 0x800B7E18: clamp a negative remaining value to zero before results evaluation",
+    "LEVEL01/LEVEL1.BIN 0x800B40C4: zero only when the progress edge sets s2=1 and quota==1",
+    "LEVEL02/LEVEL.BIN 0x800B4164: selector-3 boss completion path zeros quota",
+    "LEVEL02/LEVEL1.BIN 0x800B3CE0: batch adjustment quota -= 7",
+    "LEVEL03/LEVEL1.BIN 0x800B3E34: conditional goal cleanup zero",
+    "LEVEL04/LEVEL1.BIN 0x800B3E4C: conditional goal cleanup zero",
+    "LEVEL05/LEVEL1.BIN 0x800B3BD0: overlay decrement; 0x800B42B0: conditional goal cleanup zero",
+    "LEVEL08/LEVEL.BIN 0x800B3B78: normalize quota 57 to 56",
+    "LEVEL09/LEVEL.BIN 0x800B3C58: overlay decrement"
+  ],
+  "results": {
+    "negative_clamp": "0x800B7E04..0x800B7E18",
+    "defeated_formula": "[0x80082258] - [0x800A658E] at 0x800B7E2C..0x800B7E50",
+    "enemy_bonus_gate": "remaining == 0 at 0x800B7F14..0x800B7F1C"
+  },
+  "bird_nest_objective_correction": "The objective latch is threshold-driven, not a simple quota-zero latch. 0x800B3F50/0x800B3FBC derive the one-frame s2 progress edge; quota==1 only enables the cleanup zero at 0x800B40C4. The downstream latch store at 0x800B4100 is reached whether that cleanup branch runs or not once the threshold and once-only guards pass.",
+  "bounded_residuals": [
+    "Exact live initial values for every campaign scene require a validated per-scene fixture/capsule census because actor-pool population is runtime-built.",
+    "The human-facing content-author name of flag 0x0800 is absent; its structural effect is closed as quota exclusion plus interaction/update bypass.",
+    "Pointer-indirect quota aliases loaded from RAM are outside the constant-address census.",
+    "Exact save/re-entry routing into the scene reset entry is not renamed; the reset-side reconstruction itself is pinned."
+  ],
+  "closure": "Substantiated Partial and bounded-exhausted for the C04 workstream. The named quota mechanism, ordinary decrements, overlay exceptions, results consumer, and representative objective-latch relationship are established. Remaining campaign enumeration has low mechanism return and is not required before moving on.",
+  "interpreter_movie_required": false,
+  "tool": "tools/phase4_c04_enemy_token.c"
+}

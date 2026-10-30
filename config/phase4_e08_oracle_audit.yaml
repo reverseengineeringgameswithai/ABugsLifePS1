@@ -1,0 +1,48 @@
+schema: abl-phase4-e08-original-oracle-audit-config/1
+campaign: props_movers_gates
+row: E08_props_movers_gates
+dimension: original_oracle
+lane: static
+selected_rows:
+  - E08_props_movers_gates
+  - E10_hazards
+  - D11_mites_grubs
+
+work_packet:
+  path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260730-021829-1425442/iteration-1-work-packet.json
+  sha256: c882ae94f9fb7245f02a0b2716926cddc165a95298394321c325dbb22743885f
+
+offline_query:
+  receipt_path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260730-021829-1425442/iteration-1-receipts/offline-contact-index/offline-contact-index-coverage.receipt.json
+  receipt_sha256: 6985bfdf619368d1fc5dd3c352c2ff56a9324b0af4ec77f4e6ea43ab8a4c1180
+  output_path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260730-021829-1425442/iteration-1-receipts/offline-contact-index/selected-movie-row-coverage.json
+  output_sha256: 2bdfe328186192932b98cafe02bfbd65b45661b4767ba294111e14ede9feb4a3
+  external_index_sha256: 413151a8100bdfac686d0cddea136e53972536b4d797fafe9ced016c1ba065f0
+  expected_exact_counts:
+    E08_props_movers_gates: 0
+    E10_hazards: 10
+    D11_mites_grubs: 4
+  interpretation: >-
+    The external index directly names E10 and D11. E08 is a centrally declared
+    consumer of the same index through analysis/phase4_offline_e08_batch.json;
+    the absent E08 literal is a boundary, not missing preservation evidence.
+
+retained_inputs:
+  props_artifact:
+    path: analysis/phase4_props_movers.json
+    sha256: dd1fbe1d9c64805697cbc2ded6cd1b265ec0eb2609ff555ed9a878531df7bc10
+  derived_catalog:
+    path: analysis/phase4_derived_index.json
+  movie_inventory:
+    path: analysis/phase4_movie_inventory.json
+  fixture_set:
+    path: analysis/phase0_2_external_fixture_set.json
+
+claim_boundary:
+  promote_only: [original_oracle]
+  coupled_rows_promoted: []
+  other_e08_dimensions_promoted: []
+  live_escalation_authorized: false
+  residuals:
+    - Native interaction owners, authored state, denial/success, and persistence remain outside this scene-1 oracle predicate.
+    - E10 and D11 movie/index coupling provides reusable inputs but promotes no E10/D11 ownership or dimension.

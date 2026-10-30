@@ -1,0 +1,51 @@
+schema: abl-phase4-respawn-status-policy/1
+campaign_state: active_partial
+campaign: C15_checkpoints
+artifact:
+  path: analysis/phase4_respawn_status_policy.json
+  sha256: d2776352bc0b7e6e0922d882ec97e2a69f615e60eeae0568d33961d8224daa95
+capsule_first:
+  preservation_index: analysis/phase4_trace_capsule_set.json
+  preservation_index_sha256: 4b354e3d0113240ba9b64922a189b45a0d84b03dee38a9aa312b93b60978aae3
+  offline_reader_sha256: b3898f928800efad5a949d1369aa65d786067505e0ed915eec8fdb99f0aa1dde
+  validation: PASS 55/55 capsules; 3391058326 external bytes
+  relevant_movies:
+    - movies/Phase4/E10/hazard_pit_LEVEL02.movie.json
+    - movies/Phase4/E10/hazard_pit_LEVEL05.movie.json
+    - movies/Phase4/E10/hazard_pit_LEVEL07.movie.json
+  escalation_reason: >-
+    Frame-domain reconstruction fixes the natural 0x0014 word and exact reset
+    frames, but cannot execute a one-bit branch or attribute skipped writer PCs.
+known_status_gated_writers:
+  - LEVEL03 nearest-row selector
+  - LEVEL10 nearest-row selector
+  - LEVEL04 fixed-tuple selector
+reproduced_denials:
+  - id: scene_10_pit
+    writer: {path: REBUILD/files/LEVEL10/LEVEL.BIN, runtime_start: 0x800B3ADC, runtime_end: 0x800B3C1C, sha256: 97e72e5e4bf8c1029cabc98cfcef43d5077666edeb39617d012769f01285c4b8}
+    boundary: {scene: 10, pre_frame: 144, reset_frame: 145}
+    mutation: {address: 0x800A6590, before: 0x0014, after: 0x0004, changed_bytes: [0x800A6590]}
+    control_safe_and_live_xyz: [-159648, 3628, 1182816]
+    denied_safe_and_live_xyz: [-103436, -4903, 1209759]
+    writer_coverage:
+      control: {total_hits: 279, distinct_pcs: 70, pcs_sha256: 69862fc68eb617863ab44f7aece54207be1d3b2b64b1461938b10bf6d0230a06}
+      denied: {total_hits: 14, distinct_pcs: 14, pcs_sha256: 17e1bea8f71268382185f61fe0101ea6ec5012ab314333ed8d1b9b6925d4be52}
+    resident_handler_coverage: {total_hits: 766, distinct_pcs: 136, identical_between_branches: true}
+  - id: scene_4_pit
+    writer: {path: REBUILD/files/LEVEL04/LEVEL.BIN, runtime_start: 0x800B3C5C, runtime_end: 0x800B3CD8, sha256: 8494bef9a426a6b2ceea0bb57a634c5520a12abb89c493ce4b88ab3d992764ba}
+    boundary: {scene: 4, pre_frame: 204, reset_frame: 205}
+    mutation: {address: 0x800A6590, before: 0x0014, after: 0x0004, changed_bytes: [0x800A6590]}
+    control_safe_and_live_xyz: [727892, 9584, 165941]
+    denied_safe_and_live_xyz: [744984, 4861, 139049]
+    writer_coverage:
+      control: {total_hits: 31, distinct_pcs: 31, pcs_sha256: 7730ff9193091ef95f765f3bf7ce2d98a9188748ad7f2e541b04c377c3b79bb5}
+      denied: {total_hits: 13, distinct_pcs: 13, pcs_sha256: 1308454b8d41f86727b08f05d737311f87dd9cc5003f1fac65123d518bb7f153}
+    resident_handler_coverage: {total_hits: 768, distinct_pcs: 138, identical_between_branches: true}
+causal_boundary: >-
+  The one-byte mutation skips every decisive transition-writer safe-tuple store
+  while identical resident-handler coverage copies the prior tuple, restores
+  health and consumes the same life. This proves necessity only at the exact
+  reproduced boundaries.
+still_open:
+  - Source, setter/clearer, whole-word semantics and general activation policy of status mask 0x0010.
+  - Indirect/additional overlay writers, other actor/scripted/exceptional death classes, remaining stages and lifecycle persistence.

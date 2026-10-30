@@ -1,0 +1,204 @@
+{
+ "_comment": "The last three core-action pairs (A14/A15/A11), closing gate bullet 3. Poll-only movie evidence + out-of-playback causal traces (execTrace during playback DESYNCS the replay). Regenerate: tools/phase2_final_action_pairs.py.",
+ "generated": "2026-07-15",
+ "media": {
+  "serial": "SCUS-94288"
+ },
+ "controls": {
+  "A14_plant_seed": {
+   "fixture": "movies/Phase4/A13/blue_seed_levels.movie.json",
+   "fixture_sha256": {
+    "movies/Phase4/A13/blue_seed_levels.movie.json": "79d0aa0d26bcd760316f6bf685bf781f571ec63806a09d78be84d36ab01b68e1",
+    "movies/Phase4/A13/blue_seed_levels.movie.sav": "9198c8c3daa896813f0198ecb2a1b7068c7035116aed0aadbc1072ffdb01f5c3"
+   },
+   "method": "poll-only continuous playback, step 15 (execTrace during playback DESYNCS \u2014 see module docstring)",
+   "observable": "plant slot table 0x80090BF0 + cursor 0x800822B8",
+   "creations": [
+    {
+     "window": [
+      105,
+      120
+     ],
+     "cursor": [
+      0,
+      1
+     ],
+     "slot": 0,
+     "type": 7,
+     "input_press_frames": [
+      70
+     ]
+    },
+    {
+     "window": [
+      1020,
+      1035
+     ],
+     "cursor": [
+      1,
+      2
+     ],
+     "slot": 1,
+     "type": 7,
+     "input_press_frames": [
+      967
+     ]
+    },
+    {
+     "window": [
+      2070,
+      2085
+     ],
+     "cursor": [
+      2,
+      3
+     ],
+     "slot": 2,
+     "type": 6,
+     "input_press_frames": [
+      1974,
+      2032
+     ]
+    },
+    {
+     "window": [
+      2940,
+      2955
+     ],
+     "cursor": [
+      3,
+      4
+     ],
+     "slot": 3,
+     "type": 7,
+     "input_press_frames": [
+      2898
+     ]
+    }
+   ],
+   "creation_types": [
+    7,
+    7,
+    6,
+    7
+   ],
+   "all_creations_follow_cross_press": true,
+   "negative": "0 creations in the other 248 polled frames despite 15 other button presses",
+   "passes": true
+  },
+  "A15_uproot_plant": {
+   "fixture": "movies/Phase4/A13/blue_seed_levels.movie.json",
+   "method": "poll-only continuous playback, step 15 (execTrace during playback DESYNCS \u2014 see module docstring)",
+   "observable": "plant slot teardown + seed record (chunk-31 id 11) descent to ground at pinned X/Z",
+   "teardowns": [
+    {
+     "window": [
+      750,
+      765
+     ],
+     "slot": 0,
+     "type_was": 7,
+     "input_press_frames": [
+      639,
+      647,
+      657
+     ]
+    },
+    {
+     "window": [
+      1695,
+      1710
+     ],
+     "slot": 1,
+     "type_was": 7,
+     "input_press_frames": [
+      1586,
+      1595
+     ]
+    },
+    {
+     "window": [
+      2790,
+      2805
+     ],
+     "slot": 2,
+     "type_was": 6,
+     "input_press_frames": [
+      2674,
+      2684
+     ]
+    },
+    {
+     "window": [
+      3750,
+      3765
+     ],
+     "slot": 3,
+     "type_was": 7,
+     "input_press_frames": [
+      3643,
+      3653
+     ]
+    }
+   ],
+   "all_teardowns_follow_square_press": true,
+   "seed_count_constant": [
+    3
+   ],
+   "seed_ground_y": -2025,
+   "seed_raised_offset": 20480,
+   "seed_raised_law": true,
+   "seed_return_law": true,
+   "negative": "plants persist 300-600+ frames in windows without a square press (e.g. slot0 f120-f705, slot3 f2955-f3705)",
+   "passes": true
+  },
+  "A11_seed_as_weapon": {
+   "fixture": "movies/seed_as_enemy.movie.json",
+   "fixture_sha256": {
+    "movies/seed_as_enemy.movie.json": "6073e177ef57b485bec83c8afdd7b7a7650fd15ee589991fdbf9138b0f4ba915",
+    "movies/seed_as_enemy.movie.sav": "772d9e49507cc0565314fb1a6d3bfb54b79af2b3f405aa48712e7dd26bf2944b"
+   },
+   "drop_frame": 327,
+   "causal": {
+    "chain": "square press -> carry law breaks (X/Z identity) -> ballistic travel toward enemy -> ON THE LANDING FRAME enemy+0x6C := -20 -> decays 0.5/frame -> enemy removed from the live actor table",
+    "mechanism": "-20 is the exact knockback both seed arms write: 0x80058E14/18 (carried contact, kind +0x27 == 4) and its twin 0x8004B2CC/D0. PHASE-3 IDENTIFICATION: the jal each arm makes to 0x80050994 is sfx_dispatch (impact SOUND, id a0=-4) \u2014 NOT a damage call; the damage/knockback IS the sh -20 -> enemy+0x6C. Both arms are the only sh -20 -> +0x6C writers in 0x80040000-0x80060000.",
+    "instrumentation_limit": "PC watches/breakpoints armed anywhere shift emulation timing and the drop MISSES (A/B proven); accessLog/write-breakpoints never engage under the CachedInterpreter repro config \u2014 hence per-frame UNINSTRUMENTED state causality",
+    "positive": {
+     "carry_broken": true,
+     "min_dist": 11079,
+     "start_dist": 31407,
+     "hit_frame": 39,
+     "knockback_write": -20,
+     "seed_lands_on_hit_frame": true,
+     "measured_decay_per_frame": 0.5,
+     "enemy_removed_from_live_table": true,
+     "final_h6c": 0
+    },
+    "negative_no_press": {
+     "carry_broken": false,
+     "min_dist": 29879,
+     "start_dist": 32314,
+     "hit_frame": null,
+     "knockback_write": 0,
+     "seed_lands_on_hit_frame": false,
+     "measured_decay_per_frame": null,
+     "enemy_removed_from_live_table": false,
+     "final_h6c": 0
+    }
+   },
+   "replay_observable": {
+    "enemy_table": "0x80090748",
+    "enemy_slots_changed_across_drop": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "post_frame_sha256": "98a54c0a3d08f99d"
+   },
+   "passes": true
+  }
+ },
+ "all_pass": true
+}

@@ -1,0 +1,255 @@
+{
+ "authority": {
+  "changes_campaign_registry": false,
+  "changes_census_or_blockers": false,
+  "promotes_dimension": false
+ },
+ "corrections": {
+  "2026-08-07_jalr_dispatch_sites_RETRACTED": {
+   "falsified_by": "analysis/phase4_f01_static_hard_truth.json (claimed_pc_registration_check; requested_dispatch_sites_fail_closed: true)",
+   "lesson": "ra-8 at an entry is caller evidence only after the entry instruction itself is decoded as jalr; verify the edge kind before attributing the edge.",
+   "what": "findings.jalr_dispatch_sites is FALSE and is retained above only as the record of the error. Both claimed PCs decode as DIRECT jal instructions (0x8005BFE4 = jal 0x80038E48; 0x80058EB8 likewise direct), not jalr, and neither appears in any verified indirect-site inventory.",
+   "why_the_error_happened": "ra captured at handler entry names the most recent jal on the execution path, which is the dispatch site ONLY if entry is by jalr. Entry was never verified to be a call at all: the handlers are entered by a proved jr (0x8005C108, trampoline) and by branches (0x80058EE8/0x80058F08, berry) -- no call, so ra was stale context, not a caller."
+  }
+ },
+ "findings": {
+  "actor_table_writers": "the four enumerated writers observed exactly (0x8003A49C, 0x8004A4B4, 0x8004D378, 0x8004D43C) PLUS TWO PREVIOUSLY UNENUMERATED WRITERS: 0x80049C10 (sw a0,0x0(v1) -- moves an existing table value, observed 0x800A1DFC = pool slot 63) and 0x80049C14 (sw zero,0x0(v0) -- nulls the source), both in enemy_deathanim_finalize_remove_from_list@0x80049B60: the actor-table COMPACTION on enemy removal. Computed bases (a1=0x80090748 materialised at 0x80049BF4/BF8, indexed addu), exactly the spelling the one-spelling writers scan and the index corroboration both miss. The 4-writer image-wide census is CORRECTED to >=6; the exhaustiveness gate that already rejects the island binding is empirically vindicated",
+  "gap_80075930": "READ-ONLY DATA, hot: 101,015 reads in Anthill (two tiles saturated their 20k caps -- lower bounds), 145,118 in Tunnels, zero writes, zero executions. Readers: gte_rotation_matrix_setup (dominant), contact_vs_actor_handler, camera_follow_update, player_vertical_update -- the game's own sine table",
+  "gap_8007B63C": "READ-ONLY DATA, live: 1,996 reads in the Anthill run, 118 in Tunnels, zero writes, zero executions. Every reader PC lies in PsyQ RotMatrix (0x80060854..0x80060AE0) -- this is libgte's sin/cos rotation table",
+  "jalr_dispatch_sites": [
+   {
+    "handler": "seed_plant_trampoline_handler@0x8005C58C",
+    "hits": 699,
+    "in": "plant_behavior_walker@0x8005BFBC",
+    "jalr_site": "0x8005BFE4"
+   },
+   {
+    "handler": "berry_tough_damage_dispatch@0x8005905C",
+    "hits": 14,
+    "in": "contact_vs_actor_handler@0x80058AF8",
+    "jalr_site": "0x80058EB8"
+   }
+  ]
+ },
+ "meaning": {
+  "bounded_negatives": "zero gap writes/executions and no further table writers are bounded non-observations over these two runs only",
+  "census_effect": "the census gaps remain formally unevidenced until static resolved accesses corroborate the readers; IMAGE_CENSUS_INCOMPLETE stands. The reader PCs make that static follow-up concrete",
+  "jalr_sets_not_complete": "one observed dispatch site per handler names a target of that jalr; it does not bound either site's target set",
+  "positive_evidence": "the gap reads, the compaction writers, and the jalr sites are POSITIVE runtime facts with named PCs -- leads for static proof, not proofs",
+  "writer_census_correction": "every artifact claiming '4 writers image-wide, corroborated' for 0x80090748 is now known to describe a LOWER BOUND that missed at least two computed-base writers; the typed_pointer_load consistency question deferred to the next fresh verifier is strengthened accordingly"
+ },
+ "question": "Are the two largest unevidenced census gaps READ at runtime (the one domain the capsules cannot see); which PCs write the actor pointer table; and which jalr sites dispatch the two caller-less handlers?",
+ "schema": "abl-phase4-f01-live-gap-read-receipt/1",
+ "session": {
+  "attribution": "accessLog attribution uses the documented +4-advanced PC; events carry instruction_pc/instruction_word and were used directly where present, and the compaction-writer events were confirmed by disassembly of the instruction words (sw a0,0x0(v1) / sw zero,0x0(v0))",
+  "fork": {
+   "binary_sha256_prefix": "2ddaad7b1fdbca78",
+   "dirty": "docs only",
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5"
+  },
+  "instrumentation": "movie.loadAndArm with 30 atomic accessLog watches + 2 execTrace entry watches capturing ra; 23 further watches armed at the paused boundary before frame 0. Gap coverage tiled at the 256-byte per-watch cap: readwrite over both full gaps, write over the table window +0x104, write controls on the transition timer and the player state block. Chunked movie.advanceToFrame (48-frame chunks; server times out long advances under this watch load at ~4 fps), every chunk's structured completion checked, final playback_finished on both movies.",
+  "isolated_instance": "tools/launch_repro_playback.sh, fresh config /tmp/dsrepro-f01-gapreads-1786064693, dedicated port 23471/token, Interpreter mode configured AND effective throughout (execution-mode history clean)",
+  "media": "movie anchors re-mount the recording-time session copy of the disc; its .bin is sha256-identical to the repo pristine image (2aeafad70d12b1bd...), verified out-of-band; expected_media matched on serial+title because the path legitimately differs pre/post anchor load",
+  "raw_evidence": {
+   "directory": "~/Downloads/ABL-external-evidence/live-replays/2026-08-06_f01_gap_reads",
+   "driver_sha256": "d21e77a6e312ba7b3f48696af9c4d29f97f840f9a412cdcbc48a4334d75a41e6",
+   "policy": "raw event payloads stay outside Git",
+   "replay_L01_sha256": "dd22f3ee9f0a400fd63769d7737fcc39bb4cca17e6739db8b40f81199c9f7835",
+   "replay_L02_sha256": "b51e2a1cd4565ffb497a036e04a588326e421bc8e3cc22c5fb5e8eb052b549ea"
+  }
+ },
+ "sessions": [
+  {
+   "advance": {
+    "chunks": 149,
+    "completed": true,
+    "seconds": 866.5
+   },
+   "anchor_to_mapped_frame_delta": 0,
+   "execution_mode": {
+    "configured": "Interpreter",
+    "effective": "Interpreter",
+    "history_dropped": 0,
+    "history_total": 0,
+    "history_truncated": false
+   },
+   "frame_count": 3267,
+   "gap_80075930_reads_by_instruction_pc": {
+    "0x80017bcc": 10933,
+    "0x80017bd0": 4155,
+    "0x80017bd4": 10054,
+    "0x80017bd8": 21502,
+    "0x80017bdc": 24061,
+    "0x80017c0c": 20616,
+    "0x80028278": 335,
+    "0x8003d828": 513,
+    "0x8003d840": 499,
+    "0x800492c8": 501,
+    "0x800494c8": 495,
+    "0x800494e8": 537,
+    "0x8004caf0": 353,
+    "0x8004e2e8": 539,
+    "0x8004e350": 520,
+    "0x8004e38c": 504,
+    "0x8004e750": 514,
+    "0x8004e78c": 499,
+    "0x80058b8c": 804,
+    "0x80058bc4": 899
+   },
+   "gap_8007B63C_reads_by_instruction_pc": {
+    "0x800608a4": 862,
+    "0x80060908": 1134
+   },
+   "gap_event_types": {
+    "read": 103011
+   },
+   "handler_entries_with_jalr_callers": [],
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.json",
+   "movie_content_sha256": "b53171e2863d802629defbc9a1e956c7eab926ddfd420e58db0c901e0a978250",
+   "movie_sha256": "66d620e845f5519ce3fe50ca530dd78f08c562d2e47e15ec7b6ee9c241b47e31",
+   "playback_finished": true,
+   "positive_controls": {
+    "0x80082470": {
+     "events": 71
+    },
+    "0x800a6510": {
+     "events": 1963
+    }
+   },
+   "saturated_watches": [
+    {
+     "address": "0x80075930",
+     "cap": 20000,
+     "recorded": 20000
+    },
+    {
+     "address": "0x80076130",
+     "cap": 20000,
+     "recorded": 20000
+    }
+   ],
+   "start_state": {
+    "file_size": 1805394,
+    "kind": "save_state",
+    "path": "~/Downloads/ABL/movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.sav",
+    "requested": true,
+    "serial": "SCUS-94288",
+    "sha256": "a035bd39a62d4217a23fa2e5a020e81d5cd6d1571f606ab7ac9dd6a7510a32a8",
+    "valid": true
+   },
+   "table_pcs_outside_enumerated_four": [],
+   "table_writes_by_instruction_pc": {
+    "0x8003a49c": 4,
+    "0x8004a4b4": 1,
+    "0x8004d378": 2144,
+    "0x8004d43c": 648
+   }
+  },
+  {
+   "advance": {
+    "chunks": 330,
+    "completed": true,
+    "seconds": 1921.6
+   },
+   "anchor_to_mapped_frame_delta": 1,
+   "execution_mode": {
+    "configured": "Interpreter",
+    "effective": "Interpreter",
+    "history_dropped": 0,
+    "history_total": 0,
+    "history_truncated": false
+   },
+   "frame_count": 7460,
+   "gap_80075930_reads_by_instruction_pc": {
+    "0x80017bcc": 4949,
+    "0x80017bd0": 6252,
+    "0x80017bd4": 5217,
+    "0x80017bd8": 35194,
+    "0x80017bdc": 43211,
+    "0x80017c0c": 25806,
+    "0x80027f2c": 1496,
+    "0x800280a8": 695,
+    "0x80028134": 733,
+    "0x80028278": 1499,
+    "0x800282b8": 1496,
+    "0x800492f8": 2275,
+    "0x800494e8": 494,
+    "0x8004cac0": 1825,
+    "0x8004caf0": 1400,
+    "0x8004ccdc": 1770,
+    "0x8004ccfc": 1696,
+    "0x8004e2e8": 3074,
+    "0x80058b8c": 1672,
+    "0x80058bc4": 1851
+   },
+   "gap_8007B63C_reads_by_instruction_pc": {
+    "0x800608a4": 118
+   },
+   "gap_event_types": {
+    "read": 145236
+   },
+   "handler_entries_with_jalr_callers": [
+    {
+     "handler": "0x8005c58c",
+     "hits": 699,
+     "jalr_site": "0x8005bfe4"
+    },
+    {
+     "handler": "0x8005905c",
+     "hits": 14,
+     "jalr_site": "0x80058eb8"
+    }
+   ],
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL02_Tunnels.movie.json",
+   "movie_content_sha256": "41132af7e0d6b980a3c1f1023dfb1a7c6a3ff632ce69eaaad97f2b669c62dcfa",
+   "movie_sha256": "bb5573601684aeed7614d7a85e4f4b77800654e854bd228d6cf5d88ad9dcf61b",
+   "playback_finished": true,
+   "positive_controls": {
+    "0x80082470": {
+     "events": 71
+    },
+    "0x800a6510": {
+     "events": 9241
+    }
+   },
+   "saturated_watches": [
+    {
+     "address": "0x80076730",
+     "cap": 20000,
+     "recorded": 20000
+    },
+    {
+     "address": "0x80076830",
+     "cap": 20000,
+     "recorded": 20000
+    },
+    {
+     "address": "0x80076930",
+     "cap": 20000,
+     "recorded": 20000
+    }
+   ],
+   "start_state": {
+    "file_size": 1813898,
+    "kind": "save_state",
+    "path": "~/Downloads/ABL/movies/Phase4/Interpreter/Any% Runs/LEVEL02_Tunnels.movie.sav",
+    "requested": true,
+    "serial": "SCUS-94288",
+    "sha256": "b69cc5c49a92aac4cb180f51e15187e40a92b3ee868e92b25541bc3ecc12bcbe",
+    "valid": true
+   },
+   "table_pcs_outside_enumerated_four": [
+    "0x80049c10",
+    "0x80049c14"
+   ],
+   "table_writes_by_instruction_pc": {
+    "0x8003a49c": 4,
+    "0x80049c10": 14,
+    "0x80049c14": 14,
+    "0x8004a4b4": 1,
+    "0x8004d378": 6634,
+    "0x8004d43c": 3074
+   }
+  }
+ ]
+}

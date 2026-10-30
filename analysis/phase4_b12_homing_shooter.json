@@ -1,0 +1,165 @@
+{
+  "schema": "abl-phase4-b12-homing-shooter-v1",
+  "row": "B12_homing_shooter",
+  "date": "2026-08-03",
+  "status": "partial",
+  "disposition": "substantiated_correction_bounded_exhausted",
+  "move_on": true,
+  "interpreter_movie_required_now": false,
+  "cold_boot_required": false,
+  "legacy_claim": "The second yellow combat plant is a purple shooter that homes on enemies.",
+  "correction": "The yellow tier-2 output is plant type 13, but its native firing path has no target acquisition or steering. It emits constructor ID 67 vertically. The retained B12 movie's Square-triggered projectiles are player-owned subtype-1 red throws, not homing shots and not plant emissions.",
+  "authority": {
+    "pristine_executable": {
+      "path": "SCUS_942.88",
+      "bytes": 471040,
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+    },
+    "retained_asm": {
+      "path": "extracted/re_baseline/SCUS_942.88.asm",
+      "sha256": "e3f47e3e0d8285714d60318ece578a2c13d65d9defac004683e998e983e20c40"
+    }
+  },
+  "capsules": {
+    "dedicated_b12": {
+      "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/b12_homing_shooter_multi_target",
+      "manifest_sha256": "b2a96b6fad84ebf5a7cc555fe2e84bf8821cd7394a1ce6ee4e783007f8a0ebac",
+      "movie": "movies/Phase4/b12_homing_shooter_multi_target.movie.json",
+      "movie_sha256": "5276994b2b5eba7bac2882e7bddcfbbe5edd55fe9302cba9b7418bdca73f165f",
+      "start_state_sha256": "a82942d68aab664fb50bbf3345bd13086554013e71895dd6ee606b44d61d2d47",
+      "manifest_movie_frames": 1293,
+      "reconstructed_boundary_records": 1294,
+      "complete": true,
+      "truncated": false,
+      "error": "",
+      "control_match": true,
+      "domain_hash_mismatches": 0,
+      "role": "negative homing-plant control plus type-13 cadence/lifecycle evidence"
+    },
+    "yellow_tiers": {
+      "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/A13__yellow_seed_levels",
+      "manifest_sha256": "03b5872a5bb7ecbdd21c32ffe14c20675ebbef2ff5c98600a4940b473dd89afc",
+      "movie": "movies/Phase4/A13/yellow_seed_levels.movie.json",
+      "movie_sha256": "a694c08034893a52f1cbf924cab06f4fb57417cc5e4aff8f8377761e6272c087",
+      "start_state_sha256": "1f00b97137698fe37d7c0a8af31de9eca88574c284769de407d6bad11234e9ce",
+      "frames_reconstructed": 3424,
+      "complete": true,
+      "truncated": false,
+      "error": "",
+      "control_match": true,
+      "domain_hash_mismatches": 0,
+      "tier_outputs": [14, 13, 11, 1]
+    }
+  },
+  "static_findings": {
+    "plant_dispatch_table": "0x8001B848 indexed by plant_type - 2",
+    "type13_handler": {
+      "entry": "0x8005CA24",
+      "end_exclusive": "0x8005CA7C",
+      "admission": ["plant s16 +0x02 == 2", "plant u32 +0x04 == 0x00010000"],
+      "spawn_origin": {"x": "plant+0x08", "y": "plant+0x0C - 0x6400", "z": "plant+0x10"},
+      "initial_velocity": [0, -2048, 0],
+      "gravity": 128,
+      "constructor_id": 67,
+      "constructor_jump": "0x8005CA74 -> 0x8005CCD4",
+      "target_solver_calls": 0
+    },
+    "constructor_id67_materialized_record": {
+      "pool": "0x800B0D18, 64 slots, stride 0x38",
+      "class": 2,
+      "timer_logic_ticks": 20,
+      "model": 124,
+      "radius_fields": [50, 50],
+      "subtype": 14,
+      "flags": "0xE5",
+      "record_byte_0x27": 0
+    },
+    "no_acquisition_or_steering": "The type-13 path never calls target solver 0x80046D24, supplies zero X/Z velocity, and has no enemy-table read or X/Z steering store.",
+    "genuine_player_homing_owner": {
+      "source_rows": ["A08_berry_throw", "D04_berry_immunity_matrix"],
+      "primary_type": 8,
+      "child_type": 16,
+      "selection": "nearest valid enemy in XZ",
+      "turn": "heading += signed quarter of angular error modulo 4096",
+      "vertical_seek_clamp": [-1024, 1024],
+      "velocity_scale": "sin table >> 3",
+      "damage": "temporary -2 in both ordinary and berry-tough 0x40 states",
+      "permanent": false
+    }
+  },
+  "runtime_findings": {
+    "dedicated_type13": {
+      "allocation_movie_frame": 288,
+      "first_state1_frame": 354,
+      "first_state2_frame": 402,
+      "first_shot_frame": 406,
+      "shot_frames": [406, 494, 582, 670, 758, 846, 934, 1022, 1110, 1198, 1286],
+      "shot_interval_video_frames": 88,
+      "shot_interval_logic_ticks": 44,
+      "natural_projectile_lifetime_video_frames": 40,
+      "natural_projectile_lifetime_logic_ticks": 20,
+      "xz_recurrence": "constant at the plant X/Z for no-contact shots",
+      "vertical_recurrence": "y += vy; vy += 128 per 30 Hz logic tick",
+      "owned_throw_counter_at_plant_shots": 0
+    },
+    "movie_confounder": {
+      "square_hold_starts": [81, 98, 318, 373, 694, 1094],
+      "analyzed_throw_spawns": [336, 392, 1112],
+      "materialized_type": 2,
+      "model": 110,
+      "subtype": 1,
+      "classification": "player red berry",
+      "owned_counter_increments": true,
+      "homing_positive_control": false
+    },
+    "yellow_tier2_lifecycle": {
+      "allocation_frame": 1120,
+      "state1_frame": 1186,
+      "state2_frame": 1234,
+      "first_id67_shot_frame": 1238,
+      "manual_teardown_state3_frame": 1488,
+      "slot_clear_frame": 1556
+    }
+  },
+  "closure_metrics": {
+    "original_oracle": "advanced: two accepted capsules cover selector construction, type-13 recurrence, teardown, input confounders, and independent controls",
+    "complete_frontier": "advanced for the corrected claim: selector output, type dispatch, ID-67 constructor, contact recurrence, and actual homing ownership are separated",
+    "typed_state": "advanced: type-13 plant state/phase plus ID-67 contact class/timer/model/subtype/flags are bound",
+    "lifecycle": "advanced: construct, mature, state gate, repeated fire, projectile expiry, uproot state, and slot clear are observed",
+    "interfaces": "advanced: yellow selector, plant scheduler, contact pool, player throw path, and enemy resistance law are separated",
+    "campaign_breadth": "bounded: retained ordinary-stage controls; campaign visual-instance breadth deferred",
+    "cross_system": "advanced: selector -> type13 -> ID67 and Square -> player red/homing dispatch are independently joined",
+    "source_closure": "partial: pristine opcode-level C/ASM analysis; no promoted documentation-grade decompilation",
+    "durable_evidence": "advanced: machine JSON, Experiment, Canon, capsule hashes, movie/state hashes, and transient C hashes"
+  },
+  "rejected_evidence": [
+    "The initial transient probe treated 0x8001B848 as a raw-type table and attempted type 15; entries after type 14 are adjacent string data. That hypothesis was rejected before use.",
+    "The first contact reducer over-reported unrelated live pool objects. Only domain-hash-clean reductions correlated with type-13 execution, constructor metadata, and Square input are used.",
+    "The dedicated movie filename is not behavioral authority: it contains red subtype-1 Square throws, not a homing-projectile positive control."
+  ],
+  "transient_c_evidence": {
+    "static_seed_source_sha256": "b67e7c5bfe6ab09a0b9093d1e7372e22be32a01dd0de549f8a84829c8beaf4e8",
+    "static_seed_binary_sha256": "eaaf2c8d3345182d5db61dc3d7d0770c23e113fb4990c9de91939921ec878b02",
+    "handler_slice_sha256": "4de13717094641e1f5d25287f7abe5162d279f2b9332a586432dde81dfd9618f",
+    "asm_extract_source_sha256": "7e3c95cba2b6ebeea41d871660bcc241bf8d53036770b859eaf74aa8c0372206",
+    "asm_extract_binary_sha256": "66a05eb21820c5597e6bf769706773a92eb9ba7473791d83245bea8d732345f7",
+    "asm_extract_output_sha256": "b881572eb56e8ac46dc291b41a4e05e58e3dfed029bfe7971e9b1918a65ec192",
+    "b12_capsule_reducer_source_sha256": "2ed0bdb6df314d11dc58025b23e00ddd030c5a69ad5a19ad288f3cf0fff0e6ac",
+    "b12_capsule_reducer_binary_sha256": "7b1709042f1c6f0b457a95b47d2a80c4954d64a8bee67000699a8805fbdd02a6",
+    "b12_capsule_reducer_output_sha256": "c118dd5b89e7572afe7a8759a4d27fe1752ebbc9a21c6ac1c23d09d62b9559ec",
+    "yellow_census_source_sha256": "1cab39abf365514a649856149cc8bcdef50bd586ab67dc4bd7a6bc69673a4ff4",
+    "yellow_census_binary_sha256": "b2e4830d6ba8ffe11ddf85cfd712a8eb8510506eacc1d619df568578d98be465",
+    "yellow_census_output_sha256": "06f2138df25194e256524d1f2fd0de60c1268ab024b44d04db2110d77c75c694",
+    "deep_static_source_sha256": "509d7264b3701c30dc1ac88bdf6852e0897ec97bf73a32c972949e593006a295",
+    "deep_static_binary_sha256": "1a600f659dfa656312de0cc6f2b7538b298845bd5049755c0b92317d443bd3d9",
+    "deep_static_output_sha256": "d1f18f829cf2be432ec812b2e7b8f7bc63bd7641388acca7032c49490129e565"
+  },
+  "strict_full_residuals": [
+    "campaign-wide type-13 instance and visual-color census",
+    "natural plant expiry without operator uproot",
+    "every generic impact/far-cull path for ID 67",
+    "exact GPU and SPU ownership",
+    "a dedicated genuine type-8 homing movie only if per-frame target-loss or retarget timing is promoted to a required claim"
+  ],
+  "next": "Move on. Reopen B12 only for a contradiction showing a separate yellow-tier homing emission, exact ID-67 player/enemy contact presentation, or a promoted target-loss timing requirement."
+}

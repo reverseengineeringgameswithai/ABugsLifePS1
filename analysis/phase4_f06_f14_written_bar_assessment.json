@@ -1,0 +1,1881 @@
+{
+ "_comment": "F06_birdnest and F14_riverbed_flight measured against the nine DoD dimensions AS WRITTEN (item 2 = enumerated; residuals = explicitly bounded), per engineering-specs/phase4-measurement-standard-ruling.md. TWO separate scorecards: facts live in per-row namespaces and each row's judgments are built from its own facts plus a shared set only. Judgments authored; every fact derived from a pinned artifact at run time. Regenerate: tools/phase4_f06_f14_written_bar_assessment.py",
+ "schema": "abl-phase4-f06-f14-written-bar-assessment/1",
+ "generated": "2026-08-11",
+ "rows_assessed": [
+  "F06_birdnest",
+  "F14_riverbed_flight"
+ ],
+ "standard": {
+  "ruling": "engineering-specs/phase4-measurement-standard-ruling.md",
+  "item2_bar": "enumerated, scoped to relevant (NOT empty unresolved set)",
+  "exit_gate_bar": "explicitly bounded, not absent",
+  "vocabulary": "bounded-exhausted remains a stop decision and never reads as met; this assessment publishes measurement, not disposition",
+  "allowed_states": [
+   "met",
+   "met_candidate",
+   "partial",
+   "not_met",
+   "unmeasured"
+  ]
+ },
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "edits_registry": false,
+  "requires_fresh_verifier": true,
+  "author_conflict": "the assessor authored neither row's underlying evidence, but did author this assessment and BOTH new measurements in it (tools/phase4_f06_f14_overlay_pin.c and the necessary conditions handed to it), so on the overlay-owner question the tool, the claim and the judgment share an author. Every state below is a submission to a fresh detached verifier, not a promotion; `partial` and `not_met` are as challengeable as `met`.",
+  "reads_only": [
+   "analysis/mechanics_baseline.yaml"
+  ]
+ },
+ "row_separation": {
+  "mechanism": "facts are namespaced per row; build_f06_dims() and build_f14_dims() each receive only their own fact dict plus the shared one, so citing the other row's evidence would raise NameError rather than quietly cross-credit",
+  "shared_facts": [
+   "actor_hp_field_note",
+   "actor_record_declared_base",
+   "actor_record_declared_instances",
+   "actor_record_declared_stride",
+   "actor_record_typed_fields",
+   "census_baseline_sha256",
+   "census_durable_met_fraction",
+   "census_fixture_set_sha256",
+   "census_rows_assessed",
+   "confirmed_sites_total",
+   "e02_authored_sectors_compared",
+   "e02_disc_runtime_disagreements",
+   "e02_levels_censused",
+   "overlay_images_in_function_census",
+   "overlay_images_scanned_by_probe",
+   "overlay_load_base_registered",
+   "overlay_registry_names",
+   "overlay_track_functions",
+   "overlay_track_matched",
+   "overlay_track_pct",
+   "overlays_registered_for_build",
+   "progression_table",
+   "progression_table_entries",
+   "progression_table_source",
+   "resident_build_toolchain",
+   "resident_build_units_declared",
+   "rows_with_wrong_scene_asset_binding",
+   "ruling_states_bounded_exhausted_never_met",
+   "ruling_states_item2_is_enumerated",
+   "scene_binding_residency_confirmations",
+   "scene_dir_law",
+   "scene_dir_law_index_form",
+   "semantic_state_entries_total",
+   "semantic_state_overlay_window_entries"
+  ],
+  "d_row_discipline": "D17_bird's closure, C16's contact-death closure and C15's respawn-writer census are recorded as INHERITED. None of them is read as evidence for a stage row's own objective, entry or exit claims."
+ },
+ "row_mapping": {
+  "note": "`stages` in the baseline is the stage ORDINAL, not a scene id. The campaign progression table maps ordinal -> scene, and the scene -> disc directory is arithmetic. Every step is derived here, never assumed, and cross-checked against the census and the corrected binding.",
+  "progression_table_source": "0x80077FA0",
+  "progression_table": [
+   17,
+   1,
+   3,
+   2,
+   6,
+   10,
+   11,
+   4,
+   5,
+   14,
+   7,
+   12,
+   13,
+   9,
+   8,
+   15,
+   -1
+  ],
+  "F06_birdnest": {
+   "stage_ordinal": 6,
+   "scene_from_progression_table": 11,
+   "census_scene_id": 11,
+   "corrected_binding": "[5]=level01\\level2c",
+   "collision_container": "LEVEL01/LEVEL1.RAW",
+   "overlay_pinned_from_bytes": "OVL/LEVEL01_LEVEL1.BIN",
+   "agrees_three_ways": true
+  },
+  "F14_riverbed_flight": {
+   "stage_ordinal": 14,
+   "scene_from_progression_table": 8,
+   "census_scene_id": 8,
+   "corrected_binding": "[13]=level08\\level5b",
+   "collision_container": "LEVEL08/LEVEL.RAW",
+   "overlay_pinned_from_bytes": "OVL/LEVEL08_LEVEL.BIN",
+   "agrees_three_ways": true
+  }
+ },
+ "carried_forward": {
+  "dimension": "durable_evidence",
+  "from": "analysis/phase4_f_row_measured_census.json",
+  "F06_birdnest": {
+   "state": "met",
+   "fraction": "5/5"
+  },
+  "F14_riverbed_flight": {
+   "state": "met",
+   "fraction": "3/3"
+  },
+  "note": "measured there against pinned bytes; re-deriving it here would be a second opinion on a settled measurement, not evidence"
+ },
+ "systemic_defects_checked": {
+  "a_overlay_misattribution": {
+   "defect": "every per-level overlay loads at the same base, so an overlay address decodes to a valid instruction in most images and an address-keyed registry picks the wrong file",
+   "F06_birdnest": {
+    "affected": true,
+    "how": "the row's six governing writers are overlay PCs ambiguous across up to 18 of 20 censused images; no artifact in the repository pinned the owning FILE, and the ownership graph attributes ZERO overlay functions to the row (non-attribution rather than misattribution)",
+    "settled_here": "OVL/LEVEL01_LEVEL1.BIN @ 0x800b39a0 (OVERLAY_PIN_UNIQUE), agreeing with the census's declared overlay (True)"
+   },
+   "F14_riverbed_flight": {
+    "affected": true,
+    "how": "the retained runtime artifact's own static scene graph names overlays ['LEVEL05_LEVEL', 'LEVEL05_LEVEL1'] for this scene -- the pre-correction routing -- while its catalog half names a different file; the addresses are ambiguous across up to 19 images",
+    "settled_here": "OVL/LEVEL08_LEVEL.BIN @ 0x800b39a0 (OVERLAY_PIN_UNIQUE); contradicts the retained static overlays (True) and agrees with the collision census container (True)"
+   }
+  },
+  "b_semantic_registry_va_collision": {
+   "defect": "config/semantic_state.yaml keys overlay-local addresses globally, so a training-overlay entry can appear to own another level's word",
+   "entries_inside_any_overlay_window": [
+    "0x800B4A3C=original.training_step",
+    "0x8012C1D0=original.shared_mesh_vertex_buffer"
+   ],
+   "F06_birdnest": {
+    "affected": false,
+    "how": "measured, not inspected: 0 registry entries fall inside this row's byte-pinned overlay window (2700 bytes from 0x800b39a0) -- []. The row itself registers 0 overlay addresses, so the exposure here is NON-registration, not collision"
+   },
+   "F14_riverbed_flight": {
+    "affected": false,
+    "how": "measured, not inspected: 0 registry entries fall inside this row's byte-pinned overlay window (3500 bytes from 0x800b39a0) -- []. The row itself registers 0 overlay addresses"
+   },
+   "standing_hazard": "both rows are one registration away from the collision: any future entry keyed by bare VA inside 0x800B39A0+ would land in 20 overlays at once"
+  }
+ },
+ "registry_disposition_for_contrast": {
+  "source": "analysis/phase4_closure_debt.json",
+  "F06_birdnest": {
+   "completion_state": "open",
+   "dimensions_met": 0,
+   "dimensions_remaining": 9,
+   "distinct_basis_strings": [
+    "no active child campaign"
+   ],
+   "movie_count": 0
+  },
+  "F14_riverbed_flight": {
+   "completion_state": "open",
+   "dimensions_met": 0,
+   "dimensions_remaining": 9,
+   "distinct_basis_strings": [
+    "no active child campaign"
+   ],
+   "movie_count": 0
+  },
+  "note": "both rows carry ONE blanket basis across all nine dimensions and score 0/9. That is a disposition, not a measurement."
+ },
+ "fail_loud_probes": {
+  "note": "the staleness guarantee is PROVEN here, not asserted: each probe rebuilds a read-only mirror of the repository with one artifact deleted or one key removed, re-runs this tool inside it, and requires a non-zero exit carrying the expected message. The run aborts if any probe fails to fail.",
+  "executed": true,
+  "results": [
+   {
+    "probe": "missing_artifact",
+    "simulates": "an artifact this assessment cites is deleted",
+    "expected_substring": "STALE CITATION",
+    "exit_code": 1,
+    "message": "STALE CITATION: analysis/phase4_d17_defeat.json does not exist",
+    "failed_loudly": true
+   },
+   {
+    "probe": "renamed_key",
+    "simulates": "a cited key is removed from an artifact that still exists",
+    "expected_substring": "no longer has",
+    "exit_code": 1,
+    "message": "STALE CITATION: analysis/phase4_c16_flight_death.json no longer has scene (failed at 'scene')",
+    "failed_loudly": true
+   },
+   {
+    "probe": "carried_measurement_moved",
+    "simulates": "the carried-forward durable_evidence measurement changes",
+    "expected_substring": "no longer 'met'",
+    "exit_code": 1,
+    "message": "carried-forward durable_evidence for F14_riverbed_flight is no longer 'met' -- re-measure before reusing this assessment",
+    "failed_loudly": true
+   },
+   {
+    "probe": "overlay_pin_stops_being_unique",
+    "simulates": "a governing writer PC moves so the byte pin no longer resolves to one file",
+    "expected_substring": "overlay pin is NOT unique",
+    "exit_code": 1,
+    "message": "F06_birdnest: the overlay pin is NOT unique (OVERLAY_PIN_NONE) -- this assessment's overlay-owner facts must not be published as settled",
+    "failed_loudly": true
+   }
+  ]
+ },
+ "fact_provenance": {
+  "facts_total": 380,
+  "facts_derived_from_pinned_artifacts": 380,
+  "facts_hand_typed": 0,
+  "rule": "facts are recorded through fact(scope, key, value, source); a value cannot be stored without naming a pinned artifact, and every lookup is strict, so a renamed or removed key aborts the run instead of silently defaulting",
+  "by_scope": {
+   "F06_birdnest": 179,
+   "F14_riverbed_flight": 167,
+   "shared": 34
+  },
+  "by_fact": {
+   "F06_birdnest": {
+    "census_durable_state": "analysis/phase4_f_row_measured_census.json",
+    "census_durable_fraction": "analysis/phase4_f_row_measured_census.json",
+    "census_durable_reason": "analysis/phase4_f_row_measured_census.json",
+    "census_row_status": "analysis/phase4_f_row_measured_census.json",
+    "census_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+    "census_analysis_artifact_paths": "analysis/phase4_f_row_measured_census.json",
+    "census_vault_pages": "analysis/phase4_f_row_measured_census.json",
+    "census_source_files": "analysis/phase4_f_row_measured_census.json",
+    "census_segments_entries": "analysis/phase4_f_row_measured_census.json",
+    "census_stage_ordinal": "analysis/phase4_f_row_measured_census.json",
+    "scene_id": "analysis/phase4_f_row_measured_census.json",
+    "census_overlay_name": "analysis/phase4_f_row_measured_census.json",
+    "census_has_runtime_trace_evidence": "analysis/phase4_f_row_measured_census.json",
+    "census_triage_source_closure": "analysis/phase4_f_row_measured_census.json",
+    "declared_fixture_count": "analysis/phase4_f_row_measured_census.json",
+    "fixtures_bytes_match_central_pin": "analysis/phase4_f_row_measured_census.json",
+    "fixtures_credited_to_row_centrally": [
+     "analysis/phase0_2_external_fixture_set.json",
+     "analysis/phase4_f_row_measured_census.json"
+    ],
+    "registry_dimensions_met": "analysis/phase4_closure_debt.json",
+    "registry_dimensions_remaining": "analysis/phase4_closure_debt.json",
+    "registry_distinct_bases": "analysis/phase4_closure_debt.json",
+    "registry_distinct_states": "analysis/phase4_closure_debt.json",
+    "registry_completion_state": "analysis/phase4_closure_debt.json",
+    "registry_movie_count": "analysis/phase4_closure_debt.json",
+    "registry_campaign_id": "analysis/phase4_closure_debt.json",
+    "row_name": "analysis/mechanics_baseline.yaml",
+    "row_status": "analysis/mechanics_baseline.yaml",
+    "row_declared_stages": "analysis/mechanics_baseline.yaml",
+    "row_binding_claims": "analysis/mechanics_baseline.yaml",
+    "declared_evidence_classes": "analysis/mechanics_baseline.yaml",
+    "declared_missing": "analysis/mechanics_baseline.yaml",
+    "declared_missing_items": "analysis/mechanics_baseline.yaml",
+    "declared_fixture_need": "analysis/mechanics_baseline.yaml",
+    "declared_next": "analysis/mechanics_baseline.yaml",
+    "declared_fixtures": "analysis/mechanics_baseline.yaml",
+    "declared_movie_count": "analysis/mechanics_baseline.yaml",
+    "row_artifact_path_citations": "analysis/mechanics_baseline.yaml",
+    "scene_binding_claimed": "analysis/phase4_f08_scene_binding.json",
+    "scene_binding_truth": "analysis/phase4_f08_scene_binding.json",
+    "scene_binding_scene": "analysis/phase4_f08_scene_binding.json",
+    "stage_ordinal_from_baseline": "analysis/mechanics_baseline.yaml",
+    "scene_from_progression_table": [
+     "analysis/phase3_scene_asset_graph.json",
+     "analysis/mechanics_baseline.yaml"
+    ],
+    "row_mapping_agrees_three_ways": [
+     "analysis/phase3_scene_asset_graph.json",
+     "analysis/mechanics_baseline.yaml",
+     "analysis/phase4_f_row_measured_census.json",
+     "analysis/phase4_f08_scene_binding.json"
+    ],
+    "collision_container": "analysis/phase4_e02_disc_region_code_census.json",
+    "collision_scene": "analysis/phase4_e02_disc_region_code_census.json",
+    "authored_collision_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+    "runtime_collision_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+    "region_code_histogram": "analysis/phase4_e02_disc_region_code_census.json",
+    "region_code_sector_count": "analysis/phase4_e02_disc_region_code_census.json",
+    "collision_disc_vs_runtime_mismatches": "analysis/phase4_e02_disc_region_code_census.json",
+    "completion_oracle_movie": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_frames": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_target_scene": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_replay_accepted": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_stage_exited": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_entry_frame": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_enemy_quota_in_stage": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_cited_by_row": [
+     "analysis/mechanics_baseline.yaml",
+     "analysis/phase2_completion_oracle.json"
+    ],
+    "ownership_functions": "analysis/phase3_ownership_graph.json",
+    "ownership_overlay_functions": "analysis/phase3_ownership_graph.json",
+    "ownership_functions_with_canon": "analysis/phase3_ownership_graph.json",
+    "ownership_gaps": "analysis/phase3_ownership_graph.json",
+    "ownership_gap_items": "analysis/phase3_ownership_graph.json",
+    "ownership_state_addresses": "analysis/phase3_ownership_graph.json",
+    "row_coverage_status": "analysis/phase2_row_coverage.json",
+    "unaudited_fixtures": "analysis/phase2_row_coverage.json",
+    "row_artifact_status": "analysis/phase4_f06_birdnest.json",
+    "row_artifact_still_open_items": "analysis/phase4_f06_birdnest.json",
+    "stopping_point_is_operator_confirmed": "analysis/phase4_f06_birdnest.json",
+    "unexamined_producer": "analysis/phase4_f06_birdnest.json",
+    "entry_fmv_fixture_status": "analysis/phase4_f06_birdnest.json",
+    "banner_reading_registered": "analysis/phase4_f06_birdnest.json",
+    "banner_claims_seed_tokens": "analysis/phase4_f06_birdnest.json",
+    "hundred_pct_movie_frames": "analysis/phase4_f06_birdnest.json",
+    "d17_row_status": "analysis/phase4_d17_bird.json",
+    "d17_identity_scene_result": "analysis/phase4_d17_bird.json",
+    "gold_berry_y_before": "analysis/phase4_d17_bird.json",
+    "gold_berry_y_after": "analysis/phase4_d17_bird.json",
+    "d17_still_open_items": "analysis/phase4_d17_bird.json",
+    "defeat_movie": "analysis/phase4_d17_defeat.json",
+    "defeat_frames": "analysis/phase4_d17_defeat.json",
+    "defeat_event_total": "analysis/phase4_d17_defeat.json",
+    "defeat_ring_truncated": "analysis/phase4_d17_defeat.json",
+    "boss_record_addr": "analysis/phase4_d17_defeat.json",
+    "hp_at_settle": "analysis/phase4_d17_defeat.json",
+    "defeat_fields_attributed": "analysis/phase4_d17_defeat.json",
+    "defeat_distinct_writer_pcs": "analysis/phase4_d17_defeat.json",
+    "defeat_overlay_writer_pcs": [
+     "analysis/phase4_d17_defeat.json",
+     "config/overlays.yml"
+    ],
+    "defeat_overlay_writer_pc_list": [
+     "analysis/phase4_d17_defeat.json",
+     "config/overlays.yml"
+    ],
+    "defeat_hp_events": "analysis/phase4_d17_defeat.json",
+    "defeat_damage_pcs": "analysis/phase4_d17_defeat.json",
+    "defeat_deltas": "analysis/phase4_d17_defeat.json",
+    "hp_final_observed": "analysis/phase4_d17_defeat.json",
+    "defeat_halt_installer_pc": "analysis/phase4_d17_defeat.json",
+    "defeat_first_halt_frame": "analysis/phase4_d17_defeat.json",
+    "vm_ip_values_seen": "analysis/phase4_d17_defeat.json",
+    "vm_ip_value_list": "analysis/phase4_d17_defeat.json",
+    "halt_program_range": "analysis/phase4_d17_defeat.json",
+    "wander_program_range": "analysis/phase4_d17_defeat.json",
+    "post_halt_position_writer_count": "analysis/phase4_d17_defeat.json",
+    "inherited_open_items": "analysis/mechanics_baseline.yaml",
+    "overlay_pin_spec_count": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_images_scanned": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_images_satisfying": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_images_with_consistent_base": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_unique": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_file": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_load_base": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_result": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_file_sha256": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_file_size": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_overlay_name": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_pin_agrees_with_census_name": [
+     "analysis/phase4_f06_overlay_pin.json",
+     "analysis/phase4_f_row_measured_census.json"
+    ],
+    "absolute_form_writers": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_writer_decodes": "analysis/phase4_f06_overlay_pin.json",
+    "overlay_writer_spec_derivation": [
+     "analysis/phase4_d17_defeat.json",
+     "config/record_types.yaml"
+    ],
+    "overlay_images_covering_governing_pcs_max": "analysis/functions.json",
+    "overlay_images_covering_governing_pcs_min": "analysis/functions.json",
+    "governing_addresses": "analysis/phase4_d17_defeat.json",
+    "governing_resident": [
+     "analysis/phase4_d17_defeat.json",
+     "config/overlays.yml"
+    ],
+    "governing_overlay": [
+     "analysis/phase4_d17_defeat.json",
+     "config/overlays.yml"
+    ],
+    "governing_resident_in_a_build_unit": "config/segments.yml",
+    "governing_resident_units": "config/segments.yml",
+    "governing_resident_units_matching_c": "config/segments.yml",
+    "governing_resident_units_hand_asm": "config/segments.yml",
+    "governing_resident_unit_sources": "config/segments.yml",
+    "governing_resident_outside_any_build_unit": "config/segments.yml",
+    "overlay_registered_in_overlays_yml": "config/overlays.yml",
+    "pinned_overlay_code_functions": "analysis/overlay_decomp_progress.json",
+    "pinned_overlay_matched_functions": "analysis/overlay_decomp_progress.json",
+    "confirmed_sites_for_row": [
+     "config/confirmed_sites.yaml",
+     "analysis/phase4_d17_defeat.json"
+    ],
+    "overlay_state_addresses_registered": [
+     "config/semantic_state.yaml",
+     "analysis/phase4_d17_defeat.json"
+    ],
+    "semantic_entries_inside_this_rows_overlay_window": [
+     "config/semantic_state.yaml",
+     "config/overlays.yml",
+     "analysis/phase4_f06_overlay_pin.json"
+    ],
+    "va_collision_present_in_this_rows_window": [
+     "config/semantic_state.yaml",
+     "config/overlays.yml",
+     "analysis/phase4_f06_overlay_pin.json"
+    ],
+    "boss_record_inside_declared_extent": [
+     "config/record_types.yaml",
+     "analysis/phase4_d17_defeat.json"
+    ],
+    "row_named_actor_offsets_total": "analysis/phase4_d17_defeat.json",
+    "row_named_actor_offsets_typed": [
+     "config/record_types.yaml",
+     "analysis/phase4_d17_defeat.json"
+    ],
+    "boss_actor_id": "analysis/phase4_d17_bird.json",
+    "actor_hp_note_names_this_boss": [
+     "config/record_types.yaml",
+     "analysis/phase4_d17_bird.json"
+    ],
+    "stage_movies_pinned_strict": "analysis/phase2_fixture_audit.json",
+    "stage_movies_pinned_strict_paths": "analysis/phase2_fixture_audit.json",
+    "bird_movies_pinned_other_tokens": "analysis/phase2_fixture_audit.json",
+    "bird_movies_belonging_to_another_stage": "analysis/phase2_fixture_audit.json",
+    "stage_movies_declared_strict": [
+     "analysis/phase2_fixture_audit.json",
+     "analysis/mechanics_baseline.yaml"
+    ],
+    "stage_movies_replayed_by_row": [
+     "analysis/phase2_fixture_audit.json",
+     "analysis/mechanics_baseline.yaml",
+     "analysis/phase4_d17_defeat.json"
+    ],
+    "stage_movies_never_replayed": [
+     "analysis/phase2_fixture_audit.json",
+     "analysis/mechanics_baseline.yaml",
+     "analysis/phase4_d17_defeat.json"
+    ],
+    "hundred_pct_movie_credited_to_row": "analysis/phase0_2_external_fixture_set.json",
+    "declarative_scenarios": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+    "declarative_scenario_names": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+    "identity_scenario_assertions": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+    "behavioural_scenarios": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+    "behavioural_scenario_names": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+    "scenario_names": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+    "scenario_assertions": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+    "own_gate_files": "tests/test_phase4_f06_birdnest.py",
+    "own_gate_file_names": "tests/test_phase4_f06_birdnest.py",
+    "inherited_gate_files": [
+     "tests/test_phase4_d17_bird.py",
+     "tests/test_phase4_d17_defeat.py"
+    ],
+    "inherited_gate_file_names": [
+     "tests/test_phase4_d17_bird.py",
+     "tests/test_phase4_d17_defeat.py"
+    ],
+    "gates_executed": [
+     "tests/test_phase4_f06_birdnest.py",
+     "tests/test_phase4_d17_bird.py",
+     "tests/test_phase4_d17_defeat.py"
+    ],
+    "own_gate_tests_passed": "tests/test_phase4_f06_birdnest.py",
+    "own_gate_tests_failed": "tests/test_phase4_f06_birdnest.py",
+    "own_gate_health": "tests/test_phase4_f06_birdnest.py",
+    "inherited_gate_tests_passed": [
+     "tests/test_phase4_d17_bird.py",
+     "tests/test_phase4_d17_defeat.py"
+    ],
+    "inherited_gate_tests_failed": [
+     "tests/test_phase4_d17_bird.py",
+     "tests/test_phase4_d17_defeat.py"
+    ],
+    "inherited_gate_files_with_a_failure": [
+     "tests/test_phase4_d17_bird.py",
+     "tests/test_phase4_d17_defeat.py"
+    ],
+    "inherited_gate_health": [
+     "tests/test_phase4_d17_bird.py",
+     "tests/test_phase4_d17_defeat.py"
+    ],
+    "c05_results_function": "analysis/phase4_c05_three_tokens.json",
+    "c05_third_axis_condition": "analysis/phase4_c05_three_tokens.json",
+    "c05_third_numerator_law": "analysis/phase4_c05_three_tokens.json",
+    "c05_grain_denominator_is_universal": "analysis/phase4_c05_three_tokens.json",
+    "c05_used_this_rows_fixture": [
+     "analysis/phase4_c05_three_tokens.json",
+     "analysis/phase2_fixture_audit.json"
+    ],
+    "c05_explicitly_replaces_the_seed_reading": "analysis/phase4_c05_three_tokens.json",
+    "enemy_quota_at_pinned_anchor": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+    "enemy_quota_address_matches_c05_condition": [
+     "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+     "analysis/phase4_c05_three_tokens.json"
+    ],
+    "banner_third_denominator_matches_enemy_quota": [
+     "analysis/phase4_f06_birdnest.json",
+     "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+     "analysis/phase2_completion_oracle.json"
+    ],
+    "canon_banks_the_enemy_axis": "ObsidianVault/Canon/Functions/FUNC_800B7DA0_results_screen_evaluate_and_draw.md",
+    "canon_system_page_is_the_d_row": "ObsidianVault/Canon/Systems/SYS_bird_boss.md",
+    "canon_system_page_sections": "ObsidianVault/Canon/Systems/SYS_bird_boss.md",
+    "row_experiment_page_sections": "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f06_birdnest.md",
+    "row_experiment_page_still_calls_the_counter_a_seed_total": "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f06_birdnest.md"
+   },
+   "F14_riverbed_flight": {
+    "census_durable_state": "analysis/phase4_f_row_measured_census.json",
+    "census_durable_fraction": "analysis/phase4_f_row_measured_census.json",
+    "census_durable_reason": "analysis/phase4_f_row_measured_census.json",
+    "census_row_status": "analysis/phase4_f_row_measured_census.json",
+    "census_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+    "census_analysis_artifact_paths": "analysis/phase4_f_row_measured_census.json",
+    "census_vault_pages": "analysis/phase4_f_row_measured_census.json",
+    "census_source_files": "analysis/phase4_f_row_measured_census.json",
+    "census_segments_entries": "analysis/phase4_f_row_measured_census.json",
+    "census_stage_ordinal": "analysis/phase4_f_row_measured_census.json",
+    "scene_id": "analysis/phase4_f_row_measured_census.json",
+    "census_overlay_name": "analysis/phase4_f_row_measured_census.json",
+    "census_has_runtime_trace_evidence": "analysis/phase4_f_row_measured_census.json",
+    "census_triage_source_closure": "analysis/phase4_f_row_measured_census.json",
+    "declared_fixture_count": "analysis/phase4_f_row_measured_census.json",
+    "fixtures_bytes_match_central_pin": "analysis/phase4_f_row_measured_census.json",
+    "fixtures_credited_to_row_centrally": [
+     "analysis/phase0_2_external_fixture_set.json",
+     "analysis/phase4_f_row_measured_census.json"
+    ],
+    "registry_dimensions_met": "analysis/phase4_closure_debt.json",
+    "registry_dimensions_remaining": "analysis/phase4_closure_debt.json",
+    "registry_distinct_bases": "analysis/phase4_closure_debt.json",
+    "registry_distinct_states": "analysis/phase4_closure_debt.json",
+    "registry_completion_state": "analysis/phase4_closure_debt.json",
+    "registry_movie_count": "analysis/phase4_closure_debt.json",
+    "registry_campaign_id": "analysis/phase4_closure_debt.json",
+    "row_name": "analysis/mechanics_baseline.yaml",
+    "row_status": "analysis/mechanics_baseline.yaml",
+    "row_declared_stages": "analysis/mechanics_baseline.yaml",
+    "row_binding_claims": "analysis/mechanics_baseline.yaml",
+    "declared_evidence_classes": "analysis/mechanics_baseline.yaml",
+    "declared_missing": "analysis/mechanics_baseline.yaml",
+    "declared_missing_items": "analysis/mechanics_baseline.yaml",
+    "declared_fixture_need": "analysis/mechanics_baseline.yaml",
+    "declared_next": "analysis/mechanics_baseline.yaml",
+    "declared_fixtures": "analysis/mechanics_baseline.yaml",
+    "declared_movie_count": "analysis/mechanics_baseline.yaml",
+    "row_artifact_path_citations": "analysis/mechanics_baseline.yaml",
+    "scene_binding_claimed": "analysis/phase4_f08_scene_binding.json",
+    "scene_binding_truth": "analysis/phase4_f08_scene_binding.json",
+    "scene_binding_scene": "analysis/phase4_f08_scene_binding.json",
+    "stage_ordinal_from_baseline": "analysis/mechanics_baseline.yaml",
+    "scene_from_progression_table": [
+     "analysis/phase3_scene_asset_graph.json",
+     "analysis/mechanics_baseline.yaml"
+    ],
+    "row_mapping_agrees_three_ways": [
+     "analysis/phase3_scene_asset_graph.json",
+     "analysis/mechanics_baseline.yaml",
+     "analysis/phase4_f_row_measured_census.json",
+     "analysis/phase4_f08_scene_binding.json"
+    ],
+    "collision_container": "analysis/phase4_e02_disc_region_code_census.json",
+    "collision_scene": "analysis/phase4_e02_disc_region_code_census.json",
+    "authored_collision_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+    "runtime_collision_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+    "region_code_histogram": "analysis/phase4_e02_disc_region_code_census.json",
+    "region_code_sector_count": "analysis/phase4_e02_disc_region_code_census.json",
+    "exit_region_code": "analysis/phase4_e02_disc_region_code_census.json",
+    "exit_region_sector_index": "analysis/phase4_e02_disc_region_code_census.json",
+    "exit_region_runtime_origin": "analysis/phase4_e02_disc_region_code_census.json",
+    "collision_disc_vs_runtime_mismatches": "analysis/phase4_e02_disc_region_code_census.json",
+    "completion_oracle_movie": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_frames": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_target_scene": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_replay_accepted": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_stage_exited": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_entry_frame": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_enemy_quota_in_stage": "analysis/phase2_completion_oracle.json",
+    "completion_oracle_cited_by_row": [
+     "analysis/mechanics_baseline.yaml",
+     "analysis/phase2_completion_oracle.json"
+    ],
+    "ownership_functions": "analysis/phase3_ownership_graph.json",
+    "ownership_overlay_functions": "analysis/phase3_ownership_graph.json",
+    "ownership_functions_with_canon": "analysis/phase3_ownership_graph.json",
+    "ownership_gaps": "analysis/phase3_ownership_graph.json",
+    "ownership_gap_items": "analysis/phase3_ownership_graph.json",
+    "ownership_state_addresses": "analysis/phase3_ownership_graph.json",
+    "row_coverage_status": "analysis/phase2_row_coverage.json",
+    "unaudited_fixtures": "analysis/phase2_row_coverage.json",
+    "flight_fixture": "analysis/phase4_c16_flight_death.json",
+    "flight_fixture_media_class": "analysis/phase4_c16_flight_death.json",
+    "flight_scene": "analysis/phase4_c16_flight_death.json",
+    "natural_fatal_health": "analysis/phase4_c16_flight_death.json",
+    "ordinary_respawn_health_lives": "analysis/phase4_c16_flight_death.json",
+    "response_only_ram_difference_count": "analysis/phase4_c16_flight_death.json",
+    "matched_outcome_frame_cycle_pc_sp": "analysis/phase4_c16_flight_death.json",
+    "row_completion_flag": "analysis/phase4_c16_flight_death.json",
+    "level08_initializer_live_qualified": "analysis/phase4_c16_flight_death.json",
+    "level08_safe_tuple": "analysis/phase4_c16_flight_death.json",
+    "forbidden_claim": "analysis/phase4_c16_flight_death.json",
+    "bounded_open_flight_scope": "analysis/phase4_c16_flight_death.json",
+    "actor_record_addr": "analysis/phase4_c16_flight_death.json",
+    "actor_pool_slot_claimed": "analysis/phase4_c16_flight_death.json",
+    "actor_id": "analysis/phase4_c16_flight_death.json",
+    "actor_callback": "analysis/phase4_c16_flight_death.json",
+    "actor_source_pointer": "analysis/phase4_c16_flight_death.json",
+    "actor_type_word": "analysis/phase4_c16_flight_death.json",
+    "actor_owner_classification": "analysis/phase4_c16_flight_death.json",
+    "retained_static_asset_entry": "analysis/phase4_c16_flight_death.json",
+    "retained_static_disc_dir": "analysis/phase4_c16_flight_death.json",
+    "retained_static_overlays": "analysis/phase4_c16_flight_death.json",
+    "resident_scene8_call_word": "analysis/phase4_c16_flight_death.json",
+    "resident_scene8_call_return": "analysis/phase4_c16_flight_death.json",
+    "level08_exact_pristine_match": "analysis/phase4_c16_flight_death.json",
+    "catalog_staged_inputs": "analysis/phase4_respawn_writer_catalog.json",
+    "catalog_writer_files": "analysis/phase4_respawn_writer_catalog.json",
+    "catalog_direct_writes": "analysis/phase4_respawn_writer_catalog.json",
+    "catalog_zero_writer_files": "analysis/phase4_respawn_writer_catalog.json",
+    "catalog_scan_method": "analysis/phase4_respawn_writer_catalog.json",
+    "catalog_still_unknown": "analysis/phase4_respawn_writer_catalog.json",
+    "level08_blob": "analysis/phase4_respawn_writer_catalog.json",
+    "level08_runtime_start": "analysis/phase4_respawn_writer_catalog.json",
+    "level08_size": "analysis/phase4_respawn_writer_catalog.json",
+    "level08_evidence_scope": "analysis/phase4_respawn_writer_catalog.json",
+    "level08_entry_call_sites": "analysis/phase4_respawn_writer_catalog.json",
+    "level08_direct_writes": "analysis/phase4_respawn_writer_catalog.json",
+    "level08_slice_sha256_matches_runtime": [
+     "analysis/phase4_respawn_writer_catalog.json",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "overlay_pin_spec_count": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_images_scanned": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_images_satisfying": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_images_with_consistent_base": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_unique": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_file": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_load_base": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_result": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_file_sha256": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_file_size": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_overlay_name": "analysis/phase4_f14_overlay_pin.json",
+    "overlay_pin_agrees_with_census_name": [
+     "analysis/phase4_f14_overlay_pin.json",
+     "analysis/phase4_f_row_measured_census.json"
+    ],
+    "overlay_pin_agrees_with_collision_container": [
+     "analysis/phase4_f14_overlay_pin.json",
+     "analysis/phase4_e02_disc_region_code_census.json"
+    ],
+    "overlay_pin_contradicts_retained_static_overlays": [
+     "analysis/phase4_f14_overlay_pin.json",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "overlay_images_covering_governing_pcs_max": "analysis/functions.json",
+    "overlay_images_covering_governing_pcs_min": "analysis/functions.json",
+    "governing_addresses": [
+     "analysis/phase4_respawn_writer_catalog.json",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "governing_resident": [
+     "analysis/phase4_respawn_writer_catalog.json",
+     "analysis/phase4_c16_flight_death.json",
+     "config/overlays.yml"
+    ],
+    "governing_overlay": [
+     "analysis/phase4_respawn_writer_catalog.json",
+     "analysis/phase4_c16_flight_death.json",
+     "config/overlays.yml"
+    ],
+    "governing_resident_in_a_build_unit": "config/segments.yml",
+    "governing_resident_units": "config/segments.yml",
+    "governing_resident_units_matching_c": "config/segments.yml",
+    "governing_resident_units_hand_asm": "config/segments.yml",
+    "governing_resident_unit_sources": "config/segments.yml",
+    "governing_resident_outside_any_build_unit": "config/segments.yml",
+    "overlay_registered_in_overlays_yml": "config/overlays.yml",
+    "pinned_overlay_code_functions": "analysis/overlay_decomp_progress.json",
+    "pinned_overlay_matched_functions": "analysis/overlay_decomp_progress.json",
+    "confirmed_sites_for_row": [
+     "config/confirmed_sites.yaml",
+     "analysis/phase4_respawn_writer_catalog.json",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "overlay_state_addresses_registered": [
+     "config/semantic_state.yaml",
+     "analysis/phase4_respawn_writer_catalog.json",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "semantic_entries_inside_this_rows_overlay_window": [
+     "config/semantic_state.yaml",
+     "config/overlays.yml",
+     "analysis/phase4_f14_overlay_pin.json"
+    ],
+    "va_collision_present_in_this_rows_window": [
+     "config/semantic_state.yaml",
+     "config/overlays.yml",
+     "analysis/phase4_f14_overlay_pin.json"
+    ],
+    "actor_inside_declared_extent": [
+     "config/record_types.yaml",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "actor_index_from_declared_base": [
+     "config/record_types.yaml",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "actor_pool_base_implied": [
+     "config/record_types.yaml",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "declared_base_minus_implied_strides": [
+     "config/record_types.yaml",
+     "analysis/phase4_c16_flight_death.json"
+    ],
+    "stage_movies_pinned_strict": "analysis/phase2_fixture_audit.json",
+    "stage_movies_pinned_strict_paths": "analysis/phase2_fixture_audit.json",
+    "largest_stage_movie_frames": "analysis/phase2_fixture_audit.json",
+    "riverbed_movies_belonging_to_another_row": "analysis/phase2_fixture_audit.json",
+    "stage_movies_replayed_by_row": [
+     "analysis/phase2_fixture_audit.json",
+     "analysis/mechanics_baseline.yaml"
+    ],
+    "stage_movies_never_replayed": [
+     "analysis/phase2_fixture_audit.json",
+     "analysis/mechanics_baseline.yaml"
+    ],
+    "declarative_scenarios": [
+     "tools/scenarios/duckstation/pristine_riverbed_flight_actor37_death.yaml",
+     "tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml",
+     "tools/scenarios/duckstation/stage_identity_stage14_riverbed_flight.yaml"
+    ],
+    "declarative_scenario_names": [
+     "tools/scenarios/duckstation/pristine_riverbed_flight_actor37_death.yaml",
+     "tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml",
+     "tools/scenarios/duckstation/stage_identity_stage14_riverbed_flight.yaml"
+    ],
+    "identity_scenario_assertions": "tools/scenarios/duckstation/stage_identity_stage14_riverbed_flight.yaml",
+    "behavioural_scenarios": [
+     "tools/scenarios/duckstation/pristine_riverbed_flight_actor37_death.yaml",
+     "tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml",
+     "tools/scenarios/duckstation/stage_identity_stage14_riverbed_flight.yaml"
+    ],
+    "behavioural_scenario_names": [
+     "tools/scenarios/duckstation/pristine_riverbed_flight_actor37_death.yaml",
+     "tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml"
+    ],
+    "scenario_names": [
+     "tools/scenarios/duckstation/pristine_riverbed_flight_actor37_death.yaml",
+     "tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml",
+     "tools/scenarios/duckstation/stage_identity_stage14_riverbed_flight.yaml"
+    ],
+    "scenario_assertions": [
+     "tools/scenarios/duckstation/pristine_riverbed_flight_actor37_death.yaml",
+     "tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml",
+     "tools/scenarios/duckstation/stage_identity_stage14_riverbed_flight.yaml"
+    ],
+    "own_gate_files": "analysis/phase4_f_row_measured_census.json",
+    "own_gate_file_names": "analysis/phase4_f_row_measured_census.json",
+    "inherited_gate_files": [
+     "tests/test_phase4_c16_flight_death.py",
+     "tests/test_phase4_respawn_writer_catalog.py"
+    ],
+    "inherited_gate_file_names": [
+     "tests/test_phase4_c16_flight_death.py",
+     "tests/test_phase4_respawn_writer_catalog.py"
+    ],
+    "gates_executed": [
+     "tests/test_phase4_c16_flight_death.py",
+     "tests/test_phase4_respawn_writer_catalog.py"
+    ],
+    "own_gate_tests_passed": "analysis/phase4_f_row_measured_census.json",
+    "own_gate_tests_failed": "analysis/phase4_f_row_measured_census.json",
+    "own_gate_health": "analysis/phase4_f_row_measured_census.json",
+    "inherited_gate_tests_passed": [
+     "tests/test_phase4_c16_flight_death.py",
+     "tests/test_phase4_respawn_writer_catalog.py"
+    ],
+    "inherited_gate_tests_failed": [
+     "tests/test_phase4_c16_flight_death.py",
+     "tests/test_phase4_respawn_writer_catalog.py"
+    ],
+    "inherited_gate_files_with_a_failure": [
+     "tests/test_phase4_c16_flight_death.py",
+     "tests/test_phase4_respawn_writer_catalog.py"
+    ],
+    "inherited_gate_health": [
+     "tests/test_phase4_c16_flight_death.py",
+     "tests/test_phase4_respawn_writer_catalog.py"
+    ]
+   },
+   "shared": {
+    "ruling_states_item2_is_enumerated": "engineering-specs/phase4-measurement-standard-ruling.md",
+    "ruling_states_bounded_exhausted_never_met": "engineering-specs/phase4-measurement-standard-ruling.md",
+    "census_baseline_sha256": "analysis/phase4_f_row_measured_census.json",
+    "census_fixture_set_sha256": "analysis/phase4_f_row_measured_census.json",
+    "census_rows_assessed": "analysis/phase4_f_row_measured_census.json",
+    "census_durable_met_fraction": "analysis/phase4_f_row_measured_census.json",
+    "progression_table_source": "analysis/phase3_scene_asset_graph.json",
+    "progression_table": "analysis/phase3_scene_asset_graph.json",
+    "progression_table_entries": "analysis/phase3_scene_asset_graph.json",
+    "scene_dir_law": "analysis/phase4_f08_scene_binding.json",
+    "scene_dir_law_index_form": "analysis/phase4_f08_scene_binding.json",
+    "rows_with_wrong_scene_asset_binding": "analysis/phase4_f08_scene_binding.json",
+    "scene_binding_residency_confirmations": "analysis/phase4_f08_scene_binding.json",
+    "resident_build_toolchain": "config/segments.yml",
+    "resident_build_units_declared": "config/segments.yml",
+    "overlays_registered_for_build": "config/overlays.yml",
+    "overlay_registry_names": "config/overlays.yml",
+    "overlay_load_base_registered": "config/overlays.yml",
+    "overlay_track_functions": "analysis/overlay_decomp_progress.json",
+    "overlay_track_matched": "analysis/overlay_decomp_progress.json",
+    "overlay_track_pct": "analysis/overlay_decomp_progress.json",
+    "actor_record_declared_base": "config/record_types.yaml",
+    "actor_record_declared_stride": "config/record_types.yaml",
+    "actor_record_declared_instances": "config/record_types.yaml",
+    "actor_record_typed_fields": "config/record_types.yaml",
+    "actor_hp_field_note": "config/record_types.yaml",
+    "semantic_state_entries_total": "config/semantic_state.yaml",
+    "semantic_state_overlay_window_entries": [
+     "config/semantic_state.yaml",
+     "config/overlays.yml"
+    ],
+    "confirmed_sites_total": "config/confirmed_sites.yaml",
+    "overlay_images_in_function_census": "analysis/functions.json",
+    "e02_levels_censused": "analysis/phase4_e02_disc_region_code_census.json",
+    "e02_disc_runtime_disagreements": "analysis/phase4_e02_disc_region_code_census.json",
+    "e02_authored_sectors_compared": "analysis/phase4_e02_disc_region_code_census.json",
+    "overlay_images_scanned_by_probe": [
+     "REBUILD/files/SCUS_942.88",
+     "OVL/LEVEL00_LEVEL.BIN",
+     "OVL/LEVEL01_LEVEL.BIN",
+     "OVL/LEVEL01_LEVEL1.BIN",
+     "OVL/LEVEL02_LEVEL.BIN",
+     "OVL/LEVEL02_LEVEL1.BIN",
+     "OVL/LEVEL03_LEVEL.BIN",
+     "OVL/LEVEL03_LEVEL1.BIN",
+     "OVL/LEVEL04_LEVEL.BIN",
+     "OVL/LEVEL04_LEVEL1.BIN",
+     "OVL/LEVEL05_LEVEL.BIN",
+     "OVL/LEVEL05_LEVEL1.BIN",
+     "OVL/LEVEL06_LEVEL.BIN",
+     "OVL/LEVEL06_LEVEL1.BIN",
+     "OVL/LEVEL07_LEVEL.BIN",
+     "OVL/LEVEL07_LEVEL1.BIN",
+     "OVL/LEVEL08_LEVEL.BIN",
+     "OVL/LEVEL08_LEVEL1.BIN",
+     "OVL/LEVEL09_LEVEL.BIN",
+     "OVL/LEVEL09_LEVEL1.BIN",
+     "OVL/LEVEL10_LEVEL.BIN"
+    ]
+   }
+  }
+ },
+ "facts": {
+  "F06_birdnest": {
+   "census_durable_state": "met",
+   "census_durable_fraction": "5/5",
+   "census_durable_reason": "5/5 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+   "census_row_status": "partial",
+   "census_analysis_artifacts": 5,
+   "census_analysis_artifact_paths": [
+    "analysis/phase4_d17_bird.json",
+    "analysis/phase4_f06_birdnest.json",
+    "analysis/phase4_f06_f14_written_bar_assessment.json",
+    "analysis/phase4_f06_overlay_pin.json",
+    "analysis/phase4_f08_scene_binding.json"
+   ],
+   "census_vault_pages": 1,
+   "census_source_files": 0,
+   "census_segments_entries": 0,
+   "census_stage_ordinal": "6",
+   "scene_id": 11,
+   "census_overlay_name": "LEVEL01_LEVEL1",
+   "census_has_runtime_trace_evidence": true,
+   "census_triage_source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+   "declared_fixture_count": 5,
+   "fixtures_bytes_match_central_pin": 5,
+   "fixtures_credited_to_row_centrally": 4,
+   "registry_dimensions_met": 0,
+   "registry_dimensions_remaining": 9,
+   "registry_distinct_bases": [
+    "no active child campaign"
+   ],
+   "registry_distinct_states": [
+    "gap"
+   ],
+   "registry_completion_state": "open",
+   "registry_movie_count": 0,
+   "registry_campaign_id": null,
+   "row_name": "Stage 6 Birdnest: bird encounter",
+   "row_status": "partial",
+   "row_declared_stages": "6",
+   "row_binding_claims": 6,
+   "declared_evidence_classes": [
+    "manual",
+    "runtime_trace",
+    "secondary_lead"
+   ],
+   "declared_missing": "The exact reason the Birdnest banner shows static zeros while Hopper's showed real numbers (not traced to the instruction level); whether all non-final-stage results banners behave this way (only Birdnest tested); which game system renders the newly-found cutscene (not traced to source); Birdnest's own level-entry FMV (operator-confirmed to exist, distinct from the completion cutscene, not yet captured in any fixture); whether the scripted flyby and the id30 combat phase are the same sequence (inherited from D17); which telescope ordinal maps to the bird's own waypoint record (inherited); the shooter-plant's exact per-hit damage instruction and the mega-homing-berry plant's own mechanism (inherited, entirely unexamined); whether re-engage is possible; source closure; cross-system audio/HUD; no dedicated Canon page yet (matching the thin-stub pattern already used by F04/F12, the other F-rows that point at a D-row).",
+   "declared_missing_items": 11,
+   "declared_fixture_need": "None required for the ending sequence itself (now mapped and its trigger condition operator-confirmed); Birdnest's own level-entry FMV would need a from-boot or fresh-save capture of this level's first-ever entry, not yet attempted.",
+   "declared_next": "STOPPING POINT JUSTIFIED 2026-08-03 (operator-confirmed, not an assumption nothing remains): lowest priority (cosmetic, not mechanical) -- the results-banner static-zero quirk, which system renders the cutscene, cross-stage banner comparison. Needs a fixture this row lacks -- Birdnest's own level-entry FMV (from-boot/fresh-save capture of first-ever entry, never attempted), whether re-engage is possible. HIGHEST-VALUE UNCHASED LEAD if revisited -- the mega homing-berry seed plant is entirely unexamined by D17; this project already has closed rows for yellow/purple/green/blue/brown seed plants, so check for an existing-campaign match FIRST before assuming fresh live work is needed.",
+   "declared_fixtures": [
+    "level_06.sav",
+    "bird.movie.json",
+    "movies/Phase4/Interpreter/D17.movie.json",
+    "movies/Phase4/Interpreter/D17_Goldberry.movie.json",
+    "movies/Phase4/Interpreter/100% Runs/LEVEL06.movie.json (operator-supplied 100% completion run, 12917 frames, covers fight through the newly-found cutscene and Flik's Journey)"
+   ],
+   "declared_movie_count": 4,
+   "row_artifact_path_citations": 3,
+   "scene_binding_claimed": "[10]=level02\\level4b",
+   "scene_binding_truth": "[5]=level01\\level2c",
+   "scene_binding_scene": 11,
+   "stage_ordinal_from_baseline": 6,
+   "scene_from_progression_table": 11,
+   "row_mapping_agrees_three_ways": true,
+   "collision_container": "LEVEL01/LEVEL1.RAW",
+   "collision_scene": 11,
+   "authored_collision_sectors": 75,
+   "runtime_collision_sectors": 120,
+   "region_code_histogram": {
+    "0": 75
+   },
+   "region_code_sector_count": 0,
+   "collision_disc_vs_runtime_mismatches": 0,
+   "completion_oracle_movie": "movies/go_to_end/LEVEL06.movie.json",
+   "completion_oracle_frames": 8837,
+   "completion_oracle_target_scene": 11,
+   "completion_oracle_replay_accepted": true,
+   "completion_oracle_stage_exited": true,
+   "completion_oracle_entry_frame": 5500,
+   "completion_oracle_enemy_quota_in_stage": 9,
+   "completion_oracle_cited_by_row": false,
+   "ownership_functions": 4,
+   "ownership_overlay_functions": 0,
+   "ownership_functions_with_canon": 1,
+   "ownership_gaps": 2,
+   "ownership_gap_items": [
+    "state 0x8001AFB0 cited with no semantic-registry owner",
+    "state 0x800B39A0 cited with no semantic-registry owner"
+   ],
+   "ownership_state_addresses": 6,
+   "row_coverage_status": "pristine_trigger",
+   "unaudited_fixtures": 1,
+   "row_artifact_status": "unresolved -> partial. Three-pass row (2026-08-03). Pass 1 was a synthesis pass following the same pattern already proven out on F15_canyon_showdown/D20_hopper: F06's own entire prior content was a st",
+   "row_artifact_still_open_items": 8,
+   "stopping_point_is_operator_confirmed": true,
+   "unexamined_producer": "The mega homing-berry seed plant's own mechanism is completely unexamined -- D17 only ever inferred its existence from what it does to the bird, never traced the plant itself (plan",
+   "entry_fmv_fixture_status": "Birdnest's own level-entry FMV (operator-confirmed to exist, needs a from-boot or fresh-save capture of this level's first-ever entry -- never attempted); wheth",
+   "banner_reading_registered": "The results screen reads 'level complete / 00/50 / 0/4 / 00/09' -- the SAME three-counter layout already established for F15_canyon_showdown's own results screen (grain/FLIK-letters/seed-tokens). This confirms: the unlabeled '0/4' is FLIK-letter progress (target 4, matching the established convention), and the unlabeled '00/09' is this level's own seed-token total (target 9 -- DIFFERENT from Hopper's own stage-15 target of 16, confirming seed-token targets are level-specific, not a fixed whole-game constant). CLOSES D17's own STILL_OPEN item about what these counters represent.",
+   "banner_claims_seed_tokens": true,
+   "hundred_pct_movie_frames": 12917,
+   "d17_row_status": "unresolved -> partial. First pass on this row this session, then a deep-dive audit pass. Operator supplied fixtures (bir",
+   "d17_identity_scene_result": "All three available fixtures (bird.movie.json, D17.movie.json, D17_Goldberry.movie.json) read scene_id=11. Per the progression table [17,1,3,2,6,10,11,4,5,14,7,12,13,9,8,15,-1], scene 11 is at ordinal index 6 -> chronological 'Level 6', matching the already-scoped F06_birdnest row ('Stage 6 Birdnest: bird encounter') exactly. This confirms id=30's combat encounter IS the row's own 'Birdnest' subject, not a different, misidentified species -- a real risk given this session's earlier scope-confusion incidents on other rows.",
+   "gold_berry_y_before": -60832,
+   "gold_berry_y_after": -143376,
+   "d17_still_open_items": 11,
+   "defeat_movie": "movies/Phase4/Interpreter/D17_Goldberry.movie.json",
+   "defeat_frames": 5674,
+   "defeat_event_total": 22020,
+   "defeat_ring_truncated": false,
+   "boss_record_addr": "0x800A02A8",
+   "hp_at_settle": 50,
+   "defeat_fields_attributed": 6,
+   "defeat_distinct_writer_pcs": 18,
+   "defeat_overlay_writer_pcs": 6,
+   "defeat_overlay_writer_pc_list": [
+    "0x800b3e18",
+    "0x800b3e8c",
+    "0x800b3edc",
+    "0x800b3f8c",
+    "0x800b4158",
+    "0x800b42b8"
+   ],
+   "defeat_hp_events": 17,
+   "defeat_damage_pcs": [
+    "0x800590e4"
+   ],
+   "defeat_deltas": [
+    -4,
+    -3
+   ],
+   "hp_final_observed": 18,
+   "defeat_halt_installer_pc": "0x800b4158",
+   "defeat_first_halt_frame": 167170,
+   "vm_ip_values_seen": 4,
+   "vm_ip_value_list": [
+    "0x800776AC",
+    "0x800776AE",
+    "0x8007788C",
+    "0x8007788E"
+   ],
+   "halt_program_range": "0x800776AC..0x800776B4",
+   "wander_program_range": "0x80077878..0x80077894",
+   "post_halt_position_writer_count": 6,
+   "inherited_open_items": 3,
+   "overlay_pin_spec_count": 6,
+   "overlay_pin_images_scanned": 21,
+   "overlay_pin_images_satisfying": 1,
+   "overlay_pin_images_with_consistent_base": 1,
+   "overlay_pin_unique": true,
+   "overlay_pin_file": "OVL/LEVEL01_LEVEL1.BIN",
+   "overlay_pin_load_base": "0x800b39a0",
+   "overlay_pin_result": "OVERLAY_PIN_UNIQUE",
+   "overlay_pin_file_sha256": "43c80f86eef71a3b51bef593889cfc1a3ef5a766c2eb1fd168b01db570073fd6",
+   "overlay_pin_file_size": 2700,
+   "overlay_pin_overlay_name": "LEVEL01_LEVEL1",
+   "overlay_pin_agrees_with_census_name": true,
+   "absolute_form_writers": 4,
+   "overlay_writer_decodes": [
+    {
+     "pc": "0x800b42b8",
+     "op": "sw",
+     "imm": "0x02b0"
+    },
+    {
+     "pc": "0x800b3e8c",
+     "op": "sh",
+     "imm": "0x0304"
+    },
+    {
+     "pc": "0x800b3edc",
+     "op": "sh",
+     "imm": "0x0000"
+    },
+    {
+     "pc": "0x800b3e18",
+     "op": "sh",
+     "imm": "0x0316"
+    },
+    {
+     "pc": "0x800b3f8c",
+     "op": "sh",
+     "imm": "0x0000"
+    },
+    {
+     "pc": "0x800b4158",
+     "op": "sw",
+     "imm": "0x0318"
+    }
+   ],
+   "overlay_writer_spec_derivation": [
+    {
+     "pc": "0x800b42b8",
+     "field_address": "0x800A02B0",
+     "record_offset": "0x08",
+     "registry_field": "pos_y",
+     "width_bytes": 4
+    },
+    {
+     "pc": "0x800b3e8c",
+     "field_address": "0x800A0304",
+     "record_offset": "0x5C",
+     "registry_field": "ai_flags",
+     "width_bytes": 2
+    },
+    {
+     "pc": "0x800b3edc",
+     "field_address": "0x800A0304",
+     "record_offset": "0x5C",
+     "registry_field": "ai_flags",
+     "width_bytes": 2
+    },
+    {
+     "pc": "0x800b3e18",
+     "field_address": "0x800A0316",
+     "record_offset": "0x6E",
+     "registry_field": "hp",
+     "width_bytes": 2
+    },
+    {
+     "pc": "0x800b3f8c",
+     "field_address": "0x800A0316",
+     "record_offset": "0x6E",
+     "registry_field": "hp",
+     "width_bytes": 2
+    },
+    {
+     "pc": "0x800b4158",
+     "field_address": "0x800A0318",
+     "record_offset": "0x70",
+     "registry_field": "vm_instruction_pointer",
+     "width_bytes": 4
+    }
+   ],
+   "overlay_images_covering_governing_pcs_max": 18,
+   "overlay_images_covering_governing_pcs_min": 14,
+   "governing_addresses": 18,
+   "governing_resident": 12,
+   "governing_overlay": 6,
+   "governing_resident_in_a_build_unit": 12,
+   "governing_resident_units": 5,
+   "governing_resident_units_matching_c": 0,
+   "governing_resident_units_hand_asm": 5,
+   "governing_resident_unit_sources": [
+    "asm/hand_written/80024e04_sub_80024e04.s",
+    "asm/hand_written/8004c818_sub_8004c818.s",
+    "asm/hand_written/8004c8ac_vm_motion_apply_chase.s",
+    "asm/hand_written/8004d224_mover_updater.s",
+    "asm/hand_written/8005905c_berry_tough_damage_dispatch.s"
+   ],
+   "governing_resident_outside_any_build_unit": 0,
+   "overlay_registered_in_overlays_yml": "is NOT",
+   "pinned_overlay_code_functions": 4,
+   "pinned_overlay_matched_functions": 0,
+   "confirmed_sites_for_row": 1,
+   "overlay_state_addresses_registered": 0,
+   "semantic_entries_inside_this_rows_overlay_window": [],
+   "va_collision_present_in_this_rows_window": false,
+   "boss_record_inside_declared_extent": true,
+   "row_named_actor_offsets_total": 6,
+   "row_named_actor_offsets_typed": 6,
+   "boss_actor_id": 30,
+   "actor_hp_note_names_this_boss": false,
+   "stage_movies_pinned_strict": 3,
+   "stage_movies_pinned_strict_paths": [
+    "movies/Phase4/Interpreter/100% Runs/LEVEL06.movie.json",
+    "movies/Phase4/Interpreter/Any% Runs/LEVEL06_BirdNest.movie.json",
+    "movies/go_to_end/LEVEL06.movie.json"
+   ],
+   "bird_movies_pinned_other_tokens": 8,
+   "bird_movies_belonging_to_another_stage": [
+    "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+    "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json",
+    "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json"
+   ],
+   "stage_movies_declared_strict": 1,
+   "stage_movies_replayed_by_row": 4,
+   "stage_movies_never_replayed": [
+    "movies/Phase4/Interpreter/Any% Runs/LEVEL06_BirdNest.movie.json",
+    "movies/go_to_end/LEVEL06.movie.json"
+   ],
+   "hundred_pct_movie_credited_to_row": false,
+   "declarative_scenarios": 1,
+   "declarative_scenario_names": [
+    "stage_identity_stage06_birdnest.yaml"
+   ],
+   "identity_scenario_assertions": 11,
+   "behavioural_scenarios": 0,
+   "behavioural_scenario_names": [],
+   "scenario_names": [
+    "stage_identity_stage06_birdnest.yaml"
+   ],
+   "scenario_assertions": 11,
+   "own_gate_files": 1,
+   "own_gate_file_names": [
+    "tests/test_phase4_f06_birdnest.py"
+   ],
+   "inherited_gate_files": 2,
+   "inherited_gate_file_names": [
+    "tests/test_phase4_d17_bird.py",
+    "tests/test_phase4_d17_defeat.py"
+   ],
+   "gates_executed": true,
+   "own_gate_tests_passed": 22,
+   "own_gate_tests_failed": 0,
+   "own_gate_health": "0 of 22 tests in this row's 1 OWN gate file(s) fail today",
+   "inherited_gate_tests_passed": 27,
+   "inherited_gate_tests_failed": 0,
+   "inherited_gate_files_with_a_failure": [],
+   "inherited_gate_health": "0 of 27 tests in the 2 INHERITED gate file(s) fail today",
+   "c05_results_function": "fcn.800B7DA0..0x800B8788 (functionBounds confidence=exact, cleanEnd, 2540 bytes, prologue ",
+   "c05_third_axis_condition": "0x800A658E (s16 quota, clamped to >=0 at 0x800B7E0C) must == 0 -> sets bit 0x04",
+   "c05_third_numerator_law": "s5, target [sp+0x50] = [0x80082258] - [0x800A658E] = TOTAL - REMAINING = DEFEATED, computed once up front at 0x800B7E34/4C/50",
+   "c05_grain_denominator_is_universal": "Row 1 emits [tens][units] '/' then the LITERAL glyphs 5 and 0 (0x800B8090 a3=5, 0x800B80A4 a3=0). The denominator is two hardcoded digits in shared overlay code, so the grain requirement is 50 on EVER",
+   "c05_used_this_rows_fixture": true,
+   "c05_explicitly_replaces_the_seed_reading": true,
+   "enemy_quota_at_pinned_anchor": 9,
+   "enemy_quota_address_matches_c05_condition": true,
+   "banner_third_denominator_matches_enemy_quota": true,
+   "canon_banks_the_enemy_axis": true,
+   "canon_system_page_is_the_d_row": true,
+   "canon_system_page_sections": 8,
+   "row_experiment_page_sections": 7,
+   "row_experiment_page_still_calls_the_counter_a_seed_total": true
+  },
+  "F14_riverbed_flight": {
+   "census_durable_state": "met",
+   "census_durable_fraction": "3/3",
+   "census_durable_reason": "3/3 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+   "census_row_status": "external_lead",
+   "census_analysis_artifacts": 3,
+   "census_analysis_artifact_paths": [
+    "analysis/phase4_f06_f14_written_bar_assessment.json",
+    "analysis/phase4_f08_scene_binding.json",
+    "analysis/phase4_f14_overlay_pin.json"
+   ],
+   "census_vault_pages": 0,
+   "census_source_files": 0,
+   "census_segments_entries": 0,
+   "census_stage_ordinal": "14",
+   "scene_id": 8,
+   "census_overlay_name": "LEVEL08_LEVEL",
+   "census_has_runtime_trace_evidence": false,
+   "census_triage_source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+   "declared_fixture_count": 3,
+   "fixtures_bytes_match_central_pin": 3,
+   "fixtures_credited_to_row_centrally": 3,
+   "registry_dimensions_met": 0,
+   "registry_dimensions_remaining": 9,
+   "registry_distinct_bases": [
+    "no active child campaign"
+   ],
+   "registry_distinct_states": [
+    "gap"
+   ],
+   "registry_completion_state": "open",
+   "registry_movie_count": 0,
+   "registry_campaign_id": null,
+   "row_name": "Stage 14 Riverbed Flight: Atta/Flik flight chase",
+   "row_status": "external_lead",
+   "row_declared_stages": "14",
+   "row_binding_claims": 2,
+   "declared_evidence_classes": [
+    "manual",
+    "secondary_lead"
+   ],
+   "declared_missing": "Player/companion/chase state.",
+   "declared_missing_items": 1,
+   "declared_fixture_need": "Chase movie; assert companion/chase state machine.",
+   "declared_next": "Walk stage 14; determine whether the player state machine changes for flight (vs stage-4 glide reuse).",
+   "declared_fixtures": [
+    "level_14.sav",
+    "LEVEL14_ENDING.sav",
+    "LEVEL14_ENDING_1.sav"
+   ],
+   "declared_movie_count": 0,
+   "row_artifact_path_citations": 2,
+   "scene_binding_claimed": "[7]=level05\\level3b",
+   "scene_binding_truth": "[13]=level08\\level5b",
+   "scene_binding_scene": 8,
+   "stage_ordinal_from_baseline": 14,
+   "scene_from_progression_table": 8,
+   "row_mapping_agrees_three_ways": true,
+   "collision_container": "LEVEL08/LEVEL.RAW",
+   "collision_scene": 8,
+   "authored_collision_sectors": 335,
+   "runtime_collision_sectors": 380,
+   "region_code_histogram": {
+    "0": 334,
+    "2": 1
+   },
+   "region_code_sector_count": 1,
+   "exit_region_code": 2,
+   "exit_region_sector_index": 334,
+   "exit_region_runtime_origin": [
+    1198912,
+    -116448,
+    4879104
+   ],
+   "collision_disc_vs_runtime_mismatches": 0,
+   "completion_oracle_movie": "movies/go_to_end/LEVEL14.movie.json",
+   "completion_oracle_frames": 11818,
+   "completion_oracle_target_scene": 8,
+   "completion_oracle_replay_accepted": true,
+   "completion_oracle_stage_exited": true,
+   "completion_oracle_entry_frame": 5500,
+   "completion_oracle_enemy_quota_in_stage": 56,
+   "completion_oracle_cited_by_row": false,
+   "ownership_functions": 4,
+   "ownership_overlay_functions": 0,
+   "ownership_functions_with_canon": 1,
+   "ownership_gaps": 2,
+   "ownership_gap_items": [
+    "state 0x8001AFB0 cited with no semantic-registry owner",
+    "state 0x800B39A0 cited with no semantic-registry owner"
+   ],
+   "ownership_state_addresses": 5,
+   "row_coverage_status": "pristine_trigger",
+   "unaudited_fixtures": 0,
+   "flight_fixture": "level_14.sav",
+   "flight_fixture_media_class": "pristine",
+   "flight_scene": 8,
+   "natural_fatal_health": -1,
+   "ordinary_respawn_health_lives": [
+    4,
+    2
+   ],
+   "response_only_ram_difference_count": 1,
+   "matched_outcome_frame_cycle_pc_sp": true,
+   "row_completion_flag": 0,
+   "level08_initializer_live_qualified": 1,
+   "level08_safe_tuple": [
+    -157682,
+    5744,
+    -12845,
+    352
+   ],
+   "forbidden_claim": "Do not infer an actor species, scripted owner, distinct special death class, authored checkpoint-row policy, general F14 flight/chase policy, or C15/C16/F14 completion.",
+   "bounded_open_flight_scope": "F14 motion, companion/chase state, objective and transition remain open.",
+   "actor_record_addr": "0x800a0014",
+   "actor_pool_slot_claimed": 5,
+   "actor_id": 37,
+   "actor_callback": "0x80049e88",
+   "actor_source_pointer": "0x80094ac4",
+   "actor_type_word": "0x0125",
+   "actor_owner_classification": "unclassified_e08_or_downstream_candidate",
+   "retained_static_asset_entry": "level05\\level3b",
+   "retained_static_disc_dir": "level05",
+   "retained_static_overlays": [
+    "LEVEL05_LEVEL",
+    "LEVEL05_LEVEL1"
+   ],
+   "resident_scene8_call_word": "0x0c02ceba",
+   "resident_scene8_call_return": "0x8005b1ac",
+   "level08_exact_pristine_match": true,
+   "catalog_staged_inputs": 11,
+   "catalog_writer_files": 5,
+   "catalog_direct_writes": 21,
+   "catalog_zero_writer_files": 6,
+   "catalog_scan_method": "conservative local constant propagation over little-endian MIPS words, reset after jr-ra delay slots and caller-clobbered after jal delay slots; only resolved direct stores are counted",
+   "catalog_still_unknown": "LEVEL06/LEVEL08 runtime activation and denial policy, authored source ownership, pointer-mediated writers, overlay variants outside the staged LEVEL.BIN set, reset/persistence scope, and remaining death-class/stage breadth.",
+   "level08_blob": "REBUILD/files/LEVEL08/LEVEL.BIN",
+   "level08_runtime_start": "0x800B3AE8",
+   "level08_size": 108,
+   "level08_evidence_scope": "static_only",
+   "level08_entry_call_sites": [
+    "0x8005b1a4"
+   ],
+   "level08_direct_writes": 4,
+   "level08_slice_sha256_matches_runtime": true,
+   "overlay_pin_spec_count": 5,
+   "overlay_pin_images_scanned": 21,
+   "overlay_pin_images_satisfying": 1,
+   "overlay_pin_images_with_consistent_base": 1,
+   "overlay_pin_unique": true,
+   "overlay_pin_file": "OVL/LEVEL08_LEVEL.BIN",
+   "overlay_pin_load_base": "0x800b39a0",
+   "overlay_pin_result": "OVERLAY_PIN_UNIQUE",
+   "overlay_pin_file_sha256": "a0c0ac1da5c3a75296f0d79428ba1155f2f5d1ede3e2dcf9ffaee03fd8d2fec5",
+   "overlay_pin_file_size": 3500,
+   "overlay_pin_overlay_name": "LEVEL08_LEVEL",
+   "overlay_pin_agrees_with_census_name": true,
+   "overlay_pin_agrees_with_collision_container": true,
+   "overlay_pin_contradicts_retained_static_overlays": true,
+   "overlay_images_covering_governing_pcs_max": 19,
+   "overlay_images_covering_governing_pcs_min": 19,
+   "governing_addresses": 10,
+   "governing_resident": 5,
+   "governing_overlay": 5,
+   "governing_resident_in_a_build_unit": 5,
+   "governing_resident_units": 4,
+   "governing_resident_units_matching_c": 0,
+   "governing_resident_units_hand_asm": 4,
+   "governing_resident_unit_sources": [
+    "asm/hand_written/80049e88_sub_80049e88.s",
+    "asm/hand_written/8004a700_resident_level_transition_initiator.s",
+    "asm/hand_written/8004abf4_proximity_updater.s",
+    "asm/hand_written/8005b134_respawn_transition_state_handler.s"
+   ],
+   "governing_resident_outside_any_build_unit": 0,
+   "overlay_registered_in_overlays_yml": "is NOT",
+   "pinned_overlay_code_functions": 5,
+   "pinned_overlay_matched_functions": 0,
+   "confirmed_sites_for_row": 0,
+   "overlay_state_addresses_registered": 0,
+   "semantic_entries_inside_this_rows_overlay_window": [],
+   "va_collision_present_in_this_rows_window": false,
+   "actor_inside_declared_extent": true,
+   "actor_index_from_declared_base": 4,
+   "actor_pool_base_implied": "0x8009FD80",
+   "declared_base_minus_implied_strides": 1,
+   "stage_movies_pinned_strict": 3,
+   "stage_movies_pinned_strict_paths": [
+    "movies/Phase4/Interpreter/100% Runs/LEVEL14_RIVERBEDFLIGHT.movie.json",
+    "movies/Phase4/Interpreter/Any% Runs/LEVEL14_riverbedflight.movie.json",
+    "movies/go_to_end/LEVEL14.movie.json"
+   ],
+   "largest_stage_movie_frames": 23451,
+   "riverbed_movies_belonging_to_another_row": 2,
+   "stage_movies_replayed_by_row": 0,
+   "stage_movies_never_replayed": [
+    "movies/Phase4/Interpreter/100% Runs/LEVEL14_RIVERBEDFLIGHT.movie.json",
+    "movies/Phase4/Interpreter/Any% Runs/LEVEL14_riverbedflight.movie.json",
+    "movies/go_to_end/LEVEL14.movie.json"
+   ],
+   "declarative_scenarios": 3,
+   "declarative_scenario_names": [
+    "pristine_riverbed_flight_actor37_death.yaml",
+    "pristine_scene8_level08_respawn_initializer.yaml",
+    "stage_identity_stage14_riverbed_flight.yaml"
+   ],
+   "identity_scenario_assertions": 7,
+   "behavioural_scenarios": 2,
+   "behavioural_scenario_names": [
+    "pristine_riverbed_flight_actor37_death.yaml",
+    "pristine_scene8_level08_respawn_initializer.yaml"
+   ],
+   "scenario_names": [
+    "pristine_riverbed_flight_actor37_death.yaml",
+    "pristine_scene8_level08_respawn_initializer.yaml",
+    "stage_identity_stage14_riverbed_flight.yaml"
+   ],
+   "scenario_assertions": 40,
+   "own_gate_files": 0,
+   "own_gate_file_names": [],
+   "inherited_gate_files": 2,
+   "inherited_gate_file_names": [
+    "tests/test_phase4_c16_flight_death.py",
+    "tests/test_phase4_respawn_writer_catalog.py"
+   ],
+   "gates_executed": true,
+   "own_gate_tests_passed": 0,
+   "own_gate_tests_failed": 0,
+   "own_gate_health": "this row has NO gate file of its own -- no registered test references an artifact this row owns",
+   "inherited_gate_tests_passed": 6,
+   "inherited_gate_tests_failed": 4,
+   "inherited_gate_files_with_a_failure": [
+    "tests/test_phase4_c16_flight_death.py",
+    "tests/test_phase4_respawn_writer_catalog.py"
+   ],
+   "inherited_gate_health": "4 of 10 tests in the 2 INHERITED gate file(s) fail today, in ['tests/test_phase4_c16_flight_death.py', 'tests/test_phase4_respawn_writer_catalog.py']"
+  },
+  "shared": {
+   "ruling_states_item2_is_enumerated": true,
+   "ruling_states_bounded_exhausted_never_met": true,
+   "census_baseline_sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58",
+   "census_fixture_set_sha256": "ec9c1a2f22508e516a91a6f79cf0e3283935c1be6b1f2cac28bf4c6a029e5321",
+   "census_rows_assessed": 19,
+   "census_durable_met_fraction": "19/19",
+   "progression_table_source": "0x80077FA0",
+   "progression_table": [
+    17,
+    1,
+    3,
+    2,
+    6,
+    10,
+    11,
+    4,
+    5,
+    14,
+    7,
+    12,
+    13,
+    9,
+    8,
+    15,
+    -1
+   ],
+   "progression_table_entries": 17,
+   "scene_dir_law": "ARITHMETIC, no table: dir = scene_id <= 10 ? scene_id : scene_id - 10 (slti @0x8003D204, addiu -10 @0x8003D214); ori 0x0140 @0x8003D218 selects the LEVEL1.* variant for scene_id >= 11.",
+   "scene_dir_law_index_form": "jumptable[resource_id - 1]",
+   "rows_with_wrong_scene_asset_binding": 11,
+   "scene_binding_residency_confirmations": 5,
+   "resident_build_toolchain": "gcc2.7.2-psx",
+   "resident_build_units_declared": 913,
+   "overlays_registered_for_build": 12,
+   "overlay_registry_names": [
+    "LEVEL02_LEVEL",
+    "LEVEL02_LEVEL1",
+    "LEVEL03_LEVEL1",
+    "LEVEL04_LEVEL1",
+    "LEVEL05_LEVEL",
+    "LEVEL05_LEVEL1",
+    "LEVEL06_LEVEL",
+    "LEVEL06_LEVEL1",
+    "LEVEL07_LEVEL1",
+    "LEVEL09_LEVEL",
+    "LEVEL10_LEVEL",
+    "MEMORY"
+   ],
+   "overlay_load_base_registered": "0x800B39A0",
+   "overlay_track_functions": 158,
+   "overlay_track_matched": 15,
+   "overlay_track_pct": 9.49,
+   "actor_record_declared_base": "0x8009FE04",
+   "actor_record_declared_stride": 132,
+   "actor_record_declared_instances": 40,
+   "actor_record_typed_fields": 11,
+   "actor_hp_field_note": "Thumper 50, defeat at <= 20; death sets 999 via the hit tail",
+   "semantic_state_entries_total": 66,
+   "semantic_state_overlay_window_entries": [
+    "0x800B4A3C=original.training_step",
+    "0x8012C1D0=original.shared_mesh_vertex_buffer"
+   ],
+   "confirmed_sites_total": 12,
+   "overlay_images_in_function_census": 20,
+   "e02_levels_censused": 16,
+   "e02_disc_runtime_disagreements": 0,
+   "e02_authored_sectors_compared": 3235,
+   "overlay_images_scanned_by_probe": 21
+  }
+ },
+ "evidence_pins": [
+  {
+   "path": "engineering-specs/phase4-measurement-standard-ruling.md",
+   "sha256": "80fd4896063874c76d0adb2b6dd5593dbc56b508ac8f05d036bf9f8cc654331a"
+  },
+  {
+   "path": "analysis/phase4_f_row_measured_census.json",
+   "sha256": "fe493509b6fcc1a435a3fd2d1ceaa6ad123a7a8d88ca52000e87ae6cce586e8a"
+  },
+  {
+   "path": "analysis/phase0_2_external_fixture_set.json",
+   "sha256": "905f2648c3b9205060553d22d0c3727e5efc1ccb903b068d878e76f0dbf4e6f6"
+  },
+  {
+   "path": "analysis/phase4_closure_debt.json",
+   "sha256": "e0bbdbfce84e744da871502d80156f5b0fa64e05d51e8885a0fdf43f3b7dea8a"
+  },
+  {
+   "path": "analysis/mechanics_baseline.yaml",
+   "sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58"
+  },
+  {
+   "path": "analysis/phase3_scene_asset_graph.json",
+   "sha256": "a714ea00c8db7af2855b8d85fd136d9dae9583ab5bf4bb3d2b48fd4b8f907b49"
+  },
+  {
+   "path": "analysis/phase4_f08_scene_binding.json",
+   "sha256": "75e8cf8b9ad25ee0e099dbea231ba4f9c72c8250eff55e20ca4af6fe127ee9dd"
+  },
+  {
+   "path": "config/segments.yml",
+   "sha256": "81c4df81ea8b5b1c2d265bfdeb86c3a9be92983bfc09e721379ddc6546d05477"
+  },
+  {
+   "path": "config/overlays.yml",
+   "sha256": "881c9ebea5805edd10603aef718a83460a4a701d5a3dd9a8fbeff24bdde83c09"
+  },
+  {
+   "path": "analysis/overlay_decomp_progress.json",
+   "sha256": "94fda111d1c2451b6aee846f4d07ac5ba16d77a94716c0e20e62479714cf438e"
+  },
+  {
+   "path": "config/record_types.yaml",
+   "sha256": "99d429c8bd256214d978138eec3dcda5622ac0bb82c55d4880a5d34683ac2448"
+  },
+  {
+   "path": "config/semantic_state.yaml",
+   "sha256": "8f5682cb32af1eac107a9af1e9128ccc07a9e7be08b86abe49642f6c21268f48"
+  },
+  {
+   "path": "config/confirmed_sites.yaml",
+   "sha256": "24c76ff0affa1875c07e72e462ce53d89a5b4af4330a6f0a33fd388728ecd639"
+  },
+  {
+   "path": "analysis/functions.json",
+   "sha256": "42f99dc0f1886412751d269f586bca3fc72bac5c9f29d7447fe08fbe4f46ef61"
+  },
+  {
+   "path": "analysis/phase4_e02_disc_region_code_census.json",
+   "sha256": "20e93eae19eca6feef8fb1d03e1903ca3de910db398f0d1e607798fe553a804e"
+  },
+  {
+   "path": "analysis/phase2_completion_oracle.json",
+   "sha256": "a027364721b9b0105f4c87ec6a0e28c8323425f6efef6954d0d80ae23055849e"
+  },
+  {
+   "path": "analysis/phase2_fixture_audit.json",
+   "sha256": "48625b97ed1ec4f25eb9882cbf1b8b8e983c30a5dbd2a23230b1888bf24539f0"
+  },
+  {
+   "path": "analysis/phase3_ownership_graph.json",
+   "sha256": "be8aea008ade0417bbe7e99e87c788df94c6ed9e50c6079b42b05e2c9f37e483"
+  },
+  {
+   "path": "analysis/phase2_row_coverage.json",
+   "sha256": "62b461b051627c7dc346858c35b83f7deadcfebbe7463688b53cbd3f5c1e7103"
+  },
+  {
+   "path": "analysis/phase4_f06_birdnest.json",
+   "sha256": "3ffb76ce9403c0bbe14c96e974dca287f5af8d9a105b854af5170298ec5fc51b"
+  },
+  {
+   "path": "analysis/phase4_d17_bird.json",
+   "sha256": "7d08213ef7e6b18276d292e84cd012d64f12c545a9d0aa0e2d14c80f15ff974f"
+  },
+  {
+   "path": "analysis/phase4_d17_defeat.json",
+   "sha256": "c534bab35c7ed7e937fea87dafc2f688f477c511768eed994a8a0ed697468446"
+  },
+  {
+   "path": "analysis/phase4_c16_flight_death.json",
+   "sha256": "dfa705b97d0091bc171c3ee1193bf5f062ec75f48f4224a8f054347613ef00fd"
+  },
+  {
+   "path": "analysis/phase4_respawn_writer_catalog.json",
+   "sha256": "647b1c23d75b35bf80424cb5c98b618d6afc448a19e629b5730fcbacc3ba6d80"
+  },
+  {
+   "path": "tools/phase4_f06_f14_overlay_pin.c",
+   "sha256": "ad165da94a0e666d9b994353b7dbc99337156ae99b0c8c204c975d2aadfc7057"
+  },
+  {
+   "path": "REBUILD/files/SCUS_942.88",
+   "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  {
+   "path": "OVL/LEVEL00_LEVEL.BIN",
+   "sha256": "fb5e512425fc9449316ec95969ebe71e2d576dbab833d61e2a5b9330fd70ee02"
+  },
+  {
+   "path": "OVL/LEVEL01_LEVEL.BIN",
+   "sha256": "f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21"
+  },
+  {
+   "path": "OVL/LEVEL01_LEVEL1.BIN",
+   "sha256": "43c80f86eef71a3b51bef593889cfc1a3ef5a766c2eb1fd168b01db570073fd6"
+  },
+  {
+   "path": "OVL/LEVEL02_LEVEL.BIN",
+   "sha256": "6e5040d0d053ad652ba2ab655af8d2d2731b7a77b704c68a815fc2868449ffed"
+  },
+  {
+   "path": "OVL/LEVEL02_LEVEL1.BIN",
+   "sha256": "71a77ba1f7a0e985f8c5208318eaff7f6054dbf64f22981b5590160c77af97b1"
+  },
+  {
+   "path": "OVL/LEVEL03_LEVEL.BIN",
+   "sha256": "fef7bd2a72c5c293b2f164ba1ca195f45c0843c5f19e52cbfdb48fd14fbc59a1"
+  },
+  {
+   "path": "OVL/LEVEL03_LEVEL1.BIN",
+   "sha256": "24adb413e88885b1614995e241da9961df1dc5e0f81ba5f820c32765918c04c9"
+  },
+  {
+   "path": "OVL/LEVEL04_LEVEL.BIN",
+   "sha256": "a346b8e6a6be4f2d27f7f73cd6dba8b1a96bd079c209d844ef140e2792ffd555"
+  },
+  {
+   "path": "OVL/LEVEL04_LEVEL1.BIN",
+   "sha256": "816667f0ba7ae2b602cc39da7c0b3b4020d1a231651d5b90e6374c66c34f39e6"
+  },
+  {
+   "path": "OVL/LEVEL05_LEVEL.BIN",
+   "sha256": "93451e022e2613d9c7259e33007000155c8a8a9e2276a008327d42e0c63eba00"
+  },
+  {
+   "path": "OVL/LEVEL05_LEVEL1.BIN",
+   "sha256": "03b7bc62eae3416421f8fbea634efe28e5940b8496d1a0b0ef42dfb0d90607f2"
+  },
+  {
+   "path": "OVL/LEVEL06_LEVEL.BIN",
+   "sha256": "44a914db64074b60421d27f1be844f95d12a6dc4ec5a3f411bb3173548a4d395"
+  },
+  {
+   "path": "OVL/LEVEL06_LEVEL1.BIN",
+   "sha256": "4ea72fd6caaddb287d8eef2086c3b66a74191b6c36ddbeb7feaa1fbf5c8db172"
+  },
+  {
+   "path": "OVL/LEVEL07_LEVEL.BIN",
+   "sha256": "a19927f5130bf5c8da6777f36aa5501a99dc1363a3f9e55e5997ad712473c4f5"
+  },
+  {
+   "path": "OVL/LEVEL07_LEVEL1.BIN",
+   "sha256": "08272231b91320ebaa6b0a6b91ac50d1d160640769655a318fde86f889040521"
+  },
+  {
+   "path": "OVL/LEVEL08_LEVEL.BIN",
+   "sha256": "a0c0ac1da5c3a75296f0d79428ba1155f2f5d1ede3e2dcf9ffaee03fd8d2fec5"
+  },
+  {
+   "path": "OVL/LEVEL08_LEVEL1.BIN",
+   "sha256": "506abc378359b61c2975b7f829becb32a6c632bf2cf8d55f0bb5146d139db605"
+  },
+  {
+   "path": "OVL/LEVEL09_LEVEL.BIN",
+   "sha256": "9472fddce759161a887968fe98f1ded3282a4d8a4dc8c72fb27cbcd9c341d879"
+  },
+  {
+   "path": "OVL/LEVEL09_LEVEL1.BIN",
+   "sha256": "f38922e876f98d44e483458565a093e37ec97369f121da04d39650958b4f4f88"
+  },
+  {
+   "path": "OVL/LEVEL10_LEVEL.BIN",
+   "sha256": "3bd80ee77b5ec1e12b458d330450c3963177e15470bc249f7a12fc071d8db928"
+  },
+  {
+   "path": "analysis/phase4_f06_overlay_pin.json",
+   "sha256": "55458ac07fa377a212de47f6c4082dbb548813cd7f22fba392023f7dd9a94737"
+  },
+  {
+   "path": "analysis/phase4_f14_overlay_pin.json",
+   "sha256": "47881042137026314f721c9b850038e206e8eebc8cc851f650001271ef36fe57"
+  },
+  {
+   "path": "tools/scenarios/duckstation/stage_identity_stage06_birdnest.yaml",
+   "sha256": "d7e1337f61021721f095ea81cbdb5fe474f9807b75634f49a811c9da5783231c"
+  },
+  {
+   "path": "tools/scenarios/duckstation/pristine_riverbed_flight_actor37_death.yaml",
+   "sha256": "7d2245ef9fabe4b262e2010db97fd6f68d971b49a4ec565d889891cd1594d1e6"
+  },
+  {
+   "path": "tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml",
+   "sha256": "4ab3a5ba150d9ad3d3b2d882a7ba6993058ae26777e51255bf8c7d2e4f78c6b7"
+  },
+  {
+   "path": "tools/scenarios/duckstation/stage_identity_stage14_riverbed_flight.yaml",
+   "sha256": "4fa82a1c00673ff910efea761464951dfe3a50f83a087495dadebeeab87618f4"
+  },
+  {
+   "path": "tests/test_phase4_f06_birdnest.py",
+   "sha256": "7c3049b956159732baf581352731e39f62c301b835bacf5d1cb845eae67eff29"
+  },
+  {
+   "path": "tests/test_phase4_d17_bird.py",
+   "sha256": "d1816237a8eab800431fb9ff48de9df8d68a7421b76e92f3cc8ce92e82a37bc3"
+  },
+  {
+   "path": "tests/test_phase4_d17_defeat.py",
+   "sha256": "6fe78794f7b29f27757a11905f2b54f8386c0adbaa8c8abc564e024c04b929c8"
+  },
+  {
+   "path": "tests/test_phase4_c16_flight_death.py",
+   "sha256": "8f3ecfb4bcb20e88f16eef0a436e0082a04d7f8682e09d96b59a72fb722fbd73"
+  },
+  {
+   "path": "tests/test_phase4_respawn_writer_catalog.py",
+   "sha256": "c91518b72ab049ccb95ba18ac9ed3e917e401c9edd274131e0ea90947ef143fe"
+  },
+  {
+   "path": "analysis/phase4_c05_three_tokens.json",
+   "sha256": "2c683471d3fe5761d37a24e6e68f824a152610e47069409ff3bd7ed76c5de9fb"
+  },
+  {
+   "path": "ObsidianVault/Canon/Functions/FUNC_800B7DA0_results_screen_evaluate_and_draw.md",
+   "sha256": "e28b1006d12377977d9b0eabf835cf7da30731de28a5b1fcdbadb84840224d59"
+  },
+  {
+   "path": "ObsidianVault/Canon/Systems/SYS_bird_boss.md",
+   "sha256": "35fab85569df3e894ad0f9d478d03f81ea80b9d7cf542e4b77ce26c05f0a5e26"
+  },
+  {
+   "path": "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f06_birdnest.md",
+   "sha256": "1b114dbe6f315b5c404118847c9825705cfbdbd1406b12ee8d2123b02214a79d"
+  }
+ ],
+ "rows": {
+  "F06_birdnest": {
+   "row_name": "Stage 6 Birdnest: bird encounter",
+   "registry_status": "partial",
+   "stage_ordinal": "6",
+   "scene_id": 11,
+   "overlay_pinned_from_bytes": "OVL/LEVEL01_LEVEL1.BIN",
+   "dimensions": {
+    "durable_evidence": {
+     "state": "met",
+     "written_bar": "evidence artifacts durable, pinned, regenerable",
+     "basis": "CARRIED FORWARD, not re-derived: 5/5 in the measured F-row census -- 5/5 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked. This assessment fails loudly if that measurement moves off 'met'. Independently re-confirmed on the axis the census names: 5 of 5 declared fixtures still byte-match their entry in the central external-fixture manifest, and 0 of 22 tests in this row's 1 OWN gate file(s) fail today (0 of 27 tests in the 2 INHERITED gate file(s) fail today)",
+     "gap": "the carried measurement covers FIXTURE INTACTNESS, not regenerability or credit. 1 of this row's declared fixtures is still unaudited in phase2_row_coverage, and the 100% run the row's two newest findings rest on is NOT credited to this row in the central manifest (consumers name only the fixture audit: credited_to_row=False). Of the 3 stage-6-named movies centrally pinned, the row declares 1"
+    },
+    "original_oracle": {
+     "state": "partial",
+     "written_bar": "behavior asserted against the ORIGINAL game's own natural execution, not injected state",
+     "basis": "the mechanical core is natural and non-injected: the defeat trace is a passive access log over an operator-recorded Interpreter replay (movies/Phase4/Interpreter/D17_Goldberry.movie.json, 5674 frames, 22020 events, ring truncated=False) that attributes every write to the bird's record by PC -- 6 fields, 18 distinct writer PCs, the 17 hp decrements all from one PC (['0x800590e4']) with deltas [-4, -3], and the halt program installed once by 0x800b4158. The row also has an executable identity oracle for its headline scene claim (['stage_identity_stage06_birdnest.yaml'], 11 pinned-anchor assertions) and its own gate file passes",
+     "gap": "three holes, one of them now measured as a wrong answer. (1) NOTHING IN THIS ROW ASSERTS THE STAGE: a from-boot completion oracle for stage 6 already exists (movies/go_to_end/LEVEL06.movie.json, 8837 frames, target scene 11, pristine_replay_accepted=True, stage_exited=True) and the row does not cite it (cited=False). (2) The row's own new findings are SCREENSHOT READING plus operator testimony -- the results-banner counters were decoded by eye, and one of those readings is falsified below. (3) The bird's own damage producer (the mega homing-berry plant) is inferred from its effect, never observed: the row records it as 'The mega homing-berry seed plant's own mechanism is completely unexamined -- D17 only ever inferred its existence from what it does to the bird, never traced the plant itself (plan'"
+    },
+    "complete_frontier": {
+     "state": "partial",
+     "written_bar": "item 2 AS WRITTEN: callers/callees/callbacks/indirect tables ENUMERATED, scoped to relevant -- not an empty unresolved set",
+     "basis": "for the FIGHT LANE the write frontier is genuinely enumerated rather than sampled: an untruncated access log gives the COMPLETE writer set per field with counts, so the residual is bounded by the ring rather than by attention (6 fields, 18 writer PCs, 6 of them in the overlay). The VM side is decoded to instruction level (halt program 0x800776AC..0x800776B4, wander program 0x80077878..0x80077894), and the stage's collision environment is censused disc-side against runtime with 0 disagreements over 3235 sectors -- for this stage 75 authored sectors with histogram {'0': 75}, i.e. NO region-code sector at all, so this stage's exit is provably not the region-code trigger that ends the campaign's other levels. NEW HERE: the overlay was named by ADDRESS, and that address is ambiguous across 18 of 20 censused images; the compiled probe settles it from bytes -- of 21 images exactly 1 satisfies all 6 necessary conditions (OVL/LEVEL01_LEVEL1.BIN @ 0x800b39a0, OVERLAY_PIN_UNIQUE), agreeing with the census's declared overlay (True)",
+     "gap": "the enumeration stops at the boundary of what one movie wrote. No caller/callee/callback frontier exists for the overlay at all: the semantic ownership graph resolves this row to 4 functions, 0 of them in overlay space, and lists 2 state addresses with no registry owner (['state 0x8001AFB0 cited with no semantic-registry owner', 'state 0x800B39A0 cited with no semantic-registry owner']) -- one of which is the overlay base itself. The stage's ENTRY frontier (how scene 11 is reached and what gates it) is unenumerated, and so is the exit request now that the region-code path is excluded. The row's residual list is explicit and itemised (11 named items), which satisfies the EXIT-GATE bar, but item 2 asks for enumeration and 3 of those items are inherited from D17 rather than owned here"
+    },
+    "campaign_breadth": {
+     "state": "not_met",
+     "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated",
+     "basis": "the row does make a cross-stage claim and it declares its own denominator honestly: the results-banner comparison is Birdnest vs Hopper, and the row records that only Birdnest was tested. Within the stage, 3 stage-6-named movies plus 8 bird-token movies are centrally pinned and the row's artifacts replay 4",
+     "gap": "'every applicable' has no denominator here, in either direction. Across stages the banner claim rests on 2 of 16 censused levels. Within the stage nothing enumerates routes, variants or exceptional paths: the never-replayed pinned routes are ['movies/Phase4/Interpreter/Any% Runs/LEVEL06_BirdNest.movie.json', 'movies/go_to_end/LEVEL06.movie.json'], re-engagement after defeat is untested, and the row's own newly-surfaced exceptional path -- this level's first-ever-entry FMV -- has NO fixture and was never attempted. The one genuinely campaign-wide law in this row's own subject area was established by a DIFFERENT row a day later and is not cited here (see notable). 3 of the bird-token movies in the corpus belong to a different stage entirely (['movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json', 'movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json', 'movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json']), so even the corpus boundary needs stating before a denominator can exist"
+    },
+    "typed_state": {
+     "state": "partial",
+     "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)",
+     "basis": "every actor field this row's evidence touches is typed with confirmed confidence in the record registry (6/6 offsets), the boss record 0x800A02A8 lies inside the declared extent (0x8009FE04 x 40 x 132 bytes, inside=True), and the domains are bounded by observation rather than assumed: hp runs 50 -> 18 over 17 decrements in exactly two regimes ([-4, -3], the -3 phase fully restored), the VM IP domain is the 4 values ['0x800776AC', '0x800776AE', '0x8007788C', '0x8007788E'], and the registry's own hp note already states this threshold law verbatim ('Thumper 50, defeat at <= 20; death sets 999 via the hit tail')",
+     "gap": "the note names a DIFFERENT boss (describes_this_boss=False); the law transferring is D17's claim, not a typing of this actor. Nothing overlay-local is typed at all: 0 of this row's overlay addresses appear in config/semantic_state.yaml, whose only entries inside an overlay load window are ['0x800B4A3C=original.training_step', '0x8012C1D0=original.shared_mesh_vertex_buffer'] -- and measured against this row's byte-pinned window, 0 of them fall inside it, so the exposure here is non-registration rather than the known VA collision. Measured new here: 4 of 6 overlay writers are $at-absolute stores whose immediates are the low half of the pool address itself, so the overlay hard-codes this actor's POOL SLOT rather than taking a pointer -- a typed-state fact no registry records. And one registered value domain in this row is simply wrong (the results-banner third counter, see notable)"
+    },
+    "lifecycle": {
+     "state": "partial",
+     "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced",
+     "basis": "the middle of the list is evidenced end to end inside one natural replay: first and repeated use are 17 attributed damage events, exhaustion is the threshold regime change, and RETIREMENT is instruction-bound -- a single write by 0x800b4158 at frame 167170 parks the mover VM in a null program (0x800776AC..0x800776B4), after which 6 position writers continue, so 'retreat' is bounded as overlay-driven translation rather than AI. Load is the chunk-31 spawn the D17 row documents, and the level's own completion/cutscene tail is mapped across 12917 frames of the 100% run",
+     "gap": "cold boot, reuse and reset are absent, and two of them are absent by fixture. Every fixture this row replays is state-anchored; the only from-boot route through this stage is the uncited completion-oracle movie. Re-engagement (a second fight in one session) is recorded untested. The level's first-ever-entry FMV -- a lifecycle phase the operator confirmed exists -- has never been captured, and the row itself says the needed capture 'Birdnest's own level-entry FMV (operator-confirmed to exist, needs a from-boot or fresh-save capture of this level's first-ever entry -- never attempted); wheth'. No per-phase claim map is registered for this row the way F01 has one"
+    },
+    "cross_system_behavior": {
+     "state": "partial",
+     "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+     "basis": "four native crossings are exercised on natural execution. BOSS x PLAYER DAMAGE: the bird's attack drops Flik's true health twice early in the encounter. PICKUP x BOSS BEHAVIOUR: obtaining the gold berry moves the bird's Y from -60832 to -143376 at the operator-named frame. SEED PLANT x PROJECTILE x BOSS: the damage arrives through the same berry dispatch PC that damages another boss (['0x800590e4']), which is a real shared-system crossing rather than a bespoke path. OBJECTIVE x UI/FMV: defeat leads to the results banner and, on a first 100% completion, a reward cutscene whose trigger the operator confirmed",
+     "gap": "no combination matrix is registered, so 'native combinations' has no target set; and unlike the crossings other rows register, NONE of these has a matched control -- no suppression, no negative arm, no forbidden-claim boundary. The plant half of the plant-x-boss crossing is entirely unexamined, so the crossing is observed at its downstream end only. The UI crossing is the one that was read wrong"
+    },
+    "original_interfaces": {
+     "state": "partial",
+     "written_bar": "interfaces documented; unknowns enumerated with named obstructions",
+     "basis": "the resident side of the interface is documented at instruction level and is SHARED rather than bespoke: the mover-VM contract (op at record +0x70, dispatch through the shared loop tail), the berry damage dispatch PC common to two bosses, and the type-0x3f kind-0x30 contact handler that writes the setpiece trigger are all named with addresses. The scene-asset interface was CORRECTED and re-pinned for this row: disc dir is arithmetic, not a table read ('ARITHMETIC, no table: dir = scene_id <= 10 ? scene_id : scene_id - 10 (slti @0x8003D204, addiu -10 @0x8003D214); ori 0x0140 @0x8003D218 selects the LEVEL1.* variant for scene_id >= 11.'), and this row is one of 11 whose prior binding was falsified ([10]=level02\\level4b -> [5]=level01\\level2c). NEW HERE: the overlay->pool interface is absolute-addressed, which is itself an interface fact",
+     "gap": "the overlay side has no documented ABI and no registered contract: 1 entries in config/confirmed_sites.yaml name this row's sites, 0 overlay functions are attributed to the row in the ownership graph, and the pinned overlay has 4 code functions in the census. The unknowns are enumerated in prose but most carry no NAMED OBSTRUCTION -- they are listed as not-worth-chasing or needs-a-fixture, which is a priority, not an obstruction"
+    },
+    "source_closure": {
+     "state": "not_met",
+     "written_bar": "byte-matched C through the original toolchain for the row's governing functions",
+     "basis": "measured against BOTH registries, not assumed. 18 governing code addresses derived from this row's own artifacts split into 12 resident and 6 inside the overlay load window. RESIDENT (config/segments.yml, toolchain gcc2.7.2-psx): all 12 that land in a build unit resolve to 5 units, of which 0 are matching C and 5 are hand-written byte-exact ASM. OVERLAY (config/overlays.yml + src/overlays/ + analysis/overlay_decomp_progress.json): the pinned overlay is NOT registered in the overlay build registry and has 0 matched of 4 code functions",
+     "gap": "there is no byte-matched C anywhere in this row's governing set, on either track, so the dimension cannot be partial. The campaign-wide overlay track stands at 15/158 functions (9.49%) across 12 registered overlays, and this row's is not among them -- note that a claim that overlay byte-matching is impossible would be false: 12 overlays and 15 functions are already matched, just not this one. The census triage says 'no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)', which measures REGISTRATION; measured against real governing addresses the answer is the same, zero"
+    }
+   },
+   "counts": {
+    "met": 1,
+    "partial": 6,
+    "not_met": 2
+   },
+   "summary": "1 met, 0 met-candidate, 6 partial, 2 not met, 0 unmeasured -- against the WRITTEN bars. The bird is the best-evidenced object in this row and it belongs to D17: an untruncated natural-replay write log that attributes every field write to a PC. What F06 owns as a STAGE -- entry, the objective's own producer, the results banner, re-engagement, the entry FMV -- is where every gap sits, and one registered stage claim is falsified by a later row (see notable)."
+  },
+  "F14_riverbed_flight": {
+   "row_name": "Stage 14 Riverbed Flight: Atta/Flik flight chase",
+   "registry_status": "external_lead",
+   "stage_ordinal": "14",
+   "scene_id": 8,
+   "overlay_pinned_from_bytes": "OVL/LEVEL08_LEVEL.BIN",
+   "dimensions": {
+    "durable_evidence": {
+     "state": "met",
+     "written_bar": "evidence artifacts durable, pinned, regenerable",
+     "basis": "CARRIED FORWARD, not re-derived: 3/3 in the measured F-row census -- 3/3 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked. This assessment fails loudly if that measurement moves off 'met'. Independently re-confirmed: 3 of 3 declared fixtures still byte-match the central manifest, all 3 are credited to this row by name there, and phase2_row_coverage records 0 unaudited fixtures",
+     "gap": "intactness is not health. The two retained artifacts that carry this row's only runtime and static-census evidence FAIL their registered gates today -- 4 of 10 tests in the 2 INHERITED gate file(s) fail today, in ['tests/test_phase4_c16_flight_death.py', 'tests/test_phase4_respawn_writer_catalog.py']; this row has NO gate file of its own -- no registered test references an artifact this row owns -- and the recomputation the gate performs is what proves the retained routing is stale rather than the evidence corrupt. Separately the row declares 0 movies while 3 stage-14 movies are centrally pinned"
+    },
+    "original_oracle": {
+     "state": "partial",
+     "written_bar": "behavior asserted against the ORIGINAL game's own natural execution, not injected state",
+     "basis": "the one deep observation in this scene is real natural-execution evidence with a matched control, which most F rows lack: from the centrally pinned pristine anchor (level_14.sav, media class pristine) the natural branch reaches health -1 and the ordinary resident respawn restores [4, 2] (health, lives), with the fatal boundary bound to an exact frame/cycle/PC/SP and the entry call decoded to its instruction word and register arguments; the control changes ONE actor state bit at the matched boundary, preserves frame/cycle/PC/SP (True), and removes the damage call entirely, with 1 main-RAM difference. It is registered as a declarative scenario (['pristine_riverbed_flight_actor37_death.yaml', 'pristine_scene8_level08_respawn_initializer.yaml']) with an exec-hit-count assertion, and the row's headline scene claim has its own identity oracle (7 pinned-anchor assertions)",
+     "gap": "none of that is an oracle for THIS ROW'S SUBJECT, and the artifact says so in its own words: 'Do not infer an actor species, scripted owner, distinct special death class, authored checkpoint-row policy, general F14 flight/chase policy, or C15/C16/F14 completion.' with c16_or_f14_completed=0. The row's declared missing item is 'Player/companion/chase state.' and nothing in the repository asserts flight, companion or chase behaviour at all. The scenario that does exist cannot be trusted green today: 4 of 10 tests in the 2 INHERITED gate file(s) fail today, in ['tests/test_phase4_c16_flight_death.py', 'tests/test_phase4_respawn_writer_catalog.py']. And a from-boot completion oracle for stage 14 already exists (movies/go_to_end/LEVEL14.movie.json, 11818 frames, target scene 8, accepted=True) which the row does not cite (cited=False)"
+    },
+    "complete_frontier": {
+     "state": "not_met",
+     "written_bar": "item 2 AS WRITTEN: callers/callees/callbacks/indirect tables ENUMERATED, scoped to relevant -- not an empty unresolved set",
+     "basis": "three adjacent frontiers in this scene ARE enumerated, each with declared scope limits: the respawn-writer census is exhaustive for direct absolute stores over 11 pinned LEVEL.BIN images (21 writes in 5 files, 6 files explicitly zero) and names this stage's initializer, its four decoded stores and its single resident call site (['0x8005b1a4']); the stage's collision environment is censused disc-side against runtime with 0 disagreements over 3235 sectors, giving 335 authored sectors and exactly 1 non-zero region-code sector (histogram {'0': 334, '2': 1}); and the overlay file is now pinned from bytes rather than named from an address -- of 21 images exactly 1 contains all 5 evidence-derived encodings with one consistent load base (OVL/LEVEL08_LEVEL.BIN @ 0x800b39a0)",
+     "gap": "none of that is this row's own frontier, and this row's own frontier is neither enumerated nor bounded. Its entire residual statement is 'Player/companion/chase state.' -- 1 item, no named obstruction, which fails the EXIT-GATE bar as well as item 2. Zero functions in flight/companion/chase are identified; the contact actor's own type word stays '0x0125' classified 'unclassified_e08_or_downstream_candidate'; the ownership graph resolves the row to 4 resident dispatcher addresses with 2 unowned state addresses (['state 0x8001AFB0 cited with no semantic-registry owner', 'state 0x800B39A0 cited with no semantic-registry owner']); and the one strong lead nobody has followed is measured here -- the single region-code-2 sector at index 334, runtime origin [1198912, -116448, 4879104], which by the campaign's own exit law is the shape of a stage-exit trigger"
+    },
+    "campaign_breadth": {
+     "state": "not_met",
+     "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated",
+     "basis": "the row inherits two real denominators without owning either: the respawn-writer census covers 11/11 staged LEVEL.BIN images and names its own scope limits ('LEVEL06/LEVEL08 runtime activation and denial policy, authored source ownership, pointer-mediated writers, overlay variants outside the staged LEVEL.BIN set, reset/persistence scope, and remaining death-class/stage breadth.'), and the collision census covers 16 levels",
+     "gap": "the row has no conclusion of its own to generalize. Within the stage the applicable set is not enumerated and not sampled: of 3 centrally pinned stage-14 movies (including a 23451-frame 100% run) the row's artifacts replay 0; its three declared fixtures are all save states. The inherited census's own scope excludes the LEVEL1.* variants and pointer-mediated writers, so even the inherited denominator is a declared subset. Note the corpus token trap measured here: the bare token 'riverbed' also matches 2 movies belonging to a different row's stage, so a breadth claim keyed on it would double-count"
+    },
+    "typed_state": {
+     "state": "partial",
+     "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)",
+     "basis": "the values this scene's evidence touches are unusually precisely bounded, because they are decoded constants rather than samples: the stage's safe/live anchor tuple is [-157682, 5744, -12845, 352] recovered from 4 stores whose widths, base and source registers and target addresses are all decoded, and the same tuple was then live-qualified (1). The contact actor's fields are typed by the shared record registry and its record 0x800a0014 lies inside the declared extent (inside=True); id, flags, callback and source pointer are all asserted by value in the registered scenario",
+     "gap": "the row's own state is entirely untyped -- flight, companion and chase have no fields, no widths and no domains, which is the whole of its declared missing item. The actor that IS typed is unclassified at the level that matters ('unclassified_e08_or_downstream_candidate'), 0 of this row's addresses appear in config/semantic_state.yaml, and the record registry disagrees with this row's own artifact about slot numbering: the declared base 0x8009FE04 puts this actor at index 4 while the artifact calls it slot 5, implying a pool base of 0x8009FD80 -- exactly 1 stride above the base the evidence counts from"
+    },
+    "lifecycle": {
+     "state": "partial",
+     "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced",
+     "basis": "the load and death/respawn phases are evidenced to instruction level for this scene. LOAD: the resident call at ['0x8005b1a4'] (instruction word 0x0c02ceba) enters the overlay initializer at 0x800B3AE8, whose 108 resident bytes match the pristine file slice exactly (True) -- and this assessment's byte probe independently pins that slice to one image out of 21. FIRST USE and RETIREMENT: one contact, one death at health -1, one ordinary respawn to [4, 2], all frame- and cycle-bound",
+     "gap": "cold boot, repeated use, exhaustion and reuse are absent, and the stage's own lifecycle -- entry into flight, chase start and end, objective completion, exit -- is entirely unobserved. Every anchor is a save state; the only from-boot route is the uncited completion-oracle movie. The catalog that supplies the load half still records 'LEVEL06/LEVEL08 runtime activation and denial policy, authored source ownership, pointer-mediated writers, overlay variants outside the staged LEVEL.BIN set, reset/persistence scope, and remaining death-class/stage breadth.', i.e. it does not itself know this initializer runs -- the live qualification lives in a different artifact and was never folded back"
+    },
+    "cross_system_behavior": {
+     "state": "partial",
+     "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+     "basis": "one crossing is exercised properly and it spans four systems at once: ACTOR CONTACT x PLAYER DAMAGE x DEATH/LIVES x OVERLAY RESPAWN INITIALIZER, on natural execution, from a pristine anchor, with a single-bit control at a matched boundary that suppresses the whole chain (damage call, death, respawn and the LEVEL08 initializer) while changing 1 byte of main RAM, plus an independent same-entry source control that moves only the expected anchor component. The crossing is registered as a runnable scenario rather than prose",
+     "gap": "it is one crossing, and it is a SPECIAL-STAGE instance of the ORDINARY law -- the artifact's own reading is that this context reuses the ordinary proximity path, and it forbids generalising ('Do not infer an actor species, scripted owner, distinct special death class, authored checkpoint-row policy, general F14 flight/chase policy, or C15/C16/F14 completion.'). No flight-specific combination exists: no carry+damage, no powers, no projectile-at-transition, nothing involving the companion. No combination matrix is registered, so there is no target set to measure the one crossing against"
+    },
+    "original_interfaces": {
+     "state": "partial",
+     "written_bar": "interfaces documented; unknowns enumerated with named obstructions",
+     "basis": "the resident->overlay interface for this stage is documented at the instruction level and is the strongest interface evidence either of this assessment's rows has: call site ['0x8005b1a4'], instruction word 0x0c02ceba, resolved target 0x800B3AE8, return 0x8005b1ac, with the callee's four stores decoded to base/source register and target address. The actor interface is likewise concrete (callback 0x80049e88, source backlink 0x80094ac4, type word 0x0125). The scene-asset interface was corrected and re-pinned for this row: [7]=level05\\level3b -> [13]=level08\\level5b, one of 11 rows corrected by the same law ('ARITHMETIC, no table: dir = scene_id <= 10 ? scene_id : scene_id - 10 (slti @0x8003D204, addiu -10 @0x8003D214); ori 0x0140 @0x8003D218 selects the LEVEL1.* variant for scene_id >= 11.')",
+     "gap": "the unknowns are not enumerated with obstructions -- they are one sentence. 0 sites are registered in config/confirmed_sites.yaml for this row and the overlay has no ABI at all. Worse for interface IDENTITY: the artifact carrying all of the above still binds its static provenance to the FALSIFIED routing (asset_entry 'level05\\level3b', disc dir 'level05', overlays ['LEVEL05_LEVEL', 'LEVEL05_LEVEL1']), which the corrected binding, the collision census container (LEVEL08/LEVEL.RAW) and this assessment's byte pin (OVL/LEVEL08_LEVEL.BIN) all contradict. Its runtime observations are unaffected; its file-level provenance is not"
+    },
+    "source_closure": {
+     "state": "not_met",
+     "written_bar": "byte-matched C through the original toolchain for the row's governing functions",
+     "basis": "measured against BOTH registries. 10 governing code addresses derived from this row's own scene evidence split into 5 resident and 5 inside the overlay load window. RESIDENT (config/segments.yml, toolchain gcc2.7.2-psx): 5 land in a build unit, resolving to 4 units of which 0 are matching C and 4 are hand-written byte-exact ASM. OVERLAY (config/overlays.yml + src/overlays/ + analysis/overlay_decomp_progress.json): the byte-pinned overlay is NOT registered for build and has 0 matched of 5 code functions",
+     "gap": "zero byte-matched C on either track for this row's governing set. The overlay track is not impossible -- 15 functions across 12 registered overlays are already matched (9.49% of 158) -- this overlay is simply not registered among them, and the initializer this row depends on is a 108-byte function that the catalog has already decoded store by store, i.e. the cheapest overlay-C candidate either row offers. The census triage says 'no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)'"
+    }
+   },
+   "counts": {
+    "met": 1,
+    "partial": 5,
+    "not_met": 3
+   },
+   "summary": "1 met, 0 met-candidate, 5 partial, 3 not met, 0 unmeasured -- against the WRITTEN bars. The registry calls this row `external_lead` with the thinnest entry of any F row, and that under-describes what exists in its scene: a natural pristine-anchor death with a single-bit causal control, a registered behavioural scenario, an instruction-level resident->overlay call and an exhaustive 11-image static census. None of it is about flight, companion or chase -- the row's own entire subject -- and the artifacts that carry it forbid the generalisation and fail their gates today."
+  }
+ },
+ "notable": [
+  "F06's REGISTERED RESULTS-BANNER READING IS FALSIFIED, and by a row that used F06's own fixture. The baseline binding says the third counter '00/09' is 'this level's own seed-token total' (claims_seed_tokens=True). One day later C05 found the renderer (fcn.800B7DA0..0x800B8788 (functionBounds confidence=exact, cleanEnd, 2540 bytes, prologue ) by replaying THIS row's 100% movie (used_this_rows_fixture=True) and proved the third axis is ENEMIES by the condition itself: '0x800A658E (s16 quota, clamped to >=0 at 0x800B7E0C) must == 0 -> sets bit 0x04', numerator 's5, target [sp+0x50] = [0x80082258] - [0x800A658E] = TOTAL - REMAINING = DEFEATED, computed once up front at 0x800B7E34/4C/50'. Two independent pinned anchors put this stage's enemy quota at 9 (the stage-6 identity scenario and the completion oracle's in-stage snapshot, agreeing=True), and the quota address the scenario asserts is the same address C05's condition tests (True). C05 also shows the '/50' is a hardcoded literal on every level, so the row's corollary that 'seed-token targets are level-specific' has no subject. Canon already banks the enemy axis (True); the baseline row and this row's experiment page do not (page still says seed-token=True).",
+  "F06'S EXIT CANNOT BE THE REGION-CODE TRIGGER. The disc-side collision census gives this stage 75 authored sectors with histogram {'0': 75} -- not one non-zero region code, against 0 disc-vs-runtime disagreements over 3235 sectors campaign-wide. F14 is the mirror image: 335 authored sectors with exactly 1 code-2 sector at index 334, runtime origin [1198912, -116448, 4879104]. Neither row records either fact, and for F14 it is the single cheapest lead in the row.",
+  "BOTH OVERLAY OWNERS WERE UNPINNED AND ARE NOW PINNED FROM BYTES. F06's writers decode to real instructions in up to 18 images; the probe leaves 1 standing (OVL/LEVEL01_LEVEL1.BIN, sha256 43c80f86eef7...). F14's initializer address is ambiguous across 19; the probe leaves 1 (OVL/LEVEL08_LEVEL.BIN). The F06 result also produced an interface fact nobody recorded: 4 of 6 overlay writers are $at-absolute stores carrying the low half of the POOL ADDRESS, so that overlay hard-codes the actor's slot instead of taking a pointer.",
+  "F14'S GATES FAIL BECAUSE THE PROJECT FIXED THE CLAIM, exactly the F09 pattern. 4 of 10 tests in the 2 INHERITED gate file(s) fail today, in ['tests/test_phase4_c16_flight_death.py', 'tests/test_phase4_respawn_writer_catalog.py']; the recomputation reports the routing now resolving to the corrected directory while the retained artifact still stores 'level05' / ['LEVEL05_LEVEL', 'LEVEL05_LEVEL1']. Both the corrected binding ([7]=level05\\level3b -> [13]=level08\\level5b) and this assessment's independent byte pin agree against the retained artifact. Not evidence corruption -- but the row's regression surface is not protecting it.",
+  "THE CATALOG THAT SUPPLIES F14'S LOAD PHASE DOES NOT KNOW ITS OWN FINDING RAN. It still records 'LEVEL06/LEVEL08 runtime activation and denial policy, authored source ownership, pointer-mediated writers, overlay variants outside the staged LEVEL.BIN set, reset/persistence scope, and remaining death-class/stage breadth.' while the flight-death artifact reports level08_respawn_initializer_live_qualified=1 and this assessment confirms the resident 108-byte slice hashes to the pinned file slice (True). One artifact is a fold-back away from closing a named residual in another row.",
+  "BOTH ROWS IGNORE A FROM-BOOT ORACLE THAT ALREADY EXISTS. Stage 6: movies/go_to_end/LEVEL06.movie.json (8837 frames, enters at 5500, exits by end=True, cited=False). Stage 14: movies/go_to_end/LEVEL14.movie.json (11818 frames, cited=False). F14 additionally declares 0 movies while 3 stage-14 movies are centrally pinned, one of them 23451 frames long.",
+  "TOKEN TRAPS MEASURED, NOT ASSUMED. 'LEVELnn' means the STAGE ORDINAL in the movie corpus but the SCENE-DERIVED DISC DIRECTORY on disc, so stage 6 lives in LEVEL01/LEVEL1.RAW and stage 14 in LEVEL08/LEVEL.RAW. The bare token 'bird' pulls in 3 movies from another stage (['movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json', 'movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json', 'movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json']), and the bare token 'riverbed' pulls in 2 movies belonging to F05_riverbed_run. Any breadth count keyed on those tokens is wrong before it starts.",
+  "UNMEASURED HERE, named so a verifier does not read silence as absence: (1) whether C05's counter law actually EXPLAINS F06's static-zero banner is NOT settled -- C05 supplies the instruction-level mechanism the row said it lacked, but the specific check (read the enemy TOTAL 0x80082258 and the screen countdown at the frames the row sampled) was not run here and needs a replay; (2) whether the region-code-2 sector is F14's stage exit -- the shape matches the campaign's exit law but no run confirms it here; (3) whether the 3 never-replayed stage-14 routes would move campaign_breadth for F14 (that needs a replay, not a re-read); (4) whether either row's overlay is a cheap byte-match candidate -- F14's 108-byte initializer is already decoded store by store, which is suggestive, not measured."
+ ]
+}

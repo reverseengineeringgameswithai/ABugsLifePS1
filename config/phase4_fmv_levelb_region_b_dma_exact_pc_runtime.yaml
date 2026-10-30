@@ -1,0 +1,132 @@
+schema: abl-phase4-fmv-levelb-region-b-dma-exact-pc-runtime/1
+campaign_id: fmv_playback
+row_ids: [E15_fmv]
+escalation_id: P4-R6-ITER4-E15-LEVELB-REGIONB-EXACT-PC-DMA-PROVENANCE
+missing_fact_id: E15/completed-level-b-region-b-exact-pc-dma-provenance
+expected_media:
+  path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  serial: SCUS-94288
+  title: Disney-Pixar A Bug's Life
+  sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  tracks:
+    - path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin
+      sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+expected_debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty: true
+  dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+movie:
+  path: movies/100% Runs/LEVEL01.movie.json
+  sha256: ece62d4e6f92b887b0500dd8ac3bec48f3638ad5d9858cda7d5b0afb3a8d2602
+atomic_anchor:
+  job_id: levelb_region_b_exact_pc_anchor
+  target_frame: 15816
+  max_frames: 15816
+  run_frames: 15815
+  capture_trigger: e15_levelb_region_b_exact_pc_anchor
+  trace_limit: 256
+  memory_dumps:
+    - {label: region_b_head, address: 0x800B5788, length: 0x100}
+exact_pc_plan:
+  path: config/phase4_fmv_levelb_region_b_dma_exact_pc_arm.yaml
+  sha256: ecccdbcc8360704592f9052c4ffab35cd863316d91bf636ebad55344691a0bf6
+execution:
+  bound: {clock: emulator_frame, start: 0, stop: 15880, stop_inclusive: false}
+  capture_window: {clock: emulator_frame, start: 15816, stop: 15880, stop_inclusive: false}
+domain: dma
+observer_plan:
+  schema: abl-phase4-observer-plan/2
+  operations:
+    - {sequence: 0, method: transferLog.start, args: {}}
+  result_limits: {max_records: 100000, max_bytes: 67108864, max_pages: 10}
+  direct_command_plan:
+    schema: abl-phase4-duckstation-exact-pc-plan/1
+    campaign_id: fmv_playback
+    row_ids: [E15_fmv]
+    identity_join:
+      rpc_manifest_sha256: a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062
+      source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+      source_dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+      dispatcher_sha256: 6ff2640dad39f85eacba9e8bbbfdb65d4e3707cb6d8f72cc74bf404579ae8a3e
+      binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+      media_serial: SCUS-94288
+      media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+    start_stop:
+      method: debugger.runUntilAddress
+      address: 0x80046078
+      boundary: before_instruction
+      required_registers: {pc: 0x80046078, a0: 18, a1: 0x800B5788}
+    arm_sequence:
+      - {sequence: 0, method: transferLog.clear, params: {}}
+      - {sequence: 1, method: transferLog.start, params: {}}
+    terminal_stop:
+      method: debugger.runUntilAddress
+      address: 0x800460C4
+      boundary: before_instruction
+    execution_limit:
+      clock: emulator_frame
+      max_frame_delta: 64
+      max_status_polls_per_stop: 512
+      poll_interval_ms: 10
+      socket_timeout_ms: 5000
+    transfer_pagination:
+      page_size: 10000
+      max_pages: 10
+      max_records: 100000
+      max_bytes: 67108864
+      require_contiguous_indexes: true
+      require_truncated: false
+    terminal_capture:
+      method: capture.atomic
+      params:
+        trigger: e15_levelb_region_b_exact_pc_terminal
+        include_registers: true
+        trace_limit: 10000
+        memory_dumps:
+          - {label: region_b_head, address: 0x800B5788, length: 0x100}
+perturbation_plan:
+  schema: abl-phase4-perturbation-plan/1
+  kind: none
+  operations: []
+settings_snapshot:
+  schema: abl-duckstation-settings-snapshot/1
+  profile: fresh-isolated-defaults-v1
+  binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+  cpu_execution_mode: default_cached_interpreter
+  cpu_overclock_percent: 100
+  cdrom_read_speedup: 1
+  cdrom_seek_speedup: 1
+  region: auto
+  rewind: false
+  runahead_frames: 0
+assertion_plan:
+  kind: e15_levelb_region_b_dma_exact_pc_native_repeat
+  start_pc: 0x80046078
+  terminal_pc: 0x800460C4
+  required_registers: {pc: 0x80046078, a0: 18, a1: 0x800B5788}
+  require_first_region_b_transfer:
+    channel: 3
+    device: cdrom
+    direction: from_device
+  require_equal:
+    - identity
+    - anchor
+    - stops
+    - registers
+    - ordered_transfers
+    - frame
+    - cycle
+    - ram
+    - movie
+  require_contiguous_indexes: true
+  require_truncated: false
+variants:
+  - name: native
+    receipt_id: e15-levelb-region-b-dma-exact-pc-native
+    control_role: positive
+  - name: repeat
+    receipt_id: e15-levelb-region-b-dma-exact-pc-repeat
+    control_role: negative

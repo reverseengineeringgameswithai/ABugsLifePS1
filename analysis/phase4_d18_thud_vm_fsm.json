@@ -1,0 +1,534 @@
+{
+ "_comment": "Phase-4 D18/F09: Thud phase/attack mover-VM FSM -- resolved NEGATIVE. The pool actor is parked in program #19 for the entire fight-anchor movie; the 0x800777xx block is a SHARED ambient program bank, not a Thud attack FSM. Offline sections regenerate: tools/phase4_d18_thud_vm_fsm.py --write; verify: --check. Live sections carry provenance below.",
+ "row": "D18_thud (+F09_bug_bar shared item)",
+ "date": "2026-08-03",
+ "status": "partial",
+ "LIVE_IDLE_WATCH_2026-08-03": {
+  "scope": "isolated Interpreter-forced instance /tmp/dsrepro-d18-20260803 port 23702, pristine disc; thud_boss_movie.movie.sav (poll+watch, no movie replay)",
+  "anchor_record": {
+   "slot": 0,
+   "addr": "0x8009FD80",
+   "id": 36,
+   "hp": 50,
+   "flags": "0x4055",
+   "vm_ip": "0x800777A6",
+   "callback_0x7c": "0x8004A0F4",
+   "matches": "analysis/phase3_thud.json boss_identity exactly"
+  },
+  "result": "600 idle frames: IP oscillates 0x800777A4<->0x800777A6 (park loop, one VM step per ~5 frames); SOLE writer of +0x70 = 0x8004C834 'sw s1,0x70(s0)' inside the VM interpreter (120/120 writes). No external program switch."
+ },
+ "LIVE_PROGRAM_POKES_2026-08-03": {
+  "method": "per program: fresh loadState, poke +0x70 = entry, advance 240 frames, read IP residency + XYZ delta",
+  "results": {
+   "p19_parked_idle": {
+    "entry": "0x80077798",
+    "ip_after": "0x800777a6",
+    "moved": [
+     0,
+     0,
+     0
+    ]
+   },
+   "p20_stationary_two_clip_cycle": {
+    "entry": "0x800777ac",
+    "ip_after": "0x800777bc",
+    "moved": [
+     0,
+     0,
+     0
+    ]
+   },
+   "p21_gated_wander": {
+    "entry": "0x800777d4",
+    "ip_after": "0x800777e0",
+    "moved": [
+     0,
+     0,
+     0
+    ],
+    "note": "IP rests at park_arrive_test -- the wander loop is GATED on an arrival condition"
+   },
+   "p22_wander": {
+    "entry": "0x800777f8",
+    "ip_after": "0x8007780c",
+    "moved": [
+     2838,
+     0,
+     23125
+    ]
+   },
+   "p23_authored_path_patrol": {
+    "entry": "0x80077814",
+    "ip_after": "0x80077828",
+    "moved": [
+     19403,
+     1808,
+     45836
+    ]
+   }
+  }
+ },
+ "LIVE_DEFEAT_2026-08-03": {
+  "method": "poke HP(+0x6E)=0, watch +0x70 and +0x6E (guest writes) over 180 frames",
+  "result": "ZERO guest writes to +0x70 or +0x6E after the poke; flags 0x4055->0x0055 (active bit 0x4000 cleared), live table slot 0 (0x80090748) zeroed. Retirement is immediate -- NO death/defeat VM program switch exists for this actor. Reproduces phase3_thud.json's retire rule."
+ },
+ "LIVE_PROXIMITY_NEGATIVE_2026-08-03": {
+  "method": "teleport Flik (0x800A6504) to 3000 units from Thud, watch +0x70 and +0x5C over 360 frames",
+  "result": "No program switch (park loop only). Flags churn per tick between 0x54/0x55/0x4054/0x4055 by writers 0x8004D270 (clears), 0x80024E58 / 0x8004D38C (restore) -- a per-tick clear/set cycle, not an aggro response."
+ },
+ "FIGHT_REPLAY_POLL_ONLY_2026-08-03": {
+  "method": "movie.load + movie.startPlayback(load_start_state:true) of thud_boss_movie.movie.json (4113 frames, CachedInterpreter-era -- POLL ONLY per project law, zero instrumentation armed); read slot-0 record every 30 frames to movie end",
+  "ip_histogram": {
+   "0x800777a4": 66,
+   "0x800777a6": 72
+  },
+  "hp_range": [
+   0,
+   48,
+   50
+  ],
+  "hit_and_defeat_events": [
+   {
+    "relframe": 2910,
+    "observation": "transient HP 50->48 for ONE 30-frame sample, restored to 50 by the next -- a landed hit (-2, matching E14's committed -2-per-hit KO-memory law) whose damage is immediately RESTORED by the fight lane"
+   },
+   {
+    "relframe": 3870,
+    "observation": "HP written to 0 outright (48 never reappears); flags/id still 0x4055/36 at that sample -- the fight lane KILLS the pool actor through the generic HP-retire path at fight end"
+   }
+  ],
+  "result": "Across the ENTIRE operator fight movie: the VM IP never leaves the program-#19 park loop (only 0x800777A4/0x800777A6 in 138 samples) -- including through the landed hit and through the actor's own death. Pool HP is used by the fight lane as a transient hit latch (-2 then restored) and finally zeroed to trigger generic retirement.",
+  "caveats": [
+   "30-frame sampling: hits whose -2 dip is restored faster than the cadence would be missed; one dip was caught, the committed fight law says 8 perched hits",
+   "the HP restore writer and the final HP=0 writer are UNATTRIBUTED (CachedInterpreter movie cannot be instrumented) -- named reopener, needs a re-recorded Interpreter fight movie (same item E11 already requests)"
+  ]
+ },
+ "CONCLUSION": {
+  "fsm_verdict": "NEGATIVE, bounded, and stronger than initially stated: Thud's phase/attack behavior is NOT a mover-VM program FSM on the pool actor -- the IP stays in the parked program THROUGH a landed hit and through the actor's own death. The 0x800777xx block is a shared ambient bank (parked/two-clip/gated-wander/wander/path; census join ids 21,7,15,22,18). The fight lane (overlay, LEVEL04/LEVEL1.BIN canon + perched-hit law) uses pool HP as a transient -2 hit latch it restores, then zeroes it at fight end to retire via the generic path. Correction landed same-day: an initial 'HP never changes during the movie' summary was WRONG -- the test gate caught it against the saved timeline.",
+  "rows_advanced": [
+   "D18_thud (named next answered by falsification + program-bank decode)",
+   "F09_bug_bar (shared FSM item resolved; arena-roll item was already E11's)"
+  ],
+  "named_reopeners": [
+   "attribute driver callback 0x8004A0F4's per-tick role (one Interpreter-mode trace)",
+   "attribute the pool-HP restore writer and the final HP=0 writer (needs a re-recorded Interpreter fight movie -- the same fixture E11's movie-gated items request)"
+  ]
+ },
+ "evidence": {
+  "committed_sources": [
+   "analysis/phase4_e07_static.json (program corpus, all instructions CONFIRMED)",
+   "analysis/vm_programs.md",
+   "analysis/phase3_thud.json",
+   "analysis/phase1_kind_actor_census.json (+0x70 join)"
+  ],
+  "fixtures": [
+   "thud_boss_movie.movie.sav",
+   "thud_boss_movie.movie.json (4113 frames)"
+  ]
+ },
+ "row_address_correction": {
+  "claim": "D18/F09's 0x800777A6 is NOT a program entry: it is the jump_back instruction inside program #19 (0x80077798, parked idle). phase3_thud.json recorded it as Thud's LIVE VM IP (boss_identity.mover_vm_ip_at_0x70) and the rows transcribed the IP as if it were a program.",
+  "observed_ip_source": "analysis/phase3_thud.json boss_identity"
+ },
+ "programs": {
+  "0x80077798": {
+   "name": "p19_parked_idle",
+   "instruction_count": 5,
+   "instructions": [
+    {
+     "ip": "0x80077798",
+     "name": "set_byte_params",
+     "operands": [
+      64,
+      65472
+     ]
+    },
+    {
+     "ip": "0x8007779e",
+     "name": "anim_clip_load",
+     "operands": [
+      0,
+      2
+     ]
+    },
+    {
+     "ip": "0x800777a4",
+     "name": "park_arrive_stop",
+     "operands": []
+    },
+    {
+     "ip": "0x800777a6",
+     "name": "jump_back",
+     "operands": [
+      1
+     ]
+    },
+    {
+     "ip": "0x800777aa",
+     "name": "park_end",
+     "operands": []
+    }
+   ]
+  },
+  "0x800777ac": {
+   "name": "p20_stationary_two_clip_cycle",
+   "instruction_count": 10,
+   "instructions": [
+    {
+     "ip": "0x800777ac",
+     "name": "set_byte_params",
+     "operands": [
+      65472,
+      65472
+     ]
+    },
+    {
+     "ip": "0x800777b2",
+     "name": "anim_clip_load",
+     "operands": [
+      0,
+      1
+     ]
+    },
+    {
+     "ip": "0x800777b8",
+     "name": "wait",
+     "operands": [
+      50
+     ]
+    },
+    {
+     "ip": "0x800777bc",
+     "name": "park_arrive_stop",
+     "operands": []
+    },
+    {
+     "ip": "0x800777be",
+     "name": "jump_back",
+     "operands": [
+      3
+     ]
+    },
+    {
+     "ip": "0x800777c2",
+     "name": "anim_clip_load",
+     "operands": [
+      2,
+      1
+     ]
+    },
+    {
+     "ip": "0x800777c8",
+     "name": "wait",
+     "operands": [
+      22
+     ]
+    },
+    {
+     "ip": "0x800777cc",
+     "name": "park_arrive_stop",
+     "operands": []
+    },
+    {
+     "ip": "0x800777ce",
+     "name": "jump_back",
+     "operands": [
+      14
+     ]
+    },
+    {
+     "ip": "0x800777d2",
+     "name": "park_end",
+     "operands": []
+    }
+   ]
+  },
+  "0x800777d4": {
+   "name": "p21_gated_wander(park_arrive_test)",
+   "instruction_count": 9,
+   "instructions": [
+    {
+     "ip": "0x800777d4",
+     "name": "set_byte_params",
+     "operands": [
+      32,
+      65472
+     ]
+    },
+    {
+     "ip": "0x800777da",
+     "name": "anim_clip_load",
+     "operands": [
+      1,
+      2
+     ]
+    },
+    {
+     "ip": "0x800777e0",
+     "name": "park_arrive_test",
+     "operands": []
+    },
+    {
+     "ip": "0x800777e2",
+     "name": "anim_clip_load",
+     "operands": [
+      0,
+      1
+     ]
+    },
+    {
+     "ip": "0x800777e8",
+     "name": "wait_random",
+     "operands": [
+      63,
+      32
+     ]
+    },
+    {
+     "ip": "0x800777ee",
+     "name": "random_dir_step",
+     "operands": []
+    },
+    {
+     "ip": "0x800777f0",
+     "name": "park_seek",
+     "operands": []
+    },
+    {
+     "ip": "0x800777f2",
+     "name": "jump_back",
+     "operands": [
+      5
+     ]
+    },
+    {
+     "ip": "0x800777f6",
+     "name": "park_end",
+     "operands": []
+    }
+   ]
+  },
+  "0x800777f8": {
+   "name": "p22_wander",
+   "instruction_count": 7,
+   "instructions": [
+    {
+     "ip": "0x800777f8",
+     "name": "set_byte_params",
+     "operands": [
+      65472,
+      65472
+     ]
+    },
+    {
+     "ip": "0x800777fe",
+     "name": "anim_clip_load",
+     "operands": [
+      1,
+      5
+     ]
+    },
+    {
+     "ip": "0x80077804",
+     "name": "wait_random",
+     "operands": [
+      63,
+      32
+     ]
+    },
+    {
+     "ip": "0x8007780a",
+     "name": "random_dir_step",
+     "operands": []
+    },
+    {
+     "ip": "0x8007780c",
+     "name": "park_seek",
+     "operands": []
+    },
+    {
+     "ip": "0x8007780e",
+     "name": "jump_back",
+     "operands": [
+      5
+     ]
+    },
+    {
+     "ip": "0x80077812",
+     "name": "park_end",
+     "operands": []
+    }
+   ]
+  },
+  "0x80077814": {
+   "name": "p23_authored_path_patrol",
+   "instruction_count": 6,
+   "instructions": [
+    {
+     "ip": "0x80077814",
+     "name": "set_byte_params",
+     "operands": [
+      64,
+      65472
+     ]
+    },
+    {
+     "ip": "0x8007781a",
+     "name": "anim_clip_load",
+     "operands": [
+      0,
+      1
+     ]
+    },
+    {
+     "ip": "0x80077820",
+     "name": "seek_path_endpoint",
+     "operands": [
+      0
+     ]
+    },
+    {
+     "ip": "0x80077824",
+     "name": "path_next_waypoint",
+     "operands": []
+    },
+    {
+     "ip": "0x80077826",
+     "name": "park_path",
+     "operands": []
+    },
+    {
+     "ip": "0x80077828",
+     "name": "jump_back",
+     "operands": [
+      2
+     ]
+    }
+   ]
+  }
+ },
+ "census_program_usage": {
+  "p23_authored_path_patrol": [
+   {
+    "actor_id": 18,
+    "level": "stage07_city_entrance"
+   },
+   {
+    "actor_id": 18,
+    "level": "stage07_city_entrance"
+   },
+   {
+    "actor_id": 18,
+    "level": "stage07_city_entrance"
+   },
+   {
+    "actor_id": 18,
+    "level": "stage07_city_entrance"
+   },
+   {
+    "actor_id": 18,
+    "level": "stage07_city_entrance"
+   }
+  ],
+  "p20_stationary_two_clip_cycle": [
+   {
+    "actor_id": 7,
+    "level": "stage10_clover_forest"
+   }
+  ],
+  "p21_gated_wander(park_arrive_test)": [
+   {
+    "actor_id": 15,
+    "level": "stage13_anthill_two"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage13_anthill_two"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage13_anthill_two"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage13_anthill_two"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage13_anthill_two"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   },
+   {
+    "actor_id": 15,
+    "level": "stage15_canyon_showdown"
+   }
+  ],
+  "p22_wander": [
+   {
+    "actor_id": 22,
+    "level": "stage13_anthill_two"
+   }
+  ],
+  "p19_parked_idle": [
+   {
+    "actor_id": 21,
+    "level": "stage14_riverbed_flight"
+   }
+  ]
+ }
+}

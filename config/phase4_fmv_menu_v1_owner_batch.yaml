@@ -1,0 +1,123 @@
+schema: abl-phase4-duckstation-batch/1
+campaign_id: fmv_playback
+row_ids: [E15_fmv]
+escalation_ids: [P4-ITER92-E15-MENU-NONBOOT-OWNER-COVERAGE]
+expected_media: &pristine_media
+  path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  serial: SCUS-94288
+  title: Disney-Pixar A Bug's Life
+  sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  tracks:
+    - path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin
+      sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+expected_debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 91cbe22b2c2e22ad83d695988ada36bbabb22c65366cb5ec9e8e30784de93af6
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty: true
+  dirty_state_hash: cd808f74adf8591c16a35293c348640ea37059af
+continue_on_error: false
+
+jobs:
+  - id: boot_positive_callers
+    recipe: bootAndRun
+    media_path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+    fast_boot: true
+    force: true
+    expected_media: *pristine_media
+    movie: &movie
+      path: ~/Downloads/ABL/movies/Menu-Navigation.movie.json
+    instrumentation:
+      - {method: execTrace.addWatch, params: {pc: 0x8004FB5C, capture: [pc, a0, a1, ra], label: boot_dlogo, max_events: 64}}
+      - {method: execTrace.addWatch, params: {pc: 0x8004FB68, capture: [pc, a0, a1, ra], label: boot_title, max_events: 64}}
+      - {method: execTrace.addWatch, params: {pc: 0x8004FB74, capture: [pc, a0, a1, ra], label: boot_intro, max_events: 64}}
+    run: &run {movie_frame: 7793}
+    capture: &capture
+      trigger: menu_v1_owner_coverage_endpoint
+      include_registers: true
+      trace_limit: 256
+      memory_dumps:
+        - {label: fmv_running_latch, address: 0x80082250, length: 0x4}
+        - {label: shell_substate, address: 0x8008243C, length: 0x4}
+        - {label: scene, address: 0x80082504, length: 0x4}
+        - {label: completion_request, address: 0x800CAC10, length: 0x4}
+  - id: nonboot_negative_callers
+    recipe: bootAndRun
+    media_path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+    fast_boot: true
+    force: true
+    expected_media: *pristine_media
+    movie: *movie
+    instrumentation:
+      - {method: execTrace.addWatch, params: {pc: 0x8004FFD4, capture: [pc, a0, a1, ra], label: bonus_clip_sequence, max_events: 64}}
+      - {method: execTrace.addWatch, params: {pc: 0x800500D8, capture: [pc, a0, a1, ra], label: game_over_lose, max_events: 64}}
+      - {method: execTrace.addWatch, params: {pc: 0x80050284, capture: [pc, a0, a1, ra], label: finale_lev15c, max_events: 64}}
+      - {method: execTrace.addWatch, params: {pc: 0x8005031C, capture: [pc, a0, a1, ra], label: completed_level_b, max_events: 64}}
+      - {method: execTrace.addWatch, params: {pc: 0x8005036C, capture: [pc, a0, a1, ra], label: all_levels_complete_lev15d, max_events: 64}}
+      - {method: execTrace.addWatch, params: {pc: 0x8005B788, capture: [pc, a0, a1, ra], label: level_a_reset_handoff, max_events: 64}}
+    run: *run
+    capture: *capture
+
+control_pairs:
+  - positive_job: boot_positive_callers
+    negative_job: nonboot_negative_callers
+    assertion: >-
+      Both jobs replay the same pristine movie from the same cold-boot anchor
+      and differ only in watched PCs. The boot arm must hit at least one of
+      0x8004FB5C/68/74, while any hit in the six-PC non-boot arm falsifies the
+      exclusion claim. Endpoints must remain cycle neutral and untruncated.
+
+v2_receipt:
+  id: menu-v1-owner-coverage
+  missing_fact_id: E15/menu-nonboot-owner-coverage
+  precise: true
+  anchor:
+    kind: cold_boot_movie
+    media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+    movie_sha256: e908f2cfeac94bc66cf30f9afc22cb73331007d03fed74618a15be9c78c6400c
+    state_sha256: null
+    start: {clock: emulator_frame, value: 1}
+  execution:
+    bound: {clock: emulator_frame, start: 1, stop: 7794, stop_inclusive: false}
+    capture_window: {clock: emulator_frame, start: 1, stop: 7794, stop_inclusive: false}
+  domain: interface
+  observer_plan:
+    schema: abl-phase4-observer-plan/1
+    operations:
+      - {sequence: 0, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 1, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 2, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 3, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 4, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 5, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 6, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 7, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 8, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 9, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 10, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 11, method: execTrace.run, args: {frames: 600}}
+      - {sequence: 12, method: execTrace.run, args: {frames: 593}}
+    result_limits: {max_records: 576, max_bytes: 16777216, max_pages: 1}
+  perturbation_plan:
+    schema: abl-phase4-perturbation-plan/1
+    kind: none
+    operations: []
+  control_role: baseline
+  assertion_plan:
+    kind: same_anchor_pc_coverage
+    boot_positive_pcs: [0x8004FB5C, 0x8004FB68, 0x8004FB74]
+    nonboot_falsifier_pcs: [0x8004FFD4, 0x800500D8, 0x80050284, 0x8005031C, 0x8005036C, 0x8005B788]
+    require_equal_endpoints: [frame, cycle, registers, ram, movie]
+    require_truncated: false
+  settings_snapshot:
+    schema: abl-duckstation-settings-snapshot/1
+    profile: fresh-isolated-defaults-v1
+    binary_sha256: 91cbe22b2c2e22ad83d695988ada36bbabb22c65366cb5ec9e8e30784de93af6
+    cpu_execution_mode: default_cached_interpreter
+    cpu_overclock_percent: 100
+    cdrom_read_speedup: 1
+    cdrom_seek_speedup: 1
+    region: auto
+    rewind: false
+    runahead_frames: 0

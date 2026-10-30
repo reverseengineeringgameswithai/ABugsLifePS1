@@ -1,0 +1,25 @@
+schema: abl-fixture-reference-sets/1
+rows:
+  E04_camera_system:
+    replaces: "6 progression-diverse saves reused read-only; live L1/R1/L1+left/R1-held traces on level01.sav"
+    reason: >-
+      The legacy mechanics registry compressed the original six-save survey and
+      its level01 control traces into prose. The original survey script names
+      these paths, and offline save-RAM extraction reproduces its scene IDs and
+      camera-field tuples.
+    evidence: analysis/phase4_e04_camera_system.json
+    fixtures:
+      - level01.sav
+      - canyon_bug.sav
+      - level_09.sav
+      - level_12.sav
+      - training_all_stuff_collected_ending.sav
+      - movies/Phase4/Interpreter/C17_MovieViewer.movie.sav
+  E16_streaming_overlays:
+    replaces: E02_FreshLoad_Clover.movie.json
+    reason: >-
+      The legacy mechanics registry kept only the basename; the retained movie
+      and every current E16 replay tool use the repository-relative path below.
+    evidence: analysis/phase4_e16_resource_lifetime.json
+    fixtures:
+      - movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json

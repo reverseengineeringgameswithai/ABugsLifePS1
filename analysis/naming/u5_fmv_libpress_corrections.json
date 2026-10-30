@@ -1,0 +1,30 @@
+{
+ "batch": "u5_fmv_libpress_corrections",
+ "generated_by": "manual static reconstruction",
+ "supersedes": [
+  "phase5_trace_names:0x80070a40=fmv_frame_counter_setter",
+  "re_symbols:0x80070ac8=cd_inttopos_shim"
+ ],
+ "entries": [
+  {
+   "address": "0x80070a30",
+   "end": "0x80070ac0",
+   "name": "str_data_ready_callback",
+   "confidence": "high",
+   "evidence": [
+    "installed by CdRead2 through CdReadyCallback",
+    "0x80070a40 is a delayed stack prologue after entry-state loads"
+   ]
+  },
+  {
+   "address": "0x80070ac0",
+   "end": "0x80070b20",
+   "name": "StGetBackloc",
+   "confidence": "confirmed",
+   "evidence": [
+    "PsyQ libpress export identity",
+    "0x80070ac8 is a delayed stack prologue after the entry flag load"
+   ]
+  }
+ ]
+}

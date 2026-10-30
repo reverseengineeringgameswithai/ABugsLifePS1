@@ -1,0 +1,77 @@
+schema: abl-phase4-fmv-finale-route-probe-config/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-ITER91-E15-FINALE-ENDPOINT-CORRECTION
+fixture:
+  path: movies/go_to_end/LEVEL15.movie.json
+  sha256: ce573bb375b6c590529dc048d838bbc2f85e6c227a724fa11b711506dffb1256
+  bytes: 23911415
+  frame_count: 33268
+  anchor: from_boot
+media:
+  serial: SCUS-94288
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+debugger:
+  api_version: 2.1.0
+  schema_version: "2026-07-18"
+  binary_sha256: 55d589032641ad0904526742f2209c034a710a162ebba3e1bc04b4c5da6075a8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty_state_hash: 72dd936c8a6f92f6370815da7d9e192c3bcc2371
+profile:
+  config_dir: /var/tmp/abl-p4-e15-finale-endpoint.iter3c.24761
+  port: 24761
+  owned_pid: 596229
+external_receipts:
+  - role: result
+    relative_path: live/Phase4/e15-finale-route-probe-v2-20260725/result.json
+    sha256: dbab03a3e96afd0f6e10896a1c3175a6c40f6330cafed5ce3ad062b7da2da019
+    bytes: 102305
+  - role: cleanup
+    relative_path: live/Phase4/e15-finale-route-probe-v2-20260725/cleanup.json
+    sha256: f0c732150cdd457711e4cc39519ca78c9ec55e0515ec218b892abb1e6a983b63
+    bytes: 814
+expected:
+  early_endpoint:
+    frame: 1001
+    movie_frame: 1000
+    cycle: 566186554
+    pc: "0xbfc0d864"
+    sp: "0x801ffe00"
+    ram_sha256: 8470250afecd8a73fa6c721d78d69be6c8dfe4c560a73995b2e4b0911179b7c2
+    registers_sha256: 2944e0e7ddd7f5e6ef26c35a99117d6cd778e00d3bebb3c54ca9ec0e03c0aa0a
+  final_endpoint:
+    frame: 33269
+    movie_frame: 0
+    cycle: 18836452125
+    pc: "0x8004fea4"
+    sp: "0x801fffd0"
+    ram_sha256: a43e35c101e24f633e348e554c8e9f2d05c2ec8dbab7a2dc00ba1000ecf1a20a
+    registers_sha256: 406d2ecfe8f618fca253470e0fd22fd158d608d992967f90f43cc9d003d5c9ec
+  checks:
+    early_bare_pc_alias:
+      target_frame: 1000
+      complete_consumption: false
+      register_filter: null
+      total_hits: 326
+      pc: "0x80050284"
+    early_selector_filtered_control:
+      target_frame: 1000
+      complete_consumption: false
+      register_filter: {a0: "0x00000028"}
+      total_hits: 0
+      pc: null
+    full_finale_c_selector_filtered:
+      target_frame: 33268
+      complete_consumption: true
+      register_filter: {a0: "0x00000028"}
+      total_hits: 0
+      pc: null
+    full_finale_d_bare_pc:
+      target_frame: 33268
+      complete_consumption: true
+      register_filter: null
+      total_hits: 0
+      pc: null
+tracked_summary:
+  schema: abl-phase4-fmv-finale-route-probe/1

@@ -1,0 +1,185 @@
+{
+  "bounded_causal_conclusion": "At the inspected pristine LEV1A anchor, the no-input path reaches backloc 384 (selected limit 386), later receives completion request 0\u21921 from instruction 0x800B6B48, records no decoded-record stop-latch write while FMV.BIN remains resident, and then enters the balanced common exit at frame 5305. This distinguishes the selected-limit path from the other statically known converging writers for this one run.",
+  "campaign_id": "fmv_playback",
+  "errors": [],
+  "escalation_id": "P4-ITER82-E15-NATURAL-EXIT-CAUSE-CONTROL",
+  "external_receipts": [
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-natural-exit-cause-v1-20260724/result.json",
+      "bytes": 80569,
+      "media_class": "external game-derived evidence; never commit",
+      "preservation_required": true,
+      "role": "atomic_batch_result",
+      "sha256": "9eb4310e9f026809ae2a0b64e0412cd0768d1ee310b1944ae0fb9c562d77c689"
+    },
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-natural-exit-cause-v1-20260724/cleanup.json",
+      "bytes": 537,
+      "media_class": "external non-game cleanup evidence; never commit",
+      "preservation_required": true,
+      "role": "owned_pid_cleanup",
+      "sha256": "ef3c4d61fa0f3109820857db2a4181276daec587484c5f78814a0528ac6dd856"
+    }
+  ],
+  "fixtures": {
+    "movie": {
+      "bytes": 370143,
+      "media_class": "pristine_serial",
+      "path": "movies/Phase4/E15_fmv_skip.movie.json",
+      "sha256": "ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba"
+    },
+    "state": {
+      "bytes": 1193583,
+      "media_class": "pristine",
+      "path": "movies/Phase4/E15_fmv_skip.movie.sav",
+      "sha256": "851e8ebffa8b8417abb30ff0791ca4c1872a43cf06101247ee1ff97e4cdac417"
+    }
+  },
+  "generated": "2026-07-24",
+  "observations": {
+    "cause_discriminators": {
+      "completion_writer": "0x800b6b48",
+      "frame_order_regression_writer_excluded": "0x800b6b24",
+      "late_backloc_writer": "0x80070a8c",
+      "no_record_stop_writer_excluded": "0x800b6c84",
+      "selected_limit_writer": "0x800b6dc0",
+      "stop_latch_writes_while_resident": 0,
+      "stream_start_clear_writer_excluded": "0x800b6dd0"
+    },
+    "natural_selected_limit_completion": {
+      "cause": {
+        "access_event_count": 7,
+        "access_ring_truncated": false,
+        "completion_clear": {
+          "cycle": 2501102858,
+          "frame": 4418,
+          "instruction_pc": "0x800b6dd0",
+          "new_value": 0,
+          "old_value": 0
+        },
+        "completion_set": {
+          "cycle": 2973774887,
+          "frame": 5253,
+          "instruction": "sw v0, -0x53f0(at)",
+          "instruction_pc": "0x800b6b48",
+          "new_value": 1,
+          "old_value": 0
+        },
+        "late_backloc_writes": [
+          {
+            "cycle": 2949788693,
+            "frame": 5210,
+            "instruction_pc": "0x80070a8c",
+            "new_value": 381,
+            "old_value": 378
+          },
+          {
+            "cycle": 2952949785,
+            "frame": 5216,
+            "instruction_pc": "0x80070a8c",
+            "new_value": 384,
+            "old_value": 381
+          },
+          {
+            "cycle": 2954478156,
+            "frame": 5219,
+            "instruction_pc": "0x80070a8c",
+            "new_value": 385,
+            "old_value": 384
+          },
+          {
+            "cycle": 2962658839,
+            "frame": 5233,
+            "instruction_pc": "0x80070a8c",
+            "new_value": 2,
+            "old_value": 385
+          }
+        ],
+        "limit_minus_two_reached_before_completion": true,
+        "selected_frame_limit_write": {
+          "cycle": 2501102830,
+          "frame": 4418,
+          "instruction_pc": "0x800b6dc0",
+          "new_value": 386,
+          "old_value": 0
+        },
+        "stop_latch_write_count": 0
+      },
+      "common_exit": {
+        "callback_teardown": {
+          "address": "0x800709ac",
+          "caller": "0x800b74a4",
+          "entry_cycle": 3003380414,
+          "exit_cycle": 3003384397,
+          "exit_is_synthetic_unwind": false,
+          "return_address": "0x800b74ac"
+        },
+        "frame": 5305,
+        "st_clear_ring": {
+          "address": "0x8007094c",
+          "caller": "0x800b749c",
+          "entry_cycle": 3003377970,
+          "exit_cycle": 3003380400,
+          "return_address": "0x800b74a4"
+        }
+      },
+      "endpoint": {
+        "completion_request": 1,
+        "decode_stop_latch": 0,
+        "fmv_bin_head_sha256": "ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db",
+        "fmv_bin_resident": true,
+        "selected_frame_limit": 386,
+        "str_backloc": 14
+      },
+      "function_event_count": 6
+    },
+    "start_same_anchor_control": {
+      "access_event_count": 26,
+      "common_exit": {
+        "callback_teardown": {
+          "address": "0x800709ac",
+          "caller": "0x800b74a4",
+          "entry_cycle": 2644274321,
+          "exit_cycle": 2644284120,
+          "exit_is_synthetic_unwind": true,
+          "return_address": "0x800b74ac"
+        },
+        "frame": 4671,
+        "st_clear_ring": {
+          "address": "0x8007094c",
+          "caller": "0x800b749c",
+          "entry_cycle": 2644271877,
+          "exit_cycle": 2644274307,
+          "return_address": "0x800b74a4"
+        }
+      },
+      "function_event_count": 6,
+      "post_retirement_access_untyped": true
+    }
+  },
+  "profiles": [
+    {
+      "config_dir": "/var/tmp/abl-p4-e15-natural-cause.1TRfUS",
+      "owned_pid": 650015,
+      "owned_pid_stopped": true,
+      "port": 24683
+    }
+  ],
+  "raw_external_bytes_committed": false,
+  "record_counts": {
+    "access_events": 33,
+    "atomic_batches": 1,
+    "function_events": 12,
+    "jobs": 2,
+    "resident_causal_access_events": 7
+  },
+  "residuals": [
+    "This closes one LEV1A selected-limit completion cause, not level-B, alternate, lose, advert or viewer breadth.",
+    "Pause, explicit stop, repeated playback, scene unload/reload, decode timeout, CD failure and malformed-stream outcomes remain open.",
+    "The Start control's access watches continue after FMV.BIN retirement; those post-retirement addresses are deliberately untyped and are not causal evidence.",
+    "E12 audio, C17 viewer selection/unlocks, E14 persistence and E16 generic overlay loading retain separate interfaces."
+  ],
+  "row_id": "E15_fmv",
+  "schema": "abl-phase4-fmv-natural-exit-cause/1",
+  "valid": true
+}

@@ -1,0 +1,211 @@
+{
+  "schema": "phase4_a03_ceiling_v1",
+  "row": "A03_jump",
+  "date": "2026-08-03",
+  "disposition": "bounded_exhausted",
+  "closure_gate": "PASS",
+  "reason": "A natural pristine-media ceiling plane and upward signed-distance crossing are confirmed, but no retained run yet passes the authored polygon footprint and demonstrates the collision response.",
+  "media": {
+    "serial": "SCUS-94288",
+    "cue": "Disney-Pixar A Bug's Life (v1.0).cue",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+  },
+  "fixture": {
+    "path": "level_11.sav",
+    "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+    "role": "pristine save-state anchor for a narrow runtime collision experiment"
+  },
+  "resolver_asm": [
+    {
+      "path": "asm/hand_written/800345cc_collision_resolver_accumulate.s",
+      "sha256": "92d35abc3b5683df9ec79700eca6bba2d74112ae7805f043eb1bc48fc0cbd335"
+    },
+    {
+      "path": "asm/hand_written/80035280_collision_resolve_pass.s",
+      "sha256": "6b480cddf121b69ccf4642f47ec197695d929ec1631b03a0deaffba13c790d05"
+    }
+  ],
+  "static_law": {
+    "endpoint_branch_pc": "0x80035464",
+    "start_branch_pc": "0x800354b4",
+    "accepts": "d_end < 0 && d_start >= 0",
+    "floor_fall_accepts": true,
+    "ceiling_rise_accepts": true,
+    "polygon_helper": "0x80032610",
+    "orientation_selection": "largest absolute normal component, then component sign",
+    "inference": "dominant positive ny is an implemented ceiling orientation; positive ny alone is not enough because wall or boundary normals can have a smaller positive ny component"
+  },
+  "breadth_sweep": {
+    "fixtures": 13,
+    "resolver_events": 3176,
+    "truncated": false,
+    "unique_planes_per_fixture": 258,
+    "floor_events": 2203,
+    "ceiling_events": 8,
+    "wall_events": 965,
+    "positive_ny_wall_events": 167,
+    "floor_planes": 188,
+    "ceiling_planes": 1,
+    "wall_planes": 69,
+    "positive_ny_wall_planes": 9,
+    "reduction_path": "/tmp/a03_ceiling_reduction.json",
+    "reduction_sha256": "5af336cf3281577b349ecdf83280b6b95b3bcbd1ba27efad99c6d044e55cc16a"
+  },
+  "ceiling_candidate": {
+    "level": 11,
+    "pointer": "0x8016fe20",
+    "sector": 122,
+    "normal": [
+      -7412,
+      12324,
+      -7847
+    ],
+    "reference_file_space": [
+      -1221,
+      1277,
+      334
+    ],
+    "sector_origin_runtime": [
+      274592,
+      -66400,
+      -177344
+    ],
+    "reference_runtime": [
+      235520,
+      -25536,
+      -166656
+    ],
+    "initial_player_runtime": [
+      219363,
+      -3058,
+      -164708
+    ],
+    "broad_sweep_events": 8,
+    "broad_sweep_endpoint_negative": 0
+  },
+  "targeted_up60": {
+    "approach": "load level_11.sav, hold Up for 60 API frames, release Up, hold Cross for 30 API frames",
+    "crossing_frame": 172510,
+    "d_start": 2771,
+    "d_end": -246,
+    "distance_gates_pass": true,
+    "polygon_args_file_space": [
+      -294,
+      41,
+      342
+    ],
+    "polygon_return": 0,
+    "polygon_trace_instructions": 62,
+    "polygon_false_return_delay_slot": "0x80032d3c",
+    "final_projected_edge_lhs": -674,
+    "final_projected_edge_rhs": -563,
+    "final_projected_edge_miss": 111,
+    "candidate_retained_as_winner": false
+  },
+  "bounded_path_search": {
+    "straight_up_frames": [
+      42,
+      45,
+      48,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      60,
+      63,
+      66,
+      69,
+      72,
+      75,
+      78
+    ],
+    "crossing_window_observed": "54 through 69 in the coarse sweep",
+    "closest_case": {
+      "up_frames": 54,
+      "projected_edge_miss": 12
+    },
+    "boundary": "Up=53 does not reach the signed-distance crossing; Up=54 crosses but remains outside the triangle",
+    "lateral_offsets": "Left and Right, 1 through 36 API frames where applicable",
+    "air_steering": [
+      "Up",
+      "Down",
+      "Left",
+      "Right"
+    ],
+    "one_frame_grounded_offsets": [
+      "Up",
+      "Down",
+      "Left",
+      "Right"
+    ],
+    "diagonal_replacements": [
+      "Up+Left last 1/2/4 frames",
+      "Up+Right last 1/2/4 frames"
+    ],
+    "accepted_polygon_hits": 0,
+    "retained_ceiling_winners": 0
+  },
+  "transient_evidence": [
+    {
+      "path": "/tmp/a03_level11_ceiling_polygon_path.json",
+      "sha256": "65dd4d99270aa49e7bedbfcb7d54279c0c1759fc97161abfbe3a7fbbaa25402d"
+    },
+    {
+      "path": "/tmp/a03_level11_ceiling_polyret.json",
+      "sha256": "07e96a1cd98fc9abcc12f6dd0a1617d29b209640f74ad637af413feea30a3e3c"
+    },
+    {
+      "path": "/tmp/a03_level11_up_sweep.tsv",
+      "sha256": "e536b58477a49d58a76a0cadd339d6709a192bef92fd1f1b5932736475ea0a68"
+    },
+    {
+      "path": "/tmp/a03_level11_lateral_sweep.tsv",
+      "sha256": "3e14f4aca86cc905aad4d00e486f7bf6dfc5f9a0916bb0b411f7c22eb6f6ff32"
+    },
+    {
+      "path": "/tmp/a03_level11_ceiling_candidate.png",
+      "sha256": "f6e0bd7235689d46bd7062ed35c2ed0db650c76c459ec42147a61d526ea2d4ca"
+    }
+  ],
+  "c_tools": [
+    {
+      "path": "tools/phase4_a03_ceiling_reduce.c",
+      "sha256": "bee11b491dbfac28f647acc9388bf6688328c616ce8be21312f4557850ae45ce"
+    },
+    {
+      "path": "tools/phase4_a03_polygon_path.c",
+      "sha256": "66a35f45567ec1cbf142e817a8bbb65ea8350a822e30d9253594ded3bd910550"
+    }
+  ],
+  "remaining_gate": null,
+  "movie_attempt": {
+    "artifact": "analysis/phase4_a03_ceiling_movie.json",
+    "result": "failed_negative_control",
+    "reason": "Both jumps gained 20096 world units and no retained collision occurred during the second ascent.",
+    "replacement": "movies/Phase4/Interpreter/A03_ceiling_contact_v2.movie.json"
+  },
+  "remaining_direct_behavior": [],
+  "movie_v2": {
+    "artifact": "analysis/phase4_a03_ceiling_movie_v2.json",
+    "result": "PASS",
+    "control_recurrence_height": 16896,
+    "ceiling_jump_height": 10880,
+    "truncation": 9216,
+    "contact_frame": 162720,
+    "plane_pointer": "0x800f1d04",
+    "sector": 166,
+    "normal": [
+      -777,
+      16363,
+      -288
+    ],
+    "d_start": 219,
+    "d_end": -1827,
+    "polygon_true": true,
+    "retained_winner": true,
+    "landing_confirmed": true
+  }
+}

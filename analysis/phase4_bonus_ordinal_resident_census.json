@@ -1,0 +1,43 @@
+{
+ "target": "0x8009B88A",
+ "bytes": 1,
+ "exe": "SCUS_942.88",
+ "writers": [
+  {
+   "pc": "0x8004FFD0",
+   "insn": "sb a2, -0x4776(at)",
+   "kind": "write",
+   "width": 1,
+   "function": "scene_flow_dispatcher",
+   "address": "0x8009B88A",
+   "base_value": "0x800A0000",
+   "covers": [
+    "0x8009B88A"
+   ],
+   "straddles": false
+  }
+ ],
+ "readers": [
+  {
+   "pc": "0x8004FFAC",
+   "insn": "lbu a2, -0x4776(a2)",
+   "kind": "read",
+   "width": 1,
+   "function": "scene_flow_dispatcher",
+   "address": "0x8009B88A",
+   "base_value": "0x800A0000",
+   "covers": [
+    "0x8009B88A"
+   ],
+   "straddles": false
+  }
+ ],
+ "residual": {
+  "_meaning": "accesses whose base register is TOP (not derivable from the instruction stream) and which could therefore alias the target. A completeness claim is only warranted once these are inspected.",
+  "unresolved_accesses_total": 12956,
+  "unresolved_same_width_in_related_functions": 0,
+  "related_functions": [],
+  "sites": [],
+  "indirect_calls_unresolved": 149
+ }
+}

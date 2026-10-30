@@ -1,0 +1,232 @@
+{
+ "schema": "abl-phase4-f01-oracle-breadth-repair/1",
+ "phase": "repair_result",
+ "issued_order": "engineering-specs/phase4-f01-oracle-breadth-repair-work-order.md",
+ "authoritative_verdict": "analysis/phase4_f01_oracle_breadth_verification.json",
+ "summary": {
+  "elements_classified": "8/8",
+  "done": "5/8",
+  "blocked": "1/8",
+  "not_done": "2/8",
+  "original_oracle_status_after_repair": "NOT MET",
+  "campaign_breadth_status_after_repair": "NOT MET",
+  "reason_status_does_not_move": "B1 is blocked and C1/C2 are not done; repair authority is non-promoting in every case."
+ },
+ "ancestry": {
+  "baseline_commit": "7cb07f524bb24e5e711fbd5dd60f80684dc57c7f",
+  "freeze_commit": "669f408d085ad9b834c67db995c672cf310c3d98",
+  "result_commit": "427ba8a7d00a66b2c4bbb972629e7366f4461c72",
+  "ordered_repair_commits": [
+   "669f408d085ad9b834c67db995c672cf310c3d98",
+   "26a2376ab212f061f7c442a00c50bbad32fec10b",
+   "ff4cffa8ebc99c910f408e4c5dfb87e431986326",
+   "b73ff9591d588e71962ebb8d82fbf64a444144b2",
+   "5b56a77749b17256e63029e3d944875e168b2c97",
+   "94e79f5bd393ee31cd80179fdf20c18d3a3cf066",
+   "fba01d5022f54e2fa787dfa408d9bcdf550629cf",
+   "97c10aa4e52183695e7eed7a16db7641a608fcb0",
+   "91b3929b974f759db137107ffbb9a6c33f0f6fda",
+   "fa315cd84533ee9202f9b74f11f8e14ab4df2ecb",
+   "9fd829a680c179a84b49feb69997e433c92f6b31",
+   "427ba8a7d00a66b2c4bbb972629e7366f4461c72"
+  ],
+  "baseline_operator_wip": {
+   "status_line_count": 114,
+   "status_sha256": "1cc78c7a59fc1ab54e361e18eb98ed07e1ee33050dd62a44d0b7502b64a52bbf"
+  },
+  "result_operator_wip": {
+   "status_line_count": 114,
+   "status_sha256": "1cc78c7a59fc1ab54e361e18eb98ed07e1ee33050dd62a44d0b7502b64a52bbf",
+   "byte_for_byte_matches_baseline_census": true
+  }
+ },
+ "authority": {
+  "self_promotes_dimensions": false,
+  "changes_f01_status": false,
+  "mechanics_baseline_edit_allowed": false,
+  "movie_priority_edit_allowed": false,
+  "requires_fresh_detached_verifier": true,
+  "analysis/mechanics_baseline.yaml": "UNCHANGED from baseline; sha256 2bbd491c5cd314fb9e922c13689b7441d1f72e39b7addf9ba150d3ea25195383",
+  "analysis/phase4_movie_priority_queue.json": "UNCHANGED from baseline; sha256 11c2d4ad5b2484e9061d11850577bb1ad4fed2c91b60e611f6cfacf1bb57299e"
+ },
+ "runtime_identity": {
+  "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+  "duckstation_binary_sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4",
+  "duckstation_source_status": "106 lines; sha256 0ae8b03d3a31322c13a2ce60429a8f4460affed1a9131349b66243d17cda55ac",
+  "execution_mode": "Interpreter",
+  "pristine_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+  "pristine_bin_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+  "pristine_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+  "serial": "SCUS-94288"
+ },
+ "elements": {
+  "part_a_harness_integrity": {
+   "outcome": "DONE",
+   "completion": "1/1",
+   "dependency": null,
+   "would_satisfy": null,
+   "evidence": {
+    "exact_declared_universe": "19/19 unique declared levels",
+    "decision_requirement": "at least 1 typed, self-certified decision per level",
+    "derived_law_gate": "request/gp operands, observation, delta and retained summaries are recomputed and cross-checked",
+    "trace_gate": "event-bearing total/returned/truncated and retained/rejected counts are reconciled",
+    "focused_tests": "44/44 passed",
+    "test_files": [
+     "tests/test_phase4_f01_oracle_breadth_verification.py",
+     "tests/test_phase4_f01_request2_probe.py"
+    ]
+   },
+   "committed_adverse_mutations": [
+    "empty corpus",
+    "missing level",
+    "extra or renamed level",
+    "duplicate level",
+    "zero decisions",
+    "missing and mismatched instruction-word certificate",
+    "missing request/gp operands",
+    "missing frame/cycle coordinates",
+    "boolean finalizer delta",
+    "hidden law-false row with lying summaries",
+    "error and incomplete/non-reproducible playback",
+    "true/null/missing truncation",
+    "fixture hash/state hash/runtime/media mutations",
+    "inconsistent event totals",
+    "missing retained/rejected count maps"
+   ]
+  },
+  "natural_request2_skip_control": {
+   "outcome": "BLOCKED",
+   "completion": "0/1",
+   "candidate_replays": "2/2 accepted",
+   "natural_request2_controls": "0/1",
+   "dependency": "a centrally pinned pristine cold-boot movie in which Flik dies naturally",
+   "would_satisfy": "A complete nontruncated replay of that recording must self-certify the natural resident request-2 producer and decision, observe the consumer proceed, and observe no attributable finalizer call.",
+   "artifact": {
+    "path": "analysis/phase4_f01_request2_probe.json",
+    "sha256": "9f15d00e9b38780547f8bf7bcedfd3bef04fc21cf61fedf708de4304a47d48bf",
+    "D18": "15600/15600 frames; 1 decision; request [1]; 8/8 overlapping access writes; 0 resident death-store hits",
+    "E02": "5562/5562 frames; 0 decisions; 7/7 overlapping access writes; 0 resident death-store hits",
+    "exec_pages": "D18 329/329 and E02 326/326, both nontruncated",
+    "injection": "NONE"
+   },
+   "isolated_runs": [
+    {"config": "/tmp/abl-f01-b1-d18-v6b.5K1Mua", "port": 24753, "token": "unique ephemeral token, not retained"},
+    {"config": "/tmp/abl-f01-b1-e02-v6b.fLGJey", "port": 24754, "token": "unique ephemeral token, not retained"}
+   ],
+   "writer_attribution": "Every byte/half/word write overlapping the request word is retained through an accessLog address watch, including KSEG aliases. Overlay file identity is not inferred from a runtime PC. Only the aligned resident pristine death halfword stores may certify a complete request 2."
+  },
+  "fail_closed_oracle_provenance": {
+   "outcome": "DONE",
+   "completion": "1/1",
+   "dependency": null,
+   "would_satisfy": null,
+   "artifact": "analysis/phase4_f01_original_oracle.json",
+   "artifact_sha256": "3c5c060478cb4d86b73800e17bd0bbf2fd8d14018c19c4fc1970c1ee9b4d5723",
+   "provenance_assertions": "25/25 passed",
+   "semantic_assertions": "6/6 passed",
+   "central_movie_pin": {
+    "identity": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill_FromBoot.movie.json",
+    "sha256": "b29ae83945aaea1d59c03095867376130a3ac3eefcf4b6042a2c36b8369e2e24",
+    "size": 5062842,
+    "preservation_required": true
+   },
+   "central_manifest_sha256": "d5e8601717fda2cb3dfcdef9c33a4ff642430d13ec0ac40c331674af778b72a8",
+   "mutation_coverage": "movie declaration/pin/hash/size/class/preservation, all start-state fields and serials, playback completion/reproducibility, truncation, and cue/bin/executable identities and hashes"
+  },
+  "fresh_detached_oracle_regeneration": {
+   "outcome": "DONE",
+   "completion": "1/1",
+   "replays": "3/3 byte-identical",
+   "dependency": null,
+   "would_satisfy": null,
+   "artifact_sha256": "3c5c060478cb4d86b73800e17bd0bbf2fd8d14018c19c4fc1970c1ee9b4d5723",
+   "root_fixed_point": [
+    {"config": "/tmp/abl-f01-oracle-repair.s578zf", "port": 24726},
+    {"config": "/tmp/abl-f01-oracle-fixedpoint.DUXthQ", "port": 24727}
+   ],
+   "detached_replay": {
+    "checkout": "/tmp/abl-f01-exact-final.jyhkgE",
+    "commit": "9fd829a680c179a84b49feb69997e433c92f6b31",
+    "config": "/tmp/abl-f01-exact-oracle.0ODrlg",
+    "port": 24750,
+    "result": "exact cmp with retained artifact"
+   },
+   "normalized_fields": "no checkout-local media path and no wall-clock generated date"
+  },
+  "preoutcome_applicability_matrix": {
+   "outcome": "NOT DONE",
+   "completion": "0/1",
+   "classified_cells": "0/unknown",
+   "applicable_fixtures_and_assertions": "0/unknown",
+   "inapplicable_reasons_and_proofs": "0/unknown",
+   "dependency": null,
+   "would_satisfy": "Before inspecting outcomes, freeze a complete independently sourced matrix for stages, objectives, enemy/actor variants, special modes and exceptional paths. Every cell must be uniquely classified; every applicable cell needs a centrally pinned fixture and self-certifying passing assertion, and every inapplicable cell needs a reproducible reason/proof. Gates must reject missing, duplicate, unclassified, unpinned, failed, truncated or unsupported cells.",
+   "finding": "The retained 19-session list is not this matrix and exact layer denominators remain unknown. Authoring one now from known outcomes would not cure the pre-outcome requirement."
+  },
+  "predeclared_level_type_mapping": {
+   "outcome": "NOT DONE",
+   "completion": "0/1",
+   "mapped_levels": "0/19",
+   "required_types_with_passing_replay": "0/8",
+   "dependency": null,
+   "would_satisfy": "Freeze an independently derived row/Canon/scene-table/disc mapping for only the declared corpus, with provenance demonstrating independence from known outcomes, then require at least one passing replay for normal, traversal-special, boss, chase, city, interior, exterior and bonus and mutation-test absent/unknown/failed evidence.",
+   "finding": "The scene table supplies ordinal/scene identity but no independent eight-type classification. No outcome-fitted mapping was authored during repair."
+  },
+  "fail_closed_corpus_gate": {
+   "outcome": "DONE",
+   "completion": "1/1",
+   "levels": "19/19",
+   "self_certified_decisions": "35/35",
+   "predicted_call": "19/35",
+   "predicted_skip": "16/35",
+   "failed_gates": "0/7",
+   "law_failures": "0/35",
+   "dependency": null,
+   "would_satisfy": null,
+   "artifact": "analysis/phase4_f01_breadth_assertions.json",
+   "artifact_sha256": "4b58c2c9c67c4f8f10345e4b723bc598e5f0968353385ef71c878f95559429cc"
+  },
+  "fresh_detached_regeneration": {
+   "outcome": "DONE",
+   "completion": "1/1",
+   "replays": "19/19 completed and reproducible",
+   "nontruncated_event_pages": "19/19",
+   "interpreter_and_pristine_media": "19/19",
+   "isolated_configs_ports_tokens": "6/6 unique",
+   "dependency": null,
+   "would_satisfy": null,
+   "worker_checkout": {
+    "path": "/tmp/abl-f01-exact-final.jyhkgE",
+    "commit": "9fd829a680c179a84b49feb69997e433c92f6b31",
+    "provisioned_inputs": "19/19 centrally identified movies, 19/19 centrally identified states, pristine cue/bin/executable",
+    "canonical_executable_path": "REBUILD/files/SCUS_942.88",
+    "canonical_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+   },
+   "final_gate_checkout": {
+    "path": "/tmp/abl-f01-exact-final.jyhkgE",
+    "commit": "9fd829a680c179a84b49feb69997e433c92f6b31",
+    "provisioned_inputs": "19/19 centrally identified movies and 19/19 centrally identified states"
+   },
+   "worker_configs": [
+    {"config": "/tmp/abl-f01-c4-final-w0.aTfo1u", "port": 24760},
+    {"config": "/tmp/abl-f01-c4-final-w1.2lMzLs", "port": 24761},
+    {"config": "/tmp/abl-f01-c4-final-w2.FayK9B", "port": 24762},
+    {"config": "/tmp/abl-f01-c4-final-w3.Zb9DqW", "port": 24763},
+    {"config": "/tmp/abl-f01-c4-final-w4.XRi2j5", "port": 24764},
+    {"config": "/tmp/abl-f01-c4-final-w5.929bvX", "port": 24765}
+   ],
+   "fixed_point": "the exact-final detached 19-row replay consolidated twice, and both outputs exactly matched the retained root artifact at sha256 4b58c2c9c67c4f8f10345e4b723bc598e5f0968353385ef71c878f95559429cc"
+  }
+ },
+ "generated_control_plane": {
+  "knowledge_manifest": "d5e8601717fda2cb3dfcdef9c33a4ff642430d13ec0ac40c331674af778b72a8",
+  "knowledge_report": "f268a00cbe34b739c19cb43b06b5d5bc0a170aac8df6aa88156586e78707a1f2",
+  "extent_audit": "f92b8b7c28811f5c91efbdcd4686c90d2a08534b485837c9db15ec484ea70708; 1089 files, 2150 declarations, 17/17 reviewed, 0 new",
+  "closure_debt": "e365a4da32f47bb5855fae45825361d8c5a0fed4d16ab2c6d5c9f1560eccf9b6; fixed point PASS rows=16/107 dimension_met=149"
+ },
+ "known_out_of_scope_failure": {
+  "test": "tests/test_phase4_closure_debt.py::test_movie_ready_projection_changes_only_transient_scheduler_selection",
+  "result": "pre-existing failure reproduced: the movie-ready batch names historical C15_checkpoints absent from closure-debt rows",
+  "forbidden_fix_not_taken": "analysis/phase4_movie_priority_queue.json remains unchanged"
+ }
+}

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://abl.local/schemas/ps1-scenario-v1.json",
+  "title": "ABL DuckStation scenario",
+  "type": "object",
+  "required": ["schema_version", "id", "target", "phases"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$"},
+    "description": {"type": "string"},
+    "target": {
+      "type": "object",
+      "required": ["disc", "expected_serial"],
+      "properties": {
+        "disc": {"type": "string"},
+        "expected_serial": {"type": "string"},
+        "expected_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "launch": {
+      "type": "object",
+      "properties": {
+        "profile": {"enum": ["repro", "generic"]},
+        "execution_mode": {"enum": ["Interpreter", "CachedInterpreter", "Recompiler"]}
+      }
+    },
+    "playback": {
+      "type": "object",
+      "required": ["movie"],
+      "properties": {
+        "movie": {"type": "string"},
+        "start_frame": {"type": "integer", "minimum": 0},
+        "turbo_before_reset": {"type": "boolean"},
+        "reset_before_start": {"type": "boolean"},
+        "pause_before_start": {"type": "boolean"},
+        "preplay_neutral_frames": {"type": "integer", "minimum": 0},
+        "load_start_state": {"type": "boolean"},
+        "require_reproducible": {"type": "boolean"}
+      }
+    },
+    "anchor": {
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {"type": {"const": "save_state"}, "path": {"type": "string"}}
+    },
+    "setup": {"type": "array", "items": {"$ref": "#/$defs/action"}},
+    "phases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "trigger", "assertions"],
+        "properties": {
+          "id": {"type": "string"},
+          "before": {"type": "array", "items": {"$ref": "#/$defs/action"}},
+          "trigger": {"$ref": "#/$defs/trigger"},
+          "captures": {"type": "array", "items": {"$ref": "#/$defs/capture"}},
+          "assertions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/assertion"}},
+          "after": {"type": "array", "items": {"$ref": "#/$defs/action"}}
+        }
+      }
+    }
+  },
+  "oneOf": [{"required": ["playback"]}, {"required": ["anchor"]}],
+  "$defs": {
+    "action": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {"enum": ["rpc", "breakpoint_add", "access_trace_start", "exec_trace_start", "function_trace_start", "function_trace_stop", "spu_trace_start", "gpu_causality_start", "trace_arm_when"]},
+        "id": {"type": "string"}, "method": {"type": "string"}, "params": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "trigger": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {"enum": ["movie_frame", "movie_frame_realtime", "emulator_frame", "memory", "register", "pc", "breakpoint", "gpu", "audio", "rpc_poll"]},
+        "target": {"type": "integer", "minimum": 0},
+        "max_frames": {"type": "integer", "minimum": 1},
+        "timeout_seconds": {"type": "number", "exclusiveMinimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "capture": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["atomic", "rpc", "frame_snapshot", "screenshot"]},
+        "method": {"type": "string"}, "params": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "assertion": {
+      "type": "object",
+      "required": ["id", "type", "expected"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["memory", "register", "function_hit_count", "access_hit_count", "exec_hit_count", "rpc", "capture", "render_diff"]},
+        "op": {"enum": ["eq", "ne", "lt", "le", "gt", "ge", "between"]},
+        "width": {"enum": ["u8", "s8", "u16", "s16", "u32", "s32"]}
+      },
+      "additionalProperties": true
+    }
+  }
+}

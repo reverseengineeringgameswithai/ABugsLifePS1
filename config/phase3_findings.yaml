@@ -1,0 +1,642 @@
+schema_version: 1
+description: >
+  Phase-3 findings registry, structured by the roadmap's "Definition of Finished
+  for a reusable finding". A finding is NOT finished because it was demonstrated:
+  it must be banked so a later agent (or mod) can locate, verify and consume it
+  without repeating the investigation.
+
+  Each entry declares, per the eight requirements:
+    provenance   the hash-pinned fixtures + media the claim rests on
+    machine      the authoritative machine representation (registry/schema/tool)
+    evidence     the smallest reproducible experiment (artifact + exact command)
+    guard        the executable falsifiable check (test id), or why none is possible
+    canon        the Canon page a future reader will find first
+    mod_contract how a mod may SAFELY consume it (owners, domains, reset rules,
+                 and the known-unsafe assumptions) — "an address without its
+                 ownership and lifecycle is not a safe extension point"
+    confidence   confirmed | partial | inferred | disproven | blocked
+    supersedes   claims this correction kills, so nobody revives them
+    residuals    what is still unknown, and the next experiment
+
+  tools/phase3_knowledge_audit.py CHECKS every one of these mechanically; it does
+  not trust this file's prose.
+
+findings:
+
+  - id: scene_asset_load_graph
+    title: Scene -> asset -> overlay routing (3 EXE tables) and the load law
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288 (disc sha1 0bc1a29748d4bd608d076495d085e825574880d1)
+      fixtures: [REBUILD/files/SCUS_942.88]
+      cross_evidence: analysis/phase2_completion_oracle.json
+    machine: [analysis/phase3_scene_asset_graph.json, config/semantic_state.yaml]
+    evidence: analysis/phase3_scene_asset_graph.json
+    command: python3 tools/phase3_scene_asset_graph.py
+    guard: tests/test_phase3_scene_graph.py
+    canon: ObsidianVault/Canon/Systems/SYS_scene_asset_load_graph.md
+    mod_contract: >
+      Row index = scene_id - 1 in scene_asset_table 0x8001AD0C (15 x 0x10). The disc
+      DIRECTORY selects the overlay pair, the ASSET PREFIX selects the sub-level data.
+      UNSAFE ASSUMPTION TO AVOID: that disc dir number == scene id - it does NOT
+      (scene 11 loads level02\level4b). A mod that rewrites a row must keep both
+      halves consistent, and must not assume Training (scene 17) is in this table -
+      it is loaded off-table.
+    supersedes: []
+    residuals: >
+      Training is mapped as the resident/shared 0x8001AFB0[16] -> 0x8003CFC4
+      exceptional route with pinned LEVEL00/GFX assets and unload ownership. LEVEL10
+      has a single overlay where every other dir has a _LEVEL/_LEVEL1 pair - unexplained.
+
+  - id: indirect_dispatch_map
+    title: Jump tables decoded + every resident indirect-dispatch site enumerated
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [REBUILD/files/SCUS_942.88]
+    machine: [analysis/phase3_dispatch_map.json, config/semantic_state.yaml]
+    evidence: analysis/phase3_dispatch_map.json
+    command: python3 tools/phase3_dispatch_map.py
+    guard: tests/test_phase3_dispatch.py
+    canon: ObsidianVault/Canon/Systems/SYS_indirect_dispatch_map.md
+    mod_contract: >
+      mover-VM opcodes 0x8001B2F4 (26, bounded by sltiu 26 - a new opcode needs the
+      BOUND raised, not just a slot); plant behaviours 0x8001B848 (index = type - 2);
+      berry throw 0x8001B1C0. UNSAFE ASSUMPTION TO AVOID: that the berry table can be
+      extended in place - its 5 slots point at INTERIOR OFFSETS of berry_throw_dispatch
+      (0x8004719C/A8/B4/BC/C8), not at independent functions, so there is no spare slot
+      and no clean entry point for a 6th berry.
+    supersedes: []
+    residuals: >
+      The later exhaustive slicer classifies all 95 resident jr sites: 36 tables,
+      45 computed code jumps, and 14 bounded unresolved sites with reasons.
+      object_pointer_list 0x80096B98 is RAM/BSS populated at load time and is now
+      independently enumerated at all 42 anchors in phase3_render_descriptors.json.
+
+  - id: player_and_contact_integrators
+    title: Player/contact velocity triples, contact gravity, and the speed field
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [red_berry_thrown.sav]
+      note: >
+        stage anchor save taken from analysis/phase2_stage_baseline.json (hash-pinned
+        there); the berry's known 128/frame^2 fall law is the BUILT-IN CONTROL - a run
+        that cannot rediscover gravity from the bytes must not be trusted.
+    machine: [config/record_types.yaml, config/semantic_state.yaml]
+    evidence: analysis/phase3_unknown_fields.json
+    command: python3 tools/phase3_unknown_fields.py
+    guard: tests/test_phase3_records.py::test_velocity_fields_and_ttl_are_typed
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      Player velocity = +0x2C/+0x30/+0x34 (s32, record-relative; absolute 0x800A652C/
+      30/34); contact velocity = +0x0C/+0x10/+0x14 with gravity_per_tick +0x18 = 128.
+      A velocity is a MOVE PROPOSAL: the integrator may CLAMP the resulting position
+      (collision/ground), so writing a velocity does NOT guarantee the move. The
+      contact velocity is PRE-INTEGRATED (at tick t it already holds tick t+1's delta).
+      UNSAFE ASSUMPTION TO AVOID: that player +0x30 is a "knockback" field - it is the
+      vertical VELOCITY; the on-hit -1024 write is just one writer.
+    supersedes:
+      - "player 0x800A6530 named 'knockback_velocity' (it is velocity_y; knockback is
+         a vertical impulse INTO it)"
+    residuals: >
+      player +0x38 tracks hypot(vx,vz) to ~1 unit but the exact formula is unproven
+      (runtime_seen, not confirmed). player +0x20/21 and +0x28/29 still unknown.
+
+  - id: actor_motion_and_y_disproof
+    title: Actor horizontal velocity sample and bounded Y-field residual
+    confidence: partial
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [level01.sav]
+      note: >
+        level01.sav only; one moving actor (id 14) captured for 40 frames, with
+        19 moved-frame deltas. The artifact retains promoted matches but not the
+        rejected Y-candidate table.
+    machine: [config/record_types.yaml]
+    evidence: analysis/phase3_unknown_fields.json
+    command: python3 tools/phase3_unknown_fields.py
+    guard: tests/test_phase3_records.py::test_layouts_validate
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      The sampled actor exposes velocity_x +0x1C and velocity_z +0x24. UNSAFE
+      ASSUMPTION TO AVOID: naming +0x20 as velocity_y from layout symmetry. No
+      campaign-wide absence claim is supported until rejected candidates are retained
+      across vertical-motion actor variants. A mod may consume the confirmed X/Z
+      fields but must treat vertical ownership as unresolved.
+    supersedes:
+      - "the absolute claim that actors have no stored Y velocity; the retained
+         artifact did not preserve the advertised 42-anchor/92-tick disproof"
+    residuals: >
+      actor +0x14..0x23 remains partly unknown. Re-run vertical-motion samples across
+      actor families and retain every aligned s16/s32 candidate's match count before
+      promoting either +0x20 or a whole-campaign absence claim.
+
+  - id: contact_pool_ttl_retirement
+    title: Contact slots retire by TTL expiry — why the pool never fills
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: []
+      note: >
+        the 42 centrally declared strict-pristine anchors (pinned in the artifact); the TTL countdown
+        itself was first observed in red_berry_thrown.sav during the drainer run
+        (analysis/phase3_unknown_fields.json, which pins that save), and the capacity
+        hang in analysis/phase2_capacity_hang_proof.json.
+    machine: [config/record_types.yaml, config/semantic_state.yaml]
+    evidence: analysis/phase3_record_probe.json
+    command: python3 tools/phase3_record_types.py --probe
+    guard: tests/test_phase3_records.py::test_pristine_never_approaches_the_contact_capacity_hang
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      +0x22 is a TIME-TO-LIVE COUNTDOWN (not a type); the slot is RETIRED at 0. That is
+      the ONLY reclamation mechanism - contacts free themselves. The allocator
+      (0x80059E44) is a free-slot search with NO full-array escape, so an all-64
+      occupied pool HANGS the game. Pristine peaks at 4/64 (headroom 60) precisely
+      BECAUSE TTLs expire. UNSAFE: a mod that REFRESHES TTLs, or holds slots open,
+      destroys the mechanism that keeps the pool drained and can reach the hang.
+    supersedes:
+      - "contact +0x22 named 'active_type' (it is a TTL countdown; the walker gate's
+         '> 0' means 'TTL not expired', not 'has a type')"
+      - "occupancy measured as 'slot has non-zero bytes' (dead slots keep RESIDUE -
+         that metric falsely reads 64/64)"
+    residuals: "contact +0x26 counts down beside the TTL and freezes at expiry; purpose unproven."
+
+  - id: transition_ownership_and_load_gap
+    title: Scene-transition ownership, the load gap, and the full actor rosters
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: []
+      note: all 16 from-boot go_to_end movies (hash-pinned in the artifact)
+    machine: [analysis/phase3_transition_reset.json, config/record_types.yaml]
+    evidence: analysis/phase3_transition_reset.json
+    command: python3 tools/phase3_transition_reset.py --all
+    guard: tests/test_phase3_transition.py
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      THE SCENE ID (0x80082504) FLIPS 450-1170 FRAMES BEFORE THE WORLD EXISTS - a mod
+      hooking "scene changed" runs in an EMPTY world for 8-20 seconds; wait for the
+      actor roster (0x8009FE04) to populate OR health_true > 0 (BOTH signals are
+      needed: Bug Bar loads no roster, and 4 stages write health after the roster).
+      THE LOAD OWNS THE WORLD; THE EXIT FREES NOTHING - actor/plant/contact data stays
+      resident and stale, so reading those tables in the shell reads the PREVIOUS
+      level. SESSION-OWNED (a mod must NOT reinitialise these on load, or it wipes the
+      player's progress): health_true, lives, grain_count, enemy_permanence_quota, seed
+      counters. CAPACITY: the actor roster is a FIXED 40 slots and FOUR stages load
+      exactly 40 (Tunnels, Riverbed Run, The Tree, Riverbed Flight) - a mod adding an
+      actor there has NOWHERE to put it.
+    supersedes:
+      - "the LEVEL01-only load gap of 540 frames presented as THE gap (it is a range,
+         450-1170)"
+      - "'world ready = actor roster populated' (roster-only readiness mis-reported Bug
+         Bar's gap as 7680 frames; Bug Bar loads NO roster)"
+    residuals: >
+      Training plus all 15 campaign stages are measured. All twelve required record
+      families now have an evidence-backed ownership model or a structured blocker;
+      the frontend create/save/load/delete lifecycle remains explicitly blocked for a
+      future frontend campaign rather than being assigned a guessed reset law.
+
+  - id: mechanic_ownership_frontier
+    title: Every Phase-1 mechanic bound to functions/state (computed gaps = 0)
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: []
+      note: derived from the committed census + symbols + registries
+    machine: [analysis/phase3_ownership_graph.json, config/semantic_state.yaml,
+              analysis/mechanics_baseline.yaml]
+    evidence: analysis/phase3_ownership_graph.json
+    command: python3 tools/phase3_ownership_graph.py
+    guard: tests/test_phase3_ownership.py
+    canon: ObsidianVault/Canon/Systems/SYS_phase3_semantic_architecture_frontier.md
+    mod_contract: >
+      The graph is a FRONTIER BOUND, not a completion claim: it says every mechanic has
+      an address anchor and every cited address has an owner. UNSAFE ASSUMPTION TO
+      AVOID: reading "gaps: 0" as "Phase 3 is done" - typed records, lifetimes and
+      interface contracts are separate requirements.
+    supersedes: []
+    residuals: >
+      One row is not_applicable by design. All 107 mechanics carry functions, state,
+      assets, overlay, readers, writers, and lifecycle evidence or structured
+      three-part blockers; deeper Phase-4 subsystem semantics remain outside this
+      bounded architecture frontier.
+
+  - id: camera_is_a_derived_output
+    title: The camera struct is a DERIVED OUTPUT (both triples decay when poked)
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: []
+      note: >
+        stage01 anchor from analysis/phase2_stage_baseline.json (hash-pinned in the
+        artifact); Phase-2 already proved the struct moves under L1 and is static
+        under no input.
+    machine: [config/record_types.yaml, analysis/phase3_camera_record.json]
+    evidence: analysis/phase3_camera_record.json
+    command: python3 tools/phase3_camera_record.py
+    guard: tests/test_phase3_camera.py
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      camera_pos +0x00 (s32 x3) and camera_target +0x0C (s32 x3) at 0x80095358, written
+      by camera_follow_update 0x8004DF18. The position exponentially chases the target,
+      closing ~0.15 of the gap per frame. UNSAFE ASSUMPTION TO AVOID: that writing this
+      struct moves the camera - it does NOT. Poking camera_pos is pulled back by the
+      follow law; poking camera_target is recomputed away next tick. The struct is an
+      OUTPUT: to move the camera a mod must change the producer (0x8004DF18) or the
+      inputs it reads. Reading the struct is safe; writing it is theatre.
+    supersedes:
+      - "the assumption that the camera's second triple is a prev-tick mirror (it is
+         the TARGET; it never equals the previous camera_pos nor the player position)"
+    residuals: >
+      camera +0x18..0x5F is still unknown (varying s16s at +0x18, +0x24, +0x2A). The
+      rotation/yaw representation and the target's own derivation from player state are
+      unproven.
+
+  - id: render_descriptors_are_loader_patched
+    title: Object render descriptors — stable pointers, scene-dependent post-load bytes
+    confidence: partial
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: []
+      note: >
+        all 42 centrally declared, hash-pinned strict-pristine anchors (pinned in
+        the artifact). The former Training save is rejected as non-pristine because
+        its embedded media was ALLMODS. This table is
+        NOT in the EXE - it is RAM/BSS filled at load time, which is exactly why the
+        dispatch map deferred it to a live enumeration.
+    machine: [analysis/phase3_render_descriptors.json]
+    evidence: analysis/phase3_render_descriptors.json
+    command: python3 tools/phase3_render_descriptors.py
+    guard: tests/test_phase3_render_descriptors.py
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      object_pointer_list 0x80096B98 maps kind (0..49) -> a 0xC-byte descriptor. The
+      POINTERS are identical in every level, and descriptors are SHARED (kinds 0 and 1
+      point at the same one) and NOT a contiguous array (variable stride) - so a mod
+      must follow the pointer, never index a base by kind*0xC. Observed invariant
+      bytes are +0x00,+0x01,+0x02,+0x03,+0x05,+0x09,+0x0B. Post-load values at
+      +0x04,+0x06,+0x07,+0x08,+0x0A vary across anchors
+      (+0x04/+0x06 vary for all 50 kinds). UNSAFE ASSUMPTION TO AVOID: treating
+      any scene-dependent byte as a durable one-time edit, or claiming the loader
+      wrote it from cross-anchor snapshots alone. Re-apply only after the owning
+      writer/lifetime is traced; do not patch an inferred loader.
+      The former +0x00,+0x02,+0x03,+0x09 changes were ALLMODS contamination,
+      not original-game behavior, and are superseded by the strict-pristine census.
+    supersedes:
+      - "the assumption that a kind -> descriptor edit is a one-time global change"
+      - "the overclaim that only CLUT/texpage vary, all identity/geometry bytes are
+         stable, and the loader writer was already causally traced"
+    residuals: >
+      Writer causality is open. loadState restores post-load RAM and clears watches,
+      so the current census cannot identify which loader/fixup/runtime instruction
+      writes the varying bytes. Next: cold-boot or transition with a write watch over
+      0x80081D98..0x80082060 and bank instruction-attributed PCs. Field meanings beyond
+      the sprite examples remain inferred; non-sprite renderers are uncharacterised.
+
+  - id: sfx_dispatch_interface
+    title: sfx_dispatch (0x80050994) — a callable "play a sound" interface, and its trap
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: []
+      note: >
+        stage01 anchor (hash-pinned in the artifact). Every id is invoked from a FRESH
+        loadState on an isolated instance, because debugger.callFunction really runs
+        guest code and mutates state.
+    machine: [analysis/phase3_sfx_interface.json]
+    evidence: analysis/phase3_sfx_interface.json
+    command: python3 tools/phase3_sfx_interface.py
+    guard: tests/test_phase3_sfx_interface.py
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      sfx_dispatch(a0 = sfx id) plays a sound; the id is SIGNED (the carried- and
+      dropped-seed impact arms both pass a0 = -4). Swept -24..48 on pristine: 27 ids
+      key a voice on, each starting a DISTINCT sample (no aliases in that range).
+      UNSAFE ASSUMPTION TO AVOID: branching on the return value. v0 is NOT a success
+      flag - it reads 0x4 for every id that PLAYS and ALSO for 36 ids that stay
+      SILENT (a few invalid ids return junk). "It returned 4, so it worked" is exactly
+      the wrong inference: only the SPU (a voice keying on) proves a sound started.
+      The function is safe to call from a paused guest and really does produce audio.
+    supersedes: []
+    residuals: >
+      a1..a3 were held at 0 - their meaning (volume? position? voice hint?) is
+      uncharacterised. Ids outside -24..48 are unscanned, and the id -> sound NAME
+      mapping is not established (only id -> distinct sample address).
+
+  - id: jr_dispatch_frontier_resolved
+    title: The 94-site jr frontier — 36 tables decoded, 45 were never tables at all
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [REBUILD/files/SCUS_942.88]
+    machine: [analysis/phase3_jr_tables.json]
+    evidence: analysis/phase3_jr_tables.json
+    command: python3 tools/phase3_jr_tables.py
+    guard: tests/test_phase3_jr_tables.py
+    canon: ObsidianVault/Canon/Systems/SYS_indirect_dispatch_map.md
+    mod_contract: >
+      36 jump tables recovered by backward-slicing the compiler idiom (sltiu bound /
+      sll scale / lui+addu base / lw / jr): 869 entries, ALL of which land in named
+      functions. A mod adding a handler must raise the sltiu BOUND, not merely append
+      to the table - the bound is what makes an index reachable. UNSAFE ASSUMPTION TO
+      AVOID: that every `jr <reg>` is a table dispatch. 45 of the 95 sites jump INTO
+      CODE (base + index<<k - unrolled loops / jump islands, heavy in the GTE paths):
+      there is NO table there to patch, and writing to the address the slicer would
+      have "recovered" would corrupt code.
+    supersedes:
+      - "the dispatch map's framing of '94 jr sites with undecoded tables' as the WP4
+         frontier - most of them never had a table"
+    residuals: >
+      14 sites remain unresolved: 8 whose jr register is defined by opcode 0x0D (ori -
+      likely constant targets), 2 with no plausible sltiu bound, 2 whose decoded entries
+      fall outside censused code (a wrong slice, deliberately NOT reported as a table),
+      1 addu of two non-shifted values, 1 gp-relative base.
+
+  - id: jalr_callback_slots
+    title: Indirect CALL sites — 30 global callback slots (the real hook mechanism)
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [REBUILD/files/SCUS_942.88]
+      note: >
+        static classification from the pristine EXE; the installed handlers are read
+        LIVE at the stage01 anchor (hash-pinned in the artifact).
+    machine: [analysis/phase3_jalr_callbacks.json]
+    evidence: analysis/phase3_jalr_callbacks.json
+    command: python3 tools/phase3_jalr_callbacks.py
+    guard: tests/test_phase3_jalr_callbacks.py
+    canon: ObsidianVault/Canon/Systems/SYS_indirect_dispatch_map.md
+    mod_contract: >
+      Of 139 indirect calls: 99 go through 30 GLOBAL CALLBACK SLOTS, 36 through
+      FUNCTION-POINTER FIELDS of records (offsets +0x8, +0x10, +0x14, +0x0 ... - a
+      typed-record fact), 4 unresolved. A slot is the game's own hook mechanism: write
+      a pointer into it and the call is redirected WITHOUT patching a single
+      instruction - far safer than a code cave. Installed at stage01: trapIntrVSync
+      (0x80080EBC), def_cbsync (0x800818C4), def_cbread (0x80081BDC), music_loop_poll
+      (0x800818C8), printf (0x8007FBC4), the pad_direct_* family (0x80081CF0..0x80081D74),
+      _dws (0x800A65D8). UNSAFE ASSUMPTIONS TO AVOID: (1) that a slot holding NULL is a
+      "free hook" - whether the call site guards against NULL is UNVERIFIED, and calling
+      through a slot a mod half-installs will jump to garbage; (2) that any slot may be
+      redirected casually - trapIntrVSync/def_cbsync/def_cbread run in INTERRUPT
+      CONTEXT, so a replacement must be interrupt-safe and preserve the original ABI;
+      (3) that these handlers are constant - they were read at ONE anchor and may be
+      re-installed per scene.
+    supersedes: []
+    residuals: >
+      NULL-guard behaviour at each call site is unverified. Handlers were resolved at a
+      single anchor - a per-scene sweep would show which slots are re-installed on load.
+      The 36 function-pointer struct fields are not yet attributed to their owning
+      record types.
+
+  - id: actor_event_callback_field
+    title: actor_record +0x7C is a per-actor EVENT CALLBACK (function pointer)
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: []
+      note: >
+        all 42 centrally declared strict-pristine anchors (pinned in the artifact); 1286 live actor
+        instances sampled. Cross-referenced with analysis/phase3_jalr_callbacks.json,
+        which independently shows a jalr calling through a struct field at +0x7C.
+    machine: [config/record_types.yaml, analysis/phase3_fn_ptr_fields.json]
+    evidence: analysis/phase3_fn_ptr_fields.json
+    command: python3 tools/phase3_fn_ptr_fields.py
+    guard: tests/test_phase3_fn_ptr_fields.py
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      actor_record +0x7C (u32) is a FUNCTION POINTER the game calls through (a jalr at
+      that offset). Observed handlers are effect/sound callbacks: enemy_strike_contact_effect,
+      actor_sound40_on_low_state, mosquito_species_callback, aimed_object_spawn_sfx,
+      play_object_sound_42, actor_event_sound_trigger. A mod can give an actor new
+      behaviour by installing a pointer here - PER ACTOR, without touching code.
+      UNSAFE ASSUMPTIONS TO AVOID: (1) that the field is always populated - only 61% of
+      live actor instances hold a callback, so the other 39% have NONE and any caller
+      must null-check; (2) that an installed pointer persists - actor records are
+      rebuilt from level data on every load (see the transition finding), so a mod must
+      re-install after the world is ready, not when the scene id flips; (3) that the
+      handler's ABI is free - it is called with the engine's own argument convention,
+      which is not yet characterised.
+    supersedes: []
+    residuals: >
+      The callback's ABI (arguments, return, whether it may block) is uncharacterised.
+      The remaining jalr struct-field offsets (+0x0, +0x4, +0x8, +0xC, +0x10, +0x14,
+      +0x18, +0x28, +0x2C, +0x34, +0x38, +0x3C) belong to records NOT yet typed - they
+      are the natural next targets for WP5.
+
+  - id: static_reader_writer_xrefs
+    title: Static data xrefs — readers/writers for owned state, and what a static scan CANNOT see
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [REBUILD/files/SCUS_942.88]
+    machine: [analysis/phase3_xrefs.json]
+    evidence: analysis/phase3_xrefs.json
+    command: python3 tools/phase3_xrefs.py
+    guard: tests/test_phase3_xrefs.py
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      For every owned semantic address, the instructions that READ and WRITE it, resolved
+      from the pristine image (gp-relative via gp=0x80081D98, and lui-formed absolute).
+      38/58 owned entries have static xrefs. THE LOAD-BEARING CAVEAT: 20369 of 26557
+      loads/stores go through a RUNTIME POINTER and cannot be resolved statically at all.
+      UNSAFE ASSUMPTION TO AVOID: reading "no xrefs" as "nothing touches this". It does NOT
+      mean that - it means either (a) the state is a TABLE read by INDEX (base + idx*4),
+      whose consumers are enumerated in the dispatch map, or (b) it is reached through a
+      pointer / written by overlay or mod code outside this image. Every such entry carries
+      an explicit `no_static_xref_because` saying which.
+    supersedes:
+      - "the registry's 43 hand-curated `writers`, which were never checked against the
+         image; they are now VERIFIED (0 real contradictions: 6 are pointer-based writes the
+         method cannot see, 1 lives in overlay space outside the resident EXE)"
+    residuals: >
+      Pointer-based accesses (the majority) need a dynamic complement - the DuckStation fork
+      has accessLog/xrefsTo, but accessLog is dead under CachedInterpreter, so this needs a
+      different lane. Overlay code is not scanned (it is not in the resident image).
+
+  - id: hook_continuation_contracts_machine_checked
+    title: Hook continuation contracts, machine-checked (gate bullet 4)
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [REBUILD/files/SCUS_942.88]
+      note: the corpus is the 15 hooks declared in mod/hook_caves.yaml (shipped mods).
+    machine: [analysis/phase3_hook_contracts.json]
+    evidence: analysis/phase3_hook_contracts.json
+    command: python3 tools/phase3_hook_contract.py
+    guard: tests/test_phase3_hook_contract.py
+    canon: ObsidianVault/Canon/Hooks/HOOK_forbidden_patch_ranges.md
+    mod_contract: >
+      mod/hook_caves.yaml DECLARES a delay_slot policy and a clobbers list per hook, and
+      validate_mod_layout.py enforces the BOOKKEEPING (bytes stay in declared ranges,
+      expected matches pristine). NOTHING checked those declarations against the code
+      until now. The model: every instruction of the ORIGINAL trace (A..resume) must
+      execute EXACTLY ONCE in the PATCHED trace (j cave; the delay slot at A+4 WHICH
+      ALWAYS FIRES; the cave; j resume) — from which the delay-slot, load-delay, drop and
+      double-execution checks all follow. The contract for a GAMEPLAY mod is NOT "preserve
+      every live register" — changing a live register is often the point (the spawn-speed
+      cave doubles a3/t1/t2/t3). It is: corrupt NO live register you did not DECLARE in
+      clobbers, and commit NO structural hazard. Result on the shipped corpus, discharged
+      against the PINNED full 4-code-mod image (hash-checked; a stale image is not trusted):
+      5 proven outright + 9 exact-confidence DISCHARGED + 1 DEGRADED-but-post-build-
+      discharged (all live-register writes declared or saved, all displaced branches
+      reimplemented, golddrop's blez deletion declared as drops:), 0 cave-unverified,
+      0 owed, 0 REFUSED, 0 hard violations. Liveness is a real intra-
+      function CFG backward-liveness fixpoint (delay-slot BBs, HI/LO/COP2, o32 caller-save
+      at calls, arity fixpoint); a SECOND witnessed-only solution gives it TEETH — an
+      undeclared clobber of a provably-read register is a hard violation with a witness.
+      UNSAFE ASSUMPTIONS TO AVOID: (1) that a `jr`/branch cannot land inside your hook
+      window — at berry_throw_dispatch, 0x80047174 IS branched to from 0x80047134/40, so
+      those paths skip the trampoline; (2) that k0/k1 are free scratch — the exception
+      handler clobbers them ASYNCHRONOUSLY; (3) that a displaced load can be moved without
+      its consumer — R3000 has NO load interlock.
+    supersedes:
+      - "the hand-declared clobbers/delay_slot policies in mod/hook_caves.yaml being taken
+         on trust — they are now checked against the pristine image AND the built cave"
+      - "the earlier 'post-build not implemented / 7 undischarged obligations / 3 refused'
+         state — superseded by the CFG-fixpoint accounting (9 exact discharges + 1
+         recovered-extent degraded discharge, 0 refused)"
+    residuals: >
+      Discharge proves the cave corrupts no UNDECLARED live register and commits no
+      structural hazard; it does NOT prove the cave's VALUES are behaviorally correct (that
+      the doubled speed / reskinned color is the intended game effect) — that is Phase 5.
+      The recovered-extent hook (terrain_emitter_color, census hole) discharges over an
+      OVER-approximate frame, marked confidence=degraded, never proven. The image is a
+      claim about ONE build, pinned by sha256 and rebuilt by the clean-clone check.
+
+  - id: semantic_lifetime_complete
+    title: Init / reset / overlay-lifetime for every owned entry (gate bullet 2 complete)
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, build/SCUS_942.88.patched]
+      note: >
+        RAM-scalar state MEASURED across a real scene transition (LEVEL01 go_to_end movie,
+        pinned in the artifact); ROM tables / overlay entries DERIVED from their address.
+    machine: [analysis/phase3_semantic_lifetime.json, config/semantic_state.yaml]
+    evidence: analysis/phase3_semantic_lifetime.json
+    command: python3 tools/phase3_semantic_lifetime.py
+    guard: tests/test_phase3_semantic_lifetime.py
+    canon: ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+    mod_contract: >
+      Every owned semantic address has init / reset / overlay-lifetime. ROM vs RAM is TWO
+      tests, not one: an address AT OR ABOVE the loaded-image endpoint 0x80082800 is
+      BSS/heap RAM and can NEVER be ROM (it is not in the on-disc image); WITHIN the image
+      [0x80010000,0x80082800) static writers distinguish self-modified data (RAM) from a
+      const table (ROM). Result: 12 resident_rom (in-image const tables, init at load,
+      never reset); 50 resident_ram; 1 overlay (training_step). UNSAFE ASSUMPTIONS TO
+      AVOID: (1) that "no static writer => immutable ROM" — the xref scan CANNOT see
+      pointer-based (base+offset) stores, so the actor table, camera struct, mesh/bone
+      buffers, plant slots and object-pointer list are pointer-written RAM with 0 static
+      writers; treating them as ROM (as an earlier version did) is flatly wrong. (2)
+      reading a SINGLE transition as ground truth — one transition cannot interpret a
+      session field (lives/health/grain read 9->9 or 0->N or 0->0 depending on the frame),
+      so the SESSION-OWNED set (player_lives, grain_count, health_true,
+      enemy_permanence_quota — survive a level exit, must NOT be reinitialised on load or
+      you wipe progress) defers to the authoritative 16-stage transition sweep, not the
+      single sample.
+    supersedes:
+      - "the earlier '< 0x80090000 => ROM' address threshold (mislabeled BSS as ROM)"
+      - "its over-correction 'ROM iff no static writers' — mislabeled pointer-written RAM
+         above the loaded image as immutable ROM (actor table, camera, mesh buffer, ...)"
+    residuals: >
+      Reset for RAM TABLES/pointers is deferred to the per-record 16-stage sweep
+      (phase3_transition_reset.json); the single-transition scalar sample varies run to
+      run and is recorded honestly but is not the reset authority for session fields. A
+      full per-stage scalar sweep would tighten the reloaded-vs-reset call for
+      level-specific (non-session) scalars.
+
+  - id: overlay_boundary_map
+    title: Overlay boundary map — RAM ranges, entries, and scene bindings joined (gate bullet 3)
+    confidence: confirmed
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [config/overlays.yml, tools/build_baselines.json, analysis/functions.json, analysis/phase3_scene_asset_graph.json]
+    machine: [analysis/phase3_overlay_map.json]
+    evidence: analysis/phase3_overlay_map.json
+    command: python3 tools/phase3_overlay_map.py
+    guard: tests/test_phase3_overlay_map.py
+    canon: ObsidianVault/Canon/Systems/SYS_scene_asset_load_graph.md
+    mod_contract: >
+      The overlay boundary facts, joined for the first time from four artifacts. 20
+      overlays, each with its RAM range, function count, entry points, and the scenes
+      that load it (cross-verified against the scene-asset graph: LEVEL01 loads at scenes
+      1 and 6, etc). Region A (0x800B39A0) is the per-level LEVEL*.BIN swap buffer; region
+      B (0x800B5788) is MEMORY.BIN. UNSAFE ASSUMPTION TO AVOID: that an address in the
+      overlay RAM window (0x800B39A4..0x800BE5E8) has a FIXED meaning. It does NOT —
+      region A holds a DIFFERENT level's overlay each load, so all LEVEL*.BIN overlays
+      share base 0x800B39A0 and an entry VA there belongs to whichever overlay is
+      resident (the scene id 0x80082504 selects it). A cave that reads/writes there must
+      condition on the loaded overlay; hook_caves.yaml models overlays not at all — it is
+      resident-EXE only.
+    supersedes: []
+    residuals: >
+      Region B (MEMORY.BIN, 69 fns) is far less characterised than region A. The 42
+      region-A entry points cannot be attributed to a specific level by address (shared
+      base) — a per-scene runtime trace would attribute them. Overlay symbol naming is
+      exhausted at the current pass (overlay_naming_priority is empty).
+
+
+  - id: spin_move_bounded_negative
+    title: A07 "spin / secret directional move" bounded negative (not disproven)
+    confidence: partial
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [level01.sav]
+      note: >
+        Runtime write-watch over the WHOLE player block on pristine media, paired
+        with the static EXE scan (phase2_spin_disproof.json).
+    machine: [analysis/phase3_spin_functional.json]
+    evidence: analysis/phase3_spin_functional.json
+    command: python3 tools/phase3_spin_functional.py --port 23473
+    guard: tests/test_phase3_spin_disproof.py
+    canon: ObsidianVault/Canon/Systems/SYS_a07_spin_external_lead.md
+    mod_contract: >
+      A07 is a BOUNDED negative, not a disproof. Established: across an exhaustive input
+      battery (true 8-way rotations, both handedness, all speeds, +every action,
+      idle/air/moving), the mode word 0x800A6580 never leaves {0,1,2,4,5,6}, and —
+      watching the WHOLE player block [0x800A6500,+0xC0) including the kick timer
+      0x800A657A — every observed writer belongs to a named function. No distinct spin
+      STATE or unknown writer routine was observed. UNSAFE ASSUMPTION TO AVOID: treating
+      named writers as proof that no spin branch exists. The kick is itself a branch
+      inside player_vertical_update that writes a separate timer, so the same shape
+      remains possible for A07. A mod must NOT treat either existence or absence as an
+      established hook contract.
+    supersedes:
+      - "the earlier absolute 'NO SPIN MOVE' claim"
+      - "the later 'bounded disproof' claim — named writer functions do not exclude a branch inside one"
+    residuals: >
+      A07 remains an external lead. The battery bounds observed state/writer behavior but
+      does not exclude a kick-shaped branch inside a named function or an untested
+      context. Next: obtain the secondary source's exact reproducible trigger and trace
+      the named input/player branches only after the behavior reproduces.
+
+  - id: bug_bar_thud_boss_bound
+    title: F09/D18 Thud (Stage-9 Bug Bar boss) bound by poke-falsification
+    confidence: partial
+    provenance:
+      media: pristine SCUS-94288
+      fixtures: [level_09.sav]
+      note: >
+        Live poke-falsification in scene 14; Thud is setpiece-spawned (chunk-31
+        all-zero), so a static binding is impossible.
+    machine: [analysis/phase3_thud.json]
+    evidence: analysis/phase3_thud.json
+    command: python3 tools/phase3_thud_trace.py --port 23473
+    guard: tests/test_phase3_thud.py
+    canon: ObsidianVault/Canon/Systems/SYS_thud_bug_bar_boss.md
+    mod_contract: >
+      The stage-9 boss (Thud) is live-enemy id 0x24 in table 0x80090748, HP@+0x6e=50,
+      berry-damageable via +0x5c bit 0x40 (dispatch 0x8005905C), driven by the mover-VM
+      interpreter FUNC_8004C13C (program ptr at +0x70) and a per-actor driver callback
+      +0x7c=0x8004A0F4. Defeat: HP<=0 -> mover_updater FUNC_8004D224 retires it (zeroes
+      the live-table slot, clears +0x5c bit 0x4000). A mod relocating or re-HP-ing the
+      boss must write +0x6e and respect the mover_updater retire path. UNSAFE
+      ASSUMPTION TO AVOID: that poking HP low defeats the boss — HP=1 does NOT retire;
+      only HP<=0 does, through the damage path, not a per-frame HP scan.
+    supersedes:
+      - "the D18/F09 'boss driver unresolved / actor source unknown' residual"
+    residuals: >
+      partial: the rolling-arena transform and Thud's multi-phase attack program
+      (mover-VM at the +0x70 program pointer) are undecoded. Boss identity, damage
+      path, and defeat mechanism are bound.

@@ -1,0 +1,74 @@
+schema_version: 1
+id: stage_identity_training
+description: "Pristine identity oracle for training: hash-pinned save anchor + stable-field equality (generated\
+  \ by gen_stage_identity_scenarios.py from analysis/phase2_stage_baseline.json \u2014 regenerate, don't\
+  \ hand-edit)."
+target:
+  disc: Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch:
+  profile: repro
+anchor:
+  type: save_state
+  path: phase3_pristine_training_gameplay_i5.sav
+  sha256: d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795
+phases:
+- id: anchored
+  trigger:
+    type: memory
+    address: 2148017412
+    width: u32
+    op: eq
+    value: 17
+    max_frames: 120
+    timeout_seconds: 120
+  assertions:
+  - id: training_enemy_quota
+    type: memory
+    address: 2148165006
+    width: u8
+    op: eq
+    expected: 4
+    description: pristine baseline value at this anchor (stable across 60 frames)
+  - id: training_equipped_berry
+    type: memory
+    address: 2148165015
+    width: u8
+    op: eq
+    expected: 0
+    description: pristine baseline value at this anchor (stable across 60 frames)
+  - id: training_grain
+    type: memory
+    address: 2148165025
+    width: u8
+    op: eq
+    expected: 0
+    description: pristine baseline value at this anchor (stable across 60 frames)
+  - id: training_lives
+    type: memory
+    address: 2148165024
+    width: u8
+    op: eq
+    expected: 5
+    description: pristine baseline value at this anchor (stable across 60 frames)
+  - id: training_player_grounded
+    type: memory
+    address: 2148164994
+    width: u8
+    op: eq
+    expected: 1
+    description: pristine baseline value at this anchor (stable across 60 frames)
+  - id: training_power_word
+    type: memory
+    address: 2148165008
+    width: u8
+    op: eq
+    expected: 0
+    description: pristine baseline value at this anchor (stable across 60 frames)
+  - id: training_scene_id
+    type: memory
+    address: 2148017412
+    width: u32
+    op: eq
+    expected: 17
+    description: pristine baseline value at this anchor (stable across 60 frames)

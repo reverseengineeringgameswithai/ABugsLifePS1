@@ -1,0 +1,114 @@
+{
+  "row": "C12_health_leaves",
+  "date": "2026-08-03",
+  "source_state": "original_game",
+  "status": "substantiated_partial",
+  "phase4_disposition": "bounded_exhausted_move_on",
+  "source_identity": {
+    "path": "REBUILD/files/SCUS_942.88",
+    "size": 471040,
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "load_address": "0x80010000"
+  },
+  "capsule_check": {
+    "result": "no relevant C12/health/leaf capsule found under the declared Phase4 v2 external-evidence root",
+    "disposition": "offline pristine-EXE and retained-ASM analysis answers the row's required RAM and block-flow questions; no live escalation was justified",
+    "not_claimed": "absence of a relevant capsule is not campaign closure evidence"
+  },
+  "corrected_health_binding": {
+    "true_signed_health": "s16 0x800A6594",
+    "obsolete_interpretation": "0x800A6594 is not a separate mercy counter",
+    "not_health": "0x800A7E2A is a free-running HUD leaf animation/pulse field",
+    "normal_refill": 4
+  },
+  "generic_enemy_death_producer": {
+    "function": "enemy_update_deathanim",
+    "health_load_pc": "0x800499A0",
+    "health_gate_pc": "0x800499A8",
+    "gate": "signed health must be below 4",
+    "rng_cursor": "0x800822F4",
+    "rng_test": "(rng_byte & ((2 << health) - 1)) == 0",
+    "odds": {
+      "health_0": "1/2",
+      "health_1": "1/4",
+      "health_2": "1/8",
+      "health_3": "1/16"
+    },
+    "suppression": "enemy record +0x5C flag 0x40 suppresses this producer",
+    "spawn_pc": "0x80049A10",
+    "constructor": 38,
+    "spawn_position": "enemy X, enemy Y - 0x1000, enemy Z",
+    "allocation_profile": 13,
+    "cadence": "one evaluation in the generic death-animation retirement path, not a periodic mercy timer"
+  },
+  "secondary_producer": {
+    "source_constructor": 50,
+    "source_action": 50,
+    "source_metadata_va": "0x80079804",
+    "retirement_effect_selector": 23,
+    "effect_target": "0x80059D78",
+    "unconditional_output_constructor": 58,
+    "leaf_gate": "health < 4 and (rng_byte & 7) == 0",
+    "leaf_probability": "1/8",
+    "leaf_spawn_pc": "0x80059DEC",
+    "leaf_spawn_position": "source X, source Y - 0x800, source Z",
+    "bookkeeping_id": 29,
+    "bounded_unknown": "the player-facing semantic name of constructor 50 is not established; its numeric producer boundary and behavior are established",
+    "exclusion": "native thrown-berry constructors 2, 5, 8, 11, 16, 45, and 48 have effect selectors 1, 2, 5, 4, 3, 9, and 8 respectively, so ordinary thrown-berry cleanup is not this producer"
+  },
+  "leaf_metadata": {
+    "constructor": 38,
+    "metadata_va": "0x80079714",
+    "raw_hex": "0900c800d200000164006400d6ff0000e3808080",
+    "action": 9,
+    "ttl_seed_logic_ticks": 200,
+    "logic_rate_hz": 30,
+    "untouched_lifetime_seconds_approx": 6.67,
+    "radius_add": 100,
+    "effective_pickup_radius_scaled_units": 400,
+    "flags": "0xE3"
+  },
+  "pickup": {
+    "handler": "0x80058864",
+    "health_load_pc": "0x8005887C",
+    "health_store_pc": "0x80058890",
+    "effect": "signed health += 1",
+    "hard_cap_in_handler": false,
+    "natural_cap_boundary": "ordinary producers require health < 4, but an already-spawned leaf is not clamped by the collection handler",
+    "sfx": 62,
+    "bookkeeping": -4,
+    "retirement": "common pickup tail writes state 7 and TTL 1, causing retirement on the next 30 Hz logic tick"
+  },
+  "health_writer_boundary": {
+    "damage": "0x8004A888 stores health - 1",
+    "leaf_heal": "0x80058890 stores health + 1",
+    "fifty_grain_refill": "0x80055124 stores 4",
+    "player_initialization": "0x8005B30C stores 4",
+    "serialization": "no direct health serializer writer was found; prior C02/C03 serializer analysis also places health outside the serialized progression payload"
+  },
+  "retained_fixtures": {
+    "health_drop_sav": "fea8c4f1ffb57fd0aacb189232cddd7d5d500e05650d1de22c018bcb664e7cb9",
+    "health_test_sav": "b8df83d76fce8da42c4020909219be27aa3b8319542e63ff6baea05a3fa4e6c7",
+    "b07_movie": "d587fec32c94dd618302cdcaf0f24f3c10007d1a4ccff321a50de4637eb59817",
+    "b07_state": "2de4884672ebc3b1a90ede89315881e5993cba21a203e57a3138421065611a9d",
+    "use_boundary": "the B07 movie predates recorded Interpreter-mode provenance and is poll-only historical evidence; it was not used for CPU-trace causality"
+  },
+  "evidence_hashes": {
+    "drop_gate_asm": "6abdd8bc1c0faa20736b3137819ceaea01a6be33f5b6cd6c43ba42fa6dad69ad",
+    "death_entry_asm": "16e6d96c51410ad994e69970621b59e1980b0ecd93669dab6647a53f18e0a340",
+    "collect_asm": "b2914d254eab50644d180815a5f6f88ecd52da9a9960476f949ca0d8da11ab9c",
+    "collect_tail_asm": "a714fd3a7f05128eef2f27a734ce14cf01b45eae3e59643c2aac0fd69816e41a",
+    "contact_update_asm": "44fa783a5d0fd1755001f2bfce0bdb9036c008beb6fa7bb2145fcc2b0c42b910",
+    "health_reference_census": "9f945c6c45e50fa825b607601bdc2c9a3238b75b4ccb981869ea56946f2f1615",
+    "corrected_descriptor_decoder_output": "580520fc9faa3ea0d37ed9e3d87adf652ab01cdaf89b029ba6c0ae734953909f",
+    "dispatch_table_decoder_output": "01be00a6bf3bd04f9f94a50a51d12619c0c7dee626850fd23efe1ff22c8e0ea9"
+  },
+  "bounded_residuals": [
+    "a modern Interpreter-recorded natural leaf movie would provide a current visual/runtime oracle but would not change the static mechanism",
+    "the artificial case of collecting multiple already-spawned leaves may overfill health because the handler has no clamp",
+    "constructor 50 has a numeric and block-flow identity but not a confirmed player-facing object name",
+    "the exact shared TTL decrement instruction is inherited from the live-confirmed contact-object lifecycle model rather than re-attributed specifically for C12"
+  ],
+  "movie_required_now": false,
+  "reopen_condition": "request a natural Interpreter movie only if strict visual-oracle closure, constructor-50 naming, or the multi-leaf overfill edge becomes material"
+}

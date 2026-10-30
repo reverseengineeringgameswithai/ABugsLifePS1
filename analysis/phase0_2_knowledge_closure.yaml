@@ -1,0 +1,332 @@
+schema: abl-knowledge-closure/1
+generated: 2026-07-12
+definition: ObsidianVault/Playbooks/Game Solving Roadmap - From Reconstruction to Reliable Modding.md
+requirements:
+  - provenance
+  - machine_representation
+  - reproducible_evidence
+  - executable_guard
+  - obsidian_placement
+  - mod_consumption_contract
+  - clean_checkout_durability
+  - confidence_residual_supersession
+
+provisioned_external_source_inputs:
+  - importer: tools/build_terrain_collision_disc.py
+    module: native_collision_from_heightfield
+    path: tools/native_collision_from_heightfield.py
+    source: ~/Downloads/ABL/tools/native_collision_from_heightfield.py
+    sha256: 0fc587dcc5e446f294cfaf57229d03e45130eef567767be080869e82a2946120
+    size: 5448
+    media_class: noncopyrighted_python_source
+  - importer: tools/tier3_native_objects.py
+    module: tier3_native_object_inventory
+    path: tools/tier3_native_object_inventory.py
+    source: ~/Downloads/ABL/tools/tier3_native_object_inventory.py
+    sha256: 492a0cf331ec0d78eab1a1566cabb556058d5dc2fb772b464cb272593d99d6ed
+    size: 6466
+    media_class: noncopyrighted_python_source
+  - importer: tools/training_tutorial_stager.py
+    module: patch_training_overlay
+    path: tools/patch_training_overlay.py
+    source: ~/Downloads/ABL/tools/patch_training_overlay.py
+    sha256: 66e8a0fdfb0c730bf6dc40012ae94a64fea8676d4764df0a3885be0e575aaf25
+    size: 19742
+    media_class: noncopyrighted_python_source
+  - importer: tools/training_tutorial_stager.py
+    module: training_board_edit
+    path: tools/training_board_edit.py
+    source: ~/Downloads/ABL/tools/training_board_edit.py
+    sha256: 06fbc29749eaa784be8f503318c7ea22ae1eb444a089e1d42b00381d98fed918
+    size: 16974
+    media_class: noncopyrighted_python_source
+  - path: tests/test_training_board_edit.py
+    source: ~/Downloads/ABL/tests/test_training_board_edit.py
+    sha256: 21a191c54e2921736d541f3b6205e2ec01ff6388a3a5c0d614330ac7208e3a84
+    size: 1443
+    media_class: noncopyrighted_python_test
+
+# Derived listings of retail bytes stay outside Git under the Preservation Policy.
+# A clean checkout provisions exactly these pins from the declared operator root;
+# each row names the tracked generator and the tracked consumers that require it.
+external_local_media_inputs:
+  - path: extracted/re_baseline/functions.json
+    source: ~/Downloads/ABL/extracted/re_baseline/functions.json
+    sha256: a6a2f2350dd6f570d8372639e85c55a2c04acf86d2d303a701fa3dc74f6ee494
+    size: 563072
+    media_class: derived_retail_metadata
+    generator: tools/re_baseline.py --disasm
+    consumers:
+      - tools/function_census.py
+  - path: extracted/re_baseline/strings.json
+    source: ~/Downloads/ABL/extracted/re_baseline/strings.json
+    sha256: dc6ac939025852f36b60ad7062017aded155090146fd902d628fd016acc07b19
+    size: 666914
+    media_class: derived_retail_metadata
+    generator: tools/re_baseline.py --disasm
+    consumers:
+      - tools/function_census.py
+      - tools/build_memory_map.py
+  - path: asm/nonmatchings/resident/800563d4.s
+    source: ~/Downloads/ABL/asm/nonmatchings/resident/800563d4.s
+    sha256: e6e7233cd6ed52dfafd668fd2eca02368b126d0d6a30d7d6e2805362b0a2e79a
+    size: 41648
+    media_class: derived_retail_disassembly
+    generator: tools/split_exe.py --only 800563d4
+    consumers:
+      - ObsidianVault/Canon/Functions/FUNC_800563D4_actor_skinned_update.md
+  - path: asm/nonmatchings/resident/8005905c_berry_tough_damage_dispatch.s
+    source: ~/Downloads/ABL/asm/nonmatchings/resident/8005905c_berry_tough_damage_dispatch.s
+    sha256: 7db9dd56d83004d31892cd0aabcdf9ca179e7d4fceeed9d51064640cc8608c55
+    size: 6645
+    media_class: derived_retail_disassembly
+    generator: tools/split_exe.py --only 8005905c
+    consumers:
+      - ObsidianVault/Canon/Memory/MEM_80089938_actor_berry_column_state_table.md
+  - path: asm/nonmatchings/resident/8005921c.s
+    source: ~/Downloads/ABL/asm/nonmatchings/resident/8005921c.s
+    sha256: 6871360b483149bb92b35e3deeb9f7a8a45626a70bafea495a1b9d24b70fedea
+    size: 5862
+    media_class: derived_retail_disassembly
+    generator: tools/split_exe.py --only 8005921c
+    consumers:
+      - ObsidianVault/Canon/Memory/MEM_80089938_actor_berry_column_state_table.md
+
+external_local_media_manifests:
+  - path: tools/repro_inputs.sha256
+    prefix: asm/hand_written/
+    source_root: ~/Downloads/ABL
+    media_class: derived_retail_assembly
+    generator: tools/gen_handasm.py
+    consumer_manifest: config/segments.yml
+    provisioner: tools/verify_repro_inputs.py --provision
+  - path: tools/re_baseline_inputs.sha256
+    prefix: extracted/re_baseline/
+    source_root: ~/Downloads/ABL
+    media_class: derived_retail_metadata
+    generator: tools/re_baseline.py
+    consumers:
+      - tools/function_census.py
+      - tools/build_memory_map.py
+    provisioner: tools/provision_clean_checkout_inputs.py
+known_closed_dependencies:
+  tools/glyph_spin_native.py:
+    closure_commit: 20f98c6
+    consumers: [tools/generate_training_pickup_letters.py, tools/training_word_pickups.py]
+
+phases:
+  phase0:
+    behavioral_gate: closed
+    knowledge_status: partial
+    note: ObsidianVault/Playbooks/Game Solving Roadmap/Phase 0 - Stabilize and Establish Identity.md
+    handoff: pinned pristine identity, guarded staging tree, build manifests, module matrix, isolated-emulator contract
+  phase1:
+    behavioral_gate: closed
+    knowledge_status: partial
+    note: ObsidianVault/Playbooks/Game Solving Roadmap/Phase 1 - Establish the Whole-Game Mechanics and Campaign Baseline.md
+    handoff: 107-row mechanics/campaign registry, explicit unknowns, fixture requirements, contact-kind and actor-record censuses
+  phase2:
+    behavioral_gate: qualified
+    knowledge_status: partial
+    note: ObsidianVault/Playbooks/Game Solving Roadmap/Phase 2 - Build the Pristine Whole-Game Behavioral Oracle.md
+    handoff: pristine comparison oracle, typed baselines, lifecycle/action controls, known-regression sentinels
+
+deliverables:
+  - id: P0_identity_and_provenance
+    phase: phase0
+    classification: behaviorally_closed_and_knowledge_closed
+    summary: Hash-verified pristine media and executable identity; ALLMODS is comparison-only.
+    inventory:
+      artifacts: [tools/build_baselines.json, tools/disc_provenance.json]
+      generators: [tools/re_baseline.py, tools/build_identity.py]
+      tests: [tests/test_disc_provenance.py, tests/test_build_identity.py]
+      notes: [ObsidianVault/Canon/Systems/SYS_game_identity_and_provenance.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: complete
+      confidence_residual_supersession: complete
+
+  - id: P0_build_and_module_reproducibility
+    phase: phase0
+    classification: behaviorally_closed_and_knowledge_closed
+    summary: Full-tree pristine guard, manifest-producing build, module matrix, naming/profile contract, and reproducibility manifests.
+    inventory:
+      artifacts: [analysis/phase0/PHASE0_REPRO_A.build_manifest.json, analysis/phase0/PHASE0_REPRO_B.build_manifest.json, analysis/phase0/PHASE0_REPRO_C.build_manifest.json, mod/module_matrix.yaml]
+      generators: [mod/build.py, tools/build_identity.py]
+      tests: [tests/test_build_identity.py, tests/test_repro_manifest.py]
+      notes: [ObsidianVault/Playbooks/Game Solving Roadmap/Phase 0 - Stabilize and Establish Identity.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: complete
+      confidence_residual_supersession: complete
+
+  - id: P0_source_and_external_input_closure
+    phase: phase0
+    classification: behaviorally_closed_and_knowledge_closed
+    summary: Build inputs and provisioned source inputs are hash-pinned; copyrighted external media has a central preservation set and remains outside Git.
+    inventory:
+      artifacts: [tools/repro_inputs.sha256, tools/fixtures.sha256, analysis/phase0_2_external_fixture_set.json]
+      generators: [tools/verify_repro_inputs.py, tools/knowledge_closure_audit.py]
+      tests: [tests/test_fixtures_manifest.py, tests/test_knowledge_closure.py]
+      notes: [ObsidianVault/Playbooks/Game Solving Roadmap/Phase 0 - Stabilize and Establish Identity.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: complete
+      confidence_residual_supersession: complete
+    residuals:
+      - Copyrighted/operator fixtures remain external and require preservation by hash; their absence from Git is intentional, not a source-closure gap.
+
+  - id: P1_mechanics_campaign_registry
+    phase: phase1
+    classification: behaviorally_closed_and_knowledge_closed
+    summary: Complete solve-surface inventory with strict status vocabulary, named unknowns, fixtures, and next experiments.
+    inventory:
+      artifacts: [analysis/mechanics_baseline.yaml, analysis/phase1_unclassified.json]
+      generators: [tools/mechanics_baseline.py, tools/phase1_unclassified_inventory.py]
+      tests: [tests/test_mechanics_baseline.py]
+      notes: [ObsidianVault/Playbooks/Game Solving Roadmap/Whole-Game Mechanics Baseline.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: complete
+      confidence_residual_supersession: complete
+
+  - id: P1_kind_actor_census
+    phase: phase1
+    classification: behaviorally_valid_but_incompletely_banked
+    summary: Contact kinds and actor records were censused on pristine saves; roles intentionally remain unknown where unbound.
+    inventory:
+      artifacts: [analysis/phase1_kind_actor_census.json, config/record_types.yaml, config/confirmed_sites.yaml, analysis/phase3_record_types.json]
+      generators: [tools/phase1_census.py, tools/phase3_record_types.py, tools/confirmed_sites.py]
+      tests: [tests/test_phase1_census.py, tests/test_phase3_records.py, tests/test_confirmed_sites.py]
+      notes: [ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md, ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase1_kind_actor_census.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: partial
+      clean_checkout_durability: partial
+      confidence_residual_supersession: complete
+    residuals:
+      - 46 contact-kind roles, 36 actor ids, and Thud's non-chunk-31 source remain explicit later-phase work.
+      - Census save fixtures must remain in the external preservation set.
+
+  - id: P2_campaign_oracle
+    phase: phase2
+    classification: behaviorally_closed_and_knowledge_closed
+    summary: Typed anchors, all-stage cold-boot completion, lifecycle/results coverage, comparison runner, and mutation proof.
+    inventory:
+      artifacts: [analysis/phase2_stage_baseline.json, analysis/phase2_completion_oracle.json, analysis/phase2_movie_baseline.json, analysis/phase2_results_baseline.json, analysis/phase2_compare_report.json, analysis/phase2_mutation_test.json]
+      generators: [tools/phase2_oracle.py, tools/phase2_completion_oracle.py, tools/phase2_compare.py, tools/launch_repro_playback.sh]
+      tests: [tests/test_phase2_oracle.py, tests/test_phase2_completion.py, tests/test_phase2_reopen.py]
+      notes: [ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase2_behavioral_oracle.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: partial
+      confidence_residual_supersession: complete
+
+  - id: P2_action_and_seed_laws
+    phase: phase2
+    classification: behaviorally_closed_and_knowledge_closed
+    summary: Positive/negative action controls, seed lifecycle, kick/state laws, and raw-field-derived coverage predicates.
+    inventory:
+      artifacts: [analysis/phase2_action_behavior.json, analysis/phase2_buttslide_oracle.json, analysis/phase2_carry_handstand_oracle.json, analysis/phase2_final_action_pairs.json, analysis/phase2_seed_action_controls.json, analysis/phase2_negative_coverage_map.json]
+      generators: [tools/phase2_action_behavior.py, tools/phase2_buttslide_oracle.py, tools/phase2_carry_handstand_oracle.py, tools/phase2_final_action_pairs.py, tools/phase2_seed_action_controls.py, tools/phase2_coverage_map.py]
+      tests: [tests/test_phase2_closure.py, tests/test_phase2_reopen.py]
+      notes: [ObsidianVault/Canon/Systems/SYS_player_action_state_laws.md, ObsidianVault/Canon/Systems/SYS_seed_carry_plant_lifecycle.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: partial
+      confidence_residual_supersession: complete
+
+  - id: P2_pool_audio_presentation_lifecycle
+    phase: phase2
+    classification: behaviorally_closed_and_knowledge_closed
+    summary: Contact pool, projectile arc, audio pitch, presentation, death/respawn, soak, and capacity-hang sentinels.
+    inventory:
+      artifacts: [analysis/phase2_pool_arc_oracle.json, analysis/phase2_spu_pitch_mutation.json, analysis/phase2_presentation_baseline.json, analysis/phase2_death_matrix.json, analysis/phase2_lifecycle_oracle.json, analysis/phase2_soak.json, analysis/phase2_capacity_hang_proof.json]
+      generators: [tools/phase2_pool_arc_oracle.py, tools/phase2_presentation_oracle.py, tools/phase2_death_matrix.py, tools/phase2_lifecycle_oracle.py, tools/phase2_soak.py, tools/phase2_proofs.py]
+      tests: [tests/test_phase2_pool_arc.py, tests/test_phase2_gate_items.py, tests/test_phase2_residuals.py]
+      notes: [ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase2_behavioral_oracle.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: partial
+      confidence_residual_supersession: complete
+
+  - id: P2_spin_disproof
+    phase: phase2
+    classification: unsupported_or_overstated
+    summary: The prior absolute no-spin conclusion exceeded the retained static procedure; it is now a reproducible negative scan plus an unresolved external lead.
+    inventory:
+      artifacts: [analysis/phase2_spin_disproof.json]
+      generators: [tools/phase2_spin_disproof.py]
+      tests: [tests/test_phase2_closure.py]
+      notes: [ObsidianVault/Canon/Systems/SYS_player_action_state_laws.md]
+    requirements:
+      provenance: complete
+      machine_representation: partial
+      reproducible_evidence: complete
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: complete
+      confidence_residual_supersession: complete
+    residuals:
+      - The scan rules out direct clustered ANDI direction-mask recognizers; it does not prove absence of table-driven, analog, overlay, or differently encoded recognition.
+
+  - id: P2_platform_gotchas
+    phase: phase2
+    classification: behaviorally_valid_but_incompletely_banked
+    summary: Movie/instrumentation perturbation and input-edge gotchas are operational constraints; the execTrace desync has a dedicated A/B probe.
+    inventory:
+      artifacts: [analysis/phase2_platform_gotchas.json]
+      generators: [tools/phase2_platform_gotchas.py]
+      tests: [tests/test_phase2_closure.py]
+      notes: [ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase2_behavioral_oracle.md]
+    requirements:
+      provenance: complete
+      machine_representation: complete
+      reproducible_evidence: partial
+      executable_guard: complete
+      obsidian_placement: complete
+      mod_consumption_contract: complete
+      clean_checkout_durability: partial
+      confidence_residual_supersession: complete
+    residuals:
+      - The execTrace/movie desync is regenerated; A11 watch-induced miss and CachedInterpreter access-watch limitations remain bounded non-regenerable observations until a dedicated fork-level test exists.

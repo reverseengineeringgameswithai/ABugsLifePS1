@@ -1,0 +1,66 @@
+{
+  "schema": "phase4_c09_bounded_exhaustion_v1",
+  "row": "C09_mega_homing_berry",
+  "status": "partial",
+  "disposition": "bounded_exhausted",
+  "closure_gate": "PASS",
+  "date": "2026-08-04",
+  "source_identity": {
+    "pristine_executable": "SCUS_942.88",
+    "pristine_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "overlays": []
+  },
+  "method": {
+    "capsule_first": true,
+    "c09_capsule_found": false,
+    "capsule_result": "The central retained-capsule index contains no C09 or mega-homing capsule.",
+    "shared_capsule_boundary": "The already-validated B12 capsule corroborates the common homing updater only; it is not C09-specific evidence.",
+    "analyzer": "tools/phase4_c09_static.c",
+    "raw_result": "analysis/phase4_c09_mega_homing_berry.json",
+    "static_gate": "PASS",
+    "live_escalation": "none; every named green-versus-mega differential is instruction-bound"
+  },
+  "fixture": {
+    "path": "mega_homing_berry.sav",
+    "sha256": "94870aab95ba8703e52c8c11ac34d307c3834f8df76ae2ccbda8f7fe6ae3a1a8",
+    "existing_ram_usage_trace": "analysis/traces/ram_usage/sav__mega_homing_berry.json",
+    "trace_scope": "300-frame changed-byte census only; not promoted to a trace capsule"
+  },
+  "source_hashes": {
+    "throw_dispatch_asm": "a0582c0e351f4e6481f40e31a4219f11d9c3f0da2c1284fd1f45a3763cd47812",
+    "homing_acquire_asm": "24b3682e37f89bce35a07836337facf5c3e3d6eb6a78caad3a9348efb73a660a",
+    "cleanup_dispatch_asm": "e54bd0abd7b4890b8130e2f564f92c769a753ce9620561a6618c6ff083d1fb12",
+    "contact_spawn_asm": "76837da374644b19024b5f7ffc55fb65ec6914f4d283c56b09f0acf3560fb427",
+    "projectile_update_asm": "0e1682770aeef1ce70d0cdbd3c85d2303966434a20d57cc8137ce1b2886efdbc"
+  },
+  "confirmed": {
+    "dispatch": "equip index 4 selects timer-8 primary type 45/subtype 9; grant type 32",
+    "acquisition": "subtype 9 calls the shared nearest-valid-XZ scanner once with mode 0",
+    "handoff": "valid target creates timer-100 type 48/subtype 8; no target leaves timer-80 subtype 8",
+    "parameter_differences": "green-to-mega primary and child rows differ only at offsets +0x04,+0x0C,+0x0F,+0x11,+0x12,+0x13",
+    "kinematics": "same primary launch, target acquisition, child spawn arguments, quarter-error turn, vertical clamp [-1024,1024], sine/8 velocity, and 8/100 lifetimes as green",
+    "speed_claim": "refuted; Mega is not faster in the native instruction path",
+    "damage": "selector 128 gives exact -3 versus green selector 12 exact -2; berry-tough actors are damaged",
+    "permanence": "temporary; connection class 8 is not gold class 11 and secondary kind 13 is not mine kind 6",
+    "target_loss": "same timer-1 retire-without-retarget law as green",
+    "ownership": "terminal subtype 8 decrements 0x800A6596 exactly once"
+  },
+  "runtime_corroboration": {
+    "source": "D04 five-berry controls",
+    "berry_tough_controls": ["shell_bug", "worm_id40"],
+    "mega_observed_delta": -3,
+    "mega_observed_permanence": "temporary"
+  },
+  "observation": "Both green/mega row pairs share timer, class, scale/radius fields, orientation selector, and homing flags. Their child-spawn instruction blocks are identical except for type literal 16 versus 48.",
+  "inference": "Visual size/trail differences and faster enemy defeat can make Mega appear faster, but no native launch, turn, velocity, or lifetime differential exists.",
+  "causal_confirmation": "The type-48 path enters the same flag-driven updater and fixed sine/8 recurrence, while record+0x34 selector 128 reaches the explicit -3 instruction at 0x800590B4.",
+  "remaining_low_return": [
+    "exact GPU ownership and semantics of model/presentation-byte differences",
+    "exact SPU ownership of Mega-specific cleanup effects",
+    "campaign-wide boss-overlay damage floors and presentation breadth",
+    "a side-by-side visual movie that would repeat identical kinematic instructions"
+  ],
+  "fixture_need": "None for bounded Phase 4 scope. Request an Interpreter movie only for exact presentation attribution or a named overlay override.",
+  "cold_boot_required": false,
+  "remaining_direct_behavior": []
+}

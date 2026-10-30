@@ -1,0 +1,33 @@
+duckstation fork pin: 296955321fd9375fa94692d96df788eccd708135
+branch: external-debugger-control
+spec: ~/duckstation/EXTERNAL_DEBUGGER_CONTROL.md
+inspection: 2026-06-20; preservation + clean-clone replay: 2026-06-21
+remote: origin=https://github.com/stenzek/duckstation.git (upstream only; no remote branch contains the custom HEAD)
+worktree: DIRTY — 34 modified tracked paths + 16 untracked status entries (23 untracked files)
+dispatch: 114 methods at HEAD; 27 additional methods in the dirty worktree (re-verified 2026-06-21; 0 removed) — see tools/duckstation_rpc_method_manifest.md
+current spec sha256: 86231946f7ade4ed58dc89e97ff8be710391f47b5cdb4cdcd7f05273ec917da9
+current binary sha256 (operator dirty build): 796965d722b6c2c5d135f4c3e457e68e16f20cab632c3ab2ef43b3708f8c6501
+
+GAP-0001 preservation executed 2026-06-21 (recoverable mechanism; NOT yet off-host):
+  in-repo tag: abl-gap0001-fork-296955321 -> 296955321 (non-destructive anchor in ~/duckstation)
+  preservation set dir (outside both repos): ~/duckstation-fork-preservation/
+    duckstation-external-debugger-control.bundle  sha256 72aa9fb08b45bf1ff3aa38bd2d5973a1d2044cc4472cf4f17f1016f29e602195  (committed history; bundle verify OK; complete history)
+    working-tree-tracked.patch                    sha256 d0b29800476250f800205cf0a0b2e417b8530f9cedfe9e94abcb0d8fcd7a2af8  (34 tracked mods vs HEAD, git diff --binary)
+    untracked-source.tar.gz                       sha256 c9279b282c377d2dfeab7974eacce269bddecf41e50ac36c378fa715ba7b3f76  (23 untracked source/test/launcher files)
+  reconstruction: clone(bundle) + apply(patch) + extract(archive) == operator running source, 57/57 changed files byte-identical (0 mismatch)
+  clean clone build: ~/abl-fork-build (independent clone from bundle); dep pack symlinked from ~/duckstation/dep/prebuilt/linux-x64 (gitignored, 208M)
+    configure: cmake -B build-release -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+    build:     cmake --build build-release --target duckstation-qt
+    clean-built binary sha256: fd4bf9edc05a39641584b72b589c8d10f16539aec5bb47cca973f61b29bbefbb  (differs from dirty build; same source)
+  headline replay (from clean-built binary, NOT the operator dirty binary): tools/trace_spawn_floor.py
+    fixture: SCUS-94288_1.sav; disc: "Disney-Pixar A Bug's Life (v1.0).cue" sha256 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644 (game_serial SCUS-94288)
+    result: PASS (exit 0) — spawn floor writer = fcn.80010000 DAT-only (a0 span DAT file 0x15dec..0x2f59c); chunk-35 renderer 0 calls; visual != collision
+    uses dirty-only method gpu.pickObject (so committed HEAD alone is insufficient; the dirty layer is required)
+
+residual (operator-only; not autonomously possible): replicate the preservation set OFF-HOST
+  (push external-debugger-control + tag to a private remote, or copy ~/duckstation-fork-preservation off-machine).
+  origin is upstream stenzek (must not push there); no credentials available to this pass.
+
+required operator guide for any live work: .claude/skills/duckstation-external-debugger/SKILL.md
+status: GAP-0001 acceptance MET on this host (preserve+pin+build+replay demonstrated); off-host durability is the lone residual.
+        see ObsidianVault/DuckStation Fork Reproducibility.md

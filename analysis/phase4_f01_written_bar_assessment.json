@@ -1,0 +1,147 @@
+{
+ "_comment": "F01 re-assessed against the DoD bars AS WRITTEN (item 2 = enumerated; residuals = explicitly bounded), per the two-standards finding. Judgments authored; facts derived from pinned artifacts at run time. Regenerate: tools/phase4_f01_written_bar_assessment.py",
+ "schema": "abl-phase4-f01-written-bar-assessment/1",
+ "generated": "2026-08-10",
+ "row_id": "F01_anthill",
+ "standard": {
+  "ruling": "engineering-specs/phase4-two-standards-finding.md + the measurement ruling banked with this assessment",
+  "item2_bar": "enumerated, scoped to relevant (NOT empty unresolved set)",
+  "exit_gate_bar": "explicitly bounded, not absent",
+  "vocabulary": "bounded-exhausted remains a stop decision and never reads as met; this assessment publishes measurement, not disposition"
+ },
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "edits_registry": false,
+  "requires_fresh_verifier": true,
+  "author_conflict": "the assessor authored much of the evidence under assessment; met_candidate is a submission, not a met"
+ },
+ "facts": {
+  "oracle_all_passed": true,
+  "oracle_assertions": 6,
+  "oracle_from_boot": true,
+  "oracle_injection": "NONE -- no write, no perturbation, no poke",
+  "request2_element_outcome": "DONE",
+  "request2_controls": 1,
+  "breadth_levels_asserted": 19,
+  "breadth_decisions": 35,
+  "breadth_law_failures": 0,
+  "oracle_verdict_last_adjudication": "NOT MET",
+  "breadth_verdict_last_adjudication": "NOT MET",
+  "frontier_sites_enumerated": 179,
+  "d3_verdict": "NO-GO",
+  "d3_wall_shapes": [
+   "technique-shaped"
+  ],
+  "typed_bounded_by_proof": 95,
+  "typed_bounded_by_convention": 973,
+  "typed_unresolved_stores": 7206,
+  "abi_rows": 764,
+  "source_closure_result": "NO_GO",
+  "source_closure_progress": "0 of 6 regions closed; 70 words remaining in region 1",
+  "item2_ruling_exists": true
+ },
+ "evidence_pins": [
+  {
+   "path": "analysis/phase4_f01_original_oracle.json",
+   "sha256": "3c5c060478cb4d86b73800e17bd0bbf2fd8d14018c19c4fc1970c1ee9b4d5723"
+  },
+  {
+   "path": "analysis/phase4_f01_request2_probe.json",
+   "sha256": "4cc449da924296261ee117cb7c5277659a7ca88c463cd9796adb4ccfb823accf"
+  },
+  {
+   "path": "analysis/phase4_f01_breadth_assertions.json",
+   "sha256": "4b58c2c9c67c4f8f10345e4b723bc598e5f0968353385ef71c878f95559429cc"
+  },
+  {
+   "path": "analysis/phase4_f01_oracle_breadth_verification.json",
+   "sha256": "49de6293d7f23facea22c9f94d69f8838015ca0b647e9b47082e10c14c2574ed"
+  },
+  {
+   "path": "analysis/phase4_discipline_assignment.json",
+   "sha256": "87d4221cc1cdd92cf05de0756cc5c1a1f9f84e0faf59f24cd1fa5d6e031790cb"
+  },
+  {
+   "path": "analysis/phase4_d3_contract.json",
+   "sha256": "b14ec3fbafd795cdbc2f9ac364f4f6cbf5a08953d4f40cb6d66a66e4c4c4147d"
+  },
+  {
+   "path": "analysis/phase4_f01_typed_state.json",
+   "sha256": "b57a43943bab6fe6c13eb42a6e7046bf0f5f81af6509c57a7c715758b10762e3"
+  },
+  {
+   "path": "analysis/phase4_f01_abi_ledger.json",
+   "sha256": "dc0e47b4315313880af5b6f91285cbc7b6098c5522e461bd153813683e03a31e"
+  },
+  {
+   "path": "analysis/phase4_f01_source_closure.json",
+   "sha256": "bb77451d3cb7542ecda60e3b00214c18627701baf7307d8ce74fbe026cdc848b"
+  },
+  {
+   "path": "engineering-specs/phase4-item2-bar-ruling.md",
+   "sha256": "3ae564d21bc463a8e2c91e02d9e0aa8605ce25e0660073820652534bceb35798"
+  }
+ ],
+ "dimensions": {
+  "durable_evidence": {
+   "state": "met",
+   "written_bar": "evidence artifacts durable, pinned, regenerable",
+   "basis": "already registered met in the scorecard; the only F01 dimension assessed and met under both readings"
+  },
+  "original_oracle": {
+   "state": "met_candidate",
+   "written_bar": "behavior asserted against the ORIGINAL game's own natural execution, not injected state",
+   "basis": "all 6 assertions pass on a natural cold-boot completion (injection: NONE -- no write, no perturbation, no poke); the request-2 skip arm is now natural too (DONE, 1 control). All three elements from the last adjudication (NOT MET) are answered; resubmission order is out",
+   "gap": "fresh-verifier adjudication pending (engineering-specs/phase4-f01-original-oracle-resubmission-work-order.md)"
+  },
+  "complete_frontier": {
+   "state": "met_candidate",
+   "written_bar": "item 2 AS WRITTEN: callers/callees/callbacks/indirect tables ENUMERATED, scoped to relevant \u2014 not an empty unresolved set",
+   "basis": "the frontier is enumerated (179 sites, classified, runtime-corroborated) and the residual is explicitly bounded by the 2026-08-10 item-2 ruling: declared assumption, void on a single counter-example, non-transferable. Five campaigns (last: D3 NO-GO, walls ['technique-shaped']) established no current technique resolves the sites; the written bar never asked for that",
+   "gap": "the assumption's kill switch must be carried on the row verbatim; verifier decides whether declared-assumption bounding meets item 2"
+  },
+  "campaign_breadth": {
+   "state": "not_met",
+   "written_bar": "conclusions generalize across every applicable stage \u2014 which requires the applicable set itself to be enumerated",
+   "basis": "the branch law asserts clean campaign-wide (19/19 levels, 35 decisions, 0 failures, detached-verified) \u2014 but the applicability UNIVERSE (stages \u00d7 objectives \u00d7 variants \u00d7 modes) is not enumerated, so 'every applicable' has no denominator",
+   "gap": "C1 applicability matrix + C2 independently-sourced taxonomy; this dimension fails the WRITTEN bar too, not just the strict one"
+  },
+  "typed_state": {
+   "state": "partial",
+   "written_bar": "state fields typed and value domains bounded (enumeration of an untyped residual bounds the WORKLIST, not the STATE)",
+   "basis": "95 stores bounded by proof, 973 by index convention (not proof), 7206 unresolved",
+   "gap": "value-domain machinery (the named prerequisite engines); an enumeration assumption does not type a store"
+  },
+  "lifecycle": {
+   "state": "met_candidate",
+   "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced",
+   "basis": "per-phase claim map registered (analysis/phase4_f01_lifecycle_claim_map.json): 6 phases covered, exhaustion n/a-with-reason (scalar latch, saturation IS the single-shot guard); reuse closed from the retained death-session access log (full arc BIOS->clears->store->consume->clear) plus five successive cycles in one LEVEL07 session",
+   "gap": "fresh-verifier adjudication; cross-LEVEL chain kept as a residual note on the transitions axis, not this dimension"
+  },
+  "cross_system_behavior": {
+   "state": "partial",
+   "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+   "basis": "the breadth pass crosses transition\u00d7death\u00d7bonus-force-flag; the behaviour library covers part of the native-combination list",
+   "gap": "no registered combination matrix for F01's transition machinery vs the other systems"
+  },
+  "original_interfaces": {
+   "state": "partial",
+   "written_bar": "interfaces documented; unknowns enumerated with named obstructions",
+   "basis": "structural ledger complete (764/764 rows) and every unknown argument domain carries a named obstruction",
+   "gap": "semantic half (value domains) is enumerated but unresolved \u2014 downstream of the same engine as typed_state; assess jointly"
+  },
+  "source_closure": {
+   "state": "partial",
+   "written_bar": "byte-matched C through the original toolchain for the row's governing functions",
+   "basis": "FUNC_80038F38 byte-matched; player updater NO_GO: 0 of 6 regions closed; 70 words remaining in region 1 \u2014 frame map exact, 17/17 $gp accesses reproduced, wall named and technique-shaped",
+   "gap": "region 1 to zero, then regions 2-6; parked by explicit decision, which under the vocabulary is a stop, not a met"
+  }
+ },
+ "counts": {
+  "met": 1,
+  "met_candidate": 3,
+  "not_met": 1,
+  "partial": 4
+ },
+ "summary": "1 met, 3 met-candidate, 4 partial, 1 not met \u2014 against the WRITTEN bars. Compare: 1/9 under the overshot strict reading; 9/9 under the blanket-disposition path. Neither of those was this measurement."
+}

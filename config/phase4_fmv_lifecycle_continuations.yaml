@@ -1,0 +1,101 @@
+schema: abl-phase4-fmv-lifecycle-continuations-config/1
+row: E15_fmv
+campaign: fmv_playback
+lane: static
+artifact: analysis/phase4_fmv_lifecycle_continuations.json
+semantic_source: src_re/fmv_lifecycle_continuations.c
+authority:
+  - {path: REBUILD/files/SCUS_942.88, classification: pristine_authority}
+  - {path: REBUILD/files/FMV/FMV.BIN, classification: pristine_authority}
+direct_loader_call_count: 9
+classified_continuation_count: 9
+unclassified_continuation_count: 0
+owner_sources:
+  - {owner: main_shell_state_machine, range: [0x8004FA40, 0x8004FC3C], source: asm/hand_written/8004fa40_main_shell_state_machine.s}
+  - {owner: scene_flow_dispatcher, range: [0x8004FCA0, 0x800502C4], source: asm/hand_written/8004fca0_scene_flow_dispatcher.s}
+  - {owner: fmv_sequence_completion_check, range: [0x800502C4, 0x8005038C], source: asm/hand_written/800502c4_sub_800502c4.s}
+  - {owner: gameplay_state_reset_cursor_seed, range: [0x8005B714, 0x8005BC64], source: asm/hand_written/8005b714_gameplay_state_reset_cursor_seed.s}
+continuation_families:
+  boot_repeated_playback: [boot_dlogo, boot_title]
+  boot_to_frontend: [boot_intro]
+  bonus_iteration: [bonus_clip_sequence]
+  game_over_to_scene: [game_over_lose]
+  finale_to_level_transition: [finale_lev15c]
+  level_b_progress_scan: [completed_level_b]
+  finale_to_shell: [all_levels_complete_lev15d]
+  level_a_reset_and_scene_load: [level_a_reset_handoff]
+loader_lifecycle:
+  owner: {range: [0x8003E7C0, 0x8003E83C], source: src/main/8003e7c0_fmv_bin_load.c, source_status: matching_c}
+  ordered_calls:
+    - {role: pre_player_display_reset, pc: 0x8003E7D4, target: 0x80039478, conditional: false}
+    - {role: optional_transition_pre_hook, pc: 0x8003E7E4, target: 0x8005B440, conditional: true}
+    - {role: fmv_bin_reload, pc: 0x8003E7FC, target: 0x80046330, conditional: false}
+    - {role: optional_transition_post_hook, pc: 0x8003E80C, target: 0x8005B4E4, conditional: true}
+    - {role: synchronous_fmv_player, pc: 0x8003E814, target: 0x800B6250, conditional: false}
+    - {role: post_player_display_reinitialization, pc: 0x8003E81C, target: 0x80039854, conditional: false}
+  region_b_reload:
+    path_pointer: 0x8001AE6C
+    path: 'fmv\fmv.bin'
+    destination: 0x800B5788
+    occurs_once_per_fmv_bin_load_invocation: true
+    repeat_calls_recopy_identical_overlay_bytes: true
+  retirement_partition:
+    common_player_teardown_ends_transient_fmv_use: true
+    fmv_loader_contains_explicit_region_b_unload: false
+    fmv_loader_contains_explicit_region_b_clear: false
+    post_return_replacement_owner: resident caller continuation or later Region-B loader
+    all_post_return_owners_classified: true
+    endpoint_nonresidency_does_not_identify_overwrite_instruction: true
+native_cd_event_route:
+  registration:
+    owner: {range: [0x80045D6C, 0x80045FC4], source: asm/hand_written/80045d6c_cd_subsystem_init.s, source_status: handwritten_asm_external_hash_pinned}
+    window: [0x80045E38, 0x80045E64]
+    sha256: 6d81bdc9029f8fdc1d9c4cd052d3164a805aa8c92aaacc19cb15480d6736de76
+    event_class: 0xF0000003
+    event_spec: 0x00008000
+    callback: 0x80045D5C
+    event_handle_address: 0x80082308
+  callback:
+    owner: {range: [0x80045D5C, 0x80045D6C], source: src/main/80045d5c_gp_set_one.c, source_status: matching_c}
+    sha256: 3d015ec5134457e676b69047323c2db3ee7b9ab902b25d4e88530e56c45fdd2c
+    store: {pc: 0x80045D60, address: 0x80082484, type: u32, value: 1}
+  player_consumer:
+    window: [0x800B741C, 0x800B7474]
+    sha256: 86e1a7105affd7ff1cdf0266897d0ec7c607b519091216d1869ab778f508da9a
+    load: {pc: 0x800B7420, address: 0x80082484, type: u32}
+    sentinel: {pc: 0x800B70D8, value: 1}
+    exit_branch: {pc: 0x800B7428, target: 0x800B7464}
+    common_teardown: {cd_control_site: 0x800B7464, command: 0x0B, cd_control_call: 0x800B746C}
+  planned_same_anchor_control_basis:
+    site: 0x800B7420
+    negative_word: 0x8C422484
+    positive_word: 0x24020001
+    only_difference: force the exact consumer value to 1 while preserving its comparison, branch target and teardown
+static_closed_sub_boundary: resident_post_fmv_continuation_ownership
+static_closed_sub_boundaries:
+  - resident_post_fmv_continuation_ownership
+  - per_invocation_reload_and_retirement_ownership
+  - native_cd_event_to_pause_teardown_routing
+non_intersecting_residuals:
+  E15_lifecycle_runtime: [native event delivery and frequency, Pause/stop command result and user-visible failure outcome, decode timeout and malformed-stream outcomes]
+  E15_campaign_breadth: [unobserved manifest selectors, remaining level variants]
+  C17_E14_adjacent_policy: [movie-viewer selection and return, unlock, persistence]
+  E12_adjacent_policy: [FMV audio presentation]
+next_missing_fact: >-
+  One same-anchor native control that observes the exact value-1 consumer
+  interface reach CdControl(0x0B) and common teardown before caller-owned
+  Region-B replacement.
+boundary: >-
+  The exact pristine post-return bytes and centrally pinned ASM owners classify
+  every one of the nine resident fmv_bin_load consumers, including the repeated
+  boot chain, all level/game-over transition continuations and the full Level-A
+  reset owner. Matching loader C and its byte-exact six-call sequence prove that
+  each invocation recopies FMV.BIN to Region B, then calls the synchronous
+  player and post-player display initializer; the loader has no explicit
+  Region-B unload or clear. The five player exit edges and common Pause/stop
+  teardown are exact. cd_subsystem_init also registers callback 0x80045D5C for
+  event class 0xF0000003/spec 0x8000; the callback stores 1 at resident field
+  0x80082484, whose FMV consumer routes that exact value to common teardown.
+  This is a confirmed static lifecycle sub-boundary, not complete lifecycle
+  promotion. Native delivery/frequency, Pause result, visible failure outcomes
+  and adjacent viewer/persistence/audio policy remain non-intersecting debt.

@@ -1,0 +1,138 @@
+{
+  "row": "A18_pause",
+  "date": "2026-08-03",
+  "status": "partial_high_value_bounded_exhausted",
+  "disposition": "move_on",
+  "source_state": "original_game",
+  "capsule": {
+    "query_result": "no relevant A18/pause capsule under the declared Phase4 v2 external-evidence root",
+    "escalation_reason": "a named runtime domain remained: freeze/resume/render/CD behavior and the exit-menu handoff",
+    "cold_boot_required": false,
+    "interpreter_movie_required": false
+  },
+  "identity": {
+    "serial": "SCUS-94288",
+    "cue": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "pristine_executable": "REBUILD/files/SCUS_942.88",
+    "pristine_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "state": "level01.sav",
+    "state_sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_binary_sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9",
+    "config": "/tmp/duckstation-debugger-phase4-a18-20260803",
+    "port": 24418,
+    "instrumentation": "none",
+    "cleanup": "launcher-confirmed stopped"
+  },
+  "state": {
+    "pause_flag": "s16 0x8008224E; 0=gameplay, 1=pause shell",
+    "current_input": "u16 0x80082412",
+    "previous_input": "u16 0x800822E4",
+    "exit_option": "s16 0x80082472; 0=resume, 1=exit",
+    "confirmation": "u32 0x800824BC; 0=main, 1=cancel, 2=confirm exit",
+    "flow_state": "s16 0x800823A0",
+    "transition_timer": "s16 0x80082470",
+    "sound_flush_cursor": "u32 0x800A65A8; _SsVmFlush modulo-16 cursor, not player simulation"
+  },
+  "admission": {
+    "input": "rising START edge: current & 0x0008 and !(previous & 0x0008)",
+    "gates": [
+      "u32 0x800822F8 == 0",
+      "u32 0x8008216C == 3",
+      "s16 0x80082388 == 0x80"
+    ],
+    "writer": "0x8004F3AC stores 1 to 0x8008224E",
+    "initialization": "exit option and confirmation clear to zero",
+    "entry_sfx": 28
+  },
+  "outer_dispatch": {
+    "read_pc": "0x8004FEBC",
+    "gameplay_call": "0x8004FECC -> 0x8004ECD4",
+    "pause_call": "0x8004FEDC -> 0x8004F478 -> 0x8004F480",
+    "common_tail": "0x8004FEE4 -> 0x8003E104",
+    "indirect_edges": "zero jalr in either bounded root; each has only its return jr"
+  },
+  "static_frontier": {
+    "pause_flag_direct_accesses": 7,
+    "pause_flag_writers": ["0x8004F3AC", "0x8004F6C4", "0x8004F858", "0x8004F9C0", "0x8004FE24", "0x8005B898"],
+    "pause_flag_reader": "0x8004FEBC",
+    "gameplay_unique_direct_call_targets": 34,
+    "pause_unique_direct_call_targets": 11,
+    "gameplay_only_examples": {
+      "0x80048138": "player vertical/action update",
+      "0x8004ABF4": "actor/player contact resolver",
+      "0x8004D224": "mover updater",
+      "0x80051DB4": "player action/equipment update",
+      "0x80052574": "HUD animation driver",
+      "0x800563D4": "actor animation/update",
+      "0x800586B0": "contact-object walker",
+      "0x8005A308": "berry projectile updater",
+      "0x8005BFBC": "plant updater"
+    }
+  },
+  "freeze_control": {
+    "window": "60 display frames from the same level01.sav anchor",
+    "matched_gameplay_control": "player, canonical actor pool, plant region, contact pool, and HUD sample all changed",
+    "paused_exact_same": [
+      "canonical actor pool 0x8009FE04, 40 x 0x84",
+      "contact/projectile pool 0x800B0D18, 64 x 0x38",
+      "plant region 0x80090BF0 + 0x600",
+      "HUD sample 0x800A7E00 + 0x100",
+      "camera record 0x80095358 + 0x60 in settled pause",
+      "SFX voice slots 0x80089860 + 0x40 in settled pause"
+    ],
+    "player_block": "all established simulation fields stable; sole byte delta was 0x800A65A8, subsequently attributed to _SsVmFlush rather than player simulation",
+    "invalidated_first_actor_label": "0x80090748 was initially sampled and mislabeled actor RAM; it is the homing-target region. That label and inference were discarded before documentation."
+  },
+  "render_and_audio": {
+    "presentation": "continues while paused",
+    "settled_frame_diff": {
+      "window": "pause frame 60 to 120",
+      "changed_pixels": 3568,
+      "total_pixels": 488000,
+      "bounding_box": "105x46 at (350,250)",
+      "mean_absolute_difference": 0.030405225409836065
+    },
+    "cd_xa": "current/requested LBA remained 187189/187190 for both 60-frame pause windows; gameplay and resumed controls advanced",
+    "sound_service": "_SsVmFlush cursor advanced modulo 16 (3 -> 15 across settled 60 paused frames)",
+    "menu_sfx": "pause handler continues to call SFX dispatch",
+    "per_voice_spu": "unresolved: dirty source/docs expose spu.status, but the pinned running binary returned -32601 for both raw and client-wrapper calls"
+  },
+  "resume": {
+    "input": "rising Cross or START edge while exit_option==0",
+    "writer": "0x8004F858 stores pause=0",
+    "runtime": "START became visible in the 30 Hz input latch two display frames after injection; pause cleared on the following frame"
+  },
+  "exit": {
+    "runtime_sequence": ["Down", "Cross", "Left", "Cross"],
+    "result": "pause=0, flow_state=5, transition timer seeded 23, player flags bit 0x0004 set",
+    "pcs": {
+      "pause_clear": "0x8004F9C0",
+      "flow_state": "0x8004F9E4",
+      "timer": "0x8004F9FC",
+      "player_flag": "0x8004FA1C"
+    },
+    "cadence": "timer then decrements on the 30 Hz gameplay cadence"
+  },
+  "evidence_hashes": {
+    "pause_flag_c_scan_output": "2543176edc588f973a580ec820370e9a9afbbd2c607c8093bf8fe4be17347fd1",
+    "gameplay_pause_asm": "cce5da32057d5f364db25d5a55688f71ced2dde901ec9399c9b9ed11060a4275",
+    "pause_shell_asm": "1f6d1d4f88e7553989cd99911b293f97c9769feceef711e3c2d534ffb82f582a",
+    "scene_flow_asm": "7de98d51a3e7b3110679b635ce7e1e7aa5bac9c2b511e18641b6df2c4ffd8cd8",
+    "reset_asm": "8dc6bd7239bcf27fc57e1f4783c0d5ef3cceb674040f280c2c9d4cde0a509dde",
+    "true_actor_pause_diff": "0053fea484b8cba711b8f3572f5605ee73c24ae2fcd0917c44ea49ab9591d50a",
+    "true_actor_control_diff": "b6513c98a408236c59af8954be0ca20ea73399ee8b3d606ba058a2b83395fa1e",
+    "resume_trace": "c00ba5308a639ad7080967c7955eda7192055d2f4b5e2e9aba5fd434ee630887",
+    "exit_trace": "65438890b6726cb6a34b3c39b75b22b09b61ee7796bc3293ac9b46a3996f8b84",
+    "settled_pause_summary": "9a8f2b652b31f26be9036cf080f87cc06b4158d1233f5b272b437c119db49fbb",
+    "sound_cursor_context": "a4565de30f3b3f97822295c52f047354c6e76c9217566b758694e2903b55403a"
+  },
+  "bounded_residuals": [
+    "special camera, boss, FMV, and overlay-specific pause admission breadth",
+    "per-voice SPU evolution and host-output behavior on a runtime binary that actually exposes the documented SPU methods",
+    "semantic names for all three numeric admission gates and every transition clear",
+    "campaign-wide pause during every authored projectile, plant, enemy, and streaming configuration"
+  ],
+  "reopen_condition": "only for a named special-context denial, exact SPU dependency, or MOD requirement intersecting pause transitions"
+}

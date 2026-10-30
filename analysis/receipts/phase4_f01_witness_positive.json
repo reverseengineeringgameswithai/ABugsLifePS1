@@ -1,0 +1,374 @@
+{
+ "arm": {
+  "control_checks": {
+   "execution_mode_interpreter": true,
+   "movie_reproducible": true,
+   "no_trace_truncation": true
+  },
+  "end_fingerprint": "520a8feee8ddbc8df192fc3d9c421c56b14e246e52048c5d3c8532b5f9f944f3",
+  "errors": [],
+  "input_sha256": "66d620e845f5519ce3fe50ca530dd78f08c562d2e47e15ec7b6ee9c241b47e31",
+  "observations": {
+   "consumer_proceeded_hits": 1,
+   "finalizer_hits": 0,
+   "gp4c4_at_decision": 0,
+   "request_at_decision": 2
+  },
+  "perturbations": {
+   "request_word_override": 2
+  },
+  "receipt_sha256": "f1a958ae4ccd3223781f8fe313dd6280a530bf988a1e56e7a5ad7a74c22d6cd8",
+  "start_fingerprint": "36f31bd58fc61d83339ad401ab2eee9b2ff03ec0ba47a2494b0466975e1dc592",
+  "start_state_sha256": "a035bd39a62d4217a23fa2e5a020e81d5cd6d1571f606ab7ac9dd6a7510a32a8",
+  "truncated": false
+ },
+ "raw": {
+  "arm": "positive",
+  "movie_status": {
+   "anchor_emulator_frame": 138881,
+   "anchor_movie_frame": 0,
+   "anchor_to_mapped_frame_delta": 0,
+   "armed_while_paused": false,
+   "bookmarks": [],
+   "current_emulator_frame": 140981,
+   "current_movie_frame": 2100,
+   "frame_count": 3267,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_movie": true,
+   "mapped_anchor_emulator_frame": 138881,
+   "movie_content_hash_format": "canonical_compact_json_v1",
+   "movie_content_sha256": "b53171e2863d802629defbc9a1e956c7eab926ddfd420e58db0c901e0a978250",
+   "movie_to_emulator_offset": 138881,
+   "movie_to_emulator_offset_basis": "movie_sample_effective_frame",
+   "movie_version": 4,
+   "phase_correction_consumed": null,
+   "phase_correction_consumed_at": null,
+   "phase_correction_consumed_at_emulator_frame": null,
+   "phase_correction_pending": false,
+   "phase_delay_owed": false,
+   "playback_completed": false,
+   "playback_index": 2100,
+   "playing": true,
+   "ports": [
+    0
+   ],
+   "recording": false,
+   "reproducible": true,
+   "start_state": {
+    "file_size": 1805394,
+    "frame": 138881,
+    "from_boot": false,
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "loaded_before_recording": true,
+    "path": "~/Downloads/ABL/movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.sav",
+    "pc": "0x8003f33c",
+    "reproducible_only_from_state": true,
+    "sha256": "a035bd39a62d4217a23fa2e5a020e81d5cd6d1571f606ab7ac9dd6a7510a32a8",
+    "sha256_backfilled": true,
+    "sha256_origin": "backfill",
+    "sha256_provenance": "sha256 of the referenced .sav as found on disk at backfill time. This detects FUTURE drift between movie and state. It does NOT establish that the state still matches what the movie was recorded against -- no recording-time hash exists to compare with.",
+    "sp": "0x801ffee0"
+   },
+   "truncated": false
+  },
+  "observations": {
+   "consumer_proceeded_hits": 1,
+   "finalizer_hits": 0,
+   "gp4c4_at_decision": 0,
+   "request_at_decision": 2
+  },
+  "traces": {
+   "finalizer": {
+    "events": [],
+    "total": 0,
+    "truncated": false,
+    "watches": [
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 1,
+      "kind": "pc",
+      "label": "consumer_proceeded",
+      "max_events": 64,
+      "pc": "0x8004ff14",
+      "stop_on_hit": false,
+      "watch_id": 10
+     },
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 1,
+      "kind": "pc",
+      "label": "request_reread",
+      "max_events": 64,
+      "pc": "0x8004ff28",
+      "stop_on_hit": false,
+      "watch_id": 11
+     },
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 0,
+      "kind": "pc",
+      "label": "finalizer",
+      "max_events": 64,
+      "pc": "0x8004ff48",
+      "stop_on_hit": false,
+      "watch_id": 12
+     }
+    ]
+   },
+   "proceeded": {
+    "events": [
+     {
+      "cycle": 79754273495,
+      "frame": 140858,
+      "gte": {},
+      "memory": [
+       {
+        "address": "0x800823a0",
+        "size": 2,
+        "value": 2,
+        "value_hex": "0x00000002",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "size": 4,
+        "value": 0,
+        "value_hex": "0x00000000",
+        "width": 4
+       }
+      ],
+      "pc": "0x8004ff14",
+      "regs": {
+       "v0": "0x00000000",
+       "v1": "0x021cc54c"
+      },
+      "watch_id": 10
+     }
+    ],
+    "total": 1,
+    "truncated": false,
+    "watches": [
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 1,
+      "kind": "pc",
+      "label": "consumer_proceeded",
+      "max_events": 64,
+      "pc": "0x8004ff14",
+      "stop_on_hit": false,
+      "watch_id": 10
+     },
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 1,
+      "kind": "pc",
+      "label": "request_reread",
+      "max_events": 64,
+      "pc": "0x8004ff28",
+      "stop_on_hit": false,
+      "watch_id": 11
+     },
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 0,
+      "kind": "pc",
+      "label": "finalizer",
+      "max_events": 64,
+      "pc": "0x8004ff48",
+      "stop_on_hit": false,
+      "watch_id": 12
+     }
+    ]
+   },
+   "reread": {
+    "events": [
+     {
+      "cycle": 79754352166,
+      "frame": 140859,
+      "gte": {},
+      "memory": [
+       {
+        "address": "0x800823a0",
+        "size": 2,
+        "value": 2,
+        "value_hex": "0x00000002",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "size": 4,
+        "value": 0,
+        "value_hex": "0x00000000",
+        "width": 4
+       }
+      ],
+      "pc": "0x8004ff28",
+      "regs": {
+       "v0": "0x00080000",
+       "v1": "0x80080000"
+      },
+      "watch_id": 11
+     }
+    ],
+    "total": 1,
+    "truncated": false,
+    "watches": [
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 1,
+      "kind": "pc",
+      "label": "consumer_proceeded",
+      "max_events": 64,
+      "pc": "0x8004ff14",
+      "stop_on_hit": false,
+      "watch_id": 10
+     },
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 1,
+      "kind": "pc",
+      "label": "request_reread",
+      "max_events": 64,
+      "pc": "0x8004ff28",
+      "stop_on_hit": false,
+      "watch_id": 11
+     },
+     {
+      "capture": [
+       "v0",
+       "v1"
+      ],
+      "capture_memory": [
+       {
+        "address": "0x800823a0",
+        "width": 2
+       },
+       {
+        "address": "0x8008225c",
+        "width": 4
+       }
+      ],
+      "hit_count": 0,
+      "kind": "pc",
+      "label": "finalizer",
+      "max_events": 64,
+      "pc": "0x8004ff48",
+      "stop_on_hit": false,
+      "watch_id": 12
+     }
+    ]
+   }
+  },
+  "watch_ids": [
+   10,
+   11,
+   12
+  ]
+ }
+}

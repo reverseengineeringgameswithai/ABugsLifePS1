@@ -1,0 +1,74 @@
+{
+  "schema": "phase4_c10_bounded_exhaustion_v1",
+  "row": "C10_gold_berry",
+  "status": "partial",
+  "disposition": "bounded_exhausted",
+  "closure_gate": "PASS",
+  "date": "2026-08-04",
+  "source_identity": {
+    "pristine_executable": "SCUS_942.88",
+    "pristine_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "overlays": []
+  },
+  "method": {
+    "capsule_first": true,
+    "c10_capsule_found": false,
+    "capsule_result": "The central retained-capsule index contains no C10 or generic Gold-kill capsule.",
+    "analyzer": "tools/phase4_c10_static.c",
+    "raw_result": "analysis/phase4_c10_gold_berry.json",
+    "static_gate": "PASS",
+    "live_escalation": "none; resident mechanics are instruction-bound and D04 already supplies eligible berry-tough runtime controls"
+  },
+  "fixtures": [
+    {"path": "gold_berry.sav", "sha256": "f731fdb643a693334272040b38933c2ed6cef8ffc41b2c1ca743c9ccd0a2a435"},
+    {"path": "gold_berry_glyph.sav", "sha256": "38bc7aa96ca549dda94b975d756890988ba680152757b8e87378f871110b7b26"}
+  ],
+  "retained_artifact_boundary": {
+    "gold_ram_usage": {"path": "analysis/traces/ram_usage/sav__gold_berry.json", "sha256": "8e3246e54e749ecc360706b39d872d6c09090d7f9a34856de351028d5f8d8a17"},
+    "glyph_ram_usage": {"path": "analysis/traces/ram_usage/sav__gold_berry_glyph.json", "sha256": "391dab8437ca60962329b879d14e9deb6f895d9de4291938f6ed6f89039549a1"},
+    "scope": "changed-byte censuses only; neither is a trace capsule"
+  },
+  "excluded_movie": {
+    "path": "movies/Phase4/Interpreter/D17_Goldberry.movie.json",
+    "sha256": "3bfa845035d0ed4bdd0236ba67ade4ca763561a87293792b2bc1e3cc02de48c5",
+    "anchor_sha256": "2a594ad9c99cea3a7fdb890068e64a46f2b44da52722bd09155c903b34a9c8e7",
+    "reason": "bird-boss launch-height behavior is an overlay/setpiece control, not a generic C10 kill fixture"
+  },
+  "source_hashes": {
+    "contact_handler_asm": "2c6313d72dad6d078c23b71028941c4d9306c925bf4d31a510d7bab66328906f",
+    "damage_dispatch_asm": "f1aa90ff4967fb3286dc49a1bd21099869dd467e2850a69449172da54f53bf44",
+    "death_tail_asm": "dffaf30f2b85e664e7a29fc5cfd7a0648392dd7e3870e82a456176ab245eaa16",
+    "quota_constructor_asm": "5cc4abedda1bb9dad0d1439f071a607721215bb3179ec6324c2359411f724556",
+    "cleanup_dispatch_asm": "7fffb894c130e815b8e2586949f912d59f8d9ee2425081f68451f283ee3dd49b",
+    "contact_allocator_asm": "c5cd81d56c7f7d4a2f55b04c8f90fc6167cd8caeacda815ee88cda25fcc2c98c"
+  },
+  "confirmed": {
+    "dispatch": "equip index 3 constructs type 11/action 2/timer 100/subtype 4 through the shared lead-adjusted straight ballistic path",
+    "collision": "direct overlap rewrites subtype 4 to marker 11, stages timer 1, and selector 127 applies exactly -4 to the contacted actor",
+    "nonlethal": "the actor retains its reduced local counter; permanence and quota code are not entered",
+    "lethal": "marker 11 selects permanent outcome, writes local counter 999, finalizes the actor, and decrements 0x800A658E once",
+    "quota_zero": "only a post-decrement zero invokes the resident all-defeated event",
+    "load_eligibility": "the 64-slot constructor excludes empty ids and actor state +0x5C mask 0x08A0",
+    "contact_exclusions": "current +0x5C mask 0x00A0 is rejected; berry-tough bit 0x40 alone remains damageable",
+    "impact_burst": "subtype 11 emits sixteen ctor 12/13 action-3 records plus a positional effect and sound; those rows lack projectile/occupied bit 0x80",
+    "area_damage": "none in the resident cleanup path; damage is confined to the one actor overlap handled before presentation",
+    "ownership": "both timeout/floor subtype 4 and impact subtype 11 decrement 0x800A6596 exactly once"
+  },
+  "runtime_corroboration": {
+    "source": "D04 five-native-berry controls",
+    "eligible_berry_tough_actors": ["shell_bug", "worm_id40"],
+    "gold_observed_delta": -4,
+    "gold_observed_result": "permanent-finalization shape"
+  },
+  "observation": "The pristine Gold row carries selector 127/subtype 4; contact rewrites it to 11; the lethal branch decrements quota; terminal subtype 4/11 blocks create effect-class records and retire ownership.",
+  "inference": "The visible burst can look explosive, but ctor 12/13 records are action-3 presentation rather than additional action-2 damaging projectiles.",
+  "causal_confirmation": "The contacted actor alone reaches selector-127 damage; lethal marker 11 crosses the permanent threshold and performs the sole quota decrement before cleanup presentation.",
+  "remaining_low_return": [
+    "exact GPU primitive ownership and SPU sequencing for the Gold burst",
+    "campaign-wide overlay-specific HP floors or boss/setpiece overrides",
+    "semantic naming of quota-only state bit 0x0800 beyond its proven exclusion behavior"
+  ],
+  "fixture_need": "None for bounded resident scope. Request an Interpreter movie only for a named overlay override or exact audiovisual attribution.",
+  "cold_boot_required": false,
+  "remaining_direct_behavior": []
+}

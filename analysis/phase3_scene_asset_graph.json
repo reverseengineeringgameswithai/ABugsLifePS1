@@ -1,0 +1,546 @@
+{
+ "_comment": "Phase-3 WP7 scene->asset->overlay load graph, decoded from the pristine EXE tables and cross-verified against the Phase-2 completion oracle's observed scene ids. Gaps are computed. Regenerate: tools/phase3_scene_asset_graph.py (needs the LOCAL EXE).",
+ "generated": "2026-08-05",
+ "fixture_sha256": {
+  "REBUILD/files/SCUS_942.88": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+ },
+ "tables": {
+  "scene_asset_table": {
+   "address": "0x8001AD0C",
+   "rows": 15,
+   "stride": 16,
+   "site": "0x8003CFDC",
+   "function": "resource_id_dat_load_dispatcher (0x8003CF2C)"
+  },
+  "gfx_loadscreen_table": {
+   "address": "0x8001AE98",
+   "rows": 15,
+   "stride": 16,
+   "site": "0x8003F4B8",
+   "function": "switch_dispatch_struct_by_index (0x8003F3B4)"
+  },
+  "level_bin_table": {
+   "address": "0x8001B174",
+   "entries": [
+    "level1.bin",
+    "level2.bin",
+    "level3.bin",
+    "level.bin"
+   ],
+   "site": "0x80046718",
+   "function": "level_file_path_build (0x80046618)"
+  }
+ },
+ "law": "CORRECTED 2026-08-01. The dispatcher validates 1 <= scene_id <= 17 (0x8003CF84/0x8003CF88) and jumps through a PERMUTED jr table at 0x8001AFB0 indexed by scene_id-1; the string each handler reaches is a VAB/sound-bank prefix, NOT level data. The level data is selected arithmetically at 0x8003D204..0x8003D21C: dir = scene_id <= 10 ? scene_id : scene_id - 10, and the file-name variant flips to the '1' form for scene_id >= 11 (flags 0x140 into 0x800823AC). So each disc directory hosts TWO scenes, d and d+10, as LEVEL.* and LEVEL1.*. The prior law 'row index = scene_id - 1' was an assumption in this generator, never derived from code, and is wrong for 11 of 15 scenes. Cross-check: with the permutation, the VAB directory equals the arithmetically derived directory for all 15 campaign scenes.",
+ "operator_level_numbering": "the campaign progression table at 0x80077FA0 maps the player-facing level ordinal to scene_id: [17, 1, 3, 2, 6, 10, 11, 4, 5, 14, 7, 12, 13, 9, 8, 15, -1]. Ordinal 0 = training (scene 17); ordinal 6 = scene 11 = LEVEL01/LEVEL1.DAT.",
+ "scenes": {
+  "scene_01": {
+   "scene_id": 1,
+   "dispatch_handler": "0x8003CFC4",
+   "string_row": 0,
+   "vab_entry": "level01\\level1a",
+   "vab_dir": "level01",
+   "asset_prefix": "level1a",
+   "loading_screen": "gfx\\level1a.raw",
+   "disc_dir": "level01",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL01_LEVEL": 4,
+    "LEVEL01_LEVEL1": 5
+   },
+   "phase2_stage_labels": [
+    "stage01_anthill"
+   ]
+  },
+  "scene_02": {
+   "scene_id": 2,
+   "dispatch_handler": "0x8003D00C",
+   "string_row": 2,
+   "vab_entry": "level02\\level1c",
+   "vab_dir": "level02",
+   "asset_prefix": "level1c",
+   "loading_screen": "gfx\\level1c.raw",
+   "disc_dir": "level02",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL02_LEVEL": 6,
+    "LEVEL02_LEVEL1": 8
+   },
+   "phase2_stage_labels": [
+    "stage03_council_chamber"
+   ]
+  },
+  "scene_03": {
+   "scene_id": 3,
+   "dispatch_handler": "0x8003CFE8",
+   "string_row": 1,
+   "vab_entry": "level03\\level1b",
+   "vab_dir": "level03",
+   "asset_prefix": "level1b",
+   "loading_screen": "gfx\\level1b.raw",
+   "disc_dir": "level03",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL03_LEVEL": 8,
+    "LEVEL03_LEVEL1": 4
+   },
+   "phase2_stage_labels": [
+    "stage02_tunnels"
+   ]
+  },
+  "scene_04": {
+   "scene_id": 4,
+   "dispatch_handler": "0x8003D09C",
+   "string_row": 6,
+   "vab_entry": "level04\\level3a",
+   "vab_dir": "level04",
+   "asset_prefix": "level3a",
+   "loading_screen": "gfx\\level3a.raw",
+   "disc_dir": "level04",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL04_LEVEL": 9,
+    "LEVEL04_LEVEL1": 6
+   },
+   "phase2_stage_labels": [
+    "stage07_city_entrance"
+   ]
+  },
+  "scene_05": {
+   "scene_id": 5,
+   "dispatch_handler": "0x8003D0C0",
+   "string_row": 7,
+   "vab_entry": "level05\\level3b",
+   "vab_dir": "level05",
+   "asset_prefix": "level3b",
+   "loading_screen": "gfx\\level3b.raw",
+   "disc_dir": "level05",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL05_LEVEL": 8,
+    "LEVEL05_LEVEL1": 6
+   },
+   "phase2_stage_labels": [
+    "stage08_city_square"
+   ]
+  },
+  "scene_06": {
+   "scene_id": 6,
+   "dispatch_handler": "0x8003D030",
+   "string_row": 3,
+   "vab_entry": "level06\\level2a",
+   "vab_dir": "level06",
+   "asset_prefix": "level2a",
+   "loading_screen": "gfx\\level2a.raw",
+   "disc_dir": "level06",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL06_LEVEL": 6,
+    "LEVEL06_LEVEL1": 6
+   },
+   "phase2_stage_labels": [
+    "stage04_cliffside_canyon"
+   ]
+  },
+  "scene_07": {
+   "scene_id": 7,
+   "dispatch_handler": "0x8003D108",
+   "string_row": 9,
+   "vab_entry": "level07\\level4a",
+   "vab_dir": "level07",
+   "asset_prefix": "level4a",
+   "loading_screen": "gfx\\level4a.raw",
+   "disc_dir": "level07",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL07_LEVEL": 10,
+    "LEVEL07_LEVEL1": 10
+   },
+   "phase2_stage_labels": [
+    "stage10_clover_forest"
+   ]
+  },
+  "scene_08": {
+   "scene_id": 8,
+   "dispatch_handler": "0x8003D198",
+   "string_row": 13,
+   "vab_entry": "level08\\level5b",
+   "vab_dir": "level08",
+   "asset_prefix": "level5b",
+   "loading_screen": "gfx\\level5b.raw",
+   "disc_dir": "level08",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL08_LEVEL": 6,
+    "LEVEL08_LEVEL1": 6
+   },
+   "phase2_stage_labels": [
+    "stage14_riverbed_flight"
+   ]
+  },
+  "scene_09": {
+   "scene_id": 9,
+   "dispatch_handler": "0x8003D174",
+   "string_row": 12,
+   "vab_entry": "level09\\level5a",
+   "vab_dir": "level09",
+   "asset_prefix": "level5a",
+   "loading_screen": "gfx\\level5a.raw",
+   "disc_dir": "level09",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL09_LEVEL": 8,
+    "LEVEL09_LEVEL1": 2
+   },
+   "phase2_stage_labels": [
+    "stage13_anthill_two"
+   ]
+  },
+  "scene_10": {
+   "scene_id": 10,
+   "dispatch_handler": "0x8003D054",
+   "string_row": 4,
+   "vab_entry": "level10\\level2b",
+   "vab_dir": "level10",
+   "asset_prefix": "level2b",
+   "loading_screen": "gfx\\level2b.raw",
+   "disc_dir": "level10",
+   "level_data": {
+    "dat": "LEVEL.DAT",
+    "bin": "LEVEL.BIN",
+    "raw": "LEVEL.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL10_LEVEL": 5
+   },
+   "phase2_stage_labels": [
+    "stage05_riverbed_run"
+   ]
+  },
+  "scene_11": {
+   "scene_id": 11,
+   "dispatch_handler": "0x8003D078",
+   "string_row": 5,
+   "vab_entry": "level01\\level2c",
+   "vab_dir": "level01",
+   "asset_prefix": "level2c",
+   "loading_screen": "gfx\\level2c.raw",
+   "disc_dir": "level01",
+   "level_data": {
+    "dat": "LEVEL1.DAT",
+    "bin": "LEVEL1.BIN",
+    "raw": "LEVEL1.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL01_LEVEL": 4,
+    "LEVEL01_LEVEL1": 5
+   },
+   "phase2_stage_labels": [
+    "stage06_birdnest"
+   ]
+  },
+  "scene_12": {
+   "scene_id": 12,
+   "dispatch_handler": "0x8003D12C",
+   "string_row": 10,
+   "vab_entry": "level02\\level4b",
+   "vab_dir": "level02",
+   "asset_prefix": "level4b",
+   "loading_screen": "gfx\\level4b.raw",
+   "disc_dir": "level02",
+   "level_data": {
+    "dat": "LEVEL1.DAT",
+    "bin": "LEVEL1.BIN",
+    "raw": "LEVEL1.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL02_LEVEL": 6,
+    "LEVEL02_LEVEL1": 8
+   },
+   "phase2_stage_labels": [
+    "stage11_the_tree"
+   ]
+  },
+  "scene_13": {
+   "scene_id": 13,
+   "dispatch_handler": "0x8003D150",
+   "string_row": 11,
+   "vab_entry": "level03\\level4c",
+   "vab_dir": "level03",
+   "asset_prefix": "level4c",
+   "loading_screen": "gfx\\level4c.raw",
+   "disc_dir": "level03",
+   "level_data": {
+    "dat": "LEVEL1.DAT",
+    "bin": "LEVEL1.BIN",
+    "raw": "LEVEL1.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL03_LEVEL": 8,
+    "LEVEL03_LEVEL1": 4
+   },
+   "phase2_stage_labels": [
+    "stage12_battle_arena"
+   ]
+  },
+  "scene_14": {
+   "scene_id": 14,
+   "dispatch_handler": "0x8003D0E4",
+   "string_row": 8,
+   "vab_entry": "level04\\level3c",
+   "vab_dir": "level04",
+   "asset_prefix": "level3c",
+   "loading_screen": "gfx\\level3c.raw",
+   "disc_dir": "level04",
+   "level_data": {
+    "dat": "LEVEL1.DAT",
+    "bin": "LEVEL1.BIN",
+    "raw": "LEVEL1.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL04_LEVEL": 9,
+    "LEVEL04_LEVEL1": 6
+   },
+   "phase2_stage_labels": [
+    "stage09_bug_bar"
+   ]
+  },
+  "scene_15": {
+   "scene_id": 15,
+   "dispatch_handler": "0x8003D1BC",
+   "string_row": 14,
+   "vab_entry": "level05\\level5c",
+   "vab_dir": "level05",
+   "asset_prefix": "level5c",
+   "loading_screen": "gfx\\level5c.raw",
+   "disc_dir": "level05",
+   "level_data": {
+    "dat": "LEVEL1.DAT",
+    "bin": "LEVEL1.BIN",
+    "raw": "LEVEL1.RAW"
+   },
+   "vab_dir_matches_disc_dir": true,
+   "overlays": {
+    "LEVEL05_LEVEL": 8,
+    "LEVEL05_LEVEL1": 6
+   },
+   "phase2_stage_labels": [
+    "stage15_canyon_showdown"
+   ]
+  },
+  "scene_16": {
+   "scene_id": 16,
+   "dispatch_handler": "0x8003CFC4",
+   "string_row": 0,
+   "vab_entry": "level01\\level1a",
+   "vab_dir": "level01",
+   "asset_prefix": "level1a",
+   "loading_screen": "gfx\\level1a.raw",
+   "disc_dir": "level06",
+   "level_data": {
+    "dat": "LEVEL1.DAT",
+    "bin": "LEVEL1.BIN",
+    "raw": "LEVEL1.RAW"
+   },
+   "vab_dir_matches_disc_dir": false,
+   "overlays": {
+    "LEVEL06_LEVEL": 6,
+    "LEVEL06_LEVEL1": 6
+   },
+   "phase2_stage_labels": []
+  },
+  "scene_17": {
+   "scene_id": 17,
+   "dispatch_handler": "0x8003CFC4",
+   "string_row": 0,
+   "vab_entry": "level01\\level1a",
+   "vab_dir": "level01",
+   "asset_prefix": "level1a",
+   "loading_screen": "gfx\\level1a.raw",
+   "disc_dir": "level07",
+   "level_data": {
+    "dat": "LEVEL1.DAT",
+    "bin": "LEVEL1.BIN",
+    "raw": "LEVEL1.RAW"
+   },
+   "vab_dir_matches_disc_dir": false,
+   "overlays": {
+    "LEVEL07_LEVEL": 10,
+    "LEVEL07_LEVEL1": 10
+   },
+   "phase2_stage_labels": [
+    "training"
+   ]
+  }
+ },
+ "overlay_inventory": {
+  "LEVEL01_LEVEL": 4,
+  "LEVEL01_LEVEL1": 5,
+  "LEVEL02_LEVEL": 6,
+  "LEVEL02_LEVEL1": 8,
+  "LEVEL03_LEVEL": 8,
+  "LEVEL03_LEVEL1": 4,
+  "LEVEL04_LEVEL": 9,
+  "LEVEL04_LEVEL1": 6,
+  "LEVEL05_LEVEL": 8,
+  "LEVEL05_LEVEL1": 6,
+  "LEVEL06_LEVEL": 6,
+  "LEVEL06_LEVEL1": 6,
+  "LEVEL07_LEVEL": 10,
+  "LEVEL07_LEVEL1": 10,
+  "LEVEL08_LEVEL": 6,
+  "LEVEL08_LEVEL1": 6,
+  "LEVEL09_LEVEL": 8,
+  "LEVEL09_LEVEL1": 2,
+  "LEVEL10_LEVEL": 5,
+  "MEMORY": 69
+ },
+ "exceptional_routes": [
+  {
+   "scene": 17,
+   "stage_labels": [
+    "training"
+   ],
+   "owner": "resource_id_dat_load_dispatcher + resident scene handler 17",
+   "route": {
+    "resource_dispatch_table": "0x8001AFB0",
+    "resource_dispatch_index": 16,
+    "resource_dispatch_target": "0x8003CFC4",
+    "disc_directory": "LEVEL00",
+    "loading_screen": "gfx\\training.raw",
+    "overlay_semantics": "LEVEL00/LEVEL.BIN is a pinned 4-byte sentinel, not a Region-A code overlay; Training uses the resident/shared route plus LEVEL00 data"
+   },
+   "assets": {
+    "GFX/TRAINING.RAW": {
+     "sha256": "d27f29ad2a11f6f2acf739a48109cba666e14391b3a0565aa0d1f8c1a1e6a0d8",
+     "size": 120744
+    },
+    "LEVEL00/ERRORS.ERR": {
+     "sha256": "194d32c81fd9cac98d52814d334624bb3f05e9c36a2a8db4297f19143967381c",
+     "size": 2014
+    },
+    "LEVEL00/LEVEL.BIN": {
+     "sha256": "fb5e512425fc9449316ec95969ebe71e2d576dbab833d61e2a5b9330fd70ee02",
+     "size": 4
+    },
+    "LEVEL00/LEVEL.DAT": {
+     "sha256": "b9fb1650f96aa187cf3a3cebaf588424596a4a1a164f9de71ff296131d57297f",
+     "size": 94044
+    },
+    "LEVEL00/LEVEL.RAW": {
+     "sha256": "9d85dc0e21fa9f2801b5e39a9715795efd80a510572accfe8062a105866cd589",
+     "size": 400632
+    },
+    "LEVEL00/LEVEL1.RAW": {
+     "sha256": "8a611b89e7985c6e8da45c5860bf432c851e61951f69c667886b2c5c8bef831d",
+     "size": 90612
+    },
+    "LEVEL00/LEVEL2.RAW": {
+     "sha256": "46ce91f5b3c88217229b1035146328633450c5da90738d5ed69e4ca724b3c0d7",
+     "size": 95276
+    },
+    "LEVEL00/LEVEL3.RAW": {
+     "sha256": "2969ee1f659987f6a9587141ac365d50f6a36e07fbc8fe29856cb4ebbf6f1d10",
+     "size": 95180
+    },
+    "LEVEL00/LEVEL4.RAW": {
+     "sha256": "ca9117621b3f047001c39f9aa87a212e59e425fdbe6f23bbdc0d922b4ceaba01",
+     "size": 275816
+    },
+    "LEVEL00/TERRAIN.ALL": {
+     "sha256": "dccf7db3978cce18c9e2e59733f057dcb2d6b45b9ba0da05ed4307b350421ac2",
+     "size": 194332
+    }
+   },
+   "evidence": [
+    "analysis/phase2_completion_oracle.json:stages.training",
+    "analysis/phase3_jr_tables.json:decoded.0x8003CFBC",
+    "tools/build_baselines.json:staged_inputs.LEVEL00",
+    "REBUILD/files/SCUS_942.88 string at 0x8001AF98"
+   ]
+  }
+ ],
+ "unload_graph": {
+  "entry": {
+   "owner": "scene_load_init/resource dispatcher then world-ready population",
+   "evidence": "analysis/phase3_transition_reset.json",
+   "law": "scene id flips 450..1170 frames before the actor roster and player state are ready"
+  },
+  "exit": {
+   "owner": "transition orchestrator",
+   "evidence": "analysis/phase3_transition_reset.json:laws.exit_reclaims_world=false",
+   "law": "exit does not reclaim actor/plant/contact bytes; the old world remains stale in RAM"
+  },
+  "overwrite": {
+   "owner": "next scene resource load",
+   "evidence": "analysis/phase3_transition_reset.json",
+   "law": "the next load overwrites world-owned records; session-owned player fields carry across"
+  },
+  "exceptions": [
+   {
+    "scene": 17,
+    "law": "Training shares scene 1's SOUND BANK via jr index 16 (0x8001AFB0[16] = 0x8003CFC4), but its level data is LEVEL07/LEVEL1.* by the same arithmetic law -- NOT LEVEL00. Corroborated by tools/training_board_edit.py and tools/patch_training_overlay.py, which already target LEVEL07/LEVEL1.*, and by LEVEL00/LEVEL.DAT having zero type-0x3f entries."
+   },
+   {
+    "scene": 9,
+    "law": "Bug Bar loads no actor roster"
+   },
+   {
+    "scope": "four stages",
+    "law": "health becomes ready after the roster; world-ready needs both signals"
+   }
+  ],
+  "observed_exit_reclaims_world": false
+ },
+ "gaps": []
+}

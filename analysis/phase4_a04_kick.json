@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "row": "A04_kick",
+  "date": "2026-08-03",
+  "classification": "substantiated_partial_bounded_exhaustion",
+  "move_on": true,
+  "media": {
+    "serial": "SCUS-94288",
+    "executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "bin_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+  },
+  "retained_capsule_checked_first": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v3/kick",
+    "manifest_sha256": "b3b42f451f3447c3f30fdd7f78549e520a3c89c16bb056585b11f56214db9fed",
+    "complete": true,
+    "clean_control_equal": true,
+    "truncated": false,
+    "limitation": "The retained v3 movie contains five kicks in empty space and cannot answer actor-contact state changes."
+  },
+  "operator_fixture": {
+    "movie": "movies/Phase4/Interpreter/A04_kick_contact.movie.json",
+    "movie_sha256": "6f166a6e342aaa1c1c52cd3ca19ab35c32aed7eb75fa6c7d0a3ea46bdbc35877",
+    "sav_sha256": "dab6ec09dd7e351ed82b9ddd7981627d3932451e787efceba58fc7196372983d",
+    "movie_version": 4,
+    "execution_mode": "Interpreter",
+    "input_frames": 319,
+    "initial_emulator_frame": 30628,
+    "r2_movie_frames": [90, 146],
+    "square_movie_frames": [112, 117]
+  },
+  "static_analysis": {
+    "transient_c_source": "/tmp/a04_static.c",
+    "transient_c_source_sha256": "6d6a287eefc9f7ce96ab95d8cdeeb661a64d307f2025c0e69f4147cd9b73ac55",
+    "transient_binary_sha256": "d8d5e569037b0a87200588a80eaa6f4516b8648050b514366533329f3aea63b9",
+    "transient_output_sha256": "24a6c8125f75a421c9806b2fd00f726a0b7a4512dc924d051f258a812a16fc75",
+    "action_branch": "0x80048F4C..0x80048FB4",
+    "timer_tick": "0x80048EA4..0x80048ED4",
+    "animation_update": "0x800563D4",
+    "effect_emitter": "0x80055654",
+    "contact_handler": "0x8004ABF4",
+    "findings": [
+      "A fresh Square edge while L2 or R2 is held arms timer -16 only when the player is grounded, player+0x5C is zero, and the prior action timer is nonnegative.",
+      "The signed action timer moves one unit toward zero per gameplay update. Negative selects animation 1.",
+      "Animation 1 at timer -7 through -2 emits ctor109 six times; timer -7 also emits ctor108.",
+      "Kick contact reuses actor body-contact broad-sphere and state/model ellipsoid geometry, then requires the actor in the player's forward half-plane and excludes animations 11, 12, and 30.",
+      "The immediate body-contact branch sets actor flag 0x1000 and bypasses normal player damage; that stage does not write actor HP.",
+      "The later ctor109 effect carries action class 1 into the generic enemy hit tail, where eligible targets receive HP minus 99 at 0x80059094/0x800590E4.",
+      "Actor flags 0x20 or 0x80 reject generic contact-object damage before geometry; actor flag 0x40 selects a kick-special reaction after contact and bypasses the HP dispatcher.",
+      "Normal reaction sets actor knockback 30 and player animation 30; actor flag 0x80 selects reduced knockback 15 instead.",
+      "The 0x80089938 lookup controls optional chase flag 0x2, not kick eligibility or damage immunity."
+    ]
+  },
+  "natural_replay": {
+    "final_frame_clean": 30952,
+    "final_frame_traced": 30952,
+    "final_cycle_clean": 17524557977,
+    "final_cycle_traced": 17524557977,
+    "instrumentation_desync": false,
+    "kick_arm_emulator_frames": [30743],
+    "ctor108_emulator_frames": [30788],
+    "ctor109_emulator_frames": [30788, 30793, 30798, 30803, 30808, 30813],
+    "kick_contact_hits": 0,
+    "target": {
+      "actor_id": 39,
+      "record": "0x800A011C",
+      "flags": "0x4005",
+      "hp": 8
+    },
+    "geometry_sample": {
+      "timer": -11,
+      "animation": 1,
+      "player_xyz": [-46603, -97333, 215714],
+      "actor_collider_center_xyz": [-29152, -100832, 213696],
+      "scaled_delta_xyz": [545, 120, -64],
+      "radius": 525,
+      "distance_squared": 315521,
+      "radius_squared": 275625,
+      "classification": "broad_sphere_near_miss"
+    }
+  },
+  "causal_controls": [
+    {
+      "name": "x_only_positive_contact",
+      "intervention": "After replaying through movie index 97, stop playback and write only player X to -35000; preserve Y, Z, facing, animation, and enemy record, then issue fresh R2+Square.",
+      "contact_pc_hits": 2,
+      "contact_timers": [-16, -15],
+      "normal_player_damage_call_hits": 0,
+      "actor_flags_before": "0x4005",
+      "actor_flags_after": "0x5007",
+      "actor_knockback_after": 30,
+      "player_animation_after": 30,
+      "actor_hp_before": 8,
+      "actor_hp_after": 8,
+      "actor_hp_writes": 0,
+      "scope_limit": "This control observed only initial timer -16/-15 body contact, before the ctor109 damage-effect window at -7..-2; it cannot classify the later effect attack.",
+      "exec_summary_sha256": "1e862eba8ca0a5717c53cc7f3f8f23677e7a59a9b7712984b862420d4726a653",
+      "access_summary_sha256": "0ab386516dd5493bf3172a51a566c47e58ac6bc54108be5a586eb9a0f0e5b380"
+    },
+    {
+      "name": "flag_0x80_reduced_reaction",
+      "intervention": "Repeat the X-only control after changing only target flags from 0x4005 to 0x4085.",
+      "contact_pc_hits": 2,
+      "normal_player_damage_call_hits": 0,
+      "knockback_30_store_hits": 0,
+      "knockback_15_store_hits": 2,
+      "player_animation_30_store_hits": 0,
+      "actor_hp_before": 8,
+      "actor_hp_after": 8,
+      "actor_hp_writes": 0,
+      "exec_summary_sha256": "44026924a1d72ed74008981efd360682b09ba05816f452fde0da3e9e6dcf89b9",
+      "access_summary_sha256": "9bdfe74f86d81231d37ff8c5c0399673630928761005bc0a02d7b4ead6aee2e4"
+    }
+  ],
+  "rejected_control": {
+    "name": "center_overlap",
+    "reason": "Changing X, Y, and Z to the actor center triggered ordinary body collision with the kick selector false and reached the player-damage call. It is invalid as kick evidence and is retained only as a rejected-control record.",
+    "exec_summary_sha256": "8bf8c6730f95b678fb8faa7acd68cf7026e875ef3e8d216391bf09ea66660216",
+    "access_summary_sha256": "9f48289a7f0616b155eb048ae7f3474dfba0cc7325c5865384edb09a1720b523"
+  },
+  "worm_followup": "analysis/phase4_a04_kick_worm.json",
+  "closure": {
+    "resolved": [
+      "input admission",
+      "signed timer and recovery invariant",
+      "animation and effect window",
+      "body-volume and directional contact gates",
+      "ordinary and flag-0x80 body-contact reaction classes",
+      "ctor109 action-class-1 HP-minus-99 damage",
+      "worm flag-0x40 kick-special immunity"
+    ],
+    "low_return_residuals": [
+      "campaign-wide species census of flags 0x20, 0x40, and 0x80",
+      "rare actor behavior when starting HP is at least 100",
+      "semantic naming of table 0x80089938",
+      "per-scene video-frame cadence of the 16-update native interval",
+      "natural unmodified connecting enemy movie as corroboration"
+    ],
+    "additional_movie_required": false,
+    "rationale": "The corrected action law now includes both stages: immediate body reaction and delayed ctor109 HP-minus-99 damage, plus worm flag0x40 immunity. Remaining work is species breadth and naming rather than an unresolved kick law."
+  }
+}

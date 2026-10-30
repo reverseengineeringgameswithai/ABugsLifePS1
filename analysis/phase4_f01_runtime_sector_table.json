@@ -1,0 +1,45 @@
+{
+ "purpose": "F01 re-check under Phase 4 - Frontier Closure Workbench: does the region-code claim hold over the COMPLETE runtime sector table, not just the 189 authored records?",
+ "why": "E02 established the runtime table is an authored prefix plus a runtime-registered tail. The original F01 census covered only the authored prefix, so the 34 tail sectors were an uncovered unknown.",
+ "static_closure": {
+  "region_code_field": "0x800A7E48 + sector*0x30 + 0x2E",
+  "stores_across_resident_and_all_21_overlays": 2,
+  "store_pcs": [
+   "0x80030f94",
+   "0x80031264"
+  ],
+  "both_shape": "lw v0, 0x2c(t1)  ->  sh v0, 0x7e76(at)   (authored src +0x2C -> runtime +0x2E, E02's mapping)",
+  "conclusion": "the field can only ever be sourced from authored data; no overlay writes it and no runtime-registration path writes it",
+  "scope_limit": "constant-displacement store scan; an affine/register-computed store into the field is not excluded by this scan"
+ },
+ "live_verification": {
+  "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.json",
+  "sampled_at": {
+   "movie_frame": 1500,
+   "emulator_frame": 140381
+  },
+  "scene_id_0x80082504": 1,
+  "runtime_sector_count_0x800822A0": 223,
+  "authored_prefix": 189,
+  "runtime_registered_tail": 34,
+  "all_reads_valid": true,
+  "region_code_histogram": {
+   "0": 222,
+   "2": 1
+  },
+  "nonzero_sectors": [
+   {
+    "index": 177,
+    "code": 2
+   }
+  ],
+  "tail_189_to_222_distinct_codes": [
+   0
+  ],
+  "tail_189_to_222_distinct_flags": [
+   0,
+   110
+  ]
+ },
+ "verdict": "The original claim survives and is strengthened: previously 'LEVEL01 authors exactly one nonzero region code in 189 sectors' (silent on the 34 tail slots); now 'the complete 223-entry runtime table carries exactly one nonzero region code, and the field has only two writers, both authored-source conversions'."
+}

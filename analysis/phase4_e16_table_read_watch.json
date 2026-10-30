@@ -1,0 +1,331 @@
+{
+ "_comment": "Phase-4 E16: live read-watch on the three LEVEL.RAW chunk pointer tables during a boot -> frontend -> Clover Forest replay. Answers 'who reads these tables', which is what defines the 46 registered chunk formats. Regenerate: tools/phase4_e16_table_read_watch.py",
+ "generated": "2026-08-04",
+ "movie": "movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json",
+ "tables": [
+  {
+   "name": "markers_0x30_0x57_at_0x8009b5a8",
+   "base": "0x8009b5a8",
+   "length": 160
+  },
+  {
+   "name": "markers_0x28_0x2F_at_0x8009c210",
+   "base": "0x8009c210",
+   "length": 32
+  },
+  {
+   "name": "markers_0x58_0x5F_at_0x800a65b0",
+   "base": "0x800a65b0",
+   "length": 32
+  }
+ ],
+ "slot_addressing": {
+  "formula": "slot(marker) = DISP_BASE + marker*4  (RAW marker, not marker-lo)",
+  "evidence": "lui at,0x800A; addu at,at,(s4<<2); sw s3,DISP(at) at 0x8003bf48 / 0x8003b9cc / 0x8003bc54; the addiu s4,-lo just before is only the sltiu bounds check (tools/mips_ea_window.c on the pristine EXE)",
+  "spec": [
+   {
+    "markers": "0x30..0x57",
+    "disp_base": "0x8009b4e8",
+    "true_window": "0x8009b5a8..0x8009b647"
+   },
+   {
+    "markers": "0x28..0x2f",
+    "disp_base": "0x8009c170",
+    "true_window": "0x8009c210..0x8009c22f"
+   },
+   {
+    "markers": "0x58..0x5f",
+    "disp_base": "0x800a6450",
+    "true_window": "0x800a65b0..0x800a65cf"
+   }
+  ]
+ },
+ "expected_writers_from_static_scan": [
+  "0x8003b9cc",
+  "0x8003bc54",
+  "0x8003bf48"
+ ],
+ "watches": [
+  {
+   "table": "markers_0x30_0x57_at_0x8009b5a8",
+   "id": null,
+   "watch": {
+    "address": "0x8009b5a8",
+    "hit_count": 0,
+    "label": "markers_0x30_0x57_at_0x8009b5a8",
+    "length": 160,
+    "max_events": 60000,
+    "stop_on_hit": false,
+    "type": "readwrite",
+    "watch_id": 1
+   }
+  },
+  {
+   "table": "markers_0x28_0x2F_at_0x8009c210",
+   "id": null,
+   "watch": {
+    "address": "0x8009c210",
+    "hit_count": 0,
+    "label": "markers_0x28_0x2F_at_0x8009c210",
+    "length": 32,
+    "max_events": 60000,
+    "stop_on_hit": false,
+    "type": "readwrite",
+    "watch_id": 2
+   }
+  },
+  {
+   "table": "markers_0x58_0x5F_at_0x800a65b0",
+   "id": null,
+   "watch": {
+    "address": "0x800a65b0",
+    "hit_count": 0,
+    "label": "markers_0x58_0x5F_at_0x800a65b0",
+    "length": 32,
+    "max_events": 60000,
+    "stop_on_hit": false,
+    "type": "readwrite",
+    "watch_id": 3
+   }
+  }
+ ],
+ "movie_load": {
+  "armed_while_paused": false,
+  "frame_count": 5562,
+  "game_serial": "SCUS-94288",
+  "game_title": "Disney-Pixar A Bug's Life",
+  "has_movie": true,
+  "movie_version": 4,
+  "path": "~/Downloads/ABL/movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json",
+  "phase_delay_owed": false,
+  "playback_index": 0,
+  "playing": false,
+  "ports": [
+   0
+  ],
+  "recording": false,
+  "reproducible": false,
+  "start_state": {
+   "file_size": 0,
+   "frame": 0,
+   "from_boot": true,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "loaded_before_recording": false,
+   "path": "",
+   "pc": "0x00000000",
+   "reproducible_only_from_state": false,
+   "sha256": null,
+   "sp": "0x00000000"
+  },
+  "truncated": false
+ },
+ "playback_start": {
+  "armed_while_paused": false,
+  "frame_count": 5562,
+  "game_serial": "SCUS-94288",
+  "game_title": "Disney-Pixar A Bug's Life",
+  "has_movie": true,
+  "movie_version": 4,
+  "phase_delay_owed": false,
+  "playback_index": 0,
+  "playing": true,
+  "ports": [
+   0
+  ],
+  "recording": false,
+  "reproducible": true,
+  "start_state": {
+   "file_size": 0,
+   "frame": 0,
+   "from_boot": true,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "loaded_before_recording": false,
+   "path": "",
+   "pc": "0x00000000",
+   "reproducible_only_from_state": false,
+   "sha256": null,
+   "sp": "0x00000000"
+  },
+  "truncated": false
+ },
+ "playback_ended_early_at": 0,
+ "final_movie_status": {
+  "armed_while_paused": false,
+  "frame_count": 5562,
+  "game_serial": "SCUS-94288",
+  "game_title": "Disney-Pixar A Bug's Life",
+  "has_movie": true,
+  "movie_version": 4,
+  "phase_delay_owed": false,
+  "playback_index": 0,
+  "playing": false,
+  "ports": [
+   0
+  ],
+  "recording": false,
+  "reproducible": false,
+  "start_state": {
+   "file_size": 0,
+   "frame": 0,
+   "from_boot": true,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "loaded_before_recording": false,
+   "path": "",
+   "pc": "0x00000000",
+   "reproducible_only_from_state": false,
+   "sha256": null,
+   "sp": "0x00000000"
+  },
+  "truncated": false
+ },
+ "truncated": false,
+ "event_count": 264,
+ "read_count": 30,
+ "write_count": 234,
+ "write_pcs": {
+  "0xbfc0d868": 56,
+  "0x8005f6a4": 56,
+  "0x8003a3bc": 40,
+  "0x8003a3c0": 40,
+  "0x8003b9d0": 4,
+  "0x8003bf4c": 36,
+  "0x8003bc58": 2
+ },
+ "read_pcs": {
+  "0x8003c3c4": 4,
+  "0x8003c5f0": 2,
+  "0x8003c924": 24
+ },
+ "per_table": {
+  "markers_0x30_0x57_at_0x8009b5a8": {
+   "writes": 76,
+   "reads": 24,
+   "slots_written": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+   ],
+   "write_pcs": [
+    "0x8003bf4c",
+    "0x8005f6a4"
+   ],
+   "write_instructions": [
+    "sw s3, -0x4b18(at)",
+    "sw zero, 0x0(v0)"
+   ],
+   "read_pcs": [
+    "0x8003c924"
+   ],
+   "read_instructions": [
+    "lw s1, -0x4a58(at)"
+   ]
+  },
+  "markers_0x28_0x2F_at_0x8009c210": {
+   "writes": 52,
+   "reads": 4,
+   "slots_written": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "write_pcs": [
+    "0x8003a3bc",
+    "0x8003b9d0",
+    "0x8005f6a4"
+   ],
+   "write_instructions": [
+    "sw s3, -0x3e90(at)",
+    "sw zero, 0x0(a0)",
+    "sw zero, 0x0(v0)"
+   ],
+   "read_pcs": [
+    "0x8003c3c4"
+   ],
+   "read_instructions": [
+    "lw v0, -0x3df0(at)"
+   ]
+  },
+  "markers_0x58_0x5F_at_0x800a65b0": {
+   "writes": 50,
+   "reads": 2,
+   "slots_written": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "write_pcs": [
+    "0x8003a3c0",
+    "0x8003bc58",
+    "0x8005f6a4"
+   ],
+   "write_instructions": [
+    "sw s3, 0x6450(at)",
+    "sw zero, 0x0(a1)",
+    "sw zero, 0x0(v0)"
+   ],
+   "read_pcs": [
+    "0x8003c5f0"
+   ],
+   "read_instructions": [
+    "lw v0, 0x65b0(at)"
+   ]
+  }
+ },
+ "unexpected_readers": [
+  "0x8003c3c4",
+  "0x8003c5f0",
+  "0x8003c924"
+ ],
+ "positive_control_ok": true,
+ "verdict": "READERS FOUND -- 30 reads from ['0x8003c3c4', '0x8003c5f0', '0x8003c924']. The tables ARE consumed; the static scan missed them."
+}

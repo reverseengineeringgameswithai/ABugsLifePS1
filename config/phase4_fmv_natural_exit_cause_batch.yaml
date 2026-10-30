@@ -1,0 +1,101 @@
+schema: abl-phase4-duckstation-batch/1
+campaign_id: fmv_playback
+row_ids: [E15_fmv]
+escalation_ids: [P4-ITER82-E15-NATURAL-EXIT-CAUSE-CONTROL]
+expected_media: &pristine_media
+  path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  serial: SCUS-94288
+  title: Disney-Pixar A Bug's Life
+  sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  tracks:
+    - path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin
+      sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+expected_debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 55d589032641ad0904526742f2209c034a710a162ebba3e1bc04b4c5da6075a8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty: true
+  dirty_state_hash: 72dd936c8a6f92f6370815da7d9e192c3bcc2371
+continue_on_error: true
+
+jobs:
+  - id: start_skip_positive
+    recipe: loadStateAndRun
+    state_path: ~/Downloads/ABL/movies/Phase4/E15_fmv_skip.movie.sav
+    auto_select_disc: false
+    expected_media: *pristine_media
+    movie:
+      path: ~/Downloads/ABL/movies/Phase4/E15_fmv_skip.movie.json
+    instrumentation: &cause_trace
+      - method: functionTrace.start
+        params:
+          functions: [0x8007094C, 0x800709AC]
+          capture_memory: false
+          max_events: 16
+      - method: accessLog.addWatch
+        params:
+          address: 0x800CAC10
+          length: 4
+          type: write
+          label: completion_request
+          max_events: 32
+      - method: accessLog.addWatch
+        params:
+          address: 0x80131EEE
+          length: 2
+          type: write
+          label: selected_frame_limit
+          max_events: 16
+      - method: accessLog.addWatch
+        params:
+          address: 0x80088FFC
+          length: 4
+          type: write
+          label: late_str_backloc
+          max_events: 32
+          filter:
+            value: {op: ge, value: 376}
+            max_per_frame: 1
+      - method: accessLog.addWatch
+        params:
+          address: 0x800B9A54
+          length: 1
+          type: write
+          label: decode_stop_latch
+          max_events: 16
+    run: &shared_run
+      frames: 1100
+    capture: &shared_capture
+      trigger: e15_post_frame_1100
+      include_registers: true
+      trace_limit: 128
+      memory_dumps:
+        - {label: decode_stop_latch, address: 0x800B9A54, length: 0x1}
+        - {label: fmv_running_latch, address: 0x80082250, length: 0x4}
+        - {label: shell_substate, address: 0x8008243C, length: 0x4}
+        - {label: scene, address: 0x80082504, length: 0x4}
+        - {label: str_backloc, address: 0x80088FFC, length: 0x4}
+        - {label: fmv_bin_head, address: 0x800B5788, length: 0x100}
+        - {label: completion_request, address: 0x800CAC10, length: 0x4}
+        - {label: selected_frame_limit, address: 0x80131EEE, length: 0x2}
+
+  - id: natural_no_input_control
+    recipe: loadStateAndRun
+    state_path: ~/Downloads/ABL/movies/Phase4/E15_fmv_skip.movie.sav
+    auto_select_disc: false
+    expected_media: *pristine_media
+    instrumentation: *cause_trace
+    run: *shared_run
+    capture: *shared_capture
+
+control_pairs:
+  - positive_job: start_skip_positive
+    negative_job: natural_no_input_control
+    assertion: >-
+      From the identical inspected E15 save and 1,100-frame bound, retain the
+      exact completion-request, selected-limit, late STR-backloc and stop-latch
+      writes beside the already bound player common-exit calls. The no-input
+      branch must reach the limit-minus-two completion writer with no
+      decoded-record failure latch before its later balanced exit; the
+      Start-positive branch remains the same-anchor input control.

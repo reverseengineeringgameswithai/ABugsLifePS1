@@ -1,0 +1,137 @@
+{
+  "campaign": "fmv_playback",
+  "claim_boundary": {
+    "candidate_pc_hits": 0,
+    "classification": "two_pc_first_hit_window_falsified",
+    "dimension_promoted": false,
+    "dma_events_claimed": 0,
+    "fresh_verifier_pending": true,
+    "lifecycle_promoted": false,
+    "live_executed": true,
+    "natural_first_hit_observed": false,
+    "next_lane": "static",
+    "next_method": "Re-localize a paused cold-boot anchor before frame 15792 and reconstruct when the completed-Level-B scene-setup calls retire. Do not repeat the escaped 15792..15856 managed-breakpoint window.",
+    "not_claimed": [
+      "a hit at 0x8004FD74 or 0x8005029C",
+      "the natural scene-setup branch, arguments or exact retirement frame",
+      "any Region-B DMA event",
+      "fresh-verifier acceptance of either investigator receipt",
+      "lifecycle or any other dimension promotion"
+    ],
+    "passive_receipts_closed": 1,
+    "passive_repeat_equal": true,
+    "precise_receipts_closed": 1,
+    "selected_natural_branch_claimed": false
+  },
+  "errors": [],
+  "escalation_id": "P4-R10-ITER1-E15-LEVELB-TWO-PC-FIRST-HIT",
+  "falsifier": {
+    "claim": "The first completed-Level-B scene-setup call after the frame-15792 anchor must hit exactly one of 0x8004FD74 and 0x8005029C through frame 15856.",
+    "code": "TWO_PC_FIRST_HIT_TYPED_PREDICATE_FALSE",
+    "native_receipt_sha256": "7d17d1e6acf9daeeabc3c35fa0f536d571f40b08c5c416cf586d939aff77142e",
+    "outcome": "falsified",
+    "reason": "first-hit search escaped the finite emulator-frame bound"
+  },
+  "generated": "2026-07-29",
+  "inputs": {
+    "authorization": {
+      "before_ledger_sha256": "66238c7f87c3d00bc0648c0e488a0ff01e2b023054cfaa0732051ea6e710e3f5",
+      "evidence_domain": "native_control_and_exact_instruction_interface",
+      "first_unmet_dimension": "lifecycle",
+      "work_packet_sha256": "3ba5c810ecf6db492e30df43a577c5305b3b8e75d6e7f28fc944c34ddd58f3a9"
+    },
+    "config": {
+      "path": "config/phase4_fmv_levelb_two_pc_first_hit_result.yaml",
+      "sha256": "273dca68253210fbd21b2c6974d6d89dfa1d47155823f272bdd5354388ca479d"
+    }
+  },
+  "missing_fact_id": "E15/completed-level-b-natural-scene-setup-first-hit",
+  "observation": {
+    "candidate_pc_hits": 0,
+    "dma_events_claimed": 0,
+    "native_anchor": {
+      "frame": 15792,
+      "pc": "0x8004fea4"
+    },
+    "natural_first_hit_observed": false,
+    "passive_repeat_equal": true,
+    "passive_window_strictly_wider": true
+  },
+  "raw_external_bytes_committed": false,
+  "receipts": [
+    {
+      "batch_result_sha256": "6242bcfef0c181a5fdd5b170f37362df66a76d13bebbe5a32f3f8ea723839a92",
+      "capture_window": {
+        "clock": "emulator_frame",
+        "start": 15776,
+        "stop": 15872,
+        "stop_inclusive": false
+      },
+      "endpoint": {
+        "cycle": 8986205047,
+        "frame": 15872,
+        "pc": "0x8004fea4",
+        "sp": "0x801fffd0"
+      },
+      "jobs": 2,
+      "owned_pid_stopped": true,
+      "precise": false,
+      "receipt_sha256": "488c44d4ff9245dda0b1bf21600a262be6848c7aaaece23b6393b120c27048e3",
+      "repeat_equal": true,
+      "role": "passive"
+    },
+    {
+      "anchor_frame": 15792,
+      "batch_result_sha256": "5cc35a9b1aa321c27033c1ce3395361d4430a128bfd9e90b5e20f9fa3087f432",
+      "candidate_hits": 0,
+      "capture_window": {
+        "clock": "emulator_frame",
+        "start": 15792,
+        "stop": 15856,
+        "stop_inclusive": false
+      },
+      "command_event_count": 74,
+      "direct_result_sha256": "17c9288417f4ef0ea064d9251e963d3cfc9267f745d47f132410741127872651",
+      "failure_frame": 15857,
+      "falsifier_code": "TWO_PC_FIRST_HIT_TYPED_PREDICATE_FALSE",
+      "falsifier_reason": "first-hit search escaped the finite emulator-frame bound",
+      "frame_ceiling": 15856,
+      "outcome": "falsified",
+      "owned_breakpoints_removed": 2,
+      "owned_pid_stopped": true,
+      "precise": true,
+      "receipt_sha256": "7d17d1e6acf9daeeabc3c35fa0f536d571f40b08c5c416cf586d939aff77142e",
+      "remaining_breakpoints": 0,
+      "role": "native",
+      "server_session_id": "fa7109834923ace0b32d0080b2fb58b6062869fbf7812a3a0eb665ae8167243b"
+    }
+  ],
+  "record_counts": {
+    "candidate_pc_hits": 0,
+    "completed_atomic_jobs": 3,
+    "direct_command_events": 74,
+    "emulator_launches": 2,
+    "fresh_verifier_receipts": 0,
+    "investigator_live_receipts": 2,
+    "offline_queries": 0,
+    "offline_queries_reused": 1,
+    "owned_breakpoints_removed": 2,
+    "owned_pids_stopped": 2,
+    "passive_live_receipts": 1,
+    "precise_live_receipts": 1,
+    "promoted_dimensions": 0,
+    "promotion_admissible_live_receipts": 0
+  },
+  "row": "E15_fmv",
+  "schema": "abl-phase4-fmv-levelb-two-pc-first-hit-result/1",
+  "source_dependencies": {
+    "analysis/phase4_fmv_levelb_transition_relocalization.json": "0d7783db266fbe33ddc9ab7113c816ca9d88f81baa602244f31e821451b3abc8",
+    "analysis/phase4_fmv_levelb_two_pc_first_hit.json": "13f89c671b2168ddca85849aa729241158fbaca17159e707a68218d3d4733cf3",
+    "config/phase4_fmv_levelb_two_pc_first_hit_result.yaml": "273dca68253210fbd21b2c6974d6d89dfa1d47155823f272bdd5354388ca479d",
+    "tools/phase4_duckstation_two_pc_first_hit.py": "4c9af31cf99a608d9992183d676d9d69627f43d5c270c04e6a7f69a840ad7f9b",
+    "tools/phase4_fmv_levelb_two_pc_first_hit_live.py": "8575a6f7375bd84eb863481d2f0d02fd4e35c0403e73b93e85eef526688e0ee6",
+    "tools/phase4_method_metrics.py": "5f3aa7741f24bb930c177a847a387427c3b417bad5d93ca30f4fda6052e491dd"
+  },
+  "summary": "The pristine passive repeat agreed, but the native two-PC observer escaped the finite 15792..15856 window without either candidate hit. The predeclared claim is falsified; no branch, DMA event, or dimension is promoted.",
+  "valid": true
+}

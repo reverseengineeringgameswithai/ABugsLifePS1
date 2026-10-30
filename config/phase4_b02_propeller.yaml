@@ -1,0 +1,66 @@
+row: B02
+mechanic: propeller_plant
+status: bounded_exhausted_high_value
+date: 2026-08-02
+
+identity:
+  game_serial: SCUS-94288
+  media: pristine_SCUS-94288
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+
+fixtures:
+  retained_capsule_movie:
+    movie: movies/Phase4/B02_propeller_alone_and_seed.movie.json
+    state: movies/Phase4/B02_propeller_alone_and_seed.movie.sav
+    role: frame_boundary_and_block_flow_only
+  corrected_interpreter_movie:
+    movie: movies/Phase4/Interpreter/B02.movie.json
+    movie_sha256: 6992b9658e9fedec46a5489ff85a1ed160606fadeed41170ddc7840e439080ca
+    state: movies/Phase4/Interpreter/B02.movie.sav
+    state_sha256: 3e19b52869076111e04b5810aefdbc18a01d2bec6d0674b77f2f708d5729c6df
+    movie_version: 4
+    armed_while_paused: true
+    phase_delay_owed: true
+    execution_mode: Interpreter
+    playback_driver: debugger.resume_plus_status_poll
+    fast_forward: false
+    operator_flight_check: synchronized
+
+evidence:
+  static: analysis/phase4_b02_propeller_static.json
+  capsule: analysis/phase4_b02_propeller_capsule.json
+  runtime: analysis/phase4_b02_propeller_runtime.json
+  external_runtime_root: ~/Downloads/ABL-external-evidence/phase4/B02_propeller_interpreter_exec_20260802
+  c_static_tool: tools/phase4_b02_asm_static.c
+  c_capsule_tool: tools/phase4_b02_capsule_probe.c
+  c_runtime_tool: tools/phase4_b02_runtime_trace_analyzer.c
+
+runtime_sites:
+  radius_200_delay_slot: 0x8005c290
+  player_radius_40_delay_slot: 0x8005c350
+  detach_call: 0x8005c3d0
+  player_velocity_store: 0x8005c424
+  player_clamp_store: 0x8005c454
+  actor_radius_40_delay_slot: 0x8005c4a0
+  actor_velocity_store: 0x8005c4dc
+  actor_flag_clear: 0x8005c528
+  carry_offset: 0x800a655c
+
+closure:
+  result: bounded_exhausted_high_value
+  cold_boot_required: false
+  exact_runtime_confirmed:
+    - no_carry_write_during_inputs_86_through_190
+    - manual_throw_release_at_input_296
+    - pickup_at_input_565
+    - propeller_detach_at_input_779
+    - player_and_seed_lift_on_detach_frame
+    - player_velocity_clamp_minus_3072
+    - actor_velocity_has_no_equivalent_clamp
+    - actor_flag_clear_pairs_with_every_actor_lift
+  deferred_low_return:
+    - exhaustive_rng_byte_distribution
+    - every_propeller_placement_and_non_seed_actor_class
+    - pixel_level_trajectory_reconstruction
+  new_interpreter_movie_needed: false

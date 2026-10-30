@@ -1,0 +1,73 @@
+schema: abl-phase4-offline-bonus-objectives-batch-source/1
+description: >
+  Declarative selection and evidence contract for the coherent bonus-entry and
+  three native bonus-objective rows. The per-frame derived index is external
+  game-derived evidence; Git retains only hashes, bounded summaries, the
+  generator and falsification guards.
+selected_rows:
+  - C18_bonus_entry
+  - F16_bonus1_spiders
+  - F17_bonus2_mushrooms
+  - F18_bonus3_grasshoppers
+expected_unique_capsules: 3
+movie_rows:
+  movies/Bonus_Level_01.movie.json: F16_bonus1_spiders
+  movies/Bonus_Level_02.movie.json: F17_bonus2_mushrooms
+  movies/Bonus_Level_03.movie.json: F18_bonus3_grasshoppers
+selection_snapshot:
+  pre_analysis_queue_sha256: 29d44495dde0c4e1ed46ce29ef35d09cd1ab92418f9ff05fb390994f677e1775
+  pre_collection_escalation_ledger_sha256: b7bb546de2f556ee28cfc6a8bb54a49fcfb5f2b543572b3551292b64d1ea0111
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 4
+    offline_partial: 38
+    live_required: 0
+    no_capsule: 65
+  rows:
+    - {row_id: C18_bonus_entry, queue_rank: 1, classification: offline_ready, completion_state: open}
+    - {row_id: F16_bonus1_spiders, queue_rank: 2, classification: offline_ready, completion_state: open}
+    - {row_id: F17_bonus2_mushrooms, queue_rank: 3, classification: offline_ready, completion_state: open}
+    - {row_id: F18_bonus3_grasshoppers, queue_rank: 4, classification: offline_ready, completion_state: open}
+candidate_ranges:
+  - {name: bonus1_proximity_updater, start: 0x8004ABF4, end: 0x8004B6DC, decisive_block_start: 0x8004B35C}
+  - {name: bonus2_mushroom_handler, start: 0x8005C034, end: 0x8005C6E8, decisive_block_start: 0x8005C660}
+  - {name: bonus3_contact_handler, start: 0x80058AF8, end: 0x80059A10, decisive_block_start: 0x8005916C}
+expected_findings:
+  F16_bonus1_spiders:
+    progress_frames: [128, 352, 590, 742, 1072]
+    progress_values: [1, 2, 3, 4, 0]
+    completion_frame: 1072
+    scene_16_frame: 1131
+    flag_before: 0
+    flag_after: 2
+  F17_bonus2_mushrooms:
+    progress_frames: [109, 159, 209, 261, 313]
+    progress_values:
+      - [6, -1, -1, -1, -1]
+      - [6, 5, -1, -1, -1]
+      - [6, 5, 4, -1, -1]
+      - [6, 5, 4, 2, -1]
+      - [6, 5, 4, 2, 3]
+    completion_frame: 313
+    scene_16_frame: 431
+    flag_before: 34
+    flag_after: 35
+  F18_bonus3_grasshoppers:
+    progress_frames: [337, 743, 1429, 1969, 2467]
+    progress_values: [1, 2, 3, 4, 0]
+    completion_frame: 2467
+    scene_16_frame: 2526
+    flag_before: 51
+    flag_after: 55
+external_index:
+  schema: abl-phase4-external-bonus-objectives-index/1
+  domains: [registers, ram, vram, spu_ram, block_flow]
+tracked_summary:
+  schema: abl-phase4-offline-bonus-objectives-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary state changes and passive block-start coverage do not identify
+    an exact writer instruction/cycle or replace the retained native positive and
+    negative controls for duplicate/miss/reset semantics.

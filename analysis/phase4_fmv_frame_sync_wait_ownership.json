@@ -1,0 +1,506 @@
+{
+  "_comment": "Generated from hash-verified pristine resident bytes, tracked ASM/C/schema sources and retained hash-only runtime provenance. No captured or copyrighted payload is retained.",
+  "campaign": "fmv_playback",
+  "claim_boundary": {
+    "classification": "shared_frame_sync_wait_ownership_corrected",
+    "dimension_promoted": false,
+    "dma_events_claimed": 0,
+    "exact_retirement_frame": null,
+    "lifecycle_promoted": false,
+    "natural_branch_selected": false,
+    "new_live_escalation_authorized": false,
+    "next_action": "Preserve the corrected shared frame-sync owner and stop using 0x80082250/0x8004FEA4 as an FMV-retirement bracket. Reconstruct a distinct earlier state producer or change the scheduler lane; do not widen or relabel the escaped 15792..15856 observer.",
+    "next_lane": "static"
+  },
+  "dimension": "lifecycle",
+  "evidence_boundary": {
+    "causal_confirmation": null,
+    "inference": "A future earlier-boundary experiment must use a distinct state producer or exact instruction predicate; the shared frame-sync latch is not an FMV lifecycle discriminator.",
+    "observation": "The retained paired frame-15720 PC is 0x8004FEA4.",
+    "static_confirmation": "The resident u32 at 0x80082250 is a shared frame-sync interrupt handshake, not an FMV-running or FMV-retirement latch. Scene-flow PC 0x8004FEA4 is one inline instance of the same set-one, wait-while-one, interrupt-clear protocol implemented by shared helper 0x8003F2F0 and consumed by transition, display and reset owners. The retained paired frame-15720 boundary therefore establishes only a frame-sync control position; it cannot locate either completed-Level-B scene-setup call or FMV retirement."
+  },
+  "external_dependencies": {
+    "run:iteration-1-receipts/work-packet.json": "1f9b530c50934f57888b37e70243e3dfde00596750ab7492d02c3e788034bb83"
+  },
+  "falsifier": {
+    "checks": {
+      "dimension_promotion_absent": true,
+      "direct_xref_census_complete": true,
+      "direct_xrefs_unclassified_zero": true,
+      "fmv_specific_lifetime_rejected": true,
+      "interrupt_clearers_complete": true,
+      "legacy_capture_alias_bounded": true,
+      "machine_sources_hash_pinned": true,
+      "new_live_escalation_absent": true,
+      "pad_lifecycle_clearers_complete": true,
+      "prior_no_promotion_preserved": true,
+      "pristine_resident_identity_exact": true,
+      "retained_frame_15720_boundary_preserved": true,
+      "scene_flow_inline_protocol_exact": true,
+      "shared_helper_caller_census_complete": true,
+      "shared_helper_protocol_exact": true,
+      "work_packet_exact": true
+    },
+    "claim": "Reject the claim if any compiler-standard direct xref to 0x80082250 is unclassified; the scene-flow or shared-helper instruction sequence does not implement set-one then wait-while-one; the context handlers do not clear nonzero state before frame_present; pad start/stop does not also clear the field; the shared helper has an unclassified direct caller; any owner gives the field an FMV-specific lifetime; the retained frame-15720 boundary is rewritten into evidence of a scene-setup call or exact retirement; or a load-bearing byte/source/artifact mutation leaves the focused guard green.",
+    "outcome": "survived"
+  },
+  "generated": "2026-07-30",
+  "pristine_static_ownership": {
+    "fmv_exclusive": false,
+    "owner_classes": [
+      "context_save_interrupt",
+      "pad_subsystem_lifecycle",
+      "level_transition",
+      "display_loop",
+      "gameplay_reset",
+      "scene_flow_inline_wait"
+    ],
+    "protocols": {
+      "interrupt_clearers": [
+        {
+          "clear_pc": "0x8001864C",
+          "frame_present_call": "0x80018650",
+          "range": [
+            "0x800185B8",
+            "0x800186EC"
+          ],
+          "read_pc": "0x80018638"
+        },
+        {
+          "clear_pc": "0x80018784",
+          "frame_present_call": "0x80018788",
+          "range": [
+            "0x800186F0",
+            "0x8001881C"
+          ],
+          "read_pc": "0x80018770"
+        }
+      ],
+      "pad_lifecycle_clearers": [
+        {
+          "owner": "pad_subsystem_start",
+          "pc": "0x8003E848"
+        },
+        {
+          "owner": "pad_subsystem_stop",
+          "pc": "0x8003E8D8"
+        }
+      ],
+      "scene_flow_inline": {
+        "control_pc": "0x8004FEA4",
+        "instructions": [
+          {
+            "mnemonic": "addiu v1,zero,1",
+            "pc": "0x8004FE98",
+            "word": "0x24030001"
+          },
+          {
+            "mnemonic": "lui at,0x8008",
+            "pc": "0x8004FE9C",
+            "word": "0x3C018008"
+          },
+          {
+            "mnemonic": "sw v1,8784(at)",
+            "pc": "0x8004FEA0",
+            "word": "0xAC232250"
+          },
+          {
+            "mnemonic": "lui v0,0x8008",
+            "pc": "0x8004FEA4",
+            "word": "0x3C028008"
+          },
+          {
+            "mnemonic": "lw v0,8784(v0)",
+            "pc": "0x8004FEA8",
+            "word": "0x8C422250"
+          },
+          {
+            "mnemonic": "nop",
+            "pc": "0x8004FEAC",
+            "word": "0x00000000"
+          },
+          {
+            "mnemonic": "beq v0,v1,0x8004fea4",
+            "pc": "0x8004FEB0",
+            "word": "0x1043FFFC"
+          },
+          {
+            "mnemonic": "nop",
+            "pc": "0x8004FEB4",
+            "word": "0x00000000"
+          }
+        ],
+        "loop_branch_pc": "0x8004FEB0",
+        "range": [
+          "0x8004FE98",
+          "0x8004FEB8"
+        ],
+        "read_wait_pc": "0x8004FEA8",
+        "set_wait_pc": "0x8004FEA0"
+      },
+      "shared_helper": {
+        "instructions": [
+          {
+            "mnemonic": "addiu v1,zero,1",
+            "pc": "0x8003F328",
+            "word": "0x24030001"
+          },
+          {
+            "mnemonic": "lui at,0x8008",
+            "pc": "0x8003F32C",
+            "word": "0x3C018008"
+          },
+          {
+            "mnemonic": "sw v1,8784(at)",
+            "pc": "0x8003F330",
+            "word": "0xAC232250"
+          },
+          {
+            "mnemonic": "lui v0,0x8008",
+            "pc": "0x8003F334",
+            "word": "0x3C028008"
+          },
+          {
+            "mnemonic": "lw v0,8784(v0)",
+            "pc": "0x8003F338",
+            "word": "0x8C422250"
+          },
+          {
+            "mnemonic": "nop",
+            "pc": "0x8003F33C",
+            "word": "0x00000000"
+          },
+          {
+            "mnemonic": "beq v0,v1,0x8003f334",
+            "pc": "0x8003F340",
+            "word": "0x1043FFFC"
+          },
+          {
+            "mnemonic": "nop",
+            "pc": "0x8003F344",
+            "word": "0x00000000"
+          }
+        ],
+        "loop_branch_pc": "0x8003F340",
+        "range": [
+          "0x8003F2F0",
+          "0x8003F358"
+        ],
+        "read_wait_pc": "0x8003F338",
+        "set_wait_pc": "0x8003F330"
+      }
+    },
+    "shared_helper_call_count": 5,
+    "shared_helper_callers": [
+      {
+        "instruction": {
+          "mnemonic": "jal 0x8003f2f0",
+          "pc": "0x80052338",
+          "word": "0x0C00FCBC"
+        },
+        "owner": "level_transition_orchestrator",
+        "pc": "0x80052338"
+      },
+      {
+        "instruction": {
+          "mnemonic": "jal 0x8003f2f0",
+          "pc": "0x8005235C",
+          "word": "0x0C00FCBC"
+        },
+        "owner": "level_transition_orchestrator",
+        "pc": "0x8005235C"
+      },
+      {
+        "instruction": {
+          "mnemonic": "jal 0x8003f2f0",
+          "pc": "0x8005B490",
+          "word": "0x0C00FCBC"
+        },
+        "owner": "transition_fade_draw_loop",
+        "pc": "0x8005B490"
+      },
+      {
+        "instruction": {
+          "mnemonic": "jal 0x8003f2f0",
+          "pc": "0x8005B644",
+          "word": "0x0C00FCBC"
+        },
+        "owner": "animated_overlay_display_loop",
+        "pc": "0x8005B644"
+      },
+      {
+        "instruction": {
+          "mnemonic": "jal 0x8003f2f0",
+          "pc": "0x8005B7F8",
+          "word": "0x0C00FCBC"
+        },
+        "owner": "gameplay_state_reset_cursor_seed_entry",
+        "pc": "0x8005B7F8"
+      }
+    ],
+    "slice_identities": [
+      {
+        "bytes": 308,
+        "end": "0x800186EC",
+        "sha256": "1d5568cdc829a6d376d24eb5391b80b316eececbf1c0bbbbe4b91669fa33958e",
+        "start": "0x800185B8"
+      },
+      {
+        "bytes": 300,
+        "end": "0x8001881C",
+        "sha256": "c1694aaed73dc74d35431911d884f182085fbc8517855859ffc0def93f2b5e71",
+        "start": "0x800186F0"
+      },
+      {
+        "bytes": 104,
+        "end": "0x8003F358",
+        "sha256": "95cf01e80726c2e0c8c75452790ca81231ce668dcc5f8c539674b7d334d61b4c",
+        "start": "0x8003F2F0"
+      },
+      {
+        "bytes": 32,
+        "end": "0x8004FEB8",
+        "sha256": "79ed7b64565b01a1e9b60eb7acc97ee8dd0717ac3c0a1af842c92d32144c80e5",
+        "start": "0x8004FE98"
+      }
+    ],
+    "unclassified_helper_callers": 0
+  },
+  "retained_boundary": {
+    "corrected_inference": "The PC and latch value do not locate either scene-setup call and do not establish whether FMV retirement is before or after this frame boundary.",
+    "cycle": 8900142073,
+    "exact_retirement_frame": null,
+    "frame": 15720,
+    "natural_branch_selected": false,
+    "observation": "Both retained pristine jobs are paused at the inline frame-sync wait control position.",
+    "paired_equal": true,
+    "payload_retained": false,
+    "pc": "0x8004FEA4"
+  },
+  "row": "E15_fmv",
+  "schema": "abl-phase4-fmv-frame-sync-wait-ownership/1",
+  "source_dependencies": {
+    "analysis/phase4_fmv_levelb_pre15792_partition.json": "3f80557009fc748d3e68fbe1bd57be99e2b6de77c4233b05dd716703047ea373",
+    "analysis/phase4_fmv_levelb_transition_relocalization.json": "0d7783db266fbe33ddc9ab7113c816ca9d88f81baa602244f31e821451b3abc8",
+    "asm/hand_written/800186f0_context_save_callback.s": "c6c2d35ad82cb1d210a637d463a71c9bb9ea976dedbafa7c0e295b982d02ec35",
+    "asm/hand_written/8003f2f0_sub_8003f2f0.s": "b33b0390367685e1a6971ce6d61a13d22f958e8bf9aaef4c4bf81df9e5a60562",
+    "asm/hand_written/8004fca0_scene_flow_dispatcher.s": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+    "asm/hand_written/8005222c_level_transition_orchestrator.s": "c768d5494c7b4cc89a295b5836462473c5ea9c7fbaec97e9f06c21dbb4ac523f",
+    "asm/hand_written/8005b440_sub_8005b440.s": "3dfd3e03c576e594aa9dac37061b148648b02b69f157cdf620beb4382b3283a8",
+    "asm/hand_written/8005b4e4_sub_8005b4e4.s": "1b5d116a21da3b9eb77a0657770a97c0e828f43065ba49f4561b37af539d1bae",
+    "asm/hand_written/8005b4ec_sub_8005b4ec.s": "9c16bc83bdef7910b7a022cfa8ddae9235d8597e76acd356e21b47244d892524",
+    "asm/hand_written/8005b70c_sub_8005b70c.s": "3d3ad4a7b5ebbe97bfd3bec791e2110d6b7d0f4e22ebca1a3d0654e948f275fd",
+    "asm/hand_written/8005b714_gameplay_state_reset_cursor_seed.s": "07b436d13edd1628b61702d27030a1b02af23212758f8e99b352f2831f1c15ca",
+    "config/phase4_fmv.yaml": "63f60045562aa2ec113ac060b3fec8c5c0b562f45cc5e02e4f78ff49077b0d64",
+    "config/phase4_fmv_frame_sync_wait_ownership.yaml": "3dbb9adb6b38fcdfc253e8f5ff049061cd62cce5be45ad339dfa7f92f59708eb",
+    "src/main/8003e83c_vsync_wait_glue.c": "04356c2c10cea3860dd98c08c224ec882e1f9a708d5fa007050c59dc43b0b2bc",
+    "src/main/8003e8c4_vsync_wait_glue_e8c4.c": "7b6d53d410fad2d5c21d9b529c5d31a51552f074daa2a3bc948463ebcc149bf0",
+    "src_re/fmv_levelb_pre15792_partition.c": "64dd94c57b7994d69bc75f85e37acccb032699d23b3c1261ca011122eb478c16",
+    "symbols/re_symbols.sym": "2067681373d1e64ab4029916abf977aa6d9f5fd9a88d5b2d7b3f95d7e7be1363"
+  },
+  "summary": {
+    "dimension_promoted": false,
+    "direct_reads": 4,
+    "direct_writes": 6,
+    "direct_xrefs": 10,
+    "new_live_receipts": 0,
+    "new_offline_queries": 0,
+    "owner_classes": 6,
+    "shared_helper_callers": 5,
+    "unclassified_direct_xrefs": 0,
+    "unclassified_helper_callers": 0
+  },
+  "typed_state": {
+    "address": "0x80082250",
+    "alias_boundary": "Historical retained live documents keep the fmv_running_latch capture label for hash-stable provenance. It is not an authoritative owner or lifetime claim.",
+    "canonical_name": "frame_sync_wait_latch",
+    "clear_value": 0,
+    "direct_read_count": 4,
+    "direct_write_count": 6,
+    "direct_xref_contract": "compiler_standard_adjacent_lui_direct_load_store",
+    "direct_xref_count": 10,
+    "direct_xrefs": [
+      {
+        "access": "read",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "lw t0,8784(t0)",
+          "pc": "0x80018638",
+          "word": "0x8D082250"
+        },
+        "materialization": {
+          "mnemonic": "lui t0,0x8008",
+          "pc": "0x80018634",
+          "word": "0x3C088008"
+        },
+        "owner": "context_save_handler_primary",
+        "pc": "0x80018638",
+        "role": "read"
+      },
+      {
+        "access": "write",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "sw zero,8784(at)",
+          "pc": "0x8001864C",
+          "word": "0xAC202250"
+        },
+        "materialization": {
+          "mnemonic": "lui at,0x8008",
+          "pc": "0x80018648",
+          "word": "0x3C018008"
+        },
+        "owner": "context_save_handler_primary",
+        "pc": "0x8001864C",
+        "role": "clear"
+      },
+      {
+        "access": "read",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "lw t0,8784(t0)",
+          "pc": "0x80018770",
+          "word": "0x8D082250"
+        },
+        "materialization": {
+          "mnemonic": "lui t0,0x8008",
+          "pc": "0x8001876C",
+          "word": "0x3C088008"
+        },
+        "owner": "context_save_handler_secondary",
+        "pc": "0x80018770",
+        "role": "read"
+      },
+      {
+        "access": "write",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "sw zero,8784(at)",
+          "pc": "0x80018784",
+          "word": "0xAC202250"
+        },
+        "materialization": {
+          "mnemonic": "lui at,0x8008",
+          "pc": "0x80018780",
+          "word": "0x3C018008"
+        },
+        "owner": "context_save_handler_secondary",
+        "pc": "0x80018784",
+        "role": "clear"
+      },
+      {
+        "access": "write",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "sw zero,8784(at)",
+          "pc": "0x8003E848",
+          "word": "0xAC202250"
+        },
+        "materialization": {
+          "mnemonic": "lui at,0x8008",
+          "pc": "0x8003E844",
+          "word": "0x3C018008"
+        },
+        "owner": "pad_subsystem_start",
+        "pc": "0x8003E848",
+        "role": "clear"
+      },
+      {
+        "access": "write",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "sw zero,8784(at)",
+          "pc": "0x8003E8D8",
+          "word": "0xAC202250"
+        },
+        "materialization": {
+          "mnemonic": "lui at,0x8008",
+          "pc": "0x8003E8D4",
+          "word": "0x3C018008"
+        },
+        "owner": "pad_subsystem_stop",
+        "pc": "0x8003E8D8",
+        "role": "clear"
+      },
+      {
+        "access": "write",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "sw v1,8784(at)",
+          "pc": "0x8003F330",
+          "word": "0xAC232250"
+        },
+        "materialization": {
+          "mnemonic": "lui at,0x8008",
+          "pc": "0x8003F32C",
+          "word": "0x3C018008"
+        },
+        "owner": "wait_for_frame_sync_flag",
+        "pc": "0x8003F330",
+        "role": "set_wait"
+      },
+      {
+        "access": "read",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "lw v0,8784(v0)",
+          "pc": "0x8003F338",
+          "word": "0x8C422250"
+        },
+        "materialization": {
+          "mnemonic": "lui v0,0x8008",
+          "pc": "0x8003F334",
+          "word": "0x3C028008"
+        },
+        "owner": "wait_for_frame_sync_flag",
+        "pc": "0x8003F338",
+        "role": "read_wait"
+      },
+      {
+        "access": "write",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "sw v1,8784(at)",
+          "pc": "0x8004FEA0",
+          "word": "0xAC232250"
+        },
+        "materialization": {
+          "mnemonic": "lui at,0x8008",
+          "pc": "0x8004FE9C",
+          "word": "0x3C018008"
+        },
+        "owner": "scene_flow_dispatcher_inline_wait",
+        "pc": "0x8004FEA0",
+        "role": "set_wait"
+      },
+      {
+        "access": "read",
+        "address": "0x80082250",
+        "instruction": {
+          "mnemonic": "lw v0,8784(v0)",
+          "pc": "0x8004FEA8",
+          "word": "0x8C422250"
+        },
+        "materialization": {
+          "mnemonic": "lui v0,0x8008",
+          "pc": "0x8004FEA4",
+          "word": "0x3C028008"
+        },
+        "owner": "scene_flow_dispatcher_inline_wait",
+        "pc": "0x8004FEA8",
+        "role": "read_wait"
+      }
+    ],
+    "legacy_capture_alias": "fmv_running_latch",
+    "owner": "shared_frame_sync_interrupt_handshake",
+    "residency": "resident",
+    "unclassified_direct_xrefs": 0,
+    "wait_value": 1,
+    "width": "u32"
+  },
+  "work_packet": {
+    "exact_claim": "The resident u32 at 0x80082250 is a shared frame-sync interrupt handshake, not an FMV-running or FMV-retirement latch. The complete compiler-standard direct-xref census and exact pristine control flow must show that scene-flow PC 0x8004FEA4 is one instance of the same set-one/busy-wait-until-cleared protocol used by non-FMV callers of 0x8003F2F0. Therefore the retained paired frame-15720 PC/latch boundary is a frame-sync control position only and cannot locate either completed-Level-B scene-setup call or FMV retirement.",
+    "explicit_falsifier": "Reject the claim if any compiler-standard direct xref to 0x80082250 remains unclassified; the 0x8004FE98..0x8004FEB4 sequence does not implement set-one then loop-while-one; the shared 0x8003F2F0 helper does not implement the same protocol; all of its direct callers are FMV-owned; any pristine writer gives the field an FMV-specific lifetime; the retained frame-15720 boundary is rewritten into evidence of a scene-setup call or exact retirement; or a load-bearing opcode, owner, source, artifact, or semantic-label mutation leaves the focused guard green.",
+    "sha256": "1f9b530c50934f57888b37e70243e3dfde00596750ab7492d02c3e788034bb83"
+  }
+}

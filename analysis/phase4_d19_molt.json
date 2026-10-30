@@ -1,0 +1,137 @@
+{
+  "row": "D19_molt",
+  "date": "2026-08-03",
+  "status": "partial_high_value_bounded_exhausted",
+  "disposition": "move_on",
+  "movie_required": false,
+  "cold_boot_required": false,
+  "capsule_preflight": {
+    "manifest": "analysis/phase4_trace_capsule_set.json",
+    "d19_identity_matches": 0,
+    "live_escalation_reason": "No D19 capsule existed. Exact instruction attribution for the guard rollback, crowd allocator, HP writer, and transition handoff was a named missing domain."
+  },
+  "identity": {
+    "repo_head": "ce30c661a8547e2a74ae49cd981a161f9656911f",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+    "duckstation_dirty_worktree": true,
+    "config": "/tmp/duckstation-phase4-d19-recheck-20260803",
+    "port": 38493,
+    "execution_mode": "Interpreter",
+    "media_serial": "SCUS-94288",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "bin_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+  },
+  "fixture": {
+    "movie": "movies/Phase4/Interpreter/D19.movie.json",
+    "movie_sha256": "d3e8105ba0e2945fb1d9779bb1a4f091528f39dcdff20049b940ea62023bac5b",
+    "state": "movies/Phase4/Interpreter/D19.movie.sav",
+    "state_sha256": "1b8a1d52911d4160fb1cd3ed93dc354e6b0c5a216f564c38d96f7a15d3b730f4",
+    "movie_version": 4,
+    "frame_count": 7729,
+    "initial_emulator_frame": 7910,
+    "armed_while_paused": false,
+    "phase_delay_owed": false,
+    "reproducible_only_from_state": true
+  },
+  "static_inputs": {
+    "retail_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "live_secondary_overlay": "REBUILD/files/LEVEL03/LEVEL1.BIN",
+    "live_secondary_overlay_sha256": "24adb413e88885b1614995e241da9961df1dc5e0f81ba5f820c32765918c04c9",
+    "rejected_initial_overlay_hypothesis": "REBUILD/files/LEVEL09/LEVEL.BIN",
+    "rejected_overlay_sha256": "9472fddce759161a887968fe98f1ded3282a4d8a4dc8c72fb27cbcd9c341d879",
+    "corpus_restore_word": "0xA6230000",
+    "corpus_restore_word_hits": 1,
+    "corpus_restore_word_location": "LEVEL03/LEVEL1.BIN+0x324 = 0x800B3CC4"
+  },
+  "actor": {
+    "address": "0x8009FF90",
+    "id": 29,
+    "stride": 132,
+    "flags": "0x5043",
+    "hp_address": "0x8009FFFE",
+    "hp_initial": 50,
+    "acceptance_gate_offset": "0x44",
+    "vm_ip_at_collisions": "0x80077688",
+    "vm_opcode_at_collisions": "park_seek",
+    "callback": "0x8004A0A0",
+    "callback_role": "sound callback; not the charge/guard owner"
+  },
+  "damage_and_guard": {
+    "resident_damage_writer": "0x800590E4: sh v0,0x6E(s2)",
+    "contact_class": 0,
+    "contact_f24": 10,
+    "contact_f27": 1,
+    "damage_per_dispatch": 2,
+    "molt_dispatch_events": 43,
+    "accepted_hp_descents": 15,
+    "rolled_back_dispatches": 28,
+    "accepted_hp_range": [50, 20],
+    "rollback_writer": "0x800B3CC4: sh v1,0(s1)",
+    "rollback_rule": "Restore the last accepted HP snapshot when actor+0x44 equals 1 or the global goal latch is already nonzero.",
+    "accepted_snapshot": "0x800B45F4",
+    "accepted_snapshot_writer": "0x800B3F0C"
+  },
+  "crowd_throw": {
+    "producer_region": "0x800B41CC..0x800B4468",
+    "origin_table": "0x800B45B4, four 12-byte XYZ entries selected by RNG&3",
+    "allocator_call": "0x800B43F8 -> 0x8005A0E0",
+    "allocator_return_address": "0x800B4400",
+    "contact_type": 71,
+    "fixture_allocations": 31,
+    "total_contact_allocations_traced": 141,
+    "distance_gate_squared": "<=0x7FFFF",
+    "cooldown_writer": "0x800B4468",
+    "negative_static_candidates": ["0x800B4620 in LEVEL09/LEVEL.BIN", "0x800B4750 in LEVEL09/LEVEL.BIN"],
+    "negative_candidate_hits": 0
+  },
+  "defeat_transition": {
+    "threshold_branch": "0x800B3DEC: accepted HP < 21",
+    "final_accepted_emulator_frame": 13589,
+    "final_accepted_movie_frame": 5679,
+    "goal_latch_writer": "0x800B3E70 -> 0x800823A0 = 1",
+    "transition_timer_writer": "0x800B3E7C -> 0x80082470 = 150",
+    "outcome": "level complete"
+  },
+  "instrumentation_flight_check": {
+    "driver": "debugger.resume plus movie.status polling at normal speed",
+    "fast_forward": false,
+    "clean_final_frame": 15651,
+    "armed_final_frame": 15651,
+    "clean_final_cycle": 8861074013,
+    "armed_final_cycle": 8861074013,
+    "movie_reproducible": true,
+    "identical_domains": ["sampled actor pool", "player", "overlay globals", "transition globals", "screenshot"],
+    "screenshot_sha256": "f33255a4f3503c4ec9781308ca11a64299343295164ccc7315e40c43b9236acf",
+    "range_trace_events": 50000,
+    "range_trace_interpretation": "pressure-limited only; not used as exhaustive closure evidence",
+    "targeted_damage_events": 44,
+    "targeted_damage_trace_truncated": false
+  },
+  "debugger_caveats": {
+    "conditional_breakpoint": "The running fork returned conditional:false and ignored the documented s2 predicate. The capture was restarted with an unconditional PC breakpoint and filtered by s2 in the script.",
+    "breakpoint_replay_scope": "Used only for exact pre-store actor/contact snapshots. The clean and non-halting execTrace runs are the outcome-equivalence authority.",
+    "actor_access_ring": "The 32-byte actor-tail watch reached 10000 events; only its retained exact HP writes through frame 12282 are used. The 44 breakpoint snapshots and non-truncated targeted exec trace cover the complete collision sequence."
+  },
+  "evidence_hashes": {
+    "armed_rpc_json": "518125963b2938be5773fade80007eb517e7e691a26ad42ac616c83119c865a6",
+    "breakpoint_rpc_json": "109b85a8422c02aec6ec9cf3b509eec74a0a08f69e7f404a51c05f09d8b233ca",
+    "armed_screenshot": "f33255a4f3503c4ec9781308ca11a64299343295164ccc7315e40c43b9236acf",
+    "breakpoint_screenshot": "30bbaf56990b58e32097e1c6f7e8173045763c89b61bddc39eba0325c3e6d540",
+    "external_root": "~/Downloads/ABL-external-evidence/phase4/D19_molt_interpreter_20260803"
+  },
+  "INTEGRATION_CORRECTION_2026-08-03": {
+    "note": "Pre-integration re-verification found the goal-latch writer PC was off by one instruction (a li v0,1 / lui at,0x8008 pair sits at 0x800B3E68/0x800B3E6C before the actual sh at 0x800B3E70). Confirmed by re-running tools/phase4_d19_molt.c against the current REBUILD/files/LEVEL03/LEVEL1.BIN, which now passes STATIC verification cleanly. The underlying fact (goal latch 0x800823A0 set to 1 immediately before the 150-tick transition write) is unchanged; only the cited PC moved 0x800B3E6C -> 0x800B3E70. Fixed here, in tools/phase4_d19_molt.c, SYS_molt_boss.md, and the Experiment note."
+  },
+  "closure": {
+    "result": "partial_high_value_bounded_exhausted",
+    "rationale": "The named D19 gaps now have exact original owners and a pristine full-fight confirmation: park/seek charge state, guard rollback, crowd contact production, HP acceptance, and victory handoff. Remaining work is presentation breadth, RNG breadth, alternate-attempt breadth, and compiler matching, all low-return without a concrete dependency.",
+    "new_interpreter_movie_needed": false,
+    "deferred_low_return": [
+      "exhaustive crowd-origin RNG distribution",
+      "exact animation, GPU, and audio presentation timing",
+      "alternate attempt, death, and restart matrix",
+      "compiler-matched overlay source"
+    ]
+  }
+}

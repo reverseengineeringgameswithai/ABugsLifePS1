@@ -1,0 +1,146 @@
+schema: abl-phase4-fmv-decoded-record-control-result-source/1
+description: >
+  Preservation and interpretation contract for the iteration-102 decoded-record
+  absence control. The positive observation is retained, but the planned
+  control is falsified because the native branch filled its 64-event function
+  trace and retained only indexes 27 through 90. No lifecycle or dimension
+  promotion is allowed.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-ITER102-E15-DECODED-RECORD-ABSENCE-CONTROL
+missing_fact_id: E15/decoded-record-absence-lifecycle
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260727-151734-52225-r2
+before_ledger:
+  relative_path: iteration-1-escalations-before.json
+  sha256: 6eeaf1bb68e292775e6060b9a46a99a7c8c414cacc89be69fdbbd03cd76af3a7
+  bytes: 333837
+offline_receipt:
+  relative_path: iteration-1-receipts/offline-fmv-decoded-record.receipt.json
+  sha256: 3844cbc22d3a202e46ebb7ee69c5064f18b48828cac7afd4c76fda5362faebdb
+  bytes: 1921
+retention_query:
+  run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260727-164404-52225-r3
+  receipt:
+    relative_path: iteration-1-receipts/offline-e15-decoded-record-retention.receipt.json
+    sha256: 7156595a5e9822afa871075802ccfe0fd7b4f5ef60fc46aa89fe00f72f329b1b
+    bytes: 2012
+  output:
+    relative_path: iteration-1-receipts/outputs/e15-decoded-record-retention.json
+    sha256: c9e1b46afabce79b818a9731ac9b98ebe2b863bfbf7fad17f8bd59d7953eac30
+    bytes: 2090
+  reader:
+    path: tools/phase4_offline_receipt_query.py
+    sha256: 00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846
+  static_callsite:
+    start: 0x800B7278
+    end: 0x800B729C
+    sha256: 8626db42e8667a029a78344d828f4d95fecf920d742ea24e3efb3af265fc0ada
+    helper_call: 0x800B7280
+    helper_target: 0x800B6C24
+    latch_read: 0x800B728C
+    exit_branch: 0x800B7294
+  successor_contract:
+    window: {clock: movie_frame, start: 650, stop: 850}
+    prior_max_events: 64
+    observed_total_events: 90
+    proposed_max_events: 128
+    required_headroom_events: 32
+    actual_headroom_events: 38
+    require_first_retained_index: 1
+    require_last_retained_index_lte: 90
+    require_returned_events_lte: 90
+    require_returned_events_lt_max: true
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  movie_sha256: 39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf
+  state_sha256: e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592
+  settings_sha256: e030ef17c97fa30cd71d84a14ea15075a4fdb6b33e12bb439a3374066d9c08d1
+  serial: SCUS-94288
+debugger:
+  binary_sha256: a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1
+  adapter_sha256_at_execution: 3adeffc01bf609535e6596d4b344ae01793dfea686a02b415dff2c2af0c05d2b
+receipts:
+  - role: passive
+    precise: false
+    stage_stop: 649
+    observer_start: 649
+    replay_stop: 900
+    plan:
+      path: config/phase4_fmv_decoded_record_passive_batch.yaml
+      sha256: f217b4b9fdbe6e257c284fe767b1e184842253a138a7aaa9f5191304cc995a77
+    receipt:
+      relative_path: iteration-1-receipts/e15-decoded-record-passive-prelude/receipt.json
+      sha256: 17194db4d36b26ca85571f6640b6f7bad3623b32181cf4f34487e14bf4a8ea25
+      bytes: 4352
+    batch_result:
+      relative_path: iteration-1-receipts/e15-decoded-record-passive-prelude/batch-result.json
+      sha256: 0deaff03d16927dd665ae63fcd3e15432773d18d09e16c976fe04b971daa89ea
+      bytes: 184481
+    raw_results:
+      relative_path: iteration-1-receipts/e15-decoded-record-passive-prelude/raw-results.json
+      sha256: 51b1ec7177288247cd1b60c330c124a000cc39de5314fe4c2ec40edb9b811b9b
+      bytes: 1210
+    cleanup:
+      relative_path: iteration-1-receipts/e15-decoded-record-passive-prelude/owned-pid-cleanup.json
+      sha256: 506f54665938adfb52ff5f8d8331b79c635e8d8dde44852e3859058ce7871fa9
+      bytes: 390
+    pagination:
+      relative_path: iteration-1-receipts/e15-decoded-record-passive-prelude/pagination.json
+      sha256: d301a76f022e5df63326e746139d0822bb2cfe2b4b0c0a96567b8359b4d7c1d2
+      bytes: 202
+    command_events:
+      relative_path: iteration-1-receipts/e15-decoded-record-passive-prelude/command-events.json
+      sha256: 1f9d314e4167981c5f6e77cd87d9c7a4c4acf461f58151cf1355f0326f70445d
+      bytes: 23896
+  - role: precise
+    precise: true
+    stage_stop: 650
+    observer_start: 650
+    replay_stop: 850
+    function_max_events: 64
+    plan:
+      path: config/phase4_fmv_decoded_record_control_batch.yaml
+      sha256: 42bbe69405802a3712668784be1d9260ee2deae9a44cb140ddef1576823a7d2c
+    receipt:
+      relative_path: iteration-1-receipts/e15-decoded-record-absence-control/receipt.json
+      sha256: 1a7f995fd4ec2c2e4673c74a84bcc73f6b25b44c5e0563d6dee9c837ebabd1eb
+      bytes: 4537
+    batch_result:
+      relative_path: iteration-1-receipts/e15-decoded-record-absence-control/batch-result.json
+      sha256: 4d43e6ee87a8d822a57c55b95d8756973e1fbeea69bd9f5dbf2e86114a1a7968
+      bytes: 295593
+    raw_results:
+      relative_path: iteration-1-receipts/e15-decoded-record-absence-control/raw-results.json
+      sha256: 547183d58aa6194adf5a97d84e8feb24c71bc6c3abc08bcd200633063cf156fc
+      bytes: 1204
+    cleanup:
+      relative_path: iteration-1-receipts/e15-decoded-record-absence-control/owned-pid-cleanup.json
+      sha256: fe092bb59f5af2bcf374c86b94f98eb24bfc708bfdbb290bcc556c28362a2036
+      bytes: 390
+    pagination:
+      relative_path: iteration-1-receipts/e15-decoded-record-absence-control/pagination.json
+      sha256: 8d3a1c200d3b9ae22b44604dbf7db3ea19635d562c33809790afbdbcf5d0d69e
+      bytes: 203
+    command_events:
+      relative_path: iteration-1-receipts/e15-decoded-record-absence-control/command-events.json
+      sha256: bec0bac0859eeca387faccee0e974c18ef5a281c09978ace838bcb3a7396179b
+      bytes: 23878
+claim_boundary:
+  classification: falsified_observer_saturation
+  dimension_promoted: false
+  lifecycle_promoted: false
+  live_receipts_admissible: false
+  next_lane: live
+  next_method: >
+    The retained native job emitted exactly 90 function events over movie
+    frames 650..850. A same-window 128-event successor has 38 events of
+    headroom and must retain indexes 1..90 without reaching its limit.
+    Predeclare that fail-closed successor pair; do not reuse the saturated
+    64-event result as lifecycle evidence.
+  not_claimed:
+    - absence of native teardown in the first 26 discarded function events
+    - native decoded-record failure frequency or malformed-media policy
+    - natural completion, pause, repeat, viewer-return, or error ownership
+    - lifecycle or any other nine-dimension promotion
+    - either retained live receipt as promotion-admissible evidence

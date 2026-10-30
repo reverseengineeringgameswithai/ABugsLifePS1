@@ -1,0 +1,52 @@
+row: A13
+status: bounded_exhausted
+promotion: substantiated
+date: 2026-08-03
+
+fixtures:
+  deny:
+    movie: movies/Phase4/A13_denied_one_tier.movie.json
+    movie_sha256: 29345e4f76fec168218a15bb1cc942de3ed20a132d880c65291a287eedd6d880
+    save_sha256: 004a018d1c35d1e0e8b2201286262255e13867a886e060435c5b9849e9304f3e
+    version: 4
+    frames: 398
+  wrap_timeout:
+    movie: movies/Phase4/Interpreter/A13_wrap_timeout.movie.json
+    movie_sha256: 405efceee50f4ffddb425a06db32f8ea0b7d1187fedc999d0802428bb06089d8
+    save_sha256: b654b1327dc974b0793d30f552b34b395d43d267fd835982b2a7c5e443f7d3cc
+    version: 4
+    frames: 897
+
+addresses:
+  brown_selector: 0x800a6598
+  nearest_eligible_actor: 0x8008242c
+  timer: 0x800824a4
+  nearest_clear_pc: 0x800472b8
+  nearest_candidate_pc: 0x8004736c
+  nearest_direct_candidate_pc: 0x80047398
+  timer_gate_load_pc: 0x80047568
+  timer_gate_branch_pc: 0x80047570
+  timer_decrement_pc: 0x80047578
+  selector_cycle_store_pc: 0x80047b6c
+  timer_arm_pc: 0x80047b9c
+  selector_normalize_store_pc: 0x800475c0
+
+runtime_contracts:
+  deny_one_tier:
+    start_selector: 0x11
+    end_selector: 0x11
+    selector_writes: 0
+    timer_writes: 0
+  wrap_timeout:
+    selector_sequence: [0x44, 0x14, 0x24, 0x44]
+    timer_arm: 120
+    timer_decrements: 120
+    decrement_period_video_frames: 2
+    freeze_condition: nearest_eligible_actor != 0
+    expiry_normalizes_selected_to_maximum: true
+
+evidence:
+  retained_capsule_manifest_sha256: 902bfdfffa3dcb6ef11d7ab77405ad306a96a330bb344e85944a46a20f88b1dd
+  runtime_json: analysis/phase4_a13_runtime.json
+  experiment_note: ObsidianVault/Experiments/EXP_2026-08-03_phase4_a13_bounded_exhaustion.md
+  canon_note: ObsidianVault/Canon/Systems/Seed_plant_output_binding.md

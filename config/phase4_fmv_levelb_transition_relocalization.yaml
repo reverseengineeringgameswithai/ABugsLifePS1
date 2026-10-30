@@ -1,0 +1,67 @@
+schema: abl-phase4-fmv-levelb-transition-relocalization-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260729-015934-213677-r8
+work_packet:
+  relative_path: iteration-1-receipts/work-packet.json
+  sha256: f724339bbeb4f7163dc6cf3a6d0eeb623ca93057bf158d5ac3abe7ae702130fc
+  bytes: 3219
+offline_anchor_query:
+  receipt:
+    relative_path: iteration-1-receipts/offline-e15-levelb-frame-15816-anchor.receipt.json
+    sha256: aedb9bb4905be6750f4fbde8c60bf5c0a5833e686411038bde7fde5ea4f4faa7
+  output:
+    relative_path: iteration-1-receipts/outputs/e15-levelb-frame-15816-anchor-projection.json
+    sha256: bb2893a11cab61cf35aa2088353531b697fd6c01d183bfb2ef19d7f5af0767d0
+  input_sha256: 5afa281a79ce3520360127cca4a303d408b19a455d8a1cfbc391a4cff8e36625
+  reader_path: tools/phase4_atomic_anchor_projection.py
+  reader_sha256: f3a08a18a71be5188dc7140fde28c8d3fa98adc73a87f2d15147a0559a14a8f7
+prior_evidence:
+  replacement_ownership:
+    path: analysis/phase4_fmv_region_b_replacement_ownership.json
+    sha256: 03b5a8d9a518f5c00624f81248b721e98a513b987d8e1456e142c682cc1087a4
+  exact_pc_subwindow:
+    path: analysis/phase4_fmv_levelb_region_b_dma_subwindow.json
+    sha256: c7d3696ea7fbd0276b57f64f0790b57351932bb10a84e68cf6e80985d5120f07
+  exact_pc_falsifier:
+    path: analysis/phase4_fmv_levelb_region_b_dma_exact_pc_result.json
+    sha256: a59f8fa90e235ed733c50cfc7552c22e81f45446c7c11073649307e6c3eb6b55
+expected:
+  anchor:
+    frame: 15816
+    cycle: 8954497636
+    pc: '0x8004FEA4'
+    region_b_head_sha256: 6245e366d6fa7f9a4ca2bcfef1a47da70a4f50cb15e50ded0f0f2ffedee3a1b8
+    retired_fmv_head_sha256: ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db
+  earlier_boundaries:
+    - pc: '0x8004FD74'
+      a0: 3
+      a1: 0
+      selection: negative_pending_request
+    - pc: '0x8005029C'
+      a0: 6
+      a1: 128
+      selection: nonnegative_pending_request
+  scene_setup_target: '0x8005038C'
+  resource_dispatch_call: '0x800503CC'
+  resource_selector_zero_call: '0x8003D310'
+  retired_exact_pc: '0x80046078'
+claim_boundary:
+  closed_sub_boundary: completed_level_b_transition_relocalized_before_frame_15816
+  dimension_promoted: false
+  lifecycle_promoted: false
+  next_lane: static
+  next_action: >
+    Preserve the frame-15816 post-submit anchor and the complete two-call
+    predecessor set. Implement and mutation-guard a typed first-hit boundary
+    that stops at either 0x8004FD74 or 0x8005029C before any new live
+    escalation. Do not reuse the frame-15816 0x80046078 stop or infer a DMA
+    event from the retired Region-B head.
+  not_claimed:
+    - which of the two scene-setup callsites is selected in every lifecycle
+    - any exact frame or cycle for either earlier callsite
+    - any DMA event, CD sector sequence, transfer direction or success
+    - fresh campaign-verifier acceptance of the three prior live receipts
+    - lifecycle or any other nine-dimension promotion

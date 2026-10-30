@@ -1,0 +1,154 @@
+{
+  "schema": "phase4_row_evidence_v1",
+  "row": "F03_council_chamber",
+  "name": "Stage 3 Council Chamber: defeat Thumper",
+  "date": "2026-08-04",
+  "status": "substantiated_partial",
+  "closure": "bounded_exhausted",
+  "disposition": "move_on",
+  "scope_resolution": {
+    "original_objective": "Defeat Thumper and complete Council Chamber.",
+    "stale_row_text": "The row still requested an Interpreter re-take and results continuation after both had become available, and retained generic route/collectible/hazard wording after D16 closed the fight objective.",
+    "resolution": "D16's fight, mosquito, arena, and defeat work is inherited by reference. The F03 full-stage Any% Interpreter scenario adds the missing initialized-stage-to-results lifecycle.",
+    "no_separate_route_gate": "The exit block is gated by Thumper HP <= 20 and the once-only goal latch. No collectible or hazard predicate participates in the statically pinned exit block."
+  },
+  "capsule_gate": {
+    "checked_first": true,
+    "relevant_capsule_found": false,
+    "offline_evidence_used_first": [
+      "analysis/phase4_d16_f03.json",
+      "analysis/phase4_d16_f03_oracle.json",
+      "analysis/phase4_d16_f03_trace.json",
+      "analysis/phase4_d16_fight.json",
+      "analysis/phase4_d16_arena.json"
+    ],
+    "live_escalation_reason": "The retained trace closes the boss mechanism but no retained capsule or declarative scenario covered the full Any% stage through results entry and results exit."
+  },
+  "identities": {
+    "retail_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "full_stage_movie": {
+      "path": "movies/Phase4/Interpreter/Any% Runs/LEVEL03_CouncilChamber.movie.json",
+      "sha256": "918845400cc2a8add3f581120044c30e0a015f364ce92eb0ed8e2b88fbd28876",
+      "save_path": "movies/Phase4/Interpreter/Any% Runs/LEVEL03_CouncilChamber.movie.sav",
+      "save_sha256": "177bb4900ce07626064d9bd8c8c2c2e2543a30fe5f98ae813a02f1e30b21eb18",
+      "movie_version": 4,
+      "frames": 2811,
+      "armed_while_paused": true,
+      "execution_mode": "Interpreter",
+      "anchor_frame": 149905,
+      "anchor_pc": "0x8003f338",
+      "anchor_sp": "0x801ffee0"
+    },
+    "boss_trace_movie": {
+      "path": "movies/Phase4/Interpreter/D16_Thumper_Defeat.movie.json",
+      "sha256": "417fbccad4a50926fe6a027d7fe8fe860a9fce0084f8ac8e67eafc0729caf78e",
+      "save_path": "movies/Phase4/Interpreter/D16_Thumper_Defeat.movie.sav",
+      "save_sha256": "eb2fa2b349360f785ecec7cb810cb6a2c756e6f35719a48a28183b8593c80666",
+      "frames": 4060,
+      "event_total": 7069,
+      "ring_truncated": false
+    }
+  },
+  "c_static_verification": {
+    "camera_exit_tool": {
+      "path": "tools/phase4_d16_f03_static.c",
+      "source_sha256": "ad24bc527639489779e5b6fdae79802aaf3215ecbd8fb050623670dcac90230b",
+      "temporary_binary_sha256": "1a1d8b1e44889ffc3782b7618997aefe2c21f73b4e227b8cbf5d4c97c8f907c9",
+      "output_sha256": "b26d27e85f26c9ef513ecc760a925ccd3cb14e6045a6f0ae4e4763154db6b9b6",
+      "images": 22,
+      "instruction_pins": 38,
+      "mismatches": 0
+    },
+    "fight_species_tool": {
+      "path": "tools/phase4_d16_fight_static.c",
+      "source_sha256": "2c24fb15af7868f845a016330744e357dab2e88dda7fa207ba70f2a93157d332",
+      "temporary_binary_sha256": "000ce98f451150d51b738c6e4f40930cbc855d236054ec7a16b24bf1c3e448e2",
+      "output_sha256": "5b9c5ac0289b7221943cfafcb80c17525549f65c786e5d431c4f47ea0b73a212",
+      "instruction_pins": 40,
+      "mismatches": 0
+    }
+  },
+  "mechanism": {
+    "resident_fight_overlay": "REBUILD/files/LEVEL02/LEVEL.BIN, identified by executing writer PC rather than the mutable region-A head hash",
+    "thumper_actor": "chunk-31 actor slot 1 at 0x8009FE04; HP is signed halfword +0x6e at 0x8009FE72",
+    "initial_hp": 50,
+    "damage_writer": "berry_tough_damage_dispatch store at 0x800590e4, two HP per accepted hit",
+    "defeat_gate": "0x800b4070 loads HP; 0x800b4078 tests HP < 21",
+    "once_only_guard": "0x800b4090 skips the block when 0x800823a0 is already nonzero",
+    "camera_start": "0x800b4138 calls cinematic_camera_start_polar with flags argument 2",
+    "goal_store": "0x800b4190 stores 1 to 0x800823a0",
+    "cleanup": "0x800b45ac writes final Thumper HP zero",
+    "results_entry": "0x800b7da0 in BITS/MEMORY.BIN",
+    "results_finalizer_call": "0x800b8750"
+  },
+  "full_stage_scenario": {
+    "path": "tools/scenarios/duckstation/phase4_f03_council_chamber.yaml",
+    "sha256": "156995bda3e4c2d27d792eaf4a6c0eb7e01779f39bd2d5047e235b065c90bb3d",
+    "status": "passed",
+    "assertions_passed": 7,
+    "assertions_failed": 0,
+    "transport": "Interpreter; semantic memory anchor via emulator.advanceUntil, then debugger.resume plus movie.status polling to movie frame 2805",
+    "report_path": "/tmp/phase4_f03_pass_20260804/phase4_f03_council_chamber.json",
+    "report_sha256": "c6c30199ecdf2e5e834f15dfd0d11034bf279608941fe97386e81b2001c0231d",
+    "cleanup_success": true,
+    "observations": {
+      "initialization": {
+        "frames_advanced": 506,
+        "movie_playback_index": 505,
+        "scene": 2,
+        "thumper_hp": 50
+      },
+      "completion": {
+        "movie_playback_index": 2805,
+        "generic_damage_commit_hits": 16,
+        "threshold_assertion": ">=15",
+        "goal_store_hits": 1,
+        "hp_zero_store_hits": 1,
+        "results_entry_hits": 1,
+        "results_finalizer_hits": 1,
+        "trace_watches_truncated": false
+      }
+    },
+    "calibration_note": "The movie begins during a version-4 neutral/load interval in which scene 2 can already be visible while the reused goal latch and actor slot still contain prior values. Arbitrary frame-1/frame-100 assertions were excluded; HP==50 is the stable semantic anchor.",
+    "route_note": "This Any% route makes 16 generic damage commits. The separate address-specific D16 trace proves the threshold arc itself is exactly 15 two-point writes from 50 to 20; the stage scenario deliberately asserts >=15 rather than pretending the route cannot deliver an extra hit."
+  },
+  "inherited_fight_closure": {
+    "species_dispatch": "Thumper is species 16, dispatch arm 0x8004a5ec, callback 0x8004a0f4 shared with species 22 and 36. The callback only plays SFX 26; it is not the fight driver.",
+    "fight_owner": "Shared mover VM plus LEVEL02/LEVEL.BIN overlay logic.",
+    "mosquito": "Species 10 uses callback 0x8004a180. Overlay code launches two mosquitoes and rotates a four-direction counter; its one-shot callback raises the launched actor after contact.",
+    "arena": "No arena object or geometry trigger: roster+0x14=25 scales to s4=400 and the 1.2.14 sine table bounds X/Z targets to a fixed 12,800-unit circle. Observed maximum 12,800.4 reaches the predicted bound.",
+    "camera_correction": "0x80090bee is cinematic-camera flags, not a defeat flag. Bit 1 requests the suppression gate; bit 0 selects the cinematic camera/letterboxing. The goal latch is a separate store."
+  },
+  "prior_evidence_hashes": {
+    "analysis/phase4_d16_f03.json": "98a8e9176ef6f69d30364cfb3d7a52c260b32cc1b965d9bf529599f7ff45501c",
+    "analysis/phase4_d16_f03_oracle.json": "87302d3b5b45c5cbd2698928086e9e68657a3994d19849ff3cc9b9af875424f8",
+    "analysis/phase4_d16_f03_trace.json": "8de09d0ba18dcc3bdbce942ee991f50ec5e096bc55d75ac1ad53b71473614af9",
+    "analysis/phase4_d16_fight.json": "32375b2b1f7fdb50e46713acef5a2ee820ed8add7236759bfa4e4c1e31d8b2b6",
+    "analysis/phase4_d16_arena.json": "b7141a5659da940b7b1b7fadff4ead40666335624258301337d8bde467ab7722",
+    "ObsidianVault/Experiments/EXP_2026-08-04_phase4_d16_f03_thumper_council_chamber.md": "1a0aba3f3d6ee96a6f43c7ef932621b68b98fcbeac5d06f1a27fb04003ed77fa"
+  },
+  "evidence_classes": {
+    "observation": "The Interpreter scenario observes scene 2 with HP 50 and then exact once-only goal, cleanup, results-entry, and results-finalizer execution hits.",
+    "inference": "The full-stage movie's 16 generic damage commits include at least the 15 commits required by the pinned HP threshold; the separate exact-address trace supplies the 50-to-20 arc.",
+    "causal_binding": "The same basic block statically reads Thumper HP, applies the <=20 test and latch guard, starts the cinematic, and stores the goal latch; the live writer PCs execute once on the natural route."
+  },
+  "phase4_metrics": {
+    "campaign_breadth": "met for the single-stage boss objective using a boss-specific trace and a full-stage Any% route",
+    "complete_frontier": "met for initialization, fight, defeat, scene exit, results entry, and results continuation",
+    "cross_system_behavior": "met: actor HP/mover VM/overlay objective/cinematic camera/scene flow/results overlay",
+    "durable_evidence": "met: two C verifiers, nontruncated Interpreter trace, structured artifacts, and passing declarative scenario",
+    "lifecycle": "met for the row scope from actor initialization through results exit",
+    "original_interfaces": "met",
+    "original_oracle": "met through pristine natural movies",
+    "source_closure": "substantiated partial: exact ASM pins and dual-method census, but not compiler-matched source for the whole overlay",
+    "typed_state": "met for scene, HP, goal latch, cinematic flags, suppression word, mover fields, and results handoff"
+  },
+  "bounded_residuals_outside_row_scope": [
+    "Identify which berry/species index makes 0x800a6597 equal 3 and reaches the optional 0x800b4158 branch.",
+    "Trace the final consumer of four_byte_store 0x80054aac; tint/fade plus duration remains supported rather than proven.",
+    "Determine whether roster+0x14 forms a general per-species arena-radius table; only Thumper is measured.",
+    "Compiler-match the complete fight overlay and shared mover-VM implementation."
+  ],
+  "movie_requirement": "No additional Interpreter movie is required for F03.",
+  "cold_boot_requirement": "Not required for this pristine original-runtime finding because no disc, code, or asset changed."
+}

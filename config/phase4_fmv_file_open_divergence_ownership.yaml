@@ -1,0 +1,58 @@
+schema: abl-phase4-fmv-file-open-divergence-ownership-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+next_lane: live
+dimension_promoted: false
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-021735-3325038-r1
+retained_result:
+  path: analysis/phase4_fmv_file_open_failure_result.json
+  sha256: b5e35e73a2cb1e40d3924addd2bded150ada44b2bd2e2d9ec14ac6af775cafe0
+static_owners:
+  path: analysis/phase4_fmv_static_owners.json
+  sha256: 8b0ef0d5a0f4f02080a5df30c0611d8888144427f0985cf81ed76c692d1b70f2
+typed_schema:
+  path: config/phase4_fmv.yaml
+  sha256: 63f60045562aa2ec113ac060b3fec8c5c0b562f45cc5e02e4f78ff49077b0d64
+semantic_source:
+  path: src_re/fmv_failure_frontier.c
+  sha256: 5ed7717063d7da8a3df421a2bcc7e415f3153133a3b9e671cb8a4927a3616d9d
+load_image_source:
+  path: src/main/800628c0_LoadImage.c
+  sha256: a68edb7aefa63aca57e26605126bed50278cd07bd239890e70c4df5a0a9b9127
+precise_batch_result:
+  relative_path: iteration-1-receipts/live-e15-file-open-failure-control/batch-result.json
+  sha256: 1bf41304a453472cd4df2a82552efd629f73369b1d0c4f2fb069a7a628fa215a
+  bytes: 226610
+offline_index_query:
+  receipt_relative_path: iteration-2-receipts/offline-fmv-present-rect-height-index.receipt.json
+  receipt_sha256: fb014629ad46e76e85f7b8f6c46fc05ef9702b1856da0289f378425f0949f40a
+  output_relative_path: iteration-2-receipts/outputs/fmv-present-rect-height-index-search.json
+  output_sha256: 4aee3a0c5006d1719fb3f24311fbe101b89a8af4a6ecc645e9367252957a9563
+  external_index_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+  absent_terms:
+    - "0x800B6DC0"
+    - "0x800B6F18"
+    - "0x800CAC0A"
+    - "0x800cac0a"
+    - "800CAC0A"
+    - "present_rect_h"
+historical_capture:
+  label: selected_frame_limit
+  address: 0x800CAC08
+  length: 4
+  positive_hex_le: "1800f000"
+  native_hex_le: "18008000"
+corrected_fields:
+  width: {address: 0x800CAC08, type: s16}
+  height: {address: 0x800CAC0A, type: s16}
+actual_selected_frame_limit: {address: 0x80131EEE, type: s16}
+next_missing_fact_id: E15/present-rect-height-runtime-writer
+claim_boundary:
+  closed_sub_boundary: file_open_counterfactual_endpoint_semantic_reclassification
+  not_claimed:
+    - the exact runtime writer of the native height-128 endpoint
+    - a naturally failed file handle or native failure policy
+    - a selected-frame-limit difference
+    - lifecycle or any other nine-dimension promotion

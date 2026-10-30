@@ -1,0 +1,135 @@
+{
+ "_comment": "Behavioral positive/negative pairs for the seed-family and swing core actions (review: omitted from the coverage map). Edge-correct input driving throughout (a HELD button never produces a press edge \u2014 the kick lesson). Regenerate: tools/phase2_seed_action_controls.py.",
+ "generated": "2026-07-12",
+ "media": {
+  "serial": "SCUS-94288"
+ },
+ "controls": {
+  "A12_seed_color_change": {
+   "anchor": "movies/Phase_Helpers/carry_handstand.movie.json @f620 (genuine carry state)",
+   "observable": "displayed frame hash (the seed's colour is a visual event; the live colour FIELD is unbound \u2014 Phase-3 semantics)",
+   "positive": {
+    "label": "Triangle while carrying",
+    "carry_attached": true,
+    "frame_before": "4c5ecc3721e6e607",
+    "frame_after": "a17c0dcee85a3cc7",
+    "frame_changed": true,
+    "frame_after_full": "a17c0dcee85a3cc78ddf357911ee5c98aec7c1ed278e499b3dcd4116b90455e1"
+   },
+   "negative": {
+    "label": "no input, same window (negative)",
+    "carry_attached": true,
+    "frame_before": "4c5ecc3721e6e607",
+    "frame_after": "852208643730bb85",
+    "frame_changed": true,
+    "frame_after_full": "852208643730bb859b918926d7f2c18ae42d7702478c1fdeec0ad71e41093830"
+   },
+   "distinct_outcome": true,
+   "passes": true
+  },
+  "A13_cycle_plant_output": {
+   "anchor": "movies/Phase_Helpers/carry_handstand.movie.json @f620 (genuine carry state)",
+   "observable": "displayed frame hash (output selector is a visual event)",
+   "positive": {
+    "label": "X while carrying",
+    "carry_attached": true,
+    "frame_before": "4c5ecc3721e6e607",
+    "frame_after": "9cec25bc8eb341e6",
+    "frame_changed": true,
+    "frame_after_full": "9cec25bc8eb341e6778deea076259d1ead69ca248c396d4f48d4d65b149568ba"
+   },
+   "negative": {
+    "label": "no input, same window (negative)",
+    "carry_attached": true,
+    "frame_before": "4c5ecc3721e6e607",
+    "frame_after": "852208643730bb85",
+    "frame_changed": true,
+    "frame_after_full": "852208643730bb859b918926d7f2c18ae42d7702478c1fdeec0ad71e41093830"
+   },
+   "distinct_outcome": true,
+   "distinct_from_triangle": true,
+   "passes": true
+  },
+  "A10_handstand_negative": {
+   "anchor": "movies/Phase_Helpers/carry_handstand.movie.sav",
+   "observable": "grounded 0x800A6582 (mounted reads 0) + position freeze",
+   "beside_seed_no_square": {
+    "before": {
+     "pos": [
+      -60009,
+      16901,
+      -21616
+     ],
+     "state80": 0,
+     "grounded": 1
+    },
+    "after": {
+     "pos": [
+      -61064,
+      16819,
+      -21876
+     ],
+     "state80": 0,
+     "grounded": 1
+    }
+   },
+   "not_mounted": true,
+   "positive_reference": "analysis/phase2_carry_handstand_oracle.json (mounted: grounded 0, position frozen >100f, dismount state 0x800A6580 == 6)",
+   "passes": true
+  },
+  "A16_swinging": {
+   "observable": "player state word 0x800A6580 + grounded 0x800A6582 + pendulum Y trajectory",
+   "grab": {
+    "anchor": "in_front_of_swing.sav",
+    "input": "hold up (toward the vine) + cross",
+    "positive": {
+     "states": [
+      5
+     ],
+     "attached_samples": 10,
+     "sustained_attach": true,
+     "pendulum_y_span": 4032
+    },
+    "negative_no_input": {
+     "states": [
+      0
+     ],
+     "attached_samples": 0,
+     "sustained_attach": false,
+     "pendulum_y_span": 0
+    }
+   },
+   "release": {
+    "anchor": "on_swing.sav",
+    "input": "cross while attached",
+    "positive": {
+     "pre_states": [
+      5
+     ],
+     "pre_all_attached": true,
+     "pre_pendulum_y_span": 1402,
+     "post_states": [
+      0,
+      2
+     ],
+     "left_state5": true,
+     "landed_grounded": true
+    },
+    "negative_idle": {
+     "pre_states": [
+      5
+     ],
+     "pre_all_attached": true,
+     "pre_pendulum_y_span": 1402,
+     "post_states": [
+      5
+     ],
+     "left_state5": false,
+     "landed_grounded": false
+    }
+   },
+   "passes": true
+  }
+ },
+ "all_pass": true
+}

@@ -1,0 +1,128 @@
+schema: abl-phase4-fmv-levelb-pre15792-partition-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260729-213600-1451145
+offline_index_query:
+  receipt:
+    relative_path: iteration-1-receipts/offline-e15-pre15792-blockflow-coverage.receipt.json
+    sha256: c473416e539fe1e5bc30b5af47ec5e0f341be77275e2986a62ff46c28b9fc169
+  output:
+    relative_path: iteration-1-receipts/outputs/e15-pre15792-blockflow-coverage.json
+    sha256: e37835b3823f8eb63cbc30994b8146eccf736582cbaf01c9644a8761e5bd7f1e
+  input_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+  input_bytes: 16060589
+  reader_path: tools/phase4_offline_receipt_query.py
+  reader_sha256: 00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846
+staged_anchor_query:
+  receipt:
+    relative_path: iteration-1-receipts/offline-e15-levelb-frame-15720-staged-prelude.receipt.json
+    sha256: 1a50ea873c8a4c0ff682ee9445af95cf93c03b27d66af9e0b86fef11dc37de87
+  output:
+    relative_path: iteration-1-receipts/outputs/e15-levelb-frame-15720-staged-prelude.json
+    sha256: f95160f056245147d13802a03d30f195e4efe3bb7bb46c5d73e26a5f401c513a
+  input_sha256: ee8b36d851409dfa4dcdc8c6ab3fd1c7912c874d49f18b19e4c76466912cf414
+  input_bytes: 274048
+  reader_path: tools/phase4_staged_prelude_projection.py
+  reader_sha256: 587abdcf7a21b1d6963c52198a5f864de6bafd6828a23b8c8f03d2bbe183295c
+prior_evidence:
+  transition_relocalization:
+    path: analysis/phase4_fmv_levelb_transition_relocalization.json
+    sha256: 0d7783db266fbe33ddc9ab7113c816ca9d88f81baa602244f31e821451b3abc8
+  two_pc_result:
+    path: analysis/phase4_fmv_levelb_two_pc_first_hit_result.json
+    sha256: 74b0c00b6ad4b3728d0c909aaa4ef1c4314a6cdf45b4f8452680e76ed777a350
+expected:
+  staged_anchor: {frame: 15720, cycle: 8900142073, pc: '0x8004FEA4', sp: '0x801FFFD0'}
+  excluded_window: {start: 15792, stop: 15856, failure_frame: 15857, candidate_hits: 0}
+  pending_scene_request: {address: 0x8009EDCC, width: s32, residency: resident}
+  frame_sync_wait_latch:
+    address: 0x80082250
+    width: u32
+    wait_value: 1
+    clear_value: 0
+    residency: resident
+    owner: shared_frame_sync_interrupt_handshake
+    legacy_capture_alias: fmv_running_latch
+  candidate_calls:
+    - {pc: 0x8004FD74, scene: 3, transition: 0}
+    - {pc: 0x8005029C, scene: 6, transition: 128}
+return_gate_contract:
+  artifact: analysis/phase4_fmv_levelb_pre15792_partition.json
+  scene_flow_call: 0x8004FDF0
+  scene_flow_branch: 0x8004FDF8
+  branch_target: 0x8005029C
+  wrapper: [0x8005B70C, 0x8005BC64]
+  acceptance_callee: [0x8005B4E4, 0x8005B70C]
+  wrapper_acceptance_call: 0x8005B848
+  wrapper_result_save: 0x8005B850
+  wrapper_return_copy: 0x8005BC40
+  result:
+    type: u32_boolean
+    initial_value: 0
+    initialization: 0x8005B4F4
+    only_set_to_one: 0x8005B63C
+    callee_return_copy: 0x8005B6C8
+  required_predicates:
+    - {address: 0x80082412, type: u16, mask: 0x0001, predicate: nonzero}
+    - {owner: local_s0_one_shot, predicate: zero}
+    - {address: 0x8009EDCC, type: s32, predicate: nonnegative}
+  one_shot_initialization:
+    address: 0x800822F8
+    type: u32
+    zero_keeps_gate_clear: true
+  boundary: >-
+    This is a static def-use contract for the early completed-Level-B
+    candidate edge. It proves how the one-bit return can be set and
+    propagated, but it does not prove natural execution, an exact
+    frame/cycle, the selected completed-Level-B branch, or a Region-B DMA
+    event.
+claim:
+  exact: >-
+    Before emulator frame 15792, the complete pristine resident caller
+    frontier for the completed-Level-B Region-B replacement remains exactly
+    0x8004FD74 and 0x8005029C. The negative pending-request edge owns the
+    former. The latter has exactly three direct predecessors. Its early edge
+    is no longer opaque: gameplay_state_reset_cursor_seed_entry propagates
+    one request-acceptance bit from 0x8005B4E4..0x8005B70C, and that bit has
+    exactly one setting instruction after decoded-input bit 0 is present, the
+    local one-shot gate is clear, and pending_scene_request is nonnegative.
+    The other two predecessors test pending_scene_request directly. At the
+    paired frame-15720 boundary execution is at the 0x8004FEA4 shared
+    frame-sync wait loop. That control position does not dynamically partition
+    the predecessor classes, select the natural branch, or establish an exact
+    FMV retirement frame.
+  falsifier: >-
+    Reject this partition if the retained index contains a relevant exact
+    candidate edge; the paired pristine frame-15720 CPU boundaries differ;
+    the prior 15792..15856 result contains a candidate hit; a third
+    scene-setup caller or predecessor reaches the completed path; any direct
+    compiler-standard xref to pending_scene_request is unclassified; another
+    instruction sets or propagates the early acceptance result; its one
+    setting path bypasses decoded-input bit 0, the clear one-shot gate, or the
+    nonnegative pending request; either call can skip selector-zero
+    bits\memory.bin replacement; or the static, receipt, source, media, or
+    binary identities drift.
+claim_boundary:
+  classification: pre15792_control_position_and_state_partition_closed
+  dimension_promoted: false
+  lifecycle_promoted: false
+  selected_natural_branch_claimed: false
+  exact_retirement_frame_claimed: false
+  dma_events_claimed: 0
+  new_live_escalation_authorized: false
+  next_lane: static
+  next_action: >-
+    The early 0x8005029C edge is now a closed request-acceptance return
+    contract rather than an opaque helper result, but the frame-15720
+    wait-loop boundary still does not reveal whether a candidate call already
+    retired. Preserve this transitive contract and the corrected shared
+    frame-sync ownership, then reconstruct a distinct earlier state producer
+    or change the scheduler lane before any live request; do not replay the
+    escaped 15792..15856 two-PC observer under a new label.
+  not_claimed:
+    - execution of either candidate at frame 15720
+    - the selected natural branch or exact call frame/cycle
+    - a Region-B write, DMA event, sector sequence, transfer direction or success
+    - lifecycle or any other nine-dimension promotion

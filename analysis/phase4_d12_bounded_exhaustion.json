@@ -1,0 +1,80 @@
+{
+  "format": "phase4_d12_bounded_exhaustion_v1",
+  "row": "D12_centipedes_earthworms",
+  "date": "2026-08-04",
+  "status": {
+    "row": "substantiated_partial",
+    "bounded_subproblem": "exhausted_move_on",
+    "additional_interpreter_movie_required": false,
+    "reason": "Pristine-ASM C analysis closes the spawned-contact final hop, direct respawn caller and camera-containment gate, timer-field correction, and Mine Plant interaction. Remaining species/presentation breadth is explicitly low-return and does not block the Phase 4 family binding."
+  },
+  "method": {
+    "order": [
+      "No relevant retained D12 trace capsule exists in the Phase 4 capsule set, so no capsule was promoted as evidence.",
+      "C read the pristine retail PS-X EXE directly and checked constructor rows, instruction words, direct JAL xrefs, and control-flow predicates.",
+      "Previously accepted Interpreter observations are retained only for behavior already measured; no live replay was needed for the named static gaps."
+    ],
+    "guard": "tools/phase4_d12_closure.c",
+    "retail_executable": "REBUILD/files/SCUS_942.88",
+    "retail_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  "corrections": {
+    "spawned_burst_damage": {
+      "old_claim": "Flik's observed 4 to 3 health loss and knockback almost certainly came from a spawned kind 21, 22, or 23 object.",
+      "result": "Falsified. Constructors 21, 22, and 23 select actions 5, 6, and 5. Their default contact block retires the contact with countdown 12 but leaves the player-damage selector s6 at zero, so the guarded 0x8004A700 call is skipped.",
+      "bounded_attribution": "The old live event is consistent with the already-established ordinary actor-body-contact path because Flik was placed close to the worm. Exact historical-event PC attribution was not captured and is not promoted beyond that inference."
+    },
+    "respawn_caller": {
+      "old_claim": "0x80049C30 had no static direct caller and the trigger remained indirect/unconfirmed.",
+      "result": "Falsified. The executable has exactly two direct JAL xrefs: initial actor-pool construction at 0x8004A664 and dead-actor reinitialization at 0x8004D3F0."
+    },
+    "respawn_gate": {
+      "old_claim": "The admission-radius check contradicted the observed move-away respawn behavior.",
+      "result": "Resolved. Live actors are admitted while inside the oriented camera-containment volume. Dead actors with an expired delay are reinitialized only when 0x80025084 returns false, meaning outside that volume. Moving the camera away permits reinitialization; returning makes the fresh actor visible again.",
+      "player_distance_boundary": "The predicate is camera containment around the spawn/actor, not a raw Flik-distance test. This explains why direct player-coordinate pokes were misleading."
+    },
+    "respawn_timer": {
+      "old_claim": "The unresolved countdown belonged to actor +0x4A.",
+      "result": "Falsified. The reinit delay is actor halfword +0x62. 0x80049C30 copies spawn-descriptor byte +0x11 into +0x62, with special-case adjustment logic. +0x4A belongs to the separate death-animation/retirement lane.",
+      "scope_limit": "Per-record authored byte +0x11 values were not enumerated because the source and owner are now exact and enumerating level-local values has negligible Phase 4 return."
+    }
+  },
+  "worm_burst": {
+    "native": "0x80057B84 creates eight contacts cycling constructor kinds 21, 22, and 23 and aims orientation for actor id 40.",
+    "constructor_rows": {
+      "21": "05002300640000013c003c000600000060504030",
+      "22": "0600280064000001460046000600000060403020",
+      "23": "0500370064000001500050000600000060604020"
+    },
+    "player_damage_via_contact_walker": false,
+    "interpretation": "The burst remains a real worm-native behavior, but the old evidence does not establish it as a damaging ranged strike."
+  },
+  "mine_interaction": {
+    "blast_constructor": 56,
+    "constructor_row": "0000010064000001d007d00700000006e47f0000",
+    "damage_class": 0,
+    "worm_initial_local_hp": 8,
+    "single_blast_local_hp_result": 6,
+    "instant_kill": false,
+    "permanence_marker": 6,
+    "permanence_rule": "The permanent-death and quota path runs only when the mine blast is lethal. A surviving worm merely loses two local HP."
+  },
+  "closed_for_phase4": [
+    "worm id 40 identity, anchored stationary behavior, and five-class armor response",
+    "native burst owner, count, constructor cycle, aiming condition, and non-damaging contact-walker final hop",
+    "ordinary body-contact damage as the bounded explanation for the old close-placement health-loss observation",
+    "temporary-death respawn direct caller, camera-containment polarity, and actual delay field/source",
+    "Mine Plant damage amount, survival result, and lethal-only permanence boundary",
+    "campaign breadth already established for worm id 40",
+    "wall-worm and grub facts already retained in the original D12 artifact, including the id-12 grub correction"
+  ],
+  "open_low_return": [
+    "exact PC attribution for the already-observed historical 4 to 3 body-contact event",
+    "visual identity of worm burst kinds 21, 22, and 23",
+    "per-spawn enumeration of descriptor byte +0x11 delay values",
+    "why wall-worm id 41's player-proximity VM predicate evaluates false",
+    "wall-worm respawn breadth and genuine-earthworm taxonomy search",
+    "repeated-burst presentation timing and cross-system audio"
+  ],
+  "reopen_rule": "Reopen only for a MOD that depends on one of the listed residuals or for full runtime promotion. If exact event attribution is promoted, record a normal-speed Interpreter movie that places Flik near an id-40 worm without throwing a berry, then trace 0x8004A700 and the actor-body-contact callers."
+}

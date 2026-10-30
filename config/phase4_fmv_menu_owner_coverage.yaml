@@ -1,0 +1,139 @@
+schema: abl-phase4-fmv-menu-owner-coverage-source/1
+description: >
+  Hash and falsification contract for the two Menu-Navigation passive/precise
+  receipt pairs. The zero non-boot PC observations are retained, but the
+  natural-route exclusion claim is inadmissible because the predeclared
+  terminal control diverged. Raw live results and credentials remain outside
+  Git.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-ITER92-E15-MENU-NONBOOT-OWNER-COVERAGE
+missing_fact_id: E15/menu-nonboot-owner-coverage
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260726-180554-3851634
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  serial: SCUS-94288
+debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 91cbe22b2c2e22ad83d695988ada36bbabb22c65366cb5ec9e8e30784de93af6
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty_state_hash: cd808f74adf8591c16a35293c348640ea37059af
+  adapter_sha256: fb3ef836e788b78497e1442a9d739ad0d93e9283f07bfcb0ae9d76d46bf14c49
+boot_positive:
+  boot_dlogo: {pc: '0x8004fb5c', hits: 1}
+  boot_title: {pc: '0x8004fb68', hits: 1}
+  boot_intro: {pc: '0x8004fb74', hits: 1}
+nonboot_falsifiers:
+  bonus_clip_sequence: {pc: '0x8004ffd4', hits: 0}
+  game_over_lose: {pc: '0x800500d8', hits: 0}
+  finale_lev15c: {pc: '0x80050284', hits: 0}
+  completed_level_b: {pc: '0x8005031c', hits: 0}
+  all_levels_complete_lev15d: {pc: '0x8005036c', hits: 0}
+  level_a_reset_handoff: {pc: '0x8005b788', hits: 0}
+receipts:
+  - role: menu_v1_passive
+    precise: false
+    movie_sha256: e908f2cfeac94bc66cf30f9afc22cb73331007d03fed74618a15be9c78c6400c
+    endpoint_frame: 7794
+    receipt:
+      relative_path: iteration-1-receipts/menu-v1-passive-prelude/receipt.json
+      sha256: a038c3a09df21197cdf6a28c080dbea464bccda3cf862b886c704e2207038c41
+      bytes: 4173
+    batch_result:
+      relative_path: iteration-1-receipts/menu-v1-passive-prelude/batch-result.json
+      sha256: 4e0eb49eb73d9945071bfae64124cc2b8d4643251d0691690f75f5043c767444
+      bytes: 191086
+    expected_endpoint_equal:
+      frame: true
+      cycle: true
+      cpu: true
+      memory: true
+      gpu: true
+      spu: true
+      movie: true
+  - role: menu_v1_precise
+    precise: true
+    movie_sha256: e908f2cfeac94bc66cf30f9afc22cb73331007d03fed74618a15be9c78c6400c
+    endpoint_frame: 7794
+    expected_boot_event_frames:
+      boot_dlogo: 1117
+      boot_title: 2293
+      boot_intro: 2717
+    receipt:
+      relative_path: iteration-1-receipts/menu-v1-owner-coverage/receipt.json
+      sha256: eda61517391fa5cbfd14e196fe80d489e97221d2d791dcf6893f7896b02dff9e
+      bytes: 4337
+    batch_result:
+      relative_path: iteration-1-receipts/menu-v1-owner-coverage/batch-result.json
+      sha256: 9ab02adbc54a721aff17f589e0f927769aaf5aeacd120f803067b2a492bf5dab
+      bytes: 341044
+    expected_endpoint_equal:
+      frame: true
+      cycle: false
+      cpu: false
+      memory: false
+      gpu: false
+      spu: true
+      movie: true
+  - role: menu_v2_passive
+    precise: false
+    movie_sha256: 8a49d28b441170d84993259cd6ca12eac6be6f56d9caa1ae7475f5b3c17cd271
+    endpoint_frame: 7363
+    receipt:
+      relative_path: iteration-1-receipts/menu-v2-passive-prelude/receipt.json
+      sha256: fe5276d3a5ee9cdc5cb11760e1e0df7577bf397996fe95dfe0773bd1629e5234
+      bytes: 4173
+    batch_result:
+      relative_path: iteration-1-receipts/menu-v2-passive-prelude/batch-result.json
+      sha256: cc4b2ec794bc9845fffedc82c5bba124cf10485aa270a54daeae94df26e5b006
+      bytes: 192194
+    expected_endpoint_equal:
+      frame: true
+      cycle: false
+      cpu: false
+      memory: true
+      gpu: true
+      spu: true
+      movie: true
+  - role: menu_v2_precise
+    precise: true
+    movie_sha256: 8a49d28b441170d84993259cd6ca12eac6be6f56d9caa1ae7475f5b3c17cd271
+    endpoint_frame: 7363
+    expected_boot_event_frames:
+      boot_dlogo: 1117
+      boot_title: 1732
+      boot_intro: 2186
+    receipt:
+      relative_path: iteration-1-receipts/menu-v2-owner-coverage/receipt.json
+      sha256: a2e0e5d937907eedeba6c35242515a84b7c021cf7472b33a3a10888a58f6c93b
+      bytes: 4337
+    batch_result:
+      relative_path: iteration-1-receipts/menu-v2-owner-coverage/batch-result.json
+      sha256: 3588bd0d3473643d3cd94818ec2a189009a54d08120d9a5d847478546a5d6cd4
+      bytes: 315278
+    expected_endpoint_equal:
+      frame: true
+      cycle: false
+      cpu: false
+      memory: false
+      gpu: false
+      spu: true
+      movie: true
+claim_boundary:
+  classification: rejected_full_span_paired_pc_coverage_control
+  dimension_promoted: false
+  observed_nonboot_zero_promoted: false
+  next_method: >
+    Replace cross-job full-span endpoint comparison with an internally
+    phase-neutral single nine-PC observer per movie, preserving a passive
+    prelude and requiring its own uninstrumented/instrumented equality before
+    natural-route exclusion. If that control passes and remains zero, proceed
+    to the already scheduled bounded synthetic-selector lifecycle control
+    without claiming natural ownership.
+  not_claimed:
+    - natural-route exclusion for any non-boot FMV owner
+    - selector, mode, caller or asset ownership from a zero-hit trace
+    - FMV lifecycle dimension promotion
+    - movie-viewer, pause, repeat, decode or CD-failure policy

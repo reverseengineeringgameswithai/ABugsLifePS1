@@ -1,0 +1,147 @@
+{
+  "row": "A14",
+  "mechanic": "Plant/crack seed by jumping on it",
+  "status": "full",
+  "disposition": "bounded_exhausted",
+  "live_escalation_required": false,
+  "correction": {
+    "stale_claim": "0x8004AF80 writes 0x10000 to seed+0x6C",
+    "retail_fact": "0x8004AF7C writes signed halfword 10 to seed+0x6C on the normal contact path; 0x8004AF80 is the following seed Y load"
+  },
+  "inputs": {
+    "retail_bin": {
+      "path": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+    },
+    "extracted_executable": {
+      "iso_entry": "SCUS_942.88;1",
+      "lba": 23,
+      "bytes": 471040,
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "matches_pristine_rebuild_base": true
+    },
+    "movie": {
+      "path": "movies/Phase4/A13/brown_seed_levels.movie.json",
+      "sha256": "a32c768a9f98b5ad2ce543c0053f07e917be8efb10778ea36e1531bcdf508bd9"
+    },
+    "start_state": {
+      "path": "movies/Phase4/A13/brown_seed_levels.movie.sav",
+      "sha256": "93b2b9de4de058c37eb637f3db2b2a7a0d06548117f02b87ec49d5f8c3158b84",
+      "serial": "SCUS-94288",
+      "media": "pristine retail"
+    },
+    "capsule": {
+      "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v3/A13__brown_seed_levels",
+      "manifest_sha256": "902bfdfffa3dcb6ef11d7ab77405ad306a96a330bb344e85944a46a20f88b1dd",
+      "complete_true_count": 2,
+      "empty_error_count": 2,
+      "truncated_false_count": 4,
+      "forced_cached_interpreter_true_count": 2,
+      "mismatches": {},
+      "cycle_neutral": true,
+      "offline_reconstructable": true,
+      "accepted_for": "offline frame-boundary state reconstruction and basic-block counts only"
+    }
+  },
+  "c_artifacts": {
+    "capsule_reducer_source_sha256": "1b8c76473c1a85b0aa10fb54c523e108775efbbf06807cfc3b4c17171f4414fe",
+    "capsule_reducer_binary_sha256": "ec4af6d46c52bc25b6334318ad87a90810ae2ef3808484826305c6f56c47317b",
+    "capsule_full_event_output_sha256": "6e29342475d3b81998a05631f442f6462f460b402e9fcbc845046306a62fd226",
+    "capsule_growth_output_sha256": "b6b486e97483c876f15c24290e4a75e66ece6c631692ce17d0969b7ef4c59321",
+    "static_source_sha256": "f142761618c31146525dc8c8f1a7241de9d4ec07a79fd02b9f2dc6b882945e9d",
+    "static_binary_sha256": "8b78d7e6afea043e477961b6830d07527e98715870131a5af8268a69df8ff8fb",
+    "static_output_sha256": "626eaa7f31f10e743b863958e09c8872fc970e97ec3397a275487e6c02f7dfe8",
+    "static_contracts": 15,
+    "static_contract_failures": 0,
+    "manifest_check_source_sha256": "c50953b18c22ee34a91ea45be389308a502e6a5487483b31a1415509766f05ab",
+    "manifest_check_output_sha256": "53b33b7099809f09055d336dc56f4494ecabce1f4912865e20f7fec2d77897dc"
+  },
+  "trigger_contract": {
+    "shared_contact_gates": [
+      "seed actor flags +0x5C must include 0x20",
+      "seed actor flags +0x5C must exclude 0x40",
+      "seed crack timer +0x6C must be zero",
+      "seed +0x5E must be nonzero",
+      "the preceding 3D actor/player contact envelope must pass"
+    ],
+    "cross_held_arm": {
+      "pc": "0x8004AEE4",
+      "condition": "player air state +0x84 equals 1 (Cross-held jump phase), with the shared gates",
+      "capsule_basic_block_hits": 0
+    },
+    "normal_landing_arm": {
+      "pc": "0x8004AF7C",
+      "conditions": [
+        "player Y is above seed Y",
+        "player +0x9F is zero",
+        "player vertical velocity +0x2C is nonnegative (descending or stationary)",
+        "player action +0x7C is nonzero",
+        "player air state +0x84 is not 17"
+      ],
+      "capsule_basic_block": "0x8004AF74",
+      "capsule_basic_block_hits": 4
+    },
+    "accepted_effects": {
+      "seed_crack_timer_0x6c": 10,
+      "player_vertical_velocity_0x2c": -1536,
+      "player_air_state_0x84": 3,
+      "player_action_0x7c": 5,
+      "effect_event": -15
+    }
+  },
+  "capsule_observations": {
+    "frame_records": 2382,
+    "movie_index_range": [0, 2381],
+    "domain_hashes_verified": 7146,
+    "all_hashes_ok": true,
+    "cross_edges": 13,
+    "successful_cracks": 4,
+    "negative_cross_edges": 9,
+    "seed_actor_address": "0x800A0854",
+    "seed_actor_count_range": [9, 9],
+    "countdown_updates": 40,
+    "countdown_law": "10 to 0, one decrement per gameplay tick; observed every two video frames",
+    "seed_y_step_per_tick": 2048,
+    "seed_total_y_lift": 20480,
+    "cycles": [
+      {"cross_frame": 83, "timer_arm_frame": 124, "spawn_frame": 144, "slot": 10, "type": 5, "cursor": [10, 11]},
+      {"cross_frame": 670, "timer_arm_frame": 698, "spawn_frame": 718, "slot": 11, "type": 3, "cursor": [11, 12]},
+      {"cross_frame": 1412, "timer_arm_frame": 1450, "spawn_frame": 1470, "slot": 12, "type": 8, "cursor": [12, 13]},
+      {"cross_frame": 1927, "timer_arm_frame": 1962, "spawn_frame": 1982, "slot": 13, "type": 2, "cursor": [13, 14]}
+    ],
+    "basic_block_counts": {
+      "normal_arm_0x8004AF74": 4,
+      "cross_held_arm_0x8004AEE0": 0,
+      "other_timer_arm_0x8004B5C8": 0,
+      "countdown_body_0x8004D488": 40,
+      "spawn_call_0x8004D4E0": 4,
+      "spawner_entry_0x8005BDBC": 4
+    },
+    "common_growth": {
+      "creation_extra": "0x0005",
+      "extra_0x0005_to_0x0007_after_video_frames": 28,
+      "animation_gate_0_to_1_after_video_frames": 66
+    }
+  },
+  "spawn_contract": {
+    "plant_slots": "0x80090BF0, 20 entries, stride 0x30",
+    "cursor": "0x800822B8",
+    "normal_type_index": "4 * source_color + selected_output - 1",
+    "override_type_index": "4 * (override & 0x0F) + (override >> 4)",
+    "type_table": "0x8007A448",
+    "slot_type_store_pc": "0x8005BE90",
+    "seed_backlink_store_pc": "0x8005BF18",
+    "extra_state_store_pc": "0x8005BF3C",
+    "scene_0x11_exception": "for seed actor 0x8009FE04, clear 0x8009FE66 and return without slot allocation",
+    "cursor_invariant": "after allocation, advance with wrap at 20 and skip occupied slots until a free slot is found"
+  },
+  "bounded_failures": {
+    "cross_alone": "disproven by 9 of 13 Cross edges producing no crack",
+    "contact_rejection": "any failed shared or normal-arm predicate prevents timer arming",
+    "already_cracking": "nonzero seed+0x6C rejects another arm",
+    "malformed_selection": "no index bounds check before the type-table read",
+    "all_slots_occupied": "no graceful exit; post-allocation cursor search loops forever if all 20 slots are occupied",
+    "normal_invariant": "the cursor is maintained on a free slot, so the retail campaign avoids the malformed full-pool case"
+  },
+  "closure_reason": "Four pristine runtime cycles cover normal admission, countdown, lift, four brown output types, allocation, growth publication, conserved seed population, and nine input negatives. Pristine static contracts cover the alternate Cross-held arm and failure/malformed branches. A live Interpreter movie would duplicate domains already closed by the accepted capsule and exact retail ASM."
+}

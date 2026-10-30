@@ -1,0 +1,130 @@
+{
+  "schema": "abl-phase4-row-evidence-v1",
+  "row_id": "C06_red_berry",
+  "date": "2026-08-04",
+  "status": "substantiated_partial_bounded_exhausted",
+  "conclusion": "Red is equip index 0 and throw type 2. Its record connection class 1 is reaction-only against runtime berry-tough state bit 0x40. Against an ordinary actor, record damage byte 0x70 selects the default -1 enemy-local-counter delta. Reaching zero produces temporary defeat and never decrements the permanent-enemy quota.",
+  "source_identity": {
+    "path": "SCUS_942.88",
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "load_address": "0x80010000",
+    "text_size": 468992,
+    "overlays_required": false
+  },
+  "capsule_query": {
+    "relevant_capsule_found": false,
+    "live_escalation_required": false,
+    "reason": "The pristine resident executable and accepted A08/D04 evidence answer construction, motion, collision, resistance, damage, defeat, and retirement. No missing every-cycle, DMA, GPU, SPU, or behavioral-control domain remains for bounded C06 closure."
+  },
+  "shared_evidence": [
+    {
+      "path": "analysis/phase4_a08_static.json",
+      "sha256": "f3f4c8bb4cbf4fb8a5b6898ad767d8838f14ad4230e7a081dd8583f59b4759d1",
+      "role": "throw admission, ballistics, ownership, and retirement"
+    },
+    {
+      "path": "analysis/phase4_a08_bounded_exhaustion.json",
+      "sha256": "3535a9762ff2cca4bd9706960034c4ed71aec8aeccec9a0804201092d2536be9",
+      "role": "accepted A08 closure and deterministic red trajectory"
+    },
+    {
+      "path": "analysis/phase4_d04_static.json",
+      "sha256": "c2282dd9563de96552443d06544b5b09a0d1b4b4f8739df5829e9b27d99b63dc",
+      "role": "resistance branch and damage/permanence anchors"
+    },
+    {
+      "path": "analysis/phase4_d04_evidence.json",
+      "sha256": "d09458149edcf67482cbdb545e0818eb15e1d12bbbbc66a5b4a485a09247d3f6",
+      "role": "ordinary and berry-tough runtime class controls"
+    },
+    {
+      "path": "analysis/phase4_d04_bounded_exhaustion.json",
+      "sha256": "6734e0b915ddaf4b91faa1cb442129c5a8a874a3cff7b5cbbdd10cb3f4fec9d0",
+      "role": "accepted two-state resistance-law boundary"
+    },
+    {
+      "path": "src_re/enemy_death_permanence.c",
+      "sha256": "602f659817da81afbf028c6c9bf4d772b2e0b40f6ba27791474b8099791b6b7f",
+      "role": "reviewed shared temporary/permanent defeat reconstruction"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "red_berry.sav",
+      "sha256": "d2ce3e6c397bacab448db47bb6536e7654793407355c5dcd7f7d04c97af56322",
+      "role": "available state anchor; not required for this static closure"
+    },
+    {
+      "path": "red_berry_thrown.sav",
+      "sha256": "febe3e7f52f3dc43b74d8f3b6140b5c408cfddd81ce1a46479a16f088c3c0d81",
+      "role": "accepted deterministic trajectory donor through A08"
+    },
+    {
+      "path": "red_berry_enemy_test.movie.json",
+      "sha256": "94e904ecd9c53f8c7687dbf2ad0b4d88f3f00ed276e26cc4dd703365df70d8d5",
+      "role": "rejected behavioral fixture: old v2 movie enters a BIOS exception path on the current workflow"
+    }
+  ],
+  "static_analysis": {
+    "tool": "tools/phase4_c06_static.c",
+    "transient_probe_output_sha256": "31f464147f27880d2c8de56824899c52d5b5a9c4756fbb3756191890b4516967",
+    "parameter_table": "0x8007941c",
+    "red_row": "0x80079444",
+    "anchors_checked": 22,
+    "red_row_values": {
+      "throw_type": 2,
+      "timer": 100,
+      "model_or_marker": 110,
+      "connection_class": 1,
+      "flags": "0xe5",
+      "damage_byte": "0x70"
+    },
+    "pointer_bias": "The collision scan keeps s1 = allocation base + 8. Therefore ASM s1+0x24 reads record base+0x2c, while ASM s1+0x2c reads record base+0x34.",
+    "writer_bindings": [
+      "0x8005428c and 0x80058934 write equip selector 0 for red",
+      "0x800471a4 maps selector 0 to throw type 2",
+      "0x8005a2ac stores connection class 1 to record+0x2c",
+      "0x8005a270 stores damage byte 0x70 to record+0x34"
+    ]
+  },
+  "behavior": {
+    "throw": {
+      "motion_family": "shared straight ballistic",
+      "timer": 100,
+      "gravity": 128,
+      "owned_throw_limit": 4,
+      "throw_sound": 2,
+      "shared_reference": "A08_berry_throw"
+    },
+    "collision": {
+      "ordinary_actor": "0x80058ee8 branches to common damage; 0x80059074 reads 0x70 and 0x800590e0 selects default -1; 0x800590e4 stores enemy+0x6e",
+      "berry_tough_actor": "enemy+0x5c bit 0x40 plus red connection class 1 takes reaction-only handling and 0x80059054 skips damage/death",
+      "classification": "runtime state class, not a hidden species table"
+    },
+    "defeat": {
+      "positive_counter": "enemy remains active for another hit",
+      "counter_at_or_below_zero": "temporary defeat: counter becomes 999, hit/recoil state is set, active bit 0x2 is cleared, and the hit/death VM program is installed",
+      "permanent_quota": "unchanged because red class 1 is not permanent class 11 and does not reach the s7 >= 2 quota block"
+    },
+    "retirement": "Shared A08 projectile retirement: timer zero, floor intersection, far-distance cull, missing active/render flags, or terminal hit cleanup; ownership counter is balanced on retirement."
+  },
+  "coverage": {
+    "proved": [
+      "red selector and constructor type",
+      "complete red parameter row fields relevant to collision",
+      "record-pointer bias that distinguishes connection class from damage byte",
+      "exact ordinary -1 local-counter delta",
+      "exact berry-tough reaction-only branch",
+      "temporary defeat and absence of permanent-quota decrement",
+      "shared ballistic and retirement lifecycle"
+    ],
+    "bounded_residuals": [
+      "campaign-wide visual presentation for every named enemy family",
+      "boss-specific overlay defeat floors and phase FSMs",
+      "exact GPU/SPU ownership of impact presentation"
+    ],
+    "movie_required_now": false,
+    "movie_reopen_condition": "Only if a named family contradicts the ordinary/bit-0x40 law or exhaustive per-family presentation becomes an explicit deliverable."
+  },
+  "disposition": "Move on. Strict Full remains partial for low-return campaign and presentation breadth, but the C06 mechanic is instruction-bound and bounded-exhausted."
+}

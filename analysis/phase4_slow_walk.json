@@ -1,0 +1,6919 @@
+{
+ "_comment": "Phase-4 A02 slow-walk campaign evidence. Static retail bytes bind the L2/R2 mask to the player component cap and animation 29. A from-boot movie branch, 19-anchor breadth sweep, lifecycle controls, and instruction-attributed trace reproduce the boundaries. Regenerate with tools/phase4_slow_walk.py in a fresh owned instance.",
+ "generated": "2026-07-14",
+ "static_census": {
+  "executable": {
+   "path": "REBUILD/files/SCUS_942.88",
+   "size": 471040,
+   "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+   "pin_source": "tools/build_baselines.json:staged_inputs.SCUS_942.88"
+  },
+  "regions": {
+   "player_update": {
+    "start": "0x80048138",
+    "end_exclusive": "0x800498AC",
+    "length": 6004,
+    "sha256": "cab9a859cd6284a25c2ec4d0ba5072a0261b826a0497004e1a528dc0ebc74024"
+   },
+   "slow_gate": {
+    "start": "0x80048488",
+    "end_exclusive": "0x800484A4",
+    "length": 28,
+    "sha256": "7ef3c55e70f5b1ecb54bdeeba94ad714825aded978e802c2dd773dd39c199b27"
+   },
+   "velocity_cap": {
+    "start": "0x800493C0",
+    "end_exclusive": "0x80049444",
+    "length": 132,
+    "sha256": "d7bb6376e318e3dcbc76e4a904479e86de0fbcd404798301163e1d66fb724324"
+   },
+   "animation_gate": {
+    "start": "0x800566CC",
+    "end_exclusive": "0x800566FC",
+    "length": 48,
+    "sha256": "e5e7326c0a2d582ec0700353f5aedf6af951d795677312795d4284880fd15c57"
+   }
+  },
+  "instruction_words": {
+   "default_component_cap_1792": {
+    "address": "0x80048150",
+    "word": "0x24150700"
+   },
+   "working_action_load": {
+    "address": "0x8004848C",
+    "word": "0x94842488"
+   },
+   "slow_mask_0x0300": {
+    "address": "0x80048494",
+    "word": "0x30820300"
+   },
+   "slow_gate_branch": {
+    "address": "0x80048498",
+    "word": "0x10400002"
+   },
+   "slow_component_cap_768": {
+    "address": "0x800484A0",
+    "word": "0x24150300"
+   },
+   "positive_component_clamp": {
+    "address": "0x8004942C",
+    "word": "0x02A09021"
+   },
+   "negative_component_clamp_test": {
+    "address": "0x80049430",
+    "word": "0x0243102A"
+   },
+   "speed_field_writer": {
+    "address": "0x800494AC",
+    "word": "0xAE330038"
+   },
+   "animation_action_load": {
+    "address": "0x800566D0",
+    "word": "0x94422488"
+   },
+   "animation_slow_mask_0x0300": {
+    "address": "0x800566D8",
+    "word": "0x30420300"
+   },
+   "animation_branch": {
+    "address": "0x800566DC",
+    "word": "0x10400005"
+   },
+   "animation_29_value": {
+    "address": "0x800566E0",
+    "word": "0x2402001D"
+   },
+   "animation_29_writer": {
+    "address": "0x800566E8",
+    "word": "0xA4226588"
+   },
+   "animation_zero_writer": {
+    "address": "0x800566F8",
+    "word": "0xA4206588"
+   }
+  },
+  "law": {
+   "decoded_action_word": "0x80082488",
+   "shoulder_mask": 768,
+   "shoulder_bits": [
+    256,
+    512
+   ],
+   "default_component_cap": 1792,
+   "slow_component_cap": 768,
+   "run_animation": 0,
+   "slow_animation": 29,
+   "movement_owner": "0x80048138..0x800498AB",
+   "animation_owner": "0x800563D4..0x800570F7",
+   "overlays": "none; both consumers and state are resident"
+  },
+  "source_status": {
+   "player_asm": "asm/hand_written/80048138_player_vertical_update.s (byte-matched build unit)",
+   "player_semantic_c": "src_re/player_update_80048138.c (documentation-grade, not build input)",
+   "animation_asm": "asm/nonmatchings/resident/800563d4.s (byte-exact recovered assembly, nonmatching C)"
+  }
+ },
+ "live": {
+  "cold_boot": {
+   "base_movie": {
+    "path": "movies/go_to_end/LEVEL01.movie.json",
+    "sha256": "bfedc0d0f4828998fc598257b35ad090180ad6cb01ea317bc40229f977dc40fb",
+    "size": 7631156,
+    "media_class": "pristine_serial"
+   },
+   "base_movie_metadata": {
+    "format": "DuckStationInputMovie",
+    "version": 3,
+    "frame_count": 10348,
+    "start_state": {
+     "file_size": 0,
+     "frame": 0,
+     "from_boot": true,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "loaded_before_recording": false,
+     "path": "",
+     "pc": "0x00000000",
+     "reproducible_only_from_state": false,
+     "sha256": null,
+     "sp": "0x00000000"
+    }
+   },
+   "edit_recipe": {
+    "button_added": "r2",
+    "start_frame": 8103,
+    "end_frame_exclusive": 8163,
+    "edited_frame_count": 60,
+    "source_window_predicate": "Up true; L2/R2/action/menu buttons false"
+   },
+   "control": {
+    "loaded": {
+     "frame_count": 10348,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_movie": true,
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/go_to_end/LEVEL01.movie.json",
+     "playback_index": 0,
+     "playing": false,
+     "ports": [
+      0
+     ],
+     "recording": false,
+     "reproducible": false,
+     "start_state": {
+      "file_size": 0,
+      "frame": 0,
+      "from_boot": true,
+      "game_serial": "SCUS-94288",
+      "game_title": "Disney-Pixar A Bug's Life",
+      "loaded_before_recording": false,
+      "path": "",
+      "pc": "0x00000000",
+      "reproducible_only_from_state": false,
+      "sha256": null,
+      "sp": "0x00000000"
+     },
+     "truncated": false
+    },
+    "started": {
+     "frame_count": 10348,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_movie": true,
+     "playback_index": 0,
+     "playing": true,
+     "ports": [
+      0
+     ],
+     "recording": false,
+     "reproducible": true,
+     "start_state": {
+      "file_size": 0,
+      "frame": 0,
+      "from_boot": true,
+      "game_serial": "SCUS-94288",
+      "game_title": "Disney-Pixar A Bug's Life",
+      "loaded_before_recording": false,
+      "path": "",
+      "pc": "0x00000000",
+      "reproducible_only_from_state": false,
+      "sha256": null,
+      "sp": "0x00000000"
+     },
+     "truncated": false
+    },
+    "before": {
+     "fields": {
+      "x": 172664,
+      "y": -20458,
+      "z": 548489,
+      "heading": 3666,
+      "input_heading": 3849,
+      "velocity_x": -870,
+      "velocity_y": 0,
+      "velocity_z": 1121,
+      "horizontal_speed": 1420,
+      "state": 4,
+      "grounded": 0,
+      "animation": 2,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "9c8ae54dbcfb55ac6e1eea1efa4f211c319c8ecdd446c6fb30e23210338d4bb6",
+     "working_actions": 48,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 8104,
+     "cycle": 4587934121,
+     "pc": "0x8004fea4"
+    },
+    "before_movie": {
+     "frame_count": 10348,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_movie": true,
+     "playback_index": 8103,
+     "playing": true,
+     "ports": [
+      0
+     ],
+     "recording": false,
+     "reproducible": true,
+     "start_state": {
+      "file_size": 0,
+      "frame": 0,
+      "from_boot": true,
+      "game_serial": "SCUS-94288",
+      "game_title": "Disney-Pixar A Bug's Life",
+      "loaded_before_recording": false,
+      "path": "",
+      "pc": "0x00000000",
+      "reproducible_only_from_state": false,
+      "sha256": null,
+      "sp": "0x00000000"
+     },
+     "truncated": false
+    },
+    "after": {
+     "fields": {
+      "x": 152054,
+      "y": -15857,
+      "z": 551310,
+      "heading": 3172,
+      "input_heading": 3168,
+      "velocity_x": -530,
+      "velocity_y": -38,
+      "velocity_z": -345,
+      "horizontal_speed": 472,
+      "state": 0,
+      "grounded": 0,
+      "animation": 0,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "f4e44061ac2e014804b2d5dbe66d5c4dd3eecc3caa70e9fbab67655373a9ca05",
+     "working_actions": 16,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 8164,
+     "cycle": 4621906347,
+     "pc": "0x8004fea4"
+    },
+    "after_movie": {
+     "frame_count": 10348,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_movie": true,
+     "playback_index": 8163,
+     "playing": true,
+     "ports": [
+      0
+     ],
+     "recording": false,
+     "reproducible": true,
+     "start_state": {
+      "file_size": 0,
+      "frame": 0,
+      "from_boot": true,
+      "game_serial": "SCUS-94288",
+      "game_title": "Disney-Pixar A Bug's Life",
+      "loaded_before_recording": false,
+      "path": "",
+      "pc": "0x00000000",
+      "reproducible_only_from_state": false,
+      "sha256": null,
+      "sp": "0x00000000"
+     },
+     "truncated": false
+    }
+   },
+   "edited": {
+    "branch": {
+     "branchedFrom": "mov1",
+     "frameCount": 10348,
+     "fromFrame": 10348,
+     "gameSerial": "SCUS-94288",
+     "movieId": "mov2",
+     "ports": [
+      0
+     ],
+     "rerecordCount": 1
+    },
+    "activated": {
+     "frame_count": 10348,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_movie": true,
+     "playback_index": 0,
+     "playing": false,
+     "ports": [
+      0
+     ],
+     "recording": false,
+     "reproducible": false,
+     "start_state": {
+      "file_size": 0,
+      "frame": 0,
+      "from_boot": true,
+      "game_serial": "SCUS-94288",
+      "game_title": "Disney-Pixar A Bug's Life",
+      "loaded_before_recording": false,
+      "path": "",
+      "pc": "0x00000000",
+      "reproducible_only_from_state": false,
+      "sha256": null,
+      "sp": "0x00000000"
+     },
+     "truncated": false
+    },
+    "started": {
+     "frame_count": 10348,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_movie": true,
+     "playback_index": 0,
+     "playing": true,
+     "ports": [
+      0
+     ],
+     "recording": false,
+     "reproducible": true,
+     "start_state": {
+      "file_size": 0,
+      "frame": 0,
+      "from_boot": true,
+      "game_serial": "SCUS-94288",
+      "game_title": "Disney-Pixar A Bug's Life",
+      "loaded_before_recording": false,
+      "path": "",
+      "pc": "0x00000000",
+      "reproducible_only_from_state": false,
+      "sha256": null,
+      "sp": "0x00000000"
+     },
+     "truncated": false
+    },
+    "before": {
+     "fields": {
+      "x": 172664,
+      "y": -20458,
+      "z": 548489,
+      "heading": 3666,
+      "input_heading": 3849,
+      "velocity_x": -870,
+      "velocity_y": 0,
+      "velocity_z": 1121,
+      "horizontal_speed": 1420,
+      "state": 4,
+      "grounded": 0,
+      "animation": 2,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "9c8ae54dbcfb55ac6e1eea1efa4f211c319c8ecdd446c6fb30e23210338d4bb6",
+     "working_actions": 48,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 8104,
+     "cycle": 4587934121,
+     "pc": "0x8004fea4"
+    },
+    "before_movie": {
+     "frame_count": 10348,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_movie": true,
+     "playback_index": 8103,
+     "playing": true,
+     "ports": [
+      0
+     ],
+     "recording": false,
+     "reproducible": true,
+     "start_state": {
+      "file_size": 0,
+      "frame": 0,
+      "from_boot": true,
+      "game_serial": "SCUS-94288",
+      "game_title": "Disney-Pixar A Bug's Life",
+      "loaded_before_recording": false,
+      "path": "",
+      "pc": "0x00000000",
+      "reproducible_only_from_state": false,
+      "sha256": null,
+      "sp": "0x00000000"
+     },
+     "truncated": false
+    },
+    "after": {
+     "fields": {
+      "x": 155280,
+      "y": -15036,
+      "z": 552653,
+      "heading": 3164,
+      "input_heading": 3161,
+      "velocity_x": -765,
+      "velocity_y": -240,
+      "velocity_z": 110,
+      "horizontal_speed": 768,
+      "state": 0,
+      "grounded": 257,
+      "animation": 29,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "933d5bdafee607ee05b9176fc371a12848506d00e7aa7d844eab681bd53555b1",
+     "working_actions": 528,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 8164,
+     "cycle": 4621906348,
+     "pc": "0x8004fea4"
+    },
+    "after_movie": {
+     "frame_count": 10348,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_movie": true,
+     "playback_index": 8163,
+     "playing": true,
+     "ports": [
+      0
+     ],
+     "recording": false,
+     "reproducible": true,
+     "start_state": {
+      "file_size": 0,
+      "frame": 0,
+      "from_boot": true,
+      "game_serial": "SCUS-94288",
+      "game_title": "Disney-Pixar A Bug's Life",
+      "loaded_before_recording": false,
+      "path": "",
+      "pc": "0x00000000",
+      "reproducible_only_from_state": false,
+      "sha256": null,
+      "sp": "0x00000000"
+     },
+     "truncated": false
+    }
+   },
+   "pre_edit_field_differences": [],
+   "pre_edit_block_equal": true,
+   "pre_edit_cycle_equal": true,
+   "pre_edit_emulator_frame_equal": true,
+   "post_edit_field_differences": [
+    "x",
+    "y",
+    "z",
+    "heading",
+    "input_heading",
+    "velocity_x",
+    "velocity_y",
+    "velocity_z",
+    "horizontal_speed",
+    "grounded",
+    "animation"
+   ]
+  },
+  "breadth": {
+   "summary": {
+    "anchors_compared": 19,
+    "applicable_anchors": 18,
+    "applicable_labels": [
+     "training",
+     "stage01_anthill",
+     "stage02_tunnels",
+     "stage03_council_chamber",
+     "stage04_cliffside_canyon",
+     "stage05_riverbed_run",
+     "stage06_birdnest",
+     "stage07_city_entrance",
+     "stage08_city_square",
+     "stage09_bug_bar",
+     "stage10_clover_forest",
+     "stage11_the_tree",
+     "stage12_battle_arena",
+     "stage13_anthill_two",
+     "stage15_canyon_showdown",
+     "bonus1_spiders",
+     "bonus2_mushrooms",
+     "bonus3_grasshoppers"
+    ],
+    "walk_animation_29_labels": [
+     "bonus1_spiders",
+     "bonus2_mushrooms",
+     "bonus3_grasshoppers",
+     "stage01_anthill",
+     "stage02_tunnels",
+     "stage03_council_chamber",
+     "stage04_cliffside_canyon",
+     "stage05_riverbed_run",
+     "stage06_birdnest",
+     "stage07_city_entrance",
+     "stage08_city_square",
+     "stage09_bug_bar",
+     "stage10_clover_forest",
+     "stage11_the_tree",
+     "stage12_battle_arena",
+     "stage13_anthill_two",
+     "stage15_canyon_showdown",
+     "training"
+    ],
+    "run_animation_not_29_labels": [
+     "bonus1_spiders",
+     "bonus2_mushrooms",
+     "bonus3_grasshoppers",
+     "stage01_anthill",
+     "stage02_tunnels",
+     "stage03_council_chamber",
+     "stage04_cliffside_canyon",
+     "stage05_riverbed_run",
+     "stage06_birdnest",
+     "stage07_city_entrance",
+     "stage08_city_square",
+     "stage09_bug_bar",
+     "stage10_clover_forest",
+     "stage11_the_tree",
+     "stage12_battle_arena",
+     "stage13_anthill_two",
+     "stage15_canyon_showdown",
+     "training"
+    ],
+    "r2_up_observed_labels": [
+     "bonus1_spiders",
+     "bonus2_mushrooms",
+     "bonus3_grasshoppers",
+     "stage01_anthill",
+     "stage02_tunnels",
+     "stage03_council_chamber",
+     "stage04_cliffside_canyon",
+     "stage05_riverbed_run",
+     "stage06_birdnest",
+     "stage07_city_entrance",
+     "stage08_city_square",
+     "stage09_bug_bar",
+     "stage10_clover_forest",
+     "stage11_the_tree",
+     "stage12_battle_arena",
+     "stage13_anthill_two",
+     "stage15_canyon_showdown",
+     "training"
+    ],
+    "exception_label": "stage14_riverbed_flight",
+    "exception_outcome_differences": [],
+    "exception_run_animation": 4,
+    "exception_walk_animation": 4
+   },
+   "anchors": {
+    "training": {
+     "save": "phase3_pristine_training_gameplay_i5.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/phase3_pristine_training_gameplay_i5.sav",
+       "paused": true,
+       "pc": "0x8004fea4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 23890,
+        "y": 10748,
+        "z": -82260,
+        "heading": 667,
+        "input_heading": 343,
+        "velocity_x": 1792,
+        "velocity_y": 184,
+        "velocity_z": 585,
+        "horizontal_speed": 1845,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "7065953db51eaeba6492d924f8b1888ed46868d261ee3a3e1c50d7f62ae11629",
+       "working_actions": 144,
+       "pause_flag": 0,
+       "scene": 17,
+       "frame": 6907,
+       "cycle": 3910188203,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 78803,
+        "y": 8691,
+        "z": -79864,
+        "heading": 1041,
+        "input_heading": 1038,
+        "velocity_x": 1853,
+        "velocity_y": -213,
+        "velocity_z": -48,
+        "horizontal_speed": 1854,
+        "state": 0,
+        "grounded": 0,
+        "animation": 0,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "462d45986a9a8b5c744c54d9f20fd42da623b976e21c2e8f8f58a5e3a10a64e4",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 17,
+       "frame": 6967,
+       "cycle": 3944160429,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 54913,
+      "displacement_z": 2396
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/phase3_pristine_training_gameplay_i5.sav",
+       "paused": true,
+       "pc": "0x8004fea4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 23890,
+        "y": 10748,
+        "z": -82260,
+        "heading": 667,
+        "input_heading": 343,
+        "velocity_x": 1792,
+        "velocity_y": 184,
+        "velocity_z": 585,
+        "horizontal_speed": 1845,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "7065953db51eaeba6492d924f8b1888ed46868d261ee3a3e1c50d7f62ae11629",
+       "working_actions": 144,
+       "pause_flag": 0,
+       "scene": 17,
+       "frame": 6907,
+       "cycle": 3910188203,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 54834,
+        "y": 10544,
+        "z": -79916,
+        "heading": 1044,
+        "input_heading": 1041,
+        "velocity_x": 814,
+        "velocity_y": -31,
+        "velocity_z": -25,
+        "horizontal_speed": 815,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "dca0e75db9bb6b9a234bf708b7ded599c61a031b998999d2d9bfc3a3a3917260",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 17,
+       "frame": 6967,
+       "cycle": 3944160429,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 30944,
+      "displacement_z": 2344
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "heading",
+      "input_heading",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "grounded",
+      "animation"
+     ]
+    },
+    "stage01_anthill": {
+     "save": "level01.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level01.sav",
+       "paused": true,
+       "pc": "0x800108b8"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 197091,
+        "y": 2734,
+        "z": 492897,
+        "heading": 3505,
+        "input_heading": 3505,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "dd5735af440528ad162b306aae93818a52adace3d7a37043f1f4d77df6e564cd",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 1,
+       "frame": 12514,
+       "cycle": 7084892770,
+       "pc": "0x80010740"
+      },
+      "after": {
+       "fields": {
+        "x": 169188,
+        "y": -2395,
+        "z": 514912,
+        "heading": 3505,
+        "input_heading": 3505,
+        "velocity_x": -1425,
+        "velocity_y": -536,
+        "velocity_z": 1112,
+        "horizontal_speed": 1804,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "623096bb345b32895558e9674d52457c1e474fa6afaa0e2f4f31dcc011bbba39",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 1,
+       "frame": 12574,
+       "cycle": 7118864996,
+       "pc": "0x800108b8"
+      },
+      "displacement_x": -27903,
+      "displacement_z": 22015
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level01.sav",
+       "paused": true,
+       "pc": "0x800108b8"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 197091,
+        "y": 2734,
+        "z": 492897,
+        "heading": 3505,
+        "input_heading": 3505,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "dd5735af440528ad162b306aae93818a52adace3d7a37043f1f4d77df6e564cd",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 1,
+       "frame": 12514,
+       "cycle": 7084892770,
+       "pc": "0x80010740"
+      },
+      "after": {
+       "fields": {
+        "x": 180189,
+        "y": 1425,
+        "z": 506195,
+        "heading": 3505,
+        "input_heading": 3505,
+        "velocity_x": -606,
+        "velocity_y": -137,
+        "velocity_z": 472,
+        "horizontal_speed": 767,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "c7d9b03cf7797f37962398fa8d67c7f6c6bef035cd7d04c4418af1715f46f582",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 1,
+       "frame": 12574,
+       "cycle": 7118864996,
+       "pc": "0x8001068c"
+      },
+      "displacement_x": -16902,
+      "displacement_z": 13298
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "stage02_tunnels": {
+     "save": "level02.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level02.sav",
+       "paused": true,
+       "pc": "0x8004feac"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -16896,
+        "y": 32043,
+        "z": 6631,
+        "heading": 742,
+        "input_heading": 742,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "554dc32d6a6af01afdfd0f827c4daa465ff9d5dfea6ceee685f25ed4181b04b3",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 3,
+       "frame": 39547,
+       "cycle": 22391079425,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 14316,
+        "y": 32023,
+        "z": 21035,
+        "heading": 742,
+        "input_heading": 742,
+        "velocity_x": 1735,
+        "velocity_y": 0,
+        "velocity_z": 799,
+        "horizontal_speed": 1912,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "5e2c520eb76aeb168305ba10e18b5c06eb0509a696510fd9e90f179a7f5b5079",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 3,
+       "frame": 39607,
+       "cycle": 22425051652,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 31212,
+      "displacement_z": 14404
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level02.sav",
+       "paused": true,
+       "pc": "0x8004feac"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -16896,
+        "y": 32043,
+        "z": 6631,
+        "heading": 742,
+        "input_heading": 742,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "554dc32d6a6af01afdfd0f827c4daa465ff9d5dfea6ceee685f25ed4181b04b3",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 3,
+       "frame": 39547,
+       "cycle": 22391079425,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 2194,
+        "y": 32022,
+        "z": 15437,
+        "heading": 742,
+        "input_heading": 742,
+        "velocity_x": 826,
+        "velocity_y": 0,
+        "velocity_z": 381,
+        "horizontal_speed": 911,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "106a0dd95b282d07b0c48e1617aa8edca792ea518693e6f53002004aa3a66b26",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 3,
+       "frame": 39607,
+       "cycle": 22425051651,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 19090,
+      "displacement_z": 8806
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "stage03_council_chamber": {
+     "save": "level03.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level03.sav",
+       "paused": true,
+       "pc": "0x80018ca4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -1700,
+        "y": 39207,
+        "z": -226018,
+        "heading": 4071,
+        "input_heading": 4071,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 26,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "bb209038168cadf3c2588d9409636d1b8935a3b6170316df903ec49eef3b6239",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 2,
+       "frame": 55159,
+       "cycle": 31230652764,
+       "pc": "0x8001eb0c"
+      },
+      "after": {
+       "fields": {
+        "x": -164,
+        "y": 56763,
+        "z": -191145,
+        "heading": 4090,
+        "input_heading": 0,
+        "velocity_x": -18,
+        "velocity_y": 491,
+        "velocity_z": 1841,
+        "horizontal_speed": 1838,
+        "state": 0,
+        "grounded": 0,
+        "animation": 0,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "c2fe5c61b43b3b9415f6abb4240ebe2c58f2335d275ebb3fd1a3a6e10dcbc7c7",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 2,
+       "frame": 55219,
+       "cycle": 31264624990,
+       "pc": "0x800106d8"
+      },
+      "displacement_x": 1536,
+      "displacement_z": 34873
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level03.sav",
+       "paused": true,
+       "pc": "0x80018ca4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -1700,
+        "y": 39207,
+        "z": -226018,
+        "heading": 4071,
+        "input_heading": 4071,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 26,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "bb209038168cadf3c2588d9409636d1b8935a3b6170316df903ec49eef3b6239",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 2,
+       "frame": 55159,
+       "cycle": 31230652764,
+       "pc": "0x8001eb0c"
+      },
+      "after": {
+       "fields": {
+        "x": -997,
+        "y": 53651,
+        "z": -203138,
+        "heading": 4081,
+        "input_heading": 4087,
+        "velocity_x": -21,
+        "velocity_y": 236,
+        "velocity_z": 881,
+        "horizontal_speed": 878,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "5478f5328000f53310036fbff9191a8ca44cb35ea35e9102e122b1c9b831e95b",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 2,
+       "frame": 55219,
+       "cycle": 31264624990,
+       "pc": "0x8001eacc"
+      },
+      "displacement_x": 703,
+      "displacement_z": 22880
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "heading",
+      "input_heading",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "grounded",
+      "animation"
+     ]
+    },
+    "stage04_cliffside_canyon": {
+     "save": "level04.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level04.sav",
+       "paused": true,
+       "pc": "0x8004feac"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 93795,
+        "y": -83609,
+        "z": -134646,
+        "heading": 3063,
+        "input_heading": 3063,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "d6a54f84898ffc7ce2546a714ed58f09c101c99a0b6891e0fb9f30df3fcb621c",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 6,
+       "frame": 61251,
+       "cycle": 34679966162,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 59466,
+        "y": -85483,
+        "z": -135335,
+        "heading": 3063,
+        "input_heading": 3063,
+        "velocity_x": -1847,
+        "velocity_y": -179,
+        "velocity_z": -24,
+        "horizontal_speed": 1847,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "63774897f55d5cff8a747d254a2b55b2adeb86f98995335c22b5b5b97355bfa9",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 6,
+       "frame": 61311,
+       "cycle": 34713938388,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -34329,
+      "displacement_z": -689
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level04.sav",
+       "paused": true,
+       "pc": "0x8004feac"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 93795,
+        "y": -83609,
+        "z": -134646,
+        "heading": 3063,
+        "input_heading": 3063,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "d6a54f84898ffc7ce2546a714ed58f09c101c99a0b6891e0fb9f30df3fcb621c",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 6,
+       "frame": 61251,
+       "cycle": 34679966162,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 72842,
+        "y": -84626,
+        "z": -135020,
+        "heading": 3063,
+        "input_heading": 3063,
+        "velocity_x": -892,
+        "velocity_y": -66,
+        "velocity_z": -12,
+        "horizontal_speed": 892,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "273799db9c680a7d3dc41909ba19199734cc0bca27488166814b38bfdf1a75e6",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 6,
+       "frame": 61311,
+       "cycle": 34713938388,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -20953,
+      "displacement_z": -374
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "stage05_riverbed_run": {
+     "save": "level05.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level05.sav",
+       "paused": true,
+       "pc": "0x80013218"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -3623,
+        "y": 3945,
+        "z": -273237,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "bbaab061771f524e602c7d490cdb6effab6631c2d4e9a4fced3fc3707c07c49c",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 10,
+       "frame": 71099,
+       "cycle": 40255940939,
+       "pc": "0x8001369c"
+      },
+      "after": {
+       "fields": {
+        "x": -3577,
+        "y": 4751,
+        "z": -236669,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 13,
+        "velocity_y": -20,
+        "velocity_z": 1888,
+        "horizontal_speed": 1891,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "6b2959fcb606638ec17ebd14ab8670e30fbef9b59ab52010fa998190a8daad49",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 10,
+       "frame": 71159,
+       "cycle": 40289913167,
+       "pc": "0x80013430"
+      },
+      "displacement_x": 46,
+      "displacement_z": 36568
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level05.sav",
+       "paused": true,
+       "pc": "0x80013218"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -3623,
+        "y": 3945,
+        "z": -273237,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "bbaab061771f524e602c7d490cdb6effab6631c2d4e9a4fced3fc3707c07c49c",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 10,
+       "frame": 71099,
+       "cycle": 40255940939,
+       "pc": "0x8001369c"
+      },
+      "after": {
+       "fields": {
+        "x": -3595,
+        "y": 4789,
+        "z": -251515,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 882,
+        "horizontal_speed": 882,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 4
+       },
+       "player_block_sha256": "74b3f605e926bdd9a07934b1c6d01f7d270ceaa087c0d070c886a9794c12b33d",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 10,
+       "frame": 71159,
+       "cycle": 40289913167,
+       "pc": "0x80013660"
+      },
+      "displacement_x": 28,
+      "displacement_z": 21722
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "stage06_birdnest": {
+     "save": "level_06.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_06.sav",
+       "paused": true,
+       "pc": "0x8004feb4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 44169,
+        "y": 2724,
+        "z": 75030,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "7465f7447c5e375a540df9becd8c867851f6e458f0508ad52096db5db503dc95",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 11,
+       "frame": 106835,
+       "cycle": 60489799050,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 44060,
+        "y": -2,
+        "z": 108343,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": -5,
+        "velocity_z": 1860,
+        "horizontal_speed": 1860,
+        "state": 0,
+        "grounded": 0,
+        "animation": 0,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "88faa731c5bc9f07212e0c500178512a28a190c61c353dc1fa78a3b1a4b03f7c",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 11,
+       "frame": 106895,
+       "cycle": 60523771276,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -109,
+      "displacement_z": 33313
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_06.sav",
+       "paused": true,
+       "pc": "0x8004feb4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 44169,
+        "y": 2724,
+        "z": 75030,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "7465f7447c5e375a540df9becd8c867851f6e458f0508ad52096db5db503dc95",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 11,
+       "frame": 106835,
+       "cycle": 60489799050,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 44074,
+        "y": 36,
+        "z": 95618,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": -2,
+        "velocity_z": 869,
+        "horizontal_speed": 869,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "95756c8682839a27277da07059077b9bd0282c73e0a052116c30a132659ceff0",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 11,
+       "frame": 106895,
+       "cycle": 60523771277,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -95,
+      "displacement_z": 20588
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "grounded",
+      "animation"
+     ]
+    },
+    "stage07_city_entrance": {
+     "save": "level_07.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_07.sav",
+       "paused": true,
+       "pc": "0x80010898"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -289789,
+        "y": -96,
+        "z": 375937,
+        "heading": 2135,
+        "input_heading": 2135,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 23,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "c55c0ba910f19e3d4340b6ac839956d3cf1bfde9648f151383395dd8c2d98e0a",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 4,
+       "frame": 116012,
+       "cycle": 65685851095,
+       "pc": "0x80010520"
+      },
+      "after": {
+       "fields": {
+        "x": -294599,
+        "y": -1376,
+        "z": 340210,
+        "heading": 2135,
+        "input_heading": 2135,
+        "velocity_x": -242,
+        "velocity_y": 172,
+        "velocity_z": -1805,
+        "horizontal_speed": 1822,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "69bed93a38951c98ddc67211e43731ff0cd23f1908578a8f6230e18b3c7eec42",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 4,
+       "frame": 116072,
+       "cycle": 65719823322,
+       "pc": "0x8001ed84"
+      },
+      "displacement_x": -4810,
+      "displacement_z": -35727
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_07.sav",
+       "paused": true,
+       "pc": "0x80010898"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -289789,
+        "y": -96,
+        "z": 375937,
+        "heading": 2135,
+        "input_heading": 2135,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 23,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "c55c0ba910f19e3d4340b6ac839956d3cf1bfde9648f151383395dd8c2d98e0a",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 4,
+       "frame": 116012,
+       "cycle": 65685851095,
+       "pc": "0x80010520"
+      },
+      "after": {
+       "fields": {
+        "x": -292645,
+        "y": -1693,
+        "z": 354526,
+        "heading": 2135,
+        "input_heading": 2135,
+        "velocity_x": -103,
+        "velocity_y": 96,
+        "velocity_z": -773,
+        "horizontal_speed": 780,
+        "state": 0,
+        "grounded": 0,
+        "animation": 29,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "f925934cd3be58c8a77db9ed4828f62bf914296a622c4759590be684b56f753a",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 4,
+       "frame": 116072,
+       "cycle": 65719823322,
+       "pc": "0x80010520"
+      },
+      "displacement_x": -2856,
+      "displacement_z": -21411
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "grounded",
+      "animation"
+     ]
+    },
+    "stage08_city_square": {
+     "save": "level_08.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_08.sav",
+       "paused": true,
+       "pc": "0x800106b4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 835001,
+        "y": -6796,
+        "z": 96740,
+        "heading": 2965,
+        "input_heading": 2965,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "75fc06949a83ca6b381b76958c04d26d1614536567f6d2203676ead2f4c447da",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 5,
+       "frame": 133378,
+       "cycle": 75518545855,
+       "pc": "0x800106d8"
+      },
+      "after": {
+       "fields": {
+        "x": 798976,
+        "y": -2401,
+        "z": 90804,
+        "heading": 2965,
+        "input_heading": 2965,
+        "velocity_x": -1846,
+        "velocity_y": -71,
+        "velocity_z": -276,
+        "horizontal_speed": 1881,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "f789ac0ad8cffd138bccc2e1bf4ed6de075dc444365976796b8ca4f90efaafd9",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 5,
+       "frame": 133438,
+       "cycle": 75552518082,
+       "pc": "0x800102e8"
+      },
+      "displacement_x": -36025,
+      "displacement_z": -5936
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_08.sav",
+       "paused": true,
+       "pc": "0x800106b4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 835001,
+        "y": -6796,
+        "z": 96740,
+        "heading": 2965,
+        "input_heading": 2965,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "75fc06949a83ca6b381b76958c04d26d1614536567f6d2203676ead2f4c447da",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 5,
+       "frame": 133378,
+       "cycle": 75518545855,
+       "pc": "0x800106d8"
+      },
+      "after": {
+       "fields": {
+        "x": 813465,
+        "y": -4342,
+        "z": 93201,
+        "heading": 2965,
+        "input_heading": 2965,
+        "velocity_x": -867,
+        "velocity_y": 125,
+        "velocity_z": -143,
+        "horizontal_speed": 880,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 2
+       },
+       "player_block_sha256": "e36fc59319dbaa0e349d7bda02f2fcdd77408329838d94530bb828afa6e58a9d",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 5,
+       "frame": 133438,
+       "cycle": 75552518082,
+       "pc": "0x8001062c"
+      },
+      "displacement_x": -21536,
+      "displacement_z": -3539
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "stage09_bug_bar": {
+     "save": "level_09.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_09.sav",
+       "paused": true,
+       "pc": "0x8004feac"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -81128,
+        "y": 4217,
+        "z": -9,
+        "heading": 3072,
+        "input_heading": 3072,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 1
+       },
+       "player_block_sha256": "fee11824b34895ba7d82834bb4548226cfe77d708f7fc2d2b2755f2ff46d2582",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 14,
+       "frame": 145346,
+       "cycle": 82294872637,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": -115768,
+        "y": 4219,
+        "z": -28,
+        "heading": 3072,
+        "input_heading": 3072,
+        "velocity_x": -1808,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 1808,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 1
+       },
+       "player_block_sha256": "862599c5647c0e518bbe4c58229170579f04d899bba0e1332a7fb49351437ddb",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 14,
+       "frame": 145406,
+       "cycle": 82328844864,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -34640,
+      "displacement_z": -19
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_09.sav",
+       "paused": true,
+       "pc": "0x8004feac"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -81128,
+        "y": 4217,
+        "z": -9,
+        "heading": 3072,
+        "input_heading": 3072,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 1
+       },
+       "player_block_sha256": "fee11824b34895ba7d82834bb4548226cfe77d708f7fc2d2b2755f2ff46d2582",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 14,
+       "frame": 145346,
+       "cycle": 82294872637,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": -101944,
+        "y": 4219,
+        "z": -28,
+        "heading": 3072,
+        "input_heading": 3072,
+        "velocity_x": -800,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 800,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 1
+       },
+       "player_block_sha256": "a10c33ecb93d32e6661913b8dc44475fdc40c17675a8c1d287193b322442c988",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 14,
+       "frame": 145406,
+       "cycle": 82328844864,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -20816,
+      "displacement_z": -19
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "velocity_x",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "stage10_clover_forest": {
+     "save": "level_10.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_10.sav",
+       "paused": true,
+       "pc": "0x80010830"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 63709,
+        "y": -45912,
+        "z": 56801,
+        "heading": 2609,
+        "input_heading": 2609,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 25,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "caa81a613d33b698e206a358b6efd93c09141881955b774b64975c8bedc28af5",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 7,
+       "frame": 154642,
+       "cycle": 87558302931,
+       "pc": "0x8001961c"
+      },
+      "after": {
+       "fields": {
+        "x": 36769,
+        "y": -39285,
+        "z": 33596,
+        "heading": 2609,
+        "input_heading": 2609,
+        "velocity_x": -1399,
+        "velocity_y": 328,
+        "velocity_z": -1206,
+        "horizontal_speed": 1845,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "cd84b266aad7e8996b12a260828fc4910924a577033519d345d4f9ee7d377d25",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 7,
+       "frame": 154702,
+       "cycle": 87592275157,
+       "pc": "0x80010740"
+      },
+      "displacement_x": -26940,
+      "displacement_z": -23205
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_10.sav",
+       "paused": true,
+       "pc": "0x80010830"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 63709,
+        "y": -45912,
+        "z": 56801,
+        "heading": 2609,
+        "input_heading": 2609,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 25,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "caa81a613d33b698e206a358b6efd93c09141881955b774b64975c8bedc28af5",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 7,
+       "frame": 154642,
+       "cycle": 87558302931,
+       "pc": "0x8001961c"
+      },
+      "after": {
+       "fields": {
+        "x": 47394,
+        "y": -41735,
+        "z": 42757,
+        "heading": 2609,
+        "input_heading": 2609,
+        "velocity_x": -657,
+        "velocity_y": 164,
+        "velocity_z": -562,
+        "horizontal_speed": 867,
+        "state": 0,
+        "grounded": 0,
+        "animation": 29,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "9cd5cd1f0c77d4943fc05576c1dc7e8241af212ee7344ba5af6e162a0b4bdbc3",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 7,
+       "frame": 154702,
+       "cycle": 87592275157,
+       "pc": "0x8001067c"
+      },
+      "displacement_x": -16315,
+      "displacement_z": -14044
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "grounded",
+      "animation"
+     ]
+    },
+    "stage11_the_tree": {
+     "save": "level_11.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_11.sav",
+       "paused": true,
+       "pc": "0x800106c8"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 219363,
+        "y": -3058,
+        "z": -164708,
+        "heading": 419,
+        "input_heading": 419,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "20fd4e9e4ada9f804e9b8bf3d854e7171567eb57cae1eac83a9740ee44fe0a6f",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 12,
+       "frame": 172446,
+       "cycle": 97638994945,
+       "pc": "0x800104b8"
+      },
+      "after": {
+       "fields": {
+        "x": 241302,
+        "y": -202,
+        "z": -135419,
+        "heading": 419,
+        "input_heading": 419,
+        "velocity_x": 1116,
+        "velocity_y": 159,
+        "velocity_z": 1490,
+        "horizontal_speed": 1862,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "4d0eae882427c850a1022035542e192ed5e4e8cdd7219c401fe6c258ed3690d4",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 12,
+       "frame": 172506,
+       "cycle": 97672967171,
+       "pc": "0x800106d8"
+      },
+      "displacement_x": 21939,
+      "displacement_z": 29289
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_11.sav",
+       "paused": true,
+       "pc": "0x800106c8"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 219363,
+        "y": -3058,
+        "z": -164708,
+        "heading": 419,
+        "input_heading": 419,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "20fd4e9e4ada9f804e9b8bf3d854e7171567eb57cae1eac83a9740ee44fe0a6f",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 12,
+       "frame": 172446,
+       "cycle": 97638994945,
+       "pc": "0x800104b8"
+      },
+      "after": {
+       "fields": {
+        "x": 232355,
+        "y": -1470,
+        "z": -147365,
+        "heading": 419,
+        "input_heading": 419,
+        "velocity_x": 516,
+        "velocity_y": 72,
+        "velocity_z": 689,
+        "horizontal_speed": 862,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "a1f4e363163fc42c28d56ef32d8ada9ad27d73ed590815a364ce8bf750dd641a",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 12,
+       "frame": 172506,
+       "cycle": 97672967171,
+       "pc": "0x800106d8"
+      },
+      "displacement_x": 12992,
+      "displacement_z": 17343
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "stage12_battle_arena": {
+     "save": "level_12.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_12.sav",
+       "paused": true,
+       "pc": "0x800106f4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 60041,
+        "y": -116713,
+        "z": -263139,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "0bdaa74f0b420dacfd8a485b2a22f383ad138d0209b8e6d7ade280ff748f89c9",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 13,
+       "frame": 195093,
+       "cycle": 110461811841,
+       "pc": "0x80010d0c"
+      },
+      "after": {
+       "fields": {
+        "x": 60138,
+        "y": -119744,
+        "z": -227507,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": -116,
+        "velocity_z": 1806,
+        "horizontal_speed": 1806,
+        "state": 0,
+        "grounded": 0,
+        "animation": 0,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "59d648eec0d42131bdb91dff41209e049e0e1df56f5c7f4d91e1695b203a58df",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 13,
+       "frame": 195153,
+       "cycle": 110495784068,
+       "pc": "0x800108b8"
+      },
+      "displacement_x": 97,
+      "displacement_z": 35632
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_12.sav",
+       "paused": true,
+       "pc": "0x800106f4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 60041,
+        "y": -116713,
+        "z": -263139,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "0bdaa74f0b420dacfd8a485b2a22f383ad138d0209b8e6d7ade280ff748f89c9",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 13,
+       "frame": 195093,
+       "cycle": 110461811841,
+       "pc": "0x80010d0c"
+      },
+      "after": {
+       "fields": {
+        "x": 60087,
+        "y": -118856,
+        "z": -241478,
+        "heading": 0,
+        "input_heading": 0,
+        "velocity_x": 0,
+        "velocity_y": -53,
+        "velocity_z": 818,
+        "horizontal_speed": 818,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "34425568edef2e132fb1ac1fca3c8ffa50b1ed7a3999ab58b446b702f0db8040",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 13,
+       "frame": 195153,
+       "cycle": 110495784068,
+       "pc": "0x8001067c"
+      },
+      "displacement_x": 46,
+      "displacement_z": 21661
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "grounded",
+      "animation"
+     ]
+    },
+    "stage13_anthill_two": {
+     "save": "level_13.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_13.sav",
+       "paused": true,
+       "pc": "0x8001efa4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 110393,
+        "y": -122557,
+        "z": -106265,
+        "heading": 4039,
+        "input_heading": 4039,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "4e846c21393fd5c710912605cb83226be8d1d2caffff46be6b38a542ec0406ec",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 9,
+       "frame": 211925,
+       "cycle": 119992153785,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 107368,
+        "y": -126955,
+        "z": -72601,
+        "heading": 4039,
+        "input_heading": 4039,
+        "velocity_x": -159,
+        "velocity_y": -199,
+        "velocity_z": 1831,
+        "horizontal_speed": 1839,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "39b9661ff8fa4041137336db0e9d3dba4fd352189ed19ed1059f9339213c78c7",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 9,
+       "frame": 211985,
+       "cycle": 120026126012,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -3025,
+      "displacement_z": 33664
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_13.sav",
+       "paused": true,
+       "pc": "0x8001efa4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 110393,
+        "y": -122557,
+        "z": -106265,
+        "heading": 4039,
+        "input_heading": 4039,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "4e846c21393fd5c710912605cb83226be8d1d2caffff46be6b38a542ec0406ec",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 9,
+       "frame": 211925,
+       "cycle": 119992153785,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 108551,
+        "y": -125467,
+        "z": -85663,
+        "heading": 4039,
+        "input_heading": 4039,
+        "velocity_x": -76,
+        "velocity_y": -120,
+        "velocity_z": 859,
+        "horizontal_speed": 864,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "054e60166d3f9d396a34e2e0807fd36b52baf204aa3a218b6166b8d080a13769",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 9,
+       "frame": 211985,
+       "cycle": 120026126012,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -1842,
+      "displacement_z": 20602
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "stage14_riverbed_flight": {
+     "save": "level_14.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_14.sav",
+       "paused": true,
+       "pc": "0x8004feb4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -130722,
+        "y": -1848,
+        "z": 32168,
+        "heading": 352,
+        "input_heading": 352,
+        "velocity_x": 1207,
+        "velocity_y": -384,
+        "velocity_z": 2014,
+        "horizontal_speed": 2349,
+        "state": 0,
+        "grounded": 0,
+        "animation": 4,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "a178891262cd3943ef2c650410713c52aca8c6c3c661b6b4c5ca39338fcf2441",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 8,
+       "frame": 223735,
+       "cycle": 126679020371,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": -92540,
+        "y": -696,
+        "z": 95890,
+        "heading": 352,
+        "input_heading": 352,
+        "velocity_x": 1278,
+        "velocity_y": -1152,
+        "velocity_z": 2133,
+        "horizontal_speed": 2487,
+        "state": 0,
+        "grounded": 0,
+        "animation": 4,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "70feade3a452b143ccff6fa71dfa27691377472d4574cdb1945b975b77c4e212",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 8,
+       "frame": 223795,
+       "cycle": 126712992597,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 38182,
+      "displacement_z": 63722
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_14.sav",
+       "paused": true,
+       "pc": "0x8004feb4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -130722,
+        "y": -1848,
+        "z": 32168,
+        "heading": 352,
+        "input_heading": 352,
+        "velocity_x": 1207,
+        "velocity_y": -384,
+        "velocity_z": 2014,
+        "horizontal_speed": 2349,
+        "state": 0,
+        "grounded": 0,
+        "animation": 4,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "a178891262cd3943ef2c650410713c52aca8c6c3c661b6b4c5ca39338fcf2441",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 8,
+       "frame": 223735,
+       "cycle": 126679020371,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": -92540,
+        "y": -696,
+        "z": 95890,
+        "heading": 352,
+        "input_heading": 352,
+        "velocity_x": 1278,
+        "velocity_y": -1152,
+        "velocity_z": 2133,
+        "horizontal_speed": 2487,
+        "state": 0,
+        "grounded": 0,
+        "animation": 4,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "70feade3a452b143ccff6fa71dfa27691377472d4574cdb1945b975b77c4e212",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 8,
+       "frame": 223795,
+       "cycle": 126712992596,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 38182,
+      "displacement_z": 63722
+     },
+     "walk_has_r2_and_up": false,
+     "run_animation": 4,
+     "walk_animation": 4,
+     "outcome_differences": []
+    },
+    "stage15_canyon_showdown": {
+     "save": "level_15.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_15.sav",
+       "paused": true,
+       "pc": "0x8004feac"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 178426,
+        "y": -122,
+        "z": 150035,
+        "heading": 2253,
+        "input_heading": 2253,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "21da1ef3bfadab9b3fdc7461908ade797d15060c5b48a74604e561a1ea0305bf",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 15,
+       "frame": 233030,
+       "cycle": 131941884461,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 167736,
+        "y": -110,
+        "z": 117130,
+        "heading": 2253,
+        "input_heading": 2253,
+        "velocity_x": -598,
+        "velocity_y": 0,
+        "velocity_z": -1840,
+        "horizontal_speed": 1935,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "c97a25d476b25fabd4ec2e0f736b56fac1b5c97a403150af1cb4a58145767324",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 15,
+       "frame": 233090,
+       "cycle": 131975856687,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -10690,
+      "displacement_z": -32905
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_15.sav",
+       "paused": true,
+       "pc": "0x8004feac"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 178426,
+        "y": -122,
+        "z": 150035,
+        "heading": 2253,
+        "input_heading": 2253,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "21da1ef3bfadab9b3fdc7461908ade797d15060c5b48a74604e561a1ea0305bf",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 15,
+       "frame": 233030,
+       "cycle": 131941884461,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 171974,
+        "y": -116,
+        "z": 130169,
+        "heading": 2253,
+        "input_heading": 2253,
+        "velocity_x": -240,
+        "velocity_y": 0,
+        "velocity_z": -739,
+        "horizontal_speed": 777,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 4,
+        "lives": 0
+       },
+       "player_block_sha256": "ad3879ccbecfd9f3709125938e4a466cd292765d628bdbab88854df57ffaf0bd",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 15,
+       "frame": 233090,
+       "cycle": 131975856688,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": -6452,
+      "displacement_z": -19866
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "bonus1_spiders": {
+     "save": "movies/Bonus_Level_01.movie.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_01.movie.sav",
+       "paused": true,
+       "pc": "0x800106d8"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -102817,
+        "y": 9444,
+        "z": 41424,
+        "heading": 1058,
+        "input_heading": 1061,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "70748a413b064220db81696bea31d426c1e12ced2a317e6a0e69193aae74c0e0",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 17,
+       "frame": 9214,
+       "cycle": 5216420312,
+       "pc": "0x8001068c"
+      },
+      "after": {
+       "fields": {
+        "x": -96776,
+        "y": 9988,
+        "z": 40176,
+        "heading": 1058,
+        "input_heading": 1061,
+        "velocity_x": 870,
+        "velocity_y": 59,
+        "velocity_z": -45,
+        "horizontal_speed": 872,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 3,
+        "lives": 5
+       },
+       "player_block_sha256": "d200edec4e8ea4ab3ad35361df61d1f35a58de980aefb7e6d94d750c642479e5",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 17,
+       "frame": 9274,
+       "cycle": 5250392539,
+       "pc": "0x80010740"
+      },
+      "displacement_x": 6041,
+      "displacement_z": -1248
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_01.movie.sav",
+       "paused": true,
+       "pc": "0x800106d8"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": -102817,
+        "y": 9444,
+        "z": 41424,
+        "heading": 1058,
+        "input_heading": 1061,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 22,
+        "health": 4,
+        "lives": 5
+       },
+       "player_block_sha256": "70748a413b064220db81696bea31d426c1e12ced2a317e6a0e69193aae74c0e0",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 17,
+       "frame": 9214,
+       "cycle": 5216420312,
+       "pc": "0x8001068c"
+      },
+      "after": {
+       "fields": {
+        "x": -96920,
+        "y": 9980,
+        "z": 40163,
+        "heading": 1058,
+        "input_heading": 1062,
+        "velocity_x": 870,
+        "velocity_y": 59,
+        "velocity_z": -45,
+        "horizontal_speed": 872,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 3,
+        "lives": 5
+       },
+       "player_block_sha256": "531b0f0f260448c9728aaf5848803f359f4c3e9e8baed1b383c6d2e8c84e3848",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 17,
+       "frame": 9274,
+       "cycle": 5250392539,
+       "pc": "0x80010740"
+      },
+      "displacement_x": 5897,
+      "displacement_z": -1261
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "input_heading",
+      "animation"
+     ]
+    },
+    "bonus2_mushrooms": {
+     "save": "movies/Bonus_Level_02.movie.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_02.movie.sav",
+       "paused": true,
+       "pc": "0x8004fea4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 148852,
+        "y": -88674,
+        "z": 174945,
+        "heading": 1684,
+        "input_heading": 1684,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 24,
+        "health": 2,
+        "lives": 5
+       },
+       "player_block_sha256": "8886a708394be90591a60c3a950a9bcbf8f78e88e8a037ca2366d08e62328c0f",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 1,
+       "frame": 23618,
+       "cycle": 13372019490,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 166423,
+        "y": -91225,
+        "z": 146436,
+        "heading": 1681,
+        "input_heading": 1681,
+        "velocity_x": 916,
+        "velocity_y": -600,
+        "velocity_z": -1511,
+        "horizontal_speed": 1797,
+        "state": 0,
+        "grounded": 257,
+        "animation": 0,
+        "health": 2,
+        "lives": 5
+       },
+       "player_block_sha256": "4478f31072b34aab0b8fdbeaf1543ef50a9e758032b0241728944c3cb83cbe32",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 1,
+       "frame": 23678,
+       "cycle": 13405991716,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 17571,
+      "displacement_z": -28509
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_02.movie.sav",
+       "paused": true,
+       "pc": "0x8004fea4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 148852,
+        "y": -88674,
+        "z": 174945,
+        "heading": 1684,
+        "input_heading": 1684,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 24,
+        "health": 2,
+        "lives": 5
+       },
+       "player_block_sha256": "8886a708394be90591a60c3a950a9bcbf8f78e88e8a037ca2366d08e62328c0f",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 1,
+       "frame": 23618,
+       "cycle": 13372019490,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 159835,
+        "y": -90628,
+        "z": 157295,
+        "heading": 1681,
+        "input_heading": 1681,
+        "velocity_x": 456,
+        "velocity_y": 40,
+        "velocity_z": -731,
+        "horizontal_speed": 861,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 2,
+        "lives": 5
+       },
+       "player_block_sha256": "b9936c2ed29a3204d6de736d5f0ca652febc96f135dc7fa0fbd732805df0b951",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 1,
+       "frame": 23678,
+       "cycle": 13405991716,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 10983,
+      "displacement_z": -17650
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "animation"
+     ]
+    },
+    "bonus3_grasshoppers": {
+     "save": "movies/Bonus_Level_03.movie.sav",
+     "run": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_03.movie.sav",
+       "paused": true,
+       "pc": "0x8004fea4"
+      },
+      "buttons": {
+       "up": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 1464691,
+        "y": 32499,
+        "z": 1453681,
+        "heading": 330,
+        "input_heading": 333,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 25,
+        "health": 1,
+        "lives": 5
+       },
+       "player_block_sha256": "112d5bdaede47d0dd22c6e5e70d8569d3f3db3f4280da92c17aa7611463cf79f",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 3,
+       "frame": 49296,
+       "cycle": 27911000030,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 1481471,
+        "y": 32362,
+        "z": 1483655,
+        "heading": 333,
+        "input_heading": 333,
+        "velocity_x": 934,
+        "velocity_y": -9,
+        "velocity_z": 1667,
+        "horizontal_speed": 1912,
+        "state": 0,
+        "grounded": 0,
+        "animation": 0,
+        "health": 1,
+        "lives": 5
+       },
+       "player_block_sha256": "4c532c83b94755568c6567c33bd4dc9adea47df88da85da69519a484d3b5dd6c",
+       "working_actions": 16,
+       "pause_flag": 0,
+       "scene": 3,
+       "frame": 49356,
+       "cycle": 27944972255,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 16780,
+      "displacement_z": 29974
+     },
+     "walk": {
+      "load": {
+       "game_serial": "SCUS-94288",
+       "game_title": "Disney-Pixar A Bug's Life",
+       "loaded": true,
+       "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_03.movie.sav",
+       "paused": true,
+       "pc": "0x8004fea4"
+      },
+      "buttons": {
+       "up": true,
+       "r2": true
+      },
+      "frames": 60,
+      "controller": {
+       "analog": {
+        "lx": 128,
+        "ly": 128,
+        "rx": 128,
+        "ry": 128
+       },
+       "analog_held": [],
+       "buttons": {
+        "circle": false,
+        "cross": false,
+        "down": false,
+        "l1": false,
+        "l2": false,
+        "l3": false,
+        "left": false,
+        "r1": false,
+        "r2": true,
+        "r3": false,
+        "right": false,
+        "select": false,
+        "square": false,
+        "start": false,
+        "triangle": false,
+        "up": true
+       },
+       "controller_type": "AnalogController",
+       "port": 0
+      },
+      "before": {
+       "fields": {
+        "x": 1464691,
+        "y": 32499,
+        "z": 1453681,
+        "heading": 330,
+        "input_heading": 333,
+        "velocity_x": 0,
+        "velocity_y": 0,
+        "velocity_z": 0,
+        "horizontal_speed": 0,
+        "state": 0,
+        "grounded": 257,
+        "animation": 25,
+        "health": 1,
+        "lives": 5
+       },
+       "player_block_sha256": "112d5bdaede47d0dd22c6e5e70d8569d3f3db3f4280da92c17aa7611463cf79f",
+       "working_actions": 0,
+       "pause_flag": 0,
+       "scene": 3,
+       "frame": 49296,
+       "cycle": 27911000030,
+       "pc": "0x8004fea4"
+      },
+      "after": {
+       "fields": {
+        "x": 1474952,
+        "y": 32429,
+        "z": 1472021,
+        "heading": 333,
+        "input_heading": 333,
+        "velocity_x": 444,
+        "velocity_y": -4,
+        "velocity_z": 792,
+        "horizontal_speed": 909,
+        "state": 0,
+        "grounded": 257,
+        "animation": 29,
+        "health": 1,
+        "lives": 5
+       },
+       "player_block_sha256": "209ad8f9d8c359130630b60ca32980cc507c6c539672fd3fa3107ef95ed1fb2c",
+       "working_actions": 528,
+       "pause_flag": 0,
+       "scene": 3,
+       "frame": 49356,
+       "cycle": 27944972256,
+       "pc": "0x8004fea4"
+      },
+      "displacement_x": 10261,
+      "displacement_z": 18340
+     },
+     "walk_has_r2_and_up": true,
+     "run_animation": 0,
+     "walk_animation": 29,
+     "outcome_differences": [
+      "x",
+      "y",
+      "z",
+      "velocity_x",
+      "velocity_y",
+      "velocity_z",
+      "horizontal_speed",
+      "grounded",
+      "animation"
+     ]
+    }
+   }
+  },
+  "controls": {
+   "r2_positive": {
+    "load": {
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "loaded": true,
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level01.sav",
+     "paused": true,
+     "pc": "0x800108b8"
+    },
+    "buttons": {
+     "up": true,
+     "r2": true
+    },
+    "frames": 60,
+    "controller": {
+     "analog": {
+      "lx": 128,
+      "ly": 128,
+      "rx": 128,
+      "ry": 128
+     },
+     "analog_held": [],
+     "buttons": {
+      "circle": false,
+      "cross": false,
+      "down": false,
+      "l1": false,
+      "l2": false,
+      "l3": false,
+      "left": false,
+      "r1": false,
+      "r2": true,
+      "r3": false,
+      "right": false,
+      "select": false,
+      "square": false,
+      "start": false,
+      "triangle": false,
+      "up": true
+     },
+     "controller_type": "AnalogController",
+     "port": 0
+    },
+    "before": {
+     "fields": {
+      "x": 197091,
+      "y": 2734,
+      "z": 492897,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": 0,
+      "velocity_y": 0,
+      "velocity_z": 0,
+      "horizontal_speed": 0,
+      "state": 0,
+      "grounded": 257,
+      "animation": 22,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "dd5735af440528ad162b306aae93818a52adace3d7a37043f1f4d77df6e564cd",
+     "working_actions": 0,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12514,
+     "cycle": 7084892770,
+     "pc": "0x80010740"
+    },
+    "after": {
+     "fields": {
+      "x": 180189,
+      "y": 1425,
+      "z": 506195,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": -606,
+      "velocity_y": -137,
+      "velocity_z": 472,
+      "horizontal_speed": 767,
+      "state": 0,
+      "grounded": 257,
+      "animation": 29,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "c7d9b03cf7797f37962398fa8d67c7f6c6bef035cd7d04c4418af1715f46f582",
+     "working_actions": 528,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12574,
+     "cycle": 7118864996,
+     "pc": "0x8001068c"
+    },
+    "displacement_x": -16902,
+    "displacement_z": 13298
+   },
+   "l2_positive": {
+    "load": {
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "loaded": true,
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level01.sav",
+     "paused": true,
+     "pc": "0x800108b8"
+    },
+    "buttons": {
+     "up": true,
+     "l2": true
+    },
+    "frames": 60,
+    "controller": {
+     "analog": {
+      "lx": 128,
+      "ly": 128,
+      "rx": 128,
+      "ry": 128
+     },
+     "analog_held": [],
+     "buttons": {
+      "circle": false,
+      "cross": false,
+      "down": false,
+      "l1": false,
+      "l2": true,
+      "l3": false,
+      "left": false,
+      "r1": false,
+      "r2": false,
+      "r3": false,
+      "right": false,
+      "select": false,
+      "square": false,
+      "start": false,
+      "triangle": false,
+      "up": true
+     },
+     "controller_type": "AnalogController",
+     "port": 0
+    },
+    "before": {
+     "fields": {
+      "x": 197091,
+      "y": 2734,
+      "z": 492897,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": 0,
+      "velocity_y": 0,
+      "velocity_z": 0,
+      "horizontal_speed": 0,
+      "state": 0,
+      "grounded": 257,
+      "animation": 22,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "dd5735af440528ad162b306aae93818a52adace3d7a37043f1f4d77df6e564cd",
+     "working_actions": 0,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12514,
+     "cycle": 7084892770,
+     "pc": "0x80010740"
+    },
+    "after": {
+     "fields": {
+      "x": 180189,
+      "y": 1425,
+      "z": 506195,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": -606,
+      "velocity_y": -137,
+      "velocity_z": 472,
+      "horizontal_speed": 767,
+      "state": 0,
+      "grounded": 257,
+      "animation": 29,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "c7d9b03cf7797f37962398fa8d67c7f6c6bef035cd7d04c4418af1715f46f582",
+     "working_actions": 272,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12574,
+     "cycle": 7118864997,
+     "pc": "0x8001068c"
+    },
+    "displacement_x": -16902,
+    "displacement_z": 13298
+   },
+   "shoulder_without_direction": {
+    "load": {
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "loaded": true,
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level01.sav",
+     "paused": true,
+     "pc": "0x800108b8"
+    },
+    "buttons": {
+     "r2": true
+    },
+    "frames": 60,
+    "controller": {
+     "analog": {
+      "lx": 128,
+      "ly": 128,
+      "rx": 128,
+      "ry": 128
+     },
+     "analog_held": [],
+     "buttons": {
+      "circle": false,
+      "cross": false,
+      "down": false,
+      "l1": false,
+      "l2": false,
+      "l3": false,
+      "left": false,
+      "r1": false,
+      "r2": true,
+      "r3": false,
+      "right": false,
+      "select": false,
+      "square": false,
+      "start": false,
+      "triangle": false,
+      "up": false
+     },
+     "controller_type": "AnalogController",
+     "port": 0
+    },
+    "before": {
+     "fields": {
+      "x": 197091,
+      "y": 2734,
+      "z": 492897,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": 0,
+      "velocity_y": 0,
+      "velocity_z": 0,
+      "horizontal_speed": 0,
+      "state": 0,
+      "grounded": 257,
+      "animation": 22,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "dd5735af440528ad162b306aae93818a52adace3d7a37043f1f4d77df6e564cd",
+     "working_actions": 0,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12514,
+     "cycle": 7084892770,
+     "pc": "0x80010740"
+    },
+    "after": {
+     "fields": {
+      "x": 197091,
+      "y": 2734,
+      "z": 492897,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": 0,
+      "velocity_y": 0,
+      "velocity_z": 0,
+      "horizontal_speed": 0,
+      "state": 0,
+      "grounded": 257,
+      "animation": 22,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "cf10ca463a6dda2fecf34b034f0de7c06cfa29b11f1cde4a29290871692ff47f",
+     "working_actions": 512,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12574,
+     "cycle": 7118864997,
+     "pc": "0x800108b8"
+    },
+    "displacement_x": 0,
+    "displacement_z": 0
+   },
+   "l2_r2_outcome_differences": [],
+   "release_and_reentry": {
+    "first_walk": {
+     "fields": {
+      "x": 190061,
+      "y": 2440,
+      "z": 498435,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": -630,
+      "velocity_y": -32,
+      "velocity_z": 493,
+      "horizontal_speed": 801,
+      "state": 0,
+      "grounded": 257,
+      "animation": 29,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "cf14c88eb22d3a2b0e7318ccf4620577e410746df8ea12f30db83bf78a5ab212",
+     "working_actions": 528,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12544,
+     "cycle": 7101878883,
+     "pc": "0x80010868"
+    },
+    "released_to_run": {
+     "fields": {
+      "x": 180503,
+      "y": 1496,
+      "z": 505962,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": -1188,
+      "velocity_y": -268,
+      "velocity_z": 931,
+      "horizontal_speed": 1511,
+      "state": 0,
+      "grounded": 257,
+      "animation": 0,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "bf60931a92335e9483d269e1ecbf38fe897cf59df4d0c67a3e3393744096e95c",
+     "working_actions": 16,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12564,
+     "cycle": 7113202959,
+     "pc": "0x800104b8"
+    },
+    "second_walk": {
+     "fields": {
+      "x": 168635,
+      "y": -2604,
+      "z": 515334,
+      "heading": 3505,
+      "input_heading": 3505,
+      "velocity_x": -695,
+      "velocity_y": -260,
+      "velocity_z": 549,
+      "horizontal_speed": 891,
+      "state": 0,
+      "grounded": 257,
+      "animation": 29,
+      "health": 4,
+      "lives": 5
+     },
+     "player_block_sha256": "f91a01d4e79d3b10d8ca31c5b726fb39ef521c88f6a3873787941e88e0084cb1",
+     "working_actions": 528,
+     "pause_flag": 0,
+     "scene": 1,
+     "frame": 12594,
+     "cycle": 7130189072,
+     "pc": "0x80010740"
+    }
+   }
+  },
+  "pause_resume": {
+   "paused_start": {
+    "fields": {
+     "x": -16896,
+     "y": 32043,
+     "z": 6631,
+     "heading": 742,
+     "input_heading": 742,
+     "velocity_x": 0,
+     "velocity_y": 0,
+     "velocity_z": 0,
+     "horizontal_speed": 0,
+     "state": 0,
+     "grounded": 257,
+     "animation": 22,
+     "health": 4,
+     "lives": 5
+    },
+    "player_block_sha256": "988e335bf015cb4abb532023d082bb0753642a181d008fe3ce614f87c0dba51c",
+    "working_actions": 8,
+    "pause_flag": 1,
+    "scene": 3,
+    "frame": 39550,
+    "cycle": 22392778037,
+    "pc": "0x00001ae8"
+   },
+   "paused_after_r2_up": {
+    "fields": {
+     "x": -16896,
+     "y": 32043,
+     "z": 6631,
+     "heading": 742,
+     "input_heading": 742,
+     "velocity_x": 0,
+     "velocity_y": 0,
+     "velocity_z": 0,
+     "horizontal_speed": 0,
+     "state": 0,
+     "grounded": 257,
+     "animation": 22,
+     "health": 4,
+     "lives": 5
+    },
+    "player_block_sha256": "36b49a032acecf9e23e0c1375a13644cbb8a3dec9511c71f425c4d707d089578",
+    "working_actions": 8,
+    "pause_flag": 1,
+    "scene": 3,
+    "frame": 39610,
+    "cycle": 22426750263,
+    "pc": "0x00001ae8"
+   },
+   "resumed_after_r2_up": {
+    "fields": {
+     "x": 2194,
+     "y": 32022,
+     "z": 15437,
+     "heading": 742,
+     "input_heading": 742,
+     "velocity_x": 826,
+     "velocity_y": 0,
+     "velocity_z": 381,
+     "horizontal_speed": 911,
+     "state": 0,
+     "grounded": 257,
+     "animation": 29,
+     "health": 4,
+     "lives": 5
+    },
+    "player_block_sha256": "f7163d72539c1fd575c58d5582a50b0bb0034d388b7f227e5dbd5943dbaad465",
+    "working_actions": 536,
+    "pause_flag": 0,
+    "scene": 3,
+    "frame": 39673,
+    "cycle": 22462421100,
+    "pc": "0x8004fea4"
+   },
+   "frozen_fields": [
+    "x",
+    "y",
+    "z",
+    "horizontal_speed",
+    "animation"
+   ],
+   "resume_displacement": 27896
+  },
+  "death_respawn": {
+   "anchor": "level02.sav",
+   "perturbation": "health:=0; position+mirror:=first actor; hold R2+Up",
+   "actor": {
+    "id": 12,
+    "x": 128960,
+    "y": -11904,
+    "z": 111168
+   },
+   "writes": [
+    {
+     "address": "0x800a6594",
+     "code_invalidated": true,
+     "written": 2
+    },
+    {
+     "address": "0x800a6500",
+     "code_invalidated": true,
+     "written": 4
+    },
+    {
+     "address": "0x800a6510",
+     "code_invalidated": true,
+     "written": 4
+    },
+    {
+     "address": "0x800a6504",
+     "code_invalidated": true,
+     "written": 4
+    },
+    {
+     "address": "0x800a6514",
+     "code_invalidated": true,
+     "written": 4
+    },
+    {
+     "address": "0x800a6508",
+     "code_invalidated": true,
+     "written": 4
+    },
+    {
+     "address": "0x800a6518",
+     "code_invalidated": true,
+     "written": 4
+    }
+   ],
+   "before": {
+    "fields": {
+     "x": 128960,
+     "y": -11904,
+     "z": 111168,
+     "heading": 742,
+     "input_heading": 742,
+     "velocity_x": 0,
+     "velocity_y": 0,
+     "velocity_z": 0,
+     "horizontal_speed": 0,
+     "state": 0,
+     "grounded": 257,
+     "animation": 22,
+     "health": 0,
+     "lives": 5
+    },
+    "player_block_sha256": "1e81aab667e2f67b9d97473548f277bda26ea7cfd51da62efb7053f152c283ca",
+    "working_actions": 0,
+    "pause_flag": 0,
+    "scene": 3,
+    "frame": 39547,
+    "cycle": 22391079425,
+    "pc": "0x8004fea4"
+   },
+   "flow": [
+    {
+     "fields": {
+      "x": 133822,
+      "y": 31771,
+      "z": 98554,
+      "heading": 741,
+      "input_heading": 738,
+      "velocity_x": -1688,
+      "velocity_y": 38,
+      "velocity_z": -773,
+      "horizontal_speed": -1858,
+      "state": 0,
+      "grounded": 257,
+      "animation": 15,
+      "health": -1,
+      "lives": 5
+     },
+     "player_block_sha256": "ae4b70f3e86ccd0cdb915fc55b8207c9e23d2adad90c5c04c60e36134088204e",
+     "working_actions": 512,
+     "pause_flag": 0,
+     "scene": 3,
+     "frame": 39607,
+     "cycle": 22425051652,
+     "pc": "0x8004fea4"
+    },
+    {
+     "fields": {
+      "x": 110668,
+      "y": 31932,
+      "z": 87851,
+      "heading": 741,
+      "input_heading": 738,
+      "velocity_x": 0,
+      "velocity_y": 0,
+      "velocity_z": 0,
+      "horizontal_speed": 0,
+      "state": 0,
+      "grounded": 257,
+      "animation": 15,
+      "health": -1,
+      "lives": 5
+     },
+     "player_block_sha256": "a0d9d2e10667a5e9f99f4d471419c03f2bc760fb0f0dae9a2ce3c813332fb0af",
+     "working_actions": 512,
+     "pause_flag": 0,
+     "scene": 3,
+     "frame": 39667,
+     "cycle": 22459023878,
+     "pc": "0x8004fea4"
+    },
+    {
+     "fields": {
+      "x": -10146,
+      "y": 32033,
+      "z": 9743,
+      "heading": 742,
+      "input_heading": 742,
+      "velocity_x": 727,
+      "velocity_y": 0,
+      "velocity_z": 335,
+      "horizontal_speed": 801,
+      "state": 0,
+      "grounded": 257,
+      "animation": 29,
+      "health": 4,
+      "lives": 4
+     },
+     "player_block_sha256": "8b470190de409cd253978850fa1113c4d030cbc5e83e63b777fd6c87ecbc06c9",
+     "working_actions": 528,
+     "pause_flag": 0,
+     "scene": 3,
+     "frame": 39727,
+     "cycle": 22492996104,
+     "pc": "0x00000df8"
+    }
+   ],
+   "respawn": {
+    "fields": {
+     "x": -10146,
+     "y": 32033,
+     "z": 9743,
+     "heading": 742,
+     "input_heading": 742,
+     "velocity_x": 727,
+     "velocity_y": 0,
+     "velocity_z": 335,
+     "horizontal_speed": 801,
+     "state": 0,
+     "grounded": 257,
+     "animation": 29,
+     "health": 4,
+     "lives": 4
+    },
+    "player_block_sha256": "8b470190de409cd253978850fa1113c4d030cbc5e83e63b777fd6c87ecbc06c9",
+    "working_actions": 528,
+    "pause_flag": 0,
+    "scene": 3,
+    "frame": 39727,
+    "cycle": 22492996104,
+    "pc": "0x00000df8"
+   },
+   "post_respawn_walk": {
+    "fields": {
+     "x": 12772,
+     "y": 32023,
+     "z": 20317,
+     "heading": 742,
+     "input_heading": 742,
+     "velocity_x": 782,
+     "velocity_y": 0,
+     "velocity_z": 359,
+     "horizontal_speed": 862,
+     "state": 0,
+     "grounded": 257,
+     "animation": 29,
+     "health": 4,
+     "lives": 4
+    },
+    "player_block_sha256": "4b0ce61f6ae4d20b6bfd0a8cc92dc327cfa0021a7fbcb23e6e9e189aa197b454",
+    "working_actions": 528,
+    "pause_flag": 0,
+    "scene": 3,
+    "frame": 39787,
+    "cycle": 22526968331,
+    "pc": "0x80065fc4"
+   }
+  },
+  "writer_trace": {
+   "specifications": [
+    {
+     "address": "0x80082488",
+     "length": 2,
+     "type": "read",
+     "label": "working_buttons_player",
+     "max_events": 256,
+     "stop_on_hit": false,
+     "filter": {
+      "pc": {
+       "min": "0x80048138",
+       "max": "0x800498AB"
+      }
+     }
+    },
+    {
+     "address": "0x80082488",
+     "length": 2,
+     "type": "read",
+     "label": "working_buttons_animation",
+     "max_events": 128,
+     "stop_on_hit": false,
+     "filter": {
+      "pc": {
+       "min": "0x800563D4",
+       "max": "0x800570F7"
+      }
+     }
+    },
+    {
+     "address": "0x800A6538",
+     "length": 4,
+     "type": "write",
+     "label": "horizontal_speed_writer",
+     "max_events": 128,
+     "stop_on_hit": false
+    },
+    {
+     "address": "0x800A6588",
+     "length": 2,
+     "type": "write",
+     "label": "animation_writer",
+     "max_events": 128,
+     "stop_on_hit": false
+    }
+   ],
+   "watches": [
+    {
+     "address": "0x80082488",
+     "filter": {
+      "pc": {
+       "max": "0x800498ab",
+       "min": "0x80048138"
+      }
+     },
+     "hit_count": 0,
+     "label": "working_buttons_player",
+     "length": 2,
+     "max_events": 256,
+     "stop_on_hit": false,
+     "type": "read",
+     "watch_id": 1
+    },
+    {
+     "address": "0x80082488",
+     "filter": {
+      "pc": {
+       "max": "0x800570f7",
+       "min": "0x800563d4"
+      }
+     },
+     "hit_count": 0,
+     "label": "working_buttons_animation",
+     "length": 2,
+     "max_events": 128,
+     "stop_on_hit": false,
+     "type": "read",
+     "watch_id": 2
+    },
+    {
+     "address": "0x800a6538",
+     "hit_count": 0,
+     "label": "horizontal_speed_writer",
+     "length": 4,
+     "max_events": 128,
+     "stop_on_hit": false,
+     "type": "write",
+     "watch_id": 3
+    },
+    {
+     "address": "0x800a6588",
+     "hit_count": 0,
+     "label": "animation_writer",
+     "length": 2,
+     "max_events": 128,
+     "stop_on_hit": false,
+     "type": "write",
+     "watch_id": 4
+    }
+   ],
+   "events": [
+    {
+     "frame": 12516,
+     "cycle": 7086130248,
+     "reported_pc": "0x800481ac",
+     "instruction_pc": "0x800481a8",
+     "pc": "0x800481ac",
+     "instruction_word": "0x84842488",
+     "instruction": "lh a0, 0x2488(a0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086133334,
+     "reported_pc": "0x80048490",
+     "instruction_pc": "0x8004848c",
+     "pc": "0x80048490",
+     "instruction_word": "0x94842488",
+     "instruction": "lhu a0, 0x2488(a0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086134023,
+     "reported_pc": "0x80048b64",
+     "instruction_pc": "0x80048b60",
+     "pc": "0x80048b64",
+     "instruction_word": "0x94422488",
+     "instruction": "lhu v0, 0x2488(v0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086134427,
+     "reported_pc": "0x80048f48",
+     "instruction_pc": "0x80048f44",
+     "pc": "0x80048f48",
+     "instruction_word": "0x94632488",
+     "instruction": "lhu v1, 0x2488(v1)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086134557,
+     "reported_pc": "0x800490b8",
+     "instruction_pc": "0x800490b4",
+     "pc": "0x800490b8",
+     "instruction_word": "0x94632488",
+     "instruction": "lhu v1, 0x2488(v1)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086136119,
+     "reported_pc": "0x80049184",
+     "instruction_pc": "0x80049180",
+     "pc": "0x80049184",
+     "instruction_word": "0x94422488",
+     "instruction": "lhu v0, 0x2488(v0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086136827,
+     "reported_pc": "0x800494b0",
+     "instruction_pc": "0x800494ac",
+     "pc": "0x800494b0",
+     "instruction_word": "0xae330038",
+     "instruction": "sw s3, 0x38(s1)",
+     "address": "0x800a6538",
+     "type": "write",
+     "width": 4,
+     "value": 0,
+     "new_value": 144,
+     "watch_id": 3
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086479512,
+     "reported_pc": "0x80056478",
+     "instruction_pc": "0x80056474",
+     "pc": "0x80056478",
+     "instruction_word": "0x94632488",
+     "instruction": "lhu v1, 0x2488(v1)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 2
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086479641,
+     "reported_pc": "0x800566d4",
+     "instruction_pc": "0x800566d0",
+     "pc": "0x800566d4",
+     "instruction_word": "0x94422488",
+     "instruction": "lhu v0, 0x2488(v0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 2
+    },
+    {
+     "frame": 12516,
+     "cycle": 7086479689,
+     "reported_pc": "0x800566ec",
+     "instruction_pc": "0x800566e8",
+     "pc": "0x800566ec",
+     "instruction_word": "0xa4226588",
+     "instruction": "sh v0, 0x6588(at)",
+     "address": "0x800a6588",
+     "type": "write",
+     "width": 2,
+     "value": 22,
+     "new_value": 29,
+     "watch_id": 4
+    },
+    {
+     "frame": 12521,
+     "cycle": 7088961255,
+     "reported_pc": "0x800481ac",
+     "instruction_pc": "0x800481a8",
+     "pc": "0x800481ac",
+     "instruction_word": "0x84842488",
+     "instruction": "lh a0, 0x2488(a0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12521,
+     "cycle": 7088964250,
+     "reported_pc": "0x80048490",
+     "instruction_pc": "0x8004848c",
+     "pc": "0x80048490",
+     "instruction_word": "0x94842488",
+     "instruction": "lhu a0, 0x2488(a0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12521,
+     "cycle": 7088964939,
+     "reported_pc": "0x80048b64",
+     "instruction_pc": "0x80048b60",
+     "pc": "0x80048b64",
+     "instruction_word": "0x94422488",
+     "instruction": "lhu v0, 0x2488(v0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12521,
+     "cycle": 7088965343,
+     "reported_pc": "0x80048f48",
+     "instruction_pc": "0x80048f44",
+     "pc": "0x80048f48",
+     "instruction_word": "0x94632488",
+     "instruction": "lhu v1, 0x2488(v1)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12521,
+     "cycle": 7088965473,
+     "reported_pc": "0x800490b8",
+     "instruction_pc": "0x800490b4",
+     "pc": "0x800490b8",
+     "instruction_word": "0x94632488",
+     "instruction": "lhu v1, 0x2488(v1)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 1
+    },
+    {
+     "frame": 12521,
+     "cycle": 7088967799,
+     "reported_pc": "0x800494b0",
+     "instruction_pc": "0x800494ac",
+     "pc": "0x800494b0",
+     "instruction_word": "0xae330038",
+     "instruction": "sw s3, 0x38(s1)",
+     "address": "0x800a6538",
+     "type": "write",
+     "width": 4,
+     "value": 144,
+     "new_value": 221,
+     "watch_id": 3
+    },
+    {
+     "frame": 12521,
+     "cycle": 7089315729,
+     "reported_pc": "0x80056478",
+     "instruction_pc": "0x80056474",
+     "pc": "0x80056478",
+     "instruction_word": "0x94632488",
+     "instruction": "lhu v1, 0x2488(v1)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 2
+    },
+    {
+     "frame": 12521,
+     "cycle": 7089315832,
+     "reported_pc": "0x800566d4",
+     "instruction_pc": "0x800566d0",
+     "pc": "0x800566d4",
+     "instruction_word": "0x94422488",
+     "instruction": "lhu v0, 0x2488(v0)",
+     "address": "0x80082488",
+     "type": "read",
+     "width": 2,
+     "value": 528,
+     "new_value": null,
+     "watch_id": 2
+    },
+    {
+     "frame": 12521,
+     "cycle": 7089315880,
+     "reported_pc": "0x800566ec",
+     "instruction_pc": "0x800566e8",
+     "pc": "0x800566ec",
+     "instruction_word": "0xa4226588",
+     "instruction": "sh v0, 0x6588(at)",
+     "address": "0x800a6588",
+     "type": "write",
+     "width": 2,
+     "value": 29,
+     "new_value": 29,
+     "watch_id": 4
+    }
+   ],
+   "summaries": [
+    {
+     "counts_by_frame": [
+      {
+       "count": 6,
+       "frame": 12516
+      },
+      {
+       "count": 5,
+       "frame": 12521
+      }
+     ],
+     "counts_by_width": {
+      "0": 0,
+      "1": 0,
+      "2": 11,
+      "3": 0,
+      "4": 0
+     },
+     "first_event": {
+      "address": "0x80082488",
+      "cycle": 7086130248,
+      "frame": 12516,
+      "instruction": "lh a0, 0x2488(a0)",
+      "instruction_pc": "0x800481a8",
+      "instruction_word": "0x84842488",
+      "pc": "0x800481ac",
+      "reported_pc": "0x800481ac",
+      "type": "read",
+      "value": 528,
+      "value_hex": "0x00000210",
+      "watch_id": 1,
+      "width": 2
+     },
+     "last_event": {
+      "address": "0x80082488",
+      "cycle": 7088965473,
+      "frame": 12521,
+      "instruction": "lhu v1, 0x2488(v1)",
+      "instruction_pc": "0x800490b4",
+      "instruction_word": "0x94632488",
+      "pc": "0x800490b8",
+      "reported_pc": "0x800490b8",
+      "type": "read",
+      "value": 528,
+      "value_hex": "0x00000210",
+      "watch_id": 1,
+      "width": 2
+     },
+     "reads": 11,
+     "top_pcs": [
+      {
+       "count": 2,
+       "pc": "0x800481a8"
+      },
+      {
+       "count": 2,
+       "pc": "0x8004848c"
+      },
+      {
+       "count": 2,
+       "pc": "0x80048b60"
+      },
+      {
+       "count": 2,
+       "pc": "0x80048f44"
+      },
+      {
+       "count": 2,
+       "pc": "0x800490b4"
+      },
+      {
+       "count": 1,
+       "pc": "0x80049180"
+      }
+     ],
+     "total": 11,
+     "truncated": false,
+     "writes": 0
+    },
+    {
+     "counts_by_frame": [
+      {
+       "count": 2,
+       "frame": 12516
+      },
+      {
+       "count": 2,
+       "frame": 12521
+      }
+     ],
+     "counts_by_width": {
+      "0": 0,
+      "1": 0,
+      "2": 4,
+      "3": 0,
+      "4": 0
+     },
+     "first_event": {
+      "address": "0x80082488",
+      "cycle": 7086479512,
+      "frame": 12516,
+      "instruction": "lhu v1, 0x2488(v1)",
+      "instruction_pc": "0x80056474",
+      "instruction_word": "0x94632488",
+      "pc": "0x80056478",
+      "reported_pc": "0x80056478",
+      "type": "read",
+      "value": 528,
+      "value_hex": "0x00000210",
+      "watch_id": 2,
+      "width": 2
+     },
+     "last_event": {
+      "address": "0x80082488",
+      "cycle": 7089315832,
+      "frame": 12521,
+      "instruction": "lhu v0, 0x2488(v0)",
+      "instruction_pc": "0x800566d0",
+      "instruction_word": "0x94422488",
+      "pc": "0x800566d4",
+      "reported_pc": "0x800566d4",
+      "type": "read",
+      "value": 528,
+      "value_hex": "0x00000210",
+      "watch_id": 2,
+      "width": 2
+     },
+     "reads": 4,
+     "top_pcs": [
+      {
+       "count": 2,
+       "pc": "0x80056474"
+      },
+      {
+       "count": 2,
+       "pc": "0x800566d0"
+      }
+     ],
+     "total": 4,
+     "truncated": false,
+     "writes": 0
+    },
+    {
+     "counts_by_frame": [
+      {
+       "count": 1,
+       "frame": 12516
+      },
+      {
+       "count": 1,
+       "frame": 12521
+      }
+     ],
+     "counts_by_width": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 2
+     },
+     "first_event": {
+      "address": "0x800a6538",
+      "cycle": 7086136827,
+      "frame": 12516,
+      "instruction": "sw s3, 0x38(s1)",
+      "instruction_pc": "0x800494ac",
+      "instruction_word": "0xae330038",
+      "new_value": 144,
+      "new_value_hex": "0x00000090",
+      "pc": "0x800494b0",
+      "reported_pc": "0x800494b0",
+      "type": "write",
+      "value": 0,
+      "value_hex": "0x00000000",
+      "watch_id": 3,
+      "width": 4
+     },
+     "last_event": {
+      "address": "0x800a6538",
+      "cycle": 7088967799,
+      "frame": 12521,
+      "instruction": "sw s3, 0x38(s1)",
+      "instruction_pc": "0x800494ac",
+      "instruction_word": "0xae330038",
+      "new_value": 221,
+      "new_value_hex": "0x000000dd",
+      "pc": "0x800494b0",
+      "reported_pc": "0x800494b0",
+      "type": "write",
+      "value": 144,
+      "value_hex": "0x00000090",
+      "watch_id": 3,
+      "width": 4
+     },
+     "reads": 0,
+     "top_pcs": [
+      {
+       "count": 2,
+       "pc": "0x800494ac"
+      }
+     ],
+     "total": 2,
+     "truncated": false,
+     "writes": 2
+    },
+    {
+     "counts_by_frame": [
+      {
+       "count": 1,
+       "frame": 12516
+      },
+      {
+       "count": 1,
+       "frame": 12521
+      }
+     ],
+     "counts_by_width": {
+      "0": 0,
+      "1": 0,
+      "2": 2,
+      "3": 0,
+      "4": 0
+     },
+     "first_event": {
+      "address": "0x800a6588",
+      "cycle": 7086479689,
+      "frame": 12516,
+      "instruction": "sh v0, 0x6588(at)",
+      "instruction_pc": "0x800566e8",
+      "instruction_word": "0xa4226588",
+      "new_value": 29,
+      "new_value_hex": "0x0000001d",
+      "pc": "0x800566ec",
+      "reported_pc": "0x800566ec",
+      "type": "write",
+      "value": 22,
+      "value_hex": "0x00000016",
+      "watch_id": 4,
+      "width": 2
+     },
+     "last_event": {
+      "address": "0x800a6588",
+      "cycle": 7089315880,
+      "frame": 12521,
+      "instruction": "sh v0, 0x6588(at)",
+      "instruction_pc": "0x800566e8",
+      "instruction_word": "0xa4226588",
+      "new_value": 29,
+      "new_value_hex": "0x0000001d",
+      "pc": "0x800566ec",
+      "reported_pc": "0x800566ec",
+      "type": "write",
+      "value": 29,
+      "value_hex": "0x0000001d",
+      "watch_id": 4,
+      "width": 2
+     },
+     "reads": 0,
+     "top_pcs": [
+      {
+       "count": 2,
+       "pc": "0x800566e8"
+      }
+     ],
+     "total": 2,
+     "truncated": false,
+     "writes": 2
+    }
+   ],
+   "total": 19,
+   "truncated": false
+  }
+ },
+ "run_provenance": {
+  "command": "/usr/bin/python3 tools/phase4_slow_walk.py --port 25414 --token '<redacted-token>' --config-dir /tmp/abl-phase4-i4-slowwalk-2631801 --instance-state recreated",
+  "generator_sha256": "87bfde62b733833fb1f321a702f1254457bfb2f3464ca12f6f948c9965a5e09b",
+  "provenance_helper_sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678",
+  "launcher_helper_sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821",
+  "repository_head": "d09de31920c19b58c17e4782d34b80e9747b328c",
+  "recorded_utc": "2026-07-15T03:12:46.694756+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "status": "M EXTERNAL_DEBUGGER_CONTROL.md\n M docs/external-debugger-determinism.md\n M docs/external-debugger-experiment-runner.md\n M docs/external-debugger-movie.md\n M docs/external-debugger.md\n M scripts/debugger-client/README.md\n M scripts/debugger-client/duckstation_debug_client.py\n M scripts/debugger-client/mcp_bridge.py\n M src/CMakeLists.txt\n M src/core/CMakeLists.txt\n M src/core/achievements.cpp\n M src/core/analog_controller.cpp\n M src/core/analog_controller.h\n M src/core/analog_joystick.cpp\n M src/core/analog_joystick.h\n M src/core/cdrom.cpp\n M src/core/cdrom.h\n M src/core/controller.cpp\n M src/core/controller.h\n M src/core/core.vcxproj\n M src/core/core.vcxproj.filters\n M src/core/cpu_core.cpp\n M src/core/cpu_core.h\n M src/core/debugger_control_service.cpp\n M src/core/debugger_control_service.h\n M src/core/dma.cpp\n M src/core/fullscreenui_settings.cpp\n M src/core/gpu.cpp\n M src/core/gpu.h\n M src/core/gpu_backend.cpp\n M src/core/gpu_backend.h\n M src/core/imgui_overlays.cpp\n M src/core/input_movie.cpp\n M src/core/input_movie.h\n M src/core/negcon.cpp\n M src/core/negcon.h\n M src/core/negcon_rumble.cpp\n M src/core/negcon_rumble.h\n M src/core/settings.cpp\n M src/core/settings.h\n M src/core/spu.cpp\n M src/core/spu.h\n M src/core/system.cpp\n M src/core/system.h\n M src/core/system_private.h\n M src/duckstation-qt/debuggerrpc.cpp\n M src/duckstation-qt/debuggerrpc.h\n M src/duckstation-qt/debuggerserver.cpp\n M src/duckstation-qt/debuggerserver.h\n M src/duckstation-qt/input_movie_file.cpp\n M src/duckstation-qt/input_movie_file.h\n M src/duckstation-qt/interfacesettingswidget.cpp\n M src/duckstation-qt/interfacesettingswidget.ui\n M src/duckstation-qt/logwindow.cpp\n M src/duckstation-qt/mainwindow.cpp\n M src/duckstation-qt/mainwindow.h\n M src/duckstation-qt/mainwindow.ui\n M src/duckstation-qt/osdsettingswidget.cpp\n M src/duckstation-qt/osdsettingswidget.ui\n M src/duckstation-qt/qthost.cpp\n M src/duckstation-qt/qtutils.cpp\n M src/duckstation-qt/qtutils.h\n M src/duckstation-regtest/regtest_host.cpp\n M src/scmversion/gen_scmversion.bat\n M src/scmversion/gen_scmversion.sh\n M src/scmversion/scmversion.h\n?? api-hardening-artifacts-20260714/\n?? docs/external-debugger-scenarios.md\n?? scripts/debugger-client/launch_debugger_instance.sh\n?? scripts/debugger-client/test_code_patch_invalidation.py\n?? scripts/debugger-client/test_framebuffer_capture.py\n?? scripts/debugger-client/test_function_bounds.py\n?? scripts/debugger-client/test_gp0trace_dma.py\n?? src/core-tests/\n?? src/core/cd_provenance.cpp\n?? src/core/cd_provenance.h\n?? src/core/code_analysis.cpp\n?? src/core/code_analysis.h\n?? src/core/frame_diff.cpp\n?? src/core/frame_diff.h\n?? src/core/gpu_object_picker.cpp\n?? src/core/gpu_object_picker.h\n?? src/core/gte_camera.cpp\n?? src/core/gte_camera.h\n?? src/core/movie_edit.cpp\n?? src/core/movie_edit.h\n?? src/core/write_index.cpp\n?? src/core/write_index.h",
+   "binary_path": "~/duckstation/build-release/bin/duckstation-qt",
+   "binary_sha256": "c668bf0974a7da5dabdbc4f1bd5311df3027e8af56faceb19ac7648f6f24ccec"
+  },
+  "rpc_manifest": {
+   "path": "analysis/phase3_duckstation_rpc_manifest.json",
+   "semantic_sha256": "0f3e6a032a81318afaacbddf5512dd75d0e4fbcda0f4be91d1142acc83f15ed4",
+   "source": {
+    "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "status_sha256": "1c1a325041c78e0545816a605a2dbc7c41a08549642d4f4b8289d9df87baf130",
+    "dispatcher_sha256": "b1be4d512eae5c67608453adcbabb32e03612c3ead51856c41ab9c0d140f47be",
+    "method_count": 203
+   },
+   "binary": {
+    "path": "~/duckstation/build-release/bin/duckstation-qt",
+    "sha256": "c668bf0974a7da5dabdbc4f1bd5311df3027e8af56faceb19ac7648f6f24ccec",
+    "size": 37862904
+   }
+  },
+  "debugger": {
+   "config_dir": "/tmp/abl-phase4-i4-slowwalk-2631801",
+   "port": 25414,
+   "transport": "ws",
+   "token_sha256": "d75138f0038fec57a60c7cd3c7510c829d6fe3b3cda8981e5781696d25cb4670",
+   "recreated": true,
+   "owned_pid": 2631812
+  },
+  "anchor": {
+   "type": "cold-boot edited-input control plus strict-pristine save-state breadth/lifecycle sweep",
+   "saves": [
+    "phase3_pristine_training_gameplay_i5.sav",
+    "level01.sav",
+    "level02.sav",
+    "level03.sav",
+    "level04.sav",
+    "level05.sav",
+    "level_06.sav",
+    "level_07.sav",
+    "level_08.sav",
+    "level_09.sav",
+    "level_10.sav",
+    "level_11.sav",
+    "level_12.sav",
+    "level_13.sav",
+    "level_14.sav",
+    "level_15.sav",
+    "movies/Bonus_Level_01.movie.sav",
+    "movies/Bonus_Level_02.movie.sav",
+    "movies/Bonus_Level_03.movie.sav"
+   ],
+   "fixture_sha256": {
+    "phase3_pristine_training_gameplay_i5.sav": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+    "level01.sav": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+    "level02.sav": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+    "level03.sav": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+    "level04.sav": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+    "level05.sav": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+    "level_06.sav": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+    "level_07.sav": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+    "level_08.sav": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+    "level_09.sav": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+    "level_10.sav": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+    "level_11.sav": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+    "level_12.sav": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+    "level_13.sav": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+    "level_14.sav": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+    "level_15.sav": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+    "movies/Bonus_Level_01.movie.sav": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+    "movies/Bonus_Level_02.movie.sav": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+    "movies/Bonus_Level_03.movie.sav": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522"
+   },
+   "state_inspections": [
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/phase3_pristine_training_gameplay_i5.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2152414,
+     "timestamp": 1784077451,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "phase3_pristine_training_gameplay_i5.sav",
+      "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+      "size": 2152414,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level01.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1939333,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level01.sav",
+      "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+      "size": 1939333,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level02.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1899430,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level02.sav",
+      "sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+      "size": 1899430,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level03.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2039960,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level03.sav",
+      "sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+      "size": 2039960,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level04.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2025832,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level04.sav",
+      "sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+      "size": 2025832,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level05.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1981001,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level05.sav",
+      "sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+      "size": 1981001,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_06.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2068949,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_06.sav",
+      "sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+      "size": 2068949,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_07.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1808141,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_07.sav",
+      "sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+      "size": 1808141,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_08.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1901433,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_08.sav",
+      "sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+      "size": 1901433,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_09.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1880412,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_09.sav",
+      "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+      "size": 1880412,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_10.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2028184,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_10.sav",
+      "sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+      "size": 2028184,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_11.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1941710,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_11.sav",
+      "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+      "size": 1941710,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_12.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2004114,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_12.sav",
+      "sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+      "size": 2004114,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_13.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1970828,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_13.sav",
+      "sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+      "size": 1970828,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_14.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2069312,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_14.sav",
+      "sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+      "size": 2069312,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/level_15.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1999903,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_15.sav",
+      "sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+      "size": 1999903,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_01.movie.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2101239,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "movies/Bonus_Level_01.movie.sav",
+      "sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+      "size": 2101239,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_02.movie.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1981197,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "movies/Bonus_Level_02.movie.sav",
+      "sha256": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+      "size": 1981197,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260714-202059-2984332/movies/Bonus_Level_03.movie.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1941083,
+     "timestamp": 1784077450,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "movies/Bonus_Level_03.movie.sav",
+      "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+      "size": 1941083,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    }
+   ],
+   "selection": {
+    "source": "analysis/phase2_stage_baseline.json",
+    "required_media_class": "pristine",
+    "anchors_requested": 19,
+    "anchors_accepted": 19,
+    "anchors_rejected": 0,
+    "accepted": [
+     {
+      "label": "training",
+      "save": "phase3_pristine_training_gameplay_i5.sav",
+      "path": "phase3_pristine_training_gameplay_i5.sav",
+      "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+      "size": 2152414,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage01_anthill",
+      "save": "level01.sav",
+      "path": "level01.sav",
+      "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+      "size": 1939333,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage02_tunnels",
+      "save": "level02.sav",
+      "path": "level02.sav",
+      "sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+      "size": 1899430,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage03_council_chamber",
+      "save": "level03.sav",
+      "path": "level03.sav",
+      "sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+      "size": 2039960,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage04_cliffside_canyon",
+      "save": "level04.sav",
+      "path": "level04.sav",
+      "sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+      "size": 2025832,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage05_riverbed_run",
+      "save": "level05.sav",
+      "path": "level05.sav",
+      "sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+      "size": 1981001,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage06_birdnest",
+      "save": "level_06.sav",
+      "path": "level_06.sav",
+      "sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+      "size": 2068949,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage07_city_entrance",
+      "save": "level_07.sav",
+      "path": "level_07.sav",
+      "sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+      "size": 1808141,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage08_city_square",
+      "save": "level_08.sav",
+      "path": "level_08.sav",
+      "sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+      "size": 1901433,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage09_bug_bar",
+      "save": "level_09.sav",
+      "path": "level_09.sav",
+      "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+      "size": 1880412,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage10_clover_forest",
+      "save": "level_10.sav",
+      "path": "level_10.sav",
+      "sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+      "size": 2028184,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage11_the_tree",
+      "save": "level_11.sav",
+      "path": "level_11.sav",
+      "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+      "size": 1941710,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage12_battle_arena",
+      "save": "level_12.sav",
+      "path": "level_12.sav",
+      "sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+      "size": 2004114,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage13_anthill_two",
+      "save": "level_13.sav",
+      "path": "level_13.sav",
+      "sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+      "size": 1970828,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage14_riverbed_flight",
+      "save": "level_14.sav",
+      "path": "level_14.sav",
+      "sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+      "size": 2069312,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage15_canyon_showdown",
+      "save": "level_15.sav",
+      "path": "level_15.sav",
+      "sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+      "size": 1999903,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "bonus1_spiders",
+      "save": "movies/Bonus_Level_01.movie.sav",
+      "path": "movies/Bonus_Level_01.movie.sav",
+      "sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+      "size": 2101239,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "bonus2_mushrooms",
+      "save": "movies/Bonus_Level_02.movie.sav",
+      "path": "movies/Bonus_Level_02.movie.sav",
+      "sha256": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+      "size": 1981197,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "bonus3_grasshoppers",
+      "save": "movies/Bonus_Level_03.movie.sav",
+      "path": "movies/Bonus_Level_03.movie.sav",
+      "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+      "size": 1941083,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     }
+    ],
+    "rejected": []
+   },
+   "cold_boot_movie": {
+    "path": "movies/go_to_end/LEVEL01.movie.json",
+    "sha256": "bfedc0d0f4828998fc598257b35ad090180ad6cb01ea317bc40229f977dc40fb",
+    "size": 7631156,
+    "media_class": "pristine_serial"
+   },
+   "media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   }
+  },
+  "timing": {
+   "cpu_overclock_percent": 100,
+   "cd_read_speedup": 1,
+   "cd_seek_speedup": 1,
+   "rewind": false,
+   "run_ahead": false,
+   "settle_frames": 2,
+   "hold_frames": 60,
+   "breadth_inputs": {
+    "run": {
+     "port": 0,
+     "buttons": {
+      "up": true
+     }
+    },
+    "walk": {
+     "port": 0,
+     "buttons": {
+      "up": true,
+      "r2": true
+     }
+    }
+   },
+   "cold_boot_edit": {
+    "button_added": "r2",
+    "start_frame": 8103,
+    "end_frame_exclusive": 8163,
+    "edited_frame_count": 60,
+    "source_window_predicate": "Up true; L2/R2/action/menu buttons false"
+   }
+  },
+  "cleanup": {
+   "owned_pid_stopped": true,
+   "launcher_returncode": 0,
+   "launcher_output": "Stopped isolated instance (pid 2631812).\nowned cleanup: pid=2631812 stopped=true final_state=None waited_ms=0",
+   "process_final_state": null
+  }
+ }
+}

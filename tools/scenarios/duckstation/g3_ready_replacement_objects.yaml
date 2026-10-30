@@ -1,0 +1,124 @@
+schema_version: 1
+id: g3_ready_replacement_objects
+description: Cold-boot the ready-replacement GTE Blender scene, prove the Track-B resident hook (with no Track-A renderer/collision hook), traverse two authored elevation bands while grounded, instantiate an authored enemy, collect Blender-placed grain, and exercise the authored marker/goal triggers.
+target: {disc: build/ABL_G3_GUI_TEST.cue, expected_serial: SCUS-94288}
+launch: {profile: repro}
+playback:
+  movie: flik_to_level01_stall.mv.movie.json
+  turbo_before_reset: true
+  reset_before_start: true
+  pause_before_start: true
+  preplay_neutral_frames: 175
+  load_start_state: false
+  require_reproducible: false
+phases:
+  - id: finish_boot_fixture
+    before:
+      - {type: rpc, id: replay_boot_01, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_02, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_03, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_04, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_05, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_06, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_07, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_08, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_09, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_10, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_11, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_12, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_13, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_14, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_15, method: emulator.advanceFrames, params: {frames: 300}}
+    trigger: {type: memory, address: 0x800A6500, width: s32, op: ne, value: 2147483647, max_frames: 1, timeout_seconds: 10}
+    assertions:
+      - {id: fixture_playback_completed, type: rpc, method: movie.status, path: playing, op: eq, expected: false}
+  - id: reach_replacement_spawn
+    before:
+      - {type: rpc, id: wait_for_fixture_stall, method: emulator.advanceFrames, params: {frames: 250}}
+      - {type: rpc, id: dismiss_fixture_pause, method: emulator.pressButton, params: {button: Cross, frames: 4, port: 0, release_after: true}}
+      - {type: rpc, id: settle_replacement_spawn, method: emulator.advanceFrames, params: {frames: 500}}
+    trigger: {type: memory, address: 0x800B4430, width: u32, op: eq, value: 0x47335031, max_frames: 60, timeout_seconds: 30}
+    captures:
+      - {id: authored_spawn_view, type: screenshot}
+    assertions:
+      - {id: spawn_x, type: memory, address: 0x800A6500, width: s32, op: between, expected: [190000, 205000]}
+      - {id: spawn_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+      - {id: spawn_floor_is_hill_base, type: memory, address: 0x800A6548, width: s32, op: between, expected: [-13000, -11500]}
+      - {id: authored_spider_registered, type: memory, address: 0x80090748, width: u32, op: eq, expected: 0x8009FD80}
+      - {id: authored_spider_id, type: memory, address: 0x8009FD80, width: u32, op: eq, expected: 9}
+      - {id: authored_spider_anchor_x, type: memory, address: 0x8009FDA8, width: s32, op: eq, expected: 83200}
+      - {id: authored_spider_anchor_y, type: memory, address: 0x8009FDAC, width: s32, op: eq, expected: -20992}
+      - {id: authored_spider_anchor_z, type: memory, address: 0x8009FDB0, width: s32, op: eq, expected: 537600}
+      - {id: no_grain_collected_before_walk, type: memory, address: 0x800A65A1, width: u8, op: eq, expected: 0}
+      - {id: track_b_resident_hook_installed, type: memory, address: 0x800495D0, width: u32, op: eq, expected: 0x0802068A}
+      - {id: track_a_grounded_writer_absent, type: memory, address: 0x80036D54, width: u32, op: eq, expected: 0xAEE40004}
+      - {id: track_a_renderer_hook_absent, type: memory, address: 0x80064618, width: u32, op: eq, expected: 0x3C030400}
+    after:
+      - {type: rpc, id: boot_turbo_off, method: emulator.setTurbo, params: {enabled: false}}
+  - id: traverse_authored_side_hill
+    before:
+      - {type: rpc, id: hold_up_to_hill_band, method: emulator.setControllerState, params: {port: 0, buttons: {Up: true}}}
+      - {type: rpc, id: walk_into_hill_band, method: emulator.advanceFrames, params: {frames: 96}}
+      - {type: rpc, id: release_up_before_side_hill, method: emulator.clearControllerState, params: {port: 0}}
+      - {type: rpc, id: hold_left_to_side_hill, method: emulator.setControllerState, params: {port: 0, buttons: {Left: true}}}
+      - {type: rpc, id: walk_to_side_hill, method: emulator.advanceFrames, params: {frames: 80}}
+      - {type: rpc, id: release_left, method: emulator.clearControllerState, params: {port: 0}}
+    trigger: {type: memory, address: 0x800A6500, width: s32, op: ne, value: 197095, max_frames: 1, timeout_seconds: 10}
+    captures:
+      - {id: authored_side_hill, type: screenshot}
+    assertions:
+      - {id: side_hill_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+      - {id: side_hill_has_authored_floor, type: memory, address: 0x800A6548, width: s32, op: lt, expected: 100000}
+      - {id: side_hill_x_probe, type: memory, address: 0x800A6500, width: s32, op: between, expected: [-1000000, 1000000]}
+      - {id: side_hill_z_probe, type: memory, address: 0x800A6508, width: s32, op: between, expected: [-1000000, 1000000]}
+  - id: look_back_across_authored_hill
+    before:
+      - {type: rpc, id: turn_downhill, method: emulator.pressButton, params: {button: Down, frames: 8, port: 0, release_after: true}}
+      - {type: rpc, id: settle_downhill_view, method: emulator.advanceFrames, params: {frames: 8}}
+    trigger: {type: memory, address: 0x800A6500, width: s32, op: ne, value: 197095, max_frames: 1, timeout_seconds: 10}
+    captures:
+      - {id: pass3_downhill_state, type: rpc, method: emulator.saveState, params: {path: /tmp/abl-g3-pass3-p100-downhill.state}}
+      - {id: authored_hill_downslope, type: screenshot}
+    assertions:
+      - {id: downslope_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+  - id: collect_blender_authored_grain
+    before:
+      - {type: rpc, id: hold_up, method: emulator.setControllerState, params: {port: 0, buttons: {Up: true}}}
+      - {type: rpc, id: walk_authored_trail, method: emulator.advanceFrames, params: {frames: 128}}
+      - {type: rpc, id: release_up, method: emulator.clearControllerState, params: {port: 0}}
+    trigger: {type: memory, address: 0x800A65A1, width: u8, op: gt, value: 0, max_frames: 60, timeout_seconds: 30}
+    captures:
+      - {id: authored_objects_walk, type: screenshot}
+      - {id: elevated_black_probe, type: rpc, method: gpu.pickObject, params: {x: 160, y: 40, all_contributors: true}}
+      - {id: elevated_floor_probe, type: rpc, method: gpu.pickObject, params: {x: 160, y: 140, all_contributors: true}}
+    assertions:
+      - {id: native_grain_was_collected, type: memory, address: 0x800A65A1, width: u8, op: gt, expected: 0}
+      - {id: walk_remains_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+      - {id: walk_remains_on_authored_floor, type: memory, address: 0x800A6548, width: s32, op: lt, expected: 100000}
+      - {id: walk_reaches_distinct_lower_authored_band, type: memory, address: 0x800A6548, width: s32, op: between, expected: [-8000, -5000]}
+      - {id: flik_body_tracks_lower_authored_band, type: memory, address: 0x800A6504, width: s32, op: between, expected: [-8000, -5000]}
+      - {id: walk_stays_local_x, type: memory, address: 0x800A6500, width: s32, op: between, expected: [50000, 200000]}
+      - {id: walk_stays_local_z, type: memory, address: 0x800A6508, width: s32, op: between, expected: [300000, 700000]}
+  - id: exercise_authored_marker_control
+    before:
+      - {type: rpc, id: place_marker_x, method: debugger.writeU32, params: {address: 0x800A6500, value: 0xFFFF0600}}
+      - {type: rpc, id: place_marker_previous_x, method: debugger.writeU32, params: {address: 0x800A6510, value: 0xFFFF0600}}
+      - {type: rpc, id: place_marker_z, method: debugger.writeU32, params: {address: 0x800A6508, value: 0x0004E200}}
+      - {type: rpc, id: place_marker_previous_z, method: debugger.writeU32, params: {address: 0x800A6518, value: 0x0004E200}}
+      - {type: rpc, id: run_marker_hook, method: emulator.advanceFrames, params: {frames: 1}}
+    trigger: {type: memory, address: 0x800B4434, width: u32, op: eq, value: 1, max_frames: 2, timeout_seconds: 10}
+    assertions:
+      - {id: authored_marker_flag_set, type: memory, address: 0x800B4434, width: u32, op: eq, expected: 1}
+      - {id: authored_marker_keeps_runtime_magic, type: memory, address: 0x800B4430, width: u32, op: eq, expected: 0x47335031}
+  - id: exercise_authored_goal_control
+    before:
+      - {type: rpc, id: place_goal_x, method: debugger.writeU32, params: {address: 0x800A6500, value: 0xFFFD8F00}}
+      - {type: rpc, id: place_goal_previous_x, method: debugger.writeU32, params: {address: 0x800A6510, value: 0xFFFD8F00}}
+      - {type: rpc, id: place_goal_z, method: debugger.writeU32, params: {address: 0x800A6508, value: 0x0008CA00}}
+      - {type: rpc, id: place_goal_previous_z, method: debugger.writeU32, params: {address: 0x800A6518, value: 0x0008CA00}}
+      - {type: rpc, id: run_goal_hook, method: emulator.advanceFrames, params: {frames: 1}}
+    trigger: {type: memory, address: 0x800B442C, width: u32, op: eq, value: 1, max_frames: 2, timeout_seconds: 10}
+    assertions:
+      - {id: authored_goal_flag_set, type: memory, address: 0x800B442C, width: u32, op: eq, expected: 1}
+      - {id: authored_goal_requests_level_transition, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 1}
+      - {id: authored_goal_sets_fade, type: memory, address: 0x80082470, width: u16, op: between, expected: [1, 23]}

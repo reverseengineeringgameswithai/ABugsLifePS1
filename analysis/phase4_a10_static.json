@@ -1,0 +1,51 @@
+{
+  "row": "A10_handstand",
+  "generated": "2026-08-03",
+  "pristine_exe": {
+    "path": "REBUILD/files/SCUS_942.88",
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  "level01_overlay": {
+    "path": "REBUILD/files/LEVEL01/LEVEL.BIN",
+    "sha256": "f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21",
+    "direct_handstand_latch_writers": 0
+  },
+  "mount": {
+    "function": "0x80047284 player_contact_response",
+    "selected_offset_store": "0x80047858",
+    "behavior_load": "0x8004785C actor+0x40",
+    "behavior_threshold": "0x80047864 slti value,3",
+    "movable_seed_mode": "0x8004786C mode 8",
+    "fixed_seed_mode": "0x80047870 mode 14",
+    "mode_store": "0x80047874 player+0xA3",
+    "actor_carried_bit_store": "0x80047888 actor+0x5C bit 0x40"
+  },
+  "mounted_update": {
+    "function": "0x80048138 player_vertical_update",
+    "mode14_test": "0x80048B2C..0x80048B34",
+    "mode14_target": "0x80048D90",
+    "effect": "bypasses ordinary grounded/air vertical-state evolution while the selected fixed seed remains latched"
+  },
+  "release": {
+    "square_edge_blocks": ["0x80047C34", "0x80047C4C"],
+    "actor_carried_bit_clear": "0x80047C60",
+    "behavior3_branch": "0x80047CD0",
+    "release_action_store": "0x80047CD8 player+0x88 := 17",
+    "selected_offset_clear": "0x80047CE8",
+    "transient_mode13_store": "0x80047D00",
+    "mode13_clear": "0x800490AC",
+    "state5_to_state6_store": "0x80048D64"
+  },
+  "passive_flow": {
+    "mount_movie_frame_1042": ["0x80047764", "0x80047784", "0x80047870"],
+    "release_movie_frame_1216": ["0x80047C34", "0x80047C4C", "0x80047CD0", "0x800490AC"],
+    "dismount_state6_movie_frame_1222": ["0x80048D64"]
+  },
+  "camera": {
+    "function": "0x8004DF18 camera_follow_update",
+    "handstand_mode_reference": false,
+    "action16_special_case": false,
+    "only_nearby_action_special_case": "player+0x88 == 19, unrelated to A10"
+  },
+  "semantic_source": "src_re/fixed_seed_handstand_80047284_80048138.c"
+}

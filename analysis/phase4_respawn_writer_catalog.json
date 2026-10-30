@@ -1,0 +1,540 @@
+{
+ "_comment": "Static C15 breadth evidence. Direct absolute stores are exhaustive for the eleven pinned LEVEL.BIN inputs under the declared scanner; runtime activation and indirect writers remain separate questions.",
+ "schema": "abl-phase4-respawn-writer-catalog/1",
+ "row": "C15_checkpoints",
+ "generator": "tools/phase4_respawn_writer_catalog.py",
+ "generator_sha256": "ada098741fd40ad99bf6fe2d8210d66974364fc6f4cc5fe888114e32d53fd2dc",
+ "scan_contract": {
+  "region_a_load": "0x800B39A0",
+  "targets": {
+   "safe_anchor_x": {
+    "address": "0x800A6550",
+    "width": 4
+   },
+   "safe_anchor_y": {
+    "address": "0x800A6554",
+    "width": 4
+   },
+   "safe_anchor_z": {
+    "address": "0x800A6558",
+    "width": 4
+   },
+   "safe_anchor_heading": {
+    "address": "0x800A6578",
+    "width": 2
+   }
+  },
+  "method": "conservative local constant propagation over little-endian MIPS words, reset after jr-ra delay slots and caller-clobbered after jal delay slots; only resolved direct stores are counted"
+ },
+ "staged_inputs": [
+  {
+   "path": "REBUILD/files/LEVEL00/LEVEL.BIN",
+   "size": 4,
+   "sha256": "fb5e512425fc9449316ec95969ebe71e2d576dbab833d61e2a5b9330fd70ee02",
+   "direct_writer_count": 0
+  },
+  {
+   "path": "REBUILD/files/LEVEL01/LEVEL.BIN",
+   "size": 1680,
+   "sha256": "f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21",
+   "direct_writer_count": 0
+  },
+  {
+   "path": "REBUILD/files/LEVEL02/LEVEL.BIN",
+   "size": 4032,
+   "sha256": "6e5040d0d053ad652ba2ab655af8d2d2731b7a77b704c68a815fc2868449ffed",
+   "direct_writer_count": 0
+  },
+  {
+   "path": "REBUILD/files/LEVEL03/LEVEL.BIN",
+   "size": 5036,
+   "sha256": "fef7bd2a72c5c293b2f164ba1ca195f45c0843c5f19e52cbfdb48fd14fbc59a1",
+   "direct_writer_count": 4
+  },
+  {
+   "path": "REBUILD/files/LEVEL04/LEVEL.BIN",
+   "size": 3068,
+   "sha256": "a346b8e6a6be4f2d27f7f73cd6dba8b1a96bd079c209d844ef140e2792ffd555",
+   "direct_writer_count": 5
+  },
+  {
+   "path": "REBUILD/files/LEVEL05/LEVEL.BIN",
+   "size": 2400,
+   "sha256": "93451e022e2613d9c7259e33007000155c8a8a9e2276a008327d42e0c63eba00",
+   "direct_writer_count": 0
+  },
+  {
+   "path": "REBUILD/files/LEVEL06/LEVEL.BIN",
+   "size": 1608,
+   "sha256": "44a914db64074b60421d27f1be844f95d12a6dc4ec5a3f411bb3173548a4d395",
+   "direct_writer_count": 4
+  },
+  {
+   "path": "REBUILD/files/LEVEL07/LEVEL.BIN",
+   "size": 7656,
+   "sha256": "a19927f5130bf5c8da6777f36aa5501a99dc1363a3f9e55e5997ad712473c4f5",
+   "direct_writer_count": 0
+  },
+  {
+   "path": "REBUILD/files/LEVEL08/LEVEL.BIN",
+   "size": 3500,
+   "sha256": "a0c0ac1da5c3a75296f0d79428ba1155f2f5d1ede3e2dcf9ffaee03fd8d2fec5",
+   "direct_writer_count": 4
+  },
+  {
+   "path": "REBUILD/files/LEVEL09/LEVEL.BIN",
+   "size": 5232,
+   "sha256": "9472fddce759161a887968fe98f1ded3282a4d8a4dc8c72fb27cbcd9c341d879",
+   "direct_writer_count": 0
+  },
+  {
+   "path": "REBUILD/files/LEVEL10/LEVEL.BIN",
+   "size": 2080,
+   "sha256": "3bd80ee77b5ec1e12b458d330450c3963177e15470bc249f7a12fc071d8db928",
+   "direct_writer_count": 4
+  }
+ ],
+ "writer_functions": {
+  "LEVEL03/LEVEL.BIN": {
+   "path": "REBUILD/files/LEVEL03/LEVEL.BIN",
+   "file_sha256": "fef7bd2a72c5c293b2f164ba1ca195f45c0843c5f19e52cbfdb48fd14fbc59a1",
+   "runtime_start": "0x800B3C54",
+   "runtime_end": "0x800B3D78",
+   "file_offset": "0x2B4",
+   "size": 292,
+   "sha256": "1fdeb0da151050edbde73a082b5951ae4326ec133979ca5bae2f0198bd8cfbf9",
+   "classification": "status_gated_nearest_row_with_ground_query",
+   "evidence_scope": "live_causal_and_static",
+   "static_resident_entry_call_sites": [
+    "0x8005b174"
+   ],
+   "caller_boundary": "resident JAL targets to a reused Region-A address; loaded-overlay activation is not established",
+   "direct_writes": [
+    {
+     "runtime_address": "0x800B3D24",
+     "file_offset": "0x384",
+     "instruction_word": "0xAC830000",
+     "width": 4,
+     "base_register": "a0",
+     "source_register": "v1",
+     "target": "safe_anchor_x",
+     "target_address": "0x800A6550",
+     "constant_source": null
+    },
+    {
+     "runtime_address": "0x800B3D34",
+     "file_offset": "0x394",
+     "instruction_word": "0xAC256554",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "a1",
+     "target": "safe_anchor_y",
+     "target_address": "0x800A6554",
+     "constant_source": {
+      "raw": "0x7FFFFFFF",
+      "signed": 2147483647
+     }
+    },
+    {
+     "runtime_address": "0x800B3D40",
+     "file_offset": "0x3A0",
+     "instruction_word": "0xAC226558",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_z",
+     "target_address": "0x800A6558",
+     "constant_source": null
+    },
+    {
+     "runtime_address": "0x800B3D54",
+     "file_offset": "0x3B4",
+     "instruction_word": "0xAC226554",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_y",
+     "target_address": "0x800A6554",
+     "constant_source": null
+    }
+   ]
+  },
+  "LEVEL04/LEVEL.BIN": {
+   "path": "REBUILD/files/LEVEL04/LEVEL.BIN",
+   "file_sha256": "a346b8e6a6be4f2d27f7f73cd6dba8b1a96bd079c209d844ef140e2792ffd555",
+   "runtime_start": "0x800B3C5C",
+   "runtime_end": "0x800B3CD8",
+   "file_offset": "0x2BC",
+   "size": 124,
+   "sha256": "8494bef9a426a6b2ceea0bb57a634c5520a12abb89c493ce4b88ab3d992764ba",
+   "classification": "status_gated_fixed_tuple_with_ground_query",
+   "evidence_scope": "live_attributed_and_static",
+   "static_resident_entry_call_sites": [
+    "0x8005b184"
+   ],
+   "caller_boundary": "resident JAL targets to a reused Region-A address; loaded-overlay activation is not established",
+   "direct_writes": [
+    {
+     "runtime_address": "0x800B3C94",
+     "file_offset": "0x2F4",
+     "instruction_word": "0xACA3FFC0",
+     "width": 4,
+     "base_register": "a1",
+     "source_register": "v1",
+     "target": "safe_anchor_x",
+     "target_address": "0x800A6550",
+     "constant_source": {
+      "raw": "0x000B1B54",
+      "signed": 727892
+     }
+    },
+    {
+     "runtime_address": "0x800B3C9C",
+     "file_offset": "0x2FC",
+     "instruction_word": "0xAC226558",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_z",
+     "target_address": "0x800A6558",
+     "constant_source": {
+      "raw": "0x00028835",
+      "signed": 165941
+     }
+    },
+    {
+     "runtime_address": "0x800B3CA8",
+     "file_offset": "0x308",
+     "instruction_word": "0xAC246554",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "a0",
+     "target": "safe_anchor_y",
+     "target_address": "0x800A6554",
+     "constant_source": {
+      "raw": "0x7FFFFFFF",
+      "signed": 2147483647
+     }
+    },
+    {
+     "runtime_address": "0x800B3CB0",
+     "file_offset": "0x310",
+     "instruction_word": "0xA4226578",
+     "width": 2,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_heading",
+     "target_address": "0x800A6578",
+     "constant_source": {
+      "raw": "0x0800",
+      "signed": 2048
+     }
+    },
+    {
+     "runtime_address": "0x800B3CC4",
+     "file_offset": "0x324",
+     "instruction_word": "0xAC226554",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_y",
+     "target_address": "0x800A6554",
+     "constant_source": null
+    }
+   ]
+  },
+  "LEVEL06/LEVEL.BIN": {
+   "path": "REBUILD/files/LEVEL06/LEVEL.BIN",
+   "file_sha256": "44a914db64074b60421d27f1be844f95d12a6dc4ec5a3f411bb3173548a4d395",
+   "runtime_start": "0x800B3AEC",
+   "runtime_end": "0x800B3B94",
+   "file_offset": "0x14C",
+   "size": 168,
+   "sha256": "33b21c83ad52f8ef13786de5ff7d48ed615fcae8618d7c8833b64c6b481656be",
+   "classification": "fixed_safe_tuple_initialization",
+   "evidence_scope": "static_only",
+   "static_resident_entry_call_sites": [
+    "0x8005484c",
+    "0x8005485c",
+    "0x8005b194"
+   ],
+   "caller_boundary": "resident JAL targets to a reused Region-A address; loaded-overlay activation is not established",
+   "direct_writes": [
+    {
+     "runtime_address": "0x800B3B00",
+     "file_offset": "0x160",
+     "instruction_word": "0xAC236550",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v1",
+     "target": "safe_anchor_x",
+     "target_address": "0x800A6550",
+     "constant_source": {
+      "raw": "0x00008A01",
+      "signed": 35329
+     }
+    },
+    {
+     "runtime_address": "0x800B3B24",
+     "file_offset": "0x184",
+     "instruction_word": "0xAC226554",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_y",
+     "target_address": "0x800A6554",
+     "constant_source": {
+      "raw": "0xFFFEB314",
+      "signed": -85228
+     }
+    },
+    {
+     "runtime_address": "0x800B3B30",
+     "file_offset": "0x190",
+     "instruction_word": "0xA4226578",
+     "width": 2,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_heading",
+     "target_address": "0x800A6578",
+     "constant_source": {
+      "raw": "0x0BF7",
+      "signed": 3063
+     }
+    },
+    {
+     "runtime_address": "0x800B3B3C",
+     "file_offset": "0x19C",
+     "instruction_word": "0xAC246558",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "a0",
+     "target": "safe_anchor_z",
+     "target_address": "0x800A6558",
+     "constant_source": {
+      "raw": "0xFFFDA3B8",
+      "signed": -154696
+     }
+    }
+   ]
+  },
+  "LEVEL08/LEVEL.BIN": {
+   "path": "REBUILD/files/LEVEL08/LEVEL.BIN",
+   "file_sha256": "a0c0ac1da5c3a75296f0d79428ba1155f2f5d1ede3e2dcf9ffaee03fd8d2fec5",
+   "runtime_start": "0x800B3AE8",
+   "runtime_end": "0x800B3B54",
+   "file_offset": "0x148",
+   "size": 108,
+   "sha256": "4b2e8bccbcd42dcb056b267d66a35bb8b7dbfdf9171eccd1a914ff1f67b029c9",
+   "classification": "fixed_safe_and_live_tuple_initialization",
+   "evidence_scope": "static_only",
+   "static_resident_entry_call_sites": [
+    "0x8005b1a4"
+   ],
+   "caller_boundary": "resident JAL targets to a reused Region-A address; loaded-overlay activation is not established",
+   "direct_writes": [
+    {
+     "runtime_address": "0x800B3B08",
+     "file_offset": "0x168",
+     "instruction_word": "0xAC256550",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "a1",
+     "target": "safe_anchor_x",
+     "target_address": "0x800A6550",
+     "constant_source": {
+      "raw": "0xFFFD980E",
+      "signed": -157682
+     }
+    },
+    {
+     "runtime_address": "0x800B3B10",
+     "file_offset": "0x170",
+     "instruction_word": "0xAC246554",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "a0",
+     "target": "safe_anchor_y",
+     "target_address": "0x800A6554",
+     "constant_source": {
+      "raw": "0x00001670",
+      "signed": 5744
+     }
+    },
+    {
+     "runtime_address": "0x800B3B18",
+     "file_offset": "0x178",
+     "instruction_word": "0xAC236558",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v1",
+     "target": "safe_anchor_z",
+     "target_address": "0x800A6558",
+     "constant_source": {
+      "raw": "0xFFFFCDD3",
+      "signed": -12845
+     }
+    },
+    {
+     "runtime_address": "0x800B3B20",
+     "file_offset": "0x180",
+     "instruction_word": "0xA4226578",
+     "width": 2,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_heading",
+     "target_address": "0x800A6578",
+     "constant_source": {
+      "raw": "0x0160",
+      "signed": 352
+     }
+    }
+   ]
+  },
+  "LEVEL10/LEVEL.BIN": {
+   "path": "REBUILD/files/LEVEL10/LEVEL.BIN",
+   "file_sha256": "3bd80ee77b5ec1e12b458d330450c3963177e15470bc249f7a12fc071d8db928",
+   "runtime_start": "0x800B3ADC",
+   "runtime_end": "0x800B3C1C",
+   "file_offset": "0x13C",
+   "size": 320,
+   "sha256": "97e72e5e4bf8c1029cabc98cfcef43d5077666edeb39617d012769f01285c4b8",
+   "classification": "status_gated_nearest_row_with_ground_query",
+   "evidence_scope": "live_attributed_and_static",
+   "static_resident_entry_call_sites": [
+    "0x8005486c",
+    "0x8005490c",
+    "0x8005b1b4"
+   ],
+   "caller_boundary": "resident JAL targets to a reused Region-A address; loaded-overlay activation is not established",
+   "direct_writes": [
+    {
+     "runtime_address": "0x800B3BAC",
+     "file_offset": "0x20C",
+     "instruction_word": "0xAC830000",
+     "width": 4,
+     "base_register": "a0",
+     "source_register": "v1",
+     "target": "safe_anchor_x",
+     "target_address": "0x800A6550",
+     "constant_source": null
+    },
+    {
+     "runtime_address": "0x800B3BBC",
+     "file_offset": "0x21C",
+     "instruction_word": "0xAC256554",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "a1",
+     "target": "safe_anchor_y",
+     "target_address": "0x800A6554",
+     "constant_source": {
+      "raw": "0x7FFFFFFF",
+      "signed": 2147483647
+     }
+    },
+    {
+     "runtime_address": "0x800B3BC8",
+     "file_offset": "0x228",
+     "instruction_word": "0xAC226558",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_z",
+     "target_address": "0x800A6558",
+     "constant_source": null
+    },
+    {
+     "runtime_address": "0x800B3BDC",
+     "file_offset": "0x23C",
+     "instruction_word": "0xAC226554",
+     "width": 4,
+     "base_register": "at",
+     "source_register": "v0",
+     "target": "safe_anchor_y",
+     "target_address": "0x800A6554",
+     "constant_source": null
+    }
+   ]
+  }
+ },
+ "summary": {
+  "staged_input_count": 11,
+  "writer_file_count": 5,
+  "direct_write_count": 21,
+  "target_write_counts": {
+   "safe_anchor_x": 5,
+   "safe_anchor_y": 8,
+   "safe_anchor_z": 5,
+   "safe_anchor_heading": 3
+  },
+  "writer_paths": [
+   "LEVEL03/LEVEL.BIN",
+   "LEVEL04/LEVEL.BIN",
+   "LEVEL06/LEVEL.BIN",
+   "LEVEL08/LEVEL.BIN",
+   "LEVEL10/LEVEL.BIN"
+  ],
+  "zero_direct_writer_paths": [
+   "REBUILD/files/LEVEL00/LEVEL.BIN",
+   "REBUILD/files/LEVEL01/LEVEL.BIN",
+   "REBUILD/files/LEVEL02/LEVEL.BIN",
+   "REBUILD/files/LEVEL05/LEVEL.BIN",
+   "REBUILD/files/LEVEL07/LEVEL.BIN",
+   "REBUILD/files/LEVEL09/LEVEL.BIN"
+  ],
+  "new_static_only_variants": [
+   "REBUILD/files/LEVEL06/LEVEL.BIN",
+   "REBUILD/files/LEVEL08/LEVEL.BIN"
+  ],
+  "new_static_only_resident_entry_call_sites": [
+   {
+    "path": "REBUILD/files/LEVEL06/LEVEL.BIN",
+    "entry": "0x800B3AEC",
+    "resident_call_sites": [
+     "0x8005484c",
+     "0x8005485c",
+     "0x8005b194"
+    ]
+   },
+   {
+    "path": "REBUILD/files/LEVEL08/LEVEL.BIN",
+    "entry": "0x800B3AE8",
+    "resident_call_sites": [
+     "0x8005b1a4"
+    ]
+   }
+  ]
+ },
+ "existing_live_evidence_join": {
+  "artifact": "analysis/phase4_checkpoint_respawn.json",
+  "artifact_sha256": "fc71182a5ffeb1acc15a305d4c707ac2f2846ebc173497d48a4bbc3fd1fc0660",
+  "LEVEL03/LEVEL.BIN": {
+   "evidence": "selected-row X +128 changes safe/live X +4096; clearing only status mask 0x0010 denies all selector stores and retains the prior safe anchor",
+   "slice_sha256": "1fdeb0da151050edbde73a082b5951ae4326ec133979ca5bae2f0198bd8cfbf9",
+   "selected_row": 6,
+   "denial_selector_hits": 17
+  },
+  "LEVEL04/LEVEL.BIN": {
+   "evidence": "complete transition-boundary write attribution",
+   "slice_sha256": "8494bef9a426a6b2ceea0bb57a634c5520a12abb89c493ce4b88ab3d992764ba",
+   "access_events": 5
+  },
+  "LEVEL10/LEVEL.BIN": {
+   "evidence": "complete transition-boundary write attribution",
+   "slice_sha256": "97e72e5e4bf8c1029cabc98cfcef43d5077666edeb39617d012769f01285c4b8",
+   "access_events": 4
+  }
+ },
+ "bounded_interpretation": {
+  "observation": "Five of eleven pinned LEVEL.BIN inputs contain 21 resolved direct stores to safe X/Y/Z/heading. LEVEL06 and LEVEL08 add distinct fixed-tuple initializer functions to the three previously live-bound writer functions.",
+  "inference": "The pristine Region-A family has at least nearest-row, fixed-ground, fixed-safe initialization, and fixed-safe-plus-live initialization forms.",
+  "causal_confirmation": "Only LEVEL03 has a retained selected-row mutation; LEVEL04 and LEVEL10 have complete live writer attribution. The two newly cataloged functions are not causal runtime evidence.",
+  "still_unknown": "LEVEL06/LEVEL08 runtime activation and denial policy, authored source ownership, pointer-mediated writers, overlay variants outside the staged LEVEL.BIN set, reset/persistence scope, and remaining death-class/stage breadth."
+ },
+ "source_dependencies": {
+  "tools/build_baselines.json": "d3b6a5a2ddf8ef7060839a801928461b20b1f109c383749014f07eee89cab00d",
+  "analysis/phase4_checkpoint_respawn.json": "fc71182a5ffeb1acc15a305d4c707ac2f2846ebc173497d48a4bbc3fd1fc0660",
+  "analysis/phase3_overlay_map.json": "cf116c3ad4ec1bfb849dba80e22ccaff56faa0de20cb83b56924b4ae445beec7"
+ }
+}

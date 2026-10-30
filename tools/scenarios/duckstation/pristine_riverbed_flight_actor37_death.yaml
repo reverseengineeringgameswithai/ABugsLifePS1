@@ -1,0 +1,50 @@
+schema_version: 1
+id: pristine_riverbed_flight_actor37_death
+description: >-
+  Load the centrally pinned pristine Riverbed Flight anchor, place both player
+  position mirrors beside corrected live actor slot 5, and prove that changing
+  only the actor response-only bit at the matched pre-contact boundary suppresses
+  the next ordinary damage call without assigning a species or special death law.
+target:
+  disc: Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+  media_class: pristine
+launch: {profile: generic}
+anchor:
+  type: save_state
+  path: level_14.sav
+  sha256: 6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50
+setup:
+  - {type: rpc, id: select_fatal_health, method: debugger.writeU16, params: {address: 0x800A6594, value: 0}}
+  - {type: rpc, id: select_ordinary_respawn_lives, method: debugger.writeU8, params: {address: 0x800A65A0, value: 3}}
+  - {type: rpc, id: place_live_x, method: debugger.writeU32, params: {address: 0x800A6500, value: 0xFFFDDD06}}
+  - {type: rpc, id: place_live_y, method: debugger.writeU32, params: {address: 0x800A6504, value: 0xFFFFE710}}
+  - {type: rpc, id: place_live_z, method: debugger.writeU32, params: {address: 0x800A6508, value: 0x0004E226}}
+  - {type: rpc, id: place_previous_x, method: debugger.writeU32, params: {address: 0x800A6510, value: 0xFFFDDD06}}
+  - {type: rpc, id: place_previous_y, method: debugger.writeU32, params: {address: 0x800A6514, value: 0xFFFFE710}}
+  - {type: rpc, id: place_previous_z, method: debugger.writeU32, params: {address: 0x800A6518, value: 0x0004E226}}
+phases:
+  - id: matched_actor_contact_boundary
+    trigger: {type: emulator_frame, target: 223793, max_frames: 70, timeout_seconds: 120}
+    assertions:
+      - {id: flight_boundary_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 8}
+      - {id: flight_boundary_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 0}
+      - {id: flight_boundary_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 3}
+      - {id: flight_boundary_master_state, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+      - {id: flight_actor_slot5_id, type: memory, address: 0x800A0014, width: u32, op: eq, expected: 37}
+      - {id: flight_actor_slot5_flags, type: memory, address: 0x800A0070, width: u16, op: eq, expected: 0x4011}
+      - {id: flight_actor_slot5_callback, type: memory, address: 0x800A0090, width: u32, op: eq, expected: 0x80049E88}
+      - {id: flight_actor_slot5_source, type: memory, address: 0x800A0094, width: u32, op: eq, expected: 0x80094AC4}
+      - {id: flight_actor_source_type_word, type: memory, address: 0x80094AD0, width: u16, op: eq, expected: 0x0125}
+    after:
+      - {type: rpc, id: set_only_response_bit, method: debugger.writeU16, params: {address: 0x800A0070, value: 0x4091}}
+      - {type: exec_trace_start, id: response_only_damage_call, pc: 0x8004B4A0, capture: [pc, s1], max_events: 16}
+  - id: response_only_suppresses_contact_damage
+    trigger: {type: emulator_frame, target: 223853, max_frames: 70, timeout_seconds: 120}
+    assertions:
+      - {id: flight_control_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 8}
+      - {id: flight_control_health_unchanged, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 0}
+      - {id: flight_control_lives_unchanged, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 3}
+      - {id: flight_control_master_state_clear, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+      - {id: flight_control_actor_flags, type: memory, address: 0x800A0070, width: u16, op: eq, expected: 0x5091}
+      - {id: flight_control_damage_call_hits, type: exec_hit_count, watch: response_only_damage_call, op: eq, expected: 0}

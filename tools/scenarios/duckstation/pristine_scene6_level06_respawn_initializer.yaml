@@ -1,0 +1,39 @@
+schema_version: 1
+id: pristine_scene6_level06_respawn_initializer
+description: >-
+  Replay the centrally pinned scene-6 natural death boundary and assert that
+  the residency-matched pristine LEVEL06 fixed initializer executes once and
+  replaces the safe tuple before the ordinary-respawn life decrement.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: scene6_pre_initializer_boundary
+    trigger: {type: movie_frame, target: 487, max_frames: 500, timeout_seconds: 120}
+    assertions:
+      - {id: c15_scene6_pre_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 6}
+      - {id: c15_scene6_pre_anchor_x, type: memory, address: 0x800A6550, width: s32, op: eq, expected: 93783}
+      - {id: c15_scene6_pre_anchor_y, type: memory, address: 0x800A6554, width: s32, op: eq, expected: -83752}
+      - {id: c15_scene6_pre_anchor_z, type: memory, address: 0x800A6558, width: s32, op: eq, expected: -134554}
+      - {id: c15_scene6_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: c15_scene6_pre_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 4}
+      - {id: c15_scene6_native_call_word, type: memory, address: 0x8005B194, width: u32, op: eq, expected: 0x0C02CEBB}
+    after:
+      - {type: exec_trace_start, id: level06_fixed_initializer_entry, pc: 0x800B3AEC, capture: [pc, ra, v1], max_events: 4}
+  - id: scene6_initializer_replaces_safe_tuple
+    trigger: {type: movie_frame, target: 489, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: c15_level06_initializer_executed_once, type: exec_hit_count, watch: level06_fixed_initializer_entry, op: eq, expected: 1}
+      - {id: c15_scene6_post_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 6}
+      - {id: c15_scene6_post_anchor_x, type: memory, address: 0x800A6550, width: s32, op: eq, expected: 35329}
+      - {id: c15_scene6_post_anchor_y, type: memory, address: 0x800A6554, width: s32, op: eq, expected: -85228}
+      - {id: c15_scene6_post_anchor_z, type: memory, address: 0x800A6558, width: s32, op: eq, expected: -154696}
+      - {id: c15_scene6_post_heading, type: memory, address: 0x800A6578, width: u16, op: eq, expected: 3063}
+      - {id: c15_scene6_post_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: c15_scene6_post_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 3}
+      - {id: c15_scene6_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

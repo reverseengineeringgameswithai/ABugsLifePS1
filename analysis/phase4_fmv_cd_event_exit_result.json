@@ -1,0 +1,184 @@
+{
+  "before_ledger_sha256": "aef3ee9e2c2c2b191e39ecfdc25b0750f107cb24472330e3fb9db47c6edaeaa9",
+  "campaign_id": "fmv_playback",
+  "claim_boundary": {
+    "classification": "bounded_cd_event_player_interface_control",
+    "dimension_promoted": false,
+    "investigator_receipts_require_fresh_verifier": true,
+    "lifecycle_promoted": false,
+    "next_lane": "static",
+    "next_method": "Statically partition the native event-delivery producer and the file-open/decode-timeout/CD-retry branches, then select one exact pristine-triggerable failure edge and paired outcome control. Do not replay this completed one-word consumer window.\n",
+    "not_claimed": [
+      "native CD-event delivery or delivery frequency",
+      "a user-visible Pause or media-failure outcome",
+      "file-open, malformed-stream, decode-timeout or CD-retry behavior",
+      "lifecycle behavior outside movie frames 250 through 330",
+      "lifecycle or any other nine-dimension promotion",
+      "verifier acceptance of either investigator receipt"
+    ],
+    "player_consumer_interface_fact_closed": true
+  },
+  "errors": [],
+  "escalation_id": "P4-ITER107-E15-CD-EVENT-EXIT-CONTROL",
+  "falsifier": {
+    "evidence": {
+      "configured_max_events": 128,
+      "headroom_events": 116,
+      "negative_target_exit_events": 0,
+      "owned_pids_stopped": 2,
+      "passive_repeat_equal": true,
+      "positive_target_exit_events": 6,
+      "positive_total_function_events": 12,
+      "truncated": false
+    },
+    "outcome": "survived",
+    "predicate": "reject if the one-word positive misses or reorders the CdControl(0x0B), StClearRing and callback-teardown sequence, if the native branch records that sequence, or if either trace saturates, truncates, diverges from its typed bound or fails owned-PID cleanup"
+  },
+  "generated": "2026-07-27",
+  "missing_fact_id": "E15/cd-event-exit-interface",
+  "observation": {
+    "native_negative": {
+      "endpoint_pc": "0x800b9930",
+      "fmv_running_latch_endpoint": "00000000",
+      "perturbations": 0,
+      "retained_function_events": 0,
+      "scene_endpoint": "01000000",
+      "target_exit_events": 0
+    },
+    "passive_movie_reproducible_flag": false,
+    "passive_repeat_equal": true,
+    "positive": {
+      "cd_control_command": 11,
+      "configured_max_events": 128,
+      "endpoint_pc": "0x8001a524",
+      "exit_frame": 4485,
+      "first_event_cycle": 2538917266,
+      "fmv_running_latch_endpoint": "00000000",
+      "headroom_events": 116,
+      "last_target_event_cycle": 2538973106,
+      "one_word_write": {
+        "address": "0x800b7420",
+        "after": "0x24020001",
+        "before": "0x8c422484",
+        "code_invalidated": true,
+        "kind": "code_write",
+        "original_word": "0x8c422484",
+        "replacement_word": "0x24020001",
+        "written": 4
+      },
+      "ordered_exit_functions": [
+        [
+          "entry",
+          "0x8006d8e8",
+          "0x800b746c",
+          1
+        ],
+        [
+          "exit",
+          "0x8006d8e8",
+          "0x800b746c",
+          2
+        ],
+        [
+          "entry",
+          "0x8007094c",
+          "0x800b749c",
+          3
+        ],
+        [
+          "exit",
+          "0x8007094c",
+          "0x800b749c",
+          4
+        ],
+        [
+          "entry",
+          "0x800709ac",
+          "0x800b74a4",
+          5
+        ],
+        [
+          "exit",
+          "0x800709ac",
+          "0x800b74a4",
+          6
+        ]
+      ],
+      "scene_endpoint": "01000000",
+      "target_exit_events": 6,
+      "total_function_events": 12
+    },
+    "precise_endpoint_cycle": 2584138962,
+    "precise_endpoint_frame": 4565
+  },
+  "raw_external_bytes_committed": false,
+  "receipts": [
+    {
+      "batch_result_sha256": "017af340752e670e98137afccc5c4a5579a33510b17cae78179220bfe183a751",
+      "cleanup_sha256": "408f2943d2d4f3e815c1cb930903f555374c424e76fd2879b865c195b636653f",
+      "command_events_sha256": "c0b40cf30e85d394e9899e63d401c3af8485b7747d085a3e2e62c84d4166cef3",
+      "observer_start": 249,
+      "pagination_sha256": "d301a76f022e5df63326e746139d0822bb2cfe2b4b0c0a96567b8359b4d7c1d2",
+      "precise": false,
+      "raw_results_sha256": "6c0643d4ee167f80ab3492cee70d7da3057edab7d52035e78f91dc6af481e54f",
+      "receipt_sha256": "041f8ad69d673ad8e80af4a2b548474ae1ef5597ba63ddea6ff941e50ed300e1",
+      "replay_stop": 340,
+      "role": "passive",
+      "stage_start": 0,
+      "stage_stop": 249
+    },
+    {
+      "batch_result_sha256": "11a10c866da86a8800711d0ff89ae63823af36d9371d2968bdf0639c0f4e20bf",
+      "cleanup_sha256": "d41d694a0b00197ea18cf5221f9e982fbef7922c9e29bfd9f7b569e7b5817d40",
+      "command_events_sha256": "1f9428ade9a6c1e2e028977d3454f5941116d335d1a16517263c6d9b4f197f9d",
+      "observer_start": 250,
+      "pagination_sha256": "370a76fe61e251c24e74fd07b1fe6434e0d4d7477382addfb8e8afdde49e7805",
+      "precise": true,
+      "raw_results_sha256": "9eb98b8f5a512ab32ba3bc4e77a9beaebe8c71ae32c9a28d98bd306f381e690c",
+      "receipt_sha256": "395ac5d51b2a14b1d36b53f412c98a3854db7a77efd25b45d8e1f38dc3d83e52",
+      "replay_stop": 330,
+      "role": "precise",
+      "stage_start": 0,
+      "stage_stop": 250
+    }
+  ],
+  "record_counts": {
+    "completed_atomic_jobs": 4,
+    "emulator_launches": 2,
+    "exact_after_load_writes": 1,
+    "investigator_live_receipts": 2,
+    "negative_target_exit_events": 0,
+    "observer_frames": 342,
+    "owned_pids_stopped": 2,
+    "positive_target_exit_events": 6,
+    "positive_total_function_events": 12,
+    "promotion_admissible_live_receipts": 0,
+    "replay_frames": 1340
+  },
+  "row_id": "E15_fmv",
+  "schema": "abl-phase4-fmv-cd-event-exit-result/1",
+  "source_dependencies": {
+    "analysis/phase4_fmv_lifecycle_continuations.json": "795229096b12258a4d704a5507d98650e247a0bbc415e40feb994386a0491e17",
+    "config/phase4_fmv_cd_event_exit_control_batch.yaml": "210748205a7feca8b242d1e3912ed82559d445694a67e93a95b5affa8822406e",
+    "config/phase4_fmv_cd_event_exit_passive_batch.yaml": "9829a921978ef904d9d0ddcdcdb5d338fa237b6922dc59744c0c99ade7291440",
+    "config/phase4_fmv_cd_event_exit_result.yaml": "84f0dbc028f8c9b50a3386f6eb9450cf35f8f0052a462f22bd87b075f5d59907",
+    "tools/phase4_duckstation_batch.py": "e94ec290a489484587b50fe72a472dbfa8578a7f17dcaf32f57af2efcf8bb375",
+    "tools/phase4_fmv_cd_event_exit_result.py": "3142745c7f550da97d1fb5aa3a041aaf5e9599fc05d7e0fdd9b974cfb54a9031"
+  },
+  "static_join": {
+    "artifact": "analysis/phase4_fmv_lifecycle_continuations.json",
+    "branch_pc": "0x800B7428",
+    "cd_control_call": "0x800B746C",
+    "cd_control_command": "0x0B",
+    "consumer_pc": "0x800B7420",
+    "event_class": "0xF0000003",
+    "event_spec": "0x00008000",
+    "exit_target": "0x800B7464",
+    "field_address": "0x80082484",
+    "field_value": 1,
+    "registration_callback": "0x80045D5C",
+    "runtime_event_delivery_claimed": false,
+    "sha256": "795229096b12258a4d704a5507d98650e247a0bbc415e40feb994386a0491e17"
+  },
+  "valid": true
+}

@@ -1,0 +1,170 @@
+{
+ "_comment": "Phase-4 D18/F09: the Thud fight law, live-proven end-to-end on the operator's Interpreter movie (movies/Phase4/Interpreter/D18_thud_fight.movie.json, from-boot v4, 15,600 frames, boot->Bug Bar->defeat). Instrumentation is free on Interpreter movies, so every writer below is an attributed PC, not an inference.",
+ "row": "D18_thud (+F09_bug_bar)",
+ "date": "2026-08-04",
+ "status": "partial",
+ "fixture": {
+  "movie": "movies/Phase4/Interpreter/D18_thud_fight.movie.json",
+  "kind": "from_boot v4, armed_while_paused=true (phase_delay_owed handled by the v4 fix)",
+  "frames": 15600,
+  "scene": 14,
+  "sectors": 46,
+  "replay": "isolated Interpreter instance, operator memory card COPIED as the seed; card never written"
+ },
+ "FIGHT_LAW_LIVE_2026-08-04": {
+  "1_spawn": "0x80049CA0 'sh v0,0x6e(t0)' writes pool HP=50 at level load (frame 5407)",
+  "2_hit": "0x800590E4 'sh v0,0x6e(s2)' writes 50->48 per landed hit. This PC is INSIDE the committed berry_tough_damage_dispatch (0x8005905C) -- the fight uses the ordinary berry damage law (-2).",
+  "3_restore": "0x800B3ED0 'sh v0,0x6e(s3)' (OVERLAY) writes 48->50 exactly two frames after every hit. => the pool HP field is a TRANSIENT HIT LATCH, not Thud's health.",
+  "4_counter": "0x800B4CC8 (OVERLAY) is the real fight counter: 0->1->...->8, one increment per landed hit, written by 0x800B3DB0 'sw v0,0x4cc8(at)' exactly 8 times across the fight.",
+  "5_kill": "at counter==8, 0x800B4528 'sh zero,0x6e(s3)' (OVERLAY) writes pool HP=0 (frame 11880), which hands off to the committed generic retirement (mover updater removes the actor from 0x80090748 and clears +0x5C bit 0x4000).",
+  "6_vm_parked": "the mover-VM IP (+0x70) never leaves the parked program during the entire fight: 1,644 IP writes, ALL by the VM interpreter store 0x8004C834. Confirms the D18 FSM-negative on real fight data (previously shown only poll-only).",
+  "hit_frames": [
+   7279,
+   7297,
+   8129,
+   8149,
+   8173,
+   8567,
+   8589,
+   8615,
+   9071,
+   9087,
+   9457,
+   9477,
+   9969,
+   10585,
+   11685
+  ],
+  "counter_trajectory": "0 by f7320, 1..7 through f10620, 8 at f11700; HP=0 at f11880"
+ },
+ "CALLBACK_ROLE_RESOLVED": {
+  "address": "0x8004A0F4 (actor +0x7C, recorded for Thud in analysis/phase3_thud.json)",
+  "canon": "FUNC_8004A0F4 thumper_driver_cb -- byte_matched C (src/main/8004a0f4_thumper_driver_cb.c)",
+  "body": "lw a1,4(a0); li a0,26; jal 0x8005044C (play_sound); addiu a1,a1,4",
+  "finding": "it is a POSITIONAL SOUND CUE (play_sound id 26 at the actor's position), NOT a behaviour/AI driver. Neighbouring stubs 0x8004A11C etc. are the same shape with different sound ids -- a family of per-species sound callbacks. The word 'driver' in the row text implied control it does not exert.",
+  "correction": "D18/F09 rows described +0x7C as a 'per-actor driver callback'; its actual role is sound."
+ },
+ "RESIDUALS_CLOSED": [
+  "pool-HP restore writer (was unattributed: CachedInterpreter movie could not be armed)",
+  "final HP=0 writer",
+  "driver callback 0x8004A0F4's role"
+ ],
+ "STILL_OPEN": [
+  "whether a real mega berry delivers a 30..49 delta to this actor (the only untested link in the soft-lock claim)",
+  "E11's arena visible-index mapping (separate row, same fixture available)",
+  "what drives the sweep word 0x800B4CB0"
+ ],
+ "evidence": {
+  "committed": [
+   "analysis/phase3_thud.json",
+   "ObsidianVault/Canon/Systems/SYS_thud_bug_bar_boss.md",
+   "ObsidianVault/Canon/Functions/FUNC_8004A0F4.md",
+   "symbols/re_symbols.sym"
+  ],
+  "artifacts": [
+   "analysis/phase4_d18_thud_vm_fsm.json (the FSM negative)"
+  ]
+ },
+ "PERCH_QUALIFIER_DECODED_2026-08-04": {
+  "question": "15 damage events produced only 8 counted increments -- what qualifies a hit?",
+  "answer": "A POSITION EQUALITY TEST. The overlay requires Thud's sweep position word [0x800B4CB0] to equal one of exactly two hardcoded anchors: -168416 (0xFFFD6E20) or +159264 (0x00026E20). He sweeps continuously between them; only hits landed while he is stopped AT an endpoint count. This is the literal mechanism behind the committed '8 perched berry hits' wording -- 'perched' was exactly right.",
+  "overlay": {
+   "file": "REBUILD/files/LEVEL04/LEVEL1.BIN",
+   "size": 4924,
+   "load_base": "0x800B39A0",
+   "base_derivation": "located the counter store encoding 0xAC224CC8 (unique in the file) and derived base = 0x800B3DB0 - file_offset; independently re-confirmed by the HP restore store 0xA662006E landing exactly at 0x800B3ED0",
+   "confirms": "the committed canon claim that Thud's overlay is LEVEL04/LEVEL1.BIN, and adds its load base"
+  },
+  "handler_flow": [
+   {
+    "pc": "0x800B3D3C",
+    "act": "lh v1,-530(0x800A0000) -> reads Thud's pool HP at 0x8009FDEE"
+   },
+   {
+    "pc": "0x800B3D44",
+    "act": "lw v0,[0x800B4C70] -> previous HP snapshot"
+   },
+   {
+    "pc": "0x800B3D50",
+    "act": "beq v0,v1 -> if HP unchanged, no new damage: skip"
+   },
+   {
+    "pc": "0x800B3D54/58",
+    "act": "slti v1,21 / bnez -> skip while HP < 21 (guard)"
+   },
+   {
+    "pc": "0x800B3D60",
+    "act": "jal 0x80050D1C with a0=93 -> hurt SOUND, fires for EVERY hit"
+   },
+   {
+    "pc": "0x800B3D70",
+    "act": "jal 0x8004C10C (actor_set_anim_sequence) a1=2,a2=18 -> hurt ANIMATION, every hit"
+   },
+   {
+    "pc": "0x800B3D80",
+    "act": "lw v1,[0x800B4CB0] -> the sweep position word"
+   },
+   {
+    "pc": "0x800B3D88",
+    "act": "beq v1,0xFFFD6E20 (-168416) -> perch A: count it"
+   },
+   {
+    "pc": "0x800B3D94",
+    "act": "bne v1,0x00026E20 (+159264) -> not perch B: DO NOT count"
+   },
+   {
+    "pc": "0x800B3DB0",
+    "act": "sw v0,[0x800B4CC8] -> counter += 1"
+   },
+   {
+    "pc": "0x800B3DB4",
+    "act": "bne v0,8 -> at 8, fall through to the kill path"
+   }
+  ],
+  "live_proof": {
+   "method": "breakpoint the predicate's own test instruction 0x800B3D88 during the fight movie and read v1 at each evaluation",
+   "evaluations": 15,
+   "at_a_perch": 8,
+   "not_at_a_perch": 7,
+   "correlation": "the 8 perch evaluations are exactly the 8 counter increments; the 7 others leave the counter unchanged",
+   "note": "the hurt sound and animation fire on all 15, so the player sees every hit react -- only the scoring is gated"
+  },
+  "consequence": "Thud's difficulty is positional, not statistical: berries landed mid-sweep are cosmetic. A mod wanting a shorter fight should change the counter target at 0x800B3DA4 (literal 8) or relax the two anchor literals, NOT the pool HP (which is restored every hit)."
+ },
+ "DAMAGE_RESPONSE_REGIMES_2026-08-04": {
+  "method": "A/B from ONE saved state captured with Thud parked at anchor -168416 (fight movie, ~f7005). Each trial reloads that identical state, pokes the pool HP to simulate a hit of a given power, advances, and reads the counter -- so power is the only variable.",
+  "threshold_exact": {
+   "hp_21": "COUNTED",
+   "hp_20": "ignored",
+   "note": "matches the decoded guard `slti v1,21` exactly: HP >= 21 counts, HP <= 20 does not"
+  },
+  "regimes": [
+   {
+    "delta_from_50": "<= 29 (HP >= 21)",
+    "result": "counts normally; overlay restores HP to 50",
+    "example": "red -2, and the -4 seen live"
+   },
+   {
+    "delta_from_50": "30..49 (0 < HP <= 20)",
+    "result": "IGNORED, and the HP is NOT restored (the restore lives inside the counted branch) -- the fight SOFT-LOCKS: HP stays low, every later hit is also below the guard, and the counter can never advance",
+    "evidence": "HP:=5 held for 720 frames with counter 0; three further -2 hits (5->3->1->-1) all ignored"
+   },
+   {
+    "delta_from_50": ">= 50 (HP <= 0)",
+    "result": "INSTANT retirement via the generic path, bypassing the 8-hit counter entirely",
+    "evidence": "HP:=0/-1/-5 all zero the live-table slot 0x80090748 and clear +0x5C bit 0x4000; HP:=1 survives"
+   }
+  ],
+  "prediction_status": {
+   "claim": "a berry whose delivered damage lands in 30..49 makes Thud permanently unkillable",
+   "proven": "the RESPONSE to such a delta is proven by poke (ignored + soft-lock)",
+   "native_reachability_corrected": "C closure proves the native 30-49 band unreachable: mega constructor type 45 copies metadata selector 128 and deals 3; every native equipped-berry path deals 0, 2, 3, or 4 to Thud."
+  },
+  "retirement_rule_reconfirmed": "HP <= 0 retires (0, -1, -5 all retire; 1 survives) -- the committed phase3_thud rule stands. An earlier in-session worry that -1 failed to retire was my own under-observation (12 frames, no check of the live table), not a real contradiction."
+ },
+ "BURST_COLLAPSE_EXPLAINED_2026-08-04": {
+  "observation": "three normal hits poked in rapid succession from a fresh anchor produced only ONE count",
+  "mechanism": "the first hit sends Thud sweeping: the gate word moved -168416 -> -153056 -> -137696 -> -122336 across the trials, so hits 2 and 3 were evaluated mid-sweep and failed the anchor test",
+  "consequence": "the 15-damage-events -> 8-counts collapse is NOT a cooldown timer. Being hit at an anchor CHANGES HIS STATE (he starts moving), and he is only scoreable again when he next stops at an anchor. This matches the movie's burst structure exactly (bursts <=48 frames wide, 370-1100 frames apart)."
+ }
+}

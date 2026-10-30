@@ -1,0 +1,63 @@
+{
+ "_comment": "Phase-4 B06/B08 audio-dispatch (DoD 7) and scene-transition (DoD 4) probes. Regenerate: tools/phase4_b06_b08_audio_transition.py",
+ "execution_mode": "Interpreter",
+ "probes": [
+  {
+   "probe": "A1_natural",
+   "movie": "b06_invincibility_hits_from_boot.movie.json",
+   "exec_events": 9,
+   "grant_store_executions": 1,
+   "sfx_call_executions": 1,
+   "guard_executions": 1,
+   "grant_writes": [
+    {
+     "f": 5336,
+     "new": 400
+    }
+   ]
+  },
+  {
+   "probe": "audio_probe",
+   "error": "Connection closed while waiting for response"
+  },
+  {
+   "probe": "T1_scene_transition",
+   "state": "level01_end_of_stage.sav",
+   "scene_before": 1,
+   "samples": [
+    {
+     "scene": 1,
+     "slot": 250
+    },
+    {
+     "scene": 1,
+     "slot": 0
+    },
+    {
+     "scene": 1,
+     "slot": 0
+    },
+    {
+     "scene": 1,
+     "slot": 0
+    },
+    {
+     "scene": 1,
+     "slot": 0
+    },
+    {
+     "scene": 1,
+     "slot": 0
+    }
+   ],
+   "slot_writer_pcs": [
+    "0x80048654"
+   ],
+   "slot_write_count": 400,
+   "scene_after": 1,
+   "slot_after": 0,
+   "verdict": "INCONCLUSIVE -- gameplay ran but the scene never changed, so no transition was observed",
+   "conclusive": false
+  }
+ ]
+}

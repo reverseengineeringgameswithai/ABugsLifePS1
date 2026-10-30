@@ -1,0 +1,1023 @@
+{
+ "captured_for": "DuckStation debugger-API extension handed to another agent",
+ "binary": "~/duckstation/build-release/bin/duckstation-qt",
+ "binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+ "binary_size": 38106464,
+ "fork_head": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+ "save_state_version": 84,
+ "save_state_minimum": 42,
+ "rpc_methods": [
+  "accessHistory.clear",
+  "accessHistory.get",
+  "accessHistory.start",
+  "accessHistory.stop",
+  "accessLog.addWatch",
+  "accessLog.clear",
+  "accessLog.findFirstWrite",
+  "accessLog.get",
+  "accessLog.lastWriter",
+  "accessLog.removeWatch",
+  "accessLog.run",
+  "accessLog.summary",
+  "accessTrace.clear",
+  "accessTrace.get",
+  "accessTrace.start",
+  "accessTrace.stop",
+  "breakpointCaptures.clear",
+  "breakpointCaptures.get",
+  "capture.atomic",
+  "cd.clearOverlay",
+  "cd.clearOverlays",
+  "cd.clearSectorOverride",
+  "cd.listOverlays",
+  "cd.overlayFile",
+  "cd.overrideSectors",
+  "debugger.addBreakpoint",
+  "debugger.addComment",
+  "debugger.addLabel",
+  "debugger.advanceFrame",
+  "debugger.authenticate",
+  "debugger.callFunction",
+  "debugger.capabilities",
+  "debugger.clearBreakpoints",
+  "debugger.disableBreakpoint",
+  "debugger.disassemble",
+  "debugger.enableBreakpoint",
+  "debugger.exportSymbols",
+  "debugger.functionBounds",
+  "debugger.getComments",
+  "debugger.getGteState",
+  "debugger.getPgxpData",
+  "debugger.getRegister",
+  "debugger.getRegisters",
+  "debugger.getStack",
+  "debugger.getSymbols",
+  "debugger.importSymbols",
+  "debugger.invalidateCodeCache",
+  "debugger.listBreakpoints",
+  "debugger.pause",
+  "debugger.readArray",
+  "debugger.readCString",
+  "debugger.readMemory",
+  "debugger.readPointerChain",
+  "debugger.readStruct",
+  "debugger.removeBreakpoint",
+  "debugger.reset",
+  "debugger.resolveSymbol",
+  "debugger.resume",
+  "debugger.runUntilAddress",
+  "debugger.scatterRead",
+  "debugger.scatterWrite",
+  "debugger.setRegister",
+  "debugger.snapshot",
+  "debugger.status",
+  "debugger.stepInstruction",
+  "debugger.stepOut",
+  "debugger.stepOver",
+  "debugger.updateBreakpoint",
+  "debugger.writeMemory",
+  "debugger.xrefsTo",
+  "emulator.advanceFrames",
+  "emulator.advanceToFrame",
+  "emulator.advanceUntil",
+  "emulator.bootSystem",
+  "emulator.captureFrame",
+  "emulator.captureSnapshotBundle",
+  "emulator.clearControllerState",
+  "emulator.closeMedia",
+  "emulator.diffFrames",
+  "emulator.getCdromState",
+  "emulator.getControllerState",
+  "emulator.getDmaState",
+  "emulator.getMediaInfo",
+  "emulator.getSpeed",
+  "emulator.getStateInfo",
+  "emulator.getVideoStatus",
+  "emulator.hashFrame",
+  "emulator.loadMedia",
+  "emulator.loadState",
+  "emulator.pressButton",
+  "emulator.saveState",
+  "emulator.setControllerState",
+  "emulator.setFastForward",
+  "emulator.setTurbo",
+  "execTrace.addRangeWatch",
+  "execTrace.addWatch",
+  "execTrace.analyze",
+  "execTrace.clear",
+  "execTrace.get",
+  "execTrace.removeWatch",
+  "execTrace.run",
+  "execTrace.summary",
+  "experiment.compareRuns",
+  "experiment.diffMemory",
+  "experiment.diffRegisters",
+  "experiment.run",
+  "experiment.warpAndSettle",
+  "findings.delete",
+  "findings.get",
+  "findings.list",
+  "findings.load",
+  "findings.save",
+  "findings.upsert",
+  "fixtures.add",
+  "fixtures.get",
+  "fixtures.list",
+  "fixtures.load",
+  "functionTrace.clear",
+  "functionTrace.get",
+  "functionTrace.start",
+  "functionTrace.stop",
+  "gpu.captureFrameSnapshot",
+  "gpu.captureVramRect",
+  "gpu.clearFrameSnapshot",
+  "gpu.decodeTexture",
+  "gpu.diffCurrentFrame",
+  "gpu.frameSnapshot",
+  "gpu.getCameraTransform",
+  "gpu.getClut",
+  "gpu.getStatus",
+  "gpu.listFrameSnapshots",
+  "gpu.pickObject",
+  "gpu.readVramRect",
+  "gpu.resolveClutProvenance",
+  "gpu.resolveVramProvenance",
+  "gpu.traceCausality",
+  "gpu.traceRegion",
+  "gpu.writeVramRect",
+  "memoryScan.clear",
+  "memoryScan.refine",
+  "memoryScan.results",
+  "memoryScan.start",
+  "movie.activate",
+  "movie.advanceToFrame",
+  "movie.append",
+  "movie.branch",
+  "movie.clear",
+  "movie.coverageToFrame",
+  "movie.editFrame",
+  "movie.get",
+  "movie.list",
+  "movie.load",
+  "movie.remove",
+  "movie.save",
+  "movie.startPlayback",
+  "movie.startRecording",
+  "movie.status",
+  "movie.stopPlayback",
+  "movie.stopRecording",
+  "movie.store",
+  "movie.traceToFrame",
+  "provenance.timeline",
+  "provenanceLog.clear",
+  "provenanceLog.get",
+  "provenanceLog.start",
+  "provenanceLog.stop",
+  "reverse.clear",
+  "reverse.seek",
+  "reverse.start",
+  "reverse.status",
+  "reverse.step",
+  "reverse.stop",
+  "scenario.bootAndRun",
+  "scenario.cancelBatch",
+  "scenario.getBatch",
+  "scenario.loadStateAndRun",
+  "scenario.resumeBatch",
+  "scenario.runBatch",
+  "spu.status",
+  "trace.armWhen",
+  "traceCapsule.fingerprint",
+  "traceCapsule.start",
+  "traceCapsule.status",
+  "traceCapsule.stop",
+  "transferLog.clear",
+  "transferLog.get",
+  "transferLog.resolve",
+  "transferLog.start",
+  "transferLog.stop"
+ ],
+ "rpc_method_count": 189,
+ "methods_used_by_our_tools": [
+  "accessLog.addWatch",
+  "accessLog.clear",
+  "accessLog.findFirstWrite",
+  "accessLog.get",
+  "accessLog.lastWriter",
+  "accessLog.run",
+  "debugger.addBreakpoint",
+  "debugger.callFunction",
+  "debugger.capabilities",
+  "debugger.clearBreakpoints",
+  "debugger.disassemble",
+  "debugger.functionBounds",
+  "debugger.getGteState",
+  "debugger.getRegister",
+  "debugger.getRegisters",
+  "debugger.listBreakpoints",
+  "debugger.pause",
+  "debugger.readMemory",
+  "debugger.removeBreakpoint",
+  "debugger.reset",
+  "debugger.resume",
+  "debugger.runUntilAddress",
+  "debugger.scatterRead",
+  "debugger.scatterWrite",
+  "debugger.setRegister",
+  "debugger.status",
+  "debugger.writeMemory",
+  "debugger.xrefsTo",
+  "emulator.advanceFrames",
+  "emulator.advanceToFrame",
+  "emulator.advanceUntil",
+  "emulator.bootSystem",
+  "emulator.captureFrame",
+  "emulator.clearControllerState",
+  "emulator.getCdromState",
+  "emulator.getControllerState",
+  "emulator.getDmaState",
+  "emulator.getMediaInfo",
+  "emulator.getStateInfo",
+  "emulator.loadState",
+  "emulator.pressButton",
+  "emulator.saveState",
+  "emulator.setControllerState",
+  "emulator.setFastForward",
+  "emulator.setTurbo",
+  "execTrace.addRangeWatch",
+  "execTrace.addWatch",
+  "execTrace.clear",
+  "execTrace.get",
+  "execTrace.run",
+  "gpu.captureFrameSnapshot",
+  "gpu.decodeTexture",
+  "gpu.diffCurrentFrame",
+  "gpu.frameSnapshot",
+  "gpu.getStatus",
+  "gpu.pickObject",
+  "gpu.readVramRect",
+  "movie.advanceToFrame",
+  "movie.clear",
+  "movie.coverageToFrame",
+  "movie.load",
+  "movie.startPlayback",
+  "movie.status",
+  "movie.stopPlayback",
+  "movie.stopRecording",
+  "spu.status",
+  "trace.armWhen",
+  "transferLog.clear",
+  "transferLog.get",
+  "transferLog.resolve",
+  "transferLog.start",
+  "transferLog.stop"
+ ],
+ "methods_used_count": 72,
+ "regex_nonmethods_ignored": [
+  "movie.str",
+  "provenance.json"
+ ],
+ "state_anchored_movies": [
+  {
+   "movie": "movies/B06_LevelTransition.movie.json",
+   "version": 3,
+   "anchor_frame": 111282,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/B06_LevelTransition_tagged.movie.json",
+   "version": 3,
+   "anchor_frame": 111282,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Bonus_Level_01.movie.json",
+   "version": 3,
+   "anchor_frame": 9212,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Bonus_Level_02.movie.json",
+   "version": 3,
+   "anchor_frame": 23616,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Bonus_Level_03.movie.json",
+   "version": 3,
+   "anchor_frame": 49294,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/LEVEL02_savestate_test_interpreter.movie.json",
+   "version": 3,
+   "anchor_frame": 18726,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/A09_seed_blocked_drop_LEVEL01.movie.json",
+   "version": 3,
+   "anchor_frame": 160378,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/A13/blue_seed_levels.movie.json",
+   "version": 3,
+   "anchor_frame": 110486,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/A13/brown_seed_levels.movie.json",
+   "version": 3,
+   "anchor_frame": 47454,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/A13/green_seed_levels.movie.json",
+   "version": 3,
+   "anchor_frame": 121368,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/A13/purple_seed_levels.movie.json",
+   "version": 3,
+   "anchor_frame": 133143,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/A13/yellow_seed_levels.movie.json",
+   "version": 3,
+   "anchor_frame": 262374,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/A13_denied_one_tier.movie.json",
+   "version": 4,
+   "anchor_frame": 8428,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B01_mushroom_chain.movie.json",
+   "version": 3,
+   "anchor_frame": 23637,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B02_propeller_alone_and_seed.movie.json",
+   "version": 3,
+   "anchor_frame": 27920,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B03_dandelion_updraft.movie.json",
+   "version": 3,
+   "anchor_frame": 61416,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B04_cannon_dandelion_combo.movie.json",
+   "version": 3,
+   "anchor_frame": 164199,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B07_health_partial_full.movie.json",
+   "version": 3,
+   "anchor_frame": 212300,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B08_bubble_repeated_hits.movie.json",
+   "version": 3,
+   "anchor_frame": 111089,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B09_super_jump_comparison.movie.json",
+   "version": 3,
+   "anchor_frame": 114952,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B11_blue_shooter_enemy.movie.json",
+   "version": 3,
+   "anchor_frame": 112997,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/B13_mine_enemy.movie.json",
+   "version": 3,
+   "anchor_frame": 264082,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/C01_grain_pickup.movie.json",
+   "version": 3,
+   "anchor_frame": 173978,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/C02_grain_49_to_50.movie.json",
+   "version": 3,
+   "anchor_frame": 200029,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/C16_gameover_continue.movie.json",
+   "version": 3,
+   "anchor_frame": 265211,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/D08_fly_contact_kill.movie.json",
+   "version": 3,
+   "anchor_frame": 117082,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/D09_cockroach_contact_kill.movie.json",
+   "version": 3,
+   "anchor_frame": 141130,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/D11_grub_contact_kill.movie.json",
+   "version": 3,
+   "anchor_frame": 39755,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/D11_mite_contact_kill.movie.json",
+   "version": 3,
+   "anchor_frame": 106857,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/D15_daddy_long_legs_contact_kill.movie.json",
+   "version": 3,
+   "anchor_frame": 142045,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate01_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 144492,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate02_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 147808,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate03_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 152947,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate04_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 154668,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate05_open.movie.json",
+   "version": 3,
+   "anchor_frame": 157143,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate06_open.movie.json",
+   "version": 3,
+   "anchor_frame": 159678,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate07_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 156223,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate08_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 156438,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL02_gate09_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 160424,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL07_gate01_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 119676,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL07_gate02_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 122784,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E09/LEVEL07_gate03_closed_open.movie.json",
+   "version": 3,
+   "anchor_frame": 125978,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E10/hazard_acorn_LEVEL11.movie.json",
+   "version": 3,
+   "anchor_frame": 196870,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E10/hazard_falling_rocks_LEVEL02.movie.json",
+   "version": 3,
+   "anchor_frame": 48466,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E10/hazard_fallingspikes_LEVEL05.movie.json",
+   "version": 3,
+   "anchor_frame": 85316,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E10/hazard_goo_LEVEL07.movie.json",
+   "version": 3,
+   "anchor_frame": 141810,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+   "version": 3,
+   "anchor_frame": 61273,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E10/hazard_pit_LEVEL02.movie.json",
+   "version": 3,
+   "anchor_frame": 43095,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E10/hazard_pit_LEVEL05.movie.json",
+   "version": 3,
+   "anchor_frame": 86698,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E10/hazard_pit_LEVEL07.movie.json",
+   "version": 3,
+   "anchor_frame": 148831,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/E15_fmv_skip.movie.json",
+   "version": 3,
+   "anchor_frame": 4235,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL06.movie.json",
+   "version": 4,
+   "anchor_frame": 121865,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json",
+   "version": 4,
+   "anchor_frame": 28109,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A03_ceiling_contact.movie.json",
+   "version": 4,
+   "anchor_frame": 152694,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A03_ceiling_contact_v2.movie.json",
+   "version": 4,
+   "anchor_frame": 162403,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A04_kick_contact.movie.json",
+   "version": 4,
+   "anchor_frame": 30628,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A04_kick_worm_contanct.movie.json",
+   "version": 4,
+   "anchor_frame": 31738,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A06_slide_natural_end.movie.json",
+   "version": 4,
+   "anchor_frame": 15403,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A06_slide_steering.movie.json",
+   "version": 4,
+   "anchor_frame": 13701,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A06_slide_steering_natural_end.movie.json",
+   "version": 4,
+   "anchor_frame": 10454,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A07_spin.movie.json",
+   "version": 4,
+   "anchor_frame": 21620,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/A13_wrap_timeout.movie.json",
+   "version": 4,
+   "anchor_frame": 25130,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL00_TRAINING.movie.json",
+   "version": 4,
+   "anchor_frame": 130807,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.json",
+   "version": 4,
+   "anchor_frame": 138881,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL02_Tunnels.movie.json",
+   "version": 4,
+   "anchor_frame": 142226,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL03_CouncilChamber.movie.json",
+   "version": 4,
+   "anchor_frame": 149905,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json",
+   "version": 4,
+   "anchor_frame": 152778,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL05_riverbedcanyon.movie.json",
+   "version": 4,
+   "anchor_frame": 156763,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL06_BirdNest.movie.json",
+   "version": 4,
+   "anchor_frame": 171080,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL07_CityEntrance.movie.json",
+   "version": 4,
+   "anchor_frame": 174294,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL08_citysquare.movie.json",
+   "version": 4,
+   "anchor_frame": 186951,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL09_bugbar.movie.json",
+   "version": 4,
+   "anchor_frame": 194955,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL10_cloverforest.movie.json",
+   "version": 4,
+   "anchor_frame": 200555,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL11_THETREE.movie.json",
+   "version": 4,
+   "anchor_frame": 111734,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL12_battlearena.movie.json",
+   "version": 4,
+   "anchor_frame": 212681,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL13_anthillpt2.movie.json",
+   "version": 4,
+   "anchor_frame": 219941,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL14_riverbedflight.movie.json",
+   "version": 4,
+   "anchor_frame": 232552,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL15_canyonshowdown.movie.json",
+   "version": 4,
+   "anchor_frame": 20000,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/B02.movie.json",
+   "version": 4,
+   "anchor_frame": 21677,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/B03.movie.json",
+   "version": 4,
+   "anchor_frame": 67812,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/B05_tall_leaf_boost.movie.json",
+   "version": 4,
+   "anchor_frame": 164995,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/B06_invincibility_lifecycle.movie.json",
+   "version": 4,
+   "anchor_frame": 13792,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/B08_SuperJump_EOL.movie.json",
+   "version": 4,
+   "anchor_frame": 80855,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Bonus01_Counter_ResetTest.movie.json",
+   "version": 4,
+   "anchor_frame": 10757,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Bonus03_Resets.movie.json",
+   "version": 4,
+   "anchor_frame": 67172,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/C03_flik_letters_lifecycle.movie.json",
+   "version": 4,
+   "anchor_frame": 5307,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/C16_lives_gameover.movie.json",
+   "version": 4,
+   "anchor_frame": 16160,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/C16_lives_gameover_v2.movie.json",
+   "version": 4,
+   "anchor_frame": 10295,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/C17_MovieViewer.movie.json",
+   "version": 4,
+   "anchor_frame": 8461,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D02.movie.json",
+   "version": 4,
+   "anchor_frame": 266857,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D07/Thumper_spawned_mosquitto.movie.json",
+   "version": 4,
+   "anchor_frame": 49345,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D07/mosquito_aggro_after_berry.movie.json",
+   "version": 4,
+   "anchor_frame": 38657,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D07/mosquito_roaming_movie.movie.json",
+   "version": 4,
+   "anchor_frame": 35021,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D16_Thumper_Defeat.movie.json",
+   "version": 4,
+   "anchor_frame": 36543,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D17.movie.json",
+   "version": 4,
+   "anchor_frame": 142257,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json",
+   "version": 4,
+   "anchor_frame": 10609,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D17_Goldberry.movie.json",
+   "version": 4,
+   "anchor_frame": 162113,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D19.movie.json",
+   "version": 4,
+   "anchor_frame": 7910,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/D20.movie.json",
+   "version": 4,
+   "anchor_frame": 20000,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/DaddyLongLegs.movie.json",
+   "version": 4,
+   "anchor_frame": 148238,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/F11_scouts.movie.json",
+   "version": 4,
+   "anchor_frame": 7328,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/F16_Bonus01.movie.json",
+   "version": 4,
+   "anchor_frame": 9238,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/F16_Bonus02_ResetTestv2.movie.json",
+   "version": 4,
+   "anchor_frame": 24355,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/F16_Bonus02_Reset_Test.movie.json",
+   "version": 4,
+   "anchor_frame": 23981,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/F17_Bonus02.movie.json",
+   "version": 4,
+   "anchor_frame": 23963,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/F18_Bonus03.movie.json",
+   "version": 4,
+   "anchor_frame": 49315,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/Hopper_white_berry_death.movie.json",
+   "version": 4,
+   "anchor_frame": 234340,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/bird_interpreter.movie.json",
+   "version": 4,
+   "anchor_frame": 113981,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/Interpreter/temp_test_for_coverage.movie.json",
+   "version": 4,
+   "anchor_frame": 53451,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/b06_invincibility_hits.movie.json",
+   "version": 3,
+   "anchor_frame": 210229,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/b12_homing_shooter_multi_target.movie.json",
+   "version": 3,
+   "anchor_frame": 150155,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/c13_GRAIN_HARVESTER.movie.json",
+   "version": 3,
+   "anchor_frame": 171499,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/c14_telescope_full.movie.json",
+   "version": 3,
+   "anchor_frame": 33762,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/kick.movie.json",
+   "version": 3,
+   "anchor_frame": 15125,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase4/swing.movie.json",
+   "version": 3,
+   "anchor_frame": 13482,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase_Helpers/buttslide_carry_handstand.movie.json",
+   "version": 3,
+   "anchor_frame": 6819,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/Phase_Helpers/carry_handstand.movie.json",
+   "version": 3,
+   "anchor_frame": 9861,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/b06_08_LEVEL13.movie.json",
+   "version": 4,
+   "anchor_frame": 13239,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/b06_desync_test.movie.json",
+   "version": 3,
+   "anchor_frame": 7872,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/b06_desync_test_EARLY.movie.json",
+   "version": 3,
+   "anchor_frame": 7872,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/b06_desync_test_LATE.movie.json",
+   "version": 3,
+   "anchor_frame": 7872,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/b06_desync_test_tagged.movie.json",
+   "version": 3,
+   "anchor_frame": 7872,
+   "state_sha256": null
+  },
+  {
+   "movie": "movies/seed_as_enemy.movie.json",
+   "version": 3,
+   "anchor_frame": 6799,
+   "state_sha256": null
+  }
+ ],
+ "state_anchored_count": 123,
+ "movies_without_state_hash": 123,
+ "_note": "HISTORICAL: captured 2026-08-04 BEFORE the debugger-API extension, with the method surface derived by REGEX over debuggerrpc.cpp (202 methods). That approximation missed 19 methods the emulator actually dispatches. Superseded by duckstation_prechange_baseline.json, which asks debugger.capabilities directly (221). Kept because the pre-change binary identity and SAVE_STATE_VERSION=84 can no longer be re-derived."
+}

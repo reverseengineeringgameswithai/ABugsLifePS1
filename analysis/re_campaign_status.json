@@ -1,0 +1,88 @@
+{
+ "generated_by": "tools/re_campaign_status.py",
+ "schema_version": 1,
+ "resident": {
+  "records": 998,
+  "code_functions": 946,
+  "classification": {
+   "bios_thunk": 46,
+   "crt0": 1,
+   "game": 519,
+   "sdk_psyq": 380
+  },
+  "unknown": 0,
+  "unknown_dynamic": 0,
+  "unknown_graph_connected": 0,
+  "unknown_opaque": 0,
+  "unknown_with_u3_hits": 0
+ },
+ "overlay": {
+  "code_functions": 158,
+  "named": 158,
+  "unknown": 0,
+  "runtime_covered_unknown": 0,
+  "byte_matched_c": 15
+ },
+ "reconstruction": {
+  "resident_matched_functions": 913,
+  "resident_matched_bytes": 381684,
+  "resident_matched_byte_pct": 98.209,
+  "resident_asm_functions": 626,
+  "resident_c_functions": 287,
+  "resident_c_bytes": 20304,
+  "source_tree_c": {
+   "resident": 287,
+   "overlay": 15,
+   "wip": 2
+  }
+ },
+ "understanding": {
+  "resident_unknown": 0,
+  "resident_runtime_covered_unknown": 0,
+  "u3_candidates": 263,
+  "u3_candidates_hit": 82,
+  "u3_hit_still_unknown": 0
+ },
+ "formats": {
+  "level_raw_roles_total": 69,
+  "level_raw_roles_semantic_confirmed": 3,
+  "level_raw_roles_format_confirmed": 48,
+  "level_raw_roles_likely": 18,
+  "mover_vm_opcodes_confirmed": 26,
+  "mover_vm_opcodes_total": 26,
+  "all_roundtrip_files": 78,
+  "anm_roundtrip_files": 58
+ },
+ "subsystem_slices": {
+  "anm_crossfade": {
+   "status": "closed",
+   "scope": "dense ANM lane mapping and two-animation bone-transform interpolation",
+   "residual": "artistic meaning of the optional lanes 12/14/16 and ALL skin-tail rebinding"
+  },
+  "audio_xa_start": {
+   "status": "closed",
+   "scope": "packed music id through XA filter, seek, volume, and streamed-read start",
+   "residual": "sequencer linked-dead (closed by exclusion); SPU voice scheduling reconstructed (src_re/sfx_voice_manager.c); id->VAG map solved (analysis/sfx_id_vag_map.json). Remaining at understanding-depth only: the positional-voice cluster 0x80043184-0x80044350 (named, not yet decompiled to src_re)."
+  },
+  "collision_contact_scatter": {
+   "status": "closed",
+   "scope": "contact metadata table-A selectors through four decoded scatter components",
+   "residual": "gameplay meaning of each table-A row and byte-exact C register allocation for contact_alloc"
+  },
+  "fmv_str_stream_start": {
+   "status": "closed",
+   "scope": "FMV overlay CD stream startup and frame-limit completion signal",
+   "residual": "closed by identification: FMV.BIN is stock PsyQ libpress STR-player orchestration with 0 hardware-register accesses (EXP_2026-07-09_fmv_engine_bounded_close); MDEC/DMA decode runs in resident libpress, not game code."
+  }
+ },
+ "acceptance": {
+  "all_resident_candidates_classified": true,
+  "all_tracked_overlay_candidates_classified": true,
+  "game_code_c_complete": false,
+  "audio_engine_closed": true,
+  "fmv_engine_closed": true,
+  "model_animation_semantics_closed": false,
+  "collision_contact_semantics_closed": false,
+  "loose_ends_closed": true
+ }
+}

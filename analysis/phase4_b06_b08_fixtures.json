@@ -1,0 +1,119 @@
+{
+ "_comment": "Central hash pin for the fixtures the B06/B08 runtime evidence depends on. These files are gitignored by policy and therefore absent from a clean checkout; this manifest is how a clean checkout can tell whether an operator-held copy is the one the evidence came from. Regenerate/verify: tools/phase4_b06_b08_pin_fixtures.py [--write]",
+ "_missing_bindings": "start_state.sha256 is null in EVERY movie, so the format does not pin the state it was recorded against; neither the CPU execution mode nor the arm phase is recorded either. All three fail silently. This manifest pins the .sav hash itself, which is the binding the format lacks.",
+ "_oracle_status": "As of 2026-08-01 both rows HAVE a cold-boot oracle: the two Phase4/*_from_boot movies are anchored to a power-on boot (from_boot true) and their full natural lifecycles are asserted, with no pokes, by tools/phase4_b06_b08_oracle.py. The remaining save-state fixtures are retained because they carry the perturbation runs (capacity refresh, cross-power transition, harvester intersection) that a natural playthrough cannot produce on demand.",
+ "fixtures": {
+  "B06_movie.json": {
+   "armed_while_paused": null,
+   "declared_start_state": "~/Downloads/ABL/movies/B06_B08.movie.sav",
+   "format_version": 3,
+   "frames": 727,
+   "from_boot": false,
+   "movie": "movies/B06_movie.json",
+   "movie_sha256": "ae6c46c4d2ef8feb04ba6996cc16d2bd80fd4d07400e156dc4173fd33e63b94f",
+   "movie_size": 190310,
+   "purpose": "Save-state anchored. Natural invincibility grant at frame 116821.",
+   "reproducible_only_from_state": true,
+   "stage": {
+    "level": "LEVEL06",
+    "scene_id": 11
+   },
+   "start_state_sha256_in_movie": null,
+   "start_state_sha256_measured": "f180485f528e1aec6e3426d741a4803bd315d5132be2c63a61a3891b6ff0df15",
+   "start_state_size": 2093607,
+   "status": "present"
+  },
+  "B08_movie.json": {
+   "armed_while_paused": null,
+   "declared_start_state": "~/Downloads/ABL/movies/B08_movie.sav",
+   "format_version": 3,
+   "frames": 704,
+   "from_boot": false,
+   "movie": "movies/B08_movie.json",
+   "movie_sha256": "03e425270d4fb31b86b5dcaa473beb0d8d9c2098812a6159e4047a18af8532ce",
+   "movie_size": 188806,
+   "purpose": "Save-state anchored. The R0-R5 perturbation runs: capacity refresh, cross-power transition, harvester intersection.",
+   "reproducible_only_from_state": true,
+   "stage": {
+    "level": "LEVEL06",
+    "scene_id": 11
+   },
+   "start_state_sha256_in_movie": null,
+   "start_state_sha256_measured": "fb9a9770d8b53610ae05684cf484fee8ea59d759e36e822c465317880be5c848",
+   "start_state_size": 2100495,
+   "status": "present"
+  },
+  "Phase4/B08_bubble_repeated_hits_from_boot.movie.json": {
+   "armed_while_paused": null,
+   "declared_start_state": "",
+   "format_version": 3,
+   "frames": 6959,
+   "from_boot": true,
+   "movie": "movies/Phase4/B08_bubble_repeated_hits_from_boot.movie.json",
+   "movie_sha256": "9d4b5ce46fba780b273f6df7345abe6a02c03f1ddd6e6a2fcea5234493a41738",
+   "movie_size": 5200183,
+   "purpose": "B08 COLD-BOOT ORACLE, LEVEL06 (scene 11). Natural collect -> 3 absorbs -> pop -> a contact that lands, and no tick touches the slot while it is negative. Asserted by tools/phase4_b06_b08_oracle.py --row b08.",
+   "reproducible_only_from_state": false,
+   "stage": {
+    "level": "LEVEL06",
+    "scene_id": 11
+   },
+   "start_state_sha256_in_movie": null,
+   "status": "present"
+  },
+  "Phase4/b06_invincibility_hits_from_boot.movie.json": {
+   "armed_while_paused": null,
+   "declared_start_state": "",
+   "format_version": 3,
+   "frames": 6522,
+   "from_boot": true,
+   "movie": "movies/Phase4/b06_invincibility_hits_from_boot.movie.json",
+   "movie_sha256": "ab5c5e578e5b3170ea68f1a57ac7b86a013007a4e1c53823501c7a72c9bfcf75",
+   "movie_size": 4587963,
+   "purpose": "B06 COLD-BOOT ORACLE, LEVEL01 (scene 1). Natural collect -> contacts while active -> natural expiry -> a contact that lands. Asserted by tools/phase4_b06_b08_oracle.py --row b06. Recorded in a stage OTHER than the scene-11 Birdnest every earlier fixture used, so it also breaks the single-stage confinement.",
+   "reproducible_only_from_state": false,
+   "stage": {
+    "level": "LEVEL01",
+    "scene_id": 1
+   },
+   "start_state_sha256_in_movie": null,
+   "status": "present"
+  },
+  "b06_08_LEVEL13.movie.json": {
+   "armed_while_paused": true,
+   "declared_start_state": "~/Downloads/ABL/movies/b06_08_LEVEL13.movie.sav",
+   "format_version": 4,
+   "frames": 1723,
+   "from_boot": false,
+   "movie": "movies/b06_08_LEVEL13.movie.json",
+   "movie_sha256": "3cd88822447deff75b1b62c0b5fda87139267e1d14ae684d1bd227deeeebf22e",
+   "movie_size": 1296761,
+   "purpose": "BREADTH FIXTURE, operator-recorded 2026-08-01. Level 13 = scene 9 = disc dir LEVEL09, a directory neither earlier fixture used. Both powers collected NATURALLY in one run: B06 grant 400 @f13513 with a full 400-tick countdown, B08 grant -3 @f14547 with all three absorbs to the pop, then damage lands. Format v4 with armed_while_paused=true, so the emulator applies the phase correction itself -- no rephase needed.",
+   "reproducible_only_from_state": true,
+   "stage": {
+    "level": "LEVEL13",
+    "scene_id": 9
+   },
+   "start_state_sha256_in_movie": null,
+   "start_state_sha256_measured": "804e2362a1d919c6807afe97ed65d67879a551d0c729374c9061884707845d0a",
+   "start_state_size": 2011544,
+   "status": "present"
+  },
+  "b06_desync_test.movie.json": {
+   "armed_while_paused": null,
+   "declared_start_state": "~/Downloads/ABL/movies/b06_desync_test.movie.sav",
+   "format_version": 3,
+   "frames": 1252,
+   "from_boot": false,
+   "movie": "movies/b06_desync_test.movie.json",
+   "movie_sha256": "f64549237c526d0e6bc0bcea49ebc202aca65e28d44633519e4f79aa7422e588",
+   "movie_size": 867253,
+   "purpose": "The arm-phase desync fixture (see EXP_2026-08-01_savestate_movie_arm_phase_desync).",
+   "reproducible_only_from_state": true,
+   "start_state_sha256_in_movie": null,
+   "start_state_sha256_measured": "100aa9ff8a97fd105407cdbd6158a08f28fc408b6e65497db73723dbc309fc78",
+   "start_state_size": 2090095,
+   "status": "present"
+  }
+ }
+}

@@ -1,0 +1,110 @@
+schema: abl-phase4-run-locomotion/1
+description: >
+  Authoritative pristine-game contract for A01 horizontal run locomotion. It
+  binds decoded D-pad/analog direction, heading convergence, local
+  forward/lateral components, world velocity proposal, collision consumption,
+  and ordinary run-animation selection. Vertical actions and the collision
+  resolver's internal geometry law remain separately owned.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_run_locomotion.json
+  generator: tools/phase4_run_locomotion.py
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+
+decoded_input:
+  owner: resident input direction/magnitude helper 0x80047EBC..0x80048137
+  action_word:
+    address: '0x80082488'
+    type: u16
+  direction_mask: '0x00F0'
+  direction_bits:
+    up: '0x0010'
+    right: '0x0020'
+    down: '0x0040'
+    left: '0x0080'
+  analog_internal_deadzone: 6144
+  analog_magnitude_cap: 16384
+  magnitude_scale_shift: 14
+  heading_domain: '0x0000..0x0FFF'
+
+horizontal_controller:
+  owner: resident player update 0x800490B0..0x80049543
+  heading:
+    address: '0x800A6520'
+    type: u32
+    writer_region: '0x800491A4..0x800492A8'
+    default_max_turn_step: 256
+  input_heading:
+    address: '0x800A6528'
+    type: u32
+    writers: ['0x80048044', '0x80048104']
+  forward_component:
+    address: '0x800A6538'
+    type: s32
+    writer: '0x800494AC'
+    ordinary_target: 1792
+    bound: 2048
+    friction: 64
+    input_boost: 144
+    straight_input_net_increment: 80
+  lateral_component:
+    address: '0x800A653C'
+    type: s32
+    writer: '0x800494B0'
+    friction: 256
+  world_velocity:
+    x: {address: '0x800A652C', type: s32, writer: '0x80049524'}
+    z: {address: '0x800A6534', type: s32, writer: '0x80049540'}
+  caveat: >
+    The signed forward component at +0x38 is not a Euclidean speed magnitude;
+    it only approximates hypot(vx,vz) during aligned forward motion. The
+    component pair is rotated by heading to produce world X/Z velocity.
+
+collision_interface:
+  owner: movement/collision integrator 0x8003633C
+  proposal: player velocity X/Z at +0x2C/+0x34
+  resolved_position_writers:
+    x: '0x80036CE8'
+    z: '0x80036CF0'
+  semantics: >
+    Velocity is a proposal. Position often equals that proposal on open motion
+    ticks, but retained slope/wall contacts show resolver-adjusted deltas; a MOD
+    must never treat a velocity write as a guaranteed displacement.
+
+animation:
+  owner: resident actor-skinned update 0x800563D4..0x800570F7
+  ordinary_run_animation: 0
+  applicability: ordinary gameplay locomotion across Training, stages 1..13 and 15, and bonuses 1..3
+  exceptional_path: Riverbed Flight remains animation 4 and is an exact Up-vs-neutral negative control
+
+lifecycle:
+  initialization: heading and components are rebuilt in the resident player block at scene load and respawn
+  allocation_reuse: no A01-private allocation exists; one resident player block is reused
+  reset: releasing direction decays both signed local components to zero
+  pause: paused input leaves position, forward component, and animation frozen
+  death_respawn: held Up is decoded again after native same-scene respawn
+  unload_transition: resident controller code persists while world/player fields are reinitialized
+  persistence: heading and movement components are world state, not independently serialized progression
+  capacity: one player block, one u16 action word, and the existing fixed fields
+  residency: resident executable code and resident global/player state only
+
+mod_contract:
+  owner: preserve the resident input/player/integrator ownership chain and name every hook in it
+  readers: enumerate player, collision, animation, render, audio, camera, pause, and lifecycle consumers
+  writers: do not add unordered writers to decoded input, headings, local components, world velocity, or position
+  valid_domains: decoded input is u16; headings are masked to 0x0FFF; components and velocities are signed s32
+  initialization: initialize MOD-private locomotion state before the first resident player update
+  reset: clear private state on release, main-shell reset, death/reload, and every scene transition
+  retirement: retire injected input and overlay-scoped hooks before their owner unloads
+  consumers: input, player movement, collision, animation, render, audio, camera, pause, and death/respawn
+  capacity: declare all hook/cave/table expansion bounds and validate them with the hook contract
+  residency: keep resident state outside overlay-owned memory and scope overlay readers explicitly
+  unsafe_assumptions:
+    - Player +0x38 is a signed local forward component, not an unsigned horizontal-speed magnitude.
+    - Velocity is only a collision proposal; resolved position can differ on slope, floor, and wall contacts.
+    - The observed straight-run constants do not define jump, slide, swing, flight, or special-camera movement.
+    - Riverbed Flight bypasses ordinary A01 locomotion and must remain an explicit negative path.
+    - Save-state breadth supplements but does not replace the retained cold-boot input-movie control.

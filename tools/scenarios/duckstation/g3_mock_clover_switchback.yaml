@@ -1,0 +1,197 @@
+schema_version: 1
+id: g3_mock_clover_switchback
+description: Cold-boot the bounded R29 Clover Switchback LEVEL01 replacement; arm the Phase-4 solved Flik collision chain and named render/actor rows; prove original-engine Track-B ownership; and preserve native-camera review frames.
+target: {disc: build/ABL_G3_MOCK_SWITCHBACK_R29_SEMANTIC_20260811.cue, expected_serial: SCUS-94288}
+launch: {profile: repro}
+playback:
+  movie: flik_to_level01_stall.mv.movie.json
+  turbo_before_reset: true
+  reset_before_start: true
+  pause_before_start: true
+  preplay_neutral_frames: 175
+  load_start_state: false
+  require_reproducible: false
+phases:
+  - id: finish_boot_fixture
+    before:
+      - {type: rpc, id: replay_boot_01, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_02, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_03, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_04, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_05, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_06, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_07, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_08, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_09, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_10, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_11, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_12, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_13, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_14, method: emulator.advanceFrames, params: {frames: 300}}
+      - {type: rpc, id: replay_boot_15, method: emulator.advanceFrames, params: {frames: 300}}
+    trigger: {type: memory, address: 0x800A6500, width: s32, op: ne, value: 2147483647, max_frames: 1, timeout_seconds: 10}
+    assertions:
+      - {id: fixture_playback_completed, type: rpc, method: movie.status, path: playing, op: eq, expected: false}
+  - id: reach_mock_spawn
+    before:
+      - {type: rpc, id: wait_for_fixture_stall, method: emulator.advanceFrames, params: {frames: 250}}
+      # Phase-4 solved player chain.  The candidate list is sampled at the
+      # definitive 0x80036BC8 boundary, not at internal append-loop PCs.
+      - {type: exec_trace_start, id: pc_player_integrator, pc: 0x8003633C, capture: [pc, ra, s0, s1, s2, s3, s4], max_events: 4096}
+      - type: exec_trace_start
+        id: pc_candidate_boundary
+        pc: 0x80036BC8
+        capture: [pc, s0, s1, s2, s3, s4]
+        max_events: 4096
+        params:
+          capture_memory:
+            - {address: 0x800A6500, width: 4}
+            - {address: 0x800A6504, width: 4}
+            - {address: 0x800A6508, width: 4}
+            - {address: 0x80082314, width: 4}
+            - {address: 0x8009C230, width: 4}
+            - {address: 0x8009C234, width: 4}
+            - {address: 0x8009C238, width: 4}
+            - {address: 0x8009C23C, width: 4}
+            - {address: 0x8009C240, width: 4}
+            - {address: 0x8009C244, width: 4}
+            - {address: 0x8009C248, width: 4}
+            - {address: 0x8009C24C, width: 4}
+            - {address: 0x80091718, width: 4}
+            - {address: 0x8009171C, width: 4}
+            - {address: 0x80091720, width: 4}
+            - {address: 0x80091724, width: 4}
+      - {type: exec_trace_start, id: pc_swept_resolver, pc: 0x80035280, capture: [pc, s0, s2, s4], max_events: 4096}
+      # The retained capsule is frame-boundary evidence. These call/return
+      # probes cover the named missing domain: exact new-disc footprint result.
+      - {type: exec_trace_start, id: pc_point_in_poly_call, pc: 0x80035644, capture: [pc, s0, s2, s4, a0, a1, a2, a3], max_events: 8192}
+      - {type: exec_trace_start, id: pc_point_in_poly_return, pc: 0x8003564C, capture: [pc, s0, s2, s4, v0], max_events: 8192}
+      - {type: exec_trace_start, id: pc_collision_response, pc: 0x8003573C, capture: [pc, s0, s2, s4], max_events: 4096}
+      - {type: exec_trace_start, id: pc_player_x_commit, pc: 0x80036CE8, capture: [pc, s0, s1, s2, s3, s4], max_events: 4096}
+      - {type: exec_trace_start, id: pc_player_y_commit, pc: 0x80036CEC, capture: [pc, s0, s1, s2, s3, s4], max_events: 4096}
+      - {type: exec_trace_start, id: pc_player_z_commit, pc: 0x80036CF0, capture: [pc, s0, s1, s2, s3, s4], max_events: 4096}
+      # Named consumers needed for the user's Flik/terrain/actor visual check.
+      - {type: exec_trace_start, id: pc_native_gte_emitter, pc: 0x80010000, capture: [pc, ra, a0, a1, a2, a3], max_events: 8192}
+      - {type: exec_trace_start, id: pc_camera_follow, pc: 0x8004DF18, capture: [pc, ra, s0, s1], max_events: 4096}
+      - {type: exec_trace_start, id: pc_actor_update, pc: 0x8004B940, capture: [pc, ra, s0, s1], max_events: 4096}
+      - {type: exec_trace_start, id: pc_enemy_dispatch, pc: 0x8004EA8C, capture: [pc, ra, s0, s1], max_events: 4096}
+      - {type: exec_trace_start, id: pc_grain_pickup, pc: 0x80054EAC, capture: [pc, ra, s0, s1], max_events: 512}
+      - {type: exec_trace_start, id: pc_runtime_control_cave, pc: 0x800B4030, capture: [pc, ra, s0, s1], max_events: 4096}
+      # Solved Phase-4 RAM rows only; no speculative broad address sweep.
+      - {type: access_trace_start, id: mem_flik_and_safe_anchor, address: 0x800A6500, length: 136, access_type: readwrite, params: {label: flik_and_safe_anchor, max_events: 8192}}
+      - {type: access_trace_start, id: mem_collision_candidate_count, address: 0x80082314, length: 4, access_type: readwrite, params: {label: candidate_count, max_events: 4096}}
+      - {type: access_trace_start, id: mem_collision_candidate_ptrs, address: 0x8009C230, length: 256, access_type: readwrite, params: {label: candidate_ptrs, max_events: 8192}}
+      - {type: access_trace_start, id: mem_collision_candidate_sectors, address: 0x80091718, length: 256, access_type: readwrite, params: {label: candidate_sectors, max_events: 8192}}
+      - {type: access_trace_start, id: mem_camera_struct, address: 0x80095358, length: 176, access_type: readwrite, params: {label: camera_struct, max_events: 8192}}
+      - {type: access_trace_start, id: mem_actor_pool_head, address: 0x8009FD80, length: 256, access_type: readwrite, params: {label: actor_pool_head, max_events: 4096}}
+      - {type: rpc, id: dismiss_fixture_pause, method: emulator.pressButton, params: {button: Cross, frames: 4, port: 0, release_after: true}}
+      - {type: rpc, id: settle_mock_spawn, method: emulator.advanceFrames, params: {frames: 500}}
+    trigger: {type: memory, address: 0x800B4430, width: u32, op: eq, value: 0x47335031, max_frames: 60, timeout_seconds: 30}
+    assertions:
+      - {id: spawn_x, type: memory, address: 0x800A6500, width: s32, op: between, expected: [190000, 205000]}
+      - {id: spawn_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+      - {id: spawn_body_on_authored_surface, type: memory, address: 0x800A6504, width: s32, op: between, expected: [-14000, -12000]}
+      - {id: authored_spider_slot_id, type: memory, address: 0x8009FD80, width: u32, op: eq, expected: 9}
+      - {id: authored_spider_anchor_x, type: memory, address: 0x8009FDA8, width: s32, op: eq, expected: 51584}
+      - {id: authored_spider_anchor_y, type: memory, address: 0x8009FDAC, width: s32, op: eq, expected: -21440}
+      - {id: authored_spider_anchor_z, type: memory, address: 0x8009FDB0, width: s32, op: eq, expected: 398016}
+      - {id: no_grain_collected_before_walk, type: memory, address: 0x800A65A1, width: u8, op: eq, expected: 0}
+      - {id: track_b_resident_hook_installed, type: memory, address: 0x800495D0, width: u32, op: eq, expected: 0x0802068A}
+      - {id: track_a_grounded_writer_absent, type: memory, address: 0x80036D54, width: u32, op: eq, expected: 0xAEE40004}
+      - {id: track_a_renderer_hook_absent, type: memory, address: 0x80064618, width: u32, op: eq, expected: 0x3C030400}
+    after:
+      - {type: rpc, id: boot_turbo_off, method: emulator.setTurbo, params: {enabled: false}}
+  - id: traverse_mock_first_climb
+    before:
+      - {type: rpc, id: hold_up_to_first_climb, method: emulator.setControllerState, params: {port: 0, buttons: {Up: true}}}
+      - {type: rpc, id: walk_into_first_climb, method: emulator.advanceFrames, params: {frames: 176}}
+      - {type: rpc, id: release_up_on_first_climb, method: emulator.clearControllerState, params: {port: 0}}
+      - {type: rpc, id: settle_first_climb_contact, method: emulator.advanceFrames, params: {frames: 24}}
+    trigger: {type: memory, address: 0x800A6500, width: s32, op: ne, value: 197095, max_frames: 1, timeout_seconds: 10}
+    captures:
+      - {id: mock_first_climb_view, type: screenshot}
+    assertions:
+      - {id: first_climb_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+      - {id: first_climb_has_authored_floor, type: memory, address: 0x800A6548, width: s32, op: lt, expected: 100000}
+      - {id: first_climb_x_probe, type: memory, address: 0x800A6500, width: s32, op: between, expected: [-1000000, 1000000]}
+      - {id: first_climb_z_probe, type: memory, address: 0x800A6508, width: s32, op: between, expected: [-1000000, 1000000]}
+  - id: collect_mock_route_grain
+    before:
+      # Drive the second leg while every solved row remains armed.  P58 forbids
+      # presentation claims from RAM teleports or a movie-stall camera state.
+      - {type: rpc, id: hold_up_left_into_switchback, method: emulator.setControllerState, params: {port: 0, buttons: {Up: true, Left: true}}}
+      - {type: rpc, id: drive_second_switchback_leg, method: emulator.advanceFrames, params: {frames: 144}}
+    trigger: {type: memory, address: 0x800A6582, width: u16, op: eq, value: 0x0101, max_frames: 60, timeout_seconds: 30}
+    captures:
+      - {id: mock_route_objects_view, type: screenshot}
+      - {id: mock_floor_probe, type: rpc, method: gpu.pickObject, params: {x: 160, y: 140, all_contributors: true}}
+    assertions:
+      - {id: native_grain_was_collected, type: memory, address: 0x800A65A1, width: u8, op: gt, expected: 0}
+      - {id: pickup_walk_remains_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+      - {id: pickup_walk_has_authored_floor, type: memory, address: 0x800A6548, width: s32, op: lt, expected: 100000}
+      - {id: pickup_walk_reaches_mock_elevation, type: memory, address: 0x800A6548, width: s32, op: between, expected: [-29000, -14000]}
+      - {id: flik_tracks_mock_elevation, type: memory, address: 0x800A6504, width: s32, op: between, expected: [-29000, -14000]}
+      - {id: pickup_walk_stays_local_x, type: memory, address: 0x800A6500, width: s32, op: between, expected: [-100000, 250000]}
+      - {id: pickup_walk_stays_local_z, type: memory, address: 0x800A6508, width: s32, op: between, expected: [100000, 550000]}
+      - {id: native_gte_emitter_executed, type: exec_hit_count, watch: pc_native_gte_emitter, op: gt, expected: 0}
+      - {id: native_collision_response_executed, type: exec_hit_count, watch: pc_collision_response, op: gt, expected: 0}
+      - {id: native_camera_follow_executed, type: exec_hit_count, watch: pc_camera_follow, op: gt, expected: 0}
+      - {id: actor_pool_rows_observed, type: access_hit_count, watch: mem_actor_pool_head, op: gt, expected: 0}
+      - {id: flik_rows_observed, type: access_hit_count, watch: mem_flik_and_safe_anchor, op: gt, expected: 0}
+      - {id: camera_rows_observed, type: access_hit_count, watch: mem_camera_struct, op: gt, expected: 0}
+    after:
+      - {type: rpc, id: release_second_switchback_leg, method: emulator.clearControllerState, params: {port: 0}}
+  - id: exercise_mock_marker_control
+    before:
+      - {type: rpc, id: place_marker_x, method: debugger.writeU32, params: {address: 0x800A6500, value: 0xFFFEC780}}
+      - {type: rpc, id: place_marker_previous_x, method: debugger.writeU32, params: {address: 0x800A6510, value: 0xFFFEC780}}
+      - {type: rpc, id: place_marker_z, method: debugger.writeU32, params: {address: 0x800A6508, value: 0x0004C900}}
+      - {type: rpc, id: place_marker_previous_z, method: debugger.writeU32, params: {address: 0x800A6518, value: 0x0004C900}}
+      - {type: rpc, id: place_marker_y, method: debugger.writeU32, params: {address: 0x800A6504, value: 0xFFFFA811}}
+      - {type: rpc, id: place_marker_previous_y, method: debugger.writeU32, params: {address: 0x800A6514, value: 0xFFFFA811}}
+      - {type: rpc, id: run_marker_hook_and_settle_camera, method: emulator.advanceFrames, params: {frames: 30}}
+    trigger: {type: memory, address: 0x800B4434, width: u32, op: eq, value: 1, max_frames: 2, timeout_seconds: 10}
+    assertions:
+      - {id: mock_marker_flag_set, type: memory, address: 0x800B4434, width: u32, op: eq, expected: 1}
+      - {id: mock_marker_keeps_runtime_magic, type: memory, address: 0x800B4430, width: u32, op: eq, expected: 0x47335031}
+      - {id: mock_marker_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+      - {id: mock_marker_body_on_authored_surface, type: memory, address: 0x800A6504, width: s32, op: between, expected: [-23200, -21800]}
+  - id: inspect_mock_goal_approach
+    before:
+      - {type: rpc, id: place_goal_approach_x, method: debugger.writeU32, params: {address: 0x800A6500, value: 0xFFFFD760}}
+      - {type: rpc, id: place_goal_approach_previous_x, method: debugger.writeU32, params: {address: 0x800A6510, value: 0xFFFFD760}}
+      - {type: rpc, id: place_goal_approach_z, method: debugger.writeU32, params: {address: 0x800A6508, value: 0x00007D00}}
+      - {type: rpc, id: place_goal_approach_previous_z, method: debugger.writeU32, params: {address: 0x800A6518, value: 0x00007D00}}
+      - {type: rpc, id: place_goal_approach_y, method: debugger.writeU32, params: {address: 0x800A6504, value: 0xFFFFA932}}
+      - {type: rpc, id: place_goal_approach_previous_y, method: debugger.writeU32, params: {address: 0x800A6514, value: 0xFFFFA932}}
+      - {type: rpc, id: settle_goal_approach_camera, method: emulator.advanceFrames, params: {frames: 30}}
+    trigger: {type: memory, address: 0x800A6500, width: s32, op: ne, value: 2147483647, max_frames: 1, timeout_seconds: 10}
+    assertions:
+      - {id: mock_goal_approach_grounded, type: memory, address: 0x800A6582, width: u16, op: eq, expected: 0x0101}
+      - {id: mock_goal_approach_x, type: memory, address: 0x800A6500, width: s32, op: between, expected: [-15000, -5000]}
+      - {id: mock_goal_approach_body_on_authored_surface, type: memory, address: 0x800A6504, width: s32, op: between, expected: [-22900, -21600]}
+      - {id: mock_goal_not_triggered_early, type: memory, address: 0x800B442C, width: u32, op: eq, expected: 0}
+      - {id: mock_goal_approach_has_no_transition, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+  - id: exercise_mock_goal_control
+    before:
+      - {type: access_trace_start, id: mem_goal_control, address: 0x800B442C, length: 4, access_type: readwrite, params: {label: goal_control, max_events: 64}}
+      - {type: rpc, id: place_goal_x, method: debugger.writeU32, params: {address: 0x800A6500, value: 0xFFFF6A00}}
+      - {type: rpc, id: place_goal_previous_x, method: debugger.writeU32, params: {address: 0x800A6510, value: 0xFFFF6A00}}
+      - {type: rpc, id: place_goal_z, method: debugger.writeU32, params: {address: 0x800A6508, value: 0x00003E80}}
+      - {type: rpc, id: place_goal_previous_z, method: debugger.writeU32, params: {address: 0x800A6518, value: 0x00003E80}}
+      - {type: rpc, id: place_goal_y, method: debugger.writeU32, params: {address: 0x800A6504, value: 0xFFFFA6D6}}
+      - {type: rpc, id: place_goal_previous_y, method: debugger.writeU32, params: {address: 0x800A6514, value: 0xFFFFA6D6}}
+      # Phase-4 established that the 0x800495D0 player-update site is
+      # movement-gated. Supply real input so this tests the resident hook on a
+      # genuine player tick instead of waiting motionless at the goal.
+      - {type: rpc, id: hold_up_for_goal_tick, method: emulator.setControllerState, params: {port: 0, buttons: {Up: true}}}
+      - {type: rpc, id: run_goal_hook, method: emulator.advanceFrames, params: {frames: 8}}
+      - {type: rpc, id: release_up_after_goal_tick, method: emulator.clearControllerState, params: {port: 0}}
+    trigger: {type: memory, address: 0x800B442C, width: u32, op: eq, value: 1, max_frames: 2, timeout_seconds: 10}
+    assertions:
+      - {id: mock_goal_flag_set, type: memory, address: 0x800B442C, width: u32, op: eq, expected: 1}
+      - {id: mock_goal_x, type: memory, address: 0x800A6500, width: s32, op: between, expected: [-63000, -13800]}
+      - {id: mock_goal_z, type: memory, address: 0x800A6508, width: s32, op: between, expected: [-9000, 41000]}
+      - {id: mock_goal_control_row_observed, type: access_hit_count, watch: mem_goal_control, op: gt, expected: 0}
+      - {id: mock_goal_requests_level_transition, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 1}
+      - {id: mock_goal_sets_fade, type: memory, address: 0x80082470, width: u16, op: between, expected: [1, 23]}

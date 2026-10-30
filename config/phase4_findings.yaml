@@ -1,0 +1,1010 @@
+schema: abl-phase4-findings/1
+description: >
+  Findings are added only after a Phase-4 campaign produces new evidence. Each
+  entry must satisfy all eight reusable-finding requirements; a finding alone
+  cannot satisfy campaign coverage without its independently audited campaign
+  or reviewed-absence record.
+findings:
+  - id: pause_shell_controller
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS and the non-pristine small_pause_issue save were not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Entry, gameplay state and pause render/menu owners are resident; current gameplay pools and overlay consumers freeze through the resident boundary.
+      assets: Pause-menu imagery and transient screenshots are corroboration only; no copyrighted capture, save, movie, disc, BIOS or asset bytes are retained.
+      trigger: Enter and resume with Start from nineteen strict-pristine gameplay anchors; hold Up during active/paused/resumed controls; then exercise default No and selected Yes exit confirmation.
+      frame_or_cycle: Every anchor frame/cycle, the 60-frame ownership trace, SPU snapshots, exit writer events and 2400-frame frontend settle are retained in analysis/phase4_pause.json.
+      observation: Gameplay semantic fields and actor/contact/plant/camera pools freeze while scene render, ordering-table, GPU DMA and presentation continue; sustain voices release during pause and restart after resume.
+      inference: A18 is a resident shell that gates gameplay/HUD update owners while continuing presentation and explicitly handing audio voices and confirmed level exit to their downstream owners.
+      causal_confirmation: Start-only entry/resume changes the u16 flag in all nineteen contexts; exact access events attribute the Yes branch to pause=0, transition=5 and fade=23 writers before the stable frontend scene-0 framebuffer.
+      fixtures: [level02.sav, level_14.sav, phase3_pristine_training_gameplay_i5.sav, movies/Bonus_Level_03.movie.sav]
+    machine:
+      - config/phase4_pause.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_pause.json
+      - tools/scenarios/duckstation/pristine_pause_exit.yaml
+    evidence:
+      - {artifact: analysis/phase4_pause.json, sha256: 913ea4b05d0384951c6588df3c909ebfb1cb4d1e1082c5a0a83ec96aee3ed1f0, json_path: live.breadth.summary.anchors_compared, op: eq, expected: 19}
+      - {artifact: analysis/phase4_pause.json, sha256: 913ea4b05d0384951c6588df3c909ebfb1cb4d1e1082c5a0a83ec96aee3ed1f0, json_path: live.ownership.summary.paused_player_fields_frozen, op: eq, expected: true}
+      - {artifact: analysis/phase4_pause.json, sha256: 913ea4b05d0384951c6588df3c909ebfb1cb4d1e1082c5a0a83ec96aee3ed1f0, json_path: live.ownership.execution_trace.hit_counts.scene_render_driver, op: eq, expected: 20}
+      - {artifact: analysis/phase4_pause.json, sha256: 913ea4b05d0384951c6588df3c909ebfb1cb4d1e1082c5a0a83ec96aee3ed1f0, json_path: live.audio.summary.paused_sustain, op: eq, expected: 0}
+      - {artifact: analysis/phase4_pause.json, sha256: 913ea4b05d0384951c6588df3c909ebfb1cb4d1e1082c5a0a83ec96aee3ed1f0, json_path: live.exit.summary.positive_fade_write_low_half, op: eq, expected: 23}
+      - {artifact: analysis/phase4_pause.json, sha256: 913ea4b05d0384951c6588df3c909ebfb1cb4d1e1082c5a0a83ec96aee3ed1f0, json_path: live.exit.summary.frontend_scene, op: eq, expected: 0}
+    guard: tests/test_phase4_pause.py::test_retained_pause_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_pause_shell.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-18_phase4_pause_shell.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook, cave, state or intended behavior.
+    mod_contract:
+      owner: Preserve decoded-input, gameplay state-machine, pause render/menu, transition and audio ordering; name every hook explicitly.
+      readers: Enumerate input, pause, gameplay pools, camera, HUD, renderer, GPU, SPU, transition, frontend and overlay consumers.
+      writers: Do not add unordered writes to pause, menu selection, transition, fade, gameplay pools, camera or SPU voice state.
+      valid_domains: Pause is u16 0/1; decoded actions are u16; transition 5 is confirmed level exit; fade is written as u16 23.
+      initialization: Initialize private pause/menu state before its first reader and never infer pause ownership from a static framebuffer.
+      reset: Clear private pause ownership on resume, confirmed exit, death/respawn/reload, transition, frontend takeover and MOD unload.
+      retirement: Retire injected input and private menu/audio state exactly once before the scene, overlay, renderer or audio owner unloads.
+      consumers: Input, player, actors, contacts, plants, camera, HUD, renderer, GPU, SPU, stages, bonuses, bosses, transition, frontend and overlays.
+      capacity: Declare all hooks, caves, menu/table bounds and preserve the native flag domain and fixed pool capacities.
+      residency: Pause code/flag are resident; gameplay pools and overlays are scene-local; persistent MOD state must not use overlay memory.
+      unsafe_assumptions: Pause does not freeze emulator time, rendering or every SPU register; changing paused frames do not imply gameplay motion; default confirmation is No; exit reaches frontend rather than respawn; E12/E13/E14/E16 remain independent.
+    confidence: confirmed
+    residuals: E12 audio internals, E13 HUD/results, E14 persistence and E16 loading/overlay internals remain independently registered; their pause-facing boundaries are directly captured and do not intersect completed A18 behavior.
+    supersedes:
+      - The partial A18 claim that freeze ownership, audio/render behavior, resume and Exit Level were unresolved.
+      - The non-pristine small_pause_issue filename lead as an original-game authority; it is no longer consumed.
+
+  - id: thud_reward_volley_frequency
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; the centrally pinned Thud movie/state pair is pristine-classified and ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20; resident action-20 dispatch/grain semantics remain independently hash-bound.
+      overlay: Save-owned 0x800B3ED4..0x800B4004 is exact SHA-256 10992dee6815d74e6b89109980f16d6c60f0230d94f52f0730b7e217d30badba and matches neither staged LEVEL08 candidate; no bare Region-A identity is generalized.
+      assets: The external movie/state pair establishes the trigger and state anchor only; no copyrighted movie, save, disc, capture, model, texture, sound or other asset payload is retained.
+      trigger: Replay the full existing Thud recording through nine settled passive targets, then replay target 970 twice and change only derived countdown 0x800B4CB4 from 9 to 6 before the next native iteration.
+      frame_or_cycle: All nine cumulative coverage pairs are cycle-neutral. Matched branches share a full-RAM/register/cycle/PC/SP origin and end at the same emulator/movie frame, PC and SP; the action-9 path uses exactly one fewer CPU cycle.
+      observation: >-
+        Seven natural reset suffixes execute 70 allocator calls: 63 general
+        paths, seven equality-to-five paths and 70 sound calls. Fourteen
+        action-20 tails/grain stores and four action-9 handler/health stores
+        execute; grain ends at 14 and neither action 9 nor 20 remains active.
+        The first action-9 boundary raises true health 2 to 3 while slot 47 TTL
+        changes 62 to 1.
+      inference: Each recorded volley emits nine action-20 grain contacts and one action-9 health-leaf contact; four leaves are naturally collected in this replay and each increments true health. The action meanings come from hash-pinned resident dispatch/source evidence, not this save-owned address alone.
+      causal_confirmation: At the equal origin, the one-byte-effective countdown 9-to-6 mutation makes the next decrement equal five and changes slot 17 from action/TTL/state 20/200/24 to 9/200/-42.
+      fixtures: [thud_boss_movie.movie.json, thud_boss_movie.movie.sav]
+    machine:
+      - config/phase4_thud.yaml
+      - config/phase4_contact_pool.yaml
+      - analysis/phase4_thud_volley.json
+      - tools/scenarios/duckstation/pristine_thud_reward_variant_control.yaml
+      - tools/scenarios/duckstation/pristine_thud_action9_natural_pickup.yaml
+    evidence:
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: matched_variant_control.runtime_identity.sha256, op: eq, expected: 10992dee6815d74e6b89109980f16d6c60f0230d94f52f0730b7e217d30badba}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: settled_boundaries.8.cumulative_counts.0x800b3ff0, op: eq, expected: 70}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: settled_boundaries.8.cumulative_counts.0x800b3f34, op: eq, expected: 7}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: settled_boundaries.8.cumulative_counts.0x800b3f7c, op: eq, expected: 63}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: settled_boundaries.8.cumulative_counts.0x80054f9c, op: eq, expected: 14}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: settled_boundaries.8.cumulative_counts.0x80058864, op: eq, expected: 4}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: first_natural_action9_pickup.0.snapshot.health, op: eq, expected: 2}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: first_natural_action9_pickup.1.snapshot.health, op: eq, expected: 3}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: static_action9_handler.sha256, op: eq, expected: e89382b9e86e29907d3cee300e6c7b706884bd20f352f2ff217c06e6f799f849}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: matched_variant_control.control_after.slot17.action_id, op: eq, expected: 20}
+      - {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d, json_path: matched_variant_control.mutation_after.slot17.action_id, op: eq, expected: 9}
+    guard: tests/test_phase4_thud_volley.py::test_countdown_control_causally_selects_action9_variant
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_thud_natural_defeat.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-17_phase4_thud_reward_volley.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook, cave, state or intended behavior.
+    mod_contract:
+      owner: Preserve save-qualified Thud countdown/volley ownership, resident contact allocation/dispatch ownership and exact lifecycle ordering; explicitly name every hook.
+      readers: Enumerate countdown, counter, contact action/TTL/state/class, allocator, action-9/action-20 dispatch, grain/health, rendering, audio, objective, retry and transition consumers.
+      writers: Do not add unordered writes to countdown, contact records, grain, health, sound calls, boss reset, retirement or scene-transition state.
+      valid_domains: Countdown/counter are observed u32; contact action/TTL/state are typed by the fixed record schema; pool slots are 0..63 and grain is u8.
+      initialization: Verify pristine media and initialize private volley/contact state before save-qualified or resident readers execute; never infer identity from stale pool bytes.
+      reset: Clear private volley ownership on boss reset/retry, player death/respawn, scene reload, overlay takeover and every scene transition.
+      retirement: Release every injected contact exactly once before its pool slot, Thud overlay, boss, scene, HUD, renderer or audio owner unloads.
+      consumers: Contact pool, player health/grain, rendering, effects, audio, boss phase/objective, retry, persistence, stages and overlays.
+      capacity: Preserve the fixed 64-record pool and declare per-volley/per-emitter budgets without relying on native eviction or the observed ten-item loop.
+      residency: The volley source is exact save-qualified Thud runtime; allocator/dispatch/grain paths are resident; contacts are transient pool state.
+      unsafe_assumptions: Seven-by-ten and four-of-seven natural collection are not universal; one-health increments do not establish the full health/drop domain; equal frame with a -1-cycle branch delta is not cycle-neutral; Region-A addresses require exact media/save identity.
+    confidence: confirmed
+    residuals: Universal action-9 collection/drop policy, health-domain breadth, other attack sources, complete phase/lifecycle, named visuals/audio, objectives, retry and persistence remain open.
+    supersedes:
+      - The open claim that the recorded Thud fight's reward-contact frequency was unknown.
+      - The open claim that no second countdown-selected reward variant was causally bound.
+      - The open claim that this replay did not naturally collect an action-9 health leaf.
+
+  - id: thud_action20_launch_sound
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; the centrally pinned Thud movie/state pair is pristine-classified and ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20; resident play_sound 0x8005044C..0x800507F8 SHA-256 ffd93c418662e743429c966f4080065688227dcee6b17aab0ba4b21d383331b1.
+      overlay: The exact 0x800B3FFC caller is qualified by the pinned save-owned Thud runtime image; play_sound is hash-pinned resident pristine code and no bare Region-A identity is generalized.
+      assets: The external operator movie/state pair establishes the trigger and state anchor only; no copyrighted movie, save, disc, capture, sound, waveform, SPU RAM or other asset payload is retained.
+      trigger: Replay the natural Thud recording from target 970 through target 980 with SPU tracing re-armed after state load, then reload the exact origin, replace only the 0x800B3FFC jal with a NOP, invalidate that code page and repeat.
+      frame_or_cycle: Both branches begin at the same full-RAM/register/cycle/PC/SP origin and end at emulator frame 327724 / movie index 980 with equal frame/PC/SP and a measured one-cycle NOP-path delta; source attribution uses a separate ten-frame interpreter window.
+      observation: The save-owned caller invokes play_sound once with a0=-14 and a1=0x8009FD84. The natural bounded SPU page has 13 events, including early 0x00009E10 key-ons at frames 327715/327716/327718/327720; the NOP page has seven events and no early key-on.
+      inference: Thud's bound action-20 launch makes one actor-positioned negative cue request through resident play_sound and causes the measured emulated SPU key-on sequence; the cue is not a positive-id sfx_dispatch event in the attribution window.
+      causal_confirmation: The mutation changes only the four nonzero bytes of the 0x0C014113 jal, acknowledges code invalidation, preserves the complete slot-17 record and gameplay endpoint, and removes six bounded SPU events including all four early 0x00009E10 key-ons.
+      fixtures: [thud_boss_movie.movie.json, thud_boss_movie.movie.sav]
+    machine:
+      - config/phase4_thud.yaml
+      - analysis/phase4_thud_defeat.json
+      - tools/scenarios/duckstation/pristine_thud_action20_sound_call_control.yaml
+    evidence:
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: static_census.pristine_executable.resident_slices.play_sound.sha256, op: eq, expected: ffd93c418662e743429c966f4080065688227dcee6b17aab0ba4b21d383331b1}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_sound_attribution.caller.instruction_pc, op: eq, expected: '0x800b3ffc'}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_sound_attribution.request.signed_cue, op: eq, expected: -14}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_sound_control.event_comparison.natural_total, op: eq, expected: 13}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_sound_control.event_comparison.call_nop_total, op: eq, expected: 7}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_sound_control.event_comparison.natural_early_key_ons.0.start_address, op: eq, expected: '0x00009e10'}
+    guard: tests/test_phase4_thud_defeat.py::test_action_20_launch_sound_request_and_spu_key_ons_are_causal
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_thud_natural_defeat.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_thud_natural_defeat.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook, cave, state or intended behavior.
+    mod_contract:
+      owner: Preserve the save-qualified Thud launch caller, resident play_sound interface and SPU voice lifecycle; explicitly name every hook and cue replacement.
+      readers: Enumerate cue id/sign domain, context pointer, play_sound tables, voice allocator, SPU registers/RAM, mixing, host audio, boss phase, retry and transition consumers.
+      writers: Do not add unordered writes to cue tables, voice state, SPU key masks, sample addresses, action-20 launch state or scene/overlay teardown paths.
+      valid_domains: The observed cue is signed -14 at the caller but transported as u32 0xFFFFFFF2; SPU sample addresses are emulated 32-bit byte addresses and voice ids are 0..23.
+      initialization: Verify pristine media and initialize any private cue/sample/voice state before the save-qualified caller or resident audio path reads it.
+      reset: Clear private audio ownership on voice completion/key-off, boss reset/retry, death/respawn, scene reload, overlay takeover and every scene transition.
+      retirement: Release each injected cue, voice and sample owner exactly once before its Thud overlay, SPU bank, scene or host-audio owner unloads.
+      consumers: Thud attack policy, play_sound, SFX/music tables, SPU voices/RAM, mixer, host audio, rendering, objectives, retry, persistence, stages and overlays.
+      capacity: Preserve 24 SPU voices and bounded SPU RAM/event capacity; declare voice stealing, sample residency and per-emitter budgets for every addition.
+      residency: The caller is save-qualified Thud runtime code; play_sound is resident; the measured SPU events and voices are transient runtime state.
+      unsafe_assumptions: The sample start address is not a named asset or waveform; SPU completed is not host drain; one launch window is not general E12 coverage; equal gameplay state does not make the one-cycle control timing neutral.
+    confidence: confirmed
+    residuals: Named sound-asset/waveform identity, host-buffer drain, natural-hit frequency, other boss attacks, general E12 audio policy, complete arena/phase policy, objectives, retry and persistence remain independent open boundaries.
+    supersedes:
+      - The open claim that no sound request or SPU key-on sequence was assigned to the bound Thud action-20 launch.
+      - Any inference that the shared background/completion SPU events alone establish the launch cue.
+
+  - id: thud_action20_textured_billboard
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; the centrally pinned Thud movie/state pair is pristine-classified and ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20; resident renderer 0x80014844..0x80014AD4 SHA-256 7fa7b409bac944db9fb8a779fe26d9965930b9ca986002f8e849875ff2e36a0e.
+      overlay: The source countdown and action-20 allocation are save-qualified Thud-overlay behavior; the contact-record renderer and picked packet writer are hash-pinned resident pristine code, never a bare Region-A identity.
+      assets: The external operator movie/state pair establishes the trigger and state anchor only; no copyrighted movie, save, disc, framebuffer, PNG, capture, texture, model, sound or other asset payload is retained.
+      trigger: Replay the natural Thud recording from target 970 through target 980, then reload the exact origin, set only derived countdown 0x800B4CB4 from 9 to zero to suppress the action-20 source allocation, and compare the equal-frame/equal-cycle framebuffer in memory.
+      frame_or_cycle: Both branches begin with full RAM/register/cycle equality and end at emulator frame 327724 / movie index 980 with equal cycle and SP; expected control-flow divergence leaves different PCs. Renderer attribution separately covers frames 327716 and 327722 in interpreter mode.
+      observation: Suppression removes exactly 593 pixels in one 28x35 box. The natural object pick at native coordinate 295,65 selects a 4bpp textured quad with exact DMA source 0x001CF3D4, while no image bytes are retained.
+      inference: The Thud-owned action-20 contact object has one measured presentation through the resident contact-record billboard renderer; texture/model asset identity and other visual variants remain unassigned, while launch sound is owned by a separate finding.
+      causal_confirmation: The one-byte-effective u32 countdown control removes the visual region at an equal frame/cycle. Twenty-two exact renderer reads bind slot 17 active/flags/XYZ/size/action/subtype/mode/command-color fields, and a complete 16-write packet window binds the picked DMA packet to resident writer PCs 0x80014A30..0x80014A6C.
+      fixtures: [thud_boss_movie.movie.json, thud_boss_movie.movie.sav]
+    machine:
+      - config/phase4_thud.yaml
+      - config/phase4_contact_pool.yaml
+      - config/record_types.yaml
+      - analysis/phase4_thud_defeat.json
+      - tools/scenarios/duckstation/pristine_thud_action20_source_suppression.yaml
+    evidence:
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: static_census.pristine_executable.resident_slices.contact_record_billboard_render.sha256, op: eq, expected: 7fa7b409bac944db9fb8a779fe26d9965930b9ca986002f8e849875ff2e36a0e}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_visual_presentation_control.frame_diff.pixelCount, op: eq, expected: 593}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_visual_presentation_control.frame_diff.boundingBoxes.0, op: eq, expected: {x: 449, y: 159, width: 28, height: 35}}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_visual_presentation_control.natural_object_pick.source.dmaSource, op: eq, expected: '0x001cf3d4'}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_renderer_attribution.access.total, op: eq, expected: 118}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_renderer_attribution.picked_packet.write_total, op: eq, expected: 16}
+    guard: tests/test_phase4_thud_defeat.py::test_action_20_textured_billboard_is_causally_isolated_and_attributed
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_thud_natural_defeat.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_thud_natural_defeat.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook, cave, state or intended behavior.
+    mod_contract:
+      owner: Preserve save-qualified Thud allocation order, fixed contact-pool ownership, resident renderer packet order and lifecycle; explicitly name every hook.
+      readers: Enumerate action, active gate, flags, position, dimensions, subtype, mode, command/color word, computed ordering depth/table link, primitive buffer, texture/CLUT, GPU, camera, audio and lifecycle consumers.
+      writers: Do not add unordered writes to contact fields, primitive-buffer/OT links, renderer state, texture/CLUT state, GPU submission or retirement fields.
+      valid_domains: Pool slots are 0..63; renderer action and dimensions are u16/s16 as declared by the contact record; screen/UV coordinates and GP0 packet fields must remain in their measured hardware domains.
+      initialization: Verify pristine media and initialize private contact/render state before the renderer reads it; never infer ownership from stale pool or primitive-buffer bytes.
+      reset: Clear private ownership and renderer references on contact retirement, boss reset/retry, death/respawn, scene reload, overlay takeover and every scene transition.
+      retirement: Release each injected contact, primitive and OT link exactly once before its pool slot, primitive buffer, Thud overlay, scene or GPU owner unloads.
+      consumers: Contact pool, renderer, primitive/ordering-table buffers, texture/CLUT, GPU, camera, effects, audio, boss phase, objectives, retry, persistence, stages and overlays.
+      capacity: Preserve the fixed 64-record pool and bounded primitive/OT capacity; declare per-emitter budgets and validate all added records, packets, hooks and caves.
+      residency: The renderer is resident; the source allocation is save-qualified Thud-overlay behavior; contact and primitive records are transient runtime state.
+      unsafe_assumptions: The measured billboard is not a named texture/model asset, sound, damage, natural-hit-frequency or completion claim; GP0 indices are session-relative; differing PCs at an equal visual frame are expected control-flow divergence; stale slot reuse is not action-20 identity.
+    confidence: confirmed
+    residuals: Texture/model asset identity, visual variants, natural-hit frequency, other boss attacks, complete arena/phase policy, objectives, retry and persistence remain independent open Thud campaign boundaries; general audio breadth remains E12-owned.
+    supersedes:
+      - The open claim that the bound Thud action-20 object's visual presentation was wholly unknown.
+      - Any inference that a transient screenshot alone assigned the action-20 object to a renderer or GPU packet source.
+
+  - id: thud_action20_grain_effect
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; the centrally pinned Thud movie/state pair is pristine-classified and ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: The action-20 source allocation is owned by the save-qualified Thud overlay, while its dispatch, player-proximity handler and grain/state/active writers are hash-pinned resident pristine code; no bare Region-A meaning is generalized.
+      assets: The external operator movie/state pair establishes the trigger and state anchor only; no copyrighted recording, save, disc, capture, model, sound or other asset payload is retained.
+      trigger: Replay the natural Thud recording through the post-restore action-20 launch and retirement, then reload the exact target-972 branch and change only slot-17 signed radius_add from 100 to 6000 before advancing one frame.
+      frame_or_cycle: Natural boundaries at movie targets 972, 973, 1021 and 1023 plus a matched target-972 branch origin, RAM/register hashes, and an equal-frame/equal-cycle endpoint at PC 0x80010508 are retained in analysis/phase4_thud_defeat.json.
+      observation: Natural radius 100 leaves grain 0 while action 20 counts 200->199->175->0 with state 24; radius 6000 makes the same record increment grain 0->1, set active 1 and state 16 without changing player health.
+      inference: Thud's bound action-20 contact object uses the resident contact dispatch and ordinary player-proximity grain path; natural trajectory misses in this one replay and retires without collection.
+      causal_confirmation: A two-byte one-field radius mutation flips only the computed proximity predicate, executes dispatch 0x800589B8 and handler 0x80054EAC once, and attributes the grain/state/active stores to 0x80054F9C/0x800589E0/0x800589E4 before native bookkeeping returns to 0x80058A04.
+      fixtures: [thud_boss_movie.movie.json, thud_boss_movie.movie.sav]
+    machine:
+      - config/phase4_thud.yaml
+      - config/phase4_contact_pool.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/phase4_thud_defeat.json
+      - tools/scenarios/duckstation/pristine_thud_action20_grain_control.yaml
+    evidence:
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: static_census.pristine_executable.resident_slices.action20_dispatch_and_common_tail.sha256, op: eq, expected: 3801270967aa9a0088252f050c8e5cf1c089ea64a4861b8a68e81f635311e600}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_effect_boundaries.1023.snapshot.thud_attack_contact.lifetime_ttl, op: eq, expected: 0}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_effect_boundaries.1023.snapshot.phase_reset.grain, op: eq, expected: 0}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_effect_control.observed_outcomes.radius_enlarged_after, op: eq, expected: [1, 4, 20, 1, 6000, 16]}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_effect_attribution.decisive_writers.grain_increment.instruction_pc, op: eq, expected: '0x80054f9c'}
+      - {artifact: analysis/phase4_thud_defeat.json, sha256: 74a2651cce32d860118adbc83f58ebaca7c1efa252ee205dbdce6ceece868338, json_path: action20_effect_attribution.access.total, op: eq, expected: 10}
+    guard: tests/test_phase4_thud_defeat.py::test_action_20_natural_miss_and_controlled_grain_effect_are_causal
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_thud_natural_defeat.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_thud_natural_defeat.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook, cave, state or intended behavior.
+    mod_contract:
+      owner: Preserve the save-qualified Thud source/allocator, resident contact dispatch, grain handler, bookkeeping and lifecycle order; explicitly name every hook.
+      readers: Enumerate action, active gate, radius, state, flags, contact/player positions, grain, health, HUD, audio, rendering, boss phase, objective, retry and transition consumers.
+      writers: Do not add unordered writes to contact action/active/radius/state/flags, grain, player health, boss phase, bookkeeping or lifecycle clears.
+      valid_domains: Contact action, active gate, radius_add and state are signed s16; grain is u8; pool slots are 0..63; proximity arithmetic must stay in the measured signed-square domain.
+      initialization: Verify pristine media and initialize any private contact/effect state before the resident walker or action-20 dispatch reads it; never infer ownership from stale pool bytes.
+      reset: Clear private ownership on contact retirement, boss reset/retry, death/respawn, scene reload, overlay takeover and every scene transition.
+      retirement: Release each injected contact/effect owner exactly once before its pool slot, Thud overlay, boss, scene, HUD or audio owner unloads.
+      consumers: Contact pool, player proximity, grain/HUD, rendering, effects, audio, boss phase, objectives, retry, persistence, stages and overlays.
+      capacity: Preserve the fixed 64-record pool and declare per-emitter budgets, private records, hooks and caves without relying on native eviction.
+      residency: Dispatch, proximity handler, grain store and common tail are resident; the source allocation is save-qualified Thud-overlay behavior and the record itself is transient pool state.
+      unsafe_assumptions: This grain finding is not the independently bound visual/sound, damage, natural-hit-frequency or completion claim; one natural miss is not universal; radius is not universally unsigned; a save-owned Region-A caller is not a staged-overlay identity; record residue is not object identity.
+    confidence: confirmed
+    residuals: Natural-hit frequency, other boss attacks, complete arena/phase policy, objectives, retry and persistence remain independent open Thud campaign boundaries and are not implied by this grain-effect finding; visual and launch-sound bindings live in separate findings.
+    supersedes:
+      - The open claim that the bound Thud action-20 object's downstream effect was wholly unknown.
+      - Any inference that the natural recording's grain-zero outcome proves action 20 has no player-contact effect.
+
+  - id: native_grain_gate_contract
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; every consumed movie/state is centrally pinned and ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: The live Tunnels image is owned by a centrally pinned pristine state and retained as a bounded hash/word authority; the City and MEMORY images are hash-pinned staged retail extractions, and no bare Region-A address is universalized.
+      assets: Twelve gate movies/states and the native menu movie establish triggers and lifecycle only; geometry, model and audio assets remain with E05/E11/E12 and no copyrighted payload is retained.
+      trigger: Replay all twelve gate recordings, compare City grain 9/19/29 against grain-only 10/20/30 controls, kill Flik after one natural Tunnels opening and one causal City opening, then replay native frontend load/save against a copied isolated card seed.
+      frame_or_cycle: Every movie index, emulator frame, CPU cycle, fatal-contact transition, respawn and native card dispatch/flush point is retained in analysis/phase4_grain_gates.json.
+      observation: Nine Tunnels records and three City words obey distinct exact threshold/state laws; both already-open implementations survive one-life native death/respawn, while card I/O copies one exact 336-byte resident progress block that excludes the grain mirror and both gate layouts.
+      inference: Gate words are transient overlay state initialized by scene setup; persistent scene/pickup records can regenerate progress and the ordinary grain/proximity update can reopen a gate without serializing Region-A state.
+      causal_confirmation: Grain-only City controls select the exact 10/20/30 thresholds, native hostile contact preserves every already-open gate word across respawn, and a controlled resident-block byte is emitted verbatim by native save while an independent grain-byte mutation is excluded.
+      fixtures: [movies/Phase4/E09/LEVEL02_gate01_closed_open.movie.json, movies/Phase4/E09/LEVEL07_gate01_closed_open.movie.json, movies/Menu-Navigation.movie_v2.json]
+    machine:
+      - config/phase4_grain_gates.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_grain_gates.json
+    evidence:
+      - {artifact: analysis/phase4_grain_gates.json, sha256: e15c0890a3795dc43be25ea16cb60790f0379e6920703172b15a163ad787ba54, json_path: static_census.law.city_thresholds, op: eq, expected: [10, 20, 30]}
+      - {artifact: analysis/phase4_grain_gates.json, sha256: e15c0890a3795dc43be25ea16cb60790f0379e6920703172b15a163ad787ba54, json_path: live.successful_open_death_respawn.tunnels.respawn.tunnels_table.3.state, op: eq, expected: 1680}
+      - {artifact: analysis/phase4_grain_gates.json, sha256: e15c0890a3795dc43be25ea16cb60790f0379e6920703172b15a163ad787ba54, json_path: live.successful_open_death_respawn.city.respawn.city_gate_states.0, op: eq, expected: 0}
+      - {artifact: analysis/phase4_grain_gates.json, sha256: e15c0890a3795dc43be25ea16cb60790f0379e6920703172b15a163ad787ba54, json_path: live.card_persistence.native_save.serialized_block_card_offsets, op: eq, expected: [25092]}
+      - {artifact: analysis/phase4_grain_gates.json, sha256: e15c0890a3795dc43be25ea16cb60790f0379e6920703172b15a163ad787ba54, json_path: static_census.card_serialization.grain_hud_mirror_serialized_directly, op: eq, expected: false}
+    guard: tests/test_phase4_grain_gates.py::test_retained_grain_gate_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_native_grain_gates.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-11_native_and_training_grain_gate.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and introduces no MOD-private hook, cave, state or intended behavior.
+    mod_contract:
+      owner: Preserve scene-qualified Tunnels/City update order, resident grain/progress ownership, geometry/audio handoffs and native lifecycle order; explicitly name every hook.
+      readers: Enumerate grain, proximity, gate record/state, countdown, geometry, collision, audio, objective, safe-anchor, death, card, scene-transition and overlay consumers.
+      writers: Do not add unordered writes to grain, either gate layout, denial countdowns, player/collision state, persistent progress records, card buffers, audio requests or objective state.
+      valid_domains: Grain is u8; Tunnels owns exactly nine 0x14-byte s32 records; City owns exactly three s32 words; thresholds are positive s32 and scene-qualified.
+      initialization: Verify pristine inputs and initialize private scene state before its first reader; never infer ownership from stale Region-A bytes or a filename.
+      reset: Preserve declared same-scene private behavior across death/safe-anchor respawn, rebuild it on scene/card load, and do not serialize native Region-A words directly.
+      retirement: Retire injected state and hooks once before the owning scene, overlay, geometry, collision, audio, objective or card owner unloads.
+      consumers: Grain pickups and HUD, player proximity, collision, dynamic geometry, audio, objectives, checkpoint/death, persistence, stages, frontend and overlays.
+      capacity: Preserve the exact nine-row and three-word bounds; declare and validate every added table, hook, cave and persistent field together with all consumers.
+      residency: Persistent MOD state must live outside overlay memory; Tunnels and City Region-A layouts are mutually exclusive scene-owned meanings, while the 336-byte progress block is resident.
+      unsafe_assumptions: Threshold ownership alone does not imply proximity; same-scene death preservation does not imply card serialization; the live grain mirror is not a card field; filenames and bare Region-A addresses are not media or semantic authority; the save-owned Tunnels image is not a staged byte match.
+    confidence: confirmed
+    residuals: The checked-out staged Tunnels extraction does not match the save-owned live image, so only the bounded live hash and exact decisive words are authoritative there; this provenance qualification does not intersect the reproduced gate behavior.
+    supersedes:
+      - The Phase-1 open lifecycle claim for successful-open death/checkpoint reload and native card persistence.
+      - The attractive assumption that the live grain mirror or either Region-A gate layout is copied directly into native card data.
+
+  - id: event_vm_contract
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: All twenty pinned Region-A images were classified at all five overlay CALL VAs; nine exact function starts are image-qualified, never bare-VA verbs.
+      assets: The resident program bank and pinned overlay metadata are retained as semantic addresses, hashes and decoded instructions without copyrighted raw payloads.
+      trigger: Replay a v3 from-boot LEVEL01 movie, sweep nineteen strict-pristine contexts, directly select 0, 39 and 40, then pause, respawn and reload LEVEL01 through LEVEL02.
+      frame_or_cycle: Cold-boot frames 8550..8620 and every fetch/control/lifecycle frame and cycle are retained in analysis/phase4_event_vm.json.
+      observation: Forty selectors map to forty unique programs; all 26 indices and nine CALL slots occur; selector 40 reads 0x03020100; pause freezes and respawn/reload rearm the VM.
+      inference: E07 is a resident bytecode substrate over transient scene-owned actor/source state and image-qualified Region-A native verbs.
+      causal_confirmation: Selector-only scratch controls produced first/last valid IPs and the first invalid word; native pause, fatal contact and scene reload changed only the expected lifecycle ownership.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, level01.sav, level02.sav, level_09.sav, level_14.sav]
+    machine:
+      - config/phase4_event_vm.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_event_vm.json
+    evidence:
+      - {artifact: analysis/phase4_event_vm.json, sha256: ffd57b372940018a8f0b0129bce88a479e1c040088bc90d5b02fb8a912069770, json_path: static_census.vm.selector_count, op: eq, expected: 40}
+      - {artifact: analysis/phase4_event_vm.json, sha256: ffd57b372940018a8f0b0129bce88a479e1c040088bc90d5b02fb8a912069770, json_path: static_census.opcode_occurrences, op: len_eq, expected: 26}
+      - {artifact: analysis/phase4_event_vm.json, sha256: ffd57b372940018a8f0b0129bce88a479e1c040088bc90d5b02fb8a912069770, json_path: live.selector_controls.trials.40.actual_actor_ip, op: eq, expected: '0x03020100'}
+      - {artifact: analysis/phase4_event_vm.json, sha256: ffd57b372940018a8f0b0129bce88a479e1c040088bc90d5b02fb8a912069770, json_path: live.death_respawn.post_respawn_trace.fetch_total, op: eq, expected: 4}
+    guard: tests/test_phase4_event_vm.py::test_retained_event_vm_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_event_vm_and_scripted_objects.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_event_vm.md
+      mods:
+        not_applicable: true
+        reason: This finding corrects and records pristine original-game behavior and adds no MOD-private hook, state, cave or intended behavior.
+    mod_contract:
+      owner: Preserve selector initialization, interpreter, motion, callback, overlay CALL and lifecycle order; explicitly name every hook.
+      readers: Enumerate source selector, actor flags/wait/IP/callback/source, opcode/CALL/motion tables, Region-A image, collision, animation, audio, objective, pause, respawn and transition consumers.
+      writers: Do not add unordered writes to source selectors, actor IP/wait/flags/targets/callback/source, branch operands, dispatch tables or overlay-owned state.
+      valid_domains: MOD-authored selector 0..39; opcode index 0..25; CALL slot 1..9; signed s16 branch operands; fixed actor capacity 64.
+      initialization: Verify pristine inputs and initialize source/MOD-private records before the selector initializer or interpreter reads them.
+      reset: Freeze with pause and rebuild or clear private state on death/respawn/reload, takeover and every scene transition.
+      retirement: Retire callback, source, target and overlay references once before their actor or Region-A owner unloads.
+      consumers: Actors, enemies, scripted objects, props, movers, gates, collision, animation, audio, objectives, stages, bonuses, pause and respawn.
+      capacity: Preserve sixty-four actor records independently from the forty-entry selector table; declare bounds for added tables, programs, operands, hooks and caves; reject selector 40 and above.
+      residency: Program/opcode/CALL/motion tables are resident; sources and Region-A meanings are scene-owned.
+      unsafe_assumptions: Pointer count is not 13 or 17; the forty-entry selector table is not the sixty-four-record actor pool; retail selector lookup is unbounded; branches are signed; Region-A VAs have no universal verb; idle windows do not prove absence; slots are not cross-scene identity.
+    confidence: confirmed
+    residuals: Enemy-family labels and downstream damage, prop/gate, rendering/asset, audio, persistence and objective outcomes retain explicit independent owners and do not intersect the completed VM producer contract.
+    supersedes:
+      - The 13-entry and 17-entry program-table claims; pristine bytes contain forty valid pointers followed by 0x03020100.
+      - The unsigned branch decode that sent operand -5 outside the program region instead of to 0x800775FA.
+      - The claim that a Region-A CALL address has one level-independent native meaning.
+
+  - id: contact_object_pool_contract
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Source/projector, allocator, walker, metadata and record dispatch are resident; all direct encoded calls in pinned staged LEVEL*.BIN inputs are retained separately.
+      assets: Twenty-one pinned staged DATs provide 1,058 type-0x3f entries; live source rows and the 50-pointer descriptor handoff were captured in 19 gameplay contexts.
+      trigger: Compare ordinary free, occupied-next, dead-residue, wrap, far, near, projectile TTL and all-64 occupied controls; replay cold boot, pause, respawn and scene reload.
+      frame_or_cycle: Exact call cycles, cold-boot edit frames 8550..8620, projectile samples, all-stage snapshots and lifecycle frames are retained in analysis/phase4_contact_pool.json.
+      observation: Sixteen kinds are authored rather than fifty; ctor-0x51 used cursor+1 and metadata row 0x51, far contact remained 200, near contact changed 200 to 1, and all-64 occupied timed out.
+      inference: E06 is a shared transient source/dispatch/pool substrate with subtype-owned lifetime/action behavior; descriptor slots, cursor values and residue do not confer object identity.
+      causal_confirmation: Single-predicate occupied/dead edits selected skip/reuse, 63 wrapped to 0, distance-only controls selected far/near actions, projectile TTL retired, and full occupancy had no escape.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, level01.sav, level02.sav, red_berry_thrown.sav]
+    machine:
+      - config/phase4_contact_pool.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_contact_pool.json
+    evidence:
+      - {artifact: analysis/phase4_contact_pool.json, sha256: e83d95c784fc171257915aabea7bee791a0607766b9ac792c79d1c9cf7af52db, json_path: static_census.source_catalog.authored_kind_count, op: eq, expected: 16}
+      - {artifact: analysis/phase4_contact_pool.json, sha256: e83d95c784fc171257915aabea7bee791a0607766b9ac792c79d1c9cf7af52db, json_path: live.allocator_controls.occupied_skip.record.slot, op: eq, expected: 9}
+      - {artifact: analysis/phase4_contact_pool.json, sha256: e83d95c784fc171257915aabea7bee791a0607766b9ac792c79d1c9cf7af52db, json_path: live.walker_controls.near_positive.after.lifetime_ttl_or_active_gate, op: eq, expected: 1}
+      - {artifact: analysis/phase4_contact_pool.json, sha256: e83d95c784fc171257915aabea7bee791a0607766b9ac792c79d1c9cf7af52db, json_path: live.full_capacity_last.call_outcome.code, op: eq, expected: -32005}
+    guard: tests/test_phase4_contact_pool.py::test_retained_contact_pool_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_contact_object_pool.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_contact_object_pool.md
+      mods:
+        not_applicable: true
+        reason: This finding corrects and records pristine original-game behavior and adds no MOD-private hook, state, cave or intended behavior.
+    mod_contract:
+      owner: Preserve resident source/projector, allocator, walker, subtype updater, render handoff and lifecycle order; explicitly name every hook.
+      readers: Enumerate type-0x3f, descriptor, metadata, pool/cursor, projectile/contact, collectible, plant, enemy, render, audio, HUD, persistence, stage and overlay consumers.
+      writers: Do not add unordered writes to source coordinates/status, descriptor pointers, cursor, record action/field-0x22/state/flags, or lifecycle clears.
+      valid_domains: Source kinds are u8 with authored set 16; source dispatch is 0x10..0x31; pool slots are 0..63; retained metadata B indices are 0..128; emitted coordinates must avoid signed-square overflow.
+      initialization: Verify staged assets and initialize scene source/descriptor and MOD-private state before any reader or allocation.
+      reset: Clear private ownership on contact or TTL retirement, pause-shell reset, death/respawn/reload, takeover and every scene transition.
+      retirement: Release each pool unit exactly once through its subtype owner; retire source/descriptor and overlay-scoped references before unload.
+      consumers: Collectibles, berries, plants, enemies, effects, rendering, camera, audio, HUD, persistence, stages and bonuses.
+      capacity: Declare per-emitter budgets, validate indices and never hold all 64 native records allocator-occupied because retail has no escape.
+      residency: Allocator, walker, metadata, tables and pool addresses are resident; source rows and descriptor targets are scene-owned.
+      unsafe_assumptions: Fifty descriptor slots are not fifty authored kinds; +0x22 has no universal tick law; cursor/residue is not identity; full capacity does not evict; extreme coordinate deltas can false-contact.
+    confidence: confirmed
+    residuals: Downstream reward, damage/drop, rendering/asset, audio, persistence and objective semantics retain explicit independent row owners and do not intersect the closed source/dispatch/pool substrate.
+    supersedes:
+      - The Phase-1 claim that 50 populated descriptor-pointer indices implied 50 authored kind roles and left 46 unknown.
+      - The Phase-3 universal-TTL claim for field +0x22; the countdown is confirmed for projectile subtypes, while ctor-0x51 proximity contacts use it as an active/action gate.
+      - Capacity evidence that lacked a current-toolchain all-64 occupied reproduction and all-stage headroom census.
+
+  - id: directional_spin_heading_controller
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Current-direction helper, player heading controller, camera/effect/audio/checkpoint/actor consumers and action-state owners are resident; F14 retains its special movement/camera law.
+      assets: A07 binds the typed heading/facing handoff and actor-skinned reader; model/animation asset decoding remains E05.
+      trigger: Use the non-authoritative left/up/right/down source order and reverse control in LEVEL01 plus two Training contexts, then compare neutral/source on 19 anchors, pause, reload, native respawn, writer watches and a timing-matched from-boot edit.
+      frame_or_cycle: Cold-boot edit frames 8103..8134; exact control, breadth, writer, pause, reload and respawn frames/cycles are retained in analysis/phase4_spin_heading.json.
+      observation: Source and reverse orders traverse heading with opposite signed turn; all 19 source trajectories differ from neutral while state/timer/aux value sets match, and no private spin state appears.
+      inference: The reproducible A07 behavior is successive current-direction heading/facing updates through the ordinary resident controller, not a distinct attack or history-recognized action.
+      causal_confirmation: A source-only cold-boot edit changes heading/position after exact pre-edit equality; access watches attribute current input, desired heading and bounded heading writers; pause/reload/respawn independently bound reset and re-entry.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, phase3_pristine_training_gameplay_i5.sav, training_all_stuff_collected_ending.sav, level01.sav, level02.sav]
+    machine:
+      - config/phase4_spin_heading.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_spin_heading.json
+    evidence:
+      - {artifact: analysis/phase4_spin_heading.json, sha256: ce6a28f37ade07f8959d240bac48847b5fe7f49574bbeb63c1c8e7293a26e61a, json_path: live.controls.summary.anchors_with_opposite_signed_turn, op: len_eq, expected: 3}
+      - {artifact: analysis/phase4_spin_heading.json, sha256: ce6a28f37ade07f8959d240bac48847b5fe7f49574bbeb63c1c8e7293a26e61a, json_path: live.breadth.summary.heading_responsive_labels, op: len_eq, expected: 19}
+      - {artifact: analysis/phase4_spin_heading.json, sha256: ce6a28f37ade07f8959d240bac48847b5fe7f49574bbeb63c1c8e7293a26e61a, json_path: live.writer_trace.observed_instruction_pcs.input_heading_writes, op: contains, expected: '0x80048044'}
+      - {artifact: analysis/phase4_spin_heading.json, sha256: ce6a28f37ade07f8959d240bac48847b5fe7f49574bbeb63c1c8e7293a26e61a, json_path: live.cold_boot.post_edit_heading_differs, op: eq, expected: true}
+    guard: tests/test_phase4_spin_heading.py::test_retained_spin_heading_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_directional_spin_heading.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_directional_spin_heading.md
+      mods:
+        not_applicable: true
+        reason: This finding resolves and records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve resident input, current-direction helper, player heading, collision, camera, actor/render and lifecycle order and explicitly name every hook.
+      readers: Enumerate current/previous input, headings, player, collision, camera, effects, audio, checkpoint, actor/render, pause, respawn, transition and special-controller consumers.
+      writers: Do not add unordered writes to decoded input, desired/player headings, action state/timer/aux, movement components, position, or lifecycle clears.
+      valid_domains: Decoded input is u16; headings are u32 masked to 0..4095; action fields are s16; ordinary circular turn steps are bounded by 256.
+      initialization: Initialize private gesture/heading state before its first reader and never infer a private action merely from model rotation.
+      reset: Clear private gesture/input state on release, pause, damage/death/respawn/reload, transition, special-controller takeover and MOD unload.
+      retirement: Retire injected input/private state once before player, camera, render, audio, stage, boss or overlay owners unload.
+      consumers: Input, player, collision, camera, actor animation/render, effects, audio, checkpoint, pause, respawn, stages, bonuses, bosses and overlays.
+      capacity: Declare hook/cave/table/history bounds; pristine A07 exposes no reusable private gesture-history buffer.
+      residency: Keep persistent private state outside overlay memory and scope scene-special references to their actual owner lifetime.
+      unsafe_assumptions: The web wording is only a trigger lead; heading rotation is not a distinct attack/cheat/damage mode; AnalogController D-pad takes 0x80048044; emulator/native ticks differ; pause directions belong to the menu; F14 remains independent.
+    confidence: confirmed
+    residuals: E02 collision, E05 asset decoding, E12 audio, F14 flight motion/camera and any separately alleged cheat/damage effect retain independent owners and do not intersect the completed A07 current-direction heading behavior.
+    supersedes:
+      - The interpretation that A07 required a distinct player state, unknown writer, or cross-tick secret-move recognizer.
+      - The Phase-3 external-lead residual after the left-start trigger order became reproducible as ordinary heading/facing behavior; the bounded negative itself remains valid within its stated scope.
+
+  - id: manual_camera_controller
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Camera reset/update and HUD consumers are resident; scene state determines ordinary, Bug Bar, Riverbed Flight and Bonus-2 exceptional behavior.
+      assets: A17 changes typed camera control inputs and binds HUD mode consumers; E04 retains render/collision assets and submission.
+      trigger: Compare timing-matched neutral/L1/R1/L1+direction/both branches, edit only L1 or R1 into an identical from-boot movie, then sweep 19 anchors, pause, release and native respawn.
+      frame_or_cycle: Cold-boot edit frames 8103..8162 and every live control, breadth, pause, access-log and respawn frame/cycle are retained in analysis/phase4_camera_controls.json.
+      observation: L1 selected mode 2 and target 600, R1 mode 3 and target 1400 with zero yaw correction, L1 won simultaneous input, and release/respawn restored mode 0/distance 900.
+      inference: Resident A17 owns a held-input selector and transient smoothing state; camera position/target remain derived outputs and special scenes can override applicability.
+      causal_confirmation: L1/R1-only from-boot edits diverged after identical pre-edit camera bytes; instruction watches attributed selector/smoothing writers and HUD readers; pause froze the record and native respawn reset/rearmed it.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, level01.sav, level02.sav, level_14.sav, movies/Bonus_Level_02.movie.sav]
+    machine:
+      - config/phase4_camera_controls.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_camera_controls.json
+    evidence:
+      - {artifact: analysis/phase4_camera_controls.json, sha256: b46154304f59454d96739ceeac0876815a5272d28ff4a61d7b2fc6b80af47ccf, json_path: live.controls.summary.l1.final_mode, op: eq, expected: 2}
+      - {artifact: analysis/phase4_camera_controls.json, sha256: b46154304f59454d96739ceeac0876815a5272d28ff4a61d7b2fc6b80af47ccf, json_path: live.controls.summary.r1.final_mode, op: eq, expected: 3}
+      - {artifact: analysis/phase4_camera_controls.json, sha256: b46154304f59454d96739ceeac0876815a5272d28ff4a61d7b2fc6b80af47ccf, json_path: live.breadth.summary.manual_disabled_labels, op: eq, expected: [stage14_riverbed_flight]}
+      - {artifact: analysis/phase4_camera_controls.json, sha256: b46154304f59454d96739ceeac0876815a5272d28ff4a61d7b2fc6b80af47ccf, json_path: live.death_respawn.respawn.fields.distance, op: eq, expected: 900}
+    guard: tests/test_phase4_camera_controls.py::test_retained_camera_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_manual_camera_controls.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_manual_camera_controls.md
+      mods:
+        not_applicable: true
+        reason: This finding corrects and records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve input decoding, resident camera update/reset, collision query, scene override and HUD order and explicitly name every hook.
+      readers: Enumerate action, player/attachment/scene, mode, camera record, smoothing, collision, HUD, pause, respawn, transition and special-camera consumers.
+      writers: Do not add unordered writes to selector, orbit/vertical/pitch smoothing, distance/yaw/profile fields, or derived camera position/target.
+      valid_domains: Mode is s32 0/2/3; record controls are signed/unsigned 16-bit as declared; yaw is modulo 4096; smoothing globals are s32; pitch step is s16.
+      initialization: Initialize private state before its first reader and never infer manual ownership from derived position/target movement alone.
+      reset: Clear private manual state on release, pause takeover, death/respawn/reload, transition, special-camera takeover and MOD unload.
+      retirement: Retire injected input/private state once before camera/HUD/scene owners unload and preserve the native suppression countdown.
+      consumers: Input, player, swing, camera collision/render, HUD, pause, respawn, stages, bonuses, flight and overlays.
+      capacity: Declare hook/cave/table bounds and keep the one-record selector domain and every typed reader/writer consistent.
+      residency: Keep persistent private state outside overlay memory and scope special-scene references to their actual owner lifetime.
+      unsafe_assumptions: Emulator/native ticks differ; smoothers need not clamp exactly; output triples are derived; L1 precedes R1; Bug Bar, Flight and Bonus 2 have explicit exceptions; E04/F14 remain separate.
+    confidence: confirmed
+    residuals: E04 camera collision/render internals and F14 flight-camera ownership remain separately registered; A17 directly captures their input-boundary exceptions without claiming those internals.
+    supersedes:
+      - The Phase-2 statement that the camera mode selector was unbound; it is the s32 word at 0x80082220 with modes 0, 2 and 3.
+      - The prior baseline assumption that manual camera controls apply uniformly to every stage; Bug Bar, Riverbed Flight and Bonus 2 have distinct retained exceptions.
+
+  - id: swing_attachment_controller
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Pool reset, acquisition/pendulum, player, camera, actor-animation, render and damage-detach owners are resident; scene resources only determine active fixed records.
+      assets: A16 binds selected record transforms and render/actor handoffs but leaves rope/model/animation asset decoding to E05.
+      trigger: Compare natural Up+Cross against no input/Cross-only/Up-only, exercise every active record with one-slot availability, then compare idle/release, attached/cleared camera, pause, damage, respawn and scene reset.
+      frame_or_cycle: The from-boot pool checkpoint is movie frame 8000; every natural, pendulum, writer, release, camera, pause and lifecycle frame/cycle is retained in analysis/phase4_swinging.json.
+      observation: Up+Cross selected Stage-1 slot 1 as player index 2 and state/grounded/animation 5/0/4; record velocity matched player velocity in all 13 samples; fresh Cross wrote claim -30 and cleared the index.
+      inference: Resident A16 owns a 1-based player attachment selector and transient claim over one of eight fixed scene records, with the selected record publishing pendulum motion to player, camera and actor consumers.
+      causal_confirmation: One-record-available controls selected all ten active records across both distinct layouts; clearing only the attachment index changed camera trajectory; native damaging contact detached before same-scene respawn.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, in_front_of_swing.sav, on_swing.sav, level01.sav, level_11.sav, level_12.sav, movies/Bonus_Level_02.movie.sav]
+    machine:
+      - config/phase4_swinging.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_swinging.json
+    evidence:
+      - {artifact: analysis/phase4_swinging.json, sha256: 80aa3d28d1bd75e5cba6094870e1c7b2fdd4a09c8c707cd0db799bd20bc398fa, json_path: live.natural_controls.summary.positive_attachment_index, op: eq, expected: 2}
+      - {artifact: analysis/phase4_swinging.json, sha256: 80aa3d28d1bd75e5cba6094870e1c7b2fdd4a09c8c707cd0db799bd20bc398fa, json_path: live.direct_capacity.summary.distinct_active_slots_exercised, op: eq, expected: 10}
+      - {artifact: analysis/phase4_swinging.json, sha256: 80aa3d28d1bd75e5cba6094870e1c7b2fdd4a09c8c707cd0db799bd20bc398fa, json_path: live.release.summary.native_minus_30_new_value, op: eq, expected: 65506}
+      - {artifact: analysis/phase4_swinging.json, sha256: 80aa3d28d1bd75e5cba6094870e1c7b2fdd4a09c8c707cd0db799bd20bc398fa, json_path: live.death_respawn.fatal.fields.attachment_index, op: eq, expected: 0}
+    guard: tests/test_phase4_swinging.py::test_retained_swing_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_swing_attachment_controller.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_swing_attachment.md
+      mods:
+        not_applicable: true
+        reason: This finding corrects and records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve resident player, pool, collision, camera, actor-animation, render and reset order and explicitly name every hook.
+      readers: Enumerate input, player index, record activity/claim/node/transform/velocity, collision, camera, actor, render, pause, damage, respawn and transition consumers.
+      writers: Do not add unordered writes to attachment index, record claim/activity/node/transform/velocity, player state/velocity/position, camera state or lifecycle clears.
+      valid_domains: Attachment index is s16 0..8; capacity is 8; stride is 0x344; count/claim/record velocity are s16; transforms and player velocity are s32.
+      initialization: Initialize private state before the first reader and never infer ownership from stale record bytes or shared state 5.
+      reset: Clear private attachment on release, damaging contact, pause-shell reset, death/respawn/reload, takeover and transition.
+      retirement: Release each claim exactly once and retire injected input and overlay hooks before player, pool, camera, actor, render or scene owners unload.
+      consumers: Input, player, collision, pool update, actor animation, render, camera, audio, pause, damage, respawn, stages, bonuses and overlays.
+      capacity: Declare hook/cave/table bounds and never emit an attachment index outside 0..8 or change stride without updating every consumer.
+      residency: Keep persistent private state outside overlay memory and scope scene record references to their actual owner lifetime.
+      unsafe_assumptions: State 5 is shared; index is 1-based; -30 is release/cooldown rather than Boolean free; Bonus 2 reuses Stage 1; emulator frames are not native updates; E02/E05/E12/A17 remain separate.
+    confidence: confirmed
+    residuals: E02 collision internals, E05 rope/model asset decoding, E12 audio and A17 manual camera inputs retain separate registered owners and do not intersect the completed A16 attachment controller.
+    supersedes:
+      - The Phase-2 claim that swing release selected state 2; the retained fresh-Cross path selects state 1 and animation 3.
+      - The weak naming claim that 0x800A658C was an active actor count and 0x80042DCC returned the last active actor position.
+
+  - id: ordinary_berry_throw
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS and the non-pristine homingberry_worm fixture were not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Ordinary input, dispatch, aim, allocation, projectile update, homing acquisition, audio call, and cleanup are resident; family damage/immunity, asset decoding, and stage-special owners remain separate.
+      assets: Native type descriptors at 0x8007941C select model/render fields for types 2/5/8/11/16/45/48; A08 binds the descriptor handoff but does not claim E05 asset decoding.
+      trigger: Compare fresh/held Square and stable gate boundaries, perturb only equipped selector 0..4 from one pristine anchor, sample the returned record by native update, and replay exact homing/mega fixtures, pause, respawn, 19 anchors, and a from-boot Square-only branch.
+      frame_or_cycle: Cold-boot arm frame 8561 and dispatch/spawn frame 8617; retained selector, arc, homing, pause, breadth, and respawn frames/cycles are recorded per event in analysis/phase4_berry_throw.json.
+      observation: Five selectors produced classes 2/5/8/11/45; straight types alone called the aim helper; current velocity integrated before gravity +128 and TTL -1; homing/mega primaries acquired with modes 1/0 and spawned types 16/48; cleanup returned in-flight ownership to zero.
+      inference: Resident A08 owns a fresh-Square windup/selector dispatcher and shared contact-pool projectile lifecycle; downstream damage/immunity and asset decoding consume its typed records through independent registered owners.
+      causal_confirmation: Adding only Square to an identical from-boot branch spawned red class 2; selector-only writes reproduced all five classes and aim split; exact in-flight 3/4 and gate-9E 11/12 controls selected arm/block; native pause froze and respawn cleared/rearmed the same subsystem.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, red_berry.sav, red_berry_thrown.sav, homing_berry.sav, mega_homing_berry.sav, level02.sav]
+    machine:
+      - config/phase4_berry_throw.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_berry_throw.json
+    evidence:
+      - {artifact: analysis/phase4_berry_throw.json, sha256: 83e4b56c0290de42e6a00e0831299bc255fe24be2bb6d39b2a71c2448f66b57d, json_path: live.selector_matrix.selector_type_pairs, op: eq, expected: [[0, 2], [1, 5], [2, 8], [3, 11], [4, 45]]}
+      - {artifact: analysis/phase4_berry_throw.json, sha256: 83e4b56c0290de42e6a00e0831299bc255fe24be2bb6d39b2a71c2448f66b57d, json_path: live.straight_arc_and_retirement.per_update_deltas.0.delta_velocity_y, op: eq, expected: 128}
+      - {artifact: analysis/phase4_berry_throw.json, sha256: 83e4b56c0290de42e6a00e0831299bc255fe24be2bb6d39b2a71c2448f66b57d, json_path: live.homing_transitions.2.secondary_spawn.record_after_native_update.flags, op: eq, expected: 237}
+      - {artifact: analysis/phase4_berry_throw.json, sha256: 83e4b56c0290de42e6a00e0831299bc255fe24be2bb6d39b2a71c2448f66b57d, json_path: live.cold_boot.edited.execution.spawn_return.events.0.regs.s1, op: eq, expected: '0x00000002'}
+    guard: tests/test_phase4_berry_throw.py::test_retained_berry_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_berry_projectile_and_homing.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_berry_throw.md
+      mods:
+        not_applicable: true
+        reason: This finding corrects and records pristine original-game behavior; it neither adopts Blackberry/Fastberry behavior nor adds MOD-private hook or state.
+    mod_contract:
+      owner: Preserve resident input, player-update, dispatch, aim, allocator, projectile, contact/damage, render, audio, and cleanup order and explicitly name every hook.
+      readers: Enumerate input edge, windup/gates, selector/in-flight, transforms, descriptors, pool/cursor, target table, collision/damage/immunity, renderer, audio, pause, respawn, transitions, bosses, shooters, and stage-special consumers.
+      writers: Do not add unordered writes to input edge, windup, selector, in-flight count, cursor, record transform/velocity/gravity/TTL/type/target fields, actor damage state, or lifecycle clears.
+      valid_domains: Selector is u8 0..4; windup is s16; in-flight is u8 with native admission below 4; heading is 0..4095; record positions/velocities are s32; gravity is s16; TTL is u16.
+      initialization: Initialize MOD-private berry state before the first resident read and never infer record ownership from stale bytes or slot index.
+      reset: Clear private input, windup, target, and projectile state on retirement, pause-shell reset, damage/death/respawn/reload, takeover, and every transition.
+      retirement: Release each ownership unit exactly once and retire injected input and overlay-scoped hooks before player, pool, actor, boss, render, or audio owners unload.
+      consumers: Input, player, allocator, projectile updater, collision, enemy damage/immunity, renderer/animation, camera, audio, pause, respawn, stages, bosses, plants, shooters, and special controllers.
+      capacity: Declare hook/cave/table bounds and never hold all 64 native pool records allocator-occupied because the pristine free-slot search has no full-pool escape.
+      residency: Keep persistent private state outside overlay memory; target pointers and overlay consumers are valid only during declared owner residency.
+      unsafe_assumptions: Emulator frames are not native updates; position uses current velocity before gravity; selectors 2/4 skip ordinary aim; primary/secondary are distinct allocations; cursor is not identity; Flight permits A08 while Bonus 2 does not; D04/D-family and E05 remain independent.
+    confidence: confirmed
+    residuals: D04 and enemy-family damage/immunity/death/permanence, E05 asset decoding, shooter-object projectiles, and boss/stage-special outcomes retain separate registered owners and do not intersect the completed A08 input/dispatch/projectile lifecycle.
+    supersedes:
+      - The contact-record claim that velocity_y was pre-integrated and already held the next tick's Y delta.
+      - The fixture list that treated non-pristine homingberry_worm.sav as eligible original-game authority.
+
+  - id: downhill_slide_controller
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Ordinary input, player update, animation selection, collision interface, and proximity contact are resident; boss/overlay contacts and Riverbed Flight are bounded separate owners.
+      assets: Slide animation 28 is selected by ID; no animation asset mutation or decoding claim is needed.
+      trigger: Reproduce the native state-4 landing while holding Cross; compare component 767/768, Left-only removal, timing-matched cold-boot Cross addition, release, pause, respawn, and Flight.
+      frame_or_cycle: Native slide movie frames 406/410/500/714; cold-boot movie frame 8480; native trace frames 7225..7329 with 33,608 controller and 19,606 animation instruction hits.
+      observation: Ground contact initialized timer/state/aux 12/1/-6144, held Cross selected shared state 5, and timer 12 re-armed exactly at forward >=768 or absolute lateral >=768 while animation 28 and carried motion persisted.
+      inference: Resident A06 owns a context-reused timer-12 carry latch driven by Cross and movement components; collision supplies terrain-integrated position/floor/components but no explicit slope predicate appears in the latch.
+      causal_confirmation: Exact 767/768 single-field perturbations selected timer/animation 11/6 versus 12/28; Left-only removal changed heading/path without losing the latch; adding only Cross at cold boot changed 0/10/6 into state/timer/animation 5/12/28.
+      fixtures: [movies/Phase_Helpers/buttslide_carry_handstand.movie.json, movies/Phase_Helpers/buttslide_carry_handstand.movie.sav, movies/go_to_end/LEVEL01.movie.json, level01.sav, level02.sav, level_14.sav]
+    machine:
+      - config/phase4_downhill_slide.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_downhill_slide.json
+    evidence:
+      - {artifact: analysis/phase4_downhill_slide.json, sha256: a78387f11f089b49adfeff3a4e728e7f2a14163a8cded2fc507c4ccb7c4214f6, json_path: static_census.law.component_threshold_inclusive_min, op: eq, expected: 768}
+      - {artifact: analysis/phase4_downhill_slide.json, sha256: a78387f11f089b49adfeff3a4e728e7f2a14163a8cded2fc507c4ccb7c4214f6, json_path: live.component_boundary.cases.forward_768.after.fields.animation, op: eq, expected: 28}
+      - {artifact: analysis/phase4_downhill_slide.json, sha256: a78387f11f089b49adfeff3a4e728e7f2a14163a8cded2fc507c4ccb7c4214f6, json_path: live.cold_boot.edited.after.fields.action_timer, op: eq, expected: 12}
+      - {artifact: analysis/phase4_downhill_slide.json, sha256: a78387f11f089b49adfeff3a4e728e7f2a14163a8cded2fc507c4ccb7c4214f6, json_path: live.contact_matrix.summary.offensive_target_response_classes, op: len_eq, expected: 0}
+    guard: tests/test_phase4_downhill_slide.py::test_retained_slide_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_downhill_slide_controller.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_downhill_slide.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve resident input, player-update, collision, animation, and proximity order and explicitly name every hook.
+      readers: Enumerate decoded input, timer/state/grounded/aux, heading/components/velocity, collision/floor, animation, render, camera, audio, pause, respawn, contacts, overlays, bosses, plants, and Flight.
+      writers: Do not add unordered writes to decoded input, timer, shared state, grounded, aux, heading, components, velocity, position/floor, animation, health, or actor response.
+      valid_domains: Actions/state/grounded are u16/s16 context fields; timer is context-reused s16; heading is 0..4095; components, positions, floor, and velocity are signed s32; animation is s16.
+      initialization: Initialize MOD-private slide state before the first resident update and never infer slide readiness from shared state 5 or stale bytes.
+      reset: Clear private slide state on latch loss, Cross release, pause-shell reset, damage/death/respawn/reload, takeover, and every transition.
+      retirement: Retire injected input and overlay-scoped hooks before player, collision, actor, boss, or Flight owners unload.
+      consumers: Input, player, collision, animation, render, camera, audio, pause, respawn, actors, enemy families, bosses, stage overlays, plants, and Flight.
+      capacity: Declare every hook/cave/table bound; pristine A06 has one player tuple and no allocation pool.
+      residency: Keep persistent private state outside overlay-owned memory and scope stage terrain/contact hooks to their actual lifetime.
+      unsafe_assumptions: State 5 and raw +0x42/+0x46 counters do not identify A06; timer cadence is per player update; forward threshold is signed while lateral uses absolute magnitude; no explicit slope predicate exists in the latch; expiry differs from release; timer 12 is non-offensive; Flight and special contacts are separate.
+    confidence: confirmed
+    residuals: E02 collision geometry, E05 asset decoding, enemy-family HP/lifecycle, boss/overlay contacts, and F14 Flight each retain a separate registered owner and do not intersect the completed ordinary A06 controller law.
+    supersedes:
+      - The Phase-2 shorthand that treated shared state 5 or raw player+0x42/+0x46 values 11/12 as a unique downhill-slide discriminator.
+      - The earlier assumption that an explicit floor-slope predicate directly arms or re-arms the resident timer-12 latch.
+
+  - id: ordinary_abdomen_bounce
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Ordinary input, player update, proximity contact, and Bonus-1 bookkeeping are resident; slide, boss/overlay contact, and Flight are bounded separate owners.
+      assets: High-slam animations 2/7, rebound animation 3, and current actor-frame geometry are consumed by ID/pointer; no asset mutation claim is needed.
+      trigger: Compare the second Cross with timing-matched removal, exact floor distances 8192/8193, timer 1/0 at the same spider impact, full five-stomp chain, pause, respawn, and Flight.
+      frame_or_cycle: Cold-boot movie frames 8380..8408 observed at 8384; Bonus-1 impact movie frames 124/128; control-checked trace ended at cycle 5294556433/frame 9352/movie frame 140.
+      observation: State 2 plus second Cross selected state 3 at 8192 and state 4/timer 9 at 8193; timer-1 spider response wrote -20/+4096 and streak 1, while timer 0 produced state 5/rebound/reset and player health 4->3.
+      inference: Resident A05 owns a context-sensitive vertical action field and target-response boundary; accepted consecutive timer-1 responses feed the resident five-stomp Bonus-1 streak.
+      causal_confirmation: Removing only the second Cross preserved exact pre-edit state and kept state 2; changing only impact timer 1 to 0 preserved exact pre-edit fields/block/cycle and changed streak 1/state 4/health 4 into streak 0/state 5/negative rebound/health 3.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, buttslam_after_running_og.sav, movies/Bonus_Level_01.movie.json, movies/Bonus_Level_01.movie.sav, level01.sav, level02.sav, level_14.sav]
+    machine:
+      - config/phase4_abdomen_bounce.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_abdomen_bounce.json
+    evidence:
+      - {artifact: analysis/phase4_abdomen_bounce.json, sha256: f7dec85ee70365cb98886ac749d8dd1e7b2ff4c749d0f4c5caf069349921dda1, json_path: static_census.law.high_slam_timer_start, op: eq, expected: 10}
+      - {artifact: analysis/phase4_abdomen_bounce.json, sha256: f7dec85ee70365cb98886ac749d8dd1e7b2ff4c749d0f4c5caf069349921dda1, json_path: live.distance_boundary.8192.after.fields.state, op: eq, expected: 3}
+      - {artifact: analysis/phase4_abdomen_bounce.json, sha256: f7dec85ee70365cb98886ac749d8dd1e7b2ff4c749d0f4c5caf069349921dda1, json_path: live.timer_counterfactual.edited_after.player.fields.state, op: eq, expected: 5}
+      - {artifact: analysis/phase4_abdomen_bounce.json, sha256: f7dec85ee70365cb98886ac749d8dd1e7b2ff4c749d0f4c5caf069349921dda1, json_path: live.bonus1_five_stomp_chain.checkpoints.1250.player.bonus_latch, op: eq, expected: 6}
+    guard: tests/test_phase4_abdomen_bounce.py::test_retained_abdomen_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_abdomen_bounce.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_abdomen_bounce.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve resident input, player-update, proximity-contact, bonus, and collision ordering and explicitly name every hook.
+      readers: Enumerate decoded input, player, actor geometry/flags, collision, animation, health, bonus, render, audio, camera, pause, respawn, enemies, bosses, slide, and Flight.
+      writers: Do not add unordered writes to decoded input, state, grounded, vertical aux, velocity, animation, actor response, health, streak, latch, or unlock flags.
+      valid_domains: Action/state/grounded are u16; vertical aux and actor response are context-sensitive s16; positions/velocity are signed s32; streak is u32 0..4.
+      initialization: Initialize private action/combo state before the first resident player/contact update and never infer readiness from stale reused aux bytes.
+      reset: Clear private action/combo state on landing, miss, pause-shell reset, damage/death/reload, plant takeover, and every transition.
+      retirement: Retire injected Cross and scoped contact hooks before their input, actor, bonus, boss, slide, or Flight owners unload.
+      consumers: Input, player, collision, animation geometry, proximity/contact, health, bonus, render, camera, audio, pause, respawn, enemy families, bosses, slide, and Flight.
+      capacity: Declare hook/cave/table/combo expansion bounds and never treat compact actor-table index as stable identity.
+      residency: Keep resident action/combo state outside overlay-owned memory and scope special-contact hooks to actual lifetime.
+      unsafe_assumptions: Timer cadence is per player update; first sample 9 follows native arm 10; aux is context-reused; shared states do not identify A05 alone; -20/+4096 is not family HP/lifecycle; expired contact can damage the player; completed A06 and open D/E/F owners remain separate.
+    confidence: confirmed
+    residuals: E02/E05 internals, enemy-family HP/lifecycle, boss/overlay contact, and F14 flight each retain a separate registered owner and do not intersect the completed generic A05 action/contact/Bonus-1 law; A06 is completed by its independent campaign.
+    supersedes:
+      - The Phase-2 shorthand that treated state 4 alone as the entire double-Cross behavior.
+      - The earlier A05 fixture request that assumed an accepted spider stomp directly decremented a generic target HP field.
+
+  - id: ordinary_kick_attack
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Ordinary input, timer, animation and proximity contact are resident; boss/overlay contacts and Riverbed Flight are bounded separate owners.
+      assets: Kick animation 1/player response animation 30 and current actor frame geometry are consumed by ID/pointer; no asset decoder or mutation claim is needed.
+      trigger: Compare L2/R2 plus fresh Square with missing/pre-held/gated controls; place timer 0 versus -16 at exact reconstructed contact centers for all distinct active classes.
+      frame_or_cycle: Cold-boot movie frames 8135..8160 observed at 8148; native arm cycle 7088968867/frame 12521 and state-30 contact cycle 7092016282/frame 12526.
+      observation: The chord armed -16 and animation 1 in 18 ordinary contexts; 20 ordinary actor classes selected state 30 without player damage, three 0x80 classes selected 15, and five 0x20/0x800 classes did not select 30.
+      inference: Resident A04 owns a signed transient attack timer; resident proximity contact classifies by current flags and animation geometry rather than an actor-ID immunity table.
+      causal_confirmation: A timing-identical cold boot added only L2/fresh Square and changed timer 0/animation 0 to timer -13/animation 1; 28 paired timer controls matched static flag classification, and native traced contact wrote state 30 while health stayed 4.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, level01.sav, level02.sav, level_14.sav]
+    machine:
+      - config/phase4_kick.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_kick.json
+    evidence:
+      - {artifact: analysis/phase4_kick.json, sha256: 9a98c343164dd995a4425f1f9426a4f7e6ca429713143ad7552c2947bc3bc928, json_path: static_census.law.timer_start, op: eq, expected: -16}
+      - {artifact: analysis/phase4_kick.json, sha256: 9a98c343164dd995a4425f1f9426a4f7e6ca429713143ad7552c2947bc3bc928, json_path: live.recovery.distinct_timer_transitions, op: len_eq, expected: 17}
+      - {artifact: analysis/phase4_kick.json, sha256: 9a98c343164dd995a4425f1f9426a4f7e6ca429713143ad7552c2947bc3bc928, json_path: live.contact_matrix.summary.static_live_classification_matches, op: len_eq, expected: 28}
+      - {artifact: analysis/phase4_kick.json, sha256: 9a98c343164dd995a4425f1f9426a4f7e6ca429713143ad7552c2947bc3bc928, json_path: live.writer_trace.execution.target_state_30.events.0.regs.v0, op: eq, expected: '0x0000001e'}
+    guard: tests/test_phase4_kick.py::test_retained_kick_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_kick_attack.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_kick_attack.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve resident input, player-update, actor-animation and proximity-update order and explicitly name every hook.
+      readers: Enumerate decoded/previous input, player, actor geometry/flags, collision, animation, render, audio, camera, pause, respawn, enemy-family, boss and flight consumers.
+      writers: Do not add unordered writes to decoded input, previous pad, timer, animation phase/id, health/velocity, actor flags or actor response.
+      valid_domains: Actions/previous pad/flags are u16; timer and actor response are s16; headings are 0..4095; position/floor/velocity are signed s32.
+      initialization: Initialize MOD-private attack state before the first resident player/contact update and never infer readiness from stale bytes.
+      reset: Clear private state on recovery, pause-shell reset, death/reload, plant/cannon takeover and every scene transition.
+      retirement: Retire injected Square/shoulder state and overlay-scoped hooks before their owners unload.
+      consumers: Input, player, animation geometry, proximity/contact, collision, health, render, camera, audio, pause, respawn, enemy families, bosses and Flight.
+      capacity: Declare hook/cave/table expansion bounds and never treat a compact live-table index as stable actor identity.
+      residency: Keep resident state outside overlay-owned memory and scope boss/stage-overlay contact hooks to actual lifetime.
+      unsafe_assumptions: Timer cadence is per player update; positive values are shared; actor ID is not the generic classifier; 28 active classes are not an authored roster; family lifecycle, bosses and Flight do not inherit ordinary A04.
+    confidence: confirmed
+    residuals: Enemy-family AI/immunity/lifecycle, boss/overlay contacts, E02 geometry and F14 flight remain separately registered owners and do not intersect the completed generic input/timer/contact law.
+    supersedes:
+      - The Phase-2 shorthand that treated the signed floor-distance gate as a generic grounded Boolean.
+      - The Phase-3 semantic registry's single-writer and -16..0 whole-domain model for the shared timer.
+
+  - id: ordinary_jump_controller
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Ordinary jump, state publication, and collision handoff are resident; Riverbed Flight is a separately bounded exceptional controller path.
+      assets: Ordinary rise animation 3 and flight animation 4 are selected by ID; no asset-table mutation or asset-decoding claim is needed.
+      trigger: Compare Cross hold/release durations from identical anchors; repeat native super flag, coyote boundary/guard, pause, respawn, Flight, and cold-boot Cross-removal controls.
+      frame_or_cycle: Cold-boot movie frames 8011..8038 observed at 8025; decisive first trace cycles 7086133946..7086136439 and native update frames retained in the artifact.
+      observation: Longer held Cross produced increasing height, native flag 0x20 strengthened takeoff, all 18 ordinary anchors jumped/landed, and Flight retained state 0/animation 4.
+      inference: The resident controller owns ordinary variable-height jumping through state/velocity publication and delegates resolved Y/grounded to collision.
+      causal_confirmation: Removing only Cross from a timing-identical cold boot preserved exact pre-edit state and changed state 1/grounded 0/animation 3 into state 0/grounded 257; exact coyote threshold and guard perturbations independently gated takeoff.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, level01.sav, level02.sav, level_14.sav]
+    machine:
+      - config/phase4_jump.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_jump.json
+    evidence:
+      - {artifact: analysis/phase4_jump.json, sha256: 456d1cd488a66fcc735942268a9fd12509b48562daec5d828a92565dbe86937a, json_path: static_census.law.normal_impulse, op: eq, expected: -3072}
+      - {artifact: analysis/phase4_jump.json, sha256: 456d1cd488a66fcc735942268a9fd12509b48562daec5d828a92565dbe86937a, json_path: live.controls.height_curve, op: eq, expected: [6336, 6336, 8256, 11520, 14016, 16896]}
+      - {artifact: analysis/phase4_jump.json, sha256: 456d1cd488a66fcc735942268a9fd12509b48562daec5d828a92565dbe86937a, json_path: live.writer_trace.execution.takeoff.events.0.regs.s4, op: eq, expected: '0xfffff400'}
+      - {artifact: analysis/phase4_jump.json, sha256: 456d1cd488a66fcc735942268a9fd12509b48562daec5d828a92565dbe86937a, json_path: live.cold_boot.edited_neutral.after.fields.state, op: eq, expected: 0}
+    guard: tests/test_phase4_jump.py::test_retained_jump_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_jump_controller.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_jump_controller.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve the resident decoded-input, player-controller, and collision owner order and explicitly name every hook.
+      readers: Enumerate input, player, collision, animation, render, camera, audio, pause, death, plant, swing, and flight consumers.
+      writers: Do not add unordered writes to decoded action, shared state, grounded, vertical velocity, Y/floor, or animation.
+      valid_domains: Action/grounded/state are u16, state is shared 0..6, velocity/Y/floor are signed s32, and native super flag is 0x0020.
+      initialization: Initialize MOD-private jump state before the first resident player update.
+      reset: Clear private held/released state on release, grounded landing, main-shell reset, death/reload, and transition.
+      retirement: Retire injected Cross and overlay-scoped hooks before their owner unloads.
+      consumers: Input, player, collision, animation, render, camera, audio, pause, death/respawn, plant actions, swing, and Riverbed Flight.
+      capacity: Declare hook/cave/table expansion bounds and validate them with the hook contract.
+      residency: Keep resident state outside overlay-owned memory and explicitly scope overlay consumers.
+      unsafe_assumptions: Gravity is per player update rather than emulator frame; state 2 is shared; velocity is a collision proposal; Flight, slam, swing, and plant actions do not inherit the ordinary law.
+    confidence: confirmed
+    residuals: E02 internal geometry, A05 slam, plant activation, swing, and F14 flight each retain a separate registered row and do not intersect the completed ordinary A03 controller.
+    supersedes:
+      - The Phase-3 shorthand that state 2 means only swing-release launch.
+
+  - id: circle_default_input_absence
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Resident decoder 0x80051294..0x80051358; no streamed overlay participates in the proven boundary.
+      assets: Native eight-entry controller-profile table at 0x80078C28, 6 bytes per entry.
+      trigger: Hold raw Circle for 30 timing-matched frames after a two-frame settle under selector 0; repeat with selector 1 as a native positive control.
+      frame_or_cycle: All 42 anchor comparisons plus negative cycle 7086129571 and positive decisive cycle 7086129688 in retained access-log events.
+      observation: Raw Circle was present in 42/42 anchors while decoded actions and retained outcomes matched neutral; profile 1 alone produced action 0x8000.
+      inference: Default profile 0 omits Circle from its three action masks, so raw Circle has no default gameplay action.
+      causal_confirmation: A valid selector-only perturbation from profile 0 to native profile 1 changed the instruction-attributed decoder result from 0x0000 to 0x8000.
+      fixtures: [level01.sav]
+    machine:
+      - config/phase4_input_actions.yaml
+      - analysis/mechanics_baseline.yaml
+      - config/segments.yml
+      - analysis/phase4_circle_absence.json
+    evidence:
+      - artifact: analysis/phase4_circle_absence.json
+        sha256: c96af4d2cbfe5089c5157ddbdff10c856bbbf53e71958a35b27d45c3ea490076
+        json_path: static_census.default_profile.circle_action_bits
+        op: eq
+        expected: 0
+      - artifact: analysis/phase4_circle_absence.json
+        sha256: c96af4d2cbfe5089c5157ddbdff10c856bbbf53e71958a35b27d45c3ea490076
+        json_path: live.negative_control.decoded_action_bits
+        op: eq
+        expected: 0
+      - artifact: analysis/phase4_circle_absence.json
+        sha256: c96af4d2cbfe5089c5157ddbdff10c856bbbf53e71958a35b27d45c3ea490076
+        json_path: live.positive_control.decoded_action_bits
+        op: eq
+        expected: 32768
+      - artifact: analysis/phase4_circle_absence.json
+        sha256: c96af4d2cbfe5089c5157ddbdff10c856bbbf53e71958a35b27d45c3ea490076
+        json_path: live.summary.phase_matched_equal_anchors
+        op: eq
+        expected: 42
+    guard: tests/test_phase4_circle_absence.py::test_retained_circle_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_default_circle_input_absence.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_default_circle_absence.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: A future Circle feature owns an explicit post-decode action or downstream dispatch, never an implicit unused-button assumption.
+      readers: Enumerate existing decoded-word readers and every new player, animation, camera, audio, and collision consumer.
+      writers: Preserve the resident decoder as sole decoded-word owner or document and validate any ordered hook writer.
+      valid_domains: Native selector values are 0..7; raw and decoded action words are u16; MOD-private domains must be explicit.
+      initialization: Initialize MOD-private action state before the first gameplay decode.
+      reset: Clear the state at main-shell reset and every applicable death, reload, and transition boundary.
+      retirement: Retire held/released state on input release and remove overlay-scoped hooks before unload.
+      consumers: Player, animation, camera, audio, collision, HUD, frontend remap, save/load, and exceptional paths.
+      capacity: Declare hook/cave/table expansion bounds and validate them with the hook contract.
+      residency: Resident input state must not occupy overlay-owned memory; overlay consumers must name their owner and lifetime.
+      unsafe_assumptions: Circle is not globally inert because native profile 1 maps it; save-state evidence does not replace cold boot for code or disc changes.
+    confidence: confirmed
+    residuals: Frontend remap selector ownership, persistence, and menu exceptional paths remain bounded to the HUD/frontend family and do not intersect the default-profile absence.
+    supersedes: []
+  - id: slow_walk_modifier_law
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: Both A02 owners are resident; Riverbed Flight is an observed exceptional path rather than an overlay owner of A02.
+      assets: Locomotion animation 29 is selected by ID; no asset-table mutation or asset-decoding claim is needed for the modifier boundary.
+      trigger: Compare Up with Up+R2 from identical anchors; repeat L2, shoulder-only, release/re-entry, pause/resume, death/respawn, and flight controls.
+      frame_or_cycle: Cold-boot movie indices 8103..8162; decisive trace cycles 7086133334, 7086136827, 7086479641, and 7086479689 in the first retained run.
+      observation: R2 selected animation 29 in all 18 applicable gameplay anchors, L2 was equivalent, and flight remained identical with animation 4.
+      inference: A02 is a resident modifier that changes an intermediate movement-component bound and locomotion animation without owning the A01 base law.
+      causal_confirmation: Adding only R2 to a 60-frame Up-only cold-boot window preserved equal pre-edit state and changed the resulting locomotion animation from 0 to 29.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, level01.sav, level02.sav, level_14.sav]
+    machine:
+      - config/phase4_slow_walk.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_slow_walk.json
+    evidence:
+      - artifact: analysis/phase4_slow_walk.json
+        sha256: adb3a0b219bdc7dc0e8d39cd191e423464e7c8a01167d78be8f6602eb96d062e
+        json_path: static_census.law.slow_component_cap
+        op: eq
+        expected: 768
+      - artifact: analysis/phase4_slow_walk.json
+        sha256: adb3a0b219bdc7dc0e8d39cd191e423464e7c8a01167d78be8f6602eb96d062e
+        json_path: live.cold_boot.pre_edit_field_differences
+        op: eq
+        expected: []
+      - artifact: analysis/phase4_slow_walk.json
+        sha256: adb3a0b219bdc7dc0e8d39cd191e423464e7c8a01167d78be8f6602eb96d062e
+        json_path: live.breadth.summary.walk_animation_29_labels
+        op: len_eq
+        expected: 18
+      - artifact: analysis/phase4_slow_walk.json
+        sha256: adb3a0b219bdc7dc0e8d39cd191e423464e7c8a01167d78be8f6602eb96d062e
+        json_path: live.writer_trace.events.9.new_value
+        op: eq
+        expected: 29
+    guard: tests/test_phase4_slow_walk.py::test_retained_slow_walk_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_slow_walk_modifier.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_slow_walk.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve the resident decoded-input owner and explicitly name any hook that changes A02 selection.
+      readers: Enumerate the player movement and actor-animation consumers plus any new collision, render, audio, or camera readers.
+      writers: Do not add unordered writers to decoded actions, player velocity/speed, or animation state.
+      valid_domains: Decoded actions are u16, the native L2/R2 mask is 0x0300, and animation is a signed 16-bit field.
+      initialization: Initialize MOD-private modifier state before the first resident player update.
+      reset: Clear private state on release, main-shell reset, death/reload, and scene transition.
+      retirement: Retire injected input and overlay-scoped hooks before their owner unloads.
+      consumers: Input, player movement, collision, animation, render, audio, camera, pause, and death/respawn paths.
+      capacity: Declare hook/cave/table expansion bounds and validate them with the hook contract.
+      residency: Keep resident state outside overlay-owned memory and scope every overlay consumer.
+      unsafe_assumptions: The 768 intermediate bound is not a universal final-speed ratio; flight bypasses A02; L2/R2 equivalence does not generalize to kick or remapping.
+    confidence: confirmed
+    residuals: A01 now owns the separately completed base run-locomotion law, and frontend remapping owns selector persistence; neither changes the proven A02 modifier delta.
+    supersedes: []
+
+  - id: run_locomotion_controller
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS was not used as authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: The ordinary input helper, horizontal controller, collision integrator, and animation selector are resident; Riverbed Flight is a negative exceptional path.
+      assets: Ordinary run animation 0 is selected by ID; no asset mutation or asset-decoding claim is needed.
+      trigger: Compare Up with neutral from the same cold boot; repeat D-pad directions, full/half/deadzone analog, turn, release/re-entry, pause, and native respawn.
+      frame_or_cycle: Cold-boot movie frames 8103..8162; decisive first-tick cycles 7086135663..7086181386 in the retained writer trace.
+      observation: All 18 ordinary anchors moved and selected animation 0; half analog produced component 909 versus full 1804, deadzone stayed zero, and Flight was identical.
+      inference: The resident controller maintains masked heading plus signed local forward/lateral components and rotates them into collision-consumed world velocity.
+      causal_confirmation: Removing only Up from a timing-identical cold-boot window preserved exact pre-edit state and changed the resulting forward component from 472 to 0.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, level01.sav, level02.sav, level_14.sav]
+    machine:
+      - config/phase4_run_locomotion.yaml
+      - config/record_types.yaml
+      - config/semantic_state.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_run_locomotion.json
+    evidence:
+      - {artifact: analysis/phase4_run_locomotion.json, sha256: 96e22099965c4df517b06d798b62c29fd0128e99ec0507b4e33653a7a9d4d7d2, json_path: static_census.law.analog_deadzone_internal, op: eq, expected: 6144}
+      - {artifact: analysis/phase4_run_locomotion.json, sha256: 96e22099965c4df517b06d798b62c29fd0128e99ec0507b4e33653a7a9d4d7d2, json_path: live.controls.analog.half_up.after.fields.forward_component, op: eq, expected: 909}
+      - {artifact: analysis/phase4_run_locomotion.json, sha256: 96e22099965c4df517b06d798b62c29fd0128e99ec0507b4e33653a7a9d4d7d2, json_path: live.writer_trace.dpad_up.events.11.instruction_pc, op: eq, expected: '0x800494b0'}
+      - {artifact: analysis/phase4_run_locomotion.json, sha256: 96e22099965c4df517b06d798b62c29fd0128e99ec0507b4e33653a7a9d4d7d2, json_path: live.cold_boot.edited_neutral.after.fields.forward_component, op: eq, expected: 0}
+    guard: tests/test_phase4_run_locomotion.py::test_retained_run_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_run_locomotion_controller.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_run_locomotion.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook or state.
+    mod_contract:
+      owner: Preserve the resident input/player/integrator owner chain and explicitly order every new hook.
+      readers: Enumerate player, collision, animation, render, audio, camera, pause, and lifecycle readers.
+      writers: Do not add unordered writes to decoded input, headings, signed components, world velocity, or position.
+      valid_domains: Decoded input is u16; headings are 0..4095; local components and world velocities are signed s32.
+      initialization: Initialize MOD-private locomotion state before the first resident player update.
+      reset: Clear private state on release, main-shell reset, death/reload, and scene transition.
+      retirement: Retire injected input and overlay-scoped hooks before their owner unloads.
+      consumers: Input, player, collision, animation, render, audio, camera, pause, and death/respawn paths.
+      capacity: Declare hook/cave/table expansion bounds and validate them with the hook contract.
+      residency: Keep resident state outside overlay-owned memory and scope every overlay consumer.
+      unsafe_assumptions: Player +0x38 is signed forward component rather than hypot speed; velocity is only a collision proposal; special movement laws do not inherit A01 constants.
+    confidence: confirmed
+    residuals: Vertical actions, Riverbed Flight, and E02 internal geometry remain separately owned and do not intersect the bounded ordinary horizontal controller.
+    supersedes:
+      - The Phase-3 shorthand that player +0x38 universally tracks hypot(velocity_x, velocity_z).
+
+  - id: collision_floor_plane_resolver
+    provenance:
+      media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track; ALLMODS and fall_through_floor.sav were excluded as original-game authority.
+      executable: REBUILD/files/SCUS_942.88 SHA-256 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20.
+      overlay: The converter, grid, resolver, integrator, candidate/ground/point tests and region query are resident; plane/block payloads are scene-local LEVEL.RAW products.
+      assets: Twenty-four centrally pinned collision-classified RAW files were decoded; every 0x0103/0x0104 collision marker chunk semantically round-tripped.
+      trigger: Compare pristine baseline Up with active-sector origin +2048, a distant non-candidate sector +2048, and current-sector plane reference-Y +64; repeat all gameplay anchors and the natural LEVEL01 exit.
+      frame_or_cycle: Controls use 12 timing-matched frames from level01.sav; the natural exit reached sector 177 after 54 frames; exact frames/cycles for all 19 anchors and traces are retained in analysis/phase4_collision.json.
+      observation: Active origin and plane-reference shifts moved player Y by 2070 and floor Y by 2064 while preserving grounding; the distant shift was inert; region 2 raised the exit lever.
+      inference: Scene collision is a sector-indexed set of signed oriented planes consumed through per-use candidate scratch, not the visible terrain mesh or a scalar floor height.
+      causal_confirmation: Two independent current-sector edits produced the expected 32x plane/world response, the spatial negative stayed bit-identical, and query gate 1/0 returned region 2/0 at the naturally reached exit sector.
+      fixtures: [movies/go_to_end/LEVEL01.movie.json, level01.sav, level01_end_of_stage.sav, level02.sav, level_14.sav]
+    machine:
+      - config/phase4_collision.yaml
+      - analysis/mechanics_baseline.yaml
+      - analysis/phase4_collision.json
+      - tools/native_collision_mesh_codec.py
+    evidence:
+      - {artifact: analysis/phase4_collision.json, sha256: d1987d886559928ba48ba8dae9c97157ad25fdec3c9233311b427fba8cdf9399, json_path: static_census.assets.collision_chunks_roundtripped, op: eq, expected: 28}
+      - {artifact: analysis/phase4_collision.json, sha256: d1987d886559928ba48ba8dae9c97157ad25fdec3c9233311b427fba8cdf9399, json_path: live.geometry_controls.active_sector_origin_shift.player_y_delta_vs_baseline, op: eq, expected: 2070}
+      - {artifact: analysis/phase4_collision.json, sha256: d1987d886559928ba48ba8dae9c97157ad25fdec3c9233311b427fba8cdf9399, json_path: live.geometry_controls.distant_sector_origin_shift.post_fields_equal_baseline, op: eq, expected: true}
+      - {artifact: analysis/phase4_collision.json, sha256: d1987d886559928ba48ba8dae9c97157ad25fdec3c9233311b427fba8cdf9399, json_path: live.region_exit.after.transition_lever, op: eq, expected: 1}
+    guard: tests/test_phase4_collision.py::test_retained_collision_evidence_recomputes_low_level_predicates
+    knowledge:
+      canon: ObsidianVault/Canon/Systems/SYS_collision_and_floor_planes.md
+      experiment: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_collision_and_floor_planes.md
+      mods:
+        not_applicable: true
+        reason: This finding records pristine original-game behavior and adds no MOD-private hook, state, cave or intended behavior.
+    mod_contract:
+      owner: Preserve the load-time converter/grid and resident integrator/resolver order; explicitly name every geometry or response hook.
+      readers: Enumerate player, mover, camera, ground/spawn, checkpoint, region, hazard, objective and transition consumers.
+      writers: Do not add unordered writes to sector rows, candidate count/list, plane payloads, current sector, resolved XYZ, floor Y or grounded state.
+      valid_domains: Sector count is 1..700; candidate count must remain 0..399; plane fields are signed 16-bit; region codes observed are 0..4.
+      initialization: Verify pristine LEVEL.RAW, decode and validate semantic round trip before the scene-load converter publishes any table or plane pointer.
+      reset: Clear private collision state per use and on pause/reload/death/transition boundaries; never retain scratch candidates across calls.
+      retirement: Retire scene-local plane/block pointers and table contents before unload or replacement; rebuild from the new verified scene input.
+      consumers: Player physics, movers, camera collision, ground/spawn, checkpoints, region/exit, hazards, objectives and transitions.
+      capacity: The grid scans at most 700 sectors; 400 pointer slots end at 0x8009C870 and the retail append at 0x800368E8 has no bounds check.
+      residency: Code, table and scratch addresses are resident; sector contents and plane/block allocations are scene-local.
+      unsafe_assumptions: Visual terrain is not collision; 400 is a reject ceiling rather than a safe fill target; pointers cannot survive reload; region codes do not by themselves define hazard or transition policy.
+    confidence: confirmed
+    residuals: E01 render geometry, E04 camera policy, E08 movers, E10 hazards, stage objectives and transition dispatch remain independently owned downstream consumers and do not intersect the recovered E02 substrate.
+    supersedes:
+      - The E02 baseline blocker that relied on non-pristine fall_through_floor.sav and lacked an all-stage region-code census.
+      - Legacy shorthand that treated 0x80037320 as the player candidate builder rather than the separate entity/projectile path.

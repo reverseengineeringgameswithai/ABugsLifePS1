@@ -1,0 +1,91 @@
+schema: abl-phase4-fmv-lose-lifecycle-source/1
+description: >
+  Preservation and assertion contract for the natural C16 game-over LOSE
+  stream. Raw debugger receipts, movie/save bytes and cleanup receipts remain
+  outside Git.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-ITER83-E15-LOSE-GAMEOVER-LIFECYCLE-CONTROL
+batch_plan:
+  path: config/phase4_fmv_lose_lifecycle_batch.yaml
+  canonical_sha256: 4bd7fa3b0ee7b22ac37cfc12db3c506789ac0e2080952da0d61bcb509ff1517a
+external_receipts:
+  - role: frame_zero_atomic_attempt
+    relative_path: live/Phase4/e15-lose-gameover-v1-20260724/result.json
+    sha256: e0d5d0d3476bb20b5a18f59c41efe243e307faa458e2a7e703c8686aafed42c1
+    bytes: 69996
+  - role: frame_zero_owned_pid_cleanup
+    relative_path: live/Phase4/e15-lose-gameover-v1-20260724/cleanup.json
+    sha256: d2bbb8ebc2be15565d8d27889572455776f809378997dc2f711a0fc12205b4be
+    bytes: 528
+  - role: staged_positive
+    relative_path: live/Phase4/e15-lose-gameover-v1-20260724/staged-result.json
+    sha256: 392d1055a8942cb26b43d89e703b0bf171af8340d9c193623fd3bdf627b712a0
+    bytes: 166754
+  - role: staged_owned_pid_cleanup
+    relative_path: live/Phase4/e15-lose-gameover-v1-20260724/staged-cleanup.json
+    sha256: 168404d59b055516dfb60dd4b4e12c66ba20fe0946728c4303157012d73709c4
+    bytes: 535
+profiles:
+  - {config_dir: /var/tmp/abl-p4-e15-lose.C77azk, port: 24684, owned_pid: 924215, owned_pid_stopped: true}
+  - {config_dir: /var/tmp/abl-p4-e15-lose-staged.pAiGIf, port: 24685, owned_pid: 932871, owned_pid_stopped: true}
+fixture:
+  movie_path: movies/Phase4/C16_gameover_continue.movie.json
+  movie_sha256: 39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf
+  movie_bytes: 2739616
+  state_path: movies/Phase4/C16_gameover_continue.movie.sav
+  state_sha256: e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592
+  state_bytes: 2052577
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  serial: SCUS-94288
+debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 55d589032641ad0904526742f2209c034a710a162ebba3e1bc04b4c5da6075a8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty_state_hash: 72dd936c8a6f92f6370815da7d9e192c3bcc2371
+expected:
+  failed_positive:
+    endpoint_frame: 266811
+    endpoint_cycle: 151068814191
+    playback_index: 1600
+    scene: 9
+    precise_function_events: 0
+    selected_limit_hits: 0
+    completion_hits: 0
+  cached_stage:
+    movie_frame: 300
+    emulator_frame: 265511
+    pc: '0x8004fea4'
+    ram_sha256: 000686ae4c3fc76f1e5c9e645fcf379a1ee4b2f56958544fcb8d4120bc26699c
+    vram_sha256: 6893db8f75f1f177111ef4e833148af89bf6c70574b40db8d32d4abe60400035
+    spu_ram_sha256: c551369f7a8f1c28c4b93a0948d631e5f5071a15c34ffbc123b031c0fc7a8cfb
+  loader:
+    entry: {frame: 265655, cycle: 150414500700, address: '0x8003e7c0', caller: '0x800500d8', return_address: '0x800500e0', arguments: ['0x0000002e', '0x00000000', '0x00000000', '0x00000000']}
+    return: {frame: 266548, cycle: 150919978691, address: '0x800500e0', v0: '0x00000003'}
+  ring_calls:
+    - {frame: 265862, entry_cycle: 150532002470, exit_cycle: 150532004900, caller: '0x8006d3bc', return_address: '0x8006d3c4'}
+    - {frame: 266545, entry_cycle: 150918436380, exit_cycle: 150918438810, caller: '0x800b749c', return_address: '0x800b74a4'}
+  callback_teardown:
+    frame: 266545
+    entry_cycle: 150918438824
+    exit_cycle: 150918442807
+    caller: '0x800b74a4'
+    return_address: '0x800b74ac'
+  access_events:
+    - {label: selected_frame_limit, frame: 265826, cycle: 150511501353, instruction_pc: '0x800b6dc0', old_value: 0, new_value: 281}
+    - {label: completion_request, frame: 265826, cycle: 150511501381, instruction_pc: '0x800b6dd0', old_value: 0, new_value: 0}
+    - {label: completion_request, frame: 266492, cycle: 150888266123, instruction_pc: '0x800b6b48', old_value: 0, new_value: 1}
+  endpoint:
+    movie_frame: 1337
+    frame: 266548
+    cycle: 150919978691
+    scene: 9
+    fmv_running_latch: 0
+    completion_request: 1
+    selected_frame_limit: 281
+tracked_summary:
+  schema: abl-phase4-fmv-lose-lifecycle/1
+  excludes: [raw_receipts, movie_bytes, save_bytes, disc_bytes, token]

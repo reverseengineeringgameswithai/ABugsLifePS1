@@ -1,0 +1,817 @@
+{
+ "_comment": "Active C16 frontend/card evidence. The fourth Start is a post-game-over title restart, not proof of a Continue menu choice. It resets lives outside the native serialized block without changing the isolated card.",
+ "generated": "2026-07-16",
+ "schema": "abl-phase4-c16-frontend-card/1",
+ "campaign_state": "active_partial",
+ "static_join": {
+  "sources": {
+   "c16": {
+    "path": "analysis/phase4_lives_gameover.json",
+    "sha256": "6aa96878f311b7a470479b226094d10e1a4ec2a534edb8310e08e05070b75748"
+   },
+   "e14_interface": {
+    "path": "analysis/phase4_grain_gates.json",
+    "sha256": "e15c0890a3795dc43be25ea16cb60790f0379e6920703172b15a163ad787ba54",
+    "owner": "E14 card serialization, reproduced by completed E09"
+   }
+  },
+  "scene_config_lives_write": {
+   "address": "0x80055550",
+   "file_offset": "0x45D50",
+   "instruction_word": "0xA02265A0"
+  },
+  "card_serialization": {
+   "source_start": "0x8009EC68",
+   "length": 336,
+   "source_end_exclusive": "0x8009EDB8",
+   "save_buffer_offset": 648,
+   "save_copy": "resident scene/progress block -> card file buffer",
+   "load_copy": "card file buffer -> resident scene/progress block",
+   "instruction_words": {
+    "load_destination": {
+     "address": "0x800BAB60",
+     "word": "0x24E7EC68"
+    },
+    "load_source": {
+     "address": "0x800BAB64",
+     "word": "0x24660288"
+    },
+    "load_end": {
+     "address": "0x800BAB74",
+     "word": "0x246803D8"
+    },
+    "save_source": {
+     "address": "0x800BADAC",
+     "word": "0x24C6EC68"
+    },
+    "save_destination": {
+     "address": "0x800BADB0",
+     "word": "0x24470288"
+    },
+    "save_end": {
+     "address": "0x800BADC0",
+     "word": "0x24C80150"
+    }
+   },
+   "excluded_overlay_state": [
+    "0x800B4C1C",
+    "0x800B4570"
+   ],
+   "grain_hud_mirror": "0x800A65A1",
+   "grain_hud_mirror_serialized_directly": false,
+   "classification": "native card data owns resident scene/pickup progress, not Region-A gate state or the live grain HUD mirror"
+  },
+  "lives": {
+   "address": "0x800A65A0",
+   "width": "u8",
+   "inside_serialized_block": false
+  },
+  "classification": "The exact title-restart lives byte is outside the bidirectional 336-byte native card copy range; live card hashes decide whether this particular path performs any separate card write."
+ },
+ "fixture_census": {
+  "manifest": "analysis/phase0_2_external_fixture_set.json",
+  "movie": {
+   "path": "movies/Phase4/C16_gameover_continue.movie.json",
+   "sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+   "size": 2739616,
+   "media_class": "pristine_serial",
+   "version": 3,
+   "frames": 4006,
+   "initial_frame": 265211,
+   "input_segments": [
+    {
+     "first": 0,
+     "last": 39,
+     "input": {}
+    },
+    {
+     "first": 40,
+     "last": 69,
+     "input": {
+      "down": true,
+      "right": true
+     }
+    },
+    {
+     "first": 70,
+     "last": 109,
+     "input": {
+      "right": true
+     }
+    },
+    {
+     "first": 110,
+     "last": 118,
+     "input": {
+      "down": true,
+      "right": true
+     }
+    },
+    {
+     "first": 119,
+     "last": 121,
+     "input": {
+      "right": true
+     }
+    },
+    {
+     "first": 122,
+     "last": 2585,
+     "input": {}
+    },
+    {
+     "first": 2586,
+     "last": 2595,
+     "input": {
+      "start": true
+     }
+    },
+    {
+     "first": 2596,
+     "last": 3009,
+     "input": {}
+    },
+    {
+     "first": 3010,
+     "last": 3017,
+     "input": {
+      "start": true
+     }
+    },
+    {
+     "first": 3018,
+     "last": 3361,
+     "input": {}
+    },
+    {
+     "first": 3362,
+     "last": 3365,
+     "input": {
+      "start": true
+     }
+    },
+    {
+     "first": 3366,
+     "last": 3662,
+     "input": {}
+    },
+    {
+     "first": 3663,
+     "last": 3669,
+     "input": {
+      "start": true
+     }
+    },
+    {
+     "first": 3670,
+     "last": 4005,
+     "input": {}
+    }
+   ]
+  },
+  "save": {
+   "path": "movies/Phase4/C16_gameover_continue.movie.sav",
+   "sha256": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592",
+   "size": 2052577,
+   "media_class": "pristine",
+   "manifest": "analysis/phase0_2_external_fixture_set.json"
+  },
+  "declared_start_state": {
+   "frame": 265211,
+   "pc": "0x8004fea4",
+   "sp": "0x801fffd0",
+   "game_serial": "SCUS-94288",
+   "from_boot": false,
+   "reproducible_only_from_state": true
+  },
+  "classification_boundary": "The filename is only a lead. Central byte pins, load-free save inspection, pristine mounted-media verification, natural replay, and three single-variable controls establish the retained result."
+ },
+ "live": {
+  "repro_config": {
+   "manifest": "config/phase3_runtime_fixtures.yaml",
+   "seed_path": "~/.cache/abl/abl_card_seed.mcd",
+   "seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+   "seed_size": 131072,
+   "isolated_card_path": "/tmp/abl-phase4-i15-c16-frontend-20064/duckstation/memcards/Disney-Pixar A Bug's Life (USA)_1.mcd",
+   "isolated_card_initial_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+   "settings": [
+    "PatchFastBoot=false",
+    "ExecutionMode=CachedInterpreter",
+    "OverclockEnable=false",
+    "Enable8MBRAM=false",
+    "Directory=memcards"
+   ],
+   "launcher": "tools/launch_repro_playback.sh"
+  },
+  "movie_recipes": {
+   "natural": {
+    "source_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+    "semantic_sha256": "53379719162aadd1bdb1991487e52d0b5f98c0a048313a6ba649863a753853be",
+    "source_frame_count": 4006,
+    "derived_frame_count": 4006,
+    "changed_frames": [],
+    "changed_field": "start_state host path normalized to centrally pinned save",
+    "anchor": "<centrally-pinned-C16-save>",
+    "transient_storage": "temporary directory; derivative deleted before retention"
+   },
+   "last_start_removed": {
+    "source_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+    "semantic_sha256": "b558ca50099ad4f8577f4d50ba136c926cdbee5b726eef769961e327fb95ce7b",
+    "source_frame_count": 4006,
+    "derived_frame_count": 4006,
+    "changed_frames": [
+     3663,
+     3664,
+     3665,
+     3666,
+     3667,
+     3668,
+     3669
+    ],
+    "changed_field": "ports.0.start true -> false",
+    "anchor": "<centrally-pinned-C16-save>",
+    "transient_storage": "temporary directory; derivative deleted before retention"
+   }
+  },
+  "natural_title_restart": {
+   "started": {
+    "reproducible": true,
+    "truncated": false,
+    "frame_count": 4006
+   },
+   "final_status": {
+    "reproducible": true,
+    "truncated": false,
+    "frame_count": 4006,
+    "playback_index": 0,
+    "playing": false
+   },
+   "boundaries": [
+    {
+     "movie_frame": 0,
+     "snapshot": {
+      "status": {
+       "pc": "0x8004fea4",
+       "sp": "0x801fffd0",
+       "frame": 265211,
+       "cycle": 150162888151,
+       "paused": true,
+       "game_serial": "SCUS-94288"
+      },
+      "typed": {
+       "scene": 9,
+       "master_state": 0,
+       "fade_timer": 0,
+       "health": 1,
+       "lives": 0
+      }
+     },
+     "main_ram_sha256": "d2dc35237ab5933287146295a38f4ee6d703c3543d46860f4b6895cc01975142",
+     "progress_block": {
+      "start": "0x8009EC68",
+      "length": 336,
+      "sha256": "611fc682fd1235862b4656dd2a2920beb89ee79b1032ae18ce91a0b34a5c0418"
+     },
+     "isolated_card_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "immutable_seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "isolated_card_equals_seed": true
+    },
+    {
+     "movie_frame": 3662,
+     "snapshot": {
+      "status": {
+       "pc": "0x8003f334",
+       "sp": "0x801fff58",
+       "frame": 268873,
+       "cycle": 152236326375,
+       "paused": true,
+       "game_serial": "SCUS-94288"
+      },
+      "typed": {
+       "scene": 0,
+       "master_state": 2,
+       "fade_timer": 0,
+       "health": -1,
+       "lives": 0
+      }
+     },
+     "main_ram_sha256": "1f9d550e6ff8dfe24c5975aee7ab3d5217949392ca338feaebcb64a00da67166",
+     "progress_block": {
+      "start": "0x8009EC68",
+      "length": 336,
+      "sha256": "611fc682fd1235862b4656dd2a2920beb89ee79b1032ae18ce91a0b34a5c0418"
+     },
+     "isolated_card_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "immutable_seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "isolated_card_equals_seed": true,
+     "frame_capture": {
+      "label": "post-game-over-title-before-Start",
+      "captured": true,
+      "width": 800,
+      "height": 610,
+      "emulator_frame": 268873,
+      "pixel_sha256": "30443b10664b96afec97590c88301068be51cc72a556226c2747268e4fcc2a93",
+      "hash_method": "sha256",
+      "transient_storage": "temporary directory; captured frame deleted"
+     }
+    },
+    {
+     "movie_frame": 3700,
+     "snapshot": {
+      "status": {
+       "pc": "0xbfc02bac",
+       "sp": "0x801ffed8",
+       "frame": 268911,
+       "cycle": 152257842119,
+       "paused": true,
+       "game_serial": "SCUS-94288"
+      },
+      "typed": {
+       "scene": 0,
+       "master_state": 2,
+       "fade_timer": 0,
+       "health": -1,
+       "lives": 5
+      }
+     },
+     "main_ram_sha256": "7eb6b6386c492c839fd7ccc981527c3fa40c669b0cd63620d7794251e6fb96cd",
+     "progress_block": {
+      "start": "0x8009EC68",
+      "length": 336,
+      "sha256": "611fc682fd1235862b4656dd2a2920beb89ee79b1032ae18ce91a0b34a5c0418"
+     },
+     "isolated_card_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "immutable_seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "isolated_card_equals_seed": true
+    },
+    {
+     "movie_frame": 4006,
+     "snapshot": {
+      "status": {
+       "pc": "0x8003f334",
+       "sp": "0x801ffee0",
+       "frame": 269217,
+       "cycle": 152431100473,
+       "paused": true,
+       "game_serial": "SCUS-94288"
+      },
+      "typed": {
+       "scene": 0,
+       "master_state": 2,
+       "fade_timer": 0,
+       "health": -1,
+       "lives": 5
+      }
+     },
+     "main_ram_sha256": "e8cada81c519c340a7112e73258efe33da01db1a76bbe7cfae04996e08b03d62",
+     "progress_block": {
+      "start": "0x8009EC68",
+      "length": 336,
+      "sha256": "611fc682fd1235862b4656dd2a2920beb89ee79b1032ae18ce91a0b34a5c0418"
+     },
+     "isolated_card_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "immutable_seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "isolated_card_equals_seed": true,
+     "frame_capture": {
+      "label": "natural-stage-select",
+      "captured": true,
+      "width": 800,
+      "height": 610,
+      "emulator_frame": 269217,
+      "pixel_sha256": "7e8459b7fbac83d4a11846a8f7b723712eb4a49e1b717f12240e5362120d71f0",
+      "hash_method": "sha256",
+      "transient_storage": "temporary directory; captured frame deleted"
+     }
+    }
+   ]
+  },
+  "last_start_removed": {
+   "started": {
+    "reproducible": true,
+    "truncated": false,
+    "frame_count": 4006
+   },
+   "final_status": {
+    "reproducible": true,
+    "truncated": false,
+    "frame_count": 4006,
+    "playback_index": 0,
+    "playing": false
+   },
+   "boundaries": [
+    {
+     "movie_frame": 3662,
+     "snapshot": {
+      "status": {
+       "pc": "0x8003f334",
+       "sp": "0x801fff58",
+       "frame": 268873,
+       "cycle": 152236326375,
+       "paused": true,
+       "game_serial": "SCUS-94288"
+      },
+      "typed": {
+       "scene": 0,
+       "master_state": 2,
+       "fade_timer": 0,
+       "health": -1,
+       "lives": 0
+      }
+     },
+     "main_ram_sha256": "1f9d550e6ff8dfe24c5975aee7ab3d5217949392ca338feaebcb64a00da67166",
+     "progress_block": {
+      "start": "0x8009EC68",
+      "length": 336,
+      "sha256": "611fc682fd1235862b4656dd2a2920beb89ee79b1032ae18ce91a0b34a5c0418"
+     },
+     "isolated_card_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "immutable_seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "isolated_card_equals_seed": true
+    },
+    {
+     "movie_frame": 3700,
+     "snapshot": {
+      "status": {
+       "pc": "0x8003f334",
+       "sp": "0x801fff58",
+       "frame": 268911,
+       "cycle": 152257842118,
+       "paused": true,
+       "game_serial": "SCUS-94288"
+      },
+      "typed": {
+       "scene": 0,
+       "master_state": 2,
+       "fade_timer": 0,
+       "health": -1,
+       "lives": 0
+      }
+     },
+     "main_ram_sha256": "414a0966f9cc352ee4bc0e8c8ff86deed5251d5e315691b7291f14163a40fb60",
+     "progress_block": {
+      "start": "0x8009EC68",
+      "length": 336,
+      "sha256": "611fc682fd1235862b4656dd2a2920beb89ee79b1032ae18ce91a0b34a5c0418"
+     },
+     "isolated_card_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "immutable_seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "isolated_card_equals_seed": true
+    },
+    {
+     "movie_frame": 4006,
+     "snapshot": {
+      "status": {
+       "pc": "0x8003f334",
+       "sp": "0x801fff58",
+       "frame": 269217,
+       "cycle": 152431100474,
+       "paused": true,
+       "game_serial": "SCUS-94288"
+      },
+      "typed": {
+       "scene": 0,
+       "master_state": 2,
+       "fade_timer": 0,
+       "health": -1,
+       "lives": 0
+      }
+     },
+     "main_ram_sha256": "8e1ccf828b04f21594fa155efd57036e0e6e45af23fdf85bd8f15980d09a6914",
+     "progress_block": {
+      "start": "0x8009EC68",
+      "length": 336,
+      "sha256": "611fc682fd1235862b4656dd2a2920beb89ee79b1032ae18ce91a0b34a5c0418"
+     },
+     "isolated_card_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "immutable_seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+     "isolated_card_equals_seed": true,
+     "frame_capture": {
+      "label": "Start-removed-title",
+      "captured": true,
+      "width": 800,
+      "height": 610,
+      "emulator_frame": 269217,
+      "pixel_sha256": "6ddda7cecbd2e6493e3531656741ef642e6a12e6ec6f007ef8021cde29ffcd3a",
+      "hash_method": "sha256",
+      "transient_storage": "temporary directory; captured frame deleted"
+     }
+    }
+   ]
+  },
+  "card_diff": {
+   "size_before": 131072,
+   "size_after": 131072,
+   "changed_bytes": 0,
+   "first_changed_offset": null,
+   "last_changed_offset": null,
+   "changed_128_byte_frames": [],
+   "changed_8192_byte_blocks": [],
+   "contiguous_span_count": 0
+  }
+ },
+ "bounded_interpretation": {
+  "observation": "At movie frame 3662 the transient frame is the title screen. Natural Start frames 3663..3669 reach scene 0/lives 5 and the stage-select frame by 4006; removing only those frames leaves scene 0/lives 0 on the same title frame.",
+  "inference": "The exact 0x80055550 write is post-game-over title-restart scene initialization. It is not evidence of a separately presented Continue menu choice.",
+  "causal_confirmation": "The branches are identical at frame 3662. Across both, the 336-byte progress block, fresh isolated card and immutable seed remain byte-identical while only natural input writes lives 0 to 5.",
+  "card_boundary": "The E14-owned native serializer copies 0x8009EC68..0x8009EDB7. Lives at 0x800A65A0 is outside it, and this restart performs no host-card write. Explicit later native Save/Load choices remain frontend/persistence work.",
+  "forbidden_claim": "Do not rename the path Continue, infer a menu option, claim no card interaction on other frontend paths, or close C16."
+ },
+ "bounded_open_frontier": {
+  "frontend": "Explicit native Save/Load, no-card/corrupt-card behavior and any other title/menu choices remain open.",
+  "deaths": "Scripted, special, boss, bonus and exceptional death classes plus remaining stage breadth remain open.",
+  "next_experiment": "Bind one existing boss/bonus or scripted death lead to its exact producer and resident transition law."
+ },
+ "run_provenance": {
+  "command": "/usr/bin/python3 tools/phase4_c16_frontend_card.py --port 20064 --token '<redacted-token>' --config-dir /tmp/abl-phase4-i15-c16-frontend-20064 --instance-state recreated --card-seed ~/.cache/abl/abl_card_seed.mcd",
+  "generator_sha256": "23e9014fd5b2ae660676b5d76b819f14e7611c9066af3465edcebda42ac24ef5",
+  "provenance_helper_sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678",
+  "launcher_helper_sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821",
+  "repository_head": "d26b9a9e2fe0fd1f36c68d5ee84a76e72d66058d",
+  "recorded_utc": "2026-07-16T17:29:07.728118+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "status": "M EXTERNAL_DEBUGGER_CONTROL.md\n M docs/external-debugger-determinism.md\n M docs/external-debugger-experiment-runner.md\n M docs/external-debugger-movie.md\n M docs/external-debugger.md\n M scripts/debugger-client/README.md\n M scripts/debugger-client/duckstation_debug_client.py\n M scripts/debugger-client/mcp_bridge.py\n M src/CMakeLists.txt\n M src/core/CMakeLists.txt\n M src/core/achievements.cpp\n M src/core/analog_controller.cpp\n M src/core/analog_controller.h\n M src/core/analog_joystick.cpp\n M src/core/analog_joystick.h\n M src/core/cdrom.cpp\n M src/core/cdrom.h\n M src/core/controller.cpp\n M src/core/controller.h\n M src/core/core.vcxproj\n M src/core/core.vcxproj.filters\n M src/core/cpu_core.cpp\n M src/core/cpu_core.h\n M src/core/debugger_control_service.cpp\n M src/core/debugger_control_service.h\n M src/core/dma.cpp\n M src/core/fullscreenui_settings.cpp\n M src/core/gpu.cpp\n M src/core/gpu.h\n M src/core/gpu_backend.cpp\n M src/core/gpu_backend.h\n M src/core/imgui_overlays.cpp\n M src/core/input_movie.cpp\n M src/core/input_movie.h\n M src/core/negcon.cpp\n M src/core/negcon.h\n M src/core/negcon_rumble.cpp\n M src/core/negcon_rumble.h\n M src/core/settings.cpp\n M src/core/settings.h\n M src/core/spu.cpp\n M src/core/spu.h\n M src/core/system.cpp\n M src/core/system.h\n M src/core/system_private.h\n M src/duckstation-qt/debuggerrpc.cpp\n M src/duckstation-qt/debuggerrpc.h\n M src/duckstation-qt/debuggerserver.cpp\n M src/duckstation-qt/debuggerserver.h\n M src/duckstation-qt/input_movie_file.cpp\n M src/duckstation-qt/input_movie_file.h\n M src/duckstation-qt/interfacesettingswidget.cpp\n M src/duckstation-qt/interfacesettingswidget.ui\n M src/duckstation-qt/logwindow.cpp\n M src/duckstation-qt/mainwindow.cpp\n M src/duckstation-qt/mainwindow.h\n M src/duckstation-qt/mainwindow.ui\n M src/duckstation-qt/osdsettingswidget.cpp\n M src/duckstation-qt/osdsettingswidget.ui\n M src/duckstation-qt/qthost.cpp\n M src/duckstation-qt/qtutils.cpp\n M src/duckstation-qt/qtutils.h\n M src/duckstation-regtest/regtest_host.cpp\n M src/scmversion/gen_scmversion.bat\n M src/scmversion/gen_scmversion.sh\n M src/scmversion/scmversion.h\n?? api-hardening-artifacts-20260714/\n?? docs/external-debugger-scenarios.md\n?? scripts/debugger-client/launch_debugger_instance.sh\n?? scripts/debugger-client/test_code_patch_invalidation.py\n?? scripts/debugger-client/test_framebuffer_capture.py\n?? scripts/debugger-client/test_function_bounds.py\n?? scripts/debugger-client/test_gp0trace_dma.py\n?? src/core-tests/\n?? src/core/cd_provenance.cpp\n?? src/core/cd_provenance.h\n?? src/core/code_analysis.cpp\n?? src/core/code_analysis.h\n?? src/core/frame_diff.cpp\n?? src/core/frame_diff.h\n?? src/core/gpu_object_picker.cpp\n?? src/core/gpu_object_picker.h\n?? src/core/gte_camera.cpp\n?? src/core/gte_camera.h\n?? src/core/movie_edit.cpp\n?? src/core/movie_edit.h\n?? src/core/write_index.cpp\n?? src/core/write_index.h",
+   "binary_path": "~/duckstation/build-release/bin/duckstation-qt",
+   "binary_sha256": "c668bf0974a7da5dabdbc4f1bd5311df3027e8af56faceb19ac7648f6f24ccec"
+  },
+  "rpc_manifest": {
+   "path": "analysis/phase3_duckstation_rpc_manifest.json",
+   "semantic_sha256": "0f3e6a032a81318afaacbddf5512dd75d0e4fbcda0f4be91d1142acc83f15ed4",
+   "source": {
+    "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "status_sha256": "1c1a325041c78e0545816a605a2dbc7c41a08549642d4f4b8289d9df87baf130",
+    "dispatcher_sha256": "b1be4d512eae5c67608453adcbabb32e03612c3ead51856c41ab9c0d140f47be",
+    "method_count": 203
+   },
+   "binary": {
+    "path": "~/duckstation/build-release/bin/duckstation-qt",
+    "sha256": "c668bf0974a7da5dabdbc4f1bd5311df3027e8af56faceb19ac7648f6f24ccec",
+    "size": 37862904
+   }
+  },
+  "debugger": {
+   "config_dir": "/tmp/abl-phase4-i15-c16-frontend-20064",
+   "port": 20064,
+   "transport": "ws",
+   "token_sha256": "af4ff23e9f31499f0ac65a08c978248006d379388f7e91335cf27c0f7a770f51",
+   "recreated": true,
+   "owned_pid": 2031682
+  },
+  "anchor": {
+   "type": "state-anchored post-game-over title restart on fresh isolated card",
+   "save": "movies/Phase4/C16_gameover_continue.movie.sav",
+   "fixture_sha256": {
+    "movies/Phase4/C16_gameover_continue.movie.sav": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592"
+   },
+   "state_inspections": [
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260715-220101-2857888/movies/Phase4/C16_gameover_continue.movie.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2052577,
+     "timestamp": 1784199247,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "movies/Phase4/C16_gameover_continue.movie.sav",
+      "sha256": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592",
+      "size": 2052577,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    }
+   ],
+   "media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   },
+   "final_media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   },
+   "movie": {
+    "path": "movies/Phase4/C16_gameover_continue.movie.json",
+    "sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+    "size": 2739616,
+    "media_class": "pristine_serial",
+    "version": 3,
+    "frames": 4006,
+    "initial_frame": 265211,
+    "input_segments": [
+     {
+      "first": 0,
+      "last": 39,
+      "input": {}
+     },
+     {
+      "first": 40,
+      "last": 69,
+      "input": {
+       "down": true,
+       "right": true
+      }
+     },
+     {
+      "first": 70,
+      "last": 109,
+      "input": {
+       "right": true
+      }
+     },
+     {
+      "first": 110,
+      "last": 118,
+      "input": {
+       "down": true,
+       "right": true
+      }
+     },
+     {
+      "first": 119,
+      "last": 121,
+      "input": {
+       "right": true
+      }
+     },
+     {
+      "first": 122,
+      "last": 2585,
+      "input": {}
+     },
+     {
+      "first": 2586,
+      "last": 2595,
+      "input": {
+       "start": true
+      }
+     },
+     {
+      "first": 2596,
+      "last": 3009,
+      "input": {}
+     },
+     {
+      "first": 3010,
+      "last": 3017,
+      "input": {
+       "start": true
+      }
+     },
+     {
+      "first": 3018,
+      "last": 3361,
+      "input": {}
+     },
+     {
+      "first": 3362,
+      "last": 3365,
+      "input": {
+       "start": true
+      }
+     },
+     {
+      "first": 3366,
+      "last": 3662,
+      "input": {}
+     },
+     {
+      "first": 3663,
+      "last": 3669,
+      "input": {
+       "start": true
+      }
+     },
+     {
+      "first": 3670,
+      "last": 4005,
+      "input": {}
+     }
+    ]
+   },
+   "card_fixture": {
+    "manifest": "config/phase3_runtime_fixtures.yaml",
+    "sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517",
+    "size": 131072,
+    "media_class": "operator_owned_memory_card"
+   }
+  },
+  "timing": {
+   "cpu_overclock_percent": 100,
+   "cd_read_speedup": 1,
+   "cd_seek_speedup": 1,
+   "rewind": false,
+   "run_ahead": false,
+   "execution_mode": "CachedInterpreter",
+   "movie_frames": {
+    "pre_title_Start": 3662,
+    "post_title_Start": 3700,
+    "final": 4006
+   }
+  },
+  "cleanup": {
+   "owned_pid_stopped": true,
+   "launcher_returncode": 0,
+   "launcher_output": "Stopped isolated instance (pid 2031682).\nowned cleanup: pid=2031682 stopped=true final_state=None waited_ms=0",
+   "process_final_state": null
+  }
+ }
+}

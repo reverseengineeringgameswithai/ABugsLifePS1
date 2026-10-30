@@ -1,0 +1,54 @@
+{
+ "_comment": "Region census of the resident code that functions_resident.txt does not cover. Regenerate: tools/phase4_resident_gap_census.py",
+ "generated": "2026-08-04",
+ "how_this_hole_was_found": "Not by inspection. The validated LEVEL01 campaign movie caught 0x80010BF8 touching an E16 table -- accessLog reports the instruction AFTER the access, so the access is 0x80010BF4, `lhu $t9,0($t9)` -- and that PC lies inside the gap 0x800102D4..0x80013108. The declared runtime falsifier did its job.",
+ "text_segment_bytes": 468992,
+ "covered_by_functions_resident": 422632,
+ "uncovered_bytes": 46360,
+ "uncovered_percent": 9.9,
+ "gap_count": 79,
+ "largest_gaps": [
+  {
+   "start": "0x8007E8B8",
+   "bytes": 13536
+  },
+  {
+   "start": "0x800102D4",
+   "bytes": 11828
+  },
+  {
+   "start": "0x8007B63C",
+   "bytes": 8068
+  },
+  {
+   "start": "0x8001B828",
+   "bytes": 4600
+  },
+  {
+   "start": "0x80075930",
+   "bytes": 4216
+  },
+  {
+   "start": "0x80078D84",
+   "bytes": 1688
+  },
+  {
+   "start": "0x8001B0BC",
+   "bytes": 880
+  },
+  {
+   "start": "0x8008219C",
+   "bytes": 340
+  }
+ ],
+ "derived_functions_in_gaps": 80,
+ "region_formed_sites_in_gaps": 12,
+ "required_index_distribution": {
+  "<64": 0,
+  "64-1k": 0,
+  "1k-16k": 0,
+  ">=16k": 12
+ },
+ "priority_sites_needing_index_under_1k": 0,
+ "priority_sites": []
+}

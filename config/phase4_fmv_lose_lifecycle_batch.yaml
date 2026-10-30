@@ -1,0 +1,97 @@
+schema: abl-phase4-duckstation-batch/1
+campaign_id: fmv_playback
+row_ids: [E15_fmv]
+escalation_ids: [P4-ITER83-E15-LOSE-GAMEOVER-LIFECYCLE-CONTROL]
+expected_media: &pristine_media
+  path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  serial: SCUS-94288
+  title: Disney-Pixar A Bug's Life
+  sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  tracks:
+    - path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin
+      sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+expected_debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 55d589032641ad0904526742f2209c034a710a162ebba3e1bc04b4c5da6075a8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty: true
+  dirty_state_hash: 72dd936c8a6f92f6370815da7d9e192c3bcc2371
+continue_on_error: true
+
+jobs:
+  - id: gameover_movie_positive
+    recipe: loadStateAndRun
+    state_path: ~/Downloads/ABL/movies/Phase4/C16_gameover_continue.movie.sav
+    auto_select_disc: false
+    expected_media: *pristine_media
+    movie:
+      path: ~/Downloads/ABL/movies/Phase4/C16_gameover_continue.movie.json
+    instrumentation: &lose_trace
+      - method: functionTrace.start
+        params:
+          functions: [0x8003E7C0, 0x8007094C, 0x800709AC]
+          capture_memory: false
+          max_events: 24
+      - method: accessLog.addWatch
+        params:
+          address: 0x800CAC10
+          length: 4
+          type: write
+          label: completion_request
+          max_events: 24
+      - method: accessLog.addWatch
+        params:
+          address: 0x80131EEE
+          length: 2
+          type: write
+          label: selected_frame_limit
+          max_events: 16
+      - method: accessLog.addWatch
+        params:
+          address: 0x80082250
+          length: 4
+          type: write
+          label: fmv_running_latch
+          max_events: 16
+      - method: accessLog.addWatch
+        params:
+          address: 0x80082504
+          length: 4
+          type: write
+          label: scene
+          max_events: 16
+    run: &shared_run
+      frames: 1600
+    capture: &shared_capture
+      trigger: e15_c16_post_frame_1600
+      include_registers: true
+      trace_limit: 128
+      memory_dumps:
+        - {label: fmv_running_latch, address: 0x80082250, length: 0x4}
+        - {label: shell_substate, address: 0x8008243C, length: 0x4}
+        - {label: scene, address: 0x80082504, length: 0x4}
+        - {label: str_backloc, address: 0x80088FFC, length: 0x4}
+        - {label: fmv_bin_head, address: 0x800B5788, length: 0x100}
+        - {label: completion_request, address: 0x800CAC10, length: 0x4}
+        - {label: selected_frame_limit, address: 0x80131EEE, length: 0x2}
+
+  - id: gameover_no_input_control
+    recipe: loadStateAndRun
+    state_path: ~/Downloads/ABL/movies/Phase4/C16_gameover_continue.movie.sav
+    auto_select_disc: false
+    expected_media: *pristine_media
+    instrumentation: *lose_trace
+    run: *shared_run
+    capture: *shared_capture
+
+control_pairs:
+  - positive_job: gameover_movie_positive
+    negative_job: gameover_no_input_control
+    assertion: >-
+      From the identical inspected C16 game-over state and 1,600-frame bound,
+      the positive job may differ only by the centrally pinned movie inputs.
+      Retain the exact loader caller, selector arguments, selected frame limit,
+      completion request and common teardown sequence. The no-input job is the
+      native same-anchor control for whether those inputs select the LOSE path;
+      neither branch may be generalized beyond this one game-over anchor.

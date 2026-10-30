@@ -1,0 +1,1161 @@
+{
+  "_comment": "Generated from hash-verified pristine retail executable bytes, a closed derived-pristine offline query, and hash-pinned prior natural-LOSE/completed-Level-B evidence. No copyrighted input bytes are retained.",
+  "campaign": "fmv_playback",
+  "claim_boundary": {
+    "closed_sub_boundaries": [
+      "game_over_lose_region_b_replacement_ownership",
+      "completed_level_b_region_b_replacement_ownership"
+    ],
+    "dimension_promoted": false,
+    "lifecycle_promoted": false,
+    "next_action": "The second consecutive no-reduction iteration changes lane. Preserve both caller-owned replacement chains and predeclare one same-anchor completed-Level-B transfer control for the first channel-3 CD-ROM DMA write into Region B; do not repeat the static census or claim movie-viewer persistence from the completed-level path.\n",
+    "next_lane": "live",
+    "not_claimed": [
+      "The game-over and completed-level paths do not generalize to movie-viewer returns.",
+      "Static code does not identify the first CD/DMA write cycle after CdRead.",
+      "Read failure, retry, partial-transfer, and malformed-media outcomes remain open.",
+      "The conditional all-level-complete flag does not establish E14 serialization or C17 movie-viewer unlock policy."
+    ]
+  },
+  "completed_level_b_anchor": {
+    "caller": "0x8005031C",
+    "common_exit_ordered": true,
+    "completion_writer": "0x800B6B24",
+    "first_movie_frame": 14382,
+    "return_pc": "0x80050324",
+    "scene_flow_entry_state_s0": 1,
+    "selector": 11,
+    "source_artifact": "analysis/phase4_fmv_levelb_first_call.json",
+    "transition_hook_enabled": -1
+  },
+  "completed_level_b_replacement_policy": {
+    "common_resource_policy": {
+      "byte_owner": "E16_streaming_overlays",
+      "destination": "0x800B5788",
+      "path": "bits\\memory.bin",
+      "resource_dispatch_selector": 0,
+      "scene_setup_non_skip_transitions": [
+        0,
+        128
+      ],
+      "transition_owner": "resident_scene_flow_dispatcher"
+    },
+    "conditional_transition_requests": [
+      {
+        "branch": {
+          "mnemonic": "bgez v0,0x8004fda0",
+          "pc": "0x8004FD6C",
+          "word": "0x0441000C"
+        },
+        "call": {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x8004FD74",
+          "word": "0x0C0140E3"
+        },
+        "condition": "pending scene-flow request is negative",
+        "scene": 3,
+        "transition": 0,
+        "transition_argument": {
+          "mnemonic": "addu a1,zero,zero",
+          "pc": "0x8004FD78",
+          "word": "0x00002821"
+        }
+      },
+      {
+        "branch": {
+          "mnemonic": "bgez v0,0x8005029c",
+          "pc": "0x80050248",
+          "word": "0x04410014"
+        },
+        "call": {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x8005029C",
+          "word": "0x0C0140E3"
+        },
+        "condition": "pending scene-flow request is nonnegative",
+        "scene": 6,
+        "scene_argument": {
+          "mnemonic": "addiu a0,zero,6",
+          "pc": "0x8005024C",
+          "word": "0x24040006"
+        },
+        "transition": 128,
+        "transition_argument": {
+          "mnemonic": "addiu a1,zero,128",
+          "pc": "0x800502A0",
+          "word": "0x24050080"
+        }
+      }
+    ],
+    "natural_scene_flow_join": {
+      "basis": "The retained s0=1 entry is the state-one call guarded at 0x80050134. The completed owner publishes only scene-flow values zero or one, so the immediate state-five call at 0x80050214 is not selected.",
+      "caller": {
+        "mnemonic": "jal 0x800502c4",
+        "pc": "0x8005013C",
+        "word": "0x0C0140B1"
+      },
+      "caller_guard": {
+        "mnemonic": "bne s0,v0,0x800501a8",
+        "pc": "0x80050134",
+        "word": "0x1602001C"
+      },
+      "return_pc": "0x80050144"
+    },
+    "persistence_partition": {
+      "all_complete_sets_scene_flag_at": "0x8009B888",
+      "c17_movie_viewer_unlock_field": "0x8009B889",
+      "c17_unlock_field_written": false,
+      "classification": "The selected code reads the 16-byte progress table and publishes transition state. The all-complete branch sets an adjacent scene flag; whether that flag is serialized remains E14/C17 debt.",
+      "e14_serialization_policy_claimed": false,
+      "ordinary_progress_scan_calls_save_serializer": false,
+      "ordinary_progress_scan_writes_movie_viewer_unlock": false
+    },
+    "player_return": {
+      "all_complete_scene_flow_value": 1,
+      "all_complete_sum": 112,
+      "optional_call": {
+        "classification": "same FMV.BIN reload, not Region-B replacement",
+        "pc": "0x8005036C",
+        "selector": 41
+      },
+      "ordinary_scene_flow_value": 0,
+      "owner": "fmv_sequence_completion_check",
+      "pc": "0x80050324",
+      "progress_bytes_read": 16,
+      "region_b_materializations": 0
+    }
+  },
+  "dimension": "lifecycle",
+  "falsifier": {
+    "checks": {
+      "both_scene_setup_transitions_execute_resource_selector_zero": true,
+      "c17_unlock_field_not_written": true,
+      "cdread_destination_exact": true,
+      "completed_level_b_anchor_exact": true,
+      "completed_level_b_post_return_calls_classified": true,
+      "completed_level_b_region_b_materializations_zero": true,
+      "conditional_scene_setup_frontier_complete": true,
+      "display_frontier_excludes_region_b_and_loaders": true,
+      "e14_serialization_not_inferred": true,
+      "first_region_b_materialization_unique": true,
+      "memory_bin_path_exact": true,
+      "natural_anchor_exact": true,
+      "natural_state_one_scene_flow_join_exact": true,
+      "post_return_call_exact": true,
+      "selector_zero_exact": true,
+      "unclassified_transition_edges_zero": true,
+      "universal_loader_destination_preserved": true
+    },
+    "outcome": "survived"
+  },
+  "generated": "2026-07-28",
+  "inputs": {
+    "prior_evidence": {
+      "analysis/phase4_fmv_levelb_first_call.json": "31d22808c045a2ea54586e25fd0de5a93a537fdf9a190f8750ded85e98acaa67",
+      "analysis/phase4_fmv_lifecycle_continuations.json": "c026a89b3d1e6ec8dd39f14e61855274f8520d3885c20e14bcbadc8d7244844b",
+      "analysis/phase4_fmv_lose_lifecycle.json": "759db1dc93af902349947a74c9aa6948f4a6b6c4a1137a4cbb7a28e898c58c2c"
+    },
+    "resident_executable": {
+      "identity_verified": true,
+      "path": "REBUILD/files/SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "size": 471040
+    }
+  },
+  "lane": "static",
+  "natural_anchor": {
+    "caller": "0x800500D8",
+    "movie_reproducible": true,
+    "return_pc": "0x800500E0",
+    "selector": 46,
+    "source_artifact": "analysis/phase4_fmv_lose_lifecycle.json",
+    "transition_hook_enabled": 0
+  },
+  "offline_localization": {
+    "command": [
+      "python3",
+      "tools/phase4_offline_receipt_query.py",
+      "--input",
+      "@run/iteration-2-receipts/inputs/fmv-lifecycle-v2.index.json",
+      "--output",
+      "@run/iteration-2-receipts/outputs/fmv-levelb-region-b-replacement-index-search.json",
+      "--query-json",
+      "@query"
+    ],
+    "exit_code": 0,
+    "external_index_bytes": 16060589,
+    "external_index_sha256": "e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab",
+    "finding": "The retained frame-boundary index contains none of the exact completed-Level-B, Region-B replacement, transition-owner, movie-viewer or persistence leads. Pristine static bytes therefore own the selected instruction/ownership question.",
+    "output_sha256": "caa68175e00a34700d26af492ff5edd1c6a1a7eb298698c9431220029b89fbb5",
+    "preservation_sha256": "780f9bbd6043153fe250236e403d15d80b5890266bf5a942da6bd3bfce93867d",
+    "reader": {
+      "path": "tools/phase4_offline_receipt_query.py",
+      "scope": "repo",
+      "sha256": "00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846"
+    },
+    "receipt_sha256": "8fe4e94a84381d1106ae0df087db27347865dc0ed4db3320029b8268c22c6326",
+    "stdout_sha256": "bf6d15363b59d2dd48e0d3cc4ff9a4e4577ce43de049899bcdde9416a6c6057c",
+    "zero_match_terms": [
+      "0x8005031C",
+      "0x80050324",
+      "0x800B5788",
+      "Region-B",
+      "bits\\memory.bin",
+      "completed-Level-B",
+      "movie-viewer",
+      "persistence",
+      "resource_id_dat_load_dispatcher",
+      "transition_owner"
+    ]
+  },
+  "ownership": {
+    "C17_movie_viewer_unlock_intersects_selected_path": false,
+    "E14_frontend_save_intersects_selected_path": false,
+    "classification": "C16 selects scene 5/transition 64 for LOSE. Completed-Level-B returns to one scene-flow owner with scene 3/transition 0 or scene 6/transition 128. Every branch reaches E16 selector zero and requests bits\\memory.bin into Region B.",
+    "completed_level_b_transition_choice_owner": "resident_scene_flow_dispatcher",
+    "first_byte_cycle_claimed": false,
+    "lose_transition_choice_owner": "C16_death_lives_game_over",
+    "replacement_byte_owner": "E16_streaming_overlays"
+  },
+  "region_b_materialization_census": {
+    "completed_level_b_matches": [
+      {
+        "low_pc": "0x8003D30C",
+        "lui_pc": "0x8003D308",
+        "register": 5,
+        "value": "0x800B5788"
+      }
+    ],
+    "completed_level_b_ordered_ranges": [
+      "post_level_b_return",
+      "scene_flow_dispatcher",
+      "scene_setup_and_load",
+      "display_buffers_init",
+      "resource_dispatch_prefix_through_selector_zero_load"
+    ],
+    "natural_lose_matches": [
+      {
+        "low_pc": "0x8003D30C",
+        "lui_pc": "0x8003D308",
+        "register": 5,
+        "value": "0x800B5788"
+      }
+    ],
+    "natural_lose_ordered_ranges": [
+      "post_lose_return",
+      "scene_setup_and_load",
+      "display_buffers_init",
+      "resource_dispatch_prefix_through_selector_zero_load"
+    ],
+    "unclassified_matches": []
+  },
+  "replacement_chain": [
+    {
+      "operation": "scene_setup_and_load(5, 64)",
+      "pc": "0x800500E4",
+      "stage": "C16_game_over_return"
+    },
+    {
+      "direct_call_targets": [
+        "0x80062790",
+        "0x80062790",
+        "0x800625FC",
+        "0x80060EC0",
+        "0x80060F78",
+        "0x80062B04",
+        "0x80060EC0",
+        "0x80060F78",
+        "0x80062B04",
+        "0x800651D0",
+        "0x80062EC8",
+        "0x80062BFC",
+        "0x800625FC",
+        "0x800651D0",
+        "0x80062EC8",
+        "0x80062BFC",
+        "0x800625FC",
+        "0x80063508",
+        "0x80063508"
+      ],
+      "operation": "display_buffers_init()",
+      "pc": "0x800503C4",
+      "region_b_materializations": 0,
+      "stage": "resident_scene_setup"
+    },
+    {
+      "operation": "resource_id_dat_load_dispatcher(0)",
+      "pc": "0x800503CC",
+      "stage": "resident_scene_setup"
+    },
+    {
+      "destination": "0x800B5788",
+      "operation": "universal_file_loader(path, destination)",
+      "path": "bits\\memory.bin",
+      "path_address": "0x8001ADFC",
+      "pc": "0x8003D310",
+      "selector": 0,
+      "stage": "E16_resource_dispatch"
+    },
+    {
+      "operation": "file_lookup_cdsearchfile(path, preserved_destination)",
+      "pc": "0x8004641C",
+      "stage": "resident_file_loader"
+    },
+    {
+      "destination_instruction": {
+        "mnemonic": "addu a1,s3,zero",
+        "pc": "0x80046074",
+        "word": "0x02602821"
+      },
+      "operation": "CdRead(sectors, 0x800B5788, mode|0x80)",
+      "pc": "0x80046078",
+      "stage": "resident_cd_transfer"
+    }
+  ],
+  "row": "E15_fmv",
+  "schema": "abl-phase4-fmv-region-b-replacement-ownership/2",
+  "source_dependencies": {
+    "asm/hand_written/80039478_display_buffers_init.s": "421188b15bb8a4f041ac97b36b4950629e4dd5e4b6c8065a8ce347070a38424c",
+    "asm/hand_written/8003cf2c_resource_id_dat_load_dispatcher.s": "7a387e17d7e6c2ac5d4481f08316355af952ebc180aeac1c165f232c4a289c80",
+    "asm/hand_written/80045fc4_file_lookup_cdsearchfile.s": "a6abb91ccf156b46b862bd91634fe29540e2b72fde99c2c97dbbf2a65b06751d",
+    "asm/hand_written/80046330_universal_file_loader.s": "d80780f1cf096a1742389f4ac7d4c46c07baaa882a3096481ba262be90e42e03",
+    "asm/hand_written/8004fca0_scene_flow_dispatcher.s": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+    "asm/hand_written/800502c4_sub_800502c4.s": "81a8b5cbb3833024def4274c0aa8d9d4479a954fe9d5907b2defc509a78c2ad8",
+    "config/phase4_fmv_region_b_replacement_ownership.yaml": "a0f27397fcbbd81b87b534490a07d61f8822cd797978c72c6b988a1ab5ae1dd2",
+    "src/main/8003f5b8_load_memory_bin.c": "b01cb0119eb05174ef063ef6c3b80e7ac9f9f43a1b232db8866bb091afb89ea2",
+    "src/main/8005038c_scene_setup_and_load.c": "c48cb85d1e1770dfd50eaa4cb7f133bc839a2189e43a24a0064cd65dd8ee2304",
+    "src_re/fmv_lifecycle_continuations.c": "8e417d21f497bf56ceace3f2faba6165757ffdd5a53b44c047a7379e38149728",
+    "tools/phase4_fmv_region_b_replacement_ownership.py": "afdb5f84a519c4044a4f658006e840674198ce6aeb59f13313f6aab83d4e6c39",
+    "tools/phase4_offline_receipt_query.py": "00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846"
+  },
+  "static_functions": {
+    "completed_level_b_owner": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x800502D0",
+          "target": "0x8005038C",
+          "word": "0x0C0140E3"
+        },
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x8005031C",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        },
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x8005036C",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        }
+      ],
+      "end": "0x8005038C",
+      "sha256": "0b1c9bf09173c00de24df8d5c827b534b2d1ebe3a82dba7fb55b5595ac7d22fb",
+      "size": 200,
+      "start": "0x800502C4"
+    },
+    "display_buffers_init": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x80062790",
+          "pc": "0x800394C4",
+          "target": "0x80062790",
+          "word": "0x0C0189E4"
+        },
+        {
+          "mnemonic": "jal 0x80062790",
+          "pc": "0x800394F0",
+          "target": "0x80062790",
+          "word": "0x0C0189E4"
+        },
+        {
+          "mnemonic": "jal 0x800625fc",
+          "pc": "0x800394F8",
+          "target": "0x800625FC",
+          "word": "0x0C01897F"
+        },
+        {
+          "mnemonic": "jal 0x80060ec0",
+          "pc": "0x8003951C",
+          "target": "0x80060EC0",
+          "word": "0x0C0183B0"
+        },
+        {
+          "mnemonic": "jal 0x80060f78",
+          "pc": "0x80039534",
+          "target": "0x80060F78",
+          "word": "0x0C0183DE"
+        },
+        {
+          "mnemonic": "jal 0x80062b04",
+          "pc": "0x8003957C",
+          "target": "0x80062B04",
+          "word": "0x0C018AC1"
+        },
+        {
+          "mnemonic": "jal 0x80060ec0",
+          "pc": "0x8003959C",
+          "target": "0x80060EC0",
+          "word": "0x0C0183B0"
+        },
+        {
+          "mnemonic": "jal 0x80060f78",
+          "pc": "0x800395B8",
+          "target": "0x80060F78",
+          "word": "0x0C0183DE"
+        },
+        {
+          "mnemonic": "jal 0x80062b04",
+          "pc": "0x800395F8",
+          "target": "0x80062B04",
+          "word": "0x0C018AC1"
+        },
+        {
+          "mnemonic": "jal 0x800651d0",
+          "pc": "0x8003963C",
+          "target": "0x800651D0",
+          "word": "0x0C019474"
+        },
+        {
+          "mnemonic": "jal 0x80062ec8",
+          "pc": "0x80039670",
+          "target": "0x80062EC8",
+          "word": "0x0C018BB2"
+        },
+        {
+          "mnemonic": "jal 0x80062bfc",
+          "pc": "0x8003967C",
+          "target": "0x80062BFC",
+          "word": "0x0C018AFF"
+        },
+        {
+          "mnemonic": "jal 0x800625fc",
+          "pc": "0x80039684",
+          "target": "0x800625FC",
+          "word": "0x0C01897F"
+        },
+        {
+          "mnemonic": "jal 0x800651d0",
+          "pc": "0x8003968C",
+          "target": "0x800651D0",
+          "word": "0x0C019474"
+        },
+        {
+          "mnemonic": "jal 0x80062ec8",
+          "pc": "0x800396BC",
+          "target": "0x80062EC8",
+          "word": "0x0C018BB2"
+        },
+        {
+          "mnemonic": "jal 0x80062bfc",
+          "pc": "0x800396C8",
+          "target": "0x80062BFC",
+          "word": "0x0C018AFF"
+        },
+        {
+          "mnemonic": "jal 0x800625fc",
+          "pc": "0x800396D0",
+          "target": "0x800625FC",
+          "word": "0x0C01897F"
+        },
+        {
+          "mnemonic": "jal 0x80063508",
+          "pc": "0x80039704",
+          "target": "0x80063508",
+          "word": "0x0C018D42"
+        },
+        {
+          "mnemonic": "jal 0x80063508",
+          "pc": "0x80039720",
+          "target": "0x80063508",
+          "word": "0x0C018D42"
+        }
+      ],
+      "end": "0x80039780",
+      "sha256": "deb8ac88b80f0b5d9b5085fc84fad979fea6cabe1448ec8d4bd1d6b27c854d2b",
+      "size": 776,
+      "start": "0x80039478"
+    },
+    "file_lookup_cdsearchfile": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8006d8e8",
+          "pc": "0x80045FF8",
+          "target": "0x8006D8E8",
+          "word": "0x0C01B63A"
+        },
+        {
+          "mnemonic": "jal 0x8006f690",
+          "pc": "0x80046004",
+          "target": "0x8006F690",
+          "word": "0x0C01BDA4"
+        },
+        {
+          "mnemonic": "jal 0x8006db4c",
+          "pc": "0x80046030",
+          "target": "0x8006DB4C",
+          "word": "0x0C01B6D3"
+        },
+        {
+          "mnemonic": "jal 0x8005f79c",
+          "pc": "0x80046068",
+          "target": "0x8005F79C",
+          "word": "0x0C017DE7"
+        },
+        {
+          "mnemonic": "jal 0x80070698",
+          "pc": "0x80046078",
+          "target": "0x80070698",
+          "word": "0x0C01C1A6"
+        },
+        {
+          "mnemonic": "jal 0x8007079c",
+          "pc": "0x80046090",
+          "target": "0x8007079C",
+          "word": "0x0C01C1E7"
+        },
+        {
+          "mnemonic": "jal 0x8005f79c",
+          "pc": "0x800460B8",
+          "target": "0x8005F79C",
+          "word": "0x0C017DE7"
+        }
+      ],
+      "end": "0x800460E4",
+      "sha256": "37b4f2f8ea955f11a4e8d6d86a067b65bc5a1061c48f868ed4f10bb71e73502a",
+      "size": 288,
+      "start": "0x80045FC4"
+    },
+    "post_level_b_return": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x8005036C",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        }
+      ],
+      "end": "0x8005038C",
+      "sha256": "4b87da9553f17509c2cfaf78def96096fe23ef07771bf84af2e0449b90c3ec0e",
+      "size": 104,
+      "start": "0x80050324"
+    },
+    "post_lose_return": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x800500E4",
+          "target": "0x8005038C",
+          "word": "0x0C0140E3"
+        }
+      ],
+      "end": "0x800500F4",
+      "sha256": "782344e336768eb1c919f633ab4b73908bb0e7a4db0d55eb38b4d09876356d98",
+      "size": 20,
+      "start": "0x800500E0"
+    },
+    "resource_id_dat_load_dispatcher": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8003e3e0",
+          "pc": "0x8003CF4C",
+          "target": "0x8003E3E0",
+          "word": "0x0C00F8F8"
+        },
+        {
+          "mnemonic": "jal 0x80042e94",
+          "pc": "0x8003D1FC",
+          "target": "0x80042E94",
+          "word": "0x0C010BA5"
+        },
+        {
+          "mnemonic": "jal 0x80061a48",
+          "pc": "0x8003D244",
+          "target": "0x80061A48",
+          "word": "0x0C018692"
+        },
+        {
+          "mnemonic": "jal 0x80061a48",
+          "pc": "0x8003D298",
+          "target": "0x80061A48",
+          "word": "0x0C018692"
+        },
+        {
+          "mnemonic": "jal 0x80046330",
+          "pc": "0x8003D310",
+          "target": "0x80046330",
+          "word": "0x0C0118CC"
+        },
+        {
+          "mnemonic": "jal 0x80046538",
+          "pc": "0x8003D3DC",
+          "target": "0x80046538",
+          "word": "0x0C01194E"
+        },
+        {
+          "mnemonic": "jal 0x8003a314",
+          "pc": "0x8003D3E4",
+          "target": "0x8003A314",
+          "word": "0x0C00E8C5"
+        }
+      ],
+      "end": "0x8003D404",
+      "sha256": "2437e010eaf1c6439794913dbcd1cfba07d7455a86834ad59007fcd323491921",
+      "size": 1240,
+      "start": "0x8003CF2C"
+    },
+    "resource_selector_zero_path": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x80046330",
+          "pc": "0x8003D310",
+          "target": "0x80046330",
+          "word": "0x0C0118CC"
+        }
+      ],
+      "end": "0x8003D318",
+      "sha256": "d23c1e881ffe8d666969334095c15d26fee7a772d60f1a492d8c873104d9b9fc",
+      "size": 32,
+      "start": "0x8003D2F8"
+    },
+    "scene_flow_dispatcher": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8005222c",
+          "pc": "0x8004FCA8",
+          "target": "0x8005222C",
+          "word": "0x0C01488B"
+        },
+        {
+          "mnemonic": "jal 0x80055d38",
+          "pc": "0x8004FD10",
+          "target": "0x80055D38",
+          "word": "0x0C01574E"
+        },
+        {
+          "mnemonic": "jal 0x80055414",
+          "pc": "0x8004FD34",
+          "target": "0x80055414",
+          "word": "0x0C015505"
+        },
+        {
+          "mnemonic": "jal 0x80055538",
+          "pc": "0x8004FD3C",
+          "target": "0x80055538",
+          "word": "0x0C01554E"
+        },
+        {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x8004FD74",
+          "target": "0x8005038C",
+          "word": "0x0C0140E3"
+        },
+        {
+          "mnemonic": "jal 0x8003f504",
+          "pc": "0x8004FD90",
+          "target": "0x8003F504",
+          "word": "0x0C00FD41"
+        },
+        {
+          "mnemonic": "jal 0x8005b70c",
+          "pc": "0x8004FDF0",
+          "target": "0x8005B70C",
+          "word": "0x0C016DC3"
+        },
+        {
+          "mnemonic": "jal 0x80054aac",
+          "pc": "0x8004FE50",
+          "target": "0x80054AAC",
+          "word": "0x0C0152AB"
+        },
+        {
+          "mnemonic": "jal 0x80065fcc",
+          "pc": "0x8004FE60",
+          "target": "0x80065FCC",
+          "word": "0x0C0197F3"
+        },
+        {
+          "mnemonic": "jal 0x80065fbc",
+          "pc": "0x8004FE68",
+          "target": "0x80065FBC",
+          "word": "0x0C0197EF"
+        },
+        {
+          "mnemonic": "jal 0x80065fcc",
+          "pc": "0x8004FE90",
+          "target": "0x80065FCC",
+          "word": "0x0C0197F3"
+        },
+        {
+          "mnemonic": "jal 0x8004ecd4",
+          "pc": "0x8004FECC",
+          "target": "0x8004ECD4",
+          "word": "0x0C013B35"
+        },
+        {
+          "mnemonic": "jal 0x8004f478",
+          "pc": "0x8004FEDC",
+          "target": "0x8004F478",
+          "word": "0x0C013D1E"
+        },
+        {
+          "mnemonic": "jal 0x8003e104",
+          "pc": "0x8004FEE4",
+          "target": "0x8003E104",
+          "word": "0x0C00F841"
+        },
+        {
+          "mnemonic": "jal 0x80039bd8",
+          "pc": "0x8004FF14",
+          "target": "0x80039BD8",
+          "word": "0x0C00E6F6"
+        },
+        {
+          "mnemonic": "jal 0x80043500",
+          "pc": "0x8004FF1C",
+          "target": "0x80043500",
+          "word": "0x0C010D40"
+        },
+        {
+          "mnemonic": "jal 0x80045a60",
+          "pc": "0x8004FF48",
+          "target": "0x80045A60",
+          "word": "0x0C011698"
+        },
+        {
+          "mnemonic": "jal 0x800507f8",
+          "pc": "0x8004FF74",
+          "target": "0x800507F8",
+          "word": "0x0C0141FE"
+        },
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x8004FFD4",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        },
+        {
+          "mnemonic": "jal 0x80045a60",
+          "pc": "0x800500CC",
+          "target": "0x80045A60",
+          "word": "0x0C011698"
+        },
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x800500D8",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        },
+        {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x800500E4",
+          "target": "0x8005038C",
+          "word": "0x0C0140E3"
+        },
+        {
+          "mnemonic": "jal 0x8005b12c",
+          "pc": "0x800500F4",
+          "target": "0x8005B12C",
+          "word": "0x0C016C4B"
+        },
+        {
+          "mnemonic": "jal 0x800502c4",
+          "pc": "0x8005013C",
+          "target": "0x800502C4",
+          "word": "0x0C0140B1"
+        },
+        {
+          "mnemonic": "jal 0x800502c4",
+          "pc": "0x80050214",
+          "target": "0x800502C4",
+          "word": "0x0C0140B1"
+        },
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x80050284",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        },
+        {
+          "mnemonic": "jal 0x8005222c",
+          "pc": "0x8005028C",
+          "target": "0x8005222C",
+          "word": "0x0C01488B"
+        },
+        {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x8005029C",
+          "target": "0x8005038C",
+          "word": "0x0C0140E3"
+        },
+        {
+          "mnemonic": "jal 0x80039a20",
+          "pc": "0x800502A4",
+          "target": "0x80039A20",
+          "word": "0x0C00E688"
+        }
+      ],
+      "end": "0x800502C4",
+      "sha256": "02fc946a4c8757792f646d23e5cabdac5e0cf4755211b733cc75aa15b2f0592f",
+      "size": 1572,
+      "start": "0x8004FCA0"
+    },
+    "scene_setup_and_load": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x80039478",
+          "pc": "0x800503C4",
+          "target": "0x80039478",
+          "word": "0x0C00E51E"
+        },
+        {
+          "mnemonic": "jal 0x8003cf2c",
+          "pc": "0x800503CC",
+          "target": "0x8003CF2C",
+          "word": "0x0C00F3CB"
+        },
+        {
+          "mnemonic": "jal 0x800b96e4",
+          "pc": "0x800503D4",
+          "target": "0x800B96E4",
+          "word": "0x0C02E5B9"
+        }
+      ],
+      "end": "0x800503FC",
+      "sha256": "6c12e5e6c9416b4e7aa2223c3ead0d3478ad65faa97c82098b223e494e61fddb",
+      "size": 112,
+      "start": "0x8005038C"
+    },
+    "universal_file_loader": {
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8005f76c",
+          "pc": "0x8004636C",
+          "target": "0x8005F76C",
+          "word": "0x0C017DDB"
+        },
+        {
+          "mnemonic": "jal 0x8005f74c",
+          "pc": "0x80046378",
+          "target": "0x8005F74C",
+          "word": "0x0C017DD3"
+        },
+        {
+          "mnemonic": "jal 0x8005f74c",
+          "pc": "0x800463EC",
+          "target": "0x8005F74C",
+          "word": "0x0C017DD3"
+        },
+        {
+          "mnemonic": "jal 0x8005f74c",
+          "pc": "0x80046404",
+          "target": "0x8005F74C",
+          "word": "0x0C017DD3"
+        },
+        {
+          "mnemonic": "jal 0x80045fc4",
+          "pc": "0x8004641C",
+          "target": "0x80045FC4",
+          "word": "0x0C0117F1"
+        },
+        {
+          "mnemonic": "jal 0x8005f7bc",
+          "pc": "0x80046438",
+          "target": "0x8005F7BC",
+          "word": "0x0C017DEF"
+        },
+        {
+          "mnemonic": "jal 0x80062560",
+          "pc": "0x8004644C",
+          "target": "0x80062560",
+          "word": "0x0C018958"
+        },
+        {
+          "mnemonic": "jal 0x80062a4c",
+          "pc": "0x80046480",
+          "target": "0x80062A4C",
+          "word": "0x0C018A93"
+        },
+        {
+          "mnemonic": "jal 0x800625fc",
+          "pc": "0x80046488",
+          "target": "0x800625FC",
+          "word": "0x0C01897F"
+        },
+        {
+          "mnemonic": "jal 0x800651d0",
+          "pc": "0x80046490",
+          "target": "0x800651D0",
+          "word": "0x0C019474"
+        },
+        {
+          "mnemonic": "jal 0x80062c70",
+          "pc": "0x80046498",
+          "target": "0x80062C70",
+          "word": "0x0C018B1C"
+        },
+        {
+          "mnemonic": "jal 0x80062ec8",
+          "pc": "0x800464A0",
+          "target": "0x80062EC8",
+          "word": "0x0C018BB2"
+        },
+        {
+          "mnemonic": "jal 0x80062bfc",
+          "pc": "0x800464B4",
+          "target": "0x80062BFC",
+          "word": "0x0C018AFF"
+        },
+        {
+          "mnemonic": "jal 0x800625fc",
+          "pc": "0x800464CC",
+          "target": "0x800625FC",
+          "word": "0x0C01897F"
+        },
+        {
+          "mnemonic": "jal 0x80062560",
+          "pc": "0x800464D4",
+          "target": "0x80062560",
+          "word": "0x0C018958"
+        }
+      ],
+      "end": "0x80046538",
+      "sha256": "060b385746f65e02f70cc95cbeedff8fbb0cc6c951b238294526e248701a9e28",
+      "size": 520,
+      "start": "0x80046330"
+    }
+  },
+  "static_instructions": {
+    "0x8003CF34": {
+      "mnemonic": "addu s4,a0,zero",
+      "pc": "0x8003CF34",
+      "word": "0x0080A021"
+    },
+    "0x8003D2F8": {
+      "mnemonic": "bne s4,zero,0x8003d330",
+      "pc": "0x8003D2F8",
+      "word": "0x1680000D"
+    },
+    "0x8003D300": {
+      "mnemonic": "lui a0,0x8002",
+      "pc": "0x8003D300",
+      "word": "0x3C048002"
+    },
+    "0x8003D304": {
+      "mnemonic": "addiu a0,a0,-20996",
+      "pc": "0x8003D304",
+      "word": "0x2484ADFC"
+    },
+    "0x8003D308": {
+      "mnemonic": "lui a1,0x800b",
+      "pc": "0x8003D308",
+      "word": "0x3C05800B"
+    },
+    "0x8003D30C": {
+      "mnemonic": "addiu a1,a1,22408",
+      "pc": "0x8003D30C",
+      "word": "0x24A55788"
+    },
+    "0x8003D310": {
+      "mnemonic": "jal 0x80046330",
+      "pc": "0x8003D310",
+      "word": "0x0C0118CC"
+    },
+    "0x80045FD4": {
+      "mnemonic": "addu s3,a1,zero",
+      "pc": "0x80045FD4",
+      "word": "0x00A09821"
+    },
+    "0x80046074": {
+      "mnemonic": "addu a1,s3,zero",
+      "pc": "0x80046074",
+      "word": "0x02602821"
+    },
+    "0x80046078": {
+      "mnemonic": "jal 0x80070698",
+      "pc": "0x80046078",
+      "word": "0x0C01C1A6"
+    },
+    "0x8004607C": {
+      "mnemonic": "ori a2,s2,0x80",
+      "pc": "0x8004607C",
+      "word": "0x36460080"
+    },
+    "0x80046340": {
+      "mnemonic": "addu s8,a1,zero",
+      "pc": "0x80046340",
+      "word": "0x00A0F021"
+    },
+    "0x8004641C": {
+      "mnemonic": "jal 0x80045fc4",
+      "pc": "0x8004641C",
+      "word": "0x0C0117F1"
+    },
+    "0x80046420": {
+      "mnemonic": "addu a1,s8,zero",
+      "pc": "0x80046420",
+      "word": "0x03C02821"
+    },
+    "0x8004FD60": {
+      "mnemonic": "lui v0,0x800a",
+      "pc": "0x8004FD60",
+      "word": "0x3C02800A"
+    },
+    "0x8004FD6C": {
+      "mnemonic": "bgez v0,0x8004fda0",
+      "pc": "0x8004FD6C",
+      "word": "0x0441000C"
+    },
+    "0x8004FD70": {
+      "mnemonic": "addiu a0,zero,3",
+      "pc": "0x8004FD70",
+      "word": "0x24040003"
+    },
+    "0x8004FD74": {
+      "mnemonic": "jal 0x8005038c",
+      "pc": "0x8004FD74",
+      "word": "0x0C0140E3"
+    },
+    "0x8004FD78": {
+      "mnemonic": "addu a1,zero,zero",
+      "pc": "0x8004FD78",
+      "word": "0x00002821"
+    },
+    "0x800500E0": {
+      "mnemonic": "addiu a0,zero,5",
+      "pc": "0x800500E0",
+      "word": "0x24040005"
+    },
+    "0x800500E4": {
+      "mnemonic": "jal 0x8005038c",
+      "pc": "0x800500E4",
+      "word": "0x0C0140E3"
+    },
+    "0x800500E8": {
+      "mnemonic": "addiu a1,zero,64",
+      "pc": "0x800500E8",
+      "word": "0x24050040"
+    },
+    "0x80050134": {
+      "mnemonic": "bne s0,v0,0x800501a8",
+      "pc": "0x80050134",
+      "word": "0x1602001C"
+    },
+    "0x8005013C": {
+      "mnemonic": "jal 0x800502c4",
+      "pc": "0x8005013C",
+      "word": "0x0C0140B1"
+    },
+    "0x80050144": {
+      "mnemonic": "lui v1,0x8008",
+      "pc": "0x80050144",
+      "word": "0x3C038008"
+    },
+    "0x8005019C": {
+      "mnemonic": "sw s0,1612(gp)",
+      "pc": "0x8005019C",
+      "word": "0xAF90064C"
+    },
+    "0x8005023C": {
+      "mnemonic": "lui v0,0x800a",
+      "pc": "0x8005023C",
+      "word": "0x3C02800A"
+    },
+    "0x80050248": {
+      "mnemonic": "bgez v0,0x8005029c",
+      "pc": "0x80050248",
+      "word": "0x04410014"
+    },
+    "0x8005024C": {
+      "mnemonic": "addiu a0,zero,6",
+      "pc": "0x8005024C",
+      "word": "0x24040006"
+    },
+    "0x80050250": {
+      "mnemonic": "j 0x8004fd60",
+      "pc": "0x80050250",
+      "word": "0x08013F58"
+    },
+    "0x8005029C": {
+      "mnemonic": "jal 0x8005038c",
+      "pc": "0x8005029C",
+      "word": "0x0C0140E3"
+    },
+    "0x800502A0": {
+      "mnemonic": "addiu a1,zero,128",
+      "pc": "0x800502A0",
+      "word": "0x24050080"
+    },
+    "0x80050324": {
+      "mnemonic": "addu a0,zero,zero",
+      "pc": "0x80050324",
+      "word": "0x00002021"
+    },
+    "0x8005034C": {
+      "mnemonic": "bne a0,v0,0x80050378",
+      "pc": "0x8005034C",
+      "word": "0x1482000A"
+    },
+    "0x80050354": {
+      "mnemonic": "addiu a0,zero,41",
+      "pc": "0x80050354",
+      "word": "0x24040029"
+    },
+    "0x8005036C": {
+      "mnemonic": "jal 0x8003e7c0",
+      "pc": "0x8005036C",
+      "word": "0x0C00F9F0"
+    },
+    "0x80050378": {
+      "mnemonic": "sw v0,1612(gp)",
+      "pc": "0x80050378",
+      "word": "0xAF82064C"
+    },
+    "0x80050384": {
+      "mnemonic": "jr ra",
+      "pc": "0x80050384",
+      "word": "0x03E00008"
+    },
+    "0x800503B0": {
+      "mnemonic": "beq a1,v0,0x800503d4",
+      "pc": "0x800503B0",
+      "word": "0x10A20008"
+    },
+    "0x800503C4": {
+      "mnemonic": "jal 0x80039478",
+      "pc": "0x800503C4",
+      "word": "0x0C00E51E"
+    },
+    "0x800503CC": {
+      "mnemonic": "jal 0x8003cf2c",
+      "pc": "0x800503CC",
+      "word": "0x0C00F3CB"
+    },
+    "0x800503D0": {
+      "mnemonic": "addu a0,zero,zero",
+      "pc": "0x800503D0",
+      "word": "0x00002021"
+    }
+  },
+  "summary": {
+    "closed_sub_boundaries": 2,
+    "dimension_promoted": false,
+    "display_direct_calls": 19,
+    "level_b_conditional_transition_requests": 2,
+    "offline_zero_match_terms": 10,
+    "region_b_materializations_per_chain": 1,
+    "unclassified_region_b_materializations": 0
+  },
+  "work_packet": {
+    "claim": "After the retained natural LOSE and completed-Level-B returns, the first caller-owned Region-B replacement requests both reach selector-zero bits\\memory.bin through the resident resource loader. E16 owns replacement bytes; C16 owns the LOSE choice and resident scene flow owns the completed-level conditional transition.",
+    "coupled_rows": [
+      "E15_fmv"
+    ],
+    "evidence_domain": "derived index plus pristine executable/C/ASM",
+    "falsifier": "Any earlier Region-B materialization or writer, nonzero resource selector, different file/destination, omitted scene-flow branch, direct save/viewer mutation, or unclassified transition edge falsifies the claim.",
+    "first_unmet_dimension": "lifecycle",
+    "predicted_authoritative_layer": "generated ownership artifact and semantic C",
+    "selected_campaign": "fmv_playback"
+  }
+}

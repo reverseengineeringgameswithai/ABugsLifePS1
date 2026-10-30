@@ -1,0 +1,108 @@
+schema: abl-phase4-offline-e08-batch-source/1
+description: >
+  Declarative selection and falsification contract for the complete retained
+  E08 capsule cluster. The batch reuses the preserved external contact/hazard
+  frame index and joins actor changes to measured source identities; it does
+  not infer semantics from fixture names or promote frame correlation into
+  ownership, exact writers, or native controls.
+selected_rows: [E08_props_movers_gates]
+expected_unique_capsules: 13
+selection_snapshot:
+  pre_analysis_queue_sha256: 06357a1d06f2ea9a4ad9edf172624a25e0d16a9c0ba94316116b4cf94bb7e0a3
+  pre_analysis_ledger_sha256: c5d10cf8e51232668722046201c31a8927e930353ec3570f95b2f3ae16e2cf5c
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 0
+    offline_partial: 42
+    live_required: 0
+    no_capsule: 65
+  rows:
+    - row_id: E08_props_movers_gates
+      queue_rank: 3
+      classification: offline_partial
+      completion_state: open
+  selection_reason: >
+    No offline-ready or live-required row exists. E08 is the highest-ranked
+    unconsumed subsystem-sized partial cluster: all 13 relevant capsules and
+    156 scheduled queries share the already-preserved contact/hazard index.
+    Higher-ranked C16/C15 have only three/one capsules and have already been
+    repeatedly deepened; E10 already consumed this same corpus.
+external_index:
+  schema: abl-phase4-external-contact-index/1
+  expected_sha256: 413151a8100bdfac686d0cddea136e53972536b4d797fafe9ced016c1ba065f0
+  expected_bytes: 145510233
+  generation_capsule_set_sha256: 4b354e3d0113240ba9b64922a189b45a0d84b03dee38a9aa312b93b60978aae3
+  reuse_reason: >
+    E08 and the prior E10/D08/D09/D11/D15 batch have the same exact 13-capsule
+    corpus and frame-domain questions. The generation capsule-set pin records
+    the exact earlier central catalog that produced the external index; current
+    membership is independently rejoined by movie, manifest and tree hashes
+    below so later additive catalog growth does not rewrite index ancestry.
+    Re-reading the existing hash-pinned index avoids redundant reconstruction.
+significant_actor_change_policy:
+  direct_fields: [hp, ai_flags, source, id, callback]
+  knockback_activation: before <= 0 and after > 0
+  excluded_as_significant_alone: [vm_ip, vm_wait, velocity_x, velocity_z, x, y, z]
+expected_findings:
+  actor_typed_event_records: 2165
+  actor_change_records: 3364
+  actor_change_records_joined: 3364
+  uncontrolled_type_words_observed:
+    - "0x050d"
+    - "0x1b1f"
+    - "0x1e20"
+    - "0x1f04"
+    - "0x2223"
+    - "0x2528"
+    - "0x2629"
+  uncontrolled_type_words_with_significant_changes:
+    - "0x050d"
+    - "0x1b1f"
+    - "0x1e20"
+    - "0x2528"
+    - "0x2629"
+  same_boundary_uncontrolled_player_correlations:
+    - movie: movies/Phase4/E10/hazard_acorn_LEVEL11.movie.json
+      movie_frame: 428
+      type_word: "0x1b1f"
+      player_field: health
+    - movie: movies/Phase4/E10/hazard_acorn_LEVEL11.movie.json
+      movie_frame: 548
+      type_word: "0x1b1f"
+      player_field: health
+known_native_boundaries:
+  - movie: movies/Phase4/D08_fly_contact_kill.movie.json
+    movie_frame: 426
+    slot: 11
+    type_word: "0x0f06"
+    expected_changes:
+      ai_flags: {before: 53252, after: 53254}
+      hp: {before: 8, after: 6}
+  - movie: movies/Phase4/D09_cockroach_contact_kill.movie.json
+    movie_frame: 437
+    slot: 23
+    type_word: "0x0c13"
+    expected_changes:
+      ai_flags: {before: 16449, after: 16451}
+      hp: {before: 6, after: 4}
+  - movie: movies/Phase4/D11_grub_contact_kill.movie.json
+    movie_frame: 343
+    slot: 1
+    type_word: "0x060c"
+    expected_changes:
+      hp: {before: 999, after: 0}
+  - movie: movies/Phase4/D15_daddy_long_legs_contact_kill.movie.json
+    movie_frame: 400
+    slot: 26
+    type_word: "0x0b11"
+    expected_changes:
+      hp: {before: 999, after: 0}
+tracked_summary:
+  schema: abl-phase4-offline-e08-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary actor/player deltas and passive top-block correlations do
+    not identify an instruction/cycle, prove actor-to-player causality, assign
+    semantic ownership, or replace a native positive/negative control.

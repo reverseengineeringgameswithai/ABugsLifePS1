@@ -1,0 +1,154 @@
+{
+  "format": "phase4_e12_audio_v1",
+  "row": "E12_audio",
+  "date": "2026-08-04",
+  "status": "substantiated_partial",
+  "closure": "bounded_exhausted_move_on",
+  "additional_interpreter_movie_required": false,
+  "method": {
+    "order": [
+      "audit retained trace capsules",
+      "perform C-based static analysis of pristine resident and overlay MIPS code",
+      "inventory XA sectors and VAB headers",
+      "reconcile with prior isolated runtime controls"
+    ],
+    "persistent_guard": "tools/phase4_e12_audio_static.c",
+    "live_replay_reason": null
+  },
+  "identity": {
+    "pristine_executable": "REBUILD/files/SCUS_942.88",
+    "pristine_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "fixture": "walk_up_sound_jingle.sav",
+    "fixture_sha256": "cfedb8ad512acb600aa7223c348ff92c4a6be94d5a247b98dc18c83142272e6d",
+    "sfx_caller_census_sha256": "60335d3bcc605f1206a59a4fe9ff5522c39ace213daf43625fbe77eae08f52ca",
+    "sfx_id_vag_map_sha256": "97475eb245312558562389cc05323a4b3f301f4709c8b7b25aa713054cbe8aa3",
+    "b06_b08_audio_transition_sha256": "a904cd2c871dc5e2e8d84a7d8956d368faebe6d237928cf00d8478370db16097",
+    "b08_audio_ablation_sha256": "48035c2ccfb065ac52d3b5335699928af95c13a89d044e8c698fac92dd80e26b"
+  },
+  "capsule_audit": {
+    "relevant_e12_capsule_found": false,
+    "adjacent_capsules": [
+      {
+        "name": "B08_bubble_repeated_hits",
+        "manifest_sha256": "7d8c4b7b6d8ef288e9a0d5bc6e2651cb1d81f99b2552bad90b0ef897fd5434f3"
+      },
+      {
+        "name": "b06_invincibility_hits",
+        "manifest_sha256": "492aa2134e8d4d4bc8b348cd0c6d16f757d9ac4e5e3134945b2c688132f18c11"
+      }
+    ],
+    "accepted_domains": [
+      "frame-boundary RAM fingerprint",
+      "frame-boundary SPU RAM fingerprint",
+      "manifest completeness and error/truncation status"
+    ],
+    "missing_domain": "Neither adjacent capsule stores per-voice SPU register snapshots.",
+    "disposition": "Use the capsules only as adjacent SFX controls; use pristine ASM and existing isolated SPU-key-on evidence for ownership and lifecycle. No new replay is needed for row closure."
+  },
+  "observations": {
+    "sfx_call_frontier": {
+      "sfx_dispatch_address": "0x80050994",
+      "play_sound_address": "0x8005044c",
+      "resident_dispatch_calls": 22,
+      "overlay_dispatch_calls": 9,
+      "total_dispatch_calls": 31,
+      "resident_dispatch_constant_ids_alias_aware": 20,
+      "overlay_dispatch_constant_ids": 7,
+      "total_dispatch_dynamic_sites": 4,
+      "resident_play_sound_calls": 92,
+      "overlay_play_sound_calls": 17,
+      "total_play_sound_calls": 109,
+      "resident_play_sound_constant_ids_alias_aware": 90,
+      "overlay_play_sound_constant_ids": 15,
+      "total_play_sound_dynamic_sites": 4
+    },
+    "positive_sfx_mapping": {
+      "formula": "index=id-16; program=index>>7; tone=index&0x7f; VAB tone selects VAG",
+      "global_bank_range": "For positive IDs 16 through 58, GLOBAL VAG equals id-15.",
+      "runtime_control": "ID 0x35 selected tone 37 and GLOBAL VAG 38; playback was confirmed by SPU key-on rather than the dispatch return value."
+    },
+    "voice_ownership": {
+      "primary_pool": "Eight entries at 0x80089860, stride 8; descriptor at +0 and voice id at +4; -1 means free.",
+      "companion_pool": "Eight timer/ownership rows based at 0x8009fb56.",
+      "allocation": "Reuse a matching descriptor, otherwise use a free slot; a full pool drops the request.",
+      "lifecycle_tick": "0x80043284 expires companion timers, keys voices off, reconciles primary ownership, and polls all 24 SPU key states.",
+      "initialization": "0x80044c5c clears both eight-entry structures and registers 0x80043284 as the audio tick callback.",
+      "hard_reset": "0x80043500 keys off all 24 voices and clears the eight timer and ownership slots."
+    },
+    "music_selection": {
+      "selector": "Gameplay reset reads scene/music id at 0x8008245c, passes id-1 to looping music, except a flag at 0x8008225c selects packed id 0x15.",
+      "packed_id_law": "file_index=packed_id>>3; channel=packed_id&7; disc file=AUDIO(file_index+1).XA",
+      "levels": [
+        {"level": 1, "packed_id": "0x00", "file": "AUDIO1.XA", "channel": 0},
+        {"level": 2, "packed_id": "0x01", "file": "AUDIO1.XA", "channel": 1},
+        {"level": 3, "packed_id": "0x02", "file": "AUDIO1.XA", "channel": 2},
+        {"level": 4, "packed_id": "0x03", "file": "AUDIO1.XA", "channel": 3},
+        {"level": 5, "packed_id": "0x04", "file": "AUDIO1.XA", "channel": 4},
+        {"level": 6, "packed_id": "0x05", "file": "AUDIO1.XA", "channel": 5},
+        {"level": 7, "packed_id": "0x06", "file": "AUDIO1.XA", "channel": 6},
+        {"level": 8, "packed_id": "0x07", "file": "AUDIO1.XA", "channel": 7},
+        {"level": 9, "packed_id": "0x08", "file": "AUDIO2.XA", "channel": 0},
+        {"level": 10, "packed_id": "0x09", "file": "AUDIO2.XA", "channel": 1},
+        {"level": 11, "packed_id": "0x0a", "file": "AUDIO2.XA", "channel": 2},
+        {"level": 12, "packed_id": "0x0b", "file": "AUDIO2.XA", "channel": 3},
+        {"level": 13, "packed_id": "0x0c", "file": "AUDIO2.XA", "channel": 4},
+        {"level": 14, "packed_id": "0x0d", "file": "AUDIO2.XA", "channel": 5},
+        {"level": 15, "packed_id": "0x0e", "file": "AUDIO2.XA", "channel": 6}
+      ],
+      "special_override": {"packed_id": "0x15", "decimal": 21, "file": "AUDIO3.XA", "channel": 5},
+      "transport": "0x8004699c sets XA file/channel filter, mode 0xe8, location, ReadS, and demute. Looping is implemented by software polling and restart."
+    },
+    "xa_inventory": [
+      {"file": "AUDIO1.XA", "sectors": 38992, "audio_sectors_by_channel": [4842, 4375, 4723, 4442, 4664, 4520, 4762, 4595], "eof_markers_by_channel": [1, 1, 1, 1, 1, 1, 1, 1]},
+      {"file": "AUDIO2.XA", "sectors": 41872, "audio_sectors_by_channel": [4476, 4683, 4520, 4477, 5202, 4572, 4518, 204], "eof_markers_by_channel": [1, 1, 1, 1, 1, 1, 1, 1]},
+      {"file": "AUDIO3.XA", "sectors": 19248, "audio_sectors_by_channel": [204, 202, 227, 2353, 2282, 2374, 204, 204], "eof_markers_by_channel": [1, 1, 1, 1, 1, 1, 1, 1]},
+      {"file": "AUDIO4.XA", "sectors": 3600, "audio_sectors_by_channel": [284, 217, 194, 418, 191, 137, 312, 93], "eof_markers_by_channel": [1, 1, 1, 1, 1, 1, 1, 1]},
+      {"file": "AUDIO5.XA", "sectors": 4264, "audio_sectors_by_channel": [44, 66, 186, 134, 381, 501, 501, 501], "eof_markers_by_channel": [1, 1, 1, 1, 1, 1, 1, 1]}
+    ],
+    "vab_inventory": {
+      "bank_count": 21,
+      "format": "pBAV version 6",
+      "global": {"programs": 3, "tones": 43, "vags": 43},
+      "level_bank_count": 20,
+      "scope": "All GLOBAL and extracted level VH headers were parsed; counts are guarded by the C analyzer."
+    },
+    "pause_and_reset": {
+      "pause": "Existing A18 runtime evidence shows XA/CD read position stops while paused, while pause-menu SFX remain available.",
+      "scene_reset": "Scene flow clears or replaces 0x8008245c; the selected music id is runtime scene state, not persistent save state.",
+      "sequencer": "The linked PsyQ SEQ path has no game callers; runtime probes observed zero hits while SsUtKeyOn remained active."
+    },
+    "causal_controls": [
+      "B08 control produced three key-ons near grant; NOPing the SFX call left one, so that call accounts for two real SPU voices.",
+      "B06 executed the SFX call once at its grant frame; one separate failed audio probe is excluded from positive evidence."
+    ]
+  },
+  "inferences": [
+    "The level music mapping is a direct consequence of the scene-id subtraction and packed XA decoder, not a title-based guess.",
+    "A numeric SFX-to-VAG map identifies sample selection but does not by itself establish an audible semantic name.",
+    "Frame-boundary capsule fingerprints support non-divergence and adjacent audio controls but cannot replace missing per-voice registers."
+  ],
+  "closed_requirements": [
+    "full fifteen-level looping music file/channel map",
+    "special music override",
+    "XA file/channel and EOF inventory",
+    "resident and overlay SFX call frontier",
+    "positive SFX id mapping law",
+    "voice allocation, ownership, timed release, and reset lifecycle",
+    "pause behavior and scene reset boundary",
+    "VAB bank inventory",
+    "decompiled source closure for SFX, voice manager, music start, and XA voice streaming"
+  ],
+  "bounded_residuals": [
+    "Runtime values at four dynamic direct-dispatch sites and four dynamic play_sound sites.",
+    "An exhaustive audible/semantic label for every numeric SFX id.",
+    "Exact per-scene association for every level-specific VAB bank beyond the complete bank census.",
+    "Human-readable titles for every XA channel.",
+    "Per-cycle SPU envelope/key-state evolution beyond retained frame-boundary capsule domains."
+  ],
+  "reopen_if": [
+    "A MOD depends on a dynamic SFX callsite's exact runtime id.",
+    "A MOD replaces samples or XA content and requires semantic rather than numeric attribution.",
+    "A change modifies voice allocation, envelope behavior, pause transport, or music selection."
+  ],
+  "movie_if_reopened": "For exact dynamic callsite values, record or replay at normal speed in Interpreter mode and use physical execution breakpoints with register capture. This is not required for current E12 closure."
+}

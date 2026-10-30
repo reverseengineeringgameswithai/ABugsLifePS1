@@ -1,0 +1,74 @@
+schema: abl-phase4-slow-walk/1
+description: >
+  Authoritative pristine-game contract for A02. L2 and R2 are equivalent
+  slow-walk modifiers only while the ordinary locomotion path is active. The
+  contract does not claim A01's separately completed acceleration, turning,
+  slope/interface, or collision-consumption law and installs no MOD hook.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_slow_walk.json
+  generator: tools/phase4_slow_walk.py
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+
+decoded_input:
+  owner: resident decoder 0x80051294..0x80051358
+  action_word:
+    address: '0x80082488'
+    type: u16
+  slow_mask: '0x0300'
+  equivalent_native_bits:
+    l2: '0x0100'
+    r2: '0x0200'
+  decisive_player_read: '0x8004848C: lhu a0,0x2488(a0)'
+  decisive_animation_read: '0x800566D0: lhu v0,0x2488(v0)'
+
+movement:
+  owner: resident player update 0x80048138..0x800498AB
+  default_component_bound: 1792
+  slow_component_bound: 768
+  gate: '0x80048494 masks decoded actions with 0x0300; nonzero selects 768'
+  clamp_region: '0x800493C0..0x80049443'
+  forward_component_writer: '0x800494AC: sw s3,0x38(s1)'
+  caveat: >
+    These constants bound intermediate horizontal components; they are not a
+    universal final-speed ratio or a replacement for the separate A01 base law.
+
+animation:
+  owner: resident actor-skinned update 0x800563D4..0x800570F7
+  slow_animation: 29
+  run_control_animation: 0
+  gate_region: '0x800566CC..0x800566FB'
+  decisive_writer: '0x800566E8: sh v0,0x6588(at)'
+  applicability: ordinary grounded locomotion; shoulder-only input does not enter it
+  exceptional_path: Riverbed Flight remains in animation 4 and ignores the modifier
+
+lifecycle:
+  initialization: decoded input is consumed afresh by both resident owners
+  allocation_reuse: no A02-private allocation or reused pool record exists
+  reset: release removes the modifier on the next active locomotion update
+  pause: paused input leaves position, speed, and animation frozen
+  death_respawn: held modifier is re-read after native same-scene respawn
+  unload_transition: resident owners survive scene changes; stage state is reinitialized normally
+  persistence: no A02 state is serialized independently of controller input
+  capacity: one u16 decoded action word and existing player/animation fields
+  residency: resident executable code and resident global/player state only
+
+mod_contract:
+  owner: preserve a single decoded-input owner and name any hook that changes slow-walk selection
+  readers: enumerate both player movement and actor-animation consumers
+  writers: do not add unordered writers to decoded action, player velocity, speed, or animation fields
+  valid_domains: decoded action is u16; L2/R2 mask is 0x0300; animation id is s16
+  initialization: initialize any MOD-private modifier before the first player update
+  reset: clear private state on release, main-shell reset, death/reload, and scene transition
+  retirement: retire injected holds and overlay hooks before their owner unloads
+  consumers: input, movement, collision, animation, render, audio, camera, pause, and lifecycle paths
+  capacity: declare hook/cave/table bounds and validate them with the hook contract
+  residency: keep resident state outside overlay-owned memory and scope overlay readers explicitly
+  unsafe_assumptions:
+    - The intermediate 768 component bound is not a universal 0.605 speed ratio.
+    - L2/R2 equivalence for A02 does not imply equivalence for kick or frontend remapping.
+    - Riverbed Flight bypasses ordinary A02 locomotion and is an explicit negative.
+    - Save-state breadth does not replace the retained cold-boot movie control.

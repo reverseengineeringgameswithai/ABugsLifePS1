@@ -1,0 +1,44 @@
+schema_version: 1
+id: pristine_bonus3_contact_death
+description: >-
+  Replay the centrally pinned pristine Bonus-3 movie from its inspected state,
+  change only true health at the exact pre-contact boundary, and assert the
+  native fatal-contact and ordinary-respawn lifecycle without naming an enemy.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: movies/Bonus_Level_03.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: bonus3_pre_contact_control
+    trigger: {type: movie_frame, target: 210, max_frames: 260, timeout_seconds: 120}
+    assertions:
+      - {id: c16_bonus3_pre_contact_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 3}
+      - {id: c16_bonus3_pre_contact_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 1}
+      - {id: c16_bonus3_pre_contact_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 5}
+      - {id: c16_bonus3_pre_contact_master_state, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+      - {id: c16_bonus3_movie_reproducible_before_control, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: change_only_true_health_to_zero
+        method: debugger.writeU16
+        params: {address: 0x800A6594, value: 0}
+  - id: bonus3_native_contact_selects_death
+    trigger: {type: movie_frame, target: 211, max_frames: 2, timeout_seconds: 60}
+    assertions:
+      - {id: c16_bonus3_fatal_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 3}
+      - {id: c16_bonus3_fatal_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: -1}
+      - {id: c16_bonus3_fatal_lives_retained, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 5}
+      - {id: c16_bonus3_fatal_master_state, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 2}
+      - {id: c16_bonus3_movie_reproducible_at_death, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+  - id: bonus3_ordinary_respawn_completed
+    trigger: {type: movie_frame, target: 331, max_frames: 121, timeout_seconds: 120}
+    assertions:
+      - {id: c16_bonus3_respawn_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 3}
+      - {id: c16_bonus3_respawn_health_restored, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: c16_bonus3_respawn_life_decremented, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 4}
+      - {id: c16_bonus3_respawn_master_state_cleared, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+      - {id: c16_bonus3_movie_reproducible_after_respawn, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

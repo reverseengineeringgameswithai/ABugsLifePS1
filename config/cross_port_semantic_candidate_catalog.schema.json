@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://abl.invalid/schemas/cross-port-semantic-candidate-catalog-v1.json",
+  "title": "ABL PS1 semantic candidate catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "repository_commit", "target", "candidates"],
+  "properties": {
+    "schema": {"const": "abl-cross-port-semantic-candidate-catalog-v1"},
+    "status": {"const": "curated_calibration_catalog"},
+    "repository_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "binary"],
+      "properties": {
+        "project": {"const": "ABL"},
+        "binary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "sha256", "architecture"],
+          "properties": {
+            "id": {"const": "SCUS_942.88"},
+            "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "architecture": {"const": "mips-r3000a-le"}
+          }
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["candidate_id", "locator", "evidence", "features"],
+        "properties": {
+          "candidate_id": {"type": "string", "pattern": "^PS1-CAND-[A-Z0-9][A-Z0-9-]{3,95}$"},
+          "locator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "value"],
+            "properties": {
+              "kind": {"enum": ["function", "instruction_window", "data", "file_offset"]},
+              "value": {"type": "string", "minLength": 1, "maxLength": 100}
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["path", "blob_sha256"],
+              "properties": {
+                "path": {"type": "string", "minLength": 1, "maxLength": 500},
+                "blob_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+              }
+            }
+          },
+          "features": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 256,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["kind", "semantic", "attributes"],
+              "properties": {
+                "kind": {"type": "string", "minLength": 1, "maxLength": 64},
+                "semantic": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{1,95}$"},
+                "attributes": {
+                  "type": "object",
+                  "minProperties": 1,
+                  "maxProperties": 16,
+                  "additionalProperties": {"type": ["string", "integer", "boolean"]}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

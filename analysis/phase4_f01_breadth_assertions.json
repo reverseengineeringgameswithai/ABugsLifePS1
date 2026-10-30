@@ -1,0 +1,1781 @@
+{
+ "_comment": "F01 campaign_breadth ASSERTION pass: the finalizer branch law (finalizer iff request != 2 && [0x8008225C] == 0) checked at every transition decision on every level of the corpus. Extends the LEVEL01 oracle campaign-wide. RUNTIME EVIDENCE, NOT PROOF -- bounded to these replays. Regenerate: tools/phase4_f01_breadth_assert.py",
+ "schema": "abl-phase4-f01-breadth-assert/1",
+ "authority": {
+  "is_proof": false,
+  "promotes_campaign_breadth": false,
+  "changes_f01_status": false,
+  "requires_fresh_verifier": true
+ },
+ "law": {
+  "statement": "finalizer 0x80045A60 runs iff request != 2 and [0x8008225C] == 0",
+  "decision_pc": "0x8004FF28",
+  "finalizer_pc": "0x8004FF48",
+  "cycle_window": 2000
+ },
+ "method": {
+  "launcher": "tools/launch_repro_playback.sh --execution-mode Interpreter",
+  "playback": "movie.resumeUntilMovieFrame (60 Hz resume path)",
+  "parallel": "one isolated instance per worker, atomic mkdir claiming, longest movie first",
+  "guard": "every event self-certifies the instruction word at its own PC"
+ },
+ "levels_asserted": 19,
+ "levels_errored": 0,
+ "total_decisions_checked": 35,
+ "corpus_gate": [
+  {
+   "id": "exact_declared_19_level_universe",
+   "passed": true,
+   "expected": [
+    "F16_Bonus01",
+    "F17_Bonus02",
+    "F18_Bonus03",
+    "LEVEL00_Training",
+    "LEVEL01_Anthill",
+    "LEVEL02_Tunnels",
+    "LEVEL03_CouncilChamber",
+    "LEVEL04_Cliffside",
+    "LEVEL05_RiverbedCanyon",
+    "LEVEL06",
+    "LEVEL07_CITYENTRANCE",
+    "LEVEL08_CITYSQUARE",
+    "LEVEL09_BUGBAR",
+    "LEVEL10_CLOVERFOREST",
+    "LEVEL11_THETREE",
+    "LEVEL12_BATTLEARENA",
+    "LEVEL13_ANTHILLPT2",
+    "LEVEL14_RIVERBEDFLIGHT",
+    "LEVEL15"
+   ],
+   "actual": [
+    "F16_Bonus01",
+    "F17_Bonus02",
+    "F18_Bonus03",
+    "LEVEL00_Training",
+    "LEVEL01_Anthill",
+    "LEVEL02_Tunnels",
+    "LEVEL03_CouncilChamber",
+    "LEVEL04_Cliffside",
+    "LEVEL05_RiverbedCanyon",
+    "LEVEL06",
+    "LEVEL07_CITYENTRANCE",
+    "LEVEL08_CITYSQUARE",
+    "LEVEL09_BUGBAR",
+    "LEVEL10_CLOVERFOREST",
+    "LEVEL11_THETREE",
+    "LEVEL12_BATTLEARENA",
+    "LEVEL13_ANTHILLPT2",
+    "LEVEL14_RIVERBEDFLIGHT",
+    "LEVEL15"
+   ],
+   "detail": {
+    "row_count": 19,
+    "duplicates": [],
+    "missing": [],
+    "extra": []
+   }
+  },
+  {
+   "id": "zero_errors",
+   "passed": true,
+   "expected": [],
+   "actual": []
+  },
+  {
+   "id": "all_playbacks_reproducible_and_completed",
+   "passed": true,
+   "expected": [],
+   "actual": []
+  },
+  {
+   "id": "all_exec_traces_nontruncated",
+   "passed": true,
+   "expected": [],
+   "actual": []
+  },
+  {
+   "id": "all_fixture_and_runtime_provenance_exact",
+   "passed": true,
+   "expected": [],
+   "actual": []
+  },
+  {
+   "id": "at_least_one_self_certified_decision_per_level",
+   "passed": true,
+   "expected": [],
+   "actual": []
+  },
+  {
+   "id": "zero_derived_or_retained_law_failures",
+   "passed": true,
+   "expected": [],
+   "actual": []
+  }
+ ],
+ "law_failures": [],
+ "law_holds_everywhere": true,
+ "results": {
+  "F16_Bonus01": {
+   "level": "F16_Bonus01",
+   "movie": "movies/Phase4/Interpreter/F16_Bonus01.movie.json",
+   "movie_sha256": "5412d13e1277328668a1c959fd6ccaf999d08e7617fe4becc2d029339f63b2a4",
+   "movie_size": 2142304,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/F16_Bonus01.movie.sav",
+    "sha256": "105f0e81236f498750d01d6a52575ab1e0b252faaa468e5313930898b85095de"
+   },
+   "frames": 4977,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 2,
+    "decisions": 2,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 9982,
+     "cycle": 5651628941,
+     "request": 6,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 11659,
+     "cycle": 6601257072,
+     "request": 1,
+     "gp4c4": 1,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 5,
+    "returned": 5,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "F17_Bonus02": {
+   "level": "F17_Bonus02",
+   "movie": "movies/Phase4/Interpreter/F17_Bonus02.movie.json",
+   "movie_sha256": "6c46b39a991216ecf895421b040f573336e02cda65ea9070591796b320d7b3cc",
+   "movie_size": 7365725,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/F17_Bonus02.movie.sav",
+    "sha256": "4cf1f267437e34c07b8191dad5c581e5d5573c9ac85ab2fcde88bc874d5988c5"
+   },
+   "frames": 18085,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 2,
+    "decisions": 2,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 24580,
+     "cycle": 13917088766,
+     "request": 6,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 39800,
+     "cycle": 22534393106,
+     "request": 1,
+     "gp4c4": 1,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 5,
+    "returned": 5,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "F18_Bonus03": {
+   "level": "F18_Bonus03",
+   "movie": "movies/Phase4/Interpreter/F18_Bonus03.movie.json",
+   "movie_sha256": "c7393b119a84206fb083f990f8cb573de608ac3e7997b0c293f1a72479313e38",
+   "movie_size": 2889298,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/F18_Bonus03.movie.sav",
+    "sha256": "5ff681374e93e856e1f4d908913d526bdcabb79e28255fd2bc911cb939da354c"
+   },
+   "frames": 7109,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 2,
+    "decisions": 2,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 51669,
+     "cycle": 29254791595,
+     "request": 6,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 53472,
+     "cycle": 30275535167,
+     "request": 1,
+     "gp4c4": 1,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 5,
+    "returned": 5,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL00_Training": {
+   "level": "LEVEL00_Training",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL00_Training.movie.json",
+   "movie_sha256": "2a6702a3adb4fa4e0d5be777a698193dfb64e74e47563c8db29a5452002ae2d7",
+   "movie_size": 2797719,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL00_Training.movie.sav",
+    "sha256": "7b1ae1de43464917b6b765c239f998747b3a14e33e3c8a8e24d318eb476612ab"
+   },
+   "frames": 9219,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 2,
+    "decisions": 2,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 32357,
+     "cycle": 18320332547,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 34413,
+     "cycle": 19484658320,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 5,
+    "returned": 5,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL01_Anthill": {
+   "level": "LEVEL01_Anthill",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL01_Anthill.movie.json",
+   "movie_sha256": "f04174adea6d9223d050cbbb56214b48c20ebadd23ba7c35bc95feecac87811f",
+   "movie_size": 16030232,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL01_Anthill.movie.sav",
+    "sha256": "cfbcf29275fc4add0b41c9d4fe046a7e43468163309a03effe22f7e795fe5f48"
+   },
+   "frames": 20271,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 60875,
+     "cycle": 34467607001,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL02_Tunnels": {
+   "level": "LEVEL02_Tunnels",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL02_Tunnels.movie.json",
+   "movie_sha256": "2d5a8ddc68372aa060c7eb214183e6625570b11c14bf3f179268de14a69cbed9",
+   "movie_size": 24987387,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL02_Tunnels.movie.sav",
+    "sha256": "82c231246595b9a6a025208abcd352f17339edc58721a4008a0cb727924a9836"
+   },
+   "frames": 36397,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 40466,
+     "cycle": 22911509128,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL03_CouncilChamber": {
+   "level": "LEVEL03_CouncilChamber",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL03_CouncilChamber.movie.json",
+   "movie_sha256": "d618658af06e47d07eed1cf92fb2bd451204478cd662108cd96353ec5c3d904e",
+   "movie_size": 13186962,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL03_CouncilChamber.movie.sav",
+    "sha256": "f6c2f13f1960057c3f6853994dc567b7ba78fb1be23f21742e93d47adad02df1"
+   },
+   "frames": 16657,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 120864,
+     "cycle": 68433287857,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL04_Cliffside": {
+   "level": "LEVEL04_Cliffside",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json",
+   "movie_sha256": "9cb11df0f906ab5c21886f17cf15f1861e20449b36cc3bc1e0b693cbdd33407d",
+   "movie_size": 14238390,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.sav",
+    "sha256": "88901ab5ba380da1d7f997cd766006d5d6031ce580d8753a24bebaeeeb548760"
+   },
+   "frames": 18262,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 2,
+    "decisions": 2,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 145806,
+     "cycle": 82555757259,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 148720,
+     "cycle": 84205429100,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 5,
+    "returned": 5,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL05_RiverbedCanyon": {
+   "level": "LEVEL05_RiverbedCanyon",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL05_RiverbedCanyon.movie.json",
+   "movie_sha256": "13099dc360600edc674859adfff81c1810f5b1db025393d1f36447162f2c8c99",
+   "movie_size": 37124595,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL05_RiverbedCanyon.movie.sav",
+    "sha256": "3e5d8ad58844e040cece2f9bf4c0c62e4da13759d7123daf8ae6cfb9decf62f4"
+   },
+   "frames": 52540,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 55429,
+     "cycle": 31383578815,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL06": {
+   "level": "LEVEL06",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL06.movie.json",
+   "movie_sha256": "1fe148be533102b2662536d684fa1c96a30a4f1451deb0f1173740c10134c2bf",
+   "movie_size": 5548130,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL06.movie.sav",
+    "sha256": "93691960e8ddf2d981732994b591c855db19c7a453bae416e09399ac242509c4"
+   },
+   "frames": 12917,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 130635,
+     "cycle": 73965978718,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL07_CITYENTRANCE": {
+   "level": "LEVEL07_CITYENTRANCE",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL07_CITYENTRANCE.movie.json",
+   "movie_sha256": "163e01e30d421cd437142658d4a7a1d19a2779bccaa50fb52057c8174f2e5e8b",
+   "movie_size": 38005811,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL07_CITYENTRANCE.movie.sav",
+    "sha256": "48ce181430cc5d36ead6e7175403a568862fc66c0d62fce44bd3144d4c185cf4"
+   },
+   "frames": 54374,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 5,
+    "decisions": 5,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 72469,
+     "cycle": 41032012950,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 73116,
+     "cycle": 41398301773,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 87702,
+     "cycle": 49656957176,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 104841,
+     "cycle": 59361108025,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 109439,
+     "cycle": 61964422193,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 11,
+    "returned": 11,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL08_CITYSQUARE": {
+   "level": "LEVEL08_CITYSQUARE",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL08_CITYSQUARE.movie.json",
+   "movie_sha256": "68ced59115397bb751e368d77bfe2d43c311da50aa2662e822d0f87ca7b62d37",
+   "movie_size": 23439218,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL08_CITYSQUARE.movie.sav",
+    "sha256": "e34169654d9cb0cc0fdd51672374a2edafe4a99d9918677e6df7a99e4e4094dc"
+   },
+   "frames": 33829,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 144486,
+     "cycle": 81808309431,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL09_BUGBAR": {
+   "level": "LEVEL09_BUGBAR",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL09_BUGBAR.movie.json",
+   "movie_sha256": "95337b5428faf8af41e7c83e8be0bfa5f56b8ecdf9f2ec281ffc5648473e891d",
+   "movie_size": 7085859,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL09_BUGBAR.movie.sav",
+    "sha256": "19e2a0359107334deb505f5546b818b896e6ca9065ec0595b9daec2a9145a755"
+   },
+   "frames": 10179,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 155180,
+     "cycle": 87863009357,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL10_CLOVERFOREST": {
+   "level": "LEVEL10_CLOVERFOREST",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL10_CLOVERFOREST.movie.json",
+   "movie_sha256": "15ceac5b605f0aebe18d00875ae59b630fa5ca13ec2c3cbe86325702aebb1878",
+   "movie_size": 25098787,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL10_CLOVERFOREST.movie.sav",
+    "sha256": "6a6e0a5154ff712bb22c793e0fedc1add23011455a49456a7cd85d862d273f73"
+   },
+   "frames": 35586,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 189973,
+     "cycle": 107563085256,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL11_THETREE": {
+   "level": "LEVEL11_THETREE",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL11_THETREE.movie.json",
+   "movie_sha256": "492b6a8821f3afc940d348c02cffe24ab610c3f86e7ebc726783bde8b198de91",
+   "movie_size": 26448841,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL11_THETREE.movie.sav",
+    "sha256": "ccbc6cb307bd125a525d6771c528c4c5c1014bd5063311199e36a500ad785e0a"
+   },
+   "frames": 37903,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 2,
+    "decisions": 2,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 202621,
+     "cycle": 114724609978,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 229292,
+     "cycle": 129825696209,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 5,
+    "returned": 5,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL12_BATTLEARENA": {
+   "level": "LEVEL12_BATTLEARENA",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL12_BATTLEARENA.movie.json",
+   "movie_sha256": "3206e38e8001111d1e30651c70d049fccc8db336c416ad7cb69a68d9e8ce82a2",
+   "movie_size": 10973766,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL12_BATTLEARENA.movie.sav",
+    "sha256": "2c2d24b27e83854f36ff9a4522c6649e59a644ca0b983489bd1abfa9c2d607fc"
+   },
+   "frames": 15889,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 3,
+    "decisions": 3,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 16688,
+     "cycle": 9448785525,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 17628,
+     "cycle": 9980930237,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 20433,
+     "cycle": 11568895295,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 7,
+    "returned": 7,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL13_ANTHILLPT2": {
+   "level": "LEVEL13_ANTHILLPT2",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL13_ANTHILLPT2.movie.json",
+   "movie_sha256": "d9bd0f6d84c5219692cde251a55b80eea010004fdda544977a1b3f31d2a31c33",
+   "movie_size": 14213970,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL13_ANTHILLPT2.movie.sav",
+    "sha256": "cfa787920775d64ad8a6de8d7430cc6f062a124d7108cbe1e3f2743303520fa3"
+   },
+   "frames": 50628,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 3,
+    "decisions": 3,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 49071,
+     "cycle": 27784079860,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 55574,
+     "cycle": 31465943589,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 71454,
+     "cycle": 40457191419,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 7,
+    "returned": 7,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL14_RIVERBEDFLIGHT": {
+   "level": "LEVEL14_RIVERBEDFLIGHT",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL14_RIVERBEDFLIGHT.movie.json",
+   "movie_sha256": "37eae7f9a67a2a851189ff9406b984b7565b267cd012b499c37a054f5a82cd80",
+   "movie_size": 16044839,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL14_RIVERBEDFLIGHT.movie.sav",
+    "sha256": "f99c13952b87a78bcf57ad83257472d5fadbc419299d3a6d96fc36a15c821f7b"
+   },
+   "frames": 23451,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 3,
+    "decisions": 3,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 104528,
+     "cycle": 59183790552,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 110889,
+     "cycle": 62785508759,
+     "request": 2,
+     "gp4c4": 0,
+     "law_predicts_finalizer": false,
+     "finalizer_observed": false,
+     "delta_cycles": null,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    },
+    {
+     "frame": 118998,
+     "cycle": 67376683355,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 7,
+    "returned": 7,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  },
+  "LEVEL15": {
+   "level": "LEVEL15",
+   "movie": "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json",
+   "movie_sha256": "c39de5043e1fc9daa2816c67682a942aeb076bffff422525072c3edfd3085041",
+   "movie_size": 32691678,
+   "start_state": {
+    "identity": "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.sav",
+    "sha256": "ca5076d5b46e2448cbdc789a8ff7e37ec43f1b6c0dbe1d35c8d3178500e0bfa3"
+   },
+   "frames": 76310,
+   "reproducible": true,
+   "playback_completed": true,
+   "movie_version": 4,
+   "from_boot": false,
+   "runtime": {
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "scene_at_end": null,
+   "counts": {
+    "consumer": 1,
+    "decisions": 1,
+    "finalizer": 1
+   },
+   "preload_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 0
+   },
+   "decisions": [
+    {
+     "frame": 84585,
+     "cycle": 47892250278,
+     "request": 1,
+     "gp4c4": 0,
+     "law_predicts_finalizer": true,
+     "finalizer_observed": true,
+     "delta_cycles": 28,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     },
+     "law_holds": true
+    }
+   ],
+   "law_failures": [],
+   "finalizer_calls_not_attributable_to_a_decision": 0,
+   "exec_trace": {
+    "total": 3,
+    "returned": 3,
+    "truncated": false,
+    "completeness_source": "event-bearing execTrace.get response"
+   },
+   "exec_trace_truncated": false,
+   "law_holds_for_every_decision": true
+  }
+ }
+}

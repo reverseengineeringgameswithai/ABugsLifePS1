@@ -1,0 +1,43 @@
+schema: abl-phase4-offline-seed-actions-batch-source/1
+description: >
+  Declarative selection and evidence contract for the coherent handstand and
+  seed-as-weapon cluster created by the two rank-1/2 missing-capsule live
+  plans. The derived per-frame index remains external game-derived evidence;
+  Git retains only hashes, bounded summaries, the generator and guards.
+selected_rows:
+  - A11_seed_as_weapon
+  - A10_handstand
+expected_unique_capsules: 2
+selection_snapshot:
+  pre_collection_queue_sha256: cbef7f2508e392267ac644ea6e25af748a7d67af91ead8903fc0bc417ea30ba6
+  pre_collection_escalation_ledger_sha256: 9bc93db2f6a3b6c7517be0aec5da4b8fe7ea7eb3826d96d0a449fd6282bebb02
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 2
+    offline_partial: 33
+    live_required: 4
+    no_capsule: 68
+  rows:
+    - {row_id: A11_seed_as_weapon, queue_rank: 1, classification: offline_ready, completion_state: open}
+    - {row_id: A10_handstand, queue_rank: 2, classification: offline_ready, completion_state: open}
+candidate_functions:
+  A11_seed_as_weapon:
+    - {name: proximity_updater, start: 0x8004ABF4, end: 0x8004B6DC, arm_pc: 0x8004B2CC, arm_block_start: 0x8004B2C0}
+    - {name: contact_vs_actor_handler, start: 0x80058AF8, end: 0x8005905C, arm_pc: 0x80058E14, arm_block_start: 0x80058E08}
+  A10_handstand:
+    - {name: seed_plant_propeller_handler, start: 0x8005C258, end: 0x8005C58C, writer_pc: 0x8005C404}
+    - {name: seed_plant_trampoline_handler, start: 0x8005C58C, end: 0x8005C6F0, writer_pc: 0x8005C608}
+    - {name: seed_plant_dandelion_handler, start: 0x8005C818, end: 0x8005C918, writer_pc: 0x8005C854}
+    - {name: gameplay_effect_spawner, start: 0x8005CD2C, end: 0x8005D50C, writer_pc: 0x8005D0B4}
+external_index:
+  schema: abl-phase4-external-seed-actions-index/1
+  domains: [registers, ram, vram, spu_ram, block_flow]
+tracked_summary:
+  schema: abl-phase4-offline-seed-actions-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary state changes, input correlations and passive block-start
+    coverage do not identify an exact CPU instruction, collision primitive,
+    GPU/SPU producer or substitute for the already retained native controls.

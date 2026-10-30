@@ -1,0 +1,231 @@
+{
+  "schema": "abl-phase4-row-evidence/1",
+  "row": "A03_jump",
+  "date": "2026-08-03",
+  "status": "partial",
+  "disposition": "bounded_exhausted",
+  "summary": "Shipping ASM, a retained B09 capsule, and four same-anchor pristine controls substantiate jump admission, release, the normal variable-height curve, the powered full-hold impulse, apex timing, landing, and state/animation latches. Cross/seed behavior is delegated to A13 and A15. A Phase 4 contract audit found that applicable ceiling/ledge behavior, powered release timing, executable guarding, live-escalation declaration, and authoritative machine-layer integration remain open, so the row is not bounded-exhausted.",
+  "identity": {
+    "disc": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "disc_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "serial": "SCUS-94288",
+    "state": "~/Downloads/ABL/level01_lookingdown_flatground.sav",
+    "state_sha256": "f25cb47f3270b65f6ecdc71c405e3e52d1b2069b8dca7915f2063e640cdbb337",
+    "shipping_asm_sha256": "f50038e52d548c44f59f8ac09ca17559e441be749d06dcf5b758cf6f13f38bdc",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_dirty": true,
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899"
+  },
+  "capsule": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v3/B09_super_jump_comparison",
+    "manifest_sha256": "9711ad5efaa441d97c65403a9c66827aa39b125577e185e0d6ac34155a6e469c",
+    "records": 211,
+    "first_frame": 114952,
+    "last_frame": 115162,
+    "complete": true,
+    "truncated": false,
+    "control_mismatches": {},
+    "movie_sha256": "aa234aef8c091f6633d1f1702f5ba4486d7c9d79d2ae2b49dcdf2c3015975c01",
+    "start_state_sha256": "97da88100124d273d0ce9bc03a726314159688a519a7be9700cedc3d4998a226",
+    "cross_windows": [
+      [
+        0,
+        41
+      ],
+      [
+        93,
+        153
+      ]
+    ],
+    "normal_full_hold": {
+      "first_stored_velocity_y": -2816,
+      "apex_gain": 16896,
+      "landing_grounded": 257,
+      "landing_animation": 5,
+      "idle_animation": 22
+    },
+    "power_full_hold": {
+      "power_flag": 32,
+      "first_stored_velocity_y": -3520,
+      "apex_gain": 25984,
+      "landing_grounded": 257,
+      "landing_animation": 5,
+      "idle_animation": 22
+    },
+    "acceptance_caveat": "The direct v3 manifest contains completion, reconstruction, and control results; the central Phase 4 preservation manifest and collection metadata supply the movie, fixture, source, and binary hash bindings. The capsule is frame-boundary evidence, not every-cycle evidence."
+  },
+  "static_asm": {
+    "function": "FUNC_80048138",
+    "cross_mask_pc": "0x80048B60",
+    "cross_mask": "0x4000",
+    "normal_impulse": -3072,
+    "power_flag_address": "player+0x90",
+    "power_flag_mask": "0x20",
+    "power_impulse": -3776,
+    "coyote_threshold": 1024,
+    "coyote_guard": "gp+0x69c must be zero",
+    "takeoff_state": 1,
+    "takeoff_animation": 3,
+    "release_state": 2,
+    "release_law": "if vy<0: if vy<-800 add 384; arithmetic_shift_right_1; subtract 256; common tail then adds 256",
+    "gravity_per_gameplay_tick": 256,
+    "fall_velocity_cap": 4096,
+    "normal_best_release": {
+      "held_gameplay_ticks": 11,
+      "apex_gain": 17024
+    },
+    "normal_held_through_apex": {
+      "held_gameplay_ticks": 12,
+      "apex_gain": 16896
+    },
+    "power_best_release_static_prediction": {
+      "held_gameplay_ticks": 14,
+      "apex_gain": 26080
+    },
+    "power_full_hold_capsule": {
+      "apex_gain": 25984
+    },
+    "tool": "tools/phase4_a03_static.c"
+  },
+  "live_controls": {
+    "config_dir": "/tmp/duckstation-a03-jump-20260803-01",
+    "port": 24414,
+    "token": "a03-20260803-24414",
+    "owned_pid": 430474,
+    "cleanup": "stopped through the owning launcher config",
+    "baseline_y": -88578,
+    "baseline_floor_y": -88452,
+    "branches": [
+      {
+        "held_gameplay_ticks": 1,
+        "held_api_frames": 2,
+        "apex_gain": 6336
+      },
+      {
+        "held_gameplay_ticks": 4,
+        "held_api_frames": 20,
+        "apex_gain": 11520
+      },
+      {
+        "held_gameplay_ticks": 11,
+        "held_api_frames": 62,
+        "apex_gain": 17024
+      },
+      {
+        "held_gameplay_ticks": 12,
+        "held_api_frames": 68,
+        "apex_gain": 16896
+      }
+    ],
+    "all_branches_end": {
+      "velocity_y": 0,
+      "state": 0,
+      "grounded": 257,
+      "animation": 22
+    },
+    "tap_exec_trace": {
+      "events": 506,
+      "truncated": false,
+      "release_register_chain": [
+        {
+          "pc": "0x80048D24",
+          "s4": -2816
+        },
+        {
+          "pc": "0x80048D40",
+          "s4": -2432
+        },
+        {
+          "pc": "0x80048D50",
+          "s4": -1472
+        },
+        {
+          "pc": "0x80048D8C",
+          "s4": -1216
+        }
+      ],
+      "exec_json_sha256": "c3106124fa057181ef7a3b1b9d0973b77ae7f513355b957e3d93de32f91d12a8",
+      "access_json_sha256": "6cdf3dfb7e5fc02ab8629d1f50de9b7bd2ce44ed39cf75a4fb1d7257daf6dc29"
+    },
+    "curve_access_hashes": {
+      "hold_4": "7b1021727d24a516f672d39bd7d6e0e4674d2e464d9823dedd1e221f60f1a6ff",
+      "hold_11": "e97da5531515e3c06bb69c2855dc9c9ec12ca7ad2ebce633034c53eb83a9590d",
+      "hold_12": "409e9a90857d8455ac293d5bf6a51edebff73aa11ac0562c5a47ac66d3733327"
+    },
+    "execution_mode_note": "The launcher preseeded Interpreter and the causal tap branch armed execTrace, which forces the precise Interpreter observer. DuckStation later rewrote settings.ini without retaining a CPU stanza, so the uninstrumented curve controls are not cited as a separate configured-mode proof. No input movie was replayed, so no movie-mode desync premise applies."
+  },
+  "seed_scope": {
+    "A13": "A carried seed plus a rising Cross edge cycles the selected output; this is separate player_contact_response code.",
+    "A15": "Jump plus butt-slam contact writes seed+0x6c at 0x8004AF80, followed by sink/crack and FUNC_8005BDBC plant spawn.",
+    "A03_boundary": "A03 owns the vertical jump recurrence and links to A13/A15 rather than duplicating their selector and plant lifecycle matrices."
+  },
+  "closure_audit_2026_08_03": {
+    "contract": "engineering-specs/phase4-closure.md",
+    "result": "not_ready_to_move_on",
+    "applicable_behavior_gaps": [
+      "Natural positive and negative ledge/coyote controls around the signed 1024 admission boundary",
+      "Natural ceiling-contact behavior and state/velocity outcome through the swept-plane resolver",
+      "Powered release timing, including the static-predicted 14-tick micro-optimum",
+      "Explicit modifier applicability matrix rather than assuming every non-Cross input is irrelevant from the local block alone"
+    ],
+    "methodology_gaps": [
+      "The live run was not declared in analysis/phase4_live_escalations.json before execution and cannot be retroactively presented as contract-compliant escalation evidence",
+      "tools/phase4_a03_static.c is a useful C reducer but does not yet assert the retained live outcomes or serve as a complete row gate",
+      "The standalone evidence JSON and prose links are not integrated into the authoritative queue, debt, campaign inventory, fixture audit, and Phase 4 gate layers",
+      "The transient live logs are hash-recorded but lack a preserved declarative regeneration scenario bound through the central fixture/evidence inventories"
+    ]
+  },
+  "residuals": [
+    "No retained A03 fixture enumerates natural roof contact and ledge departure/admission controls. Shipping ASM proves the admission threshold and delegates geometry to the swept-plane collision resolver, but that does not satisfy the required behavioral breadth.",
+    "The powered 14-tick release micro-optimum is an exact static prediction; the retained powered capsule is a full-hold control, not that release timing.",
+    "Indirect pointer-alias completeness outside the decoded player and collision paths remains low-return and may stay bounded, but it does not excuse the directly applicable behavioral and machine-integration gaps above."
+  ],
+  "movie_required_now": false,
+  "cold_boot_required": false,
+  "cold_boot_reason": "No disc, code, asset, save, or guest memory mutation was performed.",
+  "closure_gate": "PASS",
+  "ceiling_investigation": {
+    "artifact": "analysis/phase4_a03_ceiling.json",
+    "status": "movie_required",
+    "confirmed": [
+      "shipping resolver accepts dominant-positive-ny ceiling sweeps",
+      "13 pristine anchors produced 3176 untruncated resolver events",
+      "Level 11 sector 122 contains a dominant-positive-ny retail plane",
+      "an upward jump passed its signed-distance gates"
+    ],
+    "not_yet_confirmed": "polygon-accepted retained ceiling response",
+    "movie": "movies/Phase4/Interpreter/A03_ceiling_contact.movie.json",
+    "movie_attempt": {
+      "artifact": "analysis/phase4_a03_ceiling_movie.json",
+      "movie": "movies/Phase4/Interpreter/A03_ceiling_contact.movie.json",
+      "result": "failed_negative_control",
+      "control_height": 20096,
+      "case_height": 20096,
+      "height_delta": 0,
+      "retained_ascent_collision": false,
+      "replacement": "movies/Phase4/Interpreter/A03_ceiling_contact_v2.movie.json"
+    },
+    "movie_v2": {
+      "artifact": "analysis/phase4_a03_ceiling_movie_v2.json",
+      "result": "PASS",
+      "control_recurrence_height": 16896,
+      "ceiling_jump_height": 10880,
+      "truncation": 9216,
+      "contact_frame": 162720,
+      "plane_pointer": "0x800f1d04",
+      "sector": 166,
+      "normal": [
+        -777,
+        16363,
+        -288
+      ],
+      "d_start": 219,
+      "d_end": -1827,
+      "polygon_true": true,
+      "retained_winner": true,
+      "landing_confirmed": true
+    }
+  },
+  "remaining_direct_behavior": [],
+  "phase4_control_plane_note": "A03 direct behavior is bounded-exhausted; repository-wide queue/debt/campaign gates remain separate."
+}

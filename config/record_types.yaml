@@ -1,0 +1,339 @@
+schema_version: 1
+description: >
+  Phase-3 WP5 typed records. Every record declares its FULL extent and every byte
+  is accounted for: a byte is either inside a declared field or inside an explicit
+  UNKNOWN span. Unknown fields are never erased by typing — they are named as
+  unknowns and carried, so the record's ignorance is visible and shrinkable.
+
+  Field `evidence` is the artifact/Canon page that pins it. Field `confidence`
+  follows the semantic-state vocabulary (hypothesized / static_seen / runtime_seen
+  / confirmed). Offsets are record-relative.
+
+records:
+
+  - id: player_block
+    families: [player, objective]
+    family_evidence:
+      player: [ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md]
+      objective: [ObsidianVault/Canon/Systems/SYS_native_grain_gates.md]
+    base: 0x800A6500
+    size: 0xB0
+    instances: 1
+    owner: original_game.player
+    lifetime: >
+      Resident for the whole session; re-initialized at scene load and at respawn
+      (respawn writes hp:=4 at the level spawn point, lives-1). Not pooled.
+    ownership_model:
+      capacity: {rule: "one resident player block", evidence: "MEM_800A6500 + transition sweep", confidence: confirmed}
+      slot_reuse: {rule: "not pooled; the same block is reused across scenes", evidence: analysis/phase3_transition_reset.json, confidence: confirmed}
+      ownership_transfer: {rule: "scene load owns world fields while session fields carry across the load", evidence: analysis/phase3_transition_reset.json, confidence: confirmed}
+      retirement: {rule: "retired only with the gameplay session; death respawns in place", evidence: analysis/phase2_death_matrix.json, confidence: confirmed}
+      reset: {rule: "scene load/respawn reset world fields; lives/grain/health/permanence are session-owned", evidence: analysis/phase3_transition_reset.json, confidence: confirmed}
+    fields:
+      - {offset: 0x00, width: s32, name: pos_x, confidence: confirmed}
+      - {offset: 0x04, width: s32, name: pos_y, confidence: confirmed}
+      - {offset: 0x08, width: s32, name: pos_z, confidence: confirmed}
+      - {offset: 0x10, width: s32, name: prev_pos_x, confidence: confirmed,
+         note: "prev-tick mirror; platform mods must re-commit pos = prev + V through it"}
+      - {offset: 0x14, width: s32, name: prev_pos_y, confidence: confirmed}
+      - {offset: 0x18, width: s32, name: prev_pos_z, confidence: confirmed}
+      - {offset: 0x2C, width: s32, name: velocity_x, confidence: confirmed,
+         note: "exactly equals the per-tick X position delta (run of 10 consecutive moved ticks); mismatches = ticks where the integrator CLAMPED the move (collision)"}
+      - {offset: 0x30, width: s32, name: velocity_y, confidence: confirmed,
+         note: "CORRECTED from 'knockback_velocity': it is the VERTICAL VELOCITY (exactly equals the per-tick Y delta while jumping). The on-hit knockback writes -1024 here because knockback IS a vertical impulse."}
+      - {offset: 0x34, width: s32, name: velocity_z, confidence: confirmed,
+         note: "exactly equals the per-tick Z position delta"}
+      - {offset: 0x38, width: s32, name: speed_horizontal, confidence: runtime_seen,
+         note: "tracks hypot(velocity_x, velocity_z) to within ~1 unit (918 vs 917.6, 997 vs 996.6) - magnitude, exact formula unproven"}
+      - {offset: 0x42, width: u16, name: anim_frame_pair_a, confidence: confirmed,
+         note: "ANIMATION FRAME COUNTER, not a state id (walk=(6,7), slide=(11,12))"}
+      - {offset: 0x46, width: u16, name: anim_frame_pair_b, confidence: confirmed}
+      - {offset: 0x48, width: s32, name: floor_y, confidence: confirmed,
+         note: "resolved floor under the player; kick gate uses |Y - floorY| < 1024"}
+      - {offset: 0x7A, width: s16, name: kick_timer, confidence: confirmed,
+         note: ":= -16 on kick fire (branch 0x80048F4C), counts back to 0"}
+      - {offset: 0x80, width: u16, name: state_word, confidence: confirmed,
+         note: "0 grounded, 1 air, 2 swing-release launch, 4 slam/dive, 5 landing/skid + swing-attached, 6 handstand dismount"}
+      - {offset: 0x82, width: u16, name: grounded, confidence: confirmed}
+      - {offset: 0x8E, width: u16, name: enemy_permanence_quota, confidence: confirmed,
+         note: "decremented ONLY on permanent kills"}
+      - {offset: 0x90, width: u32, name: powerup_flags, confidence: confirmed,
+         note: "0x02 invincibility, 0x08 bubble shield, 0x20 super-jump, 0x80 grain harvester equipped/attraction/contact-kill enable"}
+      - {offset: 0x94, width: s16, name: health_true, confidence: confirmed,
+         note: "TRUE health (full 7); death only when the decrement result is < 0, so hp 0 = alive"}
+      - {offset: 0x96, width: u8, name: berries_in_flight, confidence: confirmed,
+         note: "u8, NOT u16 - a u16 here would swallow equipped_berry at +0x97 (caught by the layout validator)"}
+      - {offset: 0x97, width: u8, name: equipped_berry, confidence: confirmed,
+         note: "red0/blue1/homing2/gold3/mega4"}
+      - {offset: 0x98, width: u8, name: seed_counter_orange, confidence: confirmed}
+      - {offset: 0x99, width: u8, name: seed_counter_blue, confidence: confirmed}
+      - {offset: 0x9A, width: u8, name: seed_counter_green, confidence: confirmed}
+      - {offset: 0x9B, width: u8, name: seed_counter_3, confidence: static_seen}
+      - {offset: 0x9C, width: u8, name: seed_counter_4, confidence: static_seen}
+      - {offset: 0xA0, width: u8, name: lives, confidence: confirmed,
+         note: "0 = the PLAYABLE final life; death at 0 runs game-over"}
+      - {offset: 0xA1, width: u8, name: grain_count, confidence: confirmed,
+         note: "per-level goal 0x32 = 50"}
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md
+      - ObsidianVault/Canon/Systems/SYS_player_action_state_laws.md
+      - ObsidianVault/Canon/Systems/SYS_grain_harvester.md
+      - analysis/phase2_death_matrix.json
+      - analysis/phase2_action_behavior.json
+      - analysis/phase4_c13_harvester.json
+
+  - id: contact_record
+    families: [contact, projectile]
+    family_evidence:
+      contact: [ObsidianVault/Canon/Memory/MEM_800B0D18_Contact_array_800B0D18.md]
+      projectile: [analysis/phase3_unknown_fields.json, src_re/berry_homing.c]
+    base: 0x800B0D18
+    size: 0x38
+    instances: 64
+    owner: original_game.contact_pool
+    lifetime: >
+      POOLED. Allocated by contact_alloc 0x80059E44 = round-robin FREE-SLOT search
+      over the 64 slots with NO full-array escape: with every slot occupied the
+      search never returns (capacity HANG, proven by callFunction A/B). Cursor
+      0x8008234C wraps at 0x40 and measures allocation churn, NOT overwrite-oldest.
+      A slot is LIVE when lifetime_ttl(+0x22) > 0 AND flags(+0x33) & 0x02 (the walker
+      gate, disassembled from FUNC_800586B0). RETIREMENT IS BY TTL EXPIRY: +0x22
+      counts down every logic tick and the slot goes dead at 0 - so contacts free
+      themselves over time, which is why pristine play never approaches capacity.
+      MOD-SAFETY: never hold all 64 slots (a mod that refreshes TTLs can).
+    ownership_model:
+      capacity: {rule: "64 fixed slots; full allocator has no escape", evidence: analysis/phase2_capacity_hang_proof.json, confidence: confirmed}
+      slot_reuse: {rule: "round-robin free-slot search via cursor 0x8008234C", evidence: "src_re/contact_alloc_80059e44.c", confidence: confirmed}
+      ownership_transfer: {rule: "allocator installs descriptor/position ownership into the selected contact slot", evidence: "src_re/contact_alloc_80059e44.c", confidence: static_seen}
+      retirement: {rule: "lifetime_ttl reaches zero and the walker/allocator predicates release the slot", evidence: analysis/phase3_unknown_fields.json, confidence: confirmed}
+      reset: {rule: "stale bytes survive exit and are overwritten by the next load/alloc; occupancy uses predicates, never residue", evidence: analysis/phase3_transition_reset.json, confidence: confirmed}
+    # A slot is not "occupied" merely because it holds non-zero bytes — dead slots
+    # keep RESIDUE. These are the game's own predicates, so occupancy numbers can be
+    # compared against the allocator's capacity law.
+    live_predicate: "lifetime_ttl > 0 and (flags & 0x02)"        # walker gate (FUNC_800586B0)
+    alloc_occupied_predicate: "(flags & 0x80) and lifetime_ttl != 0"  # contact_alloc's skip test
+    fields:
+      - {offset: 0x00, width: s32, name: pos_x, confidence: confirmed}
+      - {offset: 0x04, width: s32, name: pos_y, confidence: confirmed}
+      - {offset: 0x08, width: s32, name: pos_z, confidence: confirmed}
+      - {offset: 0x0C, width: s32, name: velocity_x, confidence: confirmed}
+      - {offset: 0x10, width: s32, name: velocity_y, confidence: confirmed,
+         note: "PRE-INTEGRATED: read at tick t it already holds the NEXT tick's Y delta, because gravity is applied before the move"}
+      - {offset: 0x14, width: s32, name: velocity_z, confidence: confirmed}
+      - {offset: 0x18, width: s16, name: gravity_per_tick, confidence: confirmed,
+         note: "128 - velocity_y grows by exactly this each tick; this is the per-record store of the known 128/frame^2 fall law"}
+      - {offset: 0x22, width: u16, name: lifetime_ttl, confidence: confirmed,
+         note: "RENAMED from 'active_type': it is a TIME-TO-LIVE COUNTDOWN (e.g. 172,171,...,0 at 30Hz); at 0 the slot is RETIRED. The walker gate's '> 0' therefore means 'TTL not expired', not 'has a type'."}
+      - {offset: 0x27, width: u8, name: contact_kind, confidence: confirmed,
+         note: "kind == 4 gates the carried-seed contact arm 0x80058E08"}
+      - {offset: 0x26, width: u8, name: secondary_counter, confidence: runtime_seen,
+         note: "counts down alongside the TTL and freezes when the TTL expires; purpose unproven"}
+      - {offset: 0x33, width: u8, name: flags, confidence: confirmed,
+         note: "bit 0x02 = walker gate; bit 0x80 is alloc-moment only"}
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800B0D18_Contact_array_800B0D18.md
+      - src_re/contact_alloc_80059e44.c
+      - analysis/phase2_capacity_hang_proof.json
+
+  - id: actor_record
+    families: [object, enemy, seed]
+    family_evidence:
+      object: [analysis/phase1_actor_census.json]
+      enemy: [ObsidianVault/Canon/Systems/Enemy_spawn_architecture.md]
+      seed: [ObsidianVault/Canon/Systems/SYS_seed_carry_plant_lifecycle.md]
+    base: 0x8009FE04
+    size: 0x84
+    instances: 40
+    owner: original_game.level_actors
+    lifetime: >
+      Loaded AT SCENE LOAD from LEVEL.RAW chunk-31 (XYZ file<<5) into a FIXED table;
+      records are not reallocated during play. Enemies additionally appear in the
+      LIVE pointer table 0x80090748, which is COMPACTED when an actor is removed
+      (observed: slots shift up on a kill) - so a live-table index is NOT a stable
+      identity, the record address is.
+
+      MOTION: one Level01 actor sample confirms velocity_x +0x1C and velocity_z
+      +0x24 over 40 captured frames (19 moved frames; Z is clamped on 7). The
+      retained artifact does not bank rejected Y candidates and therefore cannot
+      support the former whole-campaign claim that actors have no stored Y velocity.
+      Offset +0x20 remains unknown; do not name it from stride symmetry alone.
+    ownership_model:
+      capacity: {rule: "40 fixed actor records; four pristine stages reach 40/40", evidence: analysis/phase3_transition_reset.json, confidence: confirmed}
+      slot_reuse: {rule: "records are rebuilt from chunk-31 on level load; the live enemy pointer table compacts after retirement", evidence: analysis/phase3_record_probe.json, confidence: confirmed}
+      ownership_transfer: {rule: "LEVEL.RAW chunk-31 records become the resident actor table; live-enemy pointers borrow record identity", evidence: "ObsidianVault/Canon/Systems/Enemy_spawn_architecture.md", confidence: confirmed}
+      retirement: {rule: "actor record address is stable; removal compacts only the live pointer table", evidence: analysis/phase3_record_probe.json, confidence: runtime_seen}
+      reset: {rule: "the next world-ready load overwrites the table; exit leaves stale records resident", evidence: analysis/phase3_transition_reset.json, confidence: confirmed}
+    live_predicate: "actor_id != 0"
+    fields:
+      - {offset: 0x00, width: u32, name: actor_id, confidence: confirmed,
+         note: "id 11 = movable seed; id 14 = Dot; id 16 = Thumper"}
+      - {offset: 0x04, width: s32, name: pos_x, confidence: confirmed}
+      - {offset: 0x08, width: s32, name: pos_y, confidence: confirmed}
+      - {offset: 0x0C, width: s32, name: pos_z, confidence: confirmed}
+      - {offset: 0x1C, width: s32, name: velocity_x, confidence: confirmed,
+         note: "exactly equals the per-tick X delta of a moving enemy (19/19 moved ticks)"}
+      - {offset: 0x24, width: s32, name: velocity_z, confidence: confirmed,
+         note: "matches the per-tick Z delta on 12/19 moved frames; the other frames are collision/ground clamps. +0x20 remains unknown and must not be named velocity_y from stride symmetry alone."}
+      - {offset: 0x5C, width: u16, name: ai_flags, confidence: confirmed,
+         note: "bit 0x01 homing-targetable, bit 0x02 chase, bit 0x40 berry-damageable"}
+      - {offset: 0x6C, width: s16, name: knockback, confidence: confirmed,
+         note: ":= -20 on a seed hit (sfx_dispatch plays the impact sound separately); decays 0.5/frame"}
+      - {offset: 0x6E, width: s16, name: hp, confidence: confirmed,
+         note: "Thumper 50, defeat at <= 20; death sets 999 via the hit tail"}
+      - {offset: 0x70, width: u32, name: vm_instruction_pointer, confidence: confirmed,
+         note: "mover-VM IP; op = program[IP], jr [0x8001B2F4 + op*4]"}
+      - {offset: 0x7C, width: u32, name: event_callback, confidence: confirmed,
+         note: "FUNCTION POINTER, called by a jalr at this offset. Found empirically: across 42 centrally declared strict-pristine anchors and 1286 live actor instances it holds the ENTRY POINT of a censused function 60.8% of the time, over 9 distinct handlers (enemy_strike_contact_effect, actor_sound40_on_low_state, mosquito_species_callback, aimed_object_spawn_sfx, play_object_sound_42, actor_event_sound_trigger, ...). The other 39.2% hold no callback - the field is OPTIONAL, so a caller must null-check it."}
+    evidence:
+      - ObsidianVault/Canon/Systems/Enemy_spawn_architecture.md
+      - ObsidianVault/Canon/Systems/SYS_seed_carry_plant_lifecycle.md
+      - analysis/phase1_actor_census.json
+
+  - id: plant_slot
+    families: [plant]
+    family_evidence:
+      plant: [ObsidianVault/Canon/Systems/SYS_seed_carry_plant_lifecycle.md]
+    base: 0x80090BF0
+    size: 0x30
+    instances: 20
+    owner: original_game.plants
+    lifetime: >
+      POOLED with a cursor (0x800822B8, wraps at 0x14, skips occupied). Created by
+      plant_spawn FUNC_8005BDBC 20-120 frames after the crack input; torn down
+      40-170 frames after an uproot input (type := 0). The seed RECORD is conserved
+      across the whole cycle - it is raised +20480 while the plant lives and
+      re-grounded at pinned X/Z on teardown.
+    ownership_model:
+      capacity: {rule: "20 fixed plant slots", evidence: "ObsidianVault/Canon/Functions/FUNC_8005BDBC_plant_spawn.md", confidence: confirmed}
+      slot_reuse: {rule: "cursor 0x800822B8 wraps at 20 and skips occupied slots", evidence: analysis/phase2_action_behavior.json, confidence: confirmed}
+      ownership_transfer: {rule: "plant_spawn owns a free slot; the conserved seed record is raised while the plant lives", evidence: "ObsidianVault/Canon/Systems/SYS_seed_carry_plant_lifecycle.md", confidence: confirmed}
+      retirement: {rule: "uproot/natural wilt sets plant_type to zero before the slot can be reused", evidence: analysis/phase2_action_behavior.json, confidence: confirmed}
+      reset: {rule: "level data can pre-populate slots; next load overwrites the resident pool", evidence: analysis/phase3_transition_reset.json, confidence: confirmed}
+    live_predicate: "plant_type != 0"
+    fields:
+      - {offset: 0x00, width: u16, name: plant_type, confidence: confirmed,
+         note: "0 = free slot; type -> behavior handler at 0x8001B848[type-2]"}
+      - {offset: 0x2E, width: u8, name: expiry_state, confidence: confirmed,
+         note: "5 at a player uproot (distinguishes it from a natural wilt 0x05->0x07)"}
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_8005BDBC_plant_spawn.md
+      - ObsidianVault/Canon/Systems/SYS_seed_carry_plant_lifecycle.md
+      - analysis/phase3_dispatch_map.json
+
+  - id: camera_record
+    families: [camera]
+    family_evidence:
+      camera: [analysis/phase3_camera_record.json]
+    base: 0x80095358
+    size: 0x60
+    instances: 1
+    owner: original_game.camera
+    lifetime: >
+      DERIVED OUTPUT, not authoritative state. Written every logic tick by
+      camera_follow_update 0x8004DF18: camera_pos exponentially chases camera_target,
+      closing ~0.15 of the remaining gap per frame, and camera_target is itself
+      RECOMPUTED each tick. PROVEN by poking each triple +50000: the position is
+      pulled back toward the target (drift -39932 over 24 frames) and a poked target
+      is recomputed away (drift -45425). A mod cannot move the camera by writing this
+      struct - it must change the producer or the inputs the producer reads.
+      Behavioral control (Phase 2): the struct provably moves under L1 and is static
+      under no input.
+    ownership_model:
+      capacity: {rule: "one resident camera output record", evidence: analysis/phase3_camera_record.json, confidence: confirmed}
+      slot_reuse: {rule: "not pooled; producer rewrites the same record every logic tick", evidence: analysis/phase3_camera_record.json, confidence: confirmed}
+      ownership_transfer: {rule: "camera_follow_update owns both triples; consumers may read but writes are non-authoritative", evidence: analysis/phase3_camera_record.json, confidence: confirmed}
+      retirement: {rule: "record persists for the session and has no per-scene free operation", evidence: analysis/phase3_semantic_lifetime.json, confidence: confirmed}
+      reset: {rule: "new scene inputs cause the tick producer to recompute target and chase position", evidence: analysis/phase3_camera_record.json, confidence: confirmed}
+    fields:
+      - {offset: 0x00, width: s32, name: camera_pos_x, confidence: confirmed}
+      - {offset: 0x04, width: s32, name: camera_pos_y, confidence: confirmed}
+      - {offset: 0x08, width: s32, name: camera_pos_z, confidence: confirmed}
+      - {offset: 0x0C, width: s32, name: camera_target_x, confidence: confirmed,
+         note: "the point camera_pos chases; recomputed every tick (NOT a prev-tick mirror - verified: it never equals the previous camera_pos, and never equals the player position)"}
+      - {offset: 0x10, width: s32, name: camera_target_y, confidence: confirmed}
+      - {offset: 0x14, width: s32, name: camera_target_z, confidence: confirmed}
+    evidence:
+      - analysis/phase3_camera_record.json
+      - ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md
+
+  - id: render_descriptor_pointer_entry
+    families: [render]
+    family_evidence:
+      render: [analysis/phase3_render_descriptors.json]
+    base: 0x80096B98
+    size: 0x04
+    instances: 50
+    owner: original_game.render
+    lifetime: >
+      Fixed kind-to-descriptor pointer entries in resident BSS. Targets are shared
+      and non-contiguous. Their strict-pristine post-load snapshots contain five scene-dependent
+      byte offsets, so a consumer must follow the pointer and must not assume a
+      target edit survives a transition. The responsible writer is not yet traced.
+    live_predicate: "descriptor_pointer != 0"
+    fields:
+      - {offset: 0x00, width: u32, name: descriptor_pointer, confidence: confirmed,
+         note: "follow this pointer; descriptors are shared and not base+kind*stride"}
+    ownership_model:
+      capacity: {rule: "50 campaign-used kind entries were enumerated across all anchors", evidence: analysis/phase3_render_descriptors.json, confidence: confirmed}
+      slot_reuse: {rule: "kind entries are stable, but multiple kinds may share one descriptor", evidence: analysis/phase3_render_descriptors.json, confidence: confirmed}
+      ownership_transfer: {rule: "post-load target bytes are scene-dependent, but the writer and transfer boundary are unresolved", evidence: analysis/phase3_render_descriptors.json, confidence: partial}
+      retirement: {rule: "pointer identity is stable across anchors; target-byte durability across an observed transition is unresolved", evidence: analysis/phase3_render_descriptors.json, confidence: partial}
+      reset: {rule: "strict-pristine snapshot census observes varying target offsets +04,+06,+07,+08,+0A; +00,+01,+02,+03,+05,+09,+0B are invariant; no reset writer is attributed", evidence: analysis/phase3_render_descriptors.json, confidence: partial}
+    ownership_blocker:
+      missing_link: "the instruction(s) writing scene-dependent descriptor target bytes and the exact ownership-transfer/reset boundary"
+      evidence: "analysis/phase3_render_descriptors.json compares post-load snapshots only; it records no instruction-attributed writes"
+      next_experiment: "cold-boot or transition with write watches over 0x80081D98..0x80082060 and bank exact writer PCs before promoting loader causality"
+    evidence:
+      - analysis/phase3_render_descriptors.json
+      - ObsidianVault/Canon/Memory/MEM_80096B98_object_pointer_list.md
+
+  - id: sfx_voice_slot
+    families: [audio]
+    family_evidence:
+      audio: [src_re/sfx_voice_manager.c, ObsidianVault/Canon/Systems/SYS_sfx_system.md]
+    base: 0x80089860
+    size: 0x08
+    instances: 8
+    owner: original_game.audio
+    lifetime: >
+      Eight-slot SFX voice scheduler pool. A slot is free when voice_id is -1;
+      the manager prefers the same descriptor, otherwise a free slot, and drops
+      the request when no slot is available. This is original software ownership;
+      the downstream 24 SPU hardware voices are a separate domain.
+    live_predicate: "voice_id != -1"
+    fields:
+      - {offset: 0x00, width: u32, name: descriptor_pointer, confidence: static_seen}
+      - {offset: 0x04, width: s16, name: voice_id, confidence: static_seen,
+         note: "-1 is free; otherwise the libspu voice handle"}
+    ownership_model:
+      capacity: {rule: "8 software SFX scheduler slots", evidence: "src_re/sfx_voice_manager.c", confidence: static_seen}
+      slot_reuse: {rule: "prefer matching descriptor, else a voice_id==-1 slot; full pool drops the request", evidence: "src_re/sfx_voice_manager.c", confidence: static_seen}
+      ownership_transfer: {rule: "SsUtKeyOn return handle and descriptor are installed atomically under the critical section", evidence: "src_re/sfx_voice_manager.c", confidence: static_seen}
+      retirement: {rule: "voice_id==-1 denotes released scheduler ownership", evidence: "src_re/sfx_voice_manager.c", confidence: static_seen}
+      reset: {rule: "audio initialization owns initial free markers; scene banks reload separately from the resident slot pool", evidence: "ObsidianVault/Canon/Systems/SYS_sfx_system.md", confidence: static_seen}
+    evidence:
+      - src_re/sfx_voice_manager.c
+      - ObsidianVault/Canon/Systems/SYS_sfx_system.md
+      - analysis/phase3_sfx_interface.json
+
+  - id: frontend_progress_record
+    families: [frontend]
+    family_evidence:
+      frontend: [config/semantic_state.yaml, ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md]
+    base: 0x80082444
+    size: 0x04
+    instances: 1
+    owner: original_game.frontend
+    lifetime: >
+      Resident frontend/bonus-progress command word. The exact initialization,
+      retirement, and save interaction are not yet empirically closed; the
+      structured ownership blocker below keeps those missing links visible.
+    fields:
+      - {offset: 0x00, width: u32, name: bonus_progress_command, confidence: confirmed}
+    ownership_blocker:
+      missing_link: "frontend command capacity/reuse/retirement/reset semantics have not been exercised through menu, save, and reload"
+      evidence: "config/semantic_state.yaml original.bonus_progress_command; analysis/mechanics_baseline.yaml E14_frontend_save"
+      next_experiment: "cold-boot the frontend/save campaign, trace every write through create-save-load-delete and scene return, then classify its ownership model"
+    evidence:
+      - config/semantic_state.yaml
+      - ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md

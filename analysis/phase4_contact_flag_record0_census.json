@@ -1,0 +1,88 @@
+{
+ "target": "0x800B0D4B",
+ "bytes": 1,
+ "exe": "SCUS_942.88",
+ "writers": [
+  {
+   "pc": "0x80058F74",
+   "insn": "sb v0, 0x2b(s1)",
+   "kind": "write",
+   "width": 1,
+   "function": "contact_vs_actor_handler",
+   "address": "0x800B0D4B",
+   "base_value": "0x800B0D20",
+   "covers": [
+    "0x800B0D4B"
+   ],
+   "straddles": false
+  }
+ ],
+ "readers": [
+  {
+   "pc": "0x80058C64",
+   "insn": "lbu v0, 0x2b(s1)",
+   "kind": "read",
+   "width": 1,
+   "function": "contact_vs_actor_handler",
+   "address": "0x800B0D4B",
+   "base_value": "0x800B0D20",
+   "covers": [
+    "0x800B0D4B"
+   ],
+   "straddles": false
+  }
+ ],
+ "residual": {
+  "_meaning": "accesses whose base register is TOP (not derivable from the instruction stream) and which could therefore alias the target. A completeness claim is only warranted once these are inspected.",
+  "unresolved_accesses_total": 12956,
+  "unresolved_same_width_in_related_functions": 6,
+  "related_functions": [
+   "contact_vs_actor_handler"
+  ],
+  "sites": [
+   {
+    "pc": "0x80058F2C",
+    "insn": "lbu v1, 0x0(a3)",
+    "kind": "read",
+    "width": 1,
+    "function": "contact_vs_actor_handler"
+   },
+   {
+    "pc": "0x80058F58",
+    "insn": "lbu v1, 0x1(a3)",
+    "kind": "read",
+    "width": 1,
+    "function": "contact_vs_actor_handler"
+   },
+   {
+    "pc": "0x80058FB8",
+    "insn": "lbu v0, 0x0(a0)",
+    "kind": "read",
+    "width": 1,
+    "function": "contact_vs_actor_handler"
+   },
+   {
+    "pc": "0x80058FE8",
+    "insn": "lbu v0, 0x1(a0)",
+    "kind": "read",
+    "width": 1,
+    "function": "contact_vs_actor_handler"
+   },
+   {
+    "pc": "0x80059010",
+    "insn": "lbu a0, 0x2(a0)",
+    "kind": "read",
+    "width": 1,
+    "function": "contact_vs_actor_handler"
+   },
+   {
+    "pc": "0x80059040",
+    "insn": "lbu a0, 0x0(v0)",
+    "kind": "read",
+    "width": 1,
+    "function": "contact_vs_actor_handler"
+   }
+  ],
+  "indirect_calls_unresolved": 149
+ }
+}

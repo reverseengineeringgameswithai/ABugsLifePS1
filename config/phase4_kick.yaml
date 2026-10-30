@@ -1,0 +1,95 @@
+schema: abl-phase4-kick/1
+description: >
+  Authoritative pristine-game contract for ordinary A04 kicking. It binds the
+  L2-or-R2 plus fresh-Square chord, eligibility, signed timer, animation, exact
+  resident actor-contact law, pause and respawn lifecycle, and the Riverbed
+  Flight exception. Enemy-family AI, boss/overlay contact and persistence are
+  separate registered owners.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_kick.json
+  generator: tools/phase4_kick.py
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+
+decoded_input:
+  action_word: {address: '0x80082488', type: u16}
+  previous_pad: {address: '0x80082380', type: s16}
+  shoulder_mask: '0x0300'
+  square_mask: '0x8000'
+  edge: Square must be set in the decoded action word and clear in previous_pad
+  owner: resident player update branch 0x80048F40..0x80048FB7
+
+ordinary_controller:
+  eligibility:
+    shoulder: at least one of L2/R2
+    square: fresh decoded press
+    timer: signed kick_timer must be nonnegative
+    floor_distance: '(floor_y - y) < 1024, signed and exclusive'
+    player_gate_5c: u32 must equal zero
+  timer:
+    address: '0x800A657A'
+    type: s16
+    arm: -16
+    recovery: add 1 per resident player update while negative until zero
+    shared_positive_path: positive values decrement by 1; a separate action writes 12
+  animation:
+    negative_timer: 1
+    phase_reset: player animation phase at +0x44 is cleared when timer equals -16
+    owners: 0x80056700..0x80056718 and 0x80056910..0x80056924
+
+actor_contact:
+  owner: resident proximity updater 0x8004ABF4..0x8004B6AB
+  iteration: compact live actor pointer table 0x80090748, up to 64 slots
+  geometry: >
+    Two actor contact bounds are reconstructed from the current 16-byte
+    animation-frame geometry at actor+0x74 + 16*(actor+0x44), actor heading, and
+    the resident 12-bit fixed-point lookup table at 0x80074970.
+  kick_predicate: >
+    Contact is kick-active when player facing is within the resident wrapped
+    threshold and animation is 11, 12, or 30, or signed kick_timer is negative.
+  flag_classes:
+    flag_0x20: separate actor path; not the ordinary kick-damage branch
+    flag_0x800: ordinary proximity response suppressed
+    flag_0x80: response state 15; ordinary state-30 branch suppressed
+    ordinary: kick writes actor response 30 and player animation 30; matched neutral contact writes actor response 15 and damages player
+  evidence_boundary: >
+    The 28-class matrix covers distinct active (actor id, flags) classes present
+    at the retained moments in all 19 gameplay anchors. It is not an authored
+    family roster and does not close family-specific AI, respawn, permanence,
+    berry immunity, boss, or overlay-special contact rows.
+
+lifecycle:
+  initialization: scene-load and resident action-reset writers clear the shared timer before ordinary input consumption
+  allocation_reuse: no A04-private allocation exists; one resident player field and the compact resident actor pointer table are reused
+  reset: negative values recover to zero; scene load, transitions, respawn, and plant/cannon action reset have attributed clear writers
+  pause: pause freezes position, timer, and animation; resume restarts native recovery
+  death_respawn: a native same-scene respawn changed a nonzero timer precondition 11 to zero and accepted a fresh R2+Square kick
+  unload_transition: resident code persists; transition initialization clears transient kick state before the next scene
+  persistence: kick timer and contact response are transient world/action state, not saved progression
+  capacity: one player timer, one decoded input word, and the existing 64-slot compact actor pointer table; no A04-private pool
+  residency: ordinary input, animation, contact and lifecycle owners are resident
+  exceptional_path: Riverbed Flight remained airborne with timer 0 and animation 4 under the native chord
+
+mod_contract:
+  owner: Preserve resident input, player-update, animation and proximity-update ordering and explicitly name every new hook.
+  readers: Enumerate decoded/previous input, player, actor geometry/flags, collision, animation, render, audio, camera, pause, death, plant, enemy-family, boss and flight consumers.
+  writers: Do not add unordered writes to decoded input, previous pad, kick timer, animation phase/id, player health/velocity, actor flags or actor response.
+  valid_domains: Actions/previous pad/flags are u16; kick timer and actor response are s16; headings are 0..4095; positions, floor and velocity are signed s32.
+  initialization: Initialize MOD-private attack state before the first resident player/contact update and never infer readiness from stale resident bytes.
+  reset: Clear private attack/contact state on recovery, pause-shell reset, death/reload, plant/cannon takeover and every scene transition.
+  retirement: Retire injected Square/shoulder state and overlay-scoped hooks before their input or overlay owner unloads.
+  consumers: Input, player update, actor animation/geometry, proximity/contact, collision, health, render, camera, audio, pause, respawn, enemy families, bosses and Riverbed Flight.
+  capacity: Declare every hook/cave/table expansion bound; never treat the compact live-table index as stable actor identity.
+  residency: Keep resident attack state outside overlay-owned memory and scope every boss or stage-overlay contact hook to its actual lifetime.
+  unsafe_assumptions:
+    - The -16..0 law advances per native player update, not per emulator frame.
+    - Positive timer values are shared with other action paths and are not kick-active.
+    - Actor ID does not classify ordinary kick response; current flags and animation geometry do.
+    - A live pointer-table index is compacted and is not stable actor identity.
+    - The retained 28 active classes are not a full authored enemy or boss roster.
+    - Family AI, berry immunity, death, respawn, permanence, quotas and boss/overlay contacts remain separate rows.
+    - Riverbed Flight does not inherit the ordinary grounded kick controller.
+    - Save-state breadth supplements but does not replace the retained cold-boot counterfactual.

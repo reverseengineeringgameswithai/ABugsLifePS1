@@ -1,0 +1,190 @@
+schema: abl-phase4-collectibles-frontier-source/1
+campaign_id: grain_collection_harvester
+family: collectibles_equipment_rewards
+selected_rows: [C01_grain_pickup, C02_fifty_grain_reward, C13_grain_harvester]
+first_unmet_dimension: original_oracle
+next_lane: static
+exact_claim: >-
+  The pristine resident image assigns actor ID 35 and the CHARS3/FLIKHARV
+  asset to the grain harvester, sets player power-up bit 0x80 at the equipment
+  pickup, follows Flik from fixed actor slot 63, and lets bit 0x80 make kind
+  0x14 source rows construct ctor 0x51/action-20 grain contacts inside squared
+  distance 0x15F8F. Those contacts use the common 0x8005A308 convergence law
+  before the existing action-20 grain handler. At exactly 50 grain, the
+  resident code reaches health=4 but its fixed-address comparison makes the
+  progress/life increment branch unreachable.
+falsifier: >-
+  Reject the frontier if any pinned fixture/input hash drifts; actor ID 35
+  does not resolve through jump-table case 0x8005E17C to chars3\flikharv;
+  the C13 capsule does not uniquely join the stage01 authored slot-63 actor,
+  bit 0x80 and the observed (0,192,0) follow delta; ctor 0x51 metadata differs;
+  any guarded source/convergence/reward instruction differs; or the presumed
+  grain-50 progress branch compares equal resident addresses.
+
+external_index:
+  path: ~/Downloads/ABL-external-evidence/derived/Phase4/collectibles-v1/index.json
+  sha256: e848f907fc5ac72da22f456fd838275b28da8df0c2b892071e8b0c5f2cf89d74
+  bytes: 38561548
+  schema: abl-phase4-external-collectibles-index/1
+  media_class: derived_pristine_evidence
+  preservation_required: true
+
+inputs:
+  executable:
+    path: REBUILD/files/SCUS_942.88
+    sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+    load_base: 0x8000F800
+  actor_census:
+    path: analysis/phase1_kind_actor_census.json
+    sha256: 1c8ad255eb96d08c4b08b6d688374bc189e78672d1449533cc5f9d4e2cf20284
+  offline_summary:
+    path: analysis/phase4_offline_collectibles_batch.json
+    sha256: d7a919d464ae28c4927c59c51faf69ace09b0bb2cb0682d0d56aa05a76c33835
+  harvester_model:
+    path: REBUILD/files/CHARS3/FLIKHARV.ALL
+    sha256: 26300d0b5d0b9d93d031876f82d97566e3e2c533ff9116a95a302259e9393554
+  harvester_animation:
+    path: REBUILD/files/CHARS3/FLIKHARV.ANM
+    sha256: 5442b76ff7b0911fed6f79b40390b3f7e83a04b2bcb1d5730fad86d581557f48
+
+anchors:
+  - row_id: C01_grain_pickup
+    movie: {path: movies/Phase4/C01_grain_pickup.movie.json, sha256: 385bb743192200bad070919cd048a1a6315523057f104f1c5555e9d1e057d076}
+    start_state: {path: movies/Phase4/C01_grain_pickup.movie.sav, sha256: 2421ce34a50d65765b605df87aac789b9de942d86891ade12820da8f5f9f1986}
+    from_boot: false
+  - row_id: C02_fifty_grain_reward
+    movie: {path: movies/Phase4/C02_grain_49_to_50.movie.json, sha256: cff9196b7b8b9d9c8391a57c85907a0271b4ff563ec8475ea676fac82012e90c}
+    start_state: {path: movies/Phase4/C02_grain_49_to_50.movie.sav, sha256: a6291970431030b5aefd8455b73c68583f10417c73e97ac820be249ee4859ebb}
+    from_boot: false
+  - row_id: C13_grain_harvester
+    movie: {path: movies/Phase4/c13_GRAIN_HARVESTER.movie.json, sha256: 849ad9a4092502dcbac280f3bf92f61612d72bdb3718b0f0ad84b4c4dfc005ac}
+    start_state: {path: movies/Phase4/c13_GRAIN_HARVESTER.movie.sav, sha256: abb7eb74ce316d437f5ee6c168d1e9f876d0fe11ec30ffa2273bfaeec31666ce}
+    from_boot: false
+
+harvester:
+  actor_id: 35
+  actor_slot: 63
+  actor_address: 0x800A1DFC
+  asset_string: "chars3\\flikharv"
+  asset_string_va: 0x8001BA90
+  actor_jump_table: 0x8001BBDC
+  actor_case: 0x8005E17C
+  equip_function: [0x80051DB4, 0x80052090]
+  pickup_radius_argument: 40
+  powerup_flag_address: 0x800A6590
+  powerup_bit: 0x0080
+  observed_pickup_frame: 83
+  observed_follow_delta: [0, 192, 0]
+  expected_authored_levels:
+    - stage01_anthill
+    - stage02_tunnels
+    - stage05_riverbed_run
+    - stage08_city_square
+    - stage10_clover_forest
+    - stage11_the_tree
+
+grain_source:
+  kind: 0x14
+  ctor_type: 0x51
+  squared_distance_max: 0x15F8F
+  constructor_stack_arg: 3
+  metadata_table: 0x8007941C
+  metadata_row_hex: 1400c800d20000016400640016000000ea808080
+  metadata:
+    action_id: 20
+    active_gate: 200
+    phase: 210
+    radius_add: 100
+    field_2a: 100
+    state: 22
+    selector: 0
+    flags: 0xEA
+  native_pickup_base_radius: 300
+  native_pickup_total_radius: 400
+
+reward_50:
+  grain_target: 50
+  progress_address: 0x800A65A0
+  health_address: 0x800A6594
+  health_value: 4
+  reward_snapshot_address: 0x80090B80
+  compared_address: 0x800B3988
+  progress_branch_reachable: false
+
+expected_slices:
+  - {start: 0x8004EFF8, end: 0x8004F020, sha256: 27da4c4b44abd51d252f7cf9969eb1d19811f93e24c056e579561d666c1170d9}
+  - {start: 0x80051DB4, end: 0x80052090, sha256: 993c0230b65ec7dbfab7b812b2ce600a890ab2fb0ae3a1aa489657fbfb43fc9b}
+  - {start: 0x80053BE8, end: 0x80053C5C, sha256: 253f10180f9615149601dcc00ef52b7bdc7373b3b3c6c2a58402d0ac1f904ca8}
+  - {start: 0x80054F88, end: 0x80055174, sha256: 9aa7067c84571ef62bb357dddda394e309de9be8212a35653cc736387dab88e6}
+  - {start: 0x8005A308, end: 0x8005B12C, sha256: a95bb0c5dbdd8b97df049879436427329d63ee51ed8e6ef2a523525a65933577}
+  - {start: 0x8005E17C, end: 0x8005E1A0, sha256: 0bbbea3c83df572b9f0024584ab66380fe66f71329b0cfe6dfa0244dc78fb955}
+
+expected_words:
+  0x8004EFF8: 0x0C01476D
+  0x8004F000: 0x0C013489
+  0x8004F008: 0x0C0168C2
+  0x8004F010: 0x0C01734B
+  0x8004F018: 0x0C016FEF
+  0x80051DEC: 0x24020023
+  0x80051DF8: 0x8E230000
+  0x80051E2C: 0x30420080
+  0x80051E40: 0x0C014942
+  0x80051EA8: 0x34630080
+  0x80051EB0: 0xA4236590
+  0x80051EEC: 0x30420080
+  0x80051F94: 0xACE20000
+  0x80051F9C: 0xAC231E04
+  0x80051FA4: 0xAC241E08
+  0x80051FDC: 0xAC251E10
+  0x80053BEC: 0x94426590
+  0x80053BF4: 0x30420080
+  0x80053C00: 0x92430008
+  0x80053C10: 0x3C020001
+  0x80053C14: 0x34425F8F
+  0x80053C18: 0x0050102A
+  0x80053C20: 0x24070051
+  0x80053C40: 0x0C016791
+  0x80053C4C: 0xAE430000
+  0x80053C58: 0xAC430010
+  0x80054F9C: 0xA0430000
+  0x80055008: 0x24020032
+  0x8005500C: 0x14620059
+  0x80055060: 0x0C014113
+  0x80055068: 0x3C038009
+  0x80055070: 0x3C02800B
+  0x80055078: 0x14620025
+  0x8005507C: 0x24020004
+  0x80055124: 0xA4226594
+  0x8005A358: 0x30420008
+  0x8005A370: 0x8E03FFEE
+  0x8005A39C: 0x0C0182B9
+  0x8005A3B0: 0x30460FFF
+  0x8005A3C0: 0x24422000
+  0x8005A3CC: 0x000228C3
+  0x8005A45C: 0x00061883
+  0x8005A46C: 0x00021083
+  0x8005A478: 0xAE03FFF6
+  0x8005A484: 0x00431021
+  0x8005A498: 0xAE02FFF6
+  0x8005A49C: 0x28A20401
+  0x8005A4A8: 0x24050400
+  0x8005A4B8: 0x2405FC00
+  0x8005A4C4: 0x00451023
+  0x8005A4DC: 0x94430000
+  0x8005A4FC: 0xAE03FFEA
+  0x8005A548: 0xAE620000
+  0x8005A56C: 0xAE03FFE6
+  0x8005E17C: 0x3C048002
+  0x8005E180: 0x2484BA90
+  0x8005E18C: 0x24070023
+
+closure_boundary:
+  dimension_promoted: false
+  reason: >-
+    All three selected recordings are save-start anchors. They localize and
+    reconstruct ownership but cannot satisfy the cold-boot original-oracle
+    predicate, and no same-anchor bit/radius denial control was executed.
+  missing:
+    - cold-boot original-game oracle for acquisition and 49-to-50 reward
+    - same-anchor bit-0x80 denial and attraction-radius controls
+    - denial, capacity, reset, death/respawn, unload/reload and persistence breadth

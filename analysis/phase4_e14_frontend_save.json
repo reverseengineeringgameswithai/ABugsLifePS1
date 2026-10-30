@@ -1,0 +1,37 @@
+{
+  "row": "E14_frontend_save",
+  "date": "2026-08-03",
+  "status": "partial, substantially advanced -- the full save schema is mapped (the row's own named next step), and the schema's one mystery block (64x5 records) is decoded as the previously-warned-but-unlocated per-species/per-berry side table",
+
+  "SAVE_SCHEMA_MAPPED_2026-08-03": {
+    "method": "The serialize/init/apply triple is already byte-matched decompiled (src/main/80055478_serialize_savegame_buffer.c, 80055414_scene_flow_state_table_init.c, 80055538_scene_config_apply.c) -- the schema falls out statically, cross-referenced against this session's own C17 decode of the 19-byte unlock block.",
+    "layout": {
+      "byte_0": "lives (0x800A65A0); new-game default 5 (scene_flow_state_table_init writes {5,1})",
+      "byte_1": "campaign progress (low byte of halfword 0x80082284; apply restores it into the halfword); default 1",
+      "bytes_2_20": "the 19-byte block at 0x8009B878 -- fully decoded under C17: 16-byte per-level 100%/FMV unlock array + 0x8009B888 ending-flag bits + 0x8009B889 hidden-challenge bits + 0x8009B88A (still unidentified)",
+      "bytes_21_27": "NOT written by the serializer (gap) but CONSUMED by scene_config_apply: cfg[22]/cfg[23] index short tables 0x80078B64/0x80078B84 into cd_mix_shim (0x80044CE8) = per-scene CD audio mix, and cfg+24/cfg+26 shorts feed set_draw_env_offset (0x8003F4D4) = per-scene display centering. The record format doubles as the SCENE-CONFIG record; the memcard save carries only the state half.",
+      "bytes_28_347": "64 records x 5 bytes from 0x80089938; init {100,255,255,255,255} -- decoded below."
+    },
+    "identity_of_the_apply_consumers": "sub_8003F4D4 = set_draw_env_offset, sub_80044CE8 = cd_mix_shim (both already named in re_symbols.sym; this pass connects them to the scene-config record fields)."
+  },
+
+  "SIDE_TABLE_DECODED_2026-08-03": {
+    "what_it_is": "0x80089938 is the 'side HP table' that committed Canon (SYS_enemy_death_and_permanence's Do-not-promote list) explicitly warned about -- 'Do not use the side HP-table decrement as the kill definition. The side table floors...' -- but had never located or structured. Structure: 64 records of stride 5, INDEXED BY ACTOR ID, one byte per native berry class: table[actor_id*5 + equipped_berry_index], where the class index is read live from the already-Canon equipped-berry byte 0x800A6597 at every access site.",
+    "instruction_level_owners": {
+      "ko_decrement": "0x8004B258..0x8004B2A8 (inside FUNC_8004ABF4, the proximity updater): on a KO path that sets actor flags |0x880, clears chase bit 0x2, and resets vm_ip to the death program pointer *(0x80077B2C), it reads table[id*5+berry] and -- ONLY while the value exceeds 0x40 -- stores value-2. The -2-per-KO decrement with a floor at 0x40/64, matching the Canon warning's 'floors' verbatim. Multiple sibling blocks in the same function (0x8004B2E8/0x8004B4C0/0x8004B4FC/0x8004B5D4) repeat the pattern for other KO variants.",
+      "respawn_clamp_and_aggro_gate": "FUNC_80049C30 (the actor/mover initializer, already E07-Canon for program selection): at 0x80049D28 clamps table[id*5+berry] UP to 0x40 if below (sb 0x40); at 0x80049E54 reads the same byte and -- per the listing's branch sense: when the value is >= 100 AND id != 0xF (15, grasshopper, explicitly exempted) -- clears the actor's chase bit 0x2 at (re)spawn. The behavioral DIRECTION (whether beaten-down species respawn more or less aggressive) is deliberately NOT claimed from branch-reading alone -- flagged for one live confirmation.",
+      "frontend_scan": "0x80054644.. (inside fcn.80053814's frontend/results dispatch region): scans for ==0xFF entries with a stride-5 loop -- a located-but-undecoded third consumer, plausibly initializing a berry-class column when a class first becomes available."
+    },
+    "empirical_cross_save_diff": "Live read of the 320 bytes across five progression-distinct saves (isolated instance, port 23650): fresh saves (level01, C17-frontend) sit at pure defaults; level02 (scene 3) deviates in exactly ONE record -- index 9; the late-campaign canyon_bug save (progress 15, lives 0) populates berry-class columns 0/1/2 with EVERY deviating record index in {6,9,10,12,13,15,17,18,22,29,30,34,37,39,40,41} -- EXACTLY the enemy actor-id roster D01 just bound, no exceptions; the training-100% save populates columns 0/1/3 (red/blue/gold -- matching the classes plausibly used there, gold being Training's own berry). Values move in even steps around 100 (72..110), consistent with the -2 decrement plus an UNLOCATED increment source (values above 100 exist, e.g. grasshopper id 15 at 110 -- the same id the initializer exempts).",
+    "persistence": "The table is byte-for-byte part of the memcard save (serializer bytes 28..347) -- per-species-per-berry-class state survives across sessions. A genuine hidden mechanic: the game remembers, per species and per berry class, accumulated KO history."
+  },
+
+  "STILL_OPEN": "The increment source for values above 100 (unlocated); the behavioral direction of the respawn aggro gate (branch sense read statically, needs one live A/B); why grasshopper (id 15) is exempted (plausibly Bonus-3 streak protection, not verified); the frontend ==0xFF scan's exact role; byte 0x8009B88A (carried over from C17); options/control-remap semantics (untouched -- no dedicated pass); continue/game-over flow (untouched; C16_lives_gameover's own row); the movie-viewer select-handler internals (carried from C17, lives in this row's frontend-overlay territory).",
+
+  "evidence": {
+    "byte_matched_sources": ["src/main/80055478_serialize_savegame_buffer.c", "src/main/80055414_scene_flow_state_table_init.c", "src/main/80055538_scene_config_apply.c"],
+    "asm_listings": ["asm/nonmatchings/resident/80049c30.s", "asm/nonmatchings/resident/8004abf4.s", "asm/nonmatchings/resident/80053f48.s", "asm/nonmatchings/resident/80055478.s"],
+    "cross_references": ["analysis/phase4_c17_movie_viewer.json (the 19-byte block)", "analysis/phase4_d01_enemy_spawn_update.json (the actor-id roster the deviation indices match)", "ObsidianVault/Canon/Systems/SYS_enemy_death_and_permanence.md (the side-table warning this decode resolves)"],
+    "live_scope": "Isolated Interpreter instance /tmp/dsrepro-e14-save-20260803, port 23650; five saves read-only diffed (level01.sav, level02.sav, canyon_bug.sav, training_all_stuff_collected_ending.sav, C17_MovieViewer.movie.sav)"
+  }
+}

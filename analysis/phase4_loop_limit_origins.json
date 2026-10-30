@@ -1,0 +1,48 @@
+{
+ "_comment": "Where loop limits come from, across every slt/sltu in the resident EXE. Regenerate: tools/phase4_loop_limit_origins.py",
+ "generated": "2026-08-10",
+ "slt_sltu_total": 1191,
+ "limit_is_literal": 8,
+ "limit_is_loaded_from_memory": 324,
+ "limit_undetermined": 859,
+ "literal_examples": [
+  {
+   "pc": "0x8003DDC4",
+   "limit_kind": "literal"
+  },
+  {
+   "pc": "0x8003DE88",
+   "limit_kind": "literal"
+  },
+  {
+   "pc": "0x80045DAC",
+   "limit_kind": "literal"
+  },
+  {
+   "pc": "0x80048994",
+   "limit_kind": "literal"
+  },
+  {
+   "pc": "0x80052820",
+   "limit_kind": "literal"
+  },
+  {
+   "pc": "0x80065398",
+   "limit_kind": "literal"
+  },
+  {
+   "pc": "0x8006F228",
+   "limit_kind": "literal"
+  },
+  {
+   "pc": "0x80073528",
+   "limit_kind": "literal"
+  }
+ ],
+ "register_form_was_a_real_blind_spot": {
+  "immediate_form_slti_sltiu": 1552,
+  "register_form_slt_sltu": 1191,
+  "note": "The register form was 43% of all comparisons and invisible to the affine pass. It is now handled -- correctly, and to zero measured effect."
+ },
+ "verdict": "NOT VIABLE as a general basis. Only 8 of 1191 loop limits (0.7%) are literals; 324 (27%) are LOADED from memory and 859 (72%) cannot be pinned. In this image element counts come from DATA -- chunk headers, save state, config -- not from constants in the instruction stream, so reading fill loops cannot recover object extents at scale. The two successes (_SsVmInit's 32, the weld table's mod-100) are the exceptions, not the rule."
+}

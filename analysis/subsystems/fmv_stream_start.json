@@ -1,0 +1,27 @@
+{
+ "schema_version": 1,
+ "slice": "fmv_str_stream_start",
+ "status": "closed",
+ "source": {
+  "path": "REBUILD/files/FMV/FMV.BIN",
+  "size": 509800,
+  "sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9"
+ },
+ "overlay_base": "0x800b5788",
+ "sequence": [
+  {"address": "0x800b7030", "operation": "CdControl(CdlGetlocP=0x15, 0x800cabd0, 0)", "retry_branch": "0x800b7044"},
+  {"address": "0x800b704c", "operation": "CdRead2(0x1c0)", "retry_branch": "0x800b7054"},
+  {"address": "0x800b7058", "operation": "CdControl(CdlDemute=0x0c, 0, 0)"}
+ ],
+ "completion": {
+  "flag": "0x800cac10",
+  "frame_limit_load": "0x80131eee",
+  "limit_compare": "0x800b6b28..0x800b6b48"
+ },
+ "corrected_false_claims": [
+  "0x80070898 is CdRead2, not an FMV terminator",
+  "0x8006d8e8 is CdControl, not an event/message primitive",
+  "0x800b7030..0x800b7064 starts and demutes the stream; it does not stop playback"
+ ],
+ "residual": "MDEC VLC/decode and DMA internals remain open"
+}

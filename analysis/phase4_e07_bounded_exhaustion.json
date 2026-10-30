@@ -1,0 +1,43 @@
+{
+  "schema": "abl.phase4.e07.bounded_exhaustion.v2",
+  "row": "E07_event_vm",
+  "date": "2026-08-02",
+  "status": "partial",
+  "move_on_verdict": "sufficiently_bounded_exhausted",
+  "strict_phase4_complete": false,
+  "closed_frontiers": {
+    "resident_interpreter_isa": "26/26 opcode slots identified and authored",
+    "authored_program_corpus": "40 entries, 421 decoded instructions, zero invalid opcodes",
+    "native_call_slots": "9/9 authored; 12 decoded CALL instructions",
+    "program_selection": "sole resident table reference at 0x80049C30; metadata byte 13 selects table entry and writes actor +0x70",
+    "pool_lifecycle": "0x8004A42C clears 8448 bytes and initializes 64 actor records; 0x8004D224 owns conditional reinitialization",
+    "stage_applicability": "typed actor table found in 17 of 20 RAW/BIN pairs; remaining three contain no typed table; 37 of 40 indices instantiated; zero out of range",
+    "applicable_overlay_natives": "five relevant stage/program/slot bodies, all semantically bounded"
+  },
+  "applicable_overlay_natives": [
+    {"slot": 3, "target": "0x800B3D78", "program": 8, "stage": "LEVEL03/LEVEL", "records": 19, "effect": "turn toward player; one-shot metadata-indexed guard; emit eight effects; set actor motion; call effect/sound 102"},
+    {"slot": 4, "target": "0x800B3B70", "program": 9, "stage": "LEVEL02/LEVEL", "records": 1, "effect": "set overlay state 0x800B4950 to 60"},
+    {"slot": 5, "target": "0x800B3BD4", "program": 28, "stage": "LEVEL05/LEVEL1", "records": 1, "effect": "return whether resident halfword 0x800A0282 differs from overlay indexed halfword"},
+    {"slot": 6, "target": "0x800B3DC8", "program": 33, "stage": "LEVEL09/LEVEL", "records": 2, "effect": "wrapper preserving a0 into flag-tail routine; clear 21 stride-0x54 flags and set the following flag"},
+    {"slot": 9, "target": "0x800B3F00", "program": 39, "stage": "LEVEL07/LEVEL1", "records": 1, "effect": "for overlay mode below 13 call 0x800B3B54 with selector 5 for modes 0..1, 2 for 2..3, else 0"}
+  ],
+  "closure_metrics": {
+    "original_behavior_oracle": "not_met",
+    "complete_code_frontier": "met_for_resident_and_applicable_native_scope",
+    "typed_state_model": "met_for_vm_selection_and_actor_fields",
+    "lifecycle_model": "met_for_pool_init_and_conditional_reinit; explicit teardown not separately named",
+    "interfaces_and_side_effects": "met_for_all_applicable_native slots",
+    "stage_and_variant_breadth": "met_static; runtime campaign breadth not met",
+    "cross_system_interactions": "advanced; exact human objective labels remain",
+    "source_reconstruction": "not_met",
+    "durable_evidence_and_regression_gate": "evidence_met; behavioral gate not_met"
+  },
+  "remaining_low_return_or_oracle_work": [
+    "dedicated cold-boot behavioral oracle and negative controls for five stage-native callbacks",
+    "matching semantic C for the interpreter and the two newly decoded callback bodies",
+    "declarative regression scenario/assertion",
+    "human-facing objective/progression labels for opaque overlay state effects"
+  ],
+  "movie_required_now": false,
+  "movie_escalation_rule": "Only request an Interpreter-mode movie if choosing to pursue one named callback oracle or objective effect that existing movies do not cover."
+}

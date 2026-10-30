@@ -1,0 +1,155 @@
+schema: abl-phase4-fmv-menu-phase-neutral-result-source/1
+description: >
+  Hash and falsification contract for the two Menu-Navigation passive-prelude
+  and native nine-PC observer pairs. Both native observers fail the
+  predeclared phase-neutrality and non-boot-zero predicates. The repeated
+  0x800500D8 and 0x80050284 block-coverage hits are retained as address-reuse
+  observations only, not as natural FMV-owner calls.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-ITER94-E15-MENU-PHASE-NEUTRAL-OWNER-COVERAGE
+missing_fact_id: E15/menu-phase-neutral-owner-coverage
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260726-204128-10115-r2
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  serial: SCUS-94288
+debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 91cbe22b2c2e22ad83d695988ada36bbabb22c65366cb5ec9e8e30784de93af6
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty_state_hash: cd808f74adf8591c16a35293c348640ea37059af
+  passive_adapter_sha256: fb3ef836e788b78497e1442a9d739ad0d93e9283f07bfcb0ae9d76d46bf14c49
+  precise_adapter_sha256: b78da4b1660b842b83125370697f000335c7d333e7551212d13805cf71b037b5
+boot_positive:
+  '0x8004fb5c': 327
+  '0x8004fb68': 327
+  '0x8004fb74': 327
+nonboot_falsifiers:
+  '0x8004ffd4': 0
+  '0x800500d8': 326
+  '0x80050284': 326
+  '0x8005031c': 0
+  '0x8005036c': 0
+  '0x8005b788': 0
+receipts:
+  - role: menu_v1_passive
+    precise: false
+    movie_sha256: e908f2cfeac94bc66cf30f9afc22cb73331007d03fed74618a15be9c78c6400c
+    endpoint_frame: 7794
+    plan:
+      path: config/phase4_fmv_menu_v1_phase_neutral_passive_batch.yaml
+      sha256: 95066eb5fa98a2463ce05ec3831a6b3c67977def105cdde7a8b1c01573260ef3
+    receipt:
+      relative_path: iteration-1-receipts/menu-v1-phase-neutral-passive-prelude/receipt.json
+      sha256: dfc6a0f8412c31ad09ec6d0136b79ca0475718361af1a3879f96e354c3fcd28e
+      bytes: 4325
+    batch_result:
+      relative_path: iteration-1-receipts/menu-v1-phase-neutral-passive-prelude/batch-result.json
+      sha256: f6251846e2bc388504c6bbf9be19b7fb459cb78f0a76d773875958d4e65236ec
+      bytes: 191121
+    expected_endpoint_equal:
+      frame: true
+      cycle: true
+      cpu: true
+      memory: true
+      gpu: true
+      spu: true
+      movie: true
+  - role: menu_v1_precise
+    precise: true
+    movie_sha256: e908f2cfeac94bc66cf30f9afc22cb73331007d03fed74618a15be9c78c6400c
+    endpoint_frame: 7794
+    target_frame: 7793
+    prelude_receipt:
+      relative_path: iteration-1-receipts/menu-v1-phase-neutral-passive-prelude/receipt.json
+      sha256: dfc6a0f8412c31ad09ec6d0136b79ca0475718361af1a3879f96e354c3fcd28e
+    plan:
+      path: config/phase4_fmv_menu_v1_phase_neutral_owner_batch.yaml
+      sha256: 4ff5332aa1ef4e81cec1a42446db8550bc721a4605c8f033c581d8f7d9c399a5
+    receipt:
+      relative_path: iteration-1-receipts/menu-v1-phase-neutral-owner/receipt.json
+      sha256: d7cace350e5766e294044db059e296cf3d1f6cbd8ca0b79e9928e785ff0be5d7
+      bytes: 4423
+    batch_result:
+      relative_path: iteration-1-receipts/menu-v1-phase-neutral-owner/batch-result.json
+      sha256: 5c905366811e059ce504cec6258939458c3b63bdfd96dc19c3f05718217d31dc
+      bytes: 198904
+    expected_endpoint_equal:
+      frame: true
+      cycle: true
+      cpu: true
+      memory: true
+      gpu: true
+      spu: true
+      movie: true
+  - role: menu_v2_passive
+    precise: false
+    movie_sha256: 8a49d28b441170d84993259cd6ca12eac6be6f56d9caa1ae7475f5b3c17cd271
+    endpoint_frame: 7363
+    plan:
+      path: config/phase4_fmv_menu_v2_phase_neutral_passive_batch.yaml
+      sha256: 0ea4da9d654a86367806d761fbdc0fc2b79f5a21b5f5558a3f99ab4737549393
+    receipt:
+      relative_path: iteration-1-receipts/menu-v2-phase-neutral-passive-prelude/receipt.json
+      sha256: 549bfac34554c22f2a6a7145fb71eee399df14f3937b0fc0e363c5ac5eddd06c
+      bytes: 4325
+    batch_result:
+      relative_path: iteration-1-receipts/menu-v2-phase-neutral-passive-prelude/batch-result.json
+      sha256: 5c6472da0d6111d1cbd4e4281c2402d873d3351ed8049ce1bca5e0027b5b8495
+      bytes: 192229
+    expected_endpoint_equal:
+      frame: true
+      cycle: false
+      cpu: false
+      memory: true
+      gpu: true
+      spu: true
+      movie: true
+  - role: menu_v2_precise
+    precise: true
+    movie_sha256: 8a49d28b441170d84993259cd6ca12eac6be6f56d9caa1ae7475f5b3c17cd271
+    endpoint_frame: 7363
+    target_frame: 7362
+    prelude_receipt:
+      relative_path: iteration-1-receipts/menu-v2-phase-neutral-passive-prelude/receipt.json
+      sha256: 549bfac34554c22f2a6a7145fb71eee399df14f3937b0fc0e363c5ac5eddd06c
+    plan:
+      path: config/phase4_fmv_menu_v2_phase_neutral_owner_batch.yaml
+      sha256: b68cea82ba538b6e2b9705fbd6f4336264c4f05495b602aca34898941dc47071
+    receipt:
+      relative_path: iteration-1-receipts/menu-v2-phase-neutral-owner/receipt.json
+      sha256: bbd22c78c8ae279cfe0d5d9566eeb9c79e3802eca18527af2069c803c7d6431f
+      bytes: 4423
+    batch_result:
+      relative_path: iteration-1-receipts/menu-v2-phase-neutral-owner/batch-result.json
+      sha256: 74e1a63d36974933efbdf69ebb5f3490c86737614f342a9679162aca9488a8b6
+      bytes: 200012
+    expected_endpoint_equal:
+      frame: true
+      cycle: false
+      cpu: false
+      memory: true
+      gpu: true
+      spu: true
+      movie: true
+claim_boundary:
+  classification: falsified_native_phase_neutral_menu_owner_control
+  dimension_promoted: false
+  natural_owner_calls_promoted: false
+  address_reuse_hits_promoted: false
+  next_lane: static
+  next_method: >
+    Stop replaying complete Menu recordings for bare-PC exclusion. Reconstruct
+    a residency-qualified code-identity boundary for the shared 0x800500D8 and
+    0x80050284 addresses, then statically specify one bounded synthetic
+    selector lifecycle control at the confirmed resident loader interface.
+    Any later live run must capture selector, mode, caller and resident-code
+    identity at that interface and cannot claim natural Menu ownership.
+  not_claimed:
+    - natural-route exclusion or ownership for any non-boot FMV caller
+    - that repeated bare-PC hits executed the resident game-over or finale owners
+    - selector, mode, caller or asset identity from passive block coverage
+    - FMV lifecycle dimension promotion
+    - movie-viewer, pause, repeat, decode or CD-failure policy

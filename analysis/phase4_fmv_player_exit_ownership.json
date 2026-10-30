@@ -1,0 +1,565 @@
+{
+  "_comment": "Generated from hash-verified pristine retail bytes, a closed derived-pristine offline query, and hash-pinned prior evidence. No copyrighted input bytes are retained.",
+  "campaign": "fmv_playback",
+  "cd_command_partition": {
+    "cd_control_target": "0x8006D8E8",
+    "common_teardown": {
+      "callback_teardown_call": {
+        "mnemonic": "jal 0x800709ac",
+        "pc": "0x800B74A4",
+        "word": "0x0C01C26B"
+      },
+      "return": {
+        "mnemonic": "jr ra",
+        "pc": "0x800B7524",
+        "word": "0x03E00008"
+      },
+      "st_clear_ring_call": {
+        "mnemonic": "jal 0x8007094c",
+        "pc": "0x800B749C",
+        "word": "0x0C01C253"
+      },
+      "stack_restore": {
+        "mnemonic": "addiu sp,sp,2312",
+        "pc": "0x800B7520",
+        "word": "0x27BD0908"
+      },
+      "start": "0x800B7474"
+    },
+    "completion_only_stop": {
+      "call": {
+        "mnemonic": "jal 0x8006d8e8",
+        "pc": "0x800B6E3C",
+        "word": "0x0C01B63A"
+      },
+      "command": 8,
+      "command_name": "CdlStop",
+      "entry": {
+        "mnemonic": "addiu a0,zero,8",
+        "pc": "0x800B6E38",
+        "word": "0x24040008"
+      },
+      "join_delay_slot": {
+        "mnemonic": "addiu a0,zero,11",
+        "pc": "0x800B6E48",
+        "word": "0x2404000B"
+      },
+      "join_jump": {
+        "mnemonic": "j 0x800b7468",
+        "pc": "0x800B6E44",
+        "word": "0x0802DD1A"
+      }
+    },
+    "shared_pause": {
+      "argument_join": {
+        "mnemonic": "addu a1,zero,zero",
+        "pc": "0x800B7468",
+        "word": "0x00002821"
+      },
+      "call": {
+        "mnemonic": "jal 0x8006d8e8",
+        "pc": "0x800B746C",
+        "word": "0x0C01B63A"
+      },
+      "classification": "stream_teardown_not_frontend_pause_shell",
+      "command": 11,
+      "command_name": "CdlPause",
+      "entry": {
+        "mnemonic": "addiu a0,zero,11",
+        "pc": "0x800B7464",
+        "word": "0x2404000B"
+      },
+      "zero_a2": {
+        "mnemonic": "addu a2,zero,zero",
+        "pc": "0x800B7470",
+        "word": "0x00003021"
+      }
+    }
+  },
+  "claim_boundary": {
+    "claim": "In pristine FMV.BIN, every post-helper continuation is owned by one of five exact predicates: the u8 decode-stop latch, resident CD-event value one, a controller-derived 12-step skip sentinel, completion request value one, or decoded-frame-index less than the signed selected limit. The completion-request branch alone issues CdlStop command 8 before joining the shared CdlPause command 11 and common teardown. The controller path polls resident input state, masks 0x4008, seeds the countdown at one, and exits only when it reaches twelve. CdlPause here is stream teardown, not the frontend pause-shell action.\n",
+    "closed_sub_boundary": "post_helper_exit_and_cd_command_ownership",
+    "dimension_promoted": false,
+    "falsifier": "Reject the claim if the retained index already answers an exact requested term, another encoded edge enters 0x800B6E38, 0x800B7464 or 0x800B7468, a producer load or comparison is missing, the controller mask/countdown differs from 0x4008 and twelve, completion does not issue command 8 before command 11, a runtime outcome is inferred from static routing, or a load-bearing pristine byte/artifact/source mutation leaves the focused guard green.\n",
+    "lifecycle_promoted": false,
+    "next_lane": "static",
+    "next_method": "Preserve this complete in-player exit partition. Next, statically identify the first caller-owned Region-B overwrite after one selected level/viewer return and classify its E16/E14 owner before considering another live control.\n",
+    "not_claimed": [
+      "native delivery frequency for the resident CD event",
+      "native malformed-stream or timeout outcomes",
+      "a user-visible pause menu caused by CdlPause command 11",
+      "behavior of every manifest selector or movie-viewer path",
+      "the first caller-owned Region-B replacement instruction",
+      "lifecycle or any other nine-dimension promotion"
+    ]
+  },
+  "controller_producer_chain": {
+    "classification": "resident_controller_state_to_twelve_step_skip_sentinel",
+    "countdown_compare": {
+      "mnemonic": "beq s1,s7,0x800b7464",
+      "pc": "0x800B7430",
+      "word": "0x1237000C"
+    },
+    "countdown_increment": {
+      "mnemonic": "addiu s1,s1,1",
+      "pc": "0x800B70F8",
+      "word": "0x26310001"
+    },
+    "countdown_seed": {
+      "mnemonic": "addiu s1,zero,1",
+      "pc": "0x800B7418",
+      "word": "0x24110001"
+    },
+    "current_state_store": {
+      "mnemonic": "sh v0,9234(at)",
+      "pc": "0x8003A300",
+      "word": "0xA4222412"
+    },
+    "player_mask": {
+      "mnemonic": "andi v0,v0,0x4008",
+      "pc": "0x800B740C",
+      "word": "0x30424008"
+    },
+    "player_poll_call": {
+      "mnemonic": "jal 0x8003a2dc",
+      "pc": "0x800B70E0",
+      "word": "0x0C00E8B7"
+    },
+    "port": {
+      "mnemonic": "addiu a0,zero,1",
+      "pc": "0x8003A2F8",
+      "word": "0x24040001"
+    },
+    "port_poll": {
+      "mnemonic": "jal 0x80039c34",
+      "pc": "0x8003A2F4",
+      "word": "0x0C00E70D"
+    },
+    "prior_state_load": {
+      "mnemonic": "lhu v0,9234(v0)",
+      "pc": "0x8003A2E4",
+      "word": "0x94422412"
+    },
+    "prior_state_store": {
+      "mnemonic": "sh v0,8932(at)",
+      "pc": "0x8003A2F0",
+      "word": "0xA42222E4"
+    },
+    "resident_function": {
+      "end": "0x8003A314",
+      "name": "resident_input_poll",
+      "sha256": "94a3f1f1ebd18ababb0737e979db922c93c9a4a275a470d85ff9a98f316e6979",
+      "size": 56,
+      "start": "0x8003A2DC"
+    }
+  },
+  "dimension": "lifecycle",
+  "exit_entry_frontier": {
+    "encoded_edges": [
+      {
+        "mnemonic": "j 0x800b7468",
+        "pc": "0x800B6E44",
+        "target": "0x800B7468",
+        "word": "0x0802DD1A"
+      },
+      {
+        "mnemonic": "beq v0,zero,0x800b7468",
+        "pc": "0x800B70BC",
+        "target": "0x800B7468",
+        "word": "0x104000EA"
+      },
+      {
+        "mnemonic": "beq v0,s4,0x800b7464",
+        "pc": "0x800B7294",
+        "target": "0x800B7464",
+        "word": "0x10540073"
+      },
+      {
+        "mnemonic": "beq v0,s4,0x800b7464",
+        "pc": "0x800B7428",
+        "target": "0x800B7464",
+        "word": "0x1054000E"
+      },
+      {
+        "mnemonic": "beq s1,s7,0x800b7464",
+        "pc": "0x800B7430",
+        "target": "0x800B7464",
+        "word": "0x1237000C"
+      },
+      {
+        "mnemonic": "beq v0,s4,0x800b6e38",
+        "pc": "0x800B7444",
+        "target": "0x800B6E38",
+        "word": "0x1054FE7C"
+      }
+    ],
+    "entry_targets": [
+      "0x800B6E38",
+      "0x800B7464",
+      "0x800B7468"
+    ],
+    "expected_encoded_edges": 6,
+    "fallthrough_edges": [
+      {
+        "delay_slot": "0x800B7460",
+        "pc": "0x800B745C",
+        "predicate": "decoded_frame_index_not_less_than_selected_limit",
+        "target": "0x800B7464"
+      }
+    ],
+    "scan_scope": [
+      "0x800B5788",
+      "0x800B9A4C"
+    ],
+    "unclassified_encoded_edges": [],
+    "unclassified_fallthrough_edges": []
+  },
+  "falsifier": {
+    "checks": {
+      "all_exit_routes_join_shared_pause_and_teardown": true,
+      "completion_alone_routes_through_stop": true,
+      "controller_exit_sentinel_is_twelve": true,
+      "controller_mask_is_0x4008": true,
+      "encoded_exit_entry_frontier_is_complete": true,
+      "five_post_helper_predicates_are_classified": true,
+      "offline_index_does_not_preanswer_exact_terms": true,
+      "runtime_outcomes_not_inflated_from_static_routing": true
+    },
+    "explicit_falsifier": "Reject the claim if the retained index already answers an exact requested term, another encoded edge enters 0x800B6E38, 0x800B7464 or 0x800B7468, a producer load or comparison is missing, the controller mask/countdown differs from 0x4008 and twelve, completion does not issue command 8 before command 11, a runtime outcome is inferred from static routing, or a load-bearing pristine byte/artifact/source mutation leaves the focused guard green.\n",
+    "outcome": "survived"
+  },
+  "functions": {
+    "fmv_player": {
+      "end": "0x800B752C",
+      "name": "fmv_player",
+      "sha256": "a4848c83be180bc58eed123b6f80d656b9240b15eab890a1d2debd306c1afe0f",
+      "size": 1988,
+      "start": "0x800B6D68"
+    },
+    "pause_and_common_teardown": {
+      "end": "0x800B752C",
+      "name": "pause_and_common_teardown",
+      "sha256": "49d06700299671580639874e4d3181f30f6394980756fab57d14a274127aac8a",
+      "size": 200,
+      "start": "0x800B7464"
+    },
+    "resident_input_poll": {
+      "end": "0x8003A314",
+      "name": "resident_input_poll",
+      "sha256": "94a3f1f1ebd18ababb0737e979db922c93c9a4a275a470d85ff9a98f316e6979",
+      "size": 56,
+      "start": "0x8003A2DC"
+    },
+    "stop_then_pause": {
+      "end": "0x800B6E4C",
+      "name": "stop_then_pause",
+      "sha256": "90fc806e5f4121c7ceca1cb5788491a5ff37ede8a675e3473445662b8317aad2",
+      "size": 20,
+      "start": "0x800B6E38"
+    }
+  },
+  "generated": "2026-07-28",
+  "inputs": {
+    "config": {
+      "path": "config/phase4_fmv_player_exit_ownership.yaml",
+      "sha256": "93daf5c804500d8846f08afe202913590988f72b15c67b3dc0629ccc33ed39cb"
+    },
+    "fmv_bin": {
+      "identity_verified": true,
+      "path": "REBUILD/files/FMV/FMV.BIN",
+      "sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+      "size": 509800
+    },
+    "prior_evidence": {
+      "analysis/phase4_fmv.json": "ae6b6baf0bec3c0e77649c714560c7425a3d0a8e95ab86cbc54d7cc9ab294a40",
+      "analysis/phase4_fmv_lifecycle_continuations.json": "c026a89b3d1e6ec8dd39f14e61855274f8520d3885c20e14bcbadc8d7244844b"
+    },
+    "resident_executable": {
+      "identity_verified": true,
+      "path": "REBUILD/files/SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "size": 471040
+    }
+  },
+  "lane": "static",
+  "offline_localization": {
+    "command": [
+      "python3",
+      "tools/phase4_offline_receipt_query.py",
+      "--input",
+      "@run/iteration-1-receipts/inputs/fmv-lifecycle-v2.index.json",
+      "--output",
+      "@run/iteration-1-receipts/outputs/fmv-player-exit-index-search.json",
+      "--query-json",
+      "@query"
+    ],
+    "exit_code": 0,
+    "external_index_bytes": 16060589,
+    "external_index_sha256": "e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab",
+    "finding": "The retained frame-boundary index contains none of the exact exit-PC, controller-mask, CD-command, or ownership leads. Pristine static bytes therefore own this instruction-level question.",
+    "output_sha256": "13a98c8d30b51de9b60e9d05171ab3ff12459b42b66a68167002c6a7ccfc2142",
+    "preservation_sha256": "7da3c8f30743a509d3804d1445a1a20e8fecc28c4e0cb65aeae30deb1bb47a20",
+    "reader": {
+      "path": "tools/phase4_offline_receipt_query.py",
+      "scope": "repo",
+      "sha256": "00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846"
+    },
+    "receipt_sha256": "244e5b5ac038d6b9b805a13581007d36cfe4cd268e3f8881c8ed80d7e2b4aa0d",
+    "stdout_sha256": "bf6d15363b59d2dd48e0d3cc4ff9a4e4577ce43de049899bcdde9416a6c6057c",
+    "zero_match_terms": [
+      "0x4008",
+      "0x800B7294",
+      "0x800B7428",
+      "0x800B7430",
+      "0x800B7444",
+      "0x800B745C",
+      "CdControl",
+      "CdlPause",
+      "CdlStop",
+      "post-helper exit"
+    ]
+  },
+  "post_helper_predicates": [
+    {
+      "command_route": [
+        "CdlPause(11)",
+        "common_teardown"
+      ],
+      "comparison": {
+        "mnemonic": "beq v0,s4,0x800b7464",
+        "pc": "0x800B7294",
+        "word": "0x10540073"
+      },
+      "id": "decode_stop_latch",
+      "load": {
+        "mnemonic": "lbu v0,-26028(v0)",
+        "pc": "0x800B728C",
+        "word": "0x90429A54"
+      },
+      "source_address": "0x800B9A54",
+      "source_type": "u8",
+      "source_writer": "0x800B6C84",
+      "taken_target": "0x800B7464"
+    },
+    {
+      "command_route": [
+        "CdlPause(11)",
+        "common_teardown"
+      ],
+      "comparison": {
+        "mnemonic": "beq v0,s4,0x800b7464",
+        "pc": "0x800B7428",
+        "word": "0x1054000E"
+      },
+      "id": "resident_cd_event",
+      "load": {
+        "mnemonic": "lw v0,9348(v0)",
+        "pc": "0x800B7420",
+        "word": "0x8C422484"
+      },
+      "source_address": "0x80082484",
+      "source_type": "u32",
+      "source_writer": "0x80045D60",
+      "taken_target": "0x800B7464"
+    },
+    {
+      "command_route": [
+        "CdlPause(11)",
+        "common_teardown"
+      ],
+      "comparison": {
+        "mnemonic": "beq s1,s7,0x800b7464",
+        "pc": "0x800B7430",
+        "word": "0x1237000C"
+      },
+      "exit_sentinel": 12,
+      "id": "controller_skip_countdown",
+      "increment": {
+        "mnemonic": "addiu s1,s1,1",
+        "pc": "0x800B70F8",
+        "word": "0x26310001"
+      },
+      "load": {
+        "mnemonic": "lhu v0,9234(v0)",
+        "pc": "0x800B7404",
+        "word": "0x94422412"
+      },
+      "mask": {
+        "mnemonic": "andi v0,v0,0x4008",
+        "pc": "0x800B740C",
+        "word": "0x30424008"
+      },
+      "mask_value": "0x4008",
+      "poll_call": {
+        "mnemonic": "jal 0x8003a2dc",
+        "pc": "0x800B70E0",
+        "word": "0x0C00E8B7"
+      },
+      "seed": {
+        "mnemonic": "addiu s1,zero,1",
+        "pc": "0x800B7418",
+        "word": "0x24110001"
+      },
+      "seed_value": 1,
+      "source_address": "0x80082412",
+      "source_type": "u16",
+      "taken_target": "0x800B7464"
+    },
+    {
+      "command_route": [
+        "CdlStop(8)",
+        "CdlPause(11)",
+        "common_teardown"
+      ],
+      "comparison": {
+        "mnemonic": "beq v0,s4,0x800b6e38",
+        "pc": "0x800B7444",
+        "word": "0x1054FE7C"
+      },
+      "id": "completion_request",
+      "load": {
+        "mnemonic": "lw v0,-21488(v0)",
+        "pc": "0x800B743C",
+        "word": "0x8C42AC10"
+      },
+      "source_address": "0x800CAC10",
+      "source_type": "u32",
+      "source_xrefs": [
+        {
+          "access": "write",
+          "address": "0x800CAC10",
+          "instruction": {
+            "mnemonic": "sw v0,-21488(at)",
+            "pc": "0x800B6B24",
+            "word": "0xAC22AC10"
+          },
+          "lui": {
+            "mnemonic": "lui at,0x800d",
+            "pc": "0x800B6B20",
+            "word": "0x3C01800D"
+          },
+          "role": "frame_order_regression_set"
+        },
+        {
+          "access": "write",
+          "address": "0x800CAC10",
+          "instruction": {
+            "mnemonic": "sw v0,-21488(at)",
+            "pc": "0x800B6B48",
+            "word": "0xAC22AC10"
+          },
+          "lui": {
+            "mnemonic": "lui at,0x800d",
+            "pc": "0x800B6B44",
+            "word": "0x3C01800D"
+          },
+          "role": "selected_limit_set"
+        },
+        {
+          "access": "write",
+          "address": "0x800CAC10",
+          "instruction": {
+            "mnemonic": "sw zero,-21488(at)",
+            "pc": "0x800B6DD0",
+            "word": "0xAC20AC10"
+          },
+          "lui": {
+            "mnemonic": "lui at,0x800d",
+            "pc": "0x800B6DCC",
+            "word": "0x3C01800D"
+          },
+          "role": "stream_start_clear"
+        },
+        {
+          "access": "read",
+          "address": "0x800CAC10",
+          "instruction": {
+            "mnemonic": "lw v0,-21488(v0)",
+            "pc": "0x800B743C",
+            "word": "0x8C42AC10"
+          },
+          "lui": {
+            "mnemonic": "lui v0,0x800d",
+            "pc": "0x800B7438",
+            "word": "0x3C02800D"
+          },
+          "role": "player_loop_exit_read"
+        }
+      ],
+      "taken_target": "0x800B6E38"
+    },
+    {
+      "branch": {
+        "mnemonic": "bne v0,zero,0x800b70e0",
+        "pc": "0x800B745C",
+        "word": "0x1440FF20"
+      },
+      "comparison": {
+        "mnemonic": "slt v0,v0,s2",
+        "pc": "0x800B7458",
+        "word": "0x0052102A"
+      },
+      "decoded_index_address": "0x800B9A4C",
+      "false_command_route": [
+        "CdlPause(11)",
+        "common_teardown"
+      ],
+      "false_fallthrough": "0x800B7464",
+      "id": "decoded_index_selected_limit",
+      "load": {
+        "mnemonic": "lw v0,-26036(v0)",
+        "pc": "0x800B7450",
+        "word": "0x8C429A4C"
+      },
+      "selected_limit_register": "s2",
+      "selected_limit_source": "signed a1 stored at 0x80131EEE",
+      "true_target": "0x800B70E0"
+    }
+  ],
+  "row": "E15_fmv",
+  "runtime_control_join": {
+    "changed_field": "ports.0.start true -> false",
+    "changed_frames": [
+      334,
+      335,
+      336,
+      337,
+      338,
+      339,
+      340,
+      341,
+      342
+    ],
+    "negative_boundary": "The same retained control does not identify every static mask bit, countdown step, CD command, or other selector.",
+    "positive_boundary": "The retained LEV1A Start-only edit proves that Start can change the native FMV lifecycle at this anchor.",
+    "source_artifact": "analysis/phase4_fmv.json",
+    "static_to_runtime_inference": "Static ownership identifies the only in-player producer chain compatible with that Start control; no new runtime outcome is claimed."
+  },
+  "schema": "abl-phase4-fmv-player-exit-ownership/1",
+  "source_dependencies": {
+    "config/phase4_fmv_player_exit_ownership.yaml": "93daf5c804500d8846f08afe202913590988f72b15c67b3dc0629ccc33ed39cb",
+    "src_re/fmv_lifecycle_continuations.c": "8e417d21f497bf56ceace3f2faba6165757ffdd5a53b44c047a7379e38149728",
+    "src_re/fmv_player_streaming.c": "efdb5096970580b40eeb6565de7d95a2767097a1c5f5c2cfb9749acd8991d5f7",
+    "tools/phase4_fmv_player_exit_ownership.py": "c78d0aa2eab36c9d063300b874aecf5d7622efd72c8882e2f1d7689d3b635db3",
+    "tools/phase4_offline_receipt_query.py": "00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846"
+  },
+  "source_status": {
+    "fmv_player": "pristine_binary_plus_semantic_c_not_matching_source",
+    "resident_input_poll": "pristine_binary",
+    "semantic_sources": {
+      "src_re/fmv_lifecycle_continuations.c": "8e417d21f497bf56ceace3f2faba6165757ffdd5a53b44c047a7379e38149728",
+      "src_re/fmv_player_streaming.c": "efdb5096970580b40eeb6565de7d95a2767097a1c5f5c2cfb9749acd8991d5f7"
+    }
+  },
+  "summary": {
+    "completion_stop_command": 8,
+    "controller_exit_sentinel": 12,
+    "controller_mask": "0x4008",
+    "dimension_promoted": false,
+    "encoded_exit_entry_edges": 6,
+    "next_lane": "static",
+    "post_helper_predicates": 5,
+    "shared_pause_command": 11,
+    "unclassified_exit_edges": 0
+  }
+}

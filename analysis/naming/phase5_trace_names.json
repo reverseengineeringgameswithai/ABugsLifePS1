@@ -1,0 +1,996 @@
+[
+ {
+  "address": "0x80010000",
+  "name": "per_object_mesh_draw_payload_emitter",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80010000_per-object_mesh_draw_-_payload_emitter.md",
+   "src_re/world_render_dispatch.c",
+   "src_re/prop_decor_catalog.c"
+  ],
+  "rationale": "Per-object mesh draw / GPU payload emitter"
+ },
+ {
+  "address": "0x80013108",
+  "name": "grass_mound_mesh_builder",
+  "tier": "proven",
+  "evidence": [
+   "src_re/world_render_dispatch.c",
+   "memory/backdrop-sky-chunk29.md"
+  ],
+  "rationale": "Grass/mound terrain mesh builder (texpage 0x663), writer PC 0x80013700."
+ },
+ {
+  "address": "0x800140a0",
+  "name": "gte_trail_cull_transform",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800140A0_GTE_trail-cull_transform.md",
+   "memory/abl-geometry-g55-state.md"
+  ],
+  "rationale": "GTE transform used by trail-cull pass"
+ },
+ {
+  "address": "0x80014360",
+  "name": "pass3_backdrop_cull",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80014360_pass3_backdrop_cull_80014360.md",
+   "src_re/pass3_backdrop_cull_80014360.c"
+  ],
+  "rationale": "Pass-3 backdrop/decor culling"
+ },
+ {
+  "address": "0x800146e0",
+  "name": "gte_camera_matrix_load",
+  "tier": "inferred",
+  "evidence": [
+   "memory/level-editor-inworld-spawn-plan.md"
+  ],
+  "rationale": "libgte camera-matrix load leaf"
+ },
+ {
+  "address": "0x80014b04",
+  "name": "dirt_mesh_builder",
+  "tier": "proven",
+  "evidence": [
+   "src_re/world_render_dispatch.c"
+  ],
+  "rationale": "Dirt terrain mesh builder (texpage 0x604), writer PC 0x80014ce8."
+ },
+ {
+  "address": "0x800172dc",
+  "name": "shared_all_mesh_renderer",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800172DC_shared_.ALL-mesh_renderer_(terrain_is_one_occluded_client).md",
+   "src_re/scenery_instance_array_8001dea0.c",
+   "src_re/world_render_dispatch.c"
+  ],
+  "rationale": "Shared .ALL-mesh renderer (terrain is one client)"
+ },
+ {
+  "address": "0x80017b98",
+  "name": "gte_rotation_matrix_setup",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80017B98_GTE_rotation-matrix_setup.md",
+   "src_re/dat_parser_8001cdc0.c"
+  ],
+  "rationale": "GTE rotation-matrix setup"
+ },
+ {
+  "address": "0x800186f0",
+  "name": "gte_rtps_mesh_assembler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/world_render_dispatch.c"
+  ],
+  "rationale": "GTE-RTPS mesh assembler for the centre/Flik/foreground-dirt builder loop."
+ },
+ {
+  "address": "0x80019934",
+  "name": "bulk_ground_sub_emitter",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80019934_bulk-ground_sub-emitter.md",
+   "memory/level-editor-inworld-spawn-plan.md"
+  ],
+  "rationale": "Bulk-ground geometry sub-emitter"
+ },
+ {
+  "address": "0x8001a1dc",
+  "name": "level_raw_lzss_decompressor",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8001A1DC_LEVEL.RAW_LZSS_decompressor.md",
+   "src_re/campaign_level_coverage.c"
+  ],
+  "rationale": "LEVEL.RAW LZSS decompressor"
+ },
+ {
+  "address": "0x8001cdc0",
+  "name": "dat_parser_relocator",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8001CDC0_DAT_parser_-_relocator.md",
+   "src_re/dat_parser_8001cdc0.c",
+   "src_re/campaign_level_coverage.c"
+  ],
+  "rationale": "LEVEL.DAT parser / relocator"
+ },
+ {
+  "address": "0x8001d3cc",
+  "name": "dirt_object_dispatch",
+  "tier": "proven",
+  "evidence": [
+   "src_re/world_render_dispatch.c"
+  ],
+  "rationale": "Walks an 84-byte-stride object array and type-dispatches to the dirt mesh builder."
+ },
+ {
+  "address": "0x8001dfe4",
+  "name": "scene_geometry_draw_dispatcher",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8001DFE4_scene-geometry_draw_dispatcher.md"
+  ],
+  "rationale": "Scene-geometry draw dispatcher"
+ },
+ {
+  "address": "0x8001ea6c",
+  "name": "survivor_list_primitive_builder_1",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8001EA6C_survivor-list_primitive_builder_-1.md",
+   "memory/abl-geometry-g55-state.md"
+  ],
+  "rationale": "Survivor-list GPU primitive builder (part 1)"
+ },
+ {
+  "address": "0x800206e8",
+  "name": "survivor_list_primitive_builder_2",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800206E8_survivor-list_primitive_builder_-2.md",
+   "memory/abl-geometry-g55-state.md"
+  ],
+  "rationale": "Survivor-list GPU primitive builder (part 2)"
+ },
+ {
+  "address": "0x800224ec",
+  "name": "scene_render_driver",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800224EC_scene_-_render_driver.md",
+   "memory/abl-geometry-g55-state.md"
+  ],
+  "rationale": "Scene / render driver"
+ },
+ {
+  "address": "0x80024ddc",
+  "name": "contact_record_post_init",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80024DDC_contact-record_post-init_(state_byte_+0x37).md"
+  ],
+  "rationale": "Contact-record post-init (state byte +0x37)"
+ },
+ {
+  "address": "0x80025084",
+  "name": "oriented_containment_range_test",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80025084_oriented_containment_-_range_test.md"
+  ],
+  "rationale": "Oriented containment / range test"
+ },
+ {
+  "address": "0x800252a0",
+  "name": "pickup_record_processor",
+  "tier": "proven",
+  "evidence": [
+   "memory/pickup-render-kind-descriptor-table.md"
+  ],
+  "rationale": "Per-frame type-0x3f pickup record processor"
+ },
+ {
+  "address": "0x800253e8",
+  "name": "pickup_projector",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800253E8_pickup_projector.md",
+   "src_re/pickup_projector_800253e8.c"
+  ],
+  "rationale": "Pickup projector (screen projection of pickups)"
+ },
+ {
+  "address": "0x80025f54",
+  "name": "hud_draw_sprite_tile",
+  "tier": "proven",
+  "evidence": [
+   "src_re/hud_800526f4.c",
+   "src_re/level_complete_results_800b7da0.c",
+   "memory/grain-hud-total-mod.md"
+  ],
+  "rationale": "Draws a sprite/tile (also results-screen digit draw)."
+ },
+ {
+  "address": "0x800260f8",
+  "name": "hud_draw_glyph",
+  "tier": "proven",
+  "evidence": [
+   "src_re/hud_800526f4.c",
+   "src_re/level_complete_results_800b7da0.c"
+  ],
+  "rationale": "Draws a HUD number/glyph from the glyph table."
+ },
+ {
+  "address": "0x80026588",
+  "name": "result_draw_glyph_dim",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/level_complete_results_800b7da0.c",
+   "memory/training-word-native-pipeline.md"
+  ],
+  "rationale": "Results-screen dim glyph/rect draw helper."
+ },
+ {
+  "address": "0x80026df4",
+  "name": "result_upload_anim_frame",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/level_complete_results_800b7da0.c",
+   "memory/training-word-native-pipeline.md"
+  ],
+  "rationale": "Uploads a results-screen animation frame."
+ },
+ {
+  "address": "0x8002958c",
+  "name": "chunk_mesh_weld_converter",
+  "tier": "inferred",
+  "evidence": [
+   "memory/walls-are-chunk35.md",
+   "memory/tier3-native-pin-and-dat-shifts.md"
+  ],
+  "rationale": "Loader converter welding chunk-34/35 mesh vertices by position"
+ },
+ {
+  "address": "0x8002d64c",
+  "name": "call_8002b424_wrapper",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8002D64C.md"
+  ],
+  "rationale": "Thin wrapper that calls FUNC_8002B424"
+ },
+ {
+  "address": "0x80030f60",
+  "name": "collision_sector_table_builder",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80030F60_collision_sector-table_builder.md",
+   "src_re/collision_source_converter_80030f60.c"
+  ],
+  "rationale": "Collision sector-table builder / source converter"
+ },
+ {
+  "address": "0x800313a8",
+  "name": "collision_grid_builder",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800313A8_collision_grid_builder.md",
+   "src_re/collision_grid_builder_800313a8.c"
+  ],
+  "rationale": "Collision grid builder"
+ },
+ {
+  "address": "0x80032610",
+  "name": "collision_point_in_poly",
+  "tier": "inferred",
+  "evidence": [
+   "memory/tier3-native-terrain-pivot.md"
+  ],
+  "rationale": "Point-in-polygon/face test used by floor resolvers"
+ },
+ {
+  "address": "0x800345cc",
+  "name": "collision_resolver_accumulate",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800345CC_collision_resolver_-_accumulate.md",
+   "src_re/collision_plane_resolver_800345cc.c",
+   "src_re/movement_integrator_8003633c.c"
+  ],
+  "rationale": "Collision plane resolver / accumulate"
+ },
+ {
+  "address": "0x80035280",
+  "name": "collision_resolve_pass",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/movement_integrator_8003633c.c"
+  ],
+  "rationale": "One of the integrator's collision resolution passes."
+ },
+ {
+  "address": "0x8003633c",
+  "name": "player_movement_collision_integrator",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8003633C_player_movement_+_collision_integrator.md",
+   "src_re/movement_integrator_8003633c.c"
+  ],
+  "rationale": "Player movement + collision integrator (per-frame Y writer)"
+ },
+ {
+  "address": "0x80037320",
+  "name": "collision_candidate_builder",
+  "tier": "proven",
+  "evidence": [
+   "memory/tier3-native-terrain-pivot.md"
+  ],
+  "rationale": "Builds collision candidate list (per-sector floor candidates)"
+ },
+ {
+  "address": "0x80037a38",
+  "name": "ground_height_query",
+  "tier": "proven",
+  "evidence": [
+   "memory/gap0035-initial-spawn.md"
+  ],
+  "rationale": "Computes ground height at a position (spawn Y = result - 0x100)"
+ },
+ {
+  "address": "0x80038090",
+  "name": "point_in_polygon_region_test",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/collision_plane_resolver_800345cc.c"
+  ],
+  "rationale": "Point-in-polygon region test reading plane extent/delta fields."
+ },
+ {
+  "address": "0x80038f20",
+  "name": "flag_ge_threshold",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80038F20.md"
+  ],
+  "rationale": "Flag >= threshold test"
+ },
+ {
+  "address": "0x80038f38",
+  "name": "sector_region_code_query",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80038F38.md",
+   "src_re/level_goal_trigger_catalog.c",
+   "src_re/level_exit_trigger.c"
+  ],
+  "rationale": "Sector region-code query"
+ },
+ {
+  "address": "0x8003a318",
+  "name": "high_heap_loader_level_raw_decompress_orchestrator",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8003A318_high-heap_loader_+_LEVEL.RAW_decompress_orchestrator.md",
+   "src_re/file_loader_80046330.c",
+   "src_re/enemy_actor_spawn.c",
+   "src_re/backdrop_sky_copier_8003b280.c"
+  ],
+  "rationale": "High-heap loader + LEVEL.RAW decompress orchestrator"
+ },
+ {
+  "address": "0x8003cf2c",
+  "name": "resource_id_dat_load_dispatcher",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8003CF2C_resource-ID_dispatcher_-_DAT-load_caller.md",
+   "src_re/file_loader_80046330.c",
+   "src_re/dat_parser_8001cdc0.c"
+  ],
+  "rationale": "Resource-ID dispatcher; makes LEVEL.DAT resident"
+ },
+ {
+  "address": "0x8003df14",
+  "name": "scroll_background_modulo_offset",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8003DF14_modulo-offset_helper_(scroll-background_position).md"
+  ],
+  "rationale": "Modulo-offset helper for scroll-background position"
+ },
+ {
+  "address": "0x8003e760",
+  "name": "token_descriptor_reskin",
+  "tier": "proven",
+  "evidence": [
+   "src_re/plant_spawn_8005bdbc.c",
+   "src_re/pickup_handlers_80054288_80054554.c"
+  ],
+  "rationale": "Re-skins the seed/token pickup sprite descriptor on pickup."
+ },
+ {
+  "address": "0x8003e928",
+  "name": "backdrop_tile_builder",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8003E928_backdrop_tile_builder_8003e928.md",
+   "src_re/backdrop_tile_builder_8003e928.c"
+  ],
+  "rationale": "Backdrop tile builder"
+ },
+ {
+  "address": "0x80044d28",
+  "name": "sfx_voice_manager",
+  "tier": "proven",
+  "evidence": [
+   "src_re/sfx_system.c",
+   "memory/sfx-replacement.md"
+  ],
+  "rationale": "Voice manager / SPU key-on: walks the 8-slot voice table and keys the SPU voice."
+ },
+ {
+  "address": "0x80045678",
+  "name": "nearest_pickup_finalize",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/source3f_dispatch_80053814.c"
+  ],
+  "rationale": "Post-loop nearest-pickup finalize."
+ },
+ {
+  "address": "0x800457a0",
+  "name": "find_file_size",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800457A0.md"
+  ],
+  "rationale": "Find file size (calls FUNC_8006F690)"
+ },
+ {
+  "address": "0x80045a60",
+  "name": "transition_finalizer_subsystem_reset",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80045A60_transition_finalizer_-_subsystem_reset.md"
+  ],
+  "rationale": "Transition finalizer / subsystem reset"
+ },
+ {
+  "address": "0x80045d5c",
+  "name": "gp_set_one",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80045D5C.md"
+  ],
+  "rationale": "Sets a global-pointer flag to one"
+ },
+ {
+  "address": "0x80045fc4",
+  "name": "file_lookup_cdsearchfile",
+  "tier": "proven",
+  "evidence": [
+   "src_re/file_loader_80046330.c"
+  ],
+  "rationale": "Resolves a filename to its CdlFILE (LBA + size), retrying until found."
+ },
+ {
+  "address": "0x80046330",
+  "name": "universal_file_loader",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80046330_universal_file_loader.md",
+   "src_re/file_loader_80046330.c",
+   "src_re/fmv_player_streaming.c",
+   "src_re/music_8004699c.c"
+  ],
+  "rationale": "Universal by-name file loader"
+ },
+ {
+  "address": "0x80046828",
+  "name": "music_loop_poll",
+  "tier": "proven",
+  "evidence": [
+   "memory/level01-music-replace.md"
+  ],
+  "rationale": "Software music loop: polls CD pos vs end markers, re-issues playback"
+ },
+ {
+  "address": "0x8004699c",
+  "name": "music_start",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8004699C_music_start.md",
+   "src_re/music_8004699c.c"
+  ],
+  "rationale": "Music start"
+ },
+ {
+  "address": "0x80046ac0",
+  "name": "music_play_once",
+  "tier": "proven",
+  "evidence": [
+   "src_re/music_8004699c.c"
+  ],
+  "rationale": "Public wrapper: play a track once."
+ },
+ {
+  "address": "0x80046ae8",
+  "name": "music_play_looping",
+  "tier": "proven",
+  "evidence": [
+   "src_re/music_8004699c.c"
+  ],
+  "rationale": "Public wrapper: play a track looping."
+ },
+ {
+  "address": "0x80046b14",
+  "name": "gp_flag_test",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80046B14.md"
+  ],
+  "rationale": "Global-pointer flag test"
+ },
+ {
+  "address": "0x80046b20",
+  "name": "level_load_player_spawn_writer",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80046B20_FUNC_80046B20.md",
+   "memory/gap0035-initial-spawn.md"
+  ],
+  "rationale": "Level-load player-spawn writer (fills 168-byte player block from start table)"
+ },
+ {
+  "address": "0x80048138",
+  "name": "player_vertical_update",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80048138_player_vertical_update.md",
+   "src_re/player_update_80048138.c",
+   "src_re/level_exit_trigger.c"
+  ],
+  "rationale": "Player vertical (Y) update"
+ },
+ {
+  "address": "0x8004a180",
+  "name": "mosquito_species_callback",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/thumper_boss.c"
+  ],
+  "rationale": "Species callback (+0x7c) of the thrown mosquito actor."
+ },
+ {
+  "address": "0x8004a700",
+  "name": "resident_level_transition_initiator",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8004A700_FUNC_8004A700.md"
+  ],
+  "rationale": "Resident level-transition initiator called by overlay verbs; manages level-exit counter"
+ },
+ {
+  "address": "0x8004abf4",
+  "name": "proximity_updater",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8004ABF4_proximity_updater_8004abf4.md",
+   "src_re/proximity_updater_8004abf4.c"
+  ],
+  "rationale": "Proximity updater"
+ },
+ {
+  "address": "0x8004c13c",
+  "name": "event_bytecode_interpreter",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8004C13C_FUNC_8004C13C.md",
+   "src_re/enemy_actor_spawn.c"
+  ],
+  "rationale": "Authored event/trigger bytecode VM (per-object opcode program)"
+ },
+ {
+  "address": "0x8004c46c",
+  "name": "mover_vm_op9_set_target",
+  "tier": "proven",
+  "evidence": [
+   "memory/event-interpreter-mover-vm.md"
+  ],
+  "rationale": "VM opcode-9 handler: set movement target from waypoints"
+ },
+ {
+  "address": "0x8004d224",
+  "name": "mover_updater",
+  "tier": "proven",
+  "evidence": [
+   "memory/event-interpreter-mover-vm.md"
+  ],
+  "rationale": "Per-tick driver of the mover-VM over the mover array"
+ },
+ {
+  "address": "0x8004da94",
+  "name": "boss_defeat_finale",
+  "tier": "inferred",
+  "evidence": [
+   "memory/thumper-boss-solved.md"
+  ],
+  "rationale": "Boss defeat finale chain entry"
+ },
+ {
+  "address": "0x8004dd98",
+  "name": "setpiece_actor_update",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/setpiece_spawn_8004d698.c",
+   "memory/enemy-ai-state-machine.md",
+   "memory/thumper-boss-solved.md"
+  ],
+  "rationale": "Update handler for the scripted setpiece actor at 0x80090bc0."
+ },
+ {
+  "address": "0x8004df18",
+  "name": "camera_follow_update",
+  "tier": "inferred",
+  "evidence": [
+   "memory/enemy-spawn-architecture.md",
+   "memory/enemy-ai-state-machine.md"
+  ],
+  "rationale": "Camera-state follow-law update"
+ },
+ {
+  "address": "0x8004ea8c",
+  "name": "enemy_ai_dispatcher",
+  "tier": "inferred",
+  "evidence": [
+   "memory/enemy-bee-is-flik-chaser.md"
+  ],
+  "rationale": "Per-frame enemy state-machine/AI dispatcher (half-rate)"
+ },
+ {
+  "address": "0x800503fc",
+  "name": "spawn_fx_object",
+  "tier": "inferred",
+  "evidence": [
+   "memory/enemy-death-permanence.md",
+   "memory/player-health-economy.md"
+  ],
+  "rationale": "Spawns a destroy/pickup FX object"
+ },
+ {
+  "address": "0x8005044c",
+  "name": "play_sound",
+  "tier": "proven",
+  "evidence": [
+   "src_re/sfx_system.c",
+   "src_re/source3f_dispatch_80053814.c"
+  ],
+  "rationale": "Higher-level effect+cue spawner (id + context ptr)."
+ },
+ {
+  "address": "0x8005222c",
+  "name": "level_transition_orchestrator",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8005222C_level-transition_orchestrator.md",
+   "memory/gap0035-initial-spawn.md"
+  ],
+  "rationale": "Level-transition orchestrator"
+ },
+ {
+  "address": "0x80052574",
+  "name": "hud_anim_driver",
+  "tier": "inferred",
+  "evidence": [
+   "memory/training-word-native-pipeline.md"
+  ],
+  "rationale": "HUD animation driver (letter-spin frames)"
+ },
+ {
+  "address": "0x800526f4",
+  "name": "hud_draw",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800526F4_HUD_draw.md",
+   "src_re/hud_800526f4.c",
+   "src_re/player_health.c"
+  ],
+  "rationale": "HUD draw"
+ },
+ {
+  "address": "0x80053814",
+  "name": "type_0x3f_construct_contact_action_dispatch",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80053814_type-0x3f_construct_+_contact-action_dispatch.md",
+   "src_re/source3f_dispatch_80053814.c"
+  ],
+  "rationale": "Type-0x3f construct + contact-action dispatch"
+ },
+ {
+  "address": "0x80054964",
+  "name": "scene_verb_dispatcher",
+  "tier": "proven",
+  "evidence": [
+   "memory/event-interpreter-mover-vm.md",
+   "memory/gap0035-initial-spawn.md"
+  ],
+  "rationale": "Per-scene code handler dispatcher indexed by scene_id"
+ },
+ {
+  "address": "0x80054aac",
+  "name": "store_four_bytes",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80054AAC.md"
+  ],
+  "rationale": "Stores four bytes into a record"
+ },
+ {
+  "address": "0x80054c90",
+  "name": "checkpoint_save",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80054C90_checkpoint-save_(live_position_-_respawn_anchor).md"
+  ],
+  "rationale": "Checkpoint-save (live position -> respawn anchor)"
+ },
+ {
+  "address": "0x80054eac",
+  "name": "grain_pickup_handler",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_80054EAC_grain_pickup_handler.md",
+   "src_re/pickup_handlers_80054288_80054554.c"
+  ],
+  "rationale": "Grain pickup handler"
+ },
+ {
+  "address": "0x800571e0",
+  "name": "pickup_sfx_trigger_7c",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800571E0.md"
+  ],
+  "rationale": "Pickup SFX trigger (type 0x7c)"
+ },
+ {
+  "address": "0x8005721c",
+  "name": "pickup_sfx_trigger_7d",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8005721C.md"
+  ],
+  "rationale": "Pickup SFX trigger (type 0x7d)"
+ },
+ {
+  "address": "0x80057620",
+  "name": "checkpoint_construct",
+  "tier": "proven",
+  "evidence": [
+   "src_re/source3f_dispatch_80053814.c"
+  ],
+  "rationale": "Checkpoint construct for pickup kinds 0x30/0x31."
+ },
+ {
+  "address": "0x800586b0",
+  "name": "contact_pickup_walker",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800586B0_contact_-_pickup_walker.md",
+   "src_re/contact_walker_800586b0.c"
+  ],
+  "rationale": "Contact / pickup walker"
+ },
+ {
+  "address": "0x800593e8",
+  "name": "scatter_velocity_builder",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/contact_alloc_80059e44.c",
+   "src_re/enemy_drops.c"
+  ],
+  "rationale": "Builds initial scatter/pop-out velocity from nibble fields of table A."
+ },
+ {
+  "address": "0x8005b134",
+  "name": "respawn_transition_state_handler",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8005B134_player-pos_-_Region-A_overlay_dispatcher_(superseded_claim).md",
+   "memory/gap0035-initial-spawn.md"
+  ],
+  "rationale": "8-way respawn/transition state handler (live-traced)"
+ },
+ {
+  "address": "0x8005b714",
+  "name": "gameplay_state_reset_cursor_seed",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8005B714_gameplay-state_reset_-_byte-stream_cursor_seed.md",
+   "memory/gap0035-initial-spawn.md",
+   "memory/event-interpreter-mover-vm.md"
+  ],
+  "rationale": "Gameplay-state reset / byte-stream cursor seed (scene-init)"
+ },
+ {
+  "address": "0x8005bdbc",
+  "name": "plant_spawn",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8005BDBC_fcn_8003e760.md",
+   "src_re/plant_spawn_8005bdbc.c"
+  ],
+  "rationale": "Plant spawn"
+ },
+ {
+  "address": "0x8005bfbc",
+  "name": "plant_behavior_walker",
+  "tier": "proven",
+  "evidence": [
+   "src_re/plant_spawn_8005bdbc.c"
+  ],
+  "rationale": "Iterates the 20 plant slots and dispatches per-type behavior via jump table 0x8001b848."
+ },
+ {
+  "address": "0x8005c110",
+  "name": "seed_plant_cannon_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/brown_seed_plants.c"
+  ],
+  "rationale": "Brown type-2 cannon-plant handler: seated aim phase then launch."
+ },
+ {
+  "address": "0x8005c258",
+  "name": "seed_plant_propeller_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/brown_seed_plants.c"
+  ],
+  "rationale": "Brown type-3 propeller-plant handler: accelerating upward vy ramp."
+ },
+ {
+  "address": "0x8005c58c",
+  "name": "seed_plant_trampoline_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/brown_seed_plants.c"
+  ],
+  "rationale": "Brown type-5 mushroom-trampoline handler: bounce vy ~= -3328 on landing."
+ },
+ {
+  "address": "0x8005c6f0",
+  "name": "seed_plant_type6_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/blue_seed_plants.c",
+   "src_re/purple_seed_plants.c"
+  ],
+  "rationale": "Type-6 plant handler: spawns one berry-grant/bubble-shield contact object."
+ },
+ {
+  "address": "0x8005c744",
+  "name": "seed_plant_type7_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/blue_seed_plants.c"
+  ],
+  "rationale": "Blue-lane type-7 plant handler applying direct berry/effect bits."
+ },
+ {
+  "address": "0x8005c818",
+  "name": "seed_plant_dandelion_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/brown_seed_plants.c"
+  ],
+  "rationale": "Brown type-8 dandelion handler: attaches Flik to the tuft for a carried glide."
+ },
+ {
+  "address": "0x8005c918",
+  "name": "seed_plant_mine_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/yellow_seed_plants.c"
+  ],
+  "rationale": "Yellow type-11 mine-plant handler: enemy-proximity bomb with permanent kill."
+ },
+ {
+  "address": "0x8005ca24",
+  "name": "seed_plant_purple_shooter_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/yellow_seed_plants.c"
+  ],
+  "rationale": "Yellow type-13 purple/homing-shooter handler firing mega berry projectiles."
+ },
+ {
+  "address": "0x8005ca7c",
+  "name": "seed_plant_blue_shooter_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/yellow_seed_plants.c"
+  ],
+  "rationale": "Yellow type-14 blue-berry-shooter handler firing class-2 berry projectiles."
+ },
+ {
+  "address": "0x8005cce8",
+  "name": "seed_plant_passive_handler",
+  "tier": "proven",
+  "evidence": [
+   "src_re/green_seed_plants.c",
+   "memory/green-seed-plants-solved.md"
+  ],
+  "rationale": "Green passive plant handler for types 4/9/10/12 (platform/climb)."
+ },
+ {
+  "address": "0x8005ec94",
+  "name": "anm_animation_player_keyframe_core",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_8005EC94_ANM_animation_player_(keyframe_core).md"
+  ],
+  "rationale": "ANM animation player (keyframe core)"
+ },
+ {
+  "address": "0x800639cc",
+  "name": "drawenv_background_fill_builder",
+  "tier": "proven",
+  "evidence": [
+   "ObsidianVault/Canon/Functions/FUNC_800639CC_DRAWENV_background-fill_builder.md",
+   "src_re/backdrop_sky_copier_8003b280.c"
+  ],
+  "rationale": "DRAWENV background-fill builder"
+ },
+ {
+  "address": "0x80070a40",
+  "name": "fmv_frame_counter_setter",
+  "tier": "proven",
+  "evidence": [
+   "src_re/fmv_player_streaming.c"
+  ],
+  "rationale": "Sole writer of the decoded-FMV-frame counter G_FMV_FRAME (playback-length cap)."
+ },
+ {
+  "address": "0x80039478",
+  "name": "display_buffers_init",
+  "tier": "inferred",
+  "evidence": [
+   "analysis/functions.json callgraph"
+  ],
+  "rationale": "Double-buffer display init: SetDefDrawEnv/SetDefDispEnv + ClearImage/ClearOTagR/DrawOTag/PutDispEnv/SetDrawMode."
+ },
+ {
+  "address": "0x80039854",
+  "name": "boot_subsystem_init",
+  "tier": "inferred",
+  "evidence": [
+   "analysis/functions.json callgraph"
+  ],
+  "rationale": "Boot-time subsystem init: InitGeom/SetDispMask/VSyncCallback/CdReadyCallback/ClearImage."
+ },
+ {
+  "address": "0x80042e94",
+  "name": "vab_bank_loader",
+  "tier": "inferred",
+  "evidence": [
+   "analysis/functions.json callgraph"
+  ],
+  "rationale": "Builds a VAB filename (strcat/strcpy) and loads the sound bank (SsVabClose/SsVabOpenHead) via universal_file_loader."
+ },
+ {
+  "address": "0x8005a0e0",
+  "name": "contact_object_spawn_full",
+  "tier": "inferred",
+  "evidence": [
+   "src_re/berry_throw_80047170.c",
+   "src_re/berry_homing.c"
+  ],
+  "rationale": "Full-entry contact-object spawner (wrapper feeding contact_object_spawn at 0x8005a0f0); called by player/berry/plant paths."
+ }
+]

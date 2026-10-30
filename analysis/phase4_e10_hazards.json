@@ -1,0 +1,166 @@
+{
+  "_comment": "E10 environmental-hazard retained-capsule and C static-ASM investigation. Capsules, movies, and saves remain external or uncommitted evidence.",
+  "schema": "abl-phase4-e10-hazards-v1",
+  "generated": "2026-08-02",
+  "row": "E10_hazards",
+  "status": "substantiated_partial_high_value_bounded",
+  "scope": {
+    "included": [
+      "rolling acorn (chronological Level 11)",
+      "falling rocks (chronological Level 2)",
+      "falling spikes (chronological Level 5)",
+      "poison goo (chronological Level 7)",
+      "pit fall/respawn in chronological Levels 2, 5, and 7"
+    ],
+    "excluded_but_covered_elsewhere": "Ground-bird kill zone is D17 and was not modified or re-investigated here.",
+    "explicit_negative_classification": [
+      "water",
+      "traffic",
+      "thorn plants/barriers"
+    ],
+    "still_open": [
+      "web hazards",
+      "campaign-wide census of other instant-kill regions",
+      "pause, scene-transition, game-over, HUD, and audio lifecycle",
+      "matching or reviewed semantic source"
+    ]
+  },
+  "capsule_validation": {
+    "capsule_root": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v3",
+    "manifest_summary_sha256": "c2ee7b8f70d8d5c6e6e741288202d6c8cf319e61a7c5e9ee24dce640477bd0ab",
+    "capsules": 7,
+    "frame_records": 2804,
+    "domain_hash_checks": 8412,
+    "domain_hash_mismatches": 0,
+    "movie_inputs": 2797,
+    "capture_complete": true,
+    "capture_truncated": false,
+    "control_mismatches": {},
+    "cycle_neutral": true,
+    "domains": [
+      "frame-boundary RAM",
+      "frame-boundary VRAM",
+      "frame-boundary SPU RAM",
+      "registers",
+      "basic-block flow counts"
+    ],
+    "limitation": "These retained v3 capsules are passive CachedInterpreter evidence. Do not arm CPU instrumentation while replaying their source movies."
+  },
+  "fixtures": [
+    {
+      "name": "acorn_l11",
+      "movie_sha256": "473864a552e33b7ad419ca8efc18b9441ba1657accd45194eaac010a9b9b15e2",
+      "state_sha256": "d80a28e016029bef30b02a07d1033da35f701d4d1b9e33efc51152cfd56b887c",
+      "records": 661,
+      "event": "movie 428 health 1->0; movie 548 health 0->-1",
+      "producer_class": "actor contact",
+      "caller": "0x8004B4A0",
+      "result": "Repeated one-point damage; the second captured hit takes the negative-health death branch."
+    },
+    {
+      "name": "falling_rocks_l02",
+      "movie_sha256": "3f7c9414d83226ad3762cfb13c00660192923fade5a476c7af0933e0a091517c",
+      "state_sha256": "2b33dad76b2b890acb3971a2994c279f2bb1b57067f4cee07032b5c59fd8143b",
+      "records": 456,
+      "event": "movie 331 health 4->3",
+      "producer_class": "contact-object pool",
+      "caller": "0x80058A48",
+      "result": "One-point ordinary damage."
+    },
+    {
+      "name": "falling_spikes_l05",
+      "movie_sha256": "3e321f3e8d8c061d9ad6f6c75fa93edec65c12a940a5bcd56d8449b1e08ec0ec",
+      "state_sha256": "752f1f16168f9cdaa941ceb69b4b10baace2330cec1396c6fcbc8320bf816005",
+      "records": 363,
+      "event": "movie 105 health 1->0",
+      "producer_class": "contact-object pool",
+      "caller": "0x80058A48",
+      "result": "One-point ordinary damage; zero health is nonfatal because death requires a negative result."
+    },
+    {
+      "name": "goo_l07",
+      "movie_sha256": "c05522e0656000da9e0b7b8226b7c533b354b79ef6bd247482c1ff71be308bf6",
+      "state_sha256": "c21fc011a36b6c6853c118ed614aaa713b255129049cd31aebde245a83be1740",
+      "records": 359,
+      "event": "movie 108 health 4->3; movie 198 health 3->2",
+      "producer_class": "player/world collision",
+      "caller": "0x80049740",
+      "result": "Repeated one-point damage, 90 emulator frames apart (45 gameplay updates), matching the nonfatal +45 timer."
+    },
+    {
+      "name": "pit_l02",
+      "movie_sha256": "55c2bb7729ad4460b13a26d91b70f835cd370336dd58aecee05339467c4fc1b8",
+      "state_sha256": "91a201a98f3e172e7cbb0d6ef7f8ea007d25097da45ba4a65ef3fa2f6d3bb58f",
+      "records": 359,
+      "event": "movie 157: Y 153067->30092, health 3->4, lives 5->4",
+      "producer_class": "fall/death transition",
+      "caller": "0x8005B134 family, commit block 0x8005B1BC",
+      "result": "Atomic respawn commit."
+    },
+    {
+      "name": "pit_l05",
+      "movie_sha256": "c049d9b8075f458f87301134a3cb9998137ae0a82fa5d8d5516dd05b69c99e24",
+      "state_sha256": "959bf87da9deb91fbdb1633175aebefc9de329d5aa4d7ef9ce18df0f34bc6a06",
+      "records": 263,
+      "event": "movie 145: Y 111928->3628, health 0->4, lives 1->0",
+      "producer_class": "fall/death transition",
+      "caller": "0x8005B134 family, commit block 0x8005B1BC",
+      "result": "Atomic respawn commit."
+    },
+    {
+      "name": "pit_l07",
+      "movie_sha256": "a06c81943700db5bd4e570165d54b098e54c67644cb116fde826bf75db8fee99",
+      "state_sha256": "9e2cee6d4847c758ad6bae1e396fd7de31830f5b55220e63719a50cc1806973a",
+      "records": 343,
+      "event": "movie 205: Y 121085->9584, health stays 4, lives 6->5",
+      "producer_class": "fall/death transition",
+      "caller": "0x8005B134 family, commit block 0x8005B1BC",
+      "result": "Atomic respawn commit independent of health depletion."
+    }
+  ],
+  "shared_damage_mechanism": {
+    "entry": "0x8004A700",
+    "health_decrement": "0x800A6594 s16 decreases by one",
+    "nonfatal": "result >= 0; timer 0x800A6592 becomes +45",
+    "fatal": "result < 0; timer becomes -45 and death flags/transition are armed",
+    "runtime_confirmation": "All six captured damage boundaries execute the relevant 0x8004A700 blocks; neighboring clean frames do not take the damage-only branch."
+  },
+  "pit_respawn_mechanism": {
+    "handler": "0x8005B134",
+    "runtime_confirmation": "All three pit commits execute 0x8005B1BC, 0x8005B354, the 64-record reset loop, and 0x8004DC0C in the same boundary.",
+    "static_effects": [
+      "copy safe anchor 0x800A6550/54/58 to live player XYZ 0x800A6500/04/08",
+      "copy the same anchor into previous position",
+      "clear motion and transient player state",
+      "restore health 0x800A6594 to 4",
+      "preserve only power flag bit 0x20",
+      "decrement lives byte 0x800A65A0",
+      "call 0x8004DC0C collision reset",
+      "clear contact/object transition state"
+    ],
+    "presentation_only_correlates": [
+      "0x80028D74 fade/primitive path",
+      "0x8004D758/0x8004D784 transition timing blocks"
+    ]
+  },
+  "static_asm": {
+    "method": "C instruction-address reconstruction over hand-written ASM plus C decoding of capsule-resident RAM; no Python analysis.",
+    "damage_output_sha256": "deb396b3a1e1e01f1df27ec97abe5bcba27cd9f4d704d347b86dab3cd60659c6",
+    "caller_output_sha256": "8cafc6a7fa38f7a4ebd6d76a377f942530f21943fae0bfe9f4c545a493838375",
+    "pit_flow_output_sha256": "1017f3b3aaf4121963cfeee969a81d856a0a7123006b4997b873e048e9cbd32f",
+    "overlay_ram_disassembly_sha256": "a5a3c0466f9179f43946497fd9138a21779681f1a5f50590f928fddde4bea391"
+  },
+  "closure_metrics": {
+    "original_behavior_oracle": "advanced_not_met",
+    "semantic_frontier": "advanced_not_met",
+    "typed_state": "advanced_not_met",
+    "lifecycle": "advanced_not_met",
+    "positive_negative_controls": "partial",
+    "campaign_breadth": "advanced_not_met",
+    "cross_system_contracts": "advanced_not_met",
+    "source_closure": "partial",
+    "durable_gate": "advanced_not_met"
+  },
+  "movie_decision": "No new Interpreter movie is required for the seven covered fixtures. Request one only when webs or a named uncaptured instant-kill region is promoted, or if exact every-cycle producer attribution becomes material. Never arm tracing on these CachedInterpreter source movies.",
+  "exit_decision": "E10 advances from unresolved to substantiated partial. The retained-fixture high-value mechanism work is bounded enough to move on; strict Phase 4 completion is not claimed."
+}

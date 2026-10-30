@@ -1,0 +1,120 @@
+{
+ "_comment": "Fresh detached verifier adjudication of three F01_anthill dimension candidates. The verifier did not author the repair, the probe evidence, the rulings, or the submissions. Verdicts are per dimension, independent, against the bars AS WRITTEN. Fractions before adjectives.",
+ "schema": "abl-phase4-f01-fresh-adjudication/1",
+ "generated": "2026-08-10",
+ "row_id": "F01_anthill",
+ "ancestry": {
+  "baseline_commit": "1dc40daa70db809f23ed5bd48807c87fe56fa148",
+  "freeze_commit": "44efaa2b647009d2bc892e9e98bbdd0382274df1",
+  "operator_wip": "167 status lines, sha256 7663de95156edeaa55b7ee68133ba14f83d609430a6b971f6d30e223c65c36cb at freeze; no dirty operator file staged or committed"
+ },
+ "live_escalation_record": {
+  "reason": "offline analysis verified internal consistency, image-byte derivations, and byte-identical offline reconsolidation, but could not answer whether the author-produced F01_natural_death receipt corresponds to a real replay -- it is the sole basis of B1's BLOCKED->DONE move and was not verifier-retained like the D18/E02 receipts",
+  "scope": "one replay of one movie (movies/Phase4/Interpreter/F01_natural_death_FromBoot.movie.json), nothing else",
+  "isolation": {
+   "launcher": "tools/launch_repro_playback.sh --execution-mode Interpreter",
+   "config_dir": "/tmp/abl-f01-fresh-adjudication.TYHnhV",
+   "port": 23520,
+   "token": "dedicated ephemeral token, not retained",
+   "settings_ini_cpu_execution_mode": "Interpreter (verified in the config dir before trusting anything)",
+   "media_verified": "SCUS-94288 / pristine cue path via emulator.getMediaInfo before the probe; the probe re-verified cue/bin/exe sha256",
+   "stopped": "by config dir only (pid 1542527); operator's own DuckStation untouched"
+  },
+  "result": "receipt byte-identical to the retained receipt after normalizing only runtime.port/config_label: same 9 request writes at the same frames/cycles, same certified death store (0x8004A8B4, frame 6536, cycle 3700285397, stored 2), same decision (frame 6655, request 2, gp4c4 0, consumer proceeded, finalizer not observed), same 326 rejected pre-load finalizer events, same trace totals 328/328"
+ },
+ "verdicts": {
+  "original_oracle": "MET",
+  "complete_frontier": "MET",
+  "lifecycle": "NOT MET"
+ },
+ "original_oracle": {
+  "verdict": "MET",
+  "one_line": "both arms of the finalizer branch law now have natural, injected-nothing, cold-boot reproductions with self-certified assertions, and the new death arm replays byte-identically for a detached verifier",
+  "checks": [
+   {"id": "offline_reconsolidation", "result": "3/3 retained receipts re-validated from disk (movie hashes, central pins, pristine words all recomputed); consolidate() output byte-identical to the retained artifact; rc 0, 1 control, DONE"},
+   {"id": "independent_live_replay", "result": "1/1 replay of the natural-death movie byte-identical to the retained receipt (see live_escalation_record)"},
+   {"id": "control_rederived_from_image_bytes", "result": "compiled-C decode (owns instruction decoding): 0x8004A8B4 = 0xA42223A0 sh v0,0x23A0(at) with lui at,0x8008 at 0x8004A8B0 -> stores to 0x800823A0; value 2 from addiu v0,zero,2 at 0x8004A8AC; arm guarded by bgez v1,0x8004A8EC at 0x8004A890, so the store is CONDITIONAL on health going negative -- the health-depletion arm as claimed. Pit store 0x8004A9F4 = same word, timer 23. Consumer 0x8004FF14 = jal 0x80039BD8; decision 0x8004FF28 = lh v1,0x23A0(v1) after lui v1,0x8008; skip edges beq v1,v0(2) at 0x8004FF30 and bne [gp+0x4C4] at 0x8004FF40 (gp 0x80081D98 + 0x4C4 = 0x8008225C exactly); finalizer 0x8004FF48 = jal 0x80045A60. 10/10 derived words match the receipts"},
+   {"id": "timer_latency_consistency", "result": "independent cross-check the submission did not state: the health arm sets timer 60 (addiu v0,zero,60 at 0x8004A8B8), the timer decrements every 2 frames, and the observed writer-to-decision latency is 119 frames vs 60*2=120 predicted -- consistent within 1 frame"},
+   {"id": "finalizer_absence_is_the_guard_working", "result": "verified in code (retained events require captured word == pristine word) and in data: 326/326 rejected finalizer-address events occur at frames 193..756 (before the EXE exists at ~1141) and every one captured instruction word 0x00000000; 0 rejections post-load; exec totals reconcile in all three receipts (329=3+326, 326=0+326, 328=2+326); the D18 receipt retains 1 real certified finalizer hit, proving the pipeline keeps genuine hits"},
+   {"id": "b2_still_holds", "result": "analysis/phase4_f01_original_oracle.json sha256 3c5c0604... unchanged and equal to the repair's pinned value; 25/25 provenance + 6/6 semantic assertions recorded passed; central movie pin exact vs disk (sha b29ae839..., 5,062,842 B); only the derived consumers field changed, by regeneration"},
+   {"id": "b3_still_holds", "result": "the triple byte-identical regeneration's artifact hash is the artifact on disk today; pristine EXE on disk matches its pin 1aa28954..."},
+   {"id": "consolidation_generalization_sound", "result": "confirmed by mutation, not by reading: missing (2/3), duplicated, extra, and renamed receipt sets each consolidate to rc 1 / exact_set_replayed false / NOT DONE; a coherently control-free valid set consolidates to BLOCKED, never DONE"}
+  ],
+  "four_test_rulings": [
+   {
+    "test": "test_retained_pair_is_valid_and_honestly_blocked",
+    "ruling": "legitimately overtaken by the work",
+    "reason": "it asserted the BLOCKED outcome whose own named dependency was delivered; the DONE it guarded against is genuine (independently replayed byte-identically)",
+    "replacement": "test_retained_set_is_valid_and_honestly_done (exact 3/3 set, exactly 1 control from the natural-death movie, writer pinned to 0x8004A8B4/0xA42223A0) + test_missing_control_consolidates_blocked_not_done, which keeps the premature-DONE guard alive: a valid exact set without the control must consolidate to BLOCKED"
+   },
+   {
+    "test": "test_invalid_pair_is_not_misreported_as_blocked",
+    "ruling": "legitimately overtaken by the work",
+    "reason": "pair-size arithmetic (2-1=1) became set arithmetic (3-1=2); the property it tests (invalid receipts are NOT DONE, never BLOCKED) is unchanged and preserved",
+    "replacement": "test_invalid_receipt_is_not_misreported_as_blocked (captures_accepted == 2) + test_consolidation_rejects_missing_duplicate_and_extra_receipts (mutation coverage the pair era never had)"
+   },
+   {
+    "test": "test_access_events_preserve_aliases_and_do_not_infer_overlay_images",
+    "ruling": "legitimately overtaken in exactly one assertion",
+    "reason": "the blanket stored_u16-is-None held only while no receipt legitimately contained a resident death store; the natural-death receipt now carries exactly one",
+    "replacement": "same test name, sharpened: 24 writes total, exactly 1/24 is a resident death store (0x8004A8B4, stored_u16 2, certificate passed), all 23 others None; alias preservation and the overlay-image-inference rejection kept verbatim"
+   },
+   {
+    "test": "test_oracle_movie_is_centrally_pinned_without_committing_its_bytes",
+    "ruling": "legitimately overtaken derived-field change",
+    "reason": "consumers gained analysis/phase2_fixture_audit.json at commit 7c85a8a because the fixture audit was regenerated to register the new movie; the audit genuinely references the oracle movie (it did not before regeneration), and the same consumer appears on every audited entry -- machinery-derived, not hand-edited. The author was least sure of this one; verified against three commits of history in both files",
+    "replacement": "same test re-pinned to the exact two-element consumers list (still an exact-entry change detector) + a new exact-entry pin for the natural-death movie, which is load-bearing for B1"
+   }
+  ],
+  "test_counts_after_replacement": "47/47 passed in the two files (was 40 passed / 4 deliberately failing)"
+ },
+ "complete_frontier": {
+  "verdict": "MET",
+  "one_line": "the written bar asks the relevant frontier be ENUMERATED and residuals explicitly bounded, not an empty unresolved set; the direct frontier is enumerated and twice verifier-verified, and the 179-site indirect residual is enumerated, classified, frozen, runtime-corroborated, and bounded by a declared assumption with a kill switch",
+  "bar_check": "canonical DoD item 2 verbatim: 'relevant callers, callees, callbacks, indirect tables, overlays, readers, writers, and downstream consumers have been enumerated' (Game Solving Roadmap - From Reconstruction to Reliable Modding.md); the empty-set reading is the documented overshoot, corrected 2026-08-04 in the Phase 4 playbook ('this sentence stated the wrong bar')",
+  "checks": [
+   {"id": "direct_frontier_enumerated", "result": "58/58 writers (bijection verified by a prior detached verifier over all 21 images + resident), 124 window accesses, 66 readers, 37 discovered extents, whole-corpus scan with no load-bearing selection criterion -- banked in item2_measured and not re-litigated here"},
+   {"id": "residual_enumerated", "result": "179/179 sites named (image:pc:kind:register), frozen in analysis/phase4_target_exclusion_freeze.json (sha256 matches its pin 8b6cb83f...), classified into 7 bins summing to 179, spanning 3 images out of 21 scanned (SCUS 166, MEMORY 12, LEVEL07_LEVEL1 1); derived as the corrected code-only unproved jr/jalr union across four predecessor supersets with exact-set movement in both directions"},
+   {"id": "scope_is_corpus_wide", "result": "the deduplicated census (1,246 jr/jalr occurrences over the exact 22-image / 143,060-word universe) was corrected by a detached verifier (the 2,340/260,307 figures double-counted SCUS); the 179 are the unproved subset after code-only correction and materialization-bounded proofs, not a hand-picked sample"},
+   {"id": "bounding_explicit", "result": "declared assumption per engineering-specs/phase4-item2-bar-ruling.md: covers exactly the 179, recorded as assumption never proof, VOID on a single counter-example, non-transferable to other rows; precedented by the 0x80018CBC falsification which the capture artifact itself records"},
+   {"id": "runtime_corroboration", "result": "213 sessions across three sweeps (114 behavior + 48 any% + 51 hundred-percent); protected-set hits 0/332,160 corpus observations; 79/179 sites observed, 100/179 silent through any%, the behaviour library, and full 100% completion; the 100% corpus lit 0 new sites (convergence); artifact self-labels RUNTIME EVIDENCE, NOT PROOF"},
+   {"id": "technique_exhaustion", "result": "5/5 campaigns NO-GO with named walls: caller-domain, address-taken pilot (0/4 roots), target-exclusion, D1/D2 discipline decomposition, D3 contracts (verified verbatim: 0/4 contracts, 0/12 frozen sites, residual 179->179)"}
+  ],
+  "promotion_obligations_carried_to_row": "the registry note must state, verbatim in substance: the 179-site residual is an enumerated DECLARED ASSUMPTION, unproved, observed-clean across 213 armed sessions (0 protected-set hits, 100/179 sites silent), VOID on a single counter-example (any of the 179 shown to reach the protected set reopens the row), and NON-TRANSFERABLE to any other row"
+ },
+ "lifecycle": {
+  "verdict": "NOT MET",
+  "one_line": "6 of 7 phase claims audit clean against the pinned artifacts, but the retirement phase's registered writer identities are systematically wrong: every campaign_breadth writer_pc is the true store instruction +4, undisclosed, and presented as a writer PC",
+  "would_satisfy_it": "instruction-exact writer attribution for the retirement phase: re-derive campaign_breadth's writer_pcs from an attribution that names the store instruction itself (as the request2 probe's instruction_pc does), or annotate the +4 event-PC convention in the sweep artifact, then regenerate the claim map so clear_writers_observed names real stores. Nothing else is missing on this axis.",
+  "finding_writer_pcs_off_by_four": {
+   "statement": "analysis/phase4_f01_campaign_breadth.json f01_transition_request_0x800823A0.by_value records event PCs one instruction AFTER the store, for every value class; analysis/phase4_f01_lifecycle_claim_map.json copies five of them into clear_writers_observed and the retirement fact as 'value-0 writers' while its own reuse fact uses exact store PCs from the request2 probe -- two attribution conventions in one document, neither acknowledged",
+   "evidence_compiled_c_decode_of_sweep_pc_minus_4": [
+    "0x8004fe48 -> 0x8004FE44 = 0xA42023A0 sh zero,0x23A0(at) [scene-entry clear]",
+    "0x8005b88c -> 0x8005B888 = 0xA42023A0 sh zero,0x23A0(at) [level-entry clear]",
+    "0x80036b90 -> 0x80036B8C = 0xA2C00000 sb zero,0x0(s6) [byte clear]",
+    "0x80036cd0 -> 0x80036CCC = 0xA2C00001 sb zero,0x1(s6) [byte clear]",
+    "0x80036d0c -> 0x80036D08 = 0xA2C00001 sb zero,0x1(s6) [byte clear]",
+    "value 2: 0x8004a8b8 -> 0x8004A8B4 (health death store), 0x8004a9f8 -> 0x8004A9F4 (pit death store)",
+    "value 1: 0x800496dc -> 0x800496D8 sh v0,0x23A0(at); 0x800496fc -> 0x800496F8 sh v0,0x23A0(at)",
+    "value 6: 0x8004b3c4 -> 0x8004B3C0; 0x800591e0 -> 0x800591DC; 0x8005c6bc -> 0x8005C6B8 (all sh ...,0x23A0(at))"
+   ],
+   "cross_artifact_seal": "the SAME logical writer is 0x800B3E84 by the probe's instruction_pc attribution and 0x800b3e88 in the sweep's value-1 list -- one event, +4 apart",
+   "verified_at": "11/11 decoded sites follow the +4 pattern exactly; 0 counter-examples",
+   "sweep_disclosure": "0 occurrences of any convention note in the sweep artifact (searched: +4, after the store, next instruction, instruction_pc, event pc, delay)",
+   "why_it_blocks": "this project treats instruction identity as load-bearing (the C16 0x80050210 correction is the precedent); as registered, clear_writers_observed names an lw, a bgtz, and a lui as writers of the request word"
+  },
+  "clean_checks": [
+   {"id": "cold_boot", "result": "2/2 from-boot fixtures verified; one independently replayed byte-identically by this verifier"},
+   {"id": "load", "result": "level-entry value-0 state corroborated by the access-log arc (clears at frames 5724/5725 precede the death); converter claim rests on the banked two-writer region-code proof"},
+   {"id": "first_use", "result": "19/19 levels, first decision asserted, 0 law failures (re-derived from the breadth artifact, not read off its summary)"},
+   {"id": "repeated_use", "result": "35 decisions / 19 levels re-summed independently; max 5 in LEVEL07_CITYENTRANCE (4 request-2 skips then the request-1 exit call with the finalizer) exactly as claimed"},
+   {"id": "exhaustion_na_with_reason", "result": "HONEST: the request word is a scalar latch; the saturation guard is real -- compiled-C decode confirms lh v0,0x23A0(v0) at 0x8004965C and bne v0,zero,0x80049790 at 0x80049664 from image bytes; behaviorally, 19/19 levels show exactly one request-1 exit decision, which is the guard operating"},
+   {"id": "reuse", "result": "the retained access-log arc is real (BIOS fr 98 -> EXE-init 0x8005F6A0 fr 1141 -> shell 0x8004FADC fr 1386 -> entry clears fr 5724/5725 -> certified death store fr 6536 -> consumer clear fr 6656, one frame after the fr-6655 decision) -- all replayed byte-identically; 5 successive cycles in one LEVEL07 session verified per-decision; the cross-LEVEL chain residual is honestly parked on the transitions axis with the CachedInterpreter arming trap correctly stated"}
+  ],
+  "residual_notes": [
+   "the sweep's value-0 writer set (watch armed post-boundary) and the probe's observed clear set ({0x8004FADC, 0x8005F6A0} additionally) differ by watch window; a regeneration should state the window or reconcile the union",
+   "canonical DoD item 4 also names pause 'where applicable'; the claim map's declared axis (baseline section G, first bullet) does not include pause, and the row's missing field keeps 'Pause/restart permutations' declared -- noted, not held against this axis"
+  ]
+ },
+ "gate_tests": "reported in the adjudication summary; the two F01 files are 47/47 after replacement"
+}

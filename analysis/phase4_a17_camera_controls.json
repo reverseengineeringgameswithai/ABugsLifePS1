@@ -1,0 +1,124 @@
+{
+  "row": "A17_camera_controls",
+  "generated": "2026-08-03",
+  "status": "full_bounded",
+  "scope": {
+    "included": "Manual L1 look/reset and R1 camera-lock input arbitration in the normal gameplay camera producer.",
+    "excluded": "Telescope, cutscene, and setpiece camera-producer enumeration remains the broader E04 camera-system residual; it is not duplicated as an A17 closure condition.",
+    "comparison_to_e04": "E04 established the camera record and broad subsystem behavior. A17 uniquely closes the shoulder input decode, priority, parameter selection, recurrence, release lifetime, and normal-producer collision gates."
+  },
+  "capsule_gate": {
+    "relevant_retained_capsule_found": false,
+    "search_result": "No retained Phase-4 capsule or deliberate L1/R1 camera movie was available.",
+    "escalation_reason": "The missing domain was direct shoulder-input arbitration and release recurrence at the normal gameplay camera producer.",
+    "live_fixture": "level01.sav",
+    "movie_required": false
+  },
+  "identity": {
+    "serial": "SCUS-94288",
+    "disc": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "disc_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "state": "~/Downloads/ABL/level01.sav",
+    "state_sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+    "pristine_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "execution_mode": "Interpreter",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+    "isolated_config": "/tmp/abl-phase4-a17-20260803",
+    "port": 23517,
+    "instance_stopped_by_owned_config": true
+  },
+  "bindings": {
+    "producer": "camera_follow_update 0x8004DF18",
+    "camera_struct": "0x80095358",
+    "pad_word": "0x80082488 u16 active-high",
+    "l1_mask": "0x0400",
+    "r1_mask": "0x0800",
+    "shoulder_selector": {
+      "address": "0x80082220 (gp 0x80081D98 + 0x488)",
+      "neutral": 0,
+      "l1": 2,
+      "r1": 3
+    },
+    "camera_fields": {
+      "+0x18": "12-bit boom/look angle, shortest-arc quarter-step smoothing",
+      "+0x1E": "signed camera distance parameter",
+      "+0x20": "12-bit follow heading",
+      "+0x22": "low-byte normal active/control value plus signed high-byte countdown/control bits; not a stable mode enum",
+      "+0x24": "transition parameter, ramps by 2 within 0..32",
+      "+0x2A": "region/collision adjustment accumulator"
+    }
+  },
+  "static_asm": {
+    "instruction_range": "0x8004DF18..0x8004EA8C",
+    "instruction_count": 733,
+    "input_decode": {
+      "input_load": "0x8004DFD4",
+      "l1_test": "0x8004DFDC andi 0x0400",
+      "r1_test": "0x8004E064 andi 0x0800",
+      "priority": "L1 is tested first; R1 is reached only when L1 is clear. Simultaneous L1+R1 therefore selects L1."
+    },
+    "l1_parameters": {
+      "distance_target_s3": 600,
+      "collision_radius_squared_scaled_s4": 160000,
+      "countdown_s5": 8,
+      "default_vertical_offset_s0": 12288,
+      "default_look_offset_s1": 0,
+      "up_vertical_offset_s0": 32768,
+      "down_vertical_offset_s0": 4096,
+      "down_look_offset_s1": 12288,
+      "control_write": "0x8004E01C sets 0x0800 in camera +0x22"
+    },
+    "r1_parameters": {
+      "distance_target_s3": 1400,
+      "leash_radius_squared_scaled_s4": 1960000,
+      "vertical_offset_s0": 24576,
+      "look_offset_s1": 0,
+      "angular_step_a0_a1": [0, 0],
+      "effect": "The common +0x20 writer receives zero angular step while R1 is held, so follow heading is locked without a separate persistent latch."
+    },
+    "distance_recurrence": "camera +0x1E moves by 32 per camera update toward s3. The branch is not saturating, so the last step can cross the nominal target.",
+    "countdown_recurrence": "0x8004DF40..0x8004DF5C extracts the signed high byte of +0x22 and subtracts one when nonzero. This corrects E04's provisional interpretation of values such as 0x0A01/0x0Bxx as stable submode enums.",
+    "collision_and_leash": {
+      "region_query": "0x8004E3B0 calls camera_region_query 0x800376A0 while building the target.",
+      "distance_test": "0x8004E5A0..0x8004E600 compares ((player_x-camera_x)>>5)^2 + ((player_y-camera_y)>>5)^2 + ((player_z-camera_z)>>5)^2 against s4.",
+      "r1_world_radius": 44800,
+      "candidate_solver": "0x8004E628 calls 0x8003633C only when the distance test passes and s5 is zero.",
+      "candidate_acceptance": "Each candidate delta must have absolute value below 1024; otherwise 0x8004E6A8..0x8004E6C8 restores the prior target.",
+      "l1_behavior": "The refreshed nonzero s5 bypasses the secondary candidate solver, but the earlier camera_region_query still constrains the target."
+    },
+    "callsite_bound": "A C xref census over 2,258 ASM listings found the two calls to 0x8004DF18 in FUNC_8004EA8C. References and writers for special selector 0x800824DC reside in separate gameplay/setpiece paths."
+  },
+  "live_control": {
+    "logic_rate_observed": "10 producer executions during 20 video frames (30 Hz game logic)",
+    "neutral": {"frames": 16, "distance_start": 900, "distance_end": 900, "boom_start": 8, "boom_end": 8, "heading_delta": 0, "control_end": "0x0001"},
+    "l1": {"frames": 20, "distance_start": 900, "distance_end": 580, "boom_start": 8, "boom_end": 5, "control_end": "0x0F01"},
+    "r1": {"frames": 20, "distance_start": 900, "distance_end": 1220, "boom_start": 8, "boom_end": 31, "heading_delta": 0, "control_end": "0x0001"},
+    "l1_plus_r1": {"frames": 20, "distance_start": 900, "distance_end": 580, "boom_start": 8, "boom_end": 5, "control_end": "0x0F01", "verdict": "Matches L1 and proves L1 priority."},
+    "l1_plus_up": {"frames": 20, "boom_start": 8, "boom_end": 19, "common_s0": "0x8000", "common_s1": "0x0000"},
+    "l1_plus_down": {"frames": 20, "boom_start": 8, "boom_end": 4035, "common_s0": "0x1000", "common_s1": "0x3000", "note": "The 4035 value is 12-bit wrap during shortest-arc smoothing."},
+    "l1_release": {"held_frames": 12, "release_frames": 24, "distance_min": 708, "distance_end": 900, "control_max": "0x0F01", "control_end": "0x0001"},
+    "r1_move_release": {"held_frames": 20, "release_frames": 24, "player_manhattan_displacement": 14166, "distance_max": 1220, "distance_end": 900, "boom_max": 47, "boom_end": 41, "verdict": "The lock branch ends on release; camera geometry continues only through ordinary smoothing."},
+    "trace_integrity": "All accessLog and execTrace buffers used for the cited trials reported truncated=false. L1 and simultaneous trials each hit the L1 body 10 times and the R1 body zero times."
+  },
+  "closure": {
+    "verdict": "A17 is bounded-exhausted for manual camera controls and may move to Full.",
+    "why": "The input/state bindings, shoulder priority, look presets, distance and countdown recurrence, R1 angular lock, release lifetime, collision/leash gates, and caller boundary are all tied to pristine ASM and a hash-pinned Interpreter control.",
+    "remaining_non_a17": "Live telescope/cutscene/setpiece camera producer behavior and the full semantic reconciliation of 0x800824DC remain E04 work.",
+    "movie_needed": false
+  },
+  "transient_evidence": {
+    "asm_scanner_source_sha256": "f1101e7131cadedff4d8810243bb38510ce6e6a05b7c724c6d3632b9b85f3f8f",
+    "asm_scanner_binary_sha256": "8b444d65959a20ccdaf51ea91c633e4a2836b2420770c9f3fccb14831c24720e",
+    "asm_scan_output_sha256": "f374be65486677976c598537db3502298cb8b3b007f9d5b4d33f312c98107bc0",
+    "xref_scanner_source_sha256": "10b01663006f670eea8f2ad46fb973b118e1f3affe185f4e3d24ba713c1450f1",
+    "xref_scanner_binary_sha256": "d1e9e5cc85892a8a9afc111fc256c0038492172fc2dd6bd8bab71cb5175ac4e8",
+    "xref_output_sha256": "c05e20111491289bc0505de6b8a09dfd7baf3ee345d3cc57f8adcf93f1c9cec5",
+    "rpc_transport_sha256": "476590bfeb3b96108e2d4866d29a779be306b2bcf10fbe2f9c42450857772f7f",
+    "c_reducer_source_sha256": "98cbcdafd494e60ffa3b76fa86fdb69601bfd1e59c959f0c7b2835add84c8931",
+    "c_reducer_binary_sha256": "1c63ed98c392e64bee74b6d68d9ac333de216b2f13c2f41dca7862440ce1c3ee",
+    "samples_csv_sha256": "e4e01430a517a85f29694913d62119e60411ed22b5367aaea96e9b095b2db26d",
+    "trace_raw_json_sha256": "e9436b20ee76f43c59f4f007f65676f3bac27acd2535b626eba099c1f9bdee7a",
+    "reduced_json_sha256": "4759edf344e957c1bf2bcf65c76027a5146e37b68a110ad0485e214d795b6e39"
+  }
+}

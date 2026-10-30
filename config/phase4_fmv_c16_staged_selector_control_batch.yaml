@@ -1,0 +1,159 @@
+schema: abl-phase4-duckstation-batch/1
+campaign_id: fmv_playback
+row_ids: [E15_fmv]
+escalation_ids: [P4-ITER99-E15-C16-STAGED-SELECTOR-LIFECYCLE-CONTROL]
+expected_media: &pristine_media
+  path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  serial: SCUS-94288
+  title: Disney-Pixar A Bug's Life
+  sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  tracks:
+    - path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin
+      sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+expected_debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty: true
+  dirty_state_hash: 9beb0a7c2df2a77202685fea702a0c443a2d005e
+continue_on_error: false
+
+jobs:
+  - id: selector40_staged_positive
+    recipe: loadStateAndRun
+    state_path: ~/Downloads/ABL/movies/Phase4/C16_gameover_continue.movie.sav
+    auto_select_disc: false
+    expected_media: *pristine_media
+    movie:
+      path: ~/Downloads/ABL/movies/Phase4/C16_gameover_continue.movie.json
+      start_frame: 0
+    staged_prelude: &precise_stage
+      kind: movie_advance
+      target_frame: 300
+      max_frames: 300
+    after_load:
+      kind: code_write
+      address: 0x800500D4
+      original_word: 0x2404002E
+      replacement_word: 0x24040028
+    instrumentation: &lifecycle_trace
+      - method: functionTrace.start
+        params:
+          functions: [0x8003E7C0, 0x8007094C, 0x800709AC]
+          all_symbols: false
+          capture_memory: false
+          max_events: 64
+      - method: accessLog.addWatch
+        params:
+          address: 0x800CAC10
+          length: 4
+          type: write
+          label: completion_request
+          max_events: 32
+          stop_on_hit: false
+      - method: accessLog.addWatch
+        params:
+          address: 0x80131EEE
+          length: 2
+          type: write
+          label: selected_frame_limit
+          max_events: 32
+          stop_on_hit: false
+    run: &shared_run {movie_frame: 4006}
+    capture: &precise_capture
+      trigger: e15_c16_staged_selector_lifecycle_endpoint
+      include_registers: true
+      trace_limit: 256
+      memory_dumps:
+        - {label: scene_flow_callsite, address: 0x800500A4, length: 0x60}
+        - {label: fmv_running_latch, address: 0x80082250, length: 0x4}
+        - {label: scene, address: 0x80082504, length: 0x4}
+        - {label: str_backloc, address: 0x80088FFC, length: 0x4}
+        - {label: completion_request, address: 0x800CAC10, length: 0x4}
+        - {label: selected_frame_limit, address: 0x80131EEE, length: 0x2}
+  - id: selector46_staged_native_negative
+    recipe: loadStateAndRun
+    state_path: ~/Downloads/ABL/movies/Phase4/C16_gameover_continue.movie.sav
+    auto_select_disc: false
+    expected_media: *pristine_media
+    movie:
+      path: ~/Downloads/ABL/movies/Phase4/C16_gameover_continue.movie.json
+      start_frame: 0
+    staged_prelude: *precise_stage
+    instrumentation: *lifecycle_trace
+    run: *shared_run
+    capture: *precise_capture
+
+control_pairs:
+  - positive_job: selector40_staged_positive
+    negative_job: selector46_staged_native_negative
+    assertion: >-
+      From the identical inspected C16 movie start state and one contiguous
+      index-zero staged prelude, the positive branch may differ only by the
+      typed post-prelude replacement of selector word 0x2404002E with
+      0x24040028. Both branches retain caller 0x800500D8, mode zero, return
+      PC, observers and finite limits; selector 46/limit 281 must distinguish
+      the native negative from selector 40/limit 3162 in the positive without
+      generalizing the synthetic branch to natural finale or Menu ownership.
+
+v2_receipt:
+  id: e15-c16-staged-selector40-lifecycle
+  missing_fact_id: E15/c16-staged-selector40-lifecycle
+  precise: true
+  anchor:
+    kind: movie_start_state
+    media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+    movie_sha256: 39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf
+    state_sha256: e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592
+    start: {clock: movie_frame, value: 0}
+  execution:
+    bound: {clock: movie_frame, start: 0, stop: 4006, stop_inclusive: false}
+    capture_window: {clock: movie_frame, start: 300, stop: 4006, stop_inclusive: false}
+  domain: native_control
+  observer_plan:
+    schema: abl-phase4-observer-plan/1
+    operations:
+      - sequence: 0
+        method: functionTrace.start
+        args:
+          functions: [0x8003E7C0, 0x8007094C, 0x800709AC]
+          all_symbols: false
+          capture_memory: false
+          max_events: 64
+      - sequence: 1
+        method: accessLog.addWatch
+        args: {address: 0x800CAC10, length: 4, type: write, label: completion_request, max_events: 32, stop_on_hit: false}
+      - sequence: 2
+        method: accessLog.addWatch
+        args: {address: 0x80131EEE, length: 2, type: write, label: selected_frame_limit, max_events: 32, stop_on_hit: false}
+    result_limits: {max_records: 128, max_bytes: 8388608, max_pages: 16}
+  perturbation_plan:
+    schema: abl-phase4-perturbation-plan/1
+    kind: operations
+    operations:
+      - {sequence: 0, kind: code_write, address: 0x800500D4, original_word: 0x2404002E, replacement_word: 0x24040028}
+  control_role: positive
+  assertion_plan:
+    kind: c16_staged_selector40_lifecycle_discriminator
+    staged_boundary: 300
+    baseline_selector: 46
+    positive_selector: 40
+    required_mode: 0
+    required_loader_caller: 0x800500D8
+    required_return_pc: 0x800500E0
+    expected_baseline_frame_limit: 281
+    expected_positive_frame_limit: 3162
+    require_balanced_teardown: true
+    require_truncated: false
+  settings_snapshot:
+    schema: abl-duckstation-settings-snapshot/1
+    profile: fresh-isolated-defaults-v1
+    binary_sha256: a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1
+    cpu_execution_mode: default_cached_interpreter
+    cpu_overclock_percent: 100
+    cdrom_read_speedup: 1
+    cdrom_seek_speedup: 1
+    region: auto
+    rewind: false
+    runahead_frames: 0

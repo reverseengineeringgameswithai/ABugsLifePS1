@@ -1,0 +1,57 @@
+schema: abl-phase4-fmv-region-b-replacement-ownership-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-100322-3325038-r6
+offline_query:
+  receipt:
+    relative_path: iteration-2-receipts/offline-fmv-levelb-region-b-replacement-index.receipt.json
+    sha256: 8fe4e94a84381d1106ae0df087db27347865dc0ed4db3320029b8268c22c6326
+  output:
+    relative_path: iteration-2-receipts/outputs/fmv-levelb-region-b-replacement-index-search.json
+    sha256: caa68175e00a34700d26af492ff5edd1c6a1a7eb298698c9431220029b89fbb5
+    bytes: 2128
+  preservation:
+    relative_path: iteration-2-receipts/offline-fmv-levelb-region-b-replacement-index.preservation.json
+    sha256: 780f9bbd6043153fe250236e403d15d80b5890266bf5a942da6bd3bfce93867d
+  external_index_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+  expected_zero_terms:
+    - "0x8005031C"
+    - "0x80050324"
+    - "0x800B5788"
+    - Region-B
+    - resource_id_dat_load_dispatcher
+    - "bits\\memory.bin"
+    - completed-Level-B
+    - movie-viewer
+    - persistence
+    - transition_owner
+prior_evidence:
+  lose_lifecycle:
+    path: analysis/phase4_fmv_lose_lifecycle.json
+    sha256: 759db1dc93af902349947a74c9aa6948f4a6b6c4a1137a4cbb7a28e898c58c2c
+  lifecycle_continuations:
+    path: analysis/phase4_fmv_lifecycle_continuations.json
+    sha256: c026a89b3d1e6ec8dd39f14e61855274f8520d3885c20e14bcbadc8d7244844b
+  levelb_first_call:
+    path: analysis/phase4_fmv_levelb_first_call.json
+    sha256: 31d22808c045a2ea54586e25fd0de5a93a537fdf9a190f8750ded85e98acaa67
+claim_boundary:
+  closed_sub_boundaries:
+    - game_over_lose_region_b_replacement_ownership
+    - completed_level_b_region_b_replacement_ownership
+  dimension_promoted: false
+  lifecycle_promoted: false
+  next_lane: live
+  next_action: >
+    The second consecutive no-reduction iteration changes lane. Preserve both
+    caller-owned replacement chains and predeclare one same-anchor
+    completed-Level-B transfer control for the first channel-3 CD-ROM DMA
+    write into Region B; do not repeat the static census or claim movie-viewer
+    persistence from the completed-level path.
+  not_claimed:
+    - The game-over and completed-level paths do not generalize to movie-viewer returns.
+    - Static code does not identify the first CD/DMA write cycle after CdRead.
+    - Read failure, retry, partial-transfer, and malformed-media outcomes remain open.
+    - The conditional all-level-complete flag does not establish E14 serialization or C17 movie-viewer unlock policy.

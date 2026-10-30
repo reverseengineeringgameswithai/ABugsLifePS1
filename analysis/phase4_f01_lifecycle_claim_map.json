@@ -1,0 +1,130 @@
+{
+ "_comment": "F01 lifecycle per-phase claim map -- the registration the written-bar assessment named as its gap. Facts derived from pinned artifacts; judgments authored. Regenerate: tools/phase4_f01_lifecycle_claim_map.py",
+ "schema": "abl-phase4-f01-lifecycle-claim-map/1",
+ "generated": "2026-08-11",
+ "row_id": "F01_anthill",
+ "subject": "scene-transition request machinery (0x800823A0, region dispatch, finalizer)",
+ "axis": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse (mechanics_baseline.yaml section G)",
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "requires_fresh_verifier": true
+ },
+ "facts": {
+  "cold_boot_fixtures": 2,
+  "oracle_timeline_scenes": [
+   624,
+   0,
+   1,
+   0
+  ],
+  "oracle_all_passed": true,
+  "death_control_outcome": "DONE",
+  "levels_with_decisions": 19,
+  "total_decisions": 35,
+  "max_decisions_one_level": 5,
+  "clear_writers_observed": [
+   "0x80036b90",
+   "0x80036cd0",
+   "0x80036d0c",
+   "0x8004fe48",
+   "0x8005b88c"
+  ],
+  "clear_writer_level_count": 19,
+  "static_assertion_tool": "tools/phase4_f01_objective_lifecycle.c",
+  "attr_convention_holds": true
+ },
+ "evidence_pins": [
+  {
+   "path": "analysis/phase4_f01_original_oracle.json",
+   "sha256": "3c5c060478cb4d86b73800e17bd0bbf2fd8d14018c19c4fc1970c1ee9b4d5723"
+  },
+  {
+   "path": "analysis/phase4_f01_request2_probe.json",
+   "sha256": "4cc449da924296261ee117cb7c5277659a7ca88c463cd9796adb4ccfb823accf"
+  },
+  {
+   "path": "analysis/phase4_f01_breadth_assertions.json",
+   "sha256": "4b58c2c9c67c4f8f10345e4b723bc598e5f0968353385ef71c878f95559429cc"
+  },
+  {
+   "path": "analysis/phase4_f01_campaign_breadth.json",
+   "sha256": "42eeb0e58894c2f1476df485ad1b1ac9f85c638c772c51b4c2a310b77bc7056e"
+  },
+  {
+   "path": "analysis/phase4_f01_objective_lifecycle.json",
+   "sha256": "b4b250b4f8c24895d23a0cd827df28e718d4860b7f0056a999b4b05ae1331486"
+  },
+  {
+   "path": "analysis/phase4_f01_retirement_attribution.json",
+   "sha256": "61737b84853a96d4eaa7480ddd24edbaa6a228c79d3a9edacc9691d797970838"
+  }
+ ],
+ "phases": {
+  "cold_boot": {
+   "state": "covered",
+   "claim": "the machinery is exercised from genuine cold boot, twice, with nothing injected: one natural completion (request 1 -> finalizer) and one natural death (request 2 -> skip)",
+   "evidence": [
+    "analysis/phase4_f01_original_oracle.json",
+    "analysis/phase4_f01_request2_probe.json"
+   ],
+   "fact": "oracle all_passed=True, death control DONE; both from-boot with pre-load noise rejected by instruction self-certification"
+  },
+  "load": {
+   "state": "covered",
+   "claim": "load-time construction of the machinery's state is pinned: the converter builds the sector/region table at scene load and the request cell's load-time value is observed as 0",
+   "evidence": [
+    "analysis/phase4_f01_objective_lifecycle.json",
+    "analysis/phase4_e02_disc_region_code_census.json"
+   ],
+   "fact": "static census via tools/phase4_f01_objective_lifecycle.c; disc-side census 16/16 scenes, 0 disagreements"
+  },
+  "first_use": {
+   "state": "covered",
+   "claim": "the first transition decision of every level obeys the branch law",
+   "evidence": [
+    "analysis/phase4_f01_breadth_assertions.json"
+   ],
+   "fact": "19/19 levels, first decision asserted on each, 0 law failures"
+  },
+  "repeated_use": {
+   "state": "covered",
+   "claim": "multiple decisions within one level obey the law, including mixed call/skip sequences",
+   "evidence": [
+    "analysis/phase4_f01_breadth_assertions.json"
+   ],
+   "fact": "35 decisions total; up to 5 in one level (LEVEL07: 1 call + 4 skips)"
+  },
+  "exhaustion": {
+   "state": "not_applicable_with_reason",
+   "claim": "the request word is a scalar latch, not a pool; its saturated state IS the single-shot guard ([0x800823A0] != 0 suppresses every further region trigger in the scene)",
+   "evidence": [
+    "analysis/phase4_f01_objective_lifecycle.json"
+   ],
+   "fact": "guard pinned statically (re-read at 0x8004965C, bnez 0x80049664); exactly one exit decision per completed level across 19 replays is the guard operating"
+  },
+  "retirement": {
+   "state": "covered",
+   "claim": "the cell is cleared (retired to 0) after consumption, by a small observed writer set, on every level -- attributed to EXACT store instructions, with the write-watch +4 reporting convention disclosed",
+   "evidence": [
+    "analysis/phase4_f01_campaign_breadth.json",
+    "analysis/phase4_f01_retirement_attribution.json"
+   ],
+   "fact": "reported value-0 writer PCs ['0x80036b90', '0x80036cd0', '0x80036d0c', '0x8004fe48', '0x8005b88c'] observed on 19/19 levels; each reported pc is the true store +4 (compiled-C verified, convention_holds_at_every_row=True). Instruction-exact: two mechanisms -- shell clears via `sh zero,0x23a0(at)` at 0x8004FE44/0x8005B888 (direct), and the movement integrator's 16-bit clear split into byte pairs `sb zero,0/1(s6)` at 0x80036B8C/0x80036CCC/0x80036D08 (register-base; the watch itself proved each write landed on the cell)"
+  },
+  "reuse": {
+   "state": "covered",
+   "claim": "the cell is reused after each retirement: successive set->consume->clear cycles within one session, plus the full birth-to-retirement arc from BIOS in a single from-boot run",
+   "evidence": [
+    "analysis/phase4_f01_breadth_assertions.json",
+    "analysis/phase4_f01_request2_probe.json"
+   ],
+   "fact": "up to 5 successive request cycles in one LEVEL07 session (4 skips then the exit call); the from-boot death session's access log shows the whole arc -- BIOS init (fr 98), EXE-init clear (0x8005F6A0, fr 1141), shell clear (0x8004FADC), level-entry clears (0x8005B888/0x8004FE44, fr 5724-5725), certified death store 2 (0x8004A8B4, fr 6536), consumer clear one frame after the decision (0x8004FE44, fr 6656)",
+   "residual_note": "a cross-LEVEL chain (level->results->next-level) in one armed session remains unobserved, but that belongs to the scene+overlay TRANSITIONS axis, not to this cell's reuse; recorded here so it is not lost. \u26a0\ufe0f It CANNOT be closed by arming a go_to_end movie -- those are CachedInterpreter recordings and desync silently under any CPU hook; it needs an Interpreter recording or poll-only observation"
+  }
+ },
+ "counts": {
+  "covered": 6,
+  "not_applicable_with_reason": 1
+ },
+ "summary": "6 covered, 1 n/a-with-reason, 0 partial of 7 phases. Remaining gap is ONE claim: a multi-level chain with watches armed."
+}

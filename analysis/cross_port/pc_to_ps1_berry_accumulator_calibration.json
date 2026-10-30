@@ -1,0 +1,96 @@
+{
+  "schema": "abl-cross-port-semantic-lead-v1",
+  "lead_id": "PC2PS1-CAL-20260819-BERRY-ACCUMULATOR",
+  "direction": "pc-to-ps1",
+  "status": "external_lead",
+  "purpose": "calibration",
+  "source": {
+    "project": "ABLPC",
+    "repository_commit": "b46b836644380e4ffc395e1f8022f954fd830864",
+    "binary": {
+      "id": "bugs.exe",
+      "sha256": "97c95ba5572dce637f6ea6325dbfff0c9a2d002a30d3dc88f39e0f558a27b878",
+      "architecture": "x86-32-le"
+    },
+    "locator": {
+      "kind": "function",
+      "value": "0x0041C9B0"
+    },
+    "evidence": [
+      {
+        "path": "Vault/20-Research/Cross-Port/XPORT-20260818-006 - Berry equip byte candidate from replay-seeded static search.md",
+        "blob_sha256": "365c422de59ee503c80f9f53b5084df1c6a5206220c49be96b4f8749ae9523c4"
+      },
+      {
+        "path": "Vault/30-Experiments/EXP-20260818-004 - PC confirmation of the berry-type selector 0x0059D9A7.md",
+        "blob_sha256": "7fda1619f59dfad9709068cff1540439c702df79c58e84cc9929c66e3fa65fd2"
+      }
+    ]
+  },
+  "target": {
+    "project": "ABL",
+    "binary": {
+      "id": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "architecture": "mips-r3000a-le"
+    }
+  },
+  "question": "Can the independently PC-confirmed berry accumulator semantics rank the already-known PS1 accumulator window first in a curated calibration catalog?",
+  "signature": {
+    "normal_form": "abl-semantic-feature-set-v1",
+    "features": [
+      {
+        "kind": "table_shape",
+        "semantic": "per-row-type-byte-accumulator",
+        "attributes": {"columns": 5, "element_bits": 8},
+        "weight": 8,
+        "required": true
+      },
+      {
+        "kind": "index_expression",
+        "semantic": "row-times-columns-plus-type",
+        "attributes": {"columns": 5, "index_bits": 32},
+        "weight": 8,
+        "required": true
+      },
+      {
+        "kind": "guard",
+        "semantic": "unsigned-less-than-immediate",
+        "attributes": {"immediate": 200, "operand_bits": 8},
+        "weight": 5,
+        "required": true
+      },
+      {
+        "kind": "operation",
+        "semantic": "add-immediate-under-guard",
+        "attributes": {"guard_immediate": 200, "immediate": 2, "operand_bits": 8},
+        "weight": 7,
+        "required": true
+      },
+      {
+        "kind": "threshold",
+        "semantic": "unsigned-greater-or-equal-immediate",
+        "attributes": {"immediate": 100, "operand_bits": 8},
+        "weight": 5,
+        "required": true
+      },
+      {
+        "kind": "selector_domain",
+        "semantic": "five-value-type-selector",
+        "attributes": {"count": 5, "element_bits": 8},
+        "weight": 3,
+        "required": false
+      }
+    ]
+  },
+  "nonclaims": [
+    "This calibration reuses a correspondence already known on both ports and is not an independent discovery.",
+    "A high ranking does not confirm a PS1 function, field, structure, behavior, or bug.",
+    "PC addresses, field offsets, compiler shapes, timing, and platform behavior do not transfer to PS1."
+  ],
+  "verification_required": [
+    "Bind any discovery result to pristine PS1 static bytes or a hash-pinned retained trace capsule.",
+    "Use a PS1-native causal discriminator and falsifying control before promoting behavior.",
+    "Record finite scope, residuals, evidence hashes, and preservation state in the target-side experiment."
+  ]
+}

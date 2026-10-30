@@ -1,0 +1,101 @@
+schema: abl-phase4-spin-heading/1
+description: >
+  Authoritative pristine-game contract for A07. It binds the source-led
+  left-start cardinal sequence to the resident current-direction and ordinary
+  12-bit heading controller. It deliberately does not invent a distinct spin
+  attack, cheat effect, history recognizer, damage law, or private action mode.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_spin_heading.json
+  generator: tools/phase4_spin_heading.py
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+  secondary_lead: >
+    The Pixar Wiki wording supplies only the left/up/right/down experiment.
+    It is not original-game authority and its separate pause/cheat claim is
+    outside A07 unless independently reproduced on pristine media.
+
+input_sequence:
+  source_order: [left, up, right, down]
+  reverse_control: [left, down, right, up]
+  live_timing: {held_emulator_frames: 4, released_emulator_frames: 1, post_frames: 12}
+  cold_boot_timing: {held_movie_frames: 8, start_frame: 8103, end_frame_exclusive: 8135}
+  decoded_action_word: '0x80082488:u16'
+  direction_mask: '0x00F0'
+  direction_bits: {up: '0x0010', right: '0x0020', down: '0x0040', left: '0x0080'}
+
+controller:
+  current_direction_helper: '0x80047EBC..0x80048137'
+  current_action_reader: '0x80047F6C'
+  analog_controller_live_writer: '0x80048044'
+  pure_dpad_fallback_writer: '0x80048104'
+  input_heading: '0x800A6528:u32'
+  player_heading: '0x800A6520:u32'
+  heading_domain: '0x0000..0x0FFF'
+  stationary_snap_writer: '0x800491A4'
+  bounded_turn_writer: '0x80049298'
+  domain_mask_writer: '0x800492A8'
+  default_max_turn_step: 256
+  history_storage: null
+  semantics: >
+    The helper samples the current direction, computes one desired heading,
+    and returns a magnitude. It has no cross-tick sequence history. Successive
+    samples produce the visible turn through the ordinary heading controller.
+
+behavior:
+  positive: >
+    In LEVEL01, Training entry, and later Training completion, the source and
+    reverse orders traverse heading in opposite signed directions and exercise
+    the 12-bit wrap in desired or converged heading.
+  state_boundary: >
+    Both orders retain state 0, action timer 0, and vertical auxiliary state 0
+    in the three exact controls. Across all gameplay anchors, source and
+    timing-matched neutral expose the same state/timer/aux value sets.
+  render_handoff: >
+    actor_skinned_update is one of 21 resident static readers of player heading;
+    the heading change is an existing facing/render input, not a new action ID.
+  cold_boot: >
+    Neutral and source branches are byte/cycle equal before movie frame 8103;
+    only the 32-frame direction edit makes heading and position diverge while
+    the pre-existing action-state lifecycle remains equal between branches.
+
+applicability:
+  gameplay: Training, stages 1 through 15, and all three bonus stages
+  responsive_anchors: 19
+  disabled_anchors: []
+  exceptional_path: >
+    Riverbed Flight's source heading trajectory differs from timing-matched
+    neutral even though F14 owns its movement/camera law and ordinary A01 Up
+    locomotion is disabled there.
+
+lifecycle:
+  initialization: Heading and desired heading are restored from scene/save initialization before the first controller update.
+  capacity: One resident player block, one current decoded action word, and no A07-private allocation or history buffer.
+  allocation_reuse: The same resident heading fields are reused across every scene and player life.
+  reset: Reload restores both heading fields exactly; input release retires the current direction without a spin-state clear.
+  retirement: No private action exists to retire; current input ownership ends on release, pause takeover, reload, respawn, or transition.
+  pause: Direction input is owned by the pause menu and freezes the entire player block; a clean resume accepts the sequence again.
+  death_respawn: Native same-scene respawn restores health and accepts a fresh left-start heading sequence.
+  unload_transition: Resident helper/controller code persists while the 19-anchor sweep proves scene-local player fields are reinitialized and responsive.
+  persistence: Heading is transient world/facing state, not an independently serialized progression or cheat flag.
+
+mod_contract:
+  owner: Preserve input decoder, direction helper, player heading controller, collision, camera, actor/render and lifecycle order and name every hook.
+  readers: Enumerate current/previous input, heading, player, collision, camera, effect, audio, checkpoint, actor/render, pause, respawn, transition and special-controller readers.
+  writers: Do not add unordered writes to decoded input, desired heading, player heading, action state/timer/aux, components, position, or lifecycle clears.
+  valid_domains: Decoded input is u16; headings are u32 masked to 0..4095; timer/state/aux are s16; turn steps are circular and ordinarily bounded by 256.
+  initialization: Initialize MOD-private gesture or heading state before its first reader and never infer a private action merely from model rotation.
+  reset: Clear private gesture/input state on release, pause takeover, damage/death/respawn/reload, scene transition, special-controller takeover and MOD unload.
+  retirement: Retire injected input and private state exactly once before player, camera, render, audio, stage, bonus, boss or overlay owners unload.
+  consumers: Input, player movement, collision, camera, actor animation/render, effects, audio, checkpoint, pause, respawn, stages, bonuses, bosses and overlays.
+  capacity: Declare all hook/cave/table/history bounds; the pristine mechanic provides no gesture-history buffer that a MOD may silently reuse.
+  residency: Keep persistent private state outside overlay memory and scope scene-special readers to their declared owner lifetime.
+  unsafe_assumptions:
+    - The secondary web wording is a trigger lead, not original-game authority.
+    - A heading sweep is not evidence of a distinct spin attack, damage response, cheat, or private action mode.
+    - D-pad buttons on the live AnalogController use writer 0x80048044; 0x80048104 remains the pure-digital fallback.
+    - Emulator frames are not native player-update ticks, so every direction must span a timing-safe window.
+    - Pause-menu direction consumption must not be confused with gameplay heading input.
+    - Riverbed Flight heading response does not transfer F14 movement/camera ownership into A07.

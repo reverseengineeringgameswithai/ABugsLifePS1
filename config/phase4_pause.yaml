@@ -1,0 +1,79 @@
+schema: abl-phase4-pause/1
+description: >
+  Authoritative pristine-game contract for A18. It binds Start-driven pause
+  entry, ordinary resume, gameplay-update ownership, continuing presentation,
+  SPU release/restart, the Exit Level confirmation, and frontend handoff.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_pause.json
+  generator: tools/phase4_pause.py
+  control_saves: [level02.sav, level_14.sav]
+
+input:
+  decoded_action_address: '0x80082488:u16'
+  start_mask: '0x0008'
+  pause_flag: '0x8008224E:u16'
+  pause_flag_domain: [0, 1]
+  entry_writer: '0x8004F3AC'
+  ordinary_resume_writer: '0x8004F858'
+
+ownership:
+  gameplay_frozen:
+    - player semantic fields and player update 0x80048138
+    - 64-record actor pool at 0x8009FD80
+    - 64-record contact pool at 0x800B0D18
+    - 20-record plant pool at 0x80090BF0
+    - camera record at 0x80095358
+    - HUD animation update at 0x80052574
+  presentation_continues:
+    - scene render driver 0x800224EC
+    - frame presentation 0x80039A70
+    - DrawOTag 0x80062BFC
+    - GPU DMA kick 0x80064618
+  audio: Active sustain voices key off and reach release/off while paused; resume restarts sustain voices without disabling SPUCNT.
+
+menu:
+  main_items: [continue, exit level]
+  confirmation_items: ['yes', 'no']
+  confirmation_default: 'no'
+  exit_yes_writers:
+    pause_clear: '0x8004F9C0 -> 0'
+    transition: '0x8004F9E4 -> 5'
+    fade: '0x8004F9FC -> 23'
+  exit_destination: frontend level selection, scene 0
+
+applicability:
+  contexts: Training, stages 1 through 15, and all three bonus stages
+  result: All nineteen strict-pristine anchors enter pause and resume in the same scene.
+  note: Scene-specific gameplay owners are consumers of the resident pause shell; their internal behavior remains independently owned.
+
+lifecycle:
+  initialization: Scene initialization clears the resident u16 pause flag before gameplay reads it.
+  capacity: One resident u16 flag and resident menu/transition state; pause allocates no gameplay object.
+  allocation_reuse: The same resident shell is reused across all nineteen gameplay contexts.
+  reset: Ordinary resume clears the flag; Exit Level clears it and publishes transition 5 plus fade 23.
+  retirement: Pause ownership retires once on resume or confirmed exit before the current scene unloads.
+  unload_transition: Confirmed exit reaches frontend scene 0; old gameplay pool bytes are no longer interpreted as live owners.
+  death_respawn: Pause itself neither spends a life nor performs a respawn; death/respawn campaigns own that independent path.
+  persistence: Pause/menu selection and fade/transition words are transient and are not saved progression.
+
+mod_contract:
+  owner: Preserve decoded-input, gameplay state-machine, pause render/menu, transition and audio ordering; name every hook explicitly.
+  readers: Enumerate input, pause flag, player, actors, contacts, plants, camera, HUD, renderer, GPU, SPU, transition, frontend and overlay consumers.
+  writers: Do not add unordered writes to the pause flag, menu selection, transition, fade, gameplay pools, camera or SPU voice state.
+  valid_domains: Pause is u16 0/1; decoded actions are u16; transition 5 means the confirmed level-exit path; fade is written as u16 23.
+  initialization: Initialize private pause/menu state before the first gameplay or presentation reader and never infer pause from a static framebuffer.
+  reset: Clear private pause ownership on resume, confirmed exit, death/respawn/reload, scene transition, frontend takeover and MOD unload.
+  retirement: Retire injected input and private menu/audio state exactly once before the gameplay scene, overlay, renderer or audio owner unloads.
+  consumers: Input, player, actors, contacts, plants, camera, HUD, renderer, GPU, SPU, stages, bonuses, bosses, transition, frontend and overlays.
+  capacity: Declare all hook/cave/menu/table bounds and preserve the resident flag domain and fixed native pool capacities.
+  residency: Pause/menu code and flag are resident; gameplay pools and overlay owners are scene-local; persistent MOD state must not use overlay memory.
+  unsafe_assumptions:
+    - Pause freezes gameplay updates, not emulator time, rendering, GPU submission, or every SPU register.
+    - A changing paused framebuffer is expected presentation behavior and does not prove gameplay motion.
+    - Default confirmation is No; Cross without selecting Yes must not exit.
+    - Exit Level returns to the frontend level-selection shell rather than respawning the current scene.
+    - The A18 boundary does not close E12 audio internals, E13 HUD/results, E14 persistence, or E16 overlay loading.

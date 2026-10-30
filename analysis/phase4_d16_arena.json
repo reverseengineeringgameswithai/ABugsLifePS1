@@ -1,0 +1,257 @@
+{
+ "row": "D16_thumper",
+ "question": "arena -- what bounds Thumper",
+ "movie": "movies/Phase4/Interpreter/D16_Thumper_Defeat.movie.json",
+ "mechanism": "random_dir_step 0x8004C278 derives the TARGET from a fixed ANCHOR each step: target = anchor + (sin(random) * s4) >> 9, with s4 = [roster+0x14] << 4 (set at 0x8004C194). A bounded circle rather than a drifting walk -- IF the anchor is fixed, which is what this run tests.",
+ "thumper_addr": "0x8009FE04",
+ "roster_record": "0x80094A54",
+ "roster_plus_0x14": 25,
+ "s4_step_scale": 400,
+ "sin_amplitude_measured": 16384,
+ "predicted_max_offset_from_anchor": 12800,
+ "anchor_mid_fight": {
+  "anchor X": 4512,
+  "anchor Y": -26656,
+  "anchor Z": 3232
+ },
+ "final_playback_index": 0,
+ "ring_truncated": false,
+ "by_field": {
+  "0x8009FE2C": {
+   "name": "anchor X",
+   "writes": 5,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     4
+    ],
+    [
+     "0x80049da0",
+     1
+    ]
+   ],
+   "distinct_values": 2,
+   "values": [
+    0,
+    0,
+    0,
+    0,
+    4512
+   ]
+  },
+  "0x8009FE30": {
+   "name": "anchor Y",
+   "writes": 17,
+   "writer_pcs": [
+    [
+     "0x800b400c",
+     9
+    ],
+    [
+     "0xbfc02bb0",
+     4
+    ],
+    [
+     "0x80049da4",
+     1
+    ],
+    [
+     "0x800b3b64",
+     1
+    ],
+    [
+     "0x800b3fd0",
+     1
+    ]
+   ],
+   "distinct_values": 12,
+   "values": [
+    0,
+    0,
+    0,
+    0,
+    -59424,
+    -26656,
+    28672,
+    32768,
+    36864,
+    40960,
+    45056,
+    49152,
+    53248,
+    57344,
+    61440,
+    40960,
+    45056
+   ]
+  },
+  "0x8009FE34": {
+   "name": "anchor Z",
+   "writes": 5,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     4
+    ],
+    [
+     "0x80049da8",
+     1
+    ]
+   ],
+   "distinct_values": 2,
+   "values": [
+    0,
+    0,
+    0,
+    0,
+    3232
+   ]
+  },
+  "0x8009FE38": {
+   "name": "target X",
+   "writes": 12,
+   "writer_pcs": [
+    [
+     "0x8004c2ec",
+     7
+    ],
+    [
+     "0xbfc02bb0",
+     4
+    ],
+    [
+     "0x80049dac",
+     1
+    ]
+   ],
+   "distinct_values": 9,
+   "values": [
+    0,
+    0,
+    0,
+    0,
+    4512,
+    5041,
+    -7611,
+    16360,
+    9629,
+    -325,
+    5052,
+    7747
+   ]
+  },
+  "0x8009FE3C": {
+   "name": "target Y",
+   "writes": 12,
+   "writer_pcs": [
+    [
+     "0x8004c2d8",
+     7
+    ],
+    [
+     "0xbfc02bb0",
+     4
+    ],
+    [
+     "0x80049db0",
+     1
+    ]
+   ],
+   "distinct_values": 5,
+   "values": [
+    0,
+    0,
+    0,
+    0,
+    -59424,
+    -26656,
+    -26656,
+    -26656,
+    32768,
+    32768,
+    32768,
+    40960
+   ]
+  },
+  "0x8009FE40": {
+   "name": "target Z",
+   "writes": 12,
+   "writer_pcs": [
+    [
+     "0x8004c328",
+     7
+    ],
+    [
+     "0xbfc02bb0",
+     4
+    ],
+    [
+     "0x80049db4",
+     1
+    ]
+   ],
+   "distinct_values": 9,
+   "values": [
+    0,
+    0,
+    0,
+    0,
+    3232,
+    16021,
+    -877,
+    -1612,
+    3067,
+    1551,
+    8323,
+    -736
+   ]
+  }
+ },
+ "target_samples": 12,
+ "max_observed_offset": 12800.4,
+ "findings": {
+  "1_radius_is_per_actor_roster_data": {
+   "roster_record": "0x80094A54",
+   "field": "+0x14",
+   "raw": 25,
+   "s4": 400,
+   "predicted_max_offset": 12800,
+   "verdict": "the arena is a NUMBER attached to the actor, not level geometry and not bytecode: roster+0x14 scaled x16 sets the step scale"
+  },
+  "2_is_the_anchor_fixed": {
+   "distinct_values_per_axis": {
+    "anchor X": 2,
+    "anchor Y": 12,
+    "anchor Z": 2
+   },
+   "writer_pcs": {
+    "anchor X": {
+     "0xbfc02bb0": 4,
+     "0x80049da0": 1
+    },
+    "anchor Y": {
+     "0xbfc02bb0": 4,
+     "0x80049da4": 1,
+     "0x800b3b64": 1,
+     "0x800b3fd0": 1,
+     "0x800b400c": 9,
+     "0x800b40b4": 1
+    },
+    "anchor Z": {
+     "0xbfc02bb0": 4,
+     "0x80049da8": 1
+    }
+   },
+   "note": "anchor Y is EXPECTED to move: the overlay drives Thumper's hop (0x800B400C adds 4096 per step). Only X/Z define the arena.",
+   "verdict": "X/Z FIXED -- the arena is a fixed horizontal circle"
+  },
+  "3_do_targets_stay_inside_the_circle": {
+   "samples": 12,
+   "max_observed_offset": 12800.4,
+   "predicted_max": 12800,
+   "bound_is_reached": true,
+   "verdict": "every sampled target lies within the predicted radius, and the maximum REACHES it -- a real radius, not a loose upper bound"
+  }
+ },
+ "ring_truncated_note": null
+}

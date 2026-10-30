@@ -1,0 +1,96 @@
+# Overlay decompilation track — SEPARATE from the resident substrate
+# (config/segments.yml / tools/build_psx_exe.py). Each overlay is a standalone
+# code image CdRead-loaded at a FIXED runtime VA (Region A for per-level
+# LEVEL*.BIN swap buffers, Region B for MEMORY.BIN). Matched overlay functions
+# are compiled at their load VA and spliced into a copy of the blob; the rebuilt
+# blob must stay SHA-1-identical. Consumed by tools/build_overlay.py; the
+# resident metric (analysis/decomp_progress.json) is never touched by this track.
+#
+# Blob paths name the hash-pinned pristine REBUILD staging tree directly.  OVL/
+# extraction copies are not authority and are not clean-checkout dependencies.
+# Blob VA mapping: VA = base + file_offset. LEVEL*.BIN carry a 4-byte ID word
+# ("LEVE"/"leve") at +0; code entry `level_overlay_init` at +4. The C toolchain
+# (compiler/flags/_gp) is shared with the resident substrate (config/segments.yml).
+region_a: 0x800b39a0     # per-level LEVEL*.BIN swap buffer
+region_b: 0x800b5788     # MEMORY.BIN
+gp: 0x80081d98           # overlays share the resident $gp
+
+overlays:
+  LEVEL02_LEVEL:
+    blob: REBUILD/files/LEVEL02/LEVEL.BIN
+    sha1: 6eecee68f5efb8fcea27deca2a1ebf2a720639f2
+    base: 0x800b39a0
+    attempted:
+      # Overlay-track proof match (substrate v2 pipeline at an overlay VA):
+      - {start: 0x800b3b70, end: 0x800b3b84, source: src/overlays/LEVEL02_LEVEL/800b3b70_set_state_60.c}
+  # Campaign v3 (6D) — second overlay blob, proving the multi-blob build/validate path:
+  LEVEL02_LEVEL1:
+    blob: REBUILD/files/LEVEL02/LEVEL1.BIN
+    sha1: 3ec712c58b2785c25d9ce1ac9aa94f8b1ca655e9
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3b0c, end: 0x800b3b14, source: src/overlays/LEVEL02_LEVEL1/800b3b0c_empty_stub.c}
+  # Campaign v3 (6D) — byte-matched easy overlay leaves:
+  LEVEL03_LEVEL1:
+    blob: REBUILD/files/LEVEL03/LEVEL1.BIN
+    sha1: 396e080a5bd203d79d17bd4015714b55e5746813
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3adc, end: 0x800b3b2c, source: src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c}
+  LEVEL04_LEVEL1:
+    blob: REBUILD/files/LEVEL04/LEVEL1.BIN
+    sha1: 0dca22ba15b678b51a2a066a31637c749b5aafdf
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3aec, end: 0x800b3b14, source: src/overlays/LEVEL04_LEVEL1/800b3aec_add_child_field_20.c}
+  LEVEL05_LEVEL:
+    blob: REBUILD/files/LEVEL05/LEVEL.BIN
+    sha1: c9b45c89285d076a02f3f551ca12ad8cff3eba23
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3b18, end: 0x800b3b54, source: src/overlays/LEVEL05_LEVEL/800b3b18_init_overlay_state.c}
+  LEVEL05_LEVEL1:
+    blob: REBUILD/files/LEVEL05/LEVEL1.BIN
+    sha1: 9b7585f427097318e71ffdaad15310a45effc1cc
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3bd4, end: 0x800b3c04, source: src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c}
+  LEVEL06_LEVEL:
+    blob: REBUILD/files/LEVEL06/LEVEL.BIN
+    sha1: 7aaebc3f384598910f815a1e716812855f1f2977
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3b94, end: 0x800b3bbc, source: src/overlays/LEVEL06_LEVEL/800b3b94_clear_overlay_state.c}
+  LEVEL06_LEVEL1:
+    blob: REBUILD/files/LEVEL06/LEVEL1.BIN
+    sha1: 0a809238da9f6b3aea23bb1b412fc302d547248d
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3af4, end: 0x800b3b30, source: src/overlays/LEVEL06_LEVEL1/800b3af4_select_grid_offset.c}
+  LEVEL07_LEVEL1:
+    blob: REBUILD/files/LEVEL07/LEVEL1.BIN
+    sha1: 79702fa222a0ab71b95107d174d8f360ab8cef19
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3f08, end: 0x800b3f48, source: src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c}
+  LEVEL09_LEVEL:
+    blob: REBUILD/files/LEVEL09/LEVEL.BIN
+    sha1: 154cbfa38f10531c5201763ac9585a9b31864c28
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3b70, end: 0x800b3bd0, source: src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c}
+      - {start: 0x800b3bd0, end: 0x800b3c2c, source: src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c}
+      - {start: 0x800b3dc8, end: 0x800b3de8, source: src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c}
+  LEVEL10_LEVEL:
+    blob: REBUILD/files/LEVEL10/LEVEL.BIN
+    sha1: 83b01f53fb1ad5edda4336957d2987b029b3cb78
+    base: 0x800b39a0
+    attempted:
+      - {start: 0x800b3bf0, end: 0x800b3c1c, source: src/overlays/LEVEL10_LEVEL/800b3bf0_init_overlay_state.c}
+  MEMORY:
+    blob: REBUILD/files/BITS/MEMORY.BIN
+    sha1: 947ef0246457c706f1e07cb6ce91fbdd269071d7
+    base: 0x800b5788
+    attempted:
+      - {start: 0x800ba1f0, end: 0x800ba22c, source: src/overlays/MEMORY/800ba1f0_memcard_directory_load.c}
+      - {start: 0x800bd6d8, end: 0x800bd710, source: src/overlays/MEMORY/800bd6d8_memcard_ack_card_change.c}

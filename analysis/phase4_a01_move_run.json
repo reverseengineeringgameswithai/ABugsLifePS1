@@ -1,0 +1,100 @@
+{
+  "row": "A01_move_run",
+  "date": "2026-08-03",
+  "registry_status": "partial",
+  "phase4_disposition": "substantiated_partial_bounded_exhausted",
+  "movie_required": false,
+  "cold_boot_required": false,
+  "capsule_audit": {
+    "query": "rg -l 'lag_walkingaround|level01\\.sav' ~/Downloads/ABL-external-evidence/trace-capsules/Phase4 --glob manifest.json",
+    "identity_matching_capsules": 0,
+    "decision": "Do not substitute a name-adjacent capsule; use static ASM and a same-save API counterfactual for the missing runtime domain."
+  },
+  "identity": {
+    "serial": "SCUS-94288",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "bin_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+    "save": "level01.sav",
+    "save_sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+    "legacy_movie_sha256": "3db6ad898d9dcc257b2d0ed75f1385493e3c5b90f066b63eb4db18a5f06bad31",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+    "execution_mode": "Interpreter",
+    "config_dir": "/tmp/duckstation-a01-move-run-20260803-02",
+    "port": 24412
+  },
+  "static_chain": [
+    "0x80047EBC resolves camera-relative direction/magnitude and writes player target heading +0x28.",
+    "0x800490D0/0x80049100 apply digital left/right target-heading deltas; 0x80049140 invokes the shared resolver.",
+    "0x80049240..0x800492A8 converges actual heading +0x20 through a modulo-4096 shortest-turn law capped by 0x400.",
+    "0x80049348..0x800494B0 decays, accelerates, clamps, and publishes projected components +0x38/+0x3C.",
+    "0x800494B4..0x80049540 rotates components through the trig table and stores velocity +0x2C/+0x34.",
+    "0x80049558..0x80049564 snapshots the previous position; 0x800495C8 calls FUNC_8003633C with position, velocity, and contact flags.",
+    "FUNC_8003633C performs collision/floor resolution and publishes contact bytes and resolved position.",
+    "FUNC_800563D4 selects grounded idle 22, movement 0, and slow-walk 29; 0x800569AC latches the requested animation."
+  ],
+  "runtime": {
+    "anchor_frame": 12512,
+    "api_frame_rate": 60,
+    "gameplay_tick_rate_observed": 30,
+    "controls": [
+      {"case": "idle_16f", "x": 197091, "y": 2734, "z": 492897, "component_forward": 0, "grounded": 257, "animation": 22, "buttons": 0},
+      {"case": "up_2f", "x": 196980, "y": 2751, "z": 492985, "component_forward": 144, "grounded": 257, "animation": 0, "buttons": 16},
+      {"case": "up_8f", "x": 196302, "y": 2755, "z": 493550, "component_forward": 378, "grounded": 257, "animation": 0, "buttons": 16},
+      {"case": "up_16f", "x": 194530, "y": 2666, "z": 494937, "component_forward": 681, "grounded": 257, "animation": 0, "buttons": 16},
+      {"case": "up_r2_8f", "x": 196302, "y": 2755, "z": 493550, "component_forward": 378, "grounded": 257, "animation": 29, "buttons": 528},
+      {"case": "up_left_8f", "target_heading": 2737, "actual_heading": 2737, "x": 196220, "z": 492400, "animation": 0, "buttons": 144},
+      {"case": "up_right_8f", "target_heading": 177, "actual_heading": 177, "x": 197369, "z": 493903, "animation": 0, "buttons": 48},
+      {"case": "analog_full_up_8f", "controller_type": "AnalogController", "x": 196302, "y": 2755, "z": 493550, "working_buttons": 16, "matches_digital_up_8f": true},
+      {"case": "release_after_up_16f_plus_24f", "velocity_x": 0, "velocity_y": 0, "velocity_z": 0, "component_forward": 0, "component_lateral": 0, "grounded": 257, "animation": 22, "buttons": 0}
+    ],
+    "slow_cap_control": {
+      "early_window": "Up and Up+R2 match through 16 API frames because the projected component has not reached the 0x300 slow cap.",
+      "phase2_60f_displacement_ratio_x": 0.6057413181,
+      "phase2_60f_displacement_ratio_z": 0.6040426982
+    },
+    "exec_trace": {
+      "frames": [12513, 12515, 12517, 12519],
+      "total_events": 25,
+      "truncated": false,
+      "pc_hits": {
+        "0x80049140": 4,
+        "0x80049348": 4,
+        "0x800494AC": 4,
+        "0x80049524": 4,
+        "0x80049540": 4,
+        "0x800495C8": 4,
+        "0x800569AC": 1,
+        "0x80056654": 0
+      },
+      "first_cycle": 7084378841,
+      "last_cycle": 7087777137,
+      "interpretation": "The calculation, velocity stores, integrator call, and one animation latch execute on the bounded run path. The desired-animation store was not revisited after the transition and its zero-hit result is not generalized beyond this window."
+    },
+    "discarded_harness_run": "An initial batch was discarded because injected controller holds persist across loadState. Every accepted branch explicitly cleared port 0 before the runner reloaded the save."
+  },
+  "TURN_IN_PLACE_DOCUMENTED_2026-08-03": {
+    "trigger": "Operator, during E04 camera work: 'Holding L1 + left or right will rotate Flik on his axis, was that documented?' -- it was not, anywhere (grep across Canon/analysis/src_re: zero hits). A previously-undocumented movement input.",
+    "live_confirmation": "level01.sav, isolated Interpreter instance (port 23665, E04's session): holding L1+left keeps Flik's position EXACTLY frozen (197091,2734,492897 unchanged across 60 frames) while heading (0x800A6520) rotates steadily ~-15/frame (3505->3281->3025->2801->2545). The camera orbits to stay behind him (E04's own evidence). This is the turn-in-place mechanic -- rotation without translation, complementing the A01 law where plain left/right steer the camera-relative movement target.",
+    "not_traced": "The handler branch inside FUNC_80048138 (or its input decode) that gates on L1+direction was not isolated -- only the behavioral contract is documented. The L1 pad bit in the working word was not independently pinned this pass.",
+    "cross_reference": "analysis/phase4_e04_camera_system.json's OPERATOR_FACTS_CONFIRMED_2026-08-03 (same trace; camera-side effects banked there)."
+  },
+
+  "closure": {
+    "solved": [
+      "input decode into the shared direction path",
+      "run/slow caps and acceleration/decay constants",
+      "turning convergence and left/right counterfactual",
+      "velocity rotation and collision-integrator handoff",
+      "normal slope/floor tracking while grounded",
+      "grounded idle/run/slow animation coupling",
+      "release-to-zero and return-to-idle lifecycle"
+    ],
+    "deferred": [
+      "exhaustive collision response against every authored surface and obstruction",
+      "all-level acceleration/turn/slope oracle",
+      "special-state overrides already owned by their dedicated Phase 4 rows"
+    ],
+    "reason_to_move_on": "The reusable control law and causal runtime chain are closed. Remaining work is broad content-surface enumeration with low marginal return, so the row stays partial but is bounded-exhausted for Phase 4 prioritization."
+  }
+}

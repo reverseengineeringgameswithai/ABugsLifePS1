@@ -1,0 +1,151 @@
+schema_version: 1
+row: C13_grain_harvester
+status: partial
+authority:
+  media: hash-verified pristine retail SCUS-94288
+  allmods_role: comparison_only_not_consumed
+machine_contract:
+  equip_state:
+    address: 0x800A657E
+    width: s16
+    owner: original_game.player_powerups
+    observed_values:
+      unequipped: 0
+      equipped: 1
+    writers:
+      - address: 0x80051EA0
+        role: equip_entry
+      - address: 0x80051F60
+        role: active_maintenance
+      - role: cross_disengage_clearer
+        status: confirmed_static_chain
+        flag_writer: 0x8004A94C
+        positive_slot_tick: 0x80048654
+  powerup_flags:
+    address: 0x800A6590
+    width: u32
+    owner: original_game.player_powerups
+    harvester_bit: 0x0080
+    set_writer: 0x80051EB0
+    clear_writer:
+      status: confirmed_static
+      pc: 0x8004A94C
+      and_mask: 0xFF7E
+  level01_harvester_actor:
+    address: 0x800A1DFC
+    width: u32
+    owner: original_game.level01_harvester
+    required_id: 0x23
+    scope: retained LEVEL01 fixture only
+  grain_source:
+    kind: 0x14
+    dispatcher: 0x80053814
+    distance_metric_inclusive_max: 0x15F8F
+    contact_ctor_selector: 0x51
+  enemy_contact:
+    resolver: 0x8004ABF4
+    harvester_branch_read: 0x8004B158
+    hp_sentinel_store: 0x8004B208
+    hp_sentinel: 998
+evidence:
+  offline_artifact: analysis/phase4_c13_harvester.json
+  live_artifact: analysis/phase4_c13_harvester_live.json
+  annotation: movies/Phase4/c13_GRAIN_HARVESTER.annotations.yaml
+  canon: ObsidianVault/Canon/Systems/SYS_grain_harvester.md
+static_asm_closure:
+  analyzer: tools/phase4_c13_asm_static.c
+  artifact: analysis/phase4_c13_asm_static.json
+  steering:
+    ctor_target_minus_one_store: 0x80053C58
+    homing_bit_test: 0x8005A358
+    player_bearing_call: 0x8005A39C
+    y_writer: 0x8005A4C8
+    x_writer: 0x8005A548
+    z_writer: 0x8005A56C
+  collection:
+    walker_handler_call: 0x800589B8
+    sfx_manager_call: 0x80054F80
+    grain_count_writer: 0x80054F9C
+  reset:
+    state_zero_writer: 0x8005B268
+    flags_retention_mask_writer: 0x8005B340
+  enemy_branch:
+    harvester_bit_read: 0x8004B158
+    harvester_bit_test: 0x8004B160
+    hp_998_writer: 0x8004B208
+    eligibility_shape: common resolver gates and actor flags; no actor-id whitelist in the harvester sub-branch
+residuals:
+  - exhaustive enemy-family and immunity fixture matrix (deferred low return)
+  - all-level harvester availability survey (deferred low return)
+  - exhaustive animation/asset identity and save-load persistence breadth (deferred low return)
+  - full MOD regression contract (Phase 5 work, not original-behavior closure)
+promotion_policy:
+  phase3_semantic_registry: >
+    Do not add these Phase-4 fields to config/semantic_state.yaml until the
+    retained Phase-3 semantic-lifetime experiment is regenerated on pristine
+    media. The Phase-4 contract is authoritative in the interim.
+  record_layout: >
+    Do not promote player +0x7E as a Phase-3 typed record field until the
+    retained live unknown-byte census is regenerated; its current accounting
+    predates this finding.
+
+phase4_bounded_exhaustion_2026_08_04:
+  classification: substantiated_partial_bounded_exhausted
+  scope: valid pristine NTSC-U retail executable and valid retail object/pointer schemas
+  capsule:
+    records: 618
+    grain_contacts: 9
+    counter_rises: 9
+  flag_frontier:
+    exact_accesses: 80
+    conservative_baseline: 435
+    c_proven_exclusions: 235
+    residual: 200
+    reads: 139
+    writes: 61
+    local: 12
+    cross_domain: 188
+    classified: 200
+    unexplained: 0
+  shared_slot_frontier:
+    residual: 192
+    classified: 192
+    unexplained: 0
+  lifecycle:
+    pause: gameplay_tick_frozen_fields_preserved
+    scene_transition: player_block_clear_covers_state_and_flag
+    save_persistence: runtime_only
+    capacity: known_64_entry_allocator_nonreturn_edge_valid_run_peak_3
+  remaining_low_return:
+    - exact_render_animation_attribution
+    - exact_spu_identity
+    - malformed_assets_corrupt_pointers_modified_executables
+    - redundant_natural_placement_breadth
+  interpreter_movie_required: false
+  move_on: true
+
+phase4_strict_closure:
+  superseded_for_move_on_by: phase4_bounded_exhaustion_2026_08_04
+  state: OPEN
+  status: partial
+  high_yield_row_specific_work: exhausted
+  static_applicability:
+    scene_resources_surveyed: 15
+    applicable_scene_ids: [1, 3, 5, 7, 10, 12]
+    applicable_operator_levels: [1, 2, 5, 8, 10, 11]
+    placement_records: 6
+    identical_non_position_fields: true
+    evidence: analysis/phase4_c13_raw_applicability.json
+  behavioral_breadth:
+    retained_applicable_placements: 1
+    total_applicable_placements: 6
+    complete: false
+  complete_frontier:
+    state: OPEN
+    inherited_direct_same_width_accesses: 251
+    inherited_indirect_calls: 149
+    inherited_overlay_pointer_accesses: 4967
+    evidence: analysis/phase4_b06_b08_powerups.json
+  movie_policy:
+    request_now: false
+    reason: "A new movie cannot resolve the independently open shared pointer-provenance frontier. Request Interpreter evidence only if that frontier is closed or reviewed-bounded and strict behavioral breadth resumes."

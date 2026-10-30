@@ -1,0 +1,115 @@
+{
+  "format": "phase4_e15_fmv_bounded_exhaustion_v1",
+  "row": "E15_fmv",
+  "date": "2026-08-04",
+  "status": "substantiated_partial",
+  "closure": "bounded_exhausted_move_on",
+  "additional_interpreter_movie_required": false,
+  "supersedes": [
+    "The prior three-call resident trigger frontier.",
+    "The reversed address binding for movie ids 40 and 46.",
+    "The raw-opcode framing that treated most of FMV.BIN as undisassembled code."
+  ],
+  "identity": {
+    "pristine_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "fmv_bin_sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+    "functions_csv_sha256": "088c1b38799777276eae5291ee68562364c78ba6eaff1135cf56e12efc817412",
+    "movie_sha256": "ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba",
+    "save_state_sha256": "851e8ebffa8b8417abb30ff0791ca4c1872a43cf06101247ee1ff97e4cdac417"
+  },
+  "capsule": {
+    "path": "ABL-external-evidence/trace-capsules/Phase4/v3/E15_fmv_skip",
+    "manifest_sha256": "c5b3948d95f240ea3825ba15c39efb363906d3b33f41e1bf4e0b6600a85e95c6",
+    "complete": true,
+    "truncated": false,
+    "error": "",
+    "forced_cached_interpreter": true,
+    "use_boundary": "Retained offline evidence and poll-only source movie; never arm new CPU instrumentation on this CachedInterpreter recording.",
+    "control_cycle_neutral": true,
+    "control_full_state_equal": true,
+    "records": 542,
+    "domain_hash_checks": 1626,
+    "domain_hash_mismatches": 0,
+    "flow_items": 244942,
+    "flow_instructions": 25730645,
+    "overlay_unique_pcs": 412,
+    "overlay_pc_min": "0x800b6250",
+    "overlay_pc_max": "0x800b998c",
+    "executed_outside_static_frontier": 0
+  },
+  "static_frontier": {
+    "fmv_bin_size": 509800,
+    "resident_fmv_bin_load_calls": 9,
+    "overlay_images_scanned": 22,
+    "overlay_fmv_bin_load_calls": 0,
+    "raw_jal_shaped_words": 538,
+    "reachable_words": 2995,
+    "reachable_bytes": 11980,
+    "reachable_entry_points": 90,
+    "reachable_jal_calls": 156,
+    "internal_call_occurrences": 64,
+    "external_call_occurrences": 92,
+    "unique_external_targets": 39,
+    "external_targets_in_function_census": 39,
+    "indirect_calls": 0,
+    "indirect_jumps": 2,
+    "indirect_jump_owners": ["47-way movie-id table at 0x800b5aa4", "7-way callback table at 0x800b5b60"],
+    "unseeded_stack_prologue_targets": 0
+  },
+  "resident_triggers": [
+    {"call_pc":"0x8004fb5c","movie_id":1,"content":"DLOGO","gate":"shell state 4, boot trio"},
+    {"call_pc":"0x8004fb68","movie_id":0,"content":"TT","gate":"boot trio"},
+    {"call_pc":"0x8004fb74","movie_id":45,"content":"INTRO","gate":"boot trio"},
+    {"call_pc":"0x8004ffd4","movie_id":"41 + ((u8[0x8009b88a] + 1) & 0xff)","content":"ALT sequence; observed zero counter begins at id 42","gate":"shell state 1 plus pending latch; increments 0x8009b88a"},
+    {"call_pc":"0x800500d8","movie_id":46,"content":"LOSE","gate":"shell state 2 and player byte 0x800a65a0 equals zero"},
+    {"call_pc":"0x80050284","movie_id":40,"content":"LEV15C","gate":"ending branch; sets 0x8009b888 bit 0 if needed"},
+    {"call_pc":"0x8005031c","movie_id":"B_table[scene_id]","content":"level B clips 11,13,...,39","gate":"completion byte for scene equals 7 and gp gate permits"},
+    {"call_pc":"0x8005036c","movie_id":41,"content":"LEV15D","gate":"sum of all sixteen completion bytes equals 0x70; sets 0x8009b888 bit 1"},
+    {"call_pc":"0x8005b788","movie_id":"A_table[scene_id]","content":"level A clips 10,12,...,38","gate":"ordinary scene entry, special override clear, scene identity match, bit 0 clear"}
+  ],
+  "selector_tables": {
+    "level_a_address":"0x8007a08b",
+    "level_a_ids_scene_1_through_15":[10,12,14,16,18,20,22,24,26,28,30,32,34,36,38],
+    "level_b_address":"0x80077fe3",
+    "level_b_ids_scene_1_through_15":[11,13,15,17,19,21,23,25,27,29,31,33,35,37,39],
+    "resident_callable_real_ids":"0, 1, and 10 through 46",
+    "real_case_without_resident_caller":2,
+    "shared_default_ids":[3,4,5,6,7,8,9]
+  },
+  "skip_lifecycle": {
+    "selected_movie":"LEV1A",
+    "frame_limit":386,
+    "frame_comparison_block_hits":72,
+    "natural_completion_writer_block_hits":0,
+    "input_latch_call":"0x800b70e0 -> 0x8003a2dc",
+    "pad_read":"0x800b7404 reads 0x80082412",
+    "abort_mask":"0x4008 at 0x800b740c",
+    "movie_input":"Start held on relative frames 334 through 342",
+    "pad_poll_block_hits":45,
+    "abort_branch_hits":1,
+    "cleanup_block_hits":1,
+    "conclusion":"Skip and frame-limit completion are distinct exits."
+  },
+  "natural_completion": {
+    "mechanism":"The frame loop reads s16 limit 0x80131eee and raises 0x800cac10 through one of two threshold blocks.",
+    "causal_control":"The prior TT 440-to-900 literal patch changed streamed duration; pristine TT completes at its stock limit.",
+    "decoder_boundary":"No direct MDEC/DMA register access; 39 resident interfaces form the stock PsyQ libpress/libcd/libgpu/kernel boundary."
+  },
+  "pause_reset_save": {
+    "pause":"No gameplay-pause state during FMV; the active pad path is the 0x4008 abort path.",
+    "reset":"Every synchronous invocation reloads FMV.BIN, initializes limit/completion state, cleans up, returns, and reinitializes the shell.",
+    "save":"Progression bytes select clips; transient overlay limit/completion fields are not persistent resume state."
+  },
+  "bounded_residuals": [
+    "Containing save/load initialization of 0x8009b88a for every nonstandard save history; its sole direct law and observed zero state are closed.",
+    "Semantic name for the 0x4000 half of abort mask 0x4008; Start alone is the observed positive input.",
+    "Natural replay of every real clip; static content breadth and the shared engine are complete.",
+    "Every-cycle internals beyond the identified stock PsyQ library boundary."
+  ],
+  "reopen_if": [
+    "A MOD changes STR data, frame-count literals, selectors, or ending progression.",
+    "Exact alternate-ending sequencing across nonstandard save histories becomes required.",
+    "A MOD expects pause/resume of in-progress FMV state, which retail does not provide."
+  ],
+  "movie_if_reopened":"Use a new normal-speed Interpreter recording for the named save history or modified-disc oracle."
+}

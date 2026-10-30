@@ -1,0 +1,130 @@
+{
+ "row": "E06_contact_object_pool",
+ "scope": "Find a clean live-spawn recipe for as many of the 25 fully-opaque kinds as possible, before launching a DuckStation session.",
+ "method": "contact_alloc(x,y,z,ctorType,stackArg) sets rec+0x20 (action_id) directly from metadata table B[ctorType]+0x00 (src_re/contact_alloc_80059e44.c, CONFIRMED field map). Table B (0x8007941C, stride 0x14) is inside the static resident EXE range (0x80010000-0x80082800), so it was read directly, entirely statically, no live session. Scanned ctorType 0..199, built action_id -> [ctorTypes] map, matched against the 25 target kinds.",
+ "direct_ctortype_recipe": {
+  "0": [
+   25,
+   26,
+   52,
+   53,
+   56,
+   83,
+   91,
+   108,
+   129,
+   132,
+   142,
+   143,
+   145,
+   154,
+   157,
+   187,
+   198
+  ],
+  "1": [
+   1,
+   6,
+   7,
+   15,
+   30,
+   44,
+   49,
+   80,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   92,
+   109,
+   174,
+   182,
+   190,
+   199
+  ],
+  "3": [
+   3,
+   4,
+   9,
+   10,
+   12,
+   13,
+   17,
+   18,
+   46,
+   47,
+   65,
+   76,
+   79,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102
+  ],
+  "4": [
+   19,
+   20,
+   54,
+   55,
+   57,
+   113,
+   119,
+   124,
+   125,
+   126,
+   127,
+   128
+  ],
+  "5": [
+   21,
+   23,
+   24,
+   27,
+   29
+  ],
+  "6": [
+   22,
+   28
+  ],
+  "7": [
+   14,
+   82
+  ],
+  "14": [
+   61
+  ],
+  "21": [
+   51
+  ],
+  "25": [
+   0
+  ]
+ },
+ "no_ctortype_in_0_199_range": [
+  10,
+  11,
+  13,
+  22,
+  23,
+  24,
+  26,
+  27,
+  28,
+  30,
+  31,
+  37,
+  39,
+  40,
+  47
+ ],
+ "interpretation": "Kinds with a hit can be spawned cleanly via debugger.callFunction on contact_alloc with that literal ctorType -- no post-spawn memory patch needed. Kinds with no hit are NOT reached via contact_alloc's action_id route in this scan range at all; they are very likely type-0x3f PLACEMENT kinds instead (a completely separate spawn path: a placement record's own kind byte, read by the per-frame pickup processor 0x800252a0 -- not contact_alloc). tools/apply_level_placements.py already has a proven, safe 'set_entry' op for this (edit an existing record's kind in place, avoiding the append-corruption bug documented in the pickup-render-kind- descriptor-table memory note). This includes the 22-25 cluster and the 0x1E-typed set (27,37,39,40,47) -- consistent with them being world-placed pickups rather than contact-alloc'd grant/drop objects."
+}

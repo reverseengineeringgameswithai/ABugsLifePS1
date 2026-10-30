@@ -1,0 +1,66 @@
+{
+ "annex": {
+  "execute_automatically": false,
+  "file_objects_ready_for_annex": [
+   "synthetic:alpha",
+   "synthetic:beta"
+  ],
+  "public_remote_allowed": false,
+  "repository_initialization_performed": false,
+  "schema": "abl-phase4-private-annex-plan/1",
+  "steps": [
+   "Create a private external annex repository outside ABL.",
+   "Configure at least two offline remotes in distinct failure domains.",
+   "For local/removable roots, require distinct verified filesystem devices.",
+   "Do not count private-annex roots without immutable remote attestation.",
+   "Package tree objects with their validation manifests before annex ingestion.",
+   "Import file objects by content hash and emit an external receipt set.",
+   "Run this tool's verify command before claiming availability."
+  ],
+  "tree_objects_require_external_packaging": []
+ },
+ "cases": {
+  "distinct_physical_domain_model": {
+   "independent_failure_domains": [
+    "synthetic-device-1",
+    "synthetic-device-2"
+   ],
+   "ready_at_two": true
+  },
+  "duplicate_physical_root_rejected": true,
+  "public_remote_rejected": true,
+  "same_device_directories": {
+   "fully_replicated": 0,
+   "objects": 2,
+   "preservation_ready": false
+  },
+  "shared_physical_content_rejected": true,
+  "symlink_rejected": true,
+  "tampered_copy": {
+   "fully_replicated": 0,
+   "objects": 2,
+   "preservation_ready": false
+  }
+ },
+ "production_contract": {
+  "annex_execution_automatic": false,
+  "availability_requires_external_receipts": true,
+  "campaign_promotion": false,
+  "local_physical_identity": "st_dev",
+  "minimum_independent_copies": 2,
+  "private_annex_counts_without_attestation": false,
+  "public_remote_allowed": false,
+  "registry_is_hash_only": true
+ },
+ "runtime_evidence": false,
+ "schema": "abl-phase4-external-evidence-pilot/1",
+ "source_dependencies": {
+  "config/phase4_external_evidence.yaml": "c64176ef8d3202fa8e25c89496d4d44b92baf043e57660854d9112c4826420d9",
+  "tools/phase4_external_evidence.py": "ca5f14d3620b73c0fc7fac1dfe4de4e718c6b6640bbedd2597486041ba752b37"
+ },
+ "summary": {
+  "failures": [],
+  "objects": 2
+ },
+ "synthetic_only": true
+}

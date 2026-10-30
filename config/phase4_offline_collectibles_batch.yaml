@@ -1,0 +1,37 @@
+schema: abl-phase4-offline-collectibles-batch-source/1
+description: >
+  Declarative selection and evidence contract for the coherent grain,
+  harvester and telescope offline batch. The decoded per-frame index remains
+  external game-derived evidence; Git retains only hashes, bounded summaries,
+  the generator and falsifiable guards.
+selected_rows:
+  - C01_grain_pickup
+  - C02_fifty_grain_reward
+  - C13_grain_harvester
+  - C14_telescope
+expected_unique_capsules: 4
+tracked_player_outcome_fields: [health, lives, grain]
+selection_snapshot:
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 21
+    offline_partial: 12
+    live_required: 6
+    no_capsule: 68
+  rows:
+    - {row_id: C01_grain_pickup, queue_rank: 1, classification: offline_ready, completion_state: open}
+    - {row_id: C02_fifty_grain_reward, queue_rank: 2, classification: offline_ready, completion_state: open}
+    - {row_id: C13_grain_harvester, queue_rank: 3, classification: offline_ready, completion_state: open}
+    - {row_id: C14_telescope, queue_rank: 4, classification: offline_ready, completion_state: open}
+external_index:
+  schema: abl-phase4-external-collectibles-index/1
+  domains: [registers, ram, vram, spu_ram, block_flow]
+tracked_summary:
+  schema: abl-phase4-offline-collectibles-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary state changes, range intersections and hotspots do not
+    identify an exact CPU writer, actor/fixture owner, GPU/SPU producer or
+    causal behavioral control.

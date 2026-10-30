@@ -1,0 +1,18 @@
+{
+  "row": "D04_berry_immunity_matrix",
+  "validated_inputs": 5,
+  "runtime_coverage": {
+    "berry_tough": {"shell_bug":"five_of_five","worm_id40":"five_of_five","wall_worm":"four_clean_plus_red_connectivity_caveat"},
+    "ordinary": {"spider":"red_counter_plus_gold_vs_nongold_campaign","mosquito":"berry_damage_plus_gold_vs_nongold_campaign","redbug":"blue_minus2"}
+  },
+  "class_matrix": [
+    {"resistance_state":"ordinary_damageable","red":"temporary damage","blue":"temporary damage","homing":"temporary damage","gold":"permanent defeat","mega":"temporary damage"},
+    {"resistance_state":"flags_0x40_berry_tough","red":"reaction only; zero damage","blue":"-2 temporary damage","homing":"-2 temporary damage","gold":"-4 damage plus permanent defeat","mega":"-3 temporary damage"}
+  ],
+  "scope_guards": [
+    "flags bit 0x40 is a runtime state and can be VM-managed; do not label every species permanently immune",
+    "boss defeat floors and overlay FSMs remain boss-row behavior even when the resident damage delta is shared",
+    "the 64x5 side table is not an immunity or kill oracle"
+  ],
+  "uncovered_breadth": "a replayable five-berry movie for every named family is absent; current evidence closes the resistance law but not exhaustive presentation breadth"
+}

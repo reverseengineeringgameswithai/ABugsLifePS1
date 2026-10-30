@@ -1,0 +1,23 @@
+schema_version: 1
+id: pristine_hopper_context_final_life
+description: >-
+  Replay the centrally pinned pristine Stage-15 boss-context movie from its
+  inspected state and assert the smallest natural final-life boundary that
+  would catch a regression in C16 without assigning the damage to Hopper.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: hopper_boss.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: stage15_final_life_death_selected
+    trigger: {type: movie_frame, target: 2983, max_frames: 3100, timeout_seconds: 180}
+    assertions:
+      - {id: c16_boss_context_stays_in_scene_15, type: memory, address: 0x80082504, width: u32, op: eq, expected: 15}
+      - {id: c16_boss_context_health_is_fatal, type: memory, address: 0x800A6594, width: s16, op: eq, expected: -1}
+      - {id: c16_boss_context_final_life_stays_zero, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 0}
+      - {id: c16_boss_context_death_master_state_selected, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 2}
+      - {id: c16_boss_context_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

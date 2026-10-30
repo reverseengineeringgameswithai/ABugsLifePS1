@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reason": "Move semantic names from delayed stack prologues to the actual retail call targets and replace weak fingerprint labels where static semantics are now available.",
+  "changes": [
+    {"old_address":"0x800186f0","new_address":"0x800186ec","old_name":"gte_rtps_mesh_assembler","new_name":"gte_rtps_mesh_assembler","evidence":"The only caller targets 0x800186ec; its leading nop falls through to the prologue at 0x800186f0."},
+    {"old_address":"0x80027010","new_address":"0x80027004","old_name":"actor_mesh_render_pass","new_name":"ot_depth_fade_postprocess","evidence":"The scene-render caller targets 0x80027004; the function walks OT primitives and applies depth-dependent color/primitive changes through 0x80027c5c."},
+    {"old_address":"0x8003d7b8","new_address":"0x8003d7b0","old_name":"prim_queue_emit","new_name":"backdrop_horizon_gradient_draw","evidence":"The caller targets 0x8003d7b0; static GTE/camera math chooses backdrop colors and emits a horizon tile."},
+    {"old_address":"0x80042494","new_address":"0x80042428","old_name":"visual_sprite_object_mesh_transform","new_name":"visual_sprite_object_pool_update","evidence":"0x80042494 is the loop body; the actual entry at 0x80042428 updates, culls, transforms, and emits the visual-sprite pool."},
+    {"old_address":"0x80045b04","new_address":"0x80045b00","old_name":"cd_audio_mix_control","new_name":"cd_audio_mix_control","evidence":"All calls target the gp-load entry at 0x80045b00; 0x80045b04 is its delayed stack prologue."},
+    {"old_address":"0x800510f4","new_address":"0x800510f0","old_name":"sfx_nearest_pickup_f_glue_10f4","new_name":"ambient_sfx_sequence_update","evidence":"The real entry is 0x800510f0; static logic advances a resident random byte stream and schedules positional ambient SFX."},
+    {"old_address":"0x800514a4","new_address":"0x8005149c","old_name":"setpiece_spawn_state_mesh_transform","new_name":"setpiece_light_color_update","evidence":"The real entry is 0x8005149c; static logic derives a light vector and packed RGB intensity from setpiece/player state."},
+    {"old_address":"0x80055654","new_address":"0x80055644","old_name":"contact_object_s_spawn_drop_glue","new_name":"player_action_effects_update","evidence":"The gameplay-state caller targets 0x80055644; the function emits player-state-dependent drops, contact effects, and sounds."},
+    {"old_address":"0x8003e124","new_address":"0x8003e104","old_name":"prim_queue_emit_e124","new_name":"dynamic_render_budget_update","evidence":"The scene-flow caller targets 0x8003e104; the 732-byte function adjusts render thresholds from GPU timing/primitive pressure and links the OT."}
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "schema": "abl-phase4-live-escalations-v1",
+  "escalations": [
+    {
+      "id": "P4-B02-20260802-INTERPRETER",
+      "row_id": "B02_propeller_plant",
+      "status": "declared",
+      "reason": "The retained v3 capsule is valid frame-boundary evidence but covers the older movie and was forced to CachedInterpreter. The new operator-recorded pure-Interpreter movie contains the corrected ordinary-carry, thrown-seed, player-ride, and high-freefall carry-detach cases and has no retained capsule.",
+      "offline_evidence_queried": [
+        "analysis/phase4_b02_propeller_static.json",
+        "analysis/phase4_b02_propeller_capsule.json",
+        "asm/hand_written/8005c258_seed_plant_propeller_handler.s",
+        "asm/hand_written/80046cac_sub_80046cac.s",
+        "asm/hand_written/800524b8_sub_800524b8.s"
+      ],
+      "offline_answers": [
+        "Exact player and actor lift laws and branch/write sites",
+        "Detach helper ordering and carried-actor state changes",
+        "Older fixture player/actor path coverage and lifecycle spans"
+      ],
+      "missing_information": "Instruction-attributed confirmation of the corrected four behaviors in movie frames 86-190, 296-390, 400-500, and 748-1122.",
+      "experiment": "Replay movies/Phase4/Interpreter/B02.movie.json from its hash-pinned state at normal resumed speed in a fresh isolated instance configured for Interpreter. Trace only decisive handler/helper PCs and player carry/mode/vertical-velocity accesses; analyze the exported event stream with C.",
+      "native_control": "The same pristine-media movie supplies ordinary carried approach as a negative detach control and separate thrown-seed/player-ride/high-freefall positive windows.",
+      "expected_evidence": "A C-derived runtime artifact that distinguishes manual release from helper detachment and correlates player/actor vertical writers without using CachedInterpreter movie tracing.",
+      "priority": "High-value correction to a currently inaccurate B02 baseline binding; no higher-ranked offline query can answer the new movie's runtime behavior."
+    },
+    {
+      "id": "P4-A03-20260803-INTERPRETER",
+      "row_id": "A03_jump",
+      "status": "declared",
+      "reason": "The accepted B09 capsule closes frame-boundary normal and powered full-hold arcs, while shipping ASM closes the local admission/release recurrence. It cannot supply natural ledge/ceiling behavior, a timing-varied powered release, save metadata for candidate natural-roof fixtures, or exact instruction attribution for those missing cases.",
+      "offline_evidence_queried": [
+        "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v3/B09_super_jump_comparison",
+        "asm/hand_written/80048138_player_vertical_update.s",
+        "src_re/player_update_80048138.c",
+        "src_re/movement_integrator_8003633c.c",
+        "src_re/brown_seed_plants.c",
+        "src_re/plant_spawn_8005bdbc.c",
+        "analysis/phase4_a03_jump.json",
+        "analysis/phase2_fixture_audit.json",
+        "analysis/phase4_b06_b08_fixtures.json",
+        "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md"
+      ],
+      "offline_answers": [
+        "Cross admission, coyote threshold, state/animation gates, normal/powered impulses, release transform, gravity, and fall cap",
+        "Normal and powered full-hold apex/landing frame-boundary behavior",
+        "Normal one/four/eleven/twelve-tick height curve and exact release PCs",
+        "ceiling_cage_issue.sav is ALLMODS-only and rejected as pristine authority",
+        "A13 owns carried-seed Cross selection and A15 owns butt-slam seed cracking/plant spawn"
+      ],
+      "missing_information": "Pristine-media qualification of candidate natural-roof saves; native positive and negative coyote admission around floor_y-y=1024; native ceiling-contact velocity/state/grounded outcome; and the powered 14-tick release outcome predicted by the shipping ASM.",
+      "experiment": "Use a fresh isolated DuckStation config explicitly preseeded to Interpreter. First call emulator.getStateInfo without loading candidate level saves and reject non-pristine media. Load only accepted hash-recorded saves with disc validation, clear external input before every branch, and use controller input plus bounded scatter/access/exec traces. For coyote, branch from one natural ledge and press Cross on opposite sides of the 1024 gap. For ceiling, jump naturally into a retail ceiling and capture the swept-plane resolver outcome. For powered release, use an existing naturally acquired power anchor or an uninstrumented Interpreter movie prelude, stop playback at a stable frame boundary, then trace the manual 14-tick release from the resulting state.",
+      "native_control": "Same-anchor grounded jump, post-threshold airborne Cross denial, unobstructed full-hold jump, and B09 powered full-hold capsule arc. No RAM writes, warps, code patches, MOD media, CachedInterpreter tracing, or fast-forward playback are permitted.",
+      "expected_evidence": "A C-reduced artifact containing fixture/media hashes, state fields, exact input timing, ledge admission/denial, ceiling collision outcome, powered release apex, untruncated decisive traces, and final grounded recovery; plus a declarative scenario or an exact blocker naming the required Interpreter movie.",
+      "priority": "User-selected continuation after the A03 closure audit retracted its bounded-exhausted label. The missing domains directly intersect this row's explicit Phase 4 requirements and cannot be answered by the retained capsule or local ASM alone. The repository's required offline-opportunity queue artifact is absent in this checkout and remains separate control-plane debt rather than being silently treated as satisfied."
+    },
+    {
+      "id": "P4-D03-20260804-IFRAME",
+      "row_id": "D03_contact_damage",
+      "status": "declared",
+      "declared_at": "2026-08-04",
+      "reason": "The retained D03 capsules prove the positive contact-damage path and timer decay, but none contains a second handler admission while 0 < player.contact_damage_timer < 45. Offline reconstruction cannot establish the native negative control without another admitted contact.",
+      "offline_evidence_queried": [
+        "analysis/phase4_d03_static.json",
+        "analysis/phase4_d03_capsule.json",
+        "analysis/phase4_d03_contact_damage.json",
+        "tools/phase4_d03_static.c",
+        "tools/phase4_d03_capsule.c"
+      ],
+      "offline_answers": [
+        "The pristine executable has exactly six direct callers of player_contact_damage_8004A700.",
+        "The shared routine sets timer 45, subtracts one health, applies vertical knockback, and suppresses health/timer/vertical writes while the timer is nonzero.",
+        "Three independent retained capsules contain positive contact damage and exact 45-boundary timer decay."
+      ],
+      "missing_domain": "Native collision admission of the same damage handler during the positive invulnerability window, followed by admission after expiry.",
+      "experiment": "Fresh isolated DuckStation instance in Interpreter mode, pristine media and hash-pinned health_test.sav; arm execTrace at 0x8004A700/0x8004A790/0x8004A888 and accessLog on 0x800A6592/0x800A6594 after state load. Use ordinary input first; if necessary use narrowly documented test-only actor repositioning to force collision admission without calling the handler directly.",
+      "native_controls": [
+        "Initial admitted contact reduces health and writes timer 45.",
+        "Second admitted contact while timer is positive reaches the suppression branch but does not write health or refresh timer.",
+        "Admitted contact after timer reaches zero again writes health and timer 45."
+      ],
+      "expected_evidence": "Exact frame/cycle, PC, health, timer, and trace events for all three controls, with media/state/config identities and any memory intervention recorded.",
+      "priority": "Closure blocker; cheap isolated runtime control."
+    },
+    {
+      "id": "P4-D06-20260804-GRASSHOPPER",
+      "row_id": "D06_grasshoppers",
+      "status": "declared",
+      "declared_at": "2026-08-04",
+      "reason": "No retained D06 capsule matched the pinned grasshopper fixtures. Static main-executable and Tunnels-overlay ASM bound family identity, program flow, and native initialization, but not the exact state-anchored VM writer or admission to the common contact interface.",
+      "offline_evidence_queried": [
+        "analysis/phase0_2_external_fixture_set.json",
+        "analysis/phase2_row_coverage.json",
+        "analysis/phase4_trace_capsules.json",
+        "SCUS_942.88",
+        "REBUILD/files/LEVEL03/LEVEL.BIN",
+        "src_re/enemy_ai_programs.c",
+        "ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md"
+      ],
+      "offline_answers": [
+        "Actor ID 15 and spawn word 0x080f uniformly select program index 8 at 0x8007760c.",
+        "VM opcode 0x0006 uses the shared arrival path and selector 3 calls overlay function 0x800b3d78.",
+        "The 68-instruction native function is keyed by spawn-template byte +0x0f and has no separately implemented actor variant.",
+        "The unique bonus-3 five-kill gate is already statically and canonically bound."
+      ],
+      "missing_domain": "Exact state-anchored program-pointer transition and common contact-handler admission for actor ID 15.",
+      "experiment": "Use a fresh isolated DuckStation config and pristine media; load the two hash-pinned D06 states; re-arm after each load; run Interpreter at normal speed with no fast-forward; watch actor slot 44 program pointer +0x70, execute 0x8004d03c/0x8004c834/0x800b3d78, and execute common contact handler 0x8004a700 while watching player health.",
+      "native_controls": [
+        "Idle state with no controller input for a natural VM transition.",
+        "Aggro state with exact actor pointer and player-health write watch to distinguish handler admission from damage outcome."
+      ],
+      "expected_evidence": "Exact frame/cycle, writer PC, old/new program pointer, actor pointer, and contact return address.",
+      "priority": "Narrow capsule gap that blocks D06 state-flow closure; no movie or broad behavior campaign requested."
+    },
+    {
+      "id": "P4-B06-20260804-LOCAL-RESIDUAL",
+      "row_id": "B06_invincibility",
+      "status": "completed",
+      "declared_at": "2026-08-04",
+      "reason": "The validated B06 capsule is complete, untruncated, and control-identical, but it retains only frame-boundary registers and passive block flow. It cannot recover the effective-address base registers at the four row-local static residual PCs. The operator supplied a new version-4 Interpreter recording specifically covering natural grant, active contacts, expiry, and post-expiry damage.",
+      "offline_evidence_queried": [
+        "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/b06_invincibility_hits",
+        "analysis/phase4_region_provenance.json",
+        "analysis/phase4_b06_frontier_20260804.json",
+        "tools/region_provenance.c",
+        "tools/phase4_b06_frontier.c",
+        "src_re/player_power_slot_800a657e.c"
+      ],
+      "offline_answers": [
+        "Natural slot grant begins at movie frame 77 and the 400-tick value changes on alternating frames.",
+        "The pristine blue-x1 production chain resolves through action 0x0C to the unconditional grant at 0x800588D0.",
+        "The reconciled frontier contains 251 candidates; 25 of 29 candidates in direct shared B06 owners are locally disjoint.",
+        "The four retained local PCs are 0x80048E30, 0x80055874, 0x80055CF4, and 0x80055D14."
+      ],
+      "missing_domain": "Instruction-attributed base-register and effective-address identity for the four row-local residual PCs during a natural B06 lifecycle.",
+      "experiment": "Replay movies/Phase4/Interpreter/B06_invincibility_lifecycle.movie.json from its hash-pinned state at normal resumed speed in a fresh isolated profile explicitly configured for Interpreter. Verify media and movie synchronization, then arm execTrace only at 0x80048E30, 0x80055874, 0x80055CF4, 0x80055D14 plus narrow grant/effect lifecycle anchors, capturing the address-base/value registers. Do not fast-forward or mutate guest state.",
+      "native_controls": [
+        "Pre-grant standstill with slot zero.",
+        "Natural blue-x1 collection and positive-slot visual lifecycle.",
+        "Separated contacts during the active interval without health loss.",
+        "Natural expiry followed by an ordinary damaging contact."
+      ],
+      "expected_evidence": "Untruncated per-PC frame/cycle/register events reduced in C to exact effective addresses, with movie/state/media/config/source/binary identities and normal-speed synchronization recorded.",
+      "priority": "Narrow four-PC runtime attribution requested by the operator; no movie can close the remaining 222-path static frontier."
+    }
+  ]
+}

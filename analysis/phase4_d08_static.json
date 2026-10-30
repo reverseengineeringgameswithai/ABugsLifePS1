@@ -1,0 +1,13 @@
+{
+  "schema": "abl-phase4-d08-static-v1",
+  "row": "D08_flies",
+  "status": "verified",
+  "input": {"path": "~/Downloads/ABL/SCUS_942.88", "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20", "load_address": "0x80010000", "payload_size": 468992},
+  "instruction_checks": 44,
+  "identity": {"actor_id": 6, "wander_program": "0x800776d0", "contact_callback": "0x8004a144"},
+  "wander_program": ["set_byte_params[-64,-64]", "anim_clip_load[0,2]", "wait_random[63,32]", "random_dir_step", "park_seek", "jump_back[5]"],
+  "family_attack_result": "no proximity, call_native, chase, or projectile opcode in the Horsefly program; ordinary body contact is the attack",
+  "damage_dispatch": {"marker_0": -2, "marker_1": -99, "marker_12": -2, "marker_127": -4, "marker_128": -3, "default": -1, "reaction_ticks": 20},
+  "temporary_ko": {"hp_sentinel": 999, "flags_or": "0x0880", "flags_clear": "0x0002", "stop_program": "0x800776ac", "stop_loop": ["park_arrive_stop", "jump_back[1]"], "retirement_call": "0x800498ac(actor,1)"},
+  "class_boundary": "death class 1 bypasses the class>=2 effect/quota block at 0x800592d8..0x8005933c"
+}

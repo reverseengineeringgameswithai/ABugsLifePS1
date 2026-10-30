@@ -1,0 +1,263 @@
+{
+ "before_ledger_sha256": "6eeaf1bb68e292775e6060b9a46a99a7c8c414cacc89be69fdbbd03cd76af3a7",
+ "campaign_id": "fmv_playback",
+ "claim_boundary": {
+  "classification": "falsified_observer_saturation",
+  "dimension_promoted": false,
+  "lifecycle_promoted": false,
+  "live_receipts_admissible": false,
+  "next_lane": "live",
+  "next_method": "The retained native job emitted exactly 90 function events over movie frames 650..850. A same-window 128-event successor has 38 events of headroom and must retain indexes 1..90 without reaching its limit. Predeclare that fail-closed successor pair; do not reuse the saturated 64-event result as lifecycle evidence.\n",
+  "not_claimed": [
+   "absence of native teardown in the first 26 discarded function events",
+   "native decoded-record failure frequency or malformed-media policy",
+   "natural completion, pause, repeat, viewer-return, or error ownership",
+   "lifecycle or any other nine-dimension promotion",
+   "either retained live receipt as promotion-admissible evidence"
+  ]
+ },
+ "errors": [],
+ "escalation_id": "P4-ITER102-E15-DECODED-RECORD-ABSENCE-CONTROL",
+ "falsifier": {
+  "evidence": {
+   "configured_max_events": 64,
+   "discarded_prefix_events": 26,
+   "first_retained_index": 27,
+   "last_retained_index": 90,
+   "retained_events": 64
+  },
+  "outcome": "falsified",
+  "predicate": "any planned observer truncation or saturation rejects the positive/negative control as lifecycle evidence",
+  "reason": "negative_function_trace_saturated_and_dropped_prefix"
+ },
+ "generated": "2026-07-27",
+ "missing_fact_id": "E15/decoded-record-absence-lifecycle",
+ "observation": {
+  "negative": {
+   "access_events": 0,
+   "access_truncated": false,
+   "configured_max_events": 64,
+   "discarded_prefix_events": 26,
+   "first_retained_index": 27,
+   "last_retained_index": 90,
+   "latch_endpoint": "00",
+   "retained_events": 64,
+   "saturated": true,
+   "scene_endpoint": "09000000"
+  },
+  "passive_repeat_equal": true,
+  "positive": {
+   "latch_endpoint": "09",
+   "latch_write": {
+    "address": "0x800b9a54",
+    "cycle": 150531213774,
+    "frame": 265861,
+    "instruction": "sb v0, -0x65ac(at)",
+    "instruction_pc": "0x800b6c84",
+    "instruction_word": "0xa0229a54",
+    "new_value": 1,
+    "pc": "0x800b6c88",
+    "reported_pc": "0x800b6c88",
+    "type": "write",
+    "value": 0,
+    "width": 1
+   },
+   "ordered_functions": [
+    [
+     "entry",
+     "0x800b6c24",
+     "0x800b7280",
+     1
+    ],
+    [
+     "exit",
+     "0x800b6c24",
+     "0x800b7280",
+     2
+    ],
+    [
+     "entry",
+     "0x8007094c",
+     "0x800b749c",
+     3
+    ],
+    [
+     "exit",
+     "0x8007094c",
+     "0x800b749c",
+     4
+    ],
+    [
+     "entry",
+     "0x800709ac",
+     "0x800b74a4",
+     5
+    ],
+    [
+     "exit",
+     "0x800709ac",
+     "0x800b74a4",
+     6
+    ]
+   ],
+   "predicate_write": {
+    "address": "0x800b6c40",
+    "after": "0x1000000e",
+    "before": "0x1220000e",
+    "code_invalidated": true,
+    "kind": "code_write",
+    "original_word": "0x1220000e",
+    "replacement_word": "0x1000000e",
+    "written": 4
+   }
+  }
+ },
+ "offline_receipt_sha256": "3844cbc22d3a202e46ebb7ee69c5064f18b48828cac7afd4c76fda5362faebdb",
+ "raw_external_bytes_committed": false,
+ "receipts": [
+  {
+   "batch_result_sha256": "0deaff03d16927dd665ae63fcd3e15432773d18d09e16c976fe04b971daa89ea",
+   "cleanup_sha256": "506f54665938adfb52ff5f8d8331b79c635e8d8dde44852e3859058ce7871fa9",
+   "command_events_sha256": "1f9d314e4167981c5f6e77cd87d9c7a4c4acf461f58151cf1355f0326f70445d",
+   "observer_start": 649,
+   "pagination_sha256": "d301a76f022e5df63326e746139d0822bb2cfe2b4b0c0a96567b8359b4d7c1d2",
+   "precise": false,
+   "raw_results_sha256": "51b1ec7177288247cd1b60c330c124a000cc39de5314fe4c2ec40edb9b811b9b",
+   "receipt_sha256": "17194db4d36b26ca85571f6640b6f7bad3623b32181cf4f34487e14bf4a8ea25",
+   "replay_stop": 900,
+   "role": "passive",
+   "stage_start": 0,
+   "stage_stop": 649
+  },
+  {
+   "batch_result_sha256": "4d43e6ee87a8d822a57c55b95d8756973e1fbeea69bd9f5dbf2e86114a1a7968",
+   "cleanup_sha256": "fe092bb59f5af2bcf374c86b94f98eb24bfc708bfdbb290bcc556c28362a2036",
+   "command_events_sha256": "bec0bac0859eeca387faccee0e974c18ef5a281c09978ace838bcb3a7396179b",
+   "observer_start": 650,
+   "pagination_sha256": "8d3a1c200d3b9ae22b44604dbf7db3ea19635d562c33809790afbdbcf5d0d69e",
+   "precise": true,
+   "raw_results_sha256": "547183d58aa6194adf5a97d84e8feb24c71bc6c3abc08bcd200633063cf156fc",
+   "receipt_sha256": "1a7f995fd4ec2c2e4673c74a84bcc73f6b25b44c5e0563d6dee9c837ebabd1eb",
+   "replay_stop": 850,
+   "role": "precise",
+   "stage_start": 0,
+   "stage_stop": 650
+  }
+ ],
+ "record_counts": {
+  "completed_atomic_jobs": 4,
+  "emulator_launches": 2,
+  "exact_after_load_writes": 1,
+  "negative_discarded_function_events": 26,
+  "negative_latch_writes": 0,
+  "negative_retained_function_events": 64,
+  "observer_frames": 902,
+  "owned_pids_stopped": 2,
+  "positive_latch_writes": 1,
+  "promotion_admissible_live_receipts": 0,
+  "replay_frames": 3500
+ },
+ "retention_decomposition": {
+  "claim": "For the identical native movie-frame 650..850 branch, the completed saturated result emitted 90 total function events. A 128-event ring has 38 events of finite headroom.",
+  "falsifier": "Reject the successor if its native branch does not retain contiguous indexes 1..90, emits more than 90 events, or reaches the 128-event limit.",
+  "observed_same_anchor_rate": {
+   "discarded_event_types_claimed": false,
+   "discarded_prefix_events": 26,
+   "events_per_movie_frame": "0.450000",
+   "retained_suffix_events": 64,
+   "total_function_events": 90,
+   "window": {
+    "clock": "movie_frame",
+    "start": 650,
+    "stop": 850
+   }
+  },
+  "offline_output_sha256": "c9e1b46afabce79b818a9731ac9b98ebe2b863bfbf7fad17f8bd59d7953eac30",
+  "offline_receipt_sha256": "7156595a5e9822afa871075802ccfe0fd7b4f5ef60fc46aa89fe00f72f329b1b",
+  "source_batch_sha256": "4d43e6ee87a8d822a57c55b95d8756973e1fbeea69bd9f5dbf2e86114a1a7968",
+  "static_callsite": {
+   "end": "0x800B729C",
+   "exit_branch": "0x800B7294",
+   "fmv_bin_sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+   "helper_call": "0x800B7280",
+   "helper_target": "0x800B6C24",
+   "instructions": [
+    {
+     "mnemonic": "jal 0x800b90f0",
+     "pc": "0x800B7278",
+     "word": "0x0C02E43C"
+    },
+    {
+     "mnemonic": "sra a1,t0,1",
+     "pc": "0x800B727C",
+     "word": "0x00082843"
+    },
+    {
+     "mnemonic": "jal 0x800b6c24",
+     "pc": "0x800B7280",
+     "word": "0x0C02DB09"
+    },
+    {
+     "mnemonic": "addu a0,s3,zero",
+     "pc": "0x800B7284",
+     "word": "0x02602021"
+    },
+    {
+     "mnemonic": "lui v0,0x800c",
+     "pc": "0x800B7288",
+     "word": "0x3C02800C"
+    },
+    {
+     "mnemonic": "lbu v0,-26028(v0)",
+     "pc": "0x800B728C",
+     "word": "0x90429A54"
+    },
+    {
+     "mnemonic": "nop",
+     "pc": "0x800B7290",
+     "word": "0x00000000"
+    },
+    {
+     "mnemonic": "beq v0,s4,0x800b7464",
+     "pc": "0x800B7294",
+     "word": "0x10540073"
+    },
+    {
+     "mnemonic": "nop",
+     "pc": "0x800B7298",
+     "word": "0x00000000"
+    }
+   ],
+   "latch_read": "0x800B728C",
+   "sha256": "8626db42e8667a029a78344d828f4d95fecf920d742ea24e3efb3af265fc0ada",
+   "start": "0x800B7278"
+  },
+  "successor_retention_contract": {
+   "bounded_for_same_anchor_window": true,
+   "discarded_event_types_claimed": false,
+   "headroom_events": 38,
+   "max_events": 128,
+   "observed_event_upper_bound": 90,
+   "require_first_retained_index": 1,
+   "require_last_retained_index_lte": 90,
+   "require_returned_events_lt_max": true,
+   "require_returned_events_lte": 90,
+   "required_headroom_events": 32,
+   "same_anchor_window": {
+    "clock": "movie_frame",
+    "start": 650,
+    "stop": 850
+   }
+  }
+ },
+ "row_id": "E15_fmv",
+ "schema": "abl-phase4-fmv-decoded-record-control-result/1",
+ "source_dependencies": {
+  "REBUILD/files/FMV/FMV.BIN": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+  "config/phase4_fmv_decoded_record_control_result.yaml": "9d39f4adbade544bbdc5271e1649dbf1c387ab6aae2a6a3b1678b0cad3e4a976",
+  "tools/phase4_duckstation_batch.py": "e94ec290a489484587b50fe72a472dbfa8578a7f17dcaf32f57af2efcf8bb375",
+  "tools/phase4_fmv_decoded_record_control_result.py": "0a1f2997f58c05cc62e854e43bcd271945b53f0eeff90d062dd4a30b87c7d803",
+  "tools/phase4_offline_receipt_query.py": "00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846"
+ },
+ "valid": true
+}

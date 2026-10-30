@@ -1,0 +1,129 @@
+{
+  "schema_version": 3,
+  "row": "D07",
+  "subsystem": "mosquito roaming, berry-contact aggro, and Thumper-spawned launch",
+  "status": "bounded_exhausted",
+  "date": "2026-08-03",
+  "media": {
+    "serial": "SCUS-94288",
+    "version": 84,
+    "executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "execution_mode": "Interpreter explicitly configured before boot",
+    "playback": "normal-speed debugger.resume; fast-forward and turbo disabled",
+    "instrumentation": "armed after the validated state load and before movie frame 0"
+  },
+  "correction": {
+    "superseded_claim": "the recorded Square press was inert and the movie did not demonstrate aggro",
+    "cause": "the earlier isolated profile did not explicitly pin CPU ExecutionMode=Interpreter and its replay was desynchronized",
+    "replacement_evidence": "explicit-Interpreter clean and instrumented replays synchronized visually; the berry hit and delayed mosquito attack were observed"
+  },
+  "movies": {
+    "roaming": {
+      "path": "movies/Phase4/Interpreter/D07/mosquito_roaming_movie.movie.json",
+      "sha256": "85a5cf76d3bd775a79be40d9fb0c75ef63b1f67fc8bc24f201ac28647b22ea95",
+      "result": "ordinary roaming and VM state cycling without damage"
+    },
+    "berry_aggro": {
+      "path": "movies/Phase4/Interpreter/D07/mosquito_aggro_after_berry.movie.json",
+      "sha256": "23bccd5c5b994bba9bae23b471b2196c132110beb1cef4642a8f8332fcca39a8",
+      "start_emulator_frame": 38657,
+      "square_movie_frames": [340, 341, 342, 343, 344],
+      "berry_contact_movie_frame": 1132,
+      "berry_contact_emulator_frame": 39789,
+      "attack_state_emulator_frame": 39937,
+      "result": "berry contact damages the mosquito; the mosquito attacks Flik several seconds later"
+    },
+    "thumper_spawned": {
+      "path": "movies/Phase4/Interpreter/D07/Thumper_spawned_mosquitto.movie.json",
+      "sha256": "19cc0a4f6da9d0674832c1fb4be0e40aa649dcc79538d1c38307ccebdf0bb7e2",
+      "actor": "0x8009FE88",
+      "allocation_movie_frame": 712,
+      "activation_movie_frame": 718,
+      "adjacent_slot_control": "0x8009FF0C remains dormant"
+    }
+  },
+  "berry_contact_sequence": [
+    {
+      "frame": 39789,
+      "event": "collision/damage handler sets actor flag latch 0x1000",
+      "pc": "0x8004B460/0x8004B464",
+      "flags": "0x5003"
+    },
+    {
+      "frame": 39789,
+      "event": "damage handler writes timer 15",
+      "pc": "0x8004B650",
+      "offset": "actor+0x6C"
+    },
+    {
+      "frame": 39791,
+      "event": "species callback clears latch 0x1000",
+      "pc": "0x8004A1D0",
+      "flags": "0x4001",
+      "state": 0,
+      "note": "state is not 1, so the callback's timer-25/motion-doubling tail is skipped"
+    },
+    {
+      "frame": 39819,
+      "event": "damage timer reaches zero"
+    },
+    {
+      "frame": 39937,
+      "event": "AI VM selects state 1 and ordinary flag bit 0x4",
+      "pc": "0x8004C694/0x8004C688",
+      "frames_after_contact": 148
+    },
+    {
+      "frame": 39981,
+      "event": "AI VM returns to state 0 and clears ordinary bit 0x4"
+    }
+  ],
+  "causal_control": {
+    "method": "in-memory movie copy with only Square frames 340..344 changed to false; original file untouched; replayed in the same explicit Interpreter profile",
+    "exec_result": "no execution of 0x8004B458..0x8004B468 or 0x8004A1C4..0x8004A1F0 reaction body",
+    "timer_result": "no writes to actor+0x6C",
+    "state_result": [
+      "38931: state 0",
+      "39155: state 1",
+      "39481: state 0",
+      "no frame-39937 attack transition"
+    ],
+    "conclusion": "Square is only upstream input; berry contact is the direct damage/aggro trigger, and removing the contact chain removes the delayed attack"
+  },
+  "static_contract": {
+    "species_callback": "0x8004A180",
+    "hit_latch": "actor+0x5C bit 0x1000",
+    "bounded_writer": "0x8004B460/0x8004B464 in 0x8004ABF4",
+    "state1_reaction_tail": "clear latch, timer=25, double actor+0x1C and actor+0x24",
+    "observed_contact_state": 0,
+    "observed_path": "clear latch but skip the state1-only timer-25/motion-doubling tail"
+  },
+  "closure": {
+    "resolved": [
+      "ordinary roaming/state cycling",
+      "berry contact rather than Square input as the direct trigger",
+      "exact latch writer and callback consumer",
+      "damage timer value and countdown",
+      "148-frame contact-to-attack-state delay",
+      "explicit-Interpreter no-contact causal control",
+      "Thumper-spawned allocation, activation, motion, and adjacent-slot negative control"
+    ],
+    "bounded_exclusions": [
+      "pixel/exact collision-volume geometry belongs the shared collision subsystem",
+      "full pursuit-vector arithmetic after state 1 has minimal additional return for D07 closure"
+    ],
+    "movie_required": false,
+    "cold_boot_required": false,
+    "recommendation": "move to another unfinished Phase 4 row"
+  },
+  "evidence": {
+    "original_state_trace_sha256": "5b36edd76527ab1d6bd9f2877355a0c615f496e54c59e7217b869dd230bb73da",
+    "original_flags_trace_sha256": "0058c03017b6d613f59dc635791bcee3c273b52244929a94d129a36e885371ce",
+    "original_timer_trace_sha256": "d015eb07543df2f193bec3fb3463a562de8d38268f04deedad96c9d57a72b035",
+    "original_exec_trace_sha256": "77f5c3d265a21cf7ffe715e351c9ecf193ef771c14e6e7418d6f282808616bcc",
+    "control_state_trace_sha256": "1cc67a967933f815baecbde75daceb57f837ae3f1816ef6914591bda7005ac64",
+    "control_flags_trace_sha256": "4681be44855c73dea7d65e4453a41a500615b88243ea6be45a364a3f663c2a00",
+    "control_timer_trace_sha256": "34507507de421c8eb2a237de5515b61b903d3cd908d6c9a148889f45e2efadca",
+    "control_exec_trace_sha256": "8315ecf7fdb260ee08f8a52f467a1bc2f0dbf73097bfc40c5fbefda0abd3837d"
+  }
+}

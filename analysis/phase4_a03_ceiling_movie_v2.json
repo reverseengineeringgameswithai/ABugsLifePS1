@@ -1,0 +1,101 @@
+{
+  "schema": "phase4_a03_ceiling_movie_v2_v1",
+  "row": "A03_jump",
+  "recorded_artifact": {
+    "movie": "movies/Phase4/Interpreter/A03_ceiling_contact_v2.movie.json",
+    "movie_sha256": "04320a268ecbf412c0c7f5c702a4d4aa7ad6449fc13fd4e68c26461226cb465a",
+    "state": "movies/Phase4/Interpreter/A03_ceiling_contact_v2.movie.sav",
+    "state_sha256": "5dbeff5d02e1e391a251a4c55f55dc69f740911405f3c9ebff5180fb38af9baa",
+    "movie_format": 4,
+    "input_frames": 504,
+    "start_frame": 162403,
+    "armed_while_paused": false
+  },
+  "runtime_identity": {
+    "execution_mode": "Interpreter",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "media_serial": "SCUS-94288",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "overlays": []
+  },
+  "method": {
+    "playback": "normal-speed debugger.resume plus movie.status polling",
+    "fast_forward": false,
+    "turbo": false,
+    "instrumentation_armed_after_state_load": true,
+    "movie_reproducible": true,
+    "phase_delay_owed": false,
+    "movie_truncated": false,
+    "analysis": "C reducer over pristine-ASM execTrace and access-log streams",
+    "reducer": "tools/phase4_a03_movie_trace.c",
+    "reducer_sha256": "735b84d8817f2102499cbc52036b11d31773639751056d75a199896b56254970"
+  },
+  "trace_counts": {
+    "jump_admissions": 2,
+    "vertical_events": 255,
+    "resolver_endpoint_events": 1706,
+    "resolver_start_events": 1085,
+    "polygon_returns": 83,
+    "retained_winners": 24,
+    "player_y_writes": 339,
+    "all_streams_untruncated": true
+  },
+  "control_jump": {
+    "start_frame": 162448,
+    "base_y": -187981,
+    "apex_y": -208077,
+    "apex_frame": 162468,
+    "raw_render_y_gain": 20096,
+    "entry_displacement": 3200,
+    "recurrence_height": 16896,
+    "returned_near_base": true,
+    "velocity_apex_seen": true
+  },
+  "ceiling_jump": {
+    "start_frame": 162714,
+    "base_y": -187329,
+    "apex_y": -198209,
+    "apex_frame": 162718,
+    "raw_render_y_gain": 10880,
+    "truncation_vs_control_recurrence": 9216,
+    "returned_near_base": true,
+    "velocity_apex_seen": true
+  },
+  "causal_ceiling_contact": {
+    "frame": 162720,
+    "cycle": 92132163139,
+    "plane_pointer": "0x800f1d04",
+    "sector": 166,
+    "normal": [-777, 16363, -288],
+    "d_start": 219,
+    "d_end": -1827,
+    "dominant_positive_ny": true,
+    "polygon_true": true,
+    "retained_winner": true
+  },
+  "confound_controls": {
+    "ceiling_endpoint_events": 243,
+    "positive_ny_wall_events_excluded": 216,
+    "first_jump_is_uninterrupted_control": true,
+    "same_movie_same_state": true,
+    "landing_after_truncated_jump": true
+  },
+  "evidence_hashes": {
+    "jump_events": "5d4675a20f31c279ee4aa3cbd900838bef8ea590e552255ea7d1124eadf28148",
+    "vertical_events": "5da4e2ba4b376d22bf4cc32bd15a77d12871e94f6e3933bb9a9100249ef6d43b",
+    "endpoint_events": "11af99f76b0bfa4f73e1d0f2aaf795fc14ae413432d8bd8faacd3b0eab8bd3e6",
+    "start_events": "e26a36ac650e7f4eee551aced2dd8bdaa8ab367d86c6bf13132d0c81a687eabc",
+    "polygon_events": "a1753bb4e8bcf993d69e89ca377d511138d3a4313525e344ae975dc95da82eb9",
+    "retained_winner_events": "2ab56f59f5d019c53dd698f86276f78f2683bd9a3019cf57a36e4ac8d00a698d",
+    "player_y_writes": "4cec260eefeef02a78c5dcbb783b340070865ec91c5e9ca0b5c329a2a2fdd41b",
+    "c_reduction": "e3208f2b73b6a241688785ce21760d3aa9d7bb1e3e756837f31a58e8a63fa7c6"
+  },
+  "observation": "The second held jump rose less than the uninterrupted control, encountered a native dominant-positive-Y collision plane, returned through the polygon test, retained that plane as the winning collision, and subsequently landed.",
+  "inference": "Natural terrain ceiling contact truncates upward travel without changing the jump recurrence law that produced the control trajectory.",
+  "causal_confirmation": "The accepted plane crosses from d_start >= 0 to d_end < 0 during ascent, has polygon_true and retained_winner set, and coincides with the measured truncated trajectory.",
+  "closure_gate": "PASS",
+  "disposition": "bounded_exhausted",
+  "remaining_direct_behavior": [],
+  "control_plane_note": "This closes A03's direct behavior requirement. It does not by itself claim closure of any repository-wide Phase 4 queue, debt, campaign, or fixture gate."
+}

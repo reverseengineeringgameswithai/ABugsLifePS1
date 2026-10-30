@@ -1,0 +1,464 @@
+{
+ "row": "D17_bird",
+ "question": "why some hits are healed back, and what the 0x800B441C counter gates",
+ "movie": "movies/Phase4/Interpreter/D17_Goldberry.movie.json",
+ "static_basis": {
+  "restore_gate": "LEVEL01/LEVEL1.BIN 0x800B3F5C: damage must be exactly 3; 0x800B3F70: [0x800A6597] must equal 3; then 0x800B3F8C restores HP to the reference",
+  "accept_path": "0x800B3FA4: a -4 hit matches reference-4, sets the hit flag, plays sound 103, and updates the reference at 0x800B3FC4",
+  "counter_use": "0x800B3E50 reads 0x800B441C; while < 5 it writes 0xFFFDCFF0 into the bird's anchor Y (+0x2C) and target Y (+0x38) and clears flag bit 0x02 -- the launch-high, capped at 5"
+ },
+ "frames": 5674,
+ "bird_addr": "0x800A02A8",
+ "berry_index_at_settle": 0,
+ "final_playback_index": 0,
+ "event_total": 2131,
+ "ring_truncated": false,
+ "by_field": {
+  "0x800A02D4": {
+   "label": "bird anchor Y",
+   "writes": 2079,
+   "writer_pcs": [
+    [
+     "0x800b3eec",
+     968
+    ],
+    [
+     "0x800b3e78",
+     961
+    ],
+    [
+     "0x800b42c8",
+     150
+    ]
+   ],
+   "values": [
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464,
+    4294906464
+   ]
+  },
+  "0x800A0316": {
+   "label": "bird hp",
+   "writes": 27,
+   "writer_pcs": [
+    [
+     "0x800590e4",
+     17
+    ],
+    [
+     "0x800b3f8c",
+     9
+    ],
+    [
+     "0x800b3e18",
+     1
+    ]
+   ],
+   "values": [
+    50,
+    47,
+    50,
+    47,
+    50,
+    47,
+    50,
+    47,
+    50,
+    47,
+    50,
+    47,
+    50,
+    47,
+    50,
+    47,
+    50,
+    47,
+    50,
+    46,
+    42,
+    38,
+    34,
+    30,
+    26,
+    22,
+    18
+   ]
+  },
+  "0x800A6597": {
+   "label": "equipped berry index",
+   "writes": 2,
+   "writer_pcs": [
+    [
+     "0x800542c8",
+     1
+    ],
+    [
+     "0x800542b4",
+     1
+    ]
+   ],
+   "values": [
+    1,
+    3
+   ]
+  },
+  "0x800B441C": {
+   "label": "knock-up counter",
+   "writes": 6,
+   "writer_pcs": [
+    [
+     "0x800b3f98",
+     5
+    ],
+    [
+     "0x800b3e20",
+     1
+    ]
+   ],
+   "values": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ]
+  },
+  "0x800B4420": {
+   "label": "reference hp",
+   "writes": 17,
+   "writer_pcs": [
+    [
+     "0x800b3fc4",
+     17
+    ]
+   ],
+   "values": [
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    46,
+    42,
+    38,
+    34,
+    30,
+    26,
+    22,
+    18
+   ]
+  }
+ },
+ "findings": {
+  "berry_index_timeline": [
+   {
+    "f": 164286,
+    "v": 1
+   },
+   {
+    "f": 164826,
+    "v": 3
+   }
+  ],
+  "berry_index_distinct": [
+   1,
+   3
+  ],
+  "hits": [
+   {
+    "f": 165980,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 165982,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166246,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166248,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166490,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166492,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166652,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166654,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166744,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166746,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166774,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166776,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166776,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166778,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166826,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166828,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166828,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 47,
+    "delta": -3,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166830,
+    "pc": "0x800b3f8c",
+    "from": 47,
+    "to": 50,
+    "delta": 3,
+    "berry_index": 3,
+    "kind": "RESTORE"
+   },
+   {
+    "f": 166930,
+    "pc": "0x800590e4",
+    "from": 50,
+    "to": 46,
+    "delta": -4,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166954,
+    "pc": "0x800590e4",
+    "from": 46,
+    "to": 42,
+    "delta": -4,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 166982,
+    "pc": "0x800590e4",
+    "from": 42,
+    "to": 38,
+    "delta": -4,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 167014,
+    "pc": "0x800590e4",
+    "from": 38,
+    "to": 34,
+    "delta": -4,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 167058,
+    "pc": "0x800590e4",
+    "from": 34,
+    "to": 30,
+    "delta": -4,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 167090,
+    "pc": "0x800590e4",
+    "from": 30,
+    "to": 26,
+    "delta": -4,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 167132,
+    "pc": "0x800590e4",
+    "from": 26,
+    "to": 22,
+    "delta": -4,
+    "berry_index": 3,
+    "kind": "damage"
+   },
+   {
+    "f": 167168,
+    "pc": "0x800590e4",
+    "from": 22,
+    "to": 18,
+    "delta": -4,
+    "berry_index": 3,
+    "kind": "damage"
+   }
+  ],
+  "damage_deltas_to_berry_indices": {
+   "-3": [
+    3
+   ],
+   "-4": [
+    3
+   ]
+  },
+  "restore_count": 9,
+  "knockup_counter_values": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "verdict": "NOT SEPARABLE from this fixture: -3 indices [3], -4 indices [3]. The berry index did not change in a way that isolates the two damage values, so the static gate stands unconfirmed live."
+ }
+}

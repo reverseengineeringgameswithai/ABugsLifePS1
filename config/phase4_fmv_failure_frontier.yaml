@@ -1,0 +1,126 @@
+schema: abl-phase4-fmv-failure-frontier-config/1
+campaign: fmv_playback
+row: E15_fmv
+dimension: lifecycle
+lane: static
+artifact: analysis/phase4_fmv_failure_frontier.json
+semantic_source: src_re/fmv_failure_frontier.c
+authority:
+  - {path: REBUILD/files/SCUS_942.88, classification: pristine_authority}
+  - {path: REBUILD/files/FMV/FMV.BIN, classification: pristine_authority}
+native_event_delivery:
+  registration:
+    event_class: 0xF0000003
+    event_spec: 0x00008000
+    callback: 0x80045D5C
+    callback_store: 0x80082484
+  deliver_event_target: 0x8006C3AC
+  expected_resident_direct_callers:
+    - {site: 0x8006BD20, owner: spu_fidma_body, event_class: 0xF0000009, event_spec: 0x00000020}
+    - {site: 0x8006D6C4, owner: def_cbsync, event_class: 0xF0000003, event_spec: 0x00000020}
+    - {site: 0x8006D6EC, owner: def_cbready, event_class: 0xF0000003, event_spec: 0x00000040}
+    - {site: 0x8006D714, owner: def_cbread, event_class: 0xF0000003, event_spec: 0x00000040}
+  boundary: >-
+    No resident direct DeliverEvent call matches the registered class/spec
+    pair. The producer beyond that exhaustive direct-call surface remains an
+    unresolved BIOS/interrupt-service boundary; static code does not identify
+    its exact instruction or native delivery frequency.
+failure_paths:
+  file_open:
+    player_predicate: 0x800B6DE8
+    failure_target: 0x800B6E4C
+    diagnostic_call: 0x800B6E54
+    shared_initialization_call: 0x800B6E68
+    helper: [0x800B8C8C, 0x800B8D88]
+    helper_failure_returns: [0x800B8D14, 0x800B8D2C]
+  decode_poll_timeout:
+    function: [0x800B6CA4, 0x800B6D68]
+    direct_callers: [0x800B72A0]
+    record_base: 0x800CABE0
+    record_base_materialization: 0x800B709C
+    player_base_preservation: 0x800B70D4
+    caller_argument_move: 0x800B729C
+    layout_authorities:
+      - {path: config/phase4_fmv.yaml, yaml_path: typed_state.player_boundary.structures}
+      - {path: analysis/phase4_fmv_static_owners.json, json_path: player_typed_state.structures}
+    fields:
+      active_rect_index: {offset: 0x20, type: u32, domain: [0, 1]}
+      rect_bank: {offset: 0x10, slots: 2, stride: 8, layout: [s16_x, s16_y, s16_w, s16_h]}
+      present_rect: {offset: 0x24, layout: [s16_x, s16_y, s16_w, s16_h]}
+      rect_ready: {offset: 0x2C, type: u32, domain: [0, 1]}
+    counter: 0x00800000
+    counter_semantics: decrement_before_test
+    already_ready_branch: 0x800B6CC4
+    exhausted_branch: 0x800B6CE8
+    diagnostic_call: 0x800B6CF8
+    timeout_ready_store: 0x800B6D04
+    active_index_boolean_inverse: 0x800B6D08
+    active_index_store: 0x800B6D0C
+    coordinate_copies:
+      x: {load: 0x800B6D18, source_record_offset: 0x10, store: 0x800B6D2C, destination_record_offset: 0x24}
+      y: {load: 0x800B6D30, source_record_offset: 0x12, store: 0x800B6D38, destination_record_offset: 0x26}
+    poll_branch: 0x800B6D44
+    final_ready_clear: 0x800B6D4C
+    return: 0x800B6D60
+  cd_submit_retry:
+    getlocp_retry_branch: 0x800B7044
+    read2_retry_branch: 0x800B7054
+selected_control:
+  escalation_id: P4-ITER109-E15-FILE-OPEN-FAILURE-ROUTING
+  missing_fact_id: E15/file-open-failure-routing-outcome
+  anchor_movie: movies/Phase4/E15_fmv_skip.movie.json
+  anchor_movie_sha256: ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba
+  anchor_state: movies/Phase4/E15_fmv_skip.movie.sav
+  anchor_state_sha256: 851e8ebffa8b8417abb30ff0791ca4c1872a43cf06101247ee1ff97e4cdac417
+  overlay_resident_interval: {clock: movie_frame, start: 69, stop: 416}
+  code_write:
+    address: 0x800B6DE8
+    original_word: 0x12020018
+    replacement_word: 0x10000018
+  passive_window: {clock: movie_frame, start: 160, stop: 260}
+  precise_window: {clock: movie_frame, start: 170, stop: 240}
+  excluded_start_input_before: 334
+  claim_boundary: >-
+    The positive forces only the exact file-open failure branch after FMV.BIN
+    is resident; the negative retains pristine code. It tests failure-route
+    diagnostic and shared-initialization behavior, not a native failed handle,
+    missing retail file, malformed media, or user-visible policy.
+  falsifier: >-
+    Reject if any other word differs, the positive omits the diagnostic or
+    shared-initialization call, the native negative takes the failure route,
+    retained events truncate, or either same-anchor endpoint diverges outside
+    the declared branch consequence.
+next_lane: live
+dimension_promoted: false
+static_successor:
+  closed_sub_boundary: decode_timeout_recovery_coordinate_state_ownership
+  next_lane: static
+  packet_hypothesis: >-
+    Timeout copies the newly selected RECT slot's width/height into the
+    presentation RECT before clearing rect_ready and returning.
+  packet_falsifier: >-
+    Reject the packet hypothesis if the selected-slot loads or presentation
+    stores resolve to fields other than width/height in the authoritative
+    RECT layouts.
+  corrected_claim: >-
+    The pristine decode-poll helper has one direct player caller and one
+    conventional return. An already-ready record and a record made ready by
+    the decrement-before-test 0x00800000 poll both converge on the same final
+    rect-ready clear. Timeout emits the diagnostic, publishes ready one,
+    normalizes active_rect_index to old==0, copies the newly selected RECT
+    slot's raw 16-bit signed x/y coordinates into the presentation RECT, does
+    not write its width/height fields, and then clears ready before returning.
+  corrected_falsifier: >-
+    Reject if the function/caller frontier drifts, another exit bypasses the
+    final ready clear, the budget or decrement/test order changes, timeout
+    omits the ready publication, the active index is not old==0, the selected
+    RECT slot or x/y copy differs, either width/height destination is written,
+    the authoritative RECT layouts drift, the 0x800CABE0 pointer chain is
+    incomplete, or a load-bearing opcode/artifact/source mutation leaves the
+    focused guard green.
+  not_claimed:
+    - natural timeout frequency or trigger
+    - visible timeout behavior
+    - malformed-media policy
+    - CD retry behavior
+    - lifecycle or any other nine-dimension promotion

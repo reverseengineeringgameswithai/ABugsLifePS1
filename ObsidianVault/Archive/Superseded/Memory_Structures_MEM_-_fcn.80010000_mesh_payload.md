@@ -1,0 +1,61 @@
+---
+kind: archived_legacy_note
+archived: 2026-07-08
+original_path: ObsidianVault/Memory Structures/MEM - fcn.80010000 mesh payload.md
+aliases:
+  - "MEM - fcn.80010000 mesh payload"
+migration_action: convert_to_canon
+confidence: confirmed
+---
+
+# Archived Legacy Note
+
+- Original path: `ObsidianVault/Memory Structures/MEM - fcn.80010000 mesh payload.md`
+- Replacement/current location: `ObsidianVault/Canon/Memory/MEM_-_fcn.80010000_mesh_payload.md`
+- Archive reason: Existing memory-structure note; canonicalize with confidence/evidence fields.
+
+> This note is preserved for provenance. Do not treat its claims as current Canon unless a Canon note explicitly promotes them.
+
+## Original note
+
+---
+title: MEM - fcn.80010000 mesh payload
+type: memory-structure
+confidence: CONFIRMED
+tags: [memory, rendering, geometry, dat, g11, g27, g28]
+---
+
+# MEM — `fcn.80010000` mesh payload format
+
+> The per-object mesh format drawn by [[FUNC_80010000]]. DAT-backed; **Candidate A** of this format is the CONFIRMED editable visual terrain/floor (G28).
+
+## Layout (CONFIRMED — G11)
+```
+struct Payload {
+  u32      vertexCount;
+  Vertex   verts[vertexCount];   // stride 0xC
+  u16/...  commandStream[];       // after verts: 4 + count*0xc
+}
+struct Vertex {                   // stride 0xC
+  s16 x; s16 y; s16 z; s16 pad(=0); u32 attr;
+}
+```
+- Command stream: `ctrl` u16; `type = ctrl & 0x1f` → jump table `0x8001036C + type*8`. `type 0`=triangle (reads 3 vertex byte-offsets). `ctrl & 0x60` / `ctrl>>7` = shading/texture/color.
+- Payload band in DAT runtime: `[DATbase+0x8bd8 … +0x4f32c]`.
+
+## Candidate A (CONFIRMED editable visual terrain — G27/G28)
+| Field | Value |
+|-------|-------|
+| DAT offset | `0x188cc` |
+| Runtime | `0x801790c4` |
+| Vertex count | 83 |
+| Space | world-space, flat (flatness 0.154), 4502×4502, unique (not instanced) |
+| **Edit lever** | int16 **Y at vert+0xa** (G13/G14 say `vert+0xa`; G28 built `DAT 0x18992` +1024) |
+
+Lowering Candidate A's Y reshapes the **visible** floor (G28 operator-tested: terrain caves inward, angle-dependent; Flik/objects still render; **collision did NOT follow**). Gouraud 0x3C tiles → Y-edit reshades (low=yellow, high=purple); big edit garbages (frustum); clean range ≈ ±0x20…0x60.
+
+## Related
+- Findings: [[Finding - Candidate A is DAT-backed visual terrain]] · [[Finding - Visible ground from DAT verts]] · [[Finding - fcn.80010000 payload format]]
+- Functions: [[FUNC_80010000]] · [[FUNC_8001EA6C]] · [[FUNC_80019934]]
+- Experiments: [[Experiment - G28 Candidate A floor Y]] · [[Experiment - G14 payload vertex grass]] · [[Experiment - G16 emitted payload vertex wall]]
+- Tool: `tools/analyze_g27_floor_candidates.py` · Fixture: [[Fixture - g30 openfloor]]

@@ -1,0 +1,80 @@
+{
+  "schema": "abl-phase4-e09-static-v1",
+  "row": "E09_grain_gates",
+  "date": "2026-08-02",
+  "method": "C-decoded MIPS from SHA-validated capsule RAM plus checked-in hand ASM",
+  "level02": {
+    "update_region": "0x800B4400..0x800B4648",
+    "grain_u8": "0x800A65A1",
+    "table": {
+      "address": "0x800B4C1C",
+      "count": 9,
+      "stride": 20,
+      "fields": ["state", "object_id", "threshold", "x", "z"],
+      "records": [
+        {"address":"0x800B4C1C","id":26,"threshold":20,"x":193754,"z":131692},
+        {"address":"0x800B4C30","id":23,"threshold":10,"x":505642,"z":-451306},
+        {"address":"0x800B4C44","id":24,"threshold":10,"x":832302,"z":291075},
+        {"address":"0x800B4C58","id":22,"threshold":10,"x":509676,"z":510143},
+        {"address":"0x800B4C6C","id":25,"threshold":20,"x":833246,"z":612273},
+        {"address":"0x800B4C80","id":21,"threshold":20,"x":1142934,"z":1308289},
+        {"address":"0x800B4C94","id":28,"threshold":30,"x":1471643,"z":1410369},
+        {"address":"0x800B4CA8","id":20,"threshold":10,"x":1202034,"z":1986285},
+        {"address":"0x800B4CBC","id":27,"threshold":30,"x":1634925,"z":2534812}
+      ]
+    },
+    "closed_state": 4295,
+    "threshold_rule": "grain >= record.threshold",
+    "success_proximity": "(((player_x-record_x)>>8)^2 + ((player_z-record_z)>>8)^2) < 10000",
+    "success": {
+      "state_sequence": "4295 -> 4200 -> 4060 -> ... -> 1680",
+      "transition_count": 19,
+      "frame_boundary_cadence": 2,
+      "writer_initial": "0x800B4530",
+      "writer_step": "0x800B4624",
+      "step": -140,
+      "stop_guard": "state < 1801",
+      "sfx": {"helper":"0x80050994","id":63},
+      "geometry_helper": "0x80029030",
+      "geometry_args": "(object_id, 4200, new_state, 4200)",
+      "paired_records": [0, 4]
+    },
+    "denial": {
+      "feedback_proximity": "same planar metric < 1600",
+      "helper": "0x80050C40",
+      "id": 76,
+      "cooldown_address": "0x800B4D10",
+      "arm_rule": "next byte from cursor 0x800822F4 plus 60",
+      "decrement": "one per positive overlay update",
+      "observed_frame_boundary_cadence": 2
+    }
+  },
+  "level07": {
+    "gate_function": "0x800B3D84..0x800B3F3C",
+    "grain_reader": "0x800B3E04",
+    "state_table": {"address":"0x800B4570","count":3,"stride":4,"closed":-1,"open_terminal":0},
+    "threshold_rule": "grain >= 10*(gate_index+1)",
+    "proximity_helper": "0x800524B8",
+    "proximity_rule": "(((player_x-gate_x)>>8)^2 + ((player_z-gate_z)>>8)^2) < radius^2",
+    "gates": [
+      {"index":0,"threshold":10,"x":-71129,"z":-184314,"radius":80,"delta_a":-32,"delta_b":32,"object_a":2,"object_b":3},
+      {"index":1,"threshold":20,"x":354031,"z":35256,"radius":90,"delta_a":44,"delta_b":-34,"object_a":4,"object_b":5},
+      {"index":2,"threshold":30,"x":582271,"z":310212,"radius":100,"delta_a":-28,"delta_b":32,"object_a":0,"object_b":1}
+    ],
+    "success": {
+      "state_sequence_static": "-1 -> 32 -> 31 -> ... -> 0",
+      "sfx": {"helper":"0x80050994","id":63},
+      "geometry_helper": "0x800292DC",
+      "geometry_role": "translate two authored object channels by the gate-specific deltas each update"
+    },
+    "denial": {
+      "helper": "0x80050C40",
+      "id": 76,
+      "cooldown_address": "0x800B456C",
+      "arm_rule": "next byte from cursor 0x800822F4 plus 60",
+      "decrement": "one per positive overlay update",
+      "observed_frame_boundary_cadence": 2
+    },
+    "runtime_boundary": "retained capsules prove denial at grain 9/19/29; successful state 32->0 is static-only"
+  }
+}

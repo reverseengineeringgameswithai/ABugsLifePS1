@@ -1,0 +1,70 @@
+row: D19
+mechanic: molt_boss_battle_arena
+status: partial_high_value_bounded_exhausted
+date: 2026-08-03
+
+identity:
+  game_serial: SCUS-94288
+  media: pristine_SCUS-94288
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  execution_mode: Interpreter
+
+fixture:
+  movie: movies/Phase4/Interpreter/D19.movie.json
+  movie_sha256: d3e8105ba0e2945fb1d9779bb1a4f091528f39dcdff20049b940ea62023bac5b
+  state: movies/Phase4/Interpreter/D19.movie.sav
+  state_sha256: 1b8a1d52911d4160fb1cd3ed93dc354e6b0c5a216f564c38d96f7a15d3b730f4
+  movie_version: 4
+  armed_while_paused: false
+  phase_delay_owed: false
+  anchor: state
+  playback_driver: debugger.resume_plus_status_poll
+  fast_forward: false
+
+assertions:
+  clean_normal_speed:
+    reproducible: true
+    final_emulator_frame: 15651
+    final_cycle: 8861074013
+    outcome: level_complete
+    screenshot_sha256: f33255a4f3503c4ec9781308ca11a64299343295164ccc7315e40c43b9236acf
+  instrumented_flight_check:
+    reproducible: true
+    final_emulator_frame: 15651
+    final_cycle: 8861074013
+    clean_armed_sampled_domains_identical: [actor_pool, player, overlay_state, transition_state, screenshot]
+  mechanic:
+    actor_address: 0x8009FF90
+    actor_id: 29
+    initial_hp: 50
+    accepted_damage_per_hit: 2
+    accepted_hits_to_threshold: 15
+    defeat_threshold: 20
+    crowd_contact_type: 71
+    crowd_allocator_pc: 0x800B43F8
+    crowd_allocations_in_fixture: 31
+    damage_writer: 0x800590E4
+    rollback_writer: 0x800B3CC4
+    final_accepted_frame: 13589
+    transition_latch: 0x800823A0
+    transition_ticks: 150
+
+evidence:
+  static_tool: tools/phase4_d19_molt.c
+  semantic_c: src_re/molt_boss.c
+  analysis: analysis/phase4_d19_molt.json
+  experiment: ObsidianVault/Experiments/EXP_2026-08-03_phase4_d19_molt.md
+  canon: ObsidianVault/Canon/Systems/SYS_molt_boss.md
+  external_root: ~/Downloads/ABL-external-evidence/phase4/D19_molt_interpreter_20260803
+
+closure:
+  result: partial_high_value_bounded_exhausted
+  disposition: move_on
+  cold_boot_required: false
+  new_interpreter_movie_needed: false
+  deferred_low_return:
+    - exhaustive_rng_distribution_for_all_crowd_origins
+    - presentation_exact_animation_and_audio_timing
+    - alternate_attempt_and_death_restart_matrix
+    - compiler_matched_overlay_source

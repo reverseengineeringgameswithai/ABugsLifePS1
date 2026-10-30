@@ -1,0 +1,500 @@
+{
+  "_comment": "Generated from hash-verified pristine bytes, one closed retained offline query and the bounded saturated runtime result. No copyrighted input bytes are retained.",
+  "campaign": "fmv_playback",
+  "claim_boundary": {
+    "complete_writer_sequence_closed": false,
+    "dimension_promoted": false,
+    "exact_claim": "In pristine FMV.BIN, 0x800B6BF0 copies the low halfword of cached decoded height 0x800B9A5C through the player-boundary pointer rooted at 0x800CABE0 into present_rect_h 0x800CAC0A. Resident 0x80064178 is the downstream PsyQ _dws RECT-height clamp reached through LoadImage's driver table.\n",
+    "falsifier": "Fail if either caller does not pass 0x800CABE0, the helper does not preserve that argument, the source or destination differs, any direct FMV.BIN caller is unclassified, the resident vtable does not resolve LoadImage to _dws, or either retained writer PC remains unowned.\n",
+    "next_lane": "live",
+    "next_method": "Do not repeat the broad 0x800CAC0A write watch. If complete ordered ownership remains load-bearing, predeclare a same-anchor functionTrace restricted to 0x800B6A7C..0x800B6C24 over movie frames 160..260 with 32 events maximum. This excludes the high-volume downstream 0x80064178 SDK clamp; the prior three retained calls predict six balanced events, while saturation or an unbalanced call is the explicit falsifier.\n",
+    "not_claimed": [
+      "a complete unsaturated runtime writer sequence after retained event 32",
+      "a finite total count of _dws invocations in the prior replay window",
+      "GPU or DMA writes outside the retained CPU writer domain",
+      "lifecycle or any other nine-dimension promotion",
+      "matching C for FMV.BIN, _dws, or gpu_present_drawotag_vsync"
+    ]
+  },
+  "dimension": "lifecycle",
+  "falsifier": {
+    "checks": {
+      "LoadImage_driver_table_resolves_dws": true,
+      "all_retained_writer_pcs_owned": true,
+      "both_player_callers_pass_exact_boundary_base": true,
+      "direct_caller_census_exhaustive": true,
+      "helper_preserves_argument_into_commit_function": true,
+      "source_and_three_destinations_exact": true
+    },
+    "claim": "In pristine FMV.BIN, 0x800B6BF0 copies the low halfword of cached decoded height 0x800B9A5C through the player-boundary pointer rooted at 0x800CABE0 into present_rect_h 0x800CAC0A. Resident 0x80064178 is the downstream PsyQ _dws RECT-height clamp reached through LoadImage's driver table.\n",
+    "outcome": "survived"
+  },
+  "functions": {
+    "LoadImage": {
+      "end": "0x80062924",
+      "name": "LoadImage",
+      "sha256": "3454ab115c916484932e6436c8ec38f1f74850d3b6604626dff72b969e59f29b",
+      "size": 100,
+      "start": "0x800628C0"
+    },
+    "_dws": {
+      "end": "0x80064308",
+      "name": "_dws",
+      "sha256": "182d75e1826bf5d0592175baa8a502c6b7a3b7ecfc3c38271fa72414a0fef598",
+      "size": 572,
+      "start": "0x800640CC"
+    },
+    "fmv_decode_commit_dimensions": {
+      "end": "0x800B6C24",
+      "name": "fmv_decode_commit_dimensions",
+      "sha256": "2529f62e28c9ccd986e93c57fca8aa18adf345553eac570113077b14d22949ee",
+      "size": 424,
+      "start": "0x800B6A7C"
+    },
+    "fmv_decode_one_record": {
+      "end": "0x800B6CA4",
+      "name": "fmv_decode_one_record",
+      "sha256": "9d91718d072e2af77e13cff008ed3a935655e8facd4bb53f50ff0febd2c5d074",
+      "size": 128,
+      "start": "0x800B6C24"
+    },
+    "fmv_present_upload": {
+      "end": "0x800B6A7C",
+      "name": "fmv_present_upload",
+      "sha256": "180d5f6b5088bb6619687089c2793d99cc09eb2a2ab3ad5d52881e0930022eb6",
+      "size": 1096,
+      "start": "0x800B6634"
+    },
+    "gpu_present_drawotag_vsync": {
+      "end": "0x80064998",
+      "name": "gpu_present_drawotag_vsync",
+      "sha256": "db9809da457e55caf4e1ccb5c974c5f9e99d5d626bb45ddd4a9d847fcee6e4c0",
+      "size": 736,
+      "start": "0x800646B8"
+    }
+  },
+  "generated": "2026-07-28",
+  "inputs": {
+    "config": {
+      "path": "config/phase4_fmv_present_rect_height_static_ownership.yaml",
+      "sha256": "bcbe03c763903eb138be4d3b2ca1e896c8660c340c4f4811805b5ea4cc95677d"
+    },
+    "fmv_bin": {
+      "identity_verified": true,
+      "path": "REBUILD/files/FMV/FMV.BIN",
+      "sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+      "size": 509800
+    },
+    "prior_evidence": {
+      "analysis/phase4_fmv_present_rect_height_writer_result.json": "59fb66dcf293d9549e52715ffafc0f77615e213d06c48b281ecdbe10aebe7aa1",
+      "analysis/phase4_fmv_static_owners.json": "b8254fe5988a99d9d72c3760d16ad4ee51d23f39a7af0b78ee759a96f36659b6"
+    },
+    "resident_executable": {
+      "identity_verified": true,
+      "path": "REBUILD/files/SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "size": 471040
+    }
+  },
+  "lane": "static",
+  "offline_localization": {
+    "external_index": {
+      "bytes": 16060589,
+      "domains": [
+        "block_flow",
+        "ram",
+        "registers",
+        "vram",
+        "spu"
+      ],
+      "sha256": "e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab"
+    },
+    "finding": "The retained frame-boundary index contains no exact symbol/address lead for either writer, so pristine static code owns localization.",
+    "output": {
+      "path": "~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-043819-3325038-r2/iteration-2-receipts/outputs/fmv-height-owner-index-search.json",
+      "sha256": "53d13c7e5d8b00fbbe625108628271922055f8c50f3c1c97f216a47e8fa303b6",
+      "zero_match_terms": [
+        "0x80064178",
+        "0x800B6BF0",
+        "0x800CAC02",
+        "0x800CAC0A",
+        "cached_height",
+        "presentation_rect"
+      ]
+    },
+    "receipt": {
+      "command": [
+        "python3",
+        "tools/phase4_offline_receipt_query.py",
+        "--input",
+        "@run/iteration-2-receipts/inputs/fmv-lifecycle-v2.index.json",
+        "--output",
+        "@run/iteration-2-receipts/outputs/fmv-height-owner-index-search.json",
+        "--query-json",
+        "@query"
+      ],
+      "exit_code": 0,
+      "path": "~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-043819-3325038-r2/iteration-2-receipts/offline-fmv-height-owner-index.receipt.json",
+      "reader_sha256": "00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846",
+      "sha256": "4d3e3d60016374f2386c3f30173fbb9f94dc4928fa2d9375ded80bfdd2549d5e",
+      "stdout_sha256": "bf6d15363b59d2dd48e0d3cc4ff9a4e4577ce43de049899bcdde9416a6c6057c"
+    }
+  },
+  "overlay_cached_height_publish": {
+    "base_materialization": [
+      {
+        "mnemonic": "lui s0,0x800d",
+        "pc": "0x800B7098",
+        "word": "0x3C10800D"
+      },
+      {
+        "mnemonic": "addiu s0,s0,-21536",
+        "pc": "0x800B709C",
+        "word": "0x2610ABE0"
+      }
+    ],
+    "cached_height_load": {
+      "loaded_view": "u16",
+      "mnemonic": "lhu a0,-26020(a0)",
+      "pc": "0x800B6BE0",
+      "source_address": "0x800B9A5C",
+      "source_type": "u32 containing zero-extended u16",
+      "word": "0x94849A5C"
+    },
+    "commit_base_binding": {
+      "mnemonic": "addu s1,a0,zero",
+      "pc": "0x800B6A84",
+      "word": "0x00808821"
+    },
+    "direct_callers": {
+      "0x800B6A7C": [
+        {
+          "mnemonic": "jal 0x800b6a7c",
+          "pc": "0x800B6C34",
+          "word": "0x0C02DA9F"
+        }
+      ],
+      "0x800B6C24": [
+        {
+          "mnemonic": "jal 0x800b6c24",
+          "pc": "0x800B70A0",
+          "word": "0x0C02DB09"
+        },
+        {
+          "mnemonic": "jal 0x800b6c24",
+          "pc": "0x800B7280",
+          "word": "0x0C02DB09"
+        }
+      ],
+      "unclassified": []
+    },
+    "first_helper_call": {
+      "argument_delay_slot": {
+        "mnemonic": "addu a0,s0,zero",
+        "pc": "0x800B70A4",
+        "word": "0x02002021"
+      },
+      "call": {
+        "mnemonic": "jal 0x800b6c24",
+        "pc": "0x800B70A0",
+        "word": "0x0C02DB09"
+      }
+    },
+    "height_stores": [
+      {
+        "destination": "0x800CABFE",
+        "field": "rect_bank_1_h",
+        "mnemonic": "sh a0,30(s1)",
+        "offset": "0x1E",
+        "pc": "0x800B6BE8",
+        "word": "0xA624001E"
+      },
+      {
+        "destination": "0x800CABF6",
+        "field": "rect_bank_0_h",
+        "mnemonic": "sh a0,22(s1)",
+        "offset": "0x16",
+        "pc": "0x800B6BEC",
+        "word": "0xA6240016"
+      },
+      {
+        "destination": "0x800CAC0A",
+        "field": "present_rect_h",
+        "mnemonic": "sh a0,42(s1)",
+        "offset": "0x2A",
+        "pc": "0x800B6BF0",
+        "word": "0xA624002A"
+      }
+    ],
+    "helper_argument_preservation": {
+      "mnemonic": "addu s0,a0,zero",
+      "pc": "0x800B6C2C",
+      "word": "0x00808021"
+    },
+    "helper_to_commit_call": {
+      "mnemonic": "jal 0x800b6a7c",
+      "pc": "0x800B6C34",
+      "word": "0x0C02DA9F"
+    },
+    "loop_base_preservation": {
+      "mnemonic": "addu s3,s0,zero",
+      "pc": "0x800B70D4",
+      "word": "0x02009821"
+    },
+    "player_boundary_base": "0x800CABE0",
+    "second_helper_call": {
+      "argument_delay_slot": {
+        "mnemonic": "addu a0,s3,zero",
+        "pc": "0x800B7284",
+        "word": "0x02602021"
+      },
+      "call": {
+        "mnemonic": "jal 0x800b6c24",
+        "pc": "0x800B7280",
+        "word": "0x0C02DB09"
+      }
+    }
+  },
+  "resident_sdk_normalization": {
+    "LoadImage_call": {
+      "argument_delay_slot": {
+        "mnemonic": "addu a0,s0,zero",
+        "pc": "0x800B6888",
+        "word": "0x02002021"
+      },
+      "call": {
+        "mnemonic": "jal 0x800628c0",
+        "pc": "0x800B6884",
+        "word": "0x0C018A30"
+      },
+      "rect_address": "0x800CAC04"
+    },
+    "LoadImage_dispatch": {
+      "callback_argument_load": {
+        "mnemonic": "lw a0,32(v0)",
+        "pc": "0x800628F8",
+        "word": "0x8C440020"
+      },
+      "driver_2": "0x800646B8",
+      "driver_8": "0x800640CC",
+      "driver_pointer_address": "0x8007FBC0",
+      "driver_pointer_load": {
+        "mnemonic": "lw v0,-1088(v0)",
+        "pc": "0x800628F0",
+        "word": "0x8C42FBC0"
+      },
+      "driver_pointer_value": "0x8007FB80",
+      "indirect_call": {
+        "mnemonic": "jalr v0",
+        "pc": "0x80062904",
+        "word": "0x0040F809"
+      },
+      "rect_forward": {
+        "mnemonic": "addu a1,s0,zero",
+        "pc": "0x800628E8",
+        "word": "0x02002821"
+      },
+      "vtable": [
+        {
+          "index": 0,
+          "value": "0x8001BF04"
+        },
+        {
+          "index": 1,
+          "value": "0x80064694"
+        },
+        {
+          "index": 2,
+          "value": "0x800646B8"
+        },
+        {
+          "index": 3,
+          "value": "0x80063E70"
+        },
+        {
+          "index": 4,
+          "value": "0x8006458C"
+        },
+        {
+          "index": 5,
+          "value": "0x800645C8"
+        },
+        {
+          "index": 6,
+          "value": "0x80064618"
+        },
+        {
+          "index": 7,
+          "value": "0x80064308"
+        },
+        {
+          "index": 8,
+          "value": "0x800640CC"
+        },
+        {
+          "index": 9,
+          "value": "0x80064998"
+        }
+      ],
+      "wrapper_load": {
+        "mnemonic": "lw v0,8(v0)",
+        "pc": "0x800628FC",
+        "word": "0x8C420008"
+      }
+    },
+    "_dws_clamp": {
+      "height_load": {
+        "mnemonic": "lh a1,6(s1)",
+        "pc": "0x80064130",
+        "word": "0x86250006"
+      },
+      "height_store": {
+        "classification": "downstream SDK bounds normalization",
+        "field": "RECT.h",
+        "mnemonic": "sh a0,6(s1)",
+        "pc": "0x80064178",
+        "word": "0xA6240006"
+      },
+      "negative_clamp": {
+        "mnemonic": "addu a0,zero,zero",
+        "pc": "0x80064164",
+        "word": "0x00002021"
+      },
+      "rect_binding": {
+        "mnemonic": "addu s1,a0,zero",
+        "pc": "0x800640D4",
+        "word": "0x00808821"
+      },
+      "upper_bound_load": {
+        "mnemonic": "lh v0,-1074(v0)",
+        "pc": "0x80064144",
+        "word": "0x8442FBCE"
+      }
+    },
+    "present_rect_materialization": [
+      {
+        "mnemonic": "lui s0,0x800d",
+        "pc": "0x800B6874",
+        "word": "0x3C10800D"
+      },
+      {
+        "mnemonic": "addiu s0,s0,-21500",
+        "pc": "0x800B6878",
+        "word": "0x2610AC04"
+      }
+    ],
+    "queue_wrapper": {
+      "callback_binding": {
+        "mnemonic": "addu s3,a0,zero",
+        "pc": "0x800646C0",
+        "word": "0x00809821"
+      },
+      "direct_path_call": {
+        "mnemonic": "jalr s3",
+        "pc": "0x800647C4",
+        "word": "0x0260F809"
+      },
+      "direct_path_rect_argument": {
+        "mnemonic": "addu a0,s0,zero",
+        "pc": "0x800647C0",
+        "word": "0x02002021"
+      },
+      "rect_binding": {
+        "mnemonic": "addu s0,a1,zero",
+        "pc": "0x800646C8",
+        "word": "0x00A08021"
+      },
+      "ring_callback_store": {
+        "mnemonic": "sw s3,26072(at)",
+        "pc": "0x80064928",
+        "word": "0xAC3365D8"
+      },
+      "single_entry_callback_store": {
+        "mnemonic": "sw s3,0(v0)",
+        "pc": "0x800647DC",
+        "word": "0xAC530000"
+      },
+      "single_entry_rect_store": {
+        "mnemonic": "sw s0,-832(at)",
+        "pc": "0x800647E4",
+        "word": "0xAC30FCC0"
+      }
+    }
+  },
+  "row": "E15_fmv",
+  "runtime_writer_join": {
+    "capacity_reached": true,
+    "complete_sequence_closed": false,
+    "first_240_to_128_store": "0x800B6BF0",
+    "interpretation": "The transition is the FMV cached-height publish. The repeated resident store belongs to the downstream libgpu RECT clamp; event saturation still forbids a complete sequence claim.",
+    "pc_classification": {
+      "0x80064178": "resident PsyQ _dws clamp of the supplied RECT height",
+      "0x800b6bf0": "FMV.BIN cached-height publish through base 0x800CABE0 + 0x2A",
+      "0x800b6f18": "FMV.BIN direct initializer, constant 240"
+    },
+    "retained_event_capacity": 32,
+    "unclassified_writer_pcs": [],
+    "writer_pc_counts": {
+      "0x80064178": 28,
+      "0x800b6bf0": 3,
+      "0x800b6f18": 1
+    }
+  },
+  "schema": "abl-phase4-fmv-present-rect-height-static-ownership/1",
+  "source_dependencies": {
+    "config/segments.yml": "037582f8175475912bc18117ab0652dfe46fc66af1fd773ccdc3a7a142256735",
+    "src/main/800628c0_LoadImage.c": "a68edb7aefa63aca57e26605126bed50278cd07bd239890e70c4df5a0a9b9127",
+    "src_re/fmv_present_rect_height_ownership.c": "42ed3be89926b51b232b42944a44ac610be6d2642874525c6dbb90f55a73b330",
+    "symbols/re_symbols.sym": "2067681373d1e64ab4029916abf977aa6d9f5fd9a88d5b2d7b3f95d7e7be1363",
+    "tools/phase4_fmv_present_rect_height_static_ownership.py": "ccbadb46411c7d0bf0a529dd27d7895252865ec9195408a89d6ff96312e37e15",
+    "tools/repro_inputs.sha256": "d0afeaf584450a0253ecb60d3de37e6d966c981bbb2f07d6cd043439f095e231"
+  },
+  "source_status": {
+    "external_asm_pins": {
+      "asm/hand_written/800640cc__dws.s": "dc4822038c0499b55b1e62adc358cab072db1623c757c5f95838e7d2cbeb1c26",
+      "asm/hand_written/800646b8_gpu_present_drawotag_vsync.s": "8faa5ba6e1e80da0b9e6b5d27f1eb39a402aaa202d43407cbbd15b79c2068f50"
+    },
+    "matching_c": {
+      "path": "src/main/800628c0_LoadImage.c",
+      "sha256": "a68edb7aefa63aca57e26605126bed50278cd07bd239890e70c4df5a0a9b9127"
+    },
+    "segments": [
+      {
+        "end": "0x80062924",
+        "source": "src/main/800628c0_LoadImage.c",
+        "start": "0x800628C0"
+      },
+      {
+        "end": "0x80064308",
+        "source": "asm/hand_written/800640cc__dws.s",
+        "start": "0x800640CC"
+      },
+      {
+        "end": "0x80064998",
+        "source": "asm/hand_written/800646b8_gpu_present_drawotag_vsync.s",
+        "start": "0x800646B8"
+      }
+    ],
+    "status": {
+      "LoadImage": "matching_c",
+      "_dws": "hash_pinned_external_asm",
+      "fmv_player": "documentation_grade_semantic_c",
+      "gpu_present_drawotag_vsync": "hash_pinned_external_asm"
+    },
+    "symbols": {
+      "0x800628C0": "LoadImage",
+      "0x800640CC": "_dws",
+      "0x800646B8": "gpu_present_drawotag_vsync"
+    }
+  },
+  "summary": {
+    "height_destinations": 3,
+    "offline_exact_term_matches": 0,
+    "overlay_direct_callers": 3,
+    "overlay_functions_reconstructed": 3,
+    "promoted_dimensions": 0,
+    "resident_functions_reconstructed": 3,
+    "retained_writer_pcs_classified": 3,
+    "unclassified_writer_pcs": 0
+  }
+}

@@ -1,0 +1,31 @@
+{
+ "_comment": "Every load the compiler scheduled above the branch that bounds it. Regenerate: tools/hoisted_load_idiom_scan.c",
+ "why": "These reads touch base+index REGARDLESS of the range test and discard the result on the failing path. Harmless to the game, but they appear in any accessLog watch over the address they overrun and look exactly like an unenumerated consumer. Two were found the slow way, one movie at a time, before this existed.",
+ "match": "slt/sltu rCond,rIdx,rLim ; add/addu rIdx,rIdx,rBase ; load rDst,0(rIdx) ; beq/bne rCond,zero -- contiguous, no filler allowed, so this is a floor.",
+ "note": "accessLog reports the instruction AFTER the access, so match watch events against logged_pc, not load_pc.",
+ "sites": 22,
+ "hits": [
+  {"load_pc": "0x80010BF4", "logged_pc": "0x80010BF8", "width": "lhu", "cmp_pc": "0x80010BEC", "branch_pc": "0x80010BF8", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x80010D9C", "logged_pc": "0x80010DA0", "width": "lhu", "cmp_pc": "0x80010D94", "branch_pc": "0x80010DA0", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x800110A8", "logged_pc": "0x800110AC", "width": "lhu", "cmp_pc": "0x800110A0", "branch_pc": "0x800110AC", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x8001129C", "logged_pc": "0x800112A0", "width": "lhu", "cmp_pc": "0x80011294", "branch_pc": "0x800112A0", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x800119B0", "logged_pc": "0x800119B4", "width": "lhu", "cmp_pc": "0x800119A8", "branch_pc": "0x800119B4", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x80012098", "logged_pc": "0x8001209C", "width": "lhu", "cmp_pc": "0x80012090", "branch_pc": "0x8001209C", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x8001277C", "logged_pc": "0x80012780", "width": "lhu", "cmp_pc": "0x80012774", "branch_pc": "0x80012780", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x80012CEC", "logged_pc": "0x80012CF0", "width": "lhu", "cmp_pc": "0x80012CE4", "branch_pc": "0x80012CF0", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x80013B84", "logged_pc": "0x80013B88", "width": "lhu", "cmp_pc": "0x80013B7C", "branch_pc": "0x80013B88", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x80013D58", "logged_pc": "0x80013D5C", "width": "lhu", "cmp_pc": "0x80013D50", "branch_pc": "0x80013D5C", "idx_reg": 25, "base_reg": 17, "cond_reg": 7},
+  {"load_pc": "0x80014D1C", "logged_pc": "0x80014D20", "width": "lhu", "cmp_pc": "0x80014D14", "branch_pc": "0x80014D20", "idx_reg": 25, "base_reg": 22, "cond_reg": 12},
+  {"load_pc": "0x80014E58", "logged_pc": "0x80014E5C", "width": "lhu", "cmp_pc": "0x80014E50", "branch_pc": "0x80014E5C", "idx_reg": 25, "base_reg": 22, "cond_reg": 12},
+  {"load_pc": "0x80015198", "logged_pc": "0x8001519C", "width": "lhu", "cmp_pc": "0x80015190", "branch_pc": "0x8001519C", "idx_reg": 25, "base_reg": 22, "cond_reg": 12},
+  {"load_pc": "0x80015348", "logged_pc": "0x8001534C", "width": "lhu", "cmp_pc": "0x80015340", "branch_pc": "0x8001534C", "idx_reg": 25, "base_reg": 22, "cond_reg": 12},
+  {"load_pc": "0x800158D0", "logged_pc": "0x800158D4", "width": "lhu", "cmp_pc": "0x800158C8", "branch_pc": "0x800158D4", "idx_reg": 25, "base_reg": 22, "cond_reg": 12},
+  {"load_pc": "0x80015F74", "logged_pc": "0x80015F78", "width": "lhu", "cmp_pc": "0x80015F6C", "branch_pc": "0x80015F78", "idx_reg": 25, "base_reg": 22, "cond_reg": 12},
+  {"load_pc": "0x80016840", "logged_pc": "0x80016844", "width": "lhu", "cmp_pc": "0x80016838", "branch_pc": "0x80016844", "idx_reg": 25, "base_reg": 22, "cond_reg": 12},
+  {"load_pc": "0x80016E70", "logged_pc": "0x80016E74", "width": "lhu", "cmp_pc": "0x80016E68", "branch_pc": "0x80016E74", "idx_reg": 25, "base_reg": 22, "cond_reg": 12},
+  {"load_pc": "0x80017738", "logged_pc": "0x8001773C", "width": "lhu", "cmp_pc": "0x80017730", "branch_pc": "0x8001773C", "idx_reg": 25, "base_reg": 23, "cond_reg": 12},
+  {"load_pc": "0x800177C0", "logged_pc": "0x800177C4", "width": "lhu", "cmp_pc": "0x800177B8", "branch_pc": "0x800177C4", "idx_reg": 25, "base_reg": 23, "cond_reg": 12},
+  {"load_pc": "0x80017A68", "logged_pc": "0x80017A6C", "width": "lhu", "cmp_pc": "0x80017A60", "branch_pc": "0x80017A6C", "idx_reg": 25, "base_reg": 23, "cond_reg": 12},
+  {"load_pc": "0x80017AE8", "logged_pc": "0x80017AEC", "width": "lhu", "cmp_pc": "0x80017AE0", "branch_pc": "0x80017AEC", "idx_reg": 25, "base_reg": 23, "cond_reg": 12}
+ ]
+}

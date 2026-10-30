@@ -1,0 +1,40 @@
+schema_version: 1
+id: pristine_thud_boulder_final_life
+description: >-
+  Replay the centrally pinned pristine Thud recording, change only true health
+  before the already proven row-4 rolling-boulder contact, and assert the
+  resulting final-life transition without generalizing to other arena rows,
+  retries, or boss lifecycle policy.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: thud_boulder_pre_contact_control
+    trigger: {type: movie_frame, target: 1465, max_frames: 1480, timeout_seconds: 240}
+    assertions:
+      - {id: c16_thud_boulder_pre_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: c16_thud_boulder_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: c16_thud_boulder_pre_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 0}
+      - {id: c16_thud_boulder_row4_threshold, type: memory, address: 0x800B4C1C, width: u32, op: eq, expected: 490000}
+      - {id: c16_thud_boulder_row4_ramp, type: memory, address: 0x800B4C88, width: u32, op: eq, expected: 104}
+      - {id: c16_thud_boulder_movie_reproducible_before_control, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: change_only_true_health_to_zero
+        method: debugger.writeU16
+        params: {address: 0x800A6594, value: 0}
+  - id: thud_boulder_selects_final_life_death
+    trigger: {type: movie_frame, target: 1471, max_frames: 8, timeout_seconds: 60}
+    assertions:
+      - {id: c16_thud_boulder_fatal_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: c16_thud_boulder_fatal_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: -1}
+      - {id: c16_thud_boulder_final_life_retained, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 0}
+      - {id: c16_thud_boulder_death_master_state, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 2}
+      - {id: c16_thud_boulder_row4_ramp_cleared, type: memory, address: 0x800B4C88, width: u32, op: eq, expected: 0}
+      - {id: c16_thud_boulder_row4_speed_reversed, type: memory, address: 0x800B4BF4, width: s16, op: eq, expected: 110}
+      - {id: c16_thud_boulder_movie_reproducible_after_control, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

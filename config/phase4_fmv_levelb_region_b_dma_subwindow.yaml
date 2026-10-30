@@ -1,0 +1,55 @@
+schema: abl-phase4-fmv-levelb-region-b-dma-subwindow-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-190657-213677-r4
+work_packet:
+  relative_path: iteration-2-work-packet.json
+  sha256: a46b663a3d6e8cc86ff441b9b892ff8945164c08d5562e4369e7761a6e55947b
+  bytes: 3637
+prior_evidence:
+  replacement_ownership:
+    path: analysis/phase4_fmv_region_b_replacement_ownership.json
+    sha256: 03b5a8d9a518f5c00624f81248b721e98a513b987d8e1456e142c682cc1087a4
+  natural_level_b:
+    path: analysis/phase4_fmv_levelb_first_call.json
+    sha256: 31d22808c045a2ea54586e25fd0de5a93a537fdf9a190f8750ded85e98acaa67
+  rejected_late_dma:
+    path: analysis/phase4_fmv_levelb_region_b_dma_late_result.json
+    sha256: b0ec7e9fa015d94180fc26f74c376d7e343e53ee72a13d29ec5a00ef901d6433
+reused_offline_query:
+  run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-160544-213677-r2
+  receipt:
+    relative_path: iteration-1-receipts/offline-fmv-levelb-region-b-dma-index.receipt.json
+    sha256: ecfd091f44f49943e5e8431ba92e823d55c155f6317a7e6242fcc841934d9126
+  external_index_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+expected:
+  teardown_frame: 15816
+  region_b_base: '0x800B5788'
+  memory_bin_bytes: 36448
+  sector_bytes: 2048
+  sector_count: 18
+  padded_transfer_bytes: 36864
+  pre_submit_pc: '0x80046078'
+  common_post_transfer_pc: '0x800460C4'
+  transfer_log_capacity: 100000
+claim_boundary:
+  closed_sub_boundary: completed_level_b_region_b_dma_exact_pc_subwindow
+  dimension_promoted: false
+  lifecycle_promoted: false
+  next_lane: static
+  next_action: >
+    Implement and validate a tracked exact-PC fallback adapter that starts
+    from the retained cold-boot movie, stops before 0x80046078, verifies
+    a0=18 and a1=0x800B5788, clears and arms transferLog, and stops again
+    before common epilogue 0x800460C4. Predeclare a new escalation and wider
+    passive control only after that finite two-breakpoint plan is
+    machine-valid. Do not launch DuckStation or reuse either rejected
+    frame-window observer before the immutable before-ledger admits it.
+  not_claimed:
+    - any observed DMA or CD-ROM event
+    - the first DMA cycle, LBA sequence, transfer direction or result
+    - native success of CdRead or completion of CdReadSync
+    - lifecycle or any other nine-dimension promotion
+    - method-trial admission of the retained passive investigator receipt

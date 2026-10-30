@@ -1,0 +1,29 @@
+schema_version: 1
+id: pristine_lives_gameover_continue
+description: >-
+  Replay the centrally pinned pristine Bug Bar movie from its inspected state
+  and assert the smallest natural final-life and post-game-over title-restart
+  boundaries that would catch a regression in C16's resident scene-flow contract.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: movies/Phase4/C16_gameover_continue.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: final_life_death_selected
+    trigger: {type: movie_frame, target: 400, max_frames: 500, timeout_seconds: 120}
+    assertions:
+      - {id: c16_death_stays_in_bug_bar_before_transition, type: memory, address: 0x80082504, width: u32, op: eq, expected: 9}
+      - {id: c16_true_health_is_fatal, type: memory, address: 0x800A6594, width: s16, op: eq, expected: -1}
+      - {id: c16_final_life_remains_zero, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 0}
+      - {id: c16_death_master_state_selected, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 2}
+      - {id: c16_movie_anchor_reproducible_at_death, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+  - id: natural_title_restart_applies_scene_config
+    trigger: {type: movie_frame, target: 3700, max_frames: 3400, timeout_seconds: 240}
+    assertions:
+      - {id: c16_game_over_reaches_frontend_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 0}
+      - {id: c16_title_restart_resets_lives_to_five, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 5}
+      - {id: c16_movie_anchor_reproducible_after_title_restart, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

@@ -1,0 +1,341 @@
+schema: abl-phase4-lives-gameover/2
+row: C16_lives_gameover
+owner: player_lifecycle
+campaign_state: active_partial
+
+pristine_frontier:
+  resident_executable:
+    path: REBUILD/files/SCUS_942.88
+    sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  regions:
+    damage_and_death_initiator: [0x8004A700, 0x8004AA34]
+    scene_flow_dispatcher: [0x8004FCA0, 0x800502C4]
+    scene_config_apply: [0x80055538, 0x80055648]
+    respawn_transition_state_handler: [0x8005B12C, 0x8005B440]
+    gameplay_state_reset_cursor_seed: [0x8005B714, 0x8005B7EC]
+  decisive_instructions:
+    fatal_health_write: {address: 0x8004A888, word: 0xA4236594}
+    final_life_reader: {address: 0x800500BC, word: 0x904265A0}
+    game_over_movie_selector: {address: 0x800500D4, word: 0x2404002E}
+    ordinary_respawn_call: {address: 0x800500F4, word: 0x0C016C4B}
+    respawn_health_restore: {address: 0x8005B30C, word: 0xA4226594}
+    respawn_lives_decrement: {address: 0x8005B348, word: 0xA02665A0}
+    post_game_over_title_restart_lives_write: {address: 0x80055550, word: 0xA02265A0}
+
+typed_state:
+  scene: {address: 0x80082504, width: u32, residency: resident}
+  master_state: {address: 0x800823A0, width: u16, residency: resident}
+  fade_timer: {address: 0x80082470, width: s16, residency: resident}
+  true_health: {address: 0x800A6594, width: s16, residency: resident}
+  lives: {address: 0x800A65A0, width: u8, residency: resident}
+
+reproduced_controls:
+  fixture_movie: movies/Phase4/C16_gameover_continue.movie.json
+  fixture_movie_sha256: 39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf
+  fixture_state: movies/Phase4/C16_gameover_continue.movie.sav
+  fixture_state_sha256: e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592
+  anchor:
+    scene: 9
+    true_health: 1
+    lives: 0
+    interpretation: lives zero is the final playable life, not an already exhausted count
+  final_life_natural:
+    movie_frame: 400
+    result: {scene: 9, true_health: -1, lives: 0, master_state: 2}
+    coverage: damage/death writer 0x8004A888 and final-life game-over branch 0x800500BC..0x800500D4 execute
+  neutral_input_negative:
+    edit: neutralize only movement frames 40 through 121
+    movie_frame: 400
+    result: {scene: 9, true_health: 1, lives: 0, master_state: 0}
+    coverage: no PC in 0x8004A700..0x8004AA34 executes
+  ordinary_respawn_control:
+    edit: change only starting u8 lives 0x800A65A0 from 0 to 1
+    movie_frame: 400
+    result: {scene: 9, true_health: 4, lives: 0, master_state: 0}
+    writers: [0x8004A888, 0x8005B30C, 0x8005B348]
+  post_game_over_title_restart:
+    identical_pre_input_frame: 3662
+    edit: remove only Start frames 3663 through 3669
+    post_input_frame: 3700
+    natural: {scene: 0, lives: 5, writer: 0x80055550}
+    start_removed: {scene: 0, lives: 0, writer_0x80055550_executed: false}
+    final_frame: 4006
+    final: {natural_lives: 5, start_removed_lives: 0}
+    title_frame_sha256: 30443b10664b96afec97590c88301068be51cc72a556226c2747268e4fcc2a93
+    natural_stage_select_frame_sha256: 7e8459b7fbac83d4a11846a8f7b723712eb4a49e1b717f12240e5362120d71f0
+    start_removed_title_frame_sha256: 6ddda7cecbd2e6493e3531656741ef642e6a12e6ec6f007ef8021cde29ffcd3a
+    progress_block: {start: 0x8009EC68, length: 336, sha256: 611fc682fd1235862b4656dd2a2920beb89ee79b1032ae18ce91a0b34a5c0418}
+    lives_inside_progress_block: false
+    isolated_card_sha256: 63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517
+    isolated_card_changed_bytes: 0
+    evidence: analysis/phase4_c16_frontend_card.json
+    evidence_sha256: 07116d292129ea581a8a96ca3122b84ba600ca4444ce4fc336a680dc5b0eb7e6
+    classification: >-
+      This is post-game-over title-restart scene initialization, not evidence
+      of a separately presented Continue menu choice. The path does not alter
+      the native 336-byte progress block or freshly seeded isolated card.
+  declarative_scenario:
+    path: tools/scenarios/duckstation/pristine_lives_gameover_continue.yaml
+    sha256: 0183e824bee0a2e36eec1981ea10695da0c21102b30735a40b0f2968341c0604
+    assertions: 8
+    boundaries: [movie_frame_400_final_life_death, movie_frame_3700_title_restart_lives_5]
+  multi_scene_death_law:
+    artifact: analysis/phase4_lives_death_breadth.json
+    artifact_sha256: a7cc74d126490c34f3bf5d84bd512616fab4ceb2bf754a8b883367350fdcccc4
+    fixtures_replayed: 8
+    retained_outcomes:
+      ordinary_respawn_completed: 4
+      final_life_game_over_selected: 1
+      nonfatal_damage_boundary: 3
+    exact_death_paths: 5
+    scene_values: [3, 4, 6, 10, 12]
+    exact_first_transition_producers: 8
+    producer_path_counts:
+      proximity_contact: 1
+      contact_pool_damage: 2
+      player_region_code_4_hazard: 1
+      player_region_code_1_exit: 3
+      scene_overlay_level06_level: 1
+    direct_call_census: {resident: 6, scene_overlay: 2, total: 8}
+    trace_control: >-
+      Each complete passive cached-interpreter coverage pass matches its
+      uninstrumented RAM, registers, cycle and frame. The final-life lead uses
+      a transient 240-frame neutral suffix because its operator recording ends
+      at fatal health before the resident selector runs.
+    classification_boundary: >-
+      Typed health/lives, exact entry-time link registers and exact resident
+      branch/call/store coverage join every replay to a native transition
+      producer and five natural deaths to C16. The scene-6 ground-bird filename
+      actually reaches the byte-matched LEVEL06 overlay call with a3=3; filenames
+      therefore do not establish hazard kind, scripted/special status, actor
+      owner or E10 completion.
+  stage15_boss_context_death:
+    artifact: analysis/phase4_c16_boss_death.json
+    artifact_sha256: 33f964abe0ca759aec94178092c1c956c340f2c4b079fb989faeb236aeb0935f
+    fixture_movie: hopper_boss.movie.json
+    fixture_movie_sha256: 43fc92b9085007480860946d5cf66d5272c239f4e54e51b48ab3b1e1b5c40ed7
+    fixture_state: hopper_boss.movie.sav
+    fixture_state_sha256: 003209bfe7566234b337620236b6bf00f8ec560dfd1c48a26886ecb565fb97b7
+    declarative_scenario:
+      path: tools/scenarios/duckstation/pristine_hopper_context_final_life.yaml
+      sha256: fb196ecd5b1f8b42d3461d9a2b7395bb26fe5a771e014e35f239335cb7e561e5
+      assertions: 5
+    retained_boundary:
+      scene: 15
+      context: stage15_canyon_showdown boss context
+      movie_frame: 1047
+      producer_path_id: proximity_contact
+      call: {address: 0x8004B4A0, instruction_word: 0x0C0129C0, target: 0x8004A700, return: 0x8004B4A8}
+      before: {health: 0, lives: 0, master_state: 0}
+      after_return: {health: -1, lives: 0, master_state: 2}
+      resident_law: {classification: final_life_game_over_selected, required_pcs_present: true}
+    trace_control: >-
+      Fresh pinned replays bracket the first fatal frame with passive cached-
+      interpreter coverage, then stop at the next native 0x8004A700 entry and
+      run exactly to its architectural return. RAM, registers, cycle and frame
+      match the uninstrumented boundary for every retained passive trace.
+    classification_boundary: >-
+      Scene graph and the pre-existing D20/F15 fixture routes establish a
+      Stage-15 boss context. Exact caller execution establishes only the
+      proximity-contact producer. The runtime Region-A candidates match neither
+      staged LEVEL05 overlay, so the filename/context does not establish Hopper
+      or another actor as the damage source and does not complete D20 or F15.
+  bonus3_context_death:
+    artifact: analysis/phase4_c16_bonus_death.json
+    artifact_sha256: 76e0e0cbb84df7c37065966032c8d74e8a3f2dddb3a601cb130ac557e54798a1
+    fixture_movie: movies/Bonus_Level_03.movie.json
+    fixture_movie_sha256: 22ef450e2a88edcd7b3ef52bdfde7dc7cceff37d2967d37f377403bc6d7bf984
+    fixture_state: movies/Bonus_Level_03.movie.sav
+    fixture_state_sha256: 0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522
+    declarative_scenario:
+      path: tools/scenarios/duckstation/pristine_bonus3_contact_death.yaml
+      sha256: 5aa8b1e83da28e5f46b6467f9712614c694fc00c94b77487eeb4ae0bbc03196f
+      assertions: 15
+    retained_boundary:
+      scene: 3
+      context: confirmed Bonus-3 context only
+      natural_movie_frames: {pre_contact: 210, contact: 211}
+      natural_health: {before: 1, after: 0}
+      one_field_control: {address: 0x800A6594, width: u16, before: 1, after: 0, changed_main_ram_bytes: 1}
+      producer_path_id: proximity_contact
+      call: {address: 0x8004B4A0, instruction_word: 0x0C0129C0, target: 0x8004A700, return: 0x8004B4A8}
+      fatal: {health: -1, lives: 5, master_state: 2}
+      ordinary_respawn: {movie_frame: 331, health: 4, lives: 4, master_state: 0}
+      resident_law: {required_pcs_present: true}
+    trace_control: >-
+      Internally control-checked cached-interpreter traces are RAM, register,
+      cycle and frame neutral and retain every required proximity, damage,
+      scene-flow and respawn PC. Two fresh isolated refresh replays make the
+      transient save/reload suffix bit-identical to the direct terminal in full
+      RAM, registers, cycle, PC/SP, frame and typed outcome.
+    classification_boundary: >-
+      The Phase-2 route and pinned state establish only a Bonus-3 context. The
+      one-field control and exact caller establish a resident proximity-contact
+      death and ordinary respawn. They do not identify a grasshopper, actor,
+      attack or reward and do not complete F18 or every bonus-death class.
+  thumper_actor_owned_death:
+    artifact: analysis/phase4_c16_thumper_death.json
+    artifact_sha256: 04121d81e349a8ebec58bc8b8db5bbccc45b1c364c6a0306319b7e572bf8d8f8
+    fixture_movie: thumper_boss_2.movie.json
+    fixture_movie_sha256: c5e26e960e10627963d3f419e38868384439c5477d525f1972c0c87288d2bad5
+    fixture_state: thumper_boss_2.movie.sav
+    fixture_state_sha256: 991d50d2af1513e3fd746711b8e70936d7674aab44ece21d3262e6bac0efe282
+    declarative_scenario:
+      path: tools/scenarios/duckstation/pristine_thumper_actor_death.yaml
+      sha256: 5770cd45fb8cbd53c258a95156df6abbb27689790f4ab4b2770df4a59a04a316
+      assertions: 16
+    retained_boundaries:
+      scene: 2
+      context: stage03_council_chamber Thumper boss context
+      natural_movie_frames: {pre_attack: 2422, attack: 2423}
+      natural_health: {before: 4, after: 3}
+      one_field_control: {address: 0x800A6594, width: u16, before: 4, after: 0, changed_main_ram_bytes: 1}
+      producer_path_id: proximity_contact
+      call: {address: 0x8004B4A0, instruction_word: 0x0C0129C0, target: 0x8004A700, return: 0x8004B4A8}
+      actor_owner: {address: 0x8009FE04, pool_slot: 1, id: 16, callback: 0x8004A0F4, authored_record_backlink: 0x80094A54}
+      neighbor_control: {address: 0x8009FE88, pool_slot: 2, id: 10, callback: 0x8004A180}
+      fatal: {health: -1, lives: 4, master_state: 2}
+      ordinary_respawn: {movie_frame: 2550, scene: 2, health: 4, lives: 3, master_state: 0}
+    trace_control: >-
+      Fresh passive cached-interpreter traces bracket the natural hit and match
+      their uninstrumented RAM, registers, cycle and frame. Fresh natural and
+      fatal replays stop at the next 0x8004A700 entry and run exactly to its
+      architectural return; both carry the same s1 actor pointer and arguments.
+    classification_boundary: >-
+      The actor claim comes from the live s1-linked pool record, not the movie
+      filename. This bounds one actor-owned Thumper proximity attack and its C16
+      ordinary-death outcome; it does not complete D16, F03, the boss encounter,
+      or scripted/special/exceptional death classes.
+  thud_boulder_final_life:
+    artifact: analysis/phase4_c16_thud_boulder_death.json
+    artifact_sha256: 2edd2e159b05476b929469d35055542741375af4e8ce6c77908872e476a6a5be
+    fixture_movie: thud_boss_movie.movie.json
+    fixture_movie_sha256: 70e5988852315924e7eba7f8ba23632545ad329878e3e5b8a59de91955bcddaa
+    fixture_state: thud_boss_movie.movie.sav
+    fixture_state_sha256: 789d9b601d592748af934c162513e91f1e63a8d2bbe8ce2cb3b9c16876b32a99
+    declarative_scenario:
+      path: tools/scenarios/duckstation/pristine_thud_boulder_final_life.yaml
+      sha256: 1a3bb9e4c3940a0fec54bcd176da3a82ed37eec6128dcf2636cb74e0644b869c
+      assertions: 13
+    retained_boundaries:
+      scene: 14
+      context: stage09_bug_bar Thud boss arena
+      shared_origin_target: 1465
+      outcome_target: 1471
+      natural_health: {before: 3, after: 2}
+      one_field_control: {address: 0x800A6594, width: u16, before: 3, after: 0, changed_main_ram_bytes: 1}
+      producer_path_id: thud_arena_row4_contact
+      call: {address: 0x800B4AE0, instruction_word: 0x0C0129C0, target: 0x8004A700, return: 0x800B4AE8}
+      live_row_identity: {sole_inside_row: 4, squared_distance: 454805, threshold: 490000, speed: 110, ramp: 0}
+      fatal: {health: -1, lives: 0, master_state: 2}
+    trace_control: >-
+      The pre-existing arena artifact independently retains cycle-neutral natural
+      targets 1470/1471. Fresh matched branches share exact RAM/register/cycle
+      identity before the sole health-field write, and fresh natural/fatal runs
+      stop at the identical overlay call and architectural return.
+    classification_boundary: >-
+      The live six-row census, exact overlay caller and existing arena evidence
+      establish row-4 contact; the filename is not authority. This extends C16
+      into one boss-arena final-life path but does not promote a scripted,
+      special or exceptional death class or complete C16, D18 or F09.
+  riverbed_flight_actor_contact:
+    artifact: analysis/phase4_c16_flight_death.json
+    artifact_sha256: dfa705b97d0091bc171c3ee1193bf5f062ec75f48f4224a8f054347613ef00fd
+    fixture_state: level_14.sav
+    fixture_state_sha256: 6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50
+    declarative_scenario:
+      path: tools/scenarios/duckstation/pristine_riverbed_flight_actor37_death.yaml
+      sha256: 7d2245ef9fabe4b262e2010db97fd6f68d971b49a4ec565d889891cd1594d1e6
+      assertions: 15
+    shared_c15_level08_scenario:
+      path: tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml
+      sha256: 4ab3a5ba150d9ad3d3b2d882a7ba6993058ae26777e51255bf8c7d2e4f78c6b7
+      assertions: 18
+    retained_boundaries:
+      scene: 8
+      context: stage14_riverbed_flight
+      anchor_frame: 223733
+      matched_origin_frame: 223793
+      outcome_frame: 223853
+      ordinary_respawn_frame: 223973
+      actor_owner: {address: 0x800A0014, pool_slot: 5, id: 37, callback: 0x80049E88, authored_record_backlink: 0x80094AC4, type_word: 0x0125}
+      producer_path_id: proximity_contact
+      call: {address: 0x8004B4A0, instruction_word: 0x0C0129C0, target: 0x8004A700, return: 0x8004B4A8}
+      natural_fatal: {health: -1, lives: 3, master_state: 2}
+      ordinary_respawn: {scene: 8, health: 4, lives: 2, master_state: 0}
+      response_only_control: {address: 0x800A0070, bit: 0x0080, changed_main_ram_bytes: 1, health: 0, lives: 3, master_state: 0}
+      shared_c15_level08_activation:
+        call: {address: 0x8005B1A4, instruction_word: 0x0C02CEBA, target: 0x800B3AE8, return: 0x8005B1AC}
+        runtime_sha256: 4b2e8bccbcd42dcb056b267d66a35bb8b7dbfdf9171eccd1a914ff1f67b029c9
+        passive_natural_hits: 27
+        response_only_hits: 0
+        complete_direct_writes: 7
+        safe_and_live_xyz: [-157682, 5744, -12845]
+        safe_heading: 352
+    trace_control: >-
+      Fresh transient neutral movies are deleted after passive cached-interpreter
+      traces. Natural coverage includes proximity call 0x8004B4A0, fatal write
+      0x8004A888 and respawn writers 0x8005B30C/0x8005B348. The matched
+      response-only branch has zero damage and respawn hits at identical
+      frame/cycle/PC/SP. Applying the bit before the native setup is a retained
+      failed hypothesis because the updater overwrites it and death still occurs.
+      Shared C15 evidence additionally matches the loaded LEVEL08 bytes to the
+      pristine staged slice, covers all 27 initializer PCs, attributes all seven
+      safe/live writes, and retains isolated X/heading source controls.
+    classification_boundary: >-
+      Corrected live slot and exact call registers establish one actor-owned
+      Riverbed Flight contact. Type word 0x0125 remains unclassified; this does
+      not name a species, promote a scripted/special/exceptional death law, or
+      complete C16 or F14.
+
+ownership_boundaries:
+  owned_now:
+    - Natural Bug Bar contact trigger from final playable life through the resident game-over selector.
+    - Single-byte distinction between final-life game over and same-scene ordinary respawn.
+    - Ordinary respawn health restore to 4 and lives decrement by one at exact resident writers.
+    - Fourth-Start post-game-over title restart through scene-config lives reset from 0 to 5; removing Start refuses the restart.
+    - The title-restart path leaves the exact 336-byte native progress block and fresh isolated memory card byte-identical; lives is outside that serialized block.
+    - Existing LEVEL02 pit input provides a second-stage natural 3/5 to 4/4 death/reset class; the movement-neutral control prevents respawn.
+    - On the ordinary Bug Bar contact path, C15's single-variable control proves that the same resident respawn handler consumes retained safe XYZ before completing the C16 health/lives 4/0 reset.
+    - Eight existing natural damage leads now retain exact first transition-producer calls plus three nonfatal boundaries, four exact ordinary-respawn paths and one exact final-life selector path across scene values 3, 4, 6, 10 and 12 without assigning hazard kinds or actors from filenames.
+    - The existing Hopper-showdown pair adds a verified scene-15 boss-context final-life path: proximity-contact JAL 0x8004B4A0 causes health 0 to -1 and selects resident game over while lives stays 0. It does not assign the damage to Hopper or complete D20/F15.
+    - The existing Bonus-3 pair adds a verified scene-3 context ordinary-death path: a one-byte true-health control makes the same native proximity-contact invocation produce health -1/master state 2, then resident respawn restores health 4 and decrements lives 5 to 4. It assigns no named enemy and does not complete F18.
+    - The complete Thumper pair adds a scene-2 actor-owned boss attack: natural and one-field-fatal controls enter the identical proximity call with s1 naming live pool slot 1/id 16/Thumper callback and backlink; the fatal branch reaches ordinary respawn health/lives 4/3. It does not complete D16 or F03.
+    - The complete Thud pair adds a scene-14 boss-arena final-life control: row 4 is the sole in-threshold arena row, and the identical 0x800B4AE0 resident-damage call changes health 3 to 2 naturally or 0 to -1/master state 2 after a one-byte health-only control while lives remains 0. It does not establish a new death class or complete D18/F09.
+    - The pristine Riverbed Flight anchor adds one scene-8 actor-owned proximity contact: corrected pool slot 5/id 37/callback 0x80049E88/backlink 0x80094AC4 calls the ordinary resident damage law and respawns at health/lives 4/2. A matched one-byte response-only control suppresses damage with identical frame/cycle/PC/SP. Type word 0x0125 remains unclassified and does not complete C16/F14.
+  still_open:
+    - C15 broader authored respawn-row and overlay selector policy.
+    - Hazard-kind and remaining actor/script ownership plus scripted, setpiece and exceptional death classes and other bonus contexts; bounded Thumper, Thud-row-4 and Riverbed-Flight actor paths do not complete their campaign owners, and the Bonus-3 context path assigns no named enemy or F18 behavior.
+    - Explicit native Save/Load after game over, no-card/corrupt-card behavior and other title/menu branches.
+    - Remaining campaign-stage and transition breadth beyond the retained five-scene death-law join.
+  dependency_boundary: >-
+    C15 owns checkpoint source/capture/restore, E10 owns hazard-family outcomes,
+    E14 owns card serialization, E15 owns FMV playback, and E16 owns overlay
+    loading. Their interfaces are dependencies and do not confer C16 completion.
+
+mod_contract:
+  owner: Preserve the resident damage, scene-flow, respawn, scene-config and gameplay-reset order; explicitly name every hook.
+  readers: Enumerate health/lives readers in damage, HUD, scene flow, respawn, scene config, persistence, results and frontend code before changing state.
+  writers: Do not write health, lives, master state, fade timer, checkpoint anchors or scene configuration outside their native lifecycle or an explicitly reset MOD-private owner.
+  valid_domains: Health is signed s16 and death begins below zero; lives is u8 with zero as a playable final life; post-game-over title-restart scene configuration supplies the observed value 5.
+  initialization: Verify pristine executable/media identity and initialize scene configuration before player, HUD or transition consumers run.
+  reset: Clear damage and transition state on respawn, post-game-over title restart, scene reload, save-state load and every frontend transition.
+  retirement: Retire death/game-over callbacks and transient overlay references before respawn, title restart or scene replacement completes.
+  consumers: Player controller, contact/hazard producers, checkpoint system, HUD/results, frontend, FMV, card persistence and scene/overlay loading.
+  capacity: Preserve native u8 lives and signed-s16 health domains; any extension needs explicit saturation, serialization and display policy.
+  residency: The retained functions and typed fields are resident; game-over FMV and scene overlays remain independently residency-qualified.
+  unsafe_assumptions: >-
+    A serial, filename, health poke, lives poke, one contact death, five natural
+    multi-scene death-law joins, one unidentified boss-context death, one
+    actor-owned Thumper attack, one Bonus-3 context death, one Thud row-4 arena
+    contact, one Riverbed Flight actor contact, one title restart,
+    Phase-2 stage matrix, or card serializer xref does not prove checkpoint
+    coupling, trigger identity, every death class, frontend choice policy, save
+    effects or all-stage breadth.
+
+supersession:
+  prior_claim: The fourth Start was described as a Continue choice/reset.
+  corrected_claim: >-
+    Transient frame evidence and the Start-removed control prove a
+    post-game-over title restart; this is not evidence of a Continue menu choice.
+  authority: analysis/phase4_c16_frontend_card.json

@@ -1,0 +1,124 @@
+{
+  "campaign_id": "fmv_playback",
+  "causal_conclusion": "At the inspected pristine E15 save anchor, Start-only input is sufficient for the player common exit to call StClearRing and then callback_teardown; the same 541-frame no-input control calls neither exit interface and retains exact FMV.BIN.",
+  "errors": [],
+  "escalation_id": "P4-ITER79-E15-CALLBACK-TEARDOWN-CONTROL",
+  "external_receipts": [
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-callback-lifecycle-v1-20260724/result-targeted.json",
+      "bytes": 45207,
+      "id": "frame_363_falsification",
+      "media_class": "external game-derived evidence; never commit",
+      "preservation_required": true,
+      "sha256": "09288541e2c9e5067335902439f5d5ffb7eca005eb50c8721f09a3d38cdac842"
+    },
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-callback-lifecycle-v1-20260724/result-retirement.json",
+      "bytes": 45361,
+      "id": "frame_418_falsification",
+      "media_class": "external game-derived evidence; never commit",
+      "preservation_required": true,
+      "sha256": "f984c57715539b17b3031cbb17a10ac1a562f02bb724c646d5e2a52d77d4d88f"
+    },
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-callback-lifecycle-v1-20260724/result-movie-end.json",
+      "bytes": 48278,
+      "id": "frame_541_causal_control",
+      "media_class": "external game-derived evidence; never commit",
+      "preservation_required": true,
+      "sha256": "4e752c98d2a780a1047c77dd33b68a3dfb2c696b504f755c0303a2fd3b59b5b8"
+    }
+  ],
+  "falsified_hypotheses": [
+    "Passive frame-362 block starts prove a positive-only teardown call.",
+    "The passive capsule's 416-to-417 FMV.BIN retirement is an exact live function-trace trigger.",
+    "callback_teardown clears the four captured fixed callback words before the movie-end capture."
+  ],
+  "fixtures": {
+    "movie": {
+      "bytes": 370143,
+      "media_class": "pristine_serial",
+      "path": "movies/Phase4/E15_fmv_skip.movie.json",
+      "sha256": "ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba"
+    },
+    "state": {
+      "bytes": 1193583,
+      "media_class": "pristine",
+      "path": "movies/Phase4/E15_fmv_skip.movie.sav",
+      "sha256": "851e8ebffa8b8417abb30ff0791ca4c1872a43cf06101247ee1ff97e4cdac417"
+    }
+  },
+  "generated": "2026-07-24",
+  "observations": {
+    "fixed_callback_words": {
+      "equal_after_capture": true,
+      "negative": "0018801f0118801f0218801f0318801f",
+      "positive": "0018801f0118801f0218801f0318801f"
+    },
+    "movie_end_residency_control": {
+      "negative_fmv_bin_resident": true,
+      "negative_fmv_head_sha256": "ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db",
+      "positive_fmv_bin_resident": false
+    },
+    "positive_common_exit": {
+      "callback_teardown": {
+        "address": "0x800709ac",
+        "caller": "0x800b74a4",
+        "entry_cycle": 2644274321,
+        "exit_cycle": 2644284120,
+        "exit_is_synthetic_unwind": true,
+        "exit_v0": "0x00000001",
+        "return_address": "0x800b74ac"
+      },
+      "emulator_frame": 4671,
+      "entry_gap_after_st_clear_ring_exit_cycles": 14,
+      "negative_control_absent": true,
+      "st_clear_ring": {
+        "caller": "0x800b749c",
+        "entry_cycle": 2644271877,
+        "exit_cycle": 2644274307,
+        "return_address": "0x800b74a4"
+      }
+    },
+    "shared_initialization": {
+      "address": "0x8007094c",
+      "caller": "0x8006d3bc",
+      "emulator_frame": 4443,
+      "entry_cycle": 2515397349,
+      "exit_cycle": 2515399779,
+      "function": "StClearRing",
+      "present_in_both_controls": true,
+      "return_address": "0x8006d3c4"
+    }
+  },
+  "profiles": [
+    {
+      "config_dir": "/var/tmp/abl-p4-e15-callback-targeted.adetRh",
+      "owned_pid": 47649,
+      "owned_pid_stopped": true,
+      "port": 24679
+    },
+    {
+      "config_dir": "/var/tmp/abl-p4-e15-callback-retirement.hIfnSe",
+      "owned_pid": 49318,
+      "owned_pid_stopped": true,
+      "port": 24680
+    },
+    {
+      "config_dir": "/var/tmp/abl-p4-e15-callback-movie-end.PM9EZ9",
+      "owned_pid": 53966,
+      "owned_pid_stopped": true,
+      "port": 24681
+    }
+  ],
+  "raw_external_bytes_committed": false,
+  "residuals": [
+    "The callback_teardown exit is a synthetic unwind, not a conventional balanced return.",
+    "The four captured fixed callback words remain equal across controls after capture.",
+    "Function tracing shifts the live positive retirement later than the passive capsule boundary; capsule block starts remain correlation only.",
+    "This one same-anchor control does not close pause, repeat, error, alternate-route or platform lifecycle breadth."
+  ],
+  "row_id": "E15_fmv",
+  "schema": "abl-phase4-fmv-callback-lifecycle/1",
+  "valid": true
+}

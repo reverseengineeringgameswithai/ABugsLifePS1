@@ -1,0 +1,177 @@
+{
+ "row": "b06",
+ "movie": "~/Downloads/ABL/movies/Phase4/b06_invincibility_hits_from_boot.movie.json",
+ "disc": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+ "regime": "60 Hz (debugger.resume + poll); no advanceToFrame; no pokes",
+ "execution_mode": "Interpreter",
+ "run_provenance": {
+  "generator": "tools/phase4_b06_b08_oracle.py",
+  "generator_sha256": "2b2b7b177afb61ba96893fb9f39a24cbe368be064e3fa648acd7c19ca7fedf2a",
+  "repository_head": "fc0cd9314f5e1d5f7f9c4d1ba4dda329829e8d78",
+  "repository_dirty": true,
+  "recorded_utc": "2026-08-01T22:05:22.547582+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "dirty": true
+  },
+  "media_identity": {
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "rpc_before_hash": {
+    "cd_overlays_removed": 0,
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "has_media": true,
+    "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "subimage_count": 0,
+    "subimage_index": 0
+   },
+   "rpc_after_hash": {
+    "cd_overlays_removed": 0,
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "has_media": true,
+    "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "subimage_count": 0,
+    "subimage_index": 0
+   },
+   "hash_verification": {
+    "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "pin_source": "tools/build_baselines.json",
+    "pristine_verified": true,
+    "files": {
+     "Disney-Pixar A Bug's Life (v1.0).cue": {
+      "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+      "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+      "matches_pin": true
+     },
+     "Disney-Pixar A Bug's Life (v1.0).bin": {
+      "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+      "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+      "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+      "matches_pin": true
+     }
+    }
+   }
+  }
+ },
+ "frames": 6522,
+ "from_boot": true,
+ "wall_seconds": 115.4,
+ "final_playback_index": 0,
+ "scene_writes": [
+  {
+   "f": 1141,
+   "scene": 0
+  },
+  {
+   "f": 1750,
+   "scene": 0
+  },
+  {
+   "f": 2000,
+   "scene": 0
+  },
+  {
+   "f": 3157,
+   "scene": 0
+  },
+  {
+   "f": 3410,
+   "scene": 0
+  },
+  {
+   "f": 3410,
+   "scene": 0
+  },
+  {
+   "f": 3727,
+   "scene": 0
+  },
+  {
+   "f": 3727,
+   "scene": 1
+  }
+ ],
+ "final_scene_id": 1,
+ "watch_saturation": {
+  "accessLog": {
+   "truncated": false,
+   "total": 665
+  },
+  "execTrace": {
+   "truncated": false,
+   "total": 0
+  },
+  "any_truncated": false,
+  "indeterminate": false,
+  "errors": null
+ },
+ "grant_count": 1,
+ "first_grant": {
+  "f": 5336,
+  "addr": "0x800a657e",
+  "pc": "0x800588d0",
+  "new": 400
+ },
+ "expiry_frame": 6154,
+ "health_writes_after_expiry": [
+  {
+   "f": 6202,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 3
+  },
+  {
+   "f": 6426,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 2
+  }
+ ],
+ "checks": {
+  "1_natural_grant": {
+   "pass": true,
+   "detail": "0x800588D0 wrote 400 at frame 5336"
+  },
+  "3_tick_monotone": {
+   "pass": true,
+   "detail": "400 tick writes, strictly -1 each"
+  },
+  "4_expiry_lands_on_zero": {
+   "pass": true,
+   "detail": "min tick value 0, first zero at frame 6154"
+  },
+  "2_protected_contacts": {
+   "pass": true,
+   "detail": "16 intercepted contacts while active, 0 health writes (must be 0)"
+  },
+  "5_vulnerable_after_expiry": {
+   "pass": true,
+   "detail": "2 damage writes at 0x8004A888 after natural expiry"
+  }
+ },
+ "failures": [],
+ "verdict": "PASS",
+ "totals": {
+  "slot_writes": 403,
+  "health_writes": 6,
+  "stagger_writes": 242
+ },
+ "all_health_writes": [
+  {
+   "f": 6202,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 3
+  },
+  {
+   "f": 6426,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 2
+  }
+ ]
+}

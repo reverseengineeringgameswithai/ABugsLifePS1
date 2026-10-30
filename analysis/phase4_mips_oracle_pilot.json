@@ -1,0 +1,101 @@
+{
+ "boundary": {
+  "allowed_classes": [
+   "pure",
+   "ram_local"
+  ],
+  "automatic_campaign_promotion": false,
+  "behavioral_authority": false,
+  "rejected_domains": [
+   "MMIO",
+   "DMA",
+   "GTE",
+   "COP0",
+   "CD",
+   "GPU",
+   "SPU",
+   "interrupts",
+   "self_modifying_code",
+   "timing_sensitive"
+  ],
+  "supplements_native_duckstation_controls": true
+ },
+ "engine": {
+  "architecture": "MIPS32",
+  "endianness": "little",
+  "name": "Unicorn",
+  "version": "2.1.4"
+ },
+ "generator_sha256": "e173fb4ee374e17e971c95f65dcbe016afd01f7104df4b39586f9db014d56748",
+ "mutation_guards": {
+  "all_passed": true,
+  "cop0_rejected": true,
+  "gte_rejected": true,
+  "syscall_rejected": true,
+  "timing_class_rejected": true
+ },
+ "routines": [
+  {
+   "class": "pure",
+   "code_bytes": 12,
+   "code_sha256": "1e7adde372c34166fa95b05f20059b2d77b29738c47a24385686145c366623da",
+   "failed_cases": 0,
+   "failures": [],
+   "generated_cases": 8,
+   "id": "mask_low_byte",
+   "max_instructions_observed": 3,
+   "minimal_counterexample": null,
+   "passed_cases": 8,
+   "status": "passed"
+  },
+  {
+   "class": "pure",
+   "code_bytes": 12,
+   "code_sha256": "096abe69d997b4aefff7b8d709af2123a4b450c6fe67093ca6ff0d333ab250a7",
+   "failed_cases": 0,
+   "failures": [],
+   "generated_cases": 6,
+   "id": "signed_negative_selector",
+   "max_instructions_observed": 3,
+   "minimal_counterexample": null,
+   "passed_cases": 6,
+   "status": "passed"
+  },
+  {
+   "class": "pure",
+   "code_bytes": 12,
+   "code_sha256": "c5d9a79a5fcc86d9e628fb36759f62f043399db44cfbd34624e1ebb72b978265",
+   "failed_cases": 0,
+   "failures": [],
+   "generated_cases": 6,
+   "id": "wrapping_increment",
+   "max_instructions_observed": 3,
+   "minimal_counterexample": null,
+   "passed_cases": 6,
+   "status": "passed"
+  },
+  {
+   "class": "ram_local",
+   "code_bytes": 28,
+   "code_sha256": "a3777e51f9290b68343f20cb746e620b454c110e8876d492eca1323103bab8c8",
+   "failed_cases": 0,
+   "failures": [],
+   "generated_cases": 1,
+   "id": "ram_local_increment",
+   "max_instructions_observed": 7,
+   "minimal_counterexample": null,
+   "passed_cases": 1,
+   "status": "passed"
+  }
+ ],
+ "schema": "abl-phase4-mips-oracle-report/1",
+ "spec": "config/phase4_mips_oracle.yaml",
+ "spec_sha256": "d1a440af079a34078a36616d8a4ff430caeea0c062ab19babc811084e9660405",
+ "summary": {
+  "all_models_match": true,
+  "failed_cases": 0,
+  "generated_cases": 21,
+  "passed_cases": 21,
+  "routines": 4
+ }
+}

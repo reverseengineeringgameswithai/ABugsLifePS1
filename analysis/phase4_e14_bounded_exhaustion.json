@@ -1,0 +1,98 @@
+{
+  "schema": "abl.phase4.e14.bounded_exhaustion.v1",
+  "row": "E14_frontend_save",
+  "date": "2026-08-04",
+  "status": "substantiated_partial",
+  "disposition": "bounded_exhausted_move_on",
+  "additional_interpreter_movie_required": false,
+  "capsule_preflight": {
+    "relevant_retained_capsule_found": false,
+    "searched_root": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4",
+    "decision": "The missing domains were resident and MEMORY.BIN static ownership, not frame-boundary behavior. No live replay was justified."
+  },
+  "pristine_inputs": {
+    "REBUILD/files/SCUS_942.88_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "REBUILD/files/BITS/MEMORY.BIN_sha256": "e3f8697223e3a1a1bdfa385d417ce87928eaff40ea3e26d1a64f6f25234d8e37",
+    "analysis/functions.csv_sha256": "088c1b38799777276eae5291ee68562364c78ba6eaff1135cf56e12efc817412"
+  },
+  "table_static_frontier": {
+    "address": "0x80089938",
+    "extent": "64 rows x 5 native berry columns = 320 bytes",
+    "resident_accesses": 32,
+    "resident_loads": 20,
+    "resident_stores": 12,
+    "overlay_accesses": 0,
+    "overlay_scope": "All REBUILD/files .BIN images scanned by the transient C census",
+    "writer_classes": [
+      "mover_init_from_record: clamp values below 64 up to 64 for the applicable actor class",
+      "actor_player_contact_resolver: two -2 lanes guarded at 65, one +2 lane guarded below 200",
+      "type_0x3f_construct_contact_action_dispatch and contact_walker: lazy 64-row old-column to new-column copy",
+      "scene_config_apply: 64x5 deserialization/config copy",
+      "contact_vs_actor_handler damage tail: -2 lane guarded at 33"
+    ],
+    "correction": "The old artifact's 'unlocated increment source' is resolved at 0x8004B4F4. The old 'frontend 0xFF scan' is not frontend code; it is gameplay-side lazy berry-column inheritance at 0x80054644..0x8005469C, mirrored by the contact walker at 0x80058A74..0x80058AB4."
+  },
+  "adaptive_encounter_law": {
+    "positive_direction": "0x8004B4A0 calls ordinary contact damage. 0x8004B4A8 rereads true health 0x800A6594; only when it changed does 0x8004B4F4 add 2 to table[actor_id*5 + berry], while the old value is below 200.",
+    "negative_direction": "Flik-to-actor hit/KO paths subtract 2 under lane-specific floor guards.",
+    "spawn_direction": "mover_init_from_record clears actor flag bit 0x2 when the score is at least 100 and actor id is not 15.",
+    "chase_binding": "SYS_enemy_ai independently establishes actor flag bit 0x2 as the CHASE gate. The landed-hit path sets it when the score is below 120, actor metadata byte +0x11 is 100, and actor id is neither 13 nor 15.",
+    "grasshopper_boundary": "Actor id 15 is explicitly exempt from both the spawn clear and landed-hit set paths. The design reason is not encoded in the resident branch and remains a low-return semantic residual.",
+    "naming_boundary": "The bytes are persistent per-species/per-berry adaptive encounter scores. Calling the entire table HP is false; some consumers use thresholds to drive CHASE or reaction flags."
+  },
+  "save_schema_closure": {
+    "layout": "348 state bytes: lives, campaign progress, 19-byte unlock/ending block, a serializer gap at 21..27, and the 320-byte adaptive table at 28..347.",
+    "byte_0x8009B88A": "Resolved by E15 as a persisted alternate-FMV sequence counter. The resident call at 0x8004FFD4 increments it and requests movie id 41 plus the incremented byte. Exact unusual-save wrap behavior remains E15's bounded residual.",
+    "continue": "C16's Interpreter evidence establishes that Continue restores lives through scene_config_apply at 0x80055538, not through direct new-game initialization.",
+    "results_save_chain": "The one 0x800823E4 reader in MEMORY.BIN gates serialize_savegame_buffer -> memcard_load_dispatch/card writer -> scene_config_apply, then clears the flag."
+  },
+  "options_static_frontier": {
+    "function": "MEMORY.BIN menu_nav_cursor 0x800B687C..0x800B79C8",
+    "input_contract": "Fixed literal pad masks are read from held 0x80082412 and edge 0x800822E4. No mutable control-remap table participates in this path.",
+    "rumble": "The option branch at 0x800B73B0 tests/sets/clears bit 0x80 and calls pad_rumble_update at 0x800B74E4.",
+    "screen_position": "The branch beginning at 0x800B75B8 handles d-pad adjustment and stores 0x800822CC/0x800822D0. The same function passes those globals to set_draw_env_offset at 0x800B6B58.",
+    "audio": "The function reapplies the paired-table CD mix through cd_audio_volume_apply at 0x800B7900. It has zero direct accesses to the SFX master-volume scalar 0x8008247E.",
+    "persistence": "The 348-byte memcard serializer contains none of the option globals. These option effects are runtime/frontend state, not fields in the E14 save payload.",
+    "control_remap_verdict": "No retail control-remapping mechanism was found. The previous row wording bundled an unsupported remap assumption into the real options question."
+  },
+  "transient_c_evidence": {
+    "table_census_source_sha256": "0565398965836423412d1e09c3eee7c96eae6c4e31e743c71c4787ee1101c480",
+    "table_census_binary_sha256": "2d26e6723676c23510494e736145a3000b1e740720e2d5b22f5a23b7f307bb6f",
+    "table_census_output_sha256": "922ac3b6530b6f98baf55e7fe36906721a1c4ae42ecae20a88cf5b14d02df752",
+    "frontend_census_source_sha256": "78f0f34a40774a195eaef8548b9def7107f3d9ae958a20a907b2f935f632b66d",
+    "frontend_census_binary_sha256": "c8cb9c0a89b287553216c934012a7e11121f93d1df2a858805f4ac1cc463a862",
+    "frontend_census_output_sha256": "1e2cead0926a399139e6f6fd8fec3821e1c945e5e793611413b03cf1006b3483"
+  },
+  "phase4_scorecard": {
+    "original_oracle": "advanced_not_met",
+    "static_frontier": "met_for_save_table_and_option_effects",
+    "structure_and_abi": "met",
+    "lifecycle_and_reset": "advanced",
+    "cross_system_bindings": "met_for_save_continue_results_fmv_and_enemy_ai",
+    "failure_boundaries": "advanced",
+    "reviewed_semantic_source": "advanced",
+    "mod_consumption_contract": "met_for_save_schema_and_table_extent",
+    "durable_gate": "advanced"
+  },
+  "bounded_residuals": [
+    {
+      "residual": "Why actor id 15 is exempt from both resident CHASE-threshold paths",
+      "why_nonblocking": "The exception, affected state, thresholds, and consumers are exact. Only designer intent is absent.",
+      "reopen_for": "A MOD that changes grasshopper aggression or unifies enemy AI"
+    },
+    {
+      "residual": "Pixel labels and presentation breadth for every options subpage",
+      "why_nonblocking": "Text is image-baked and does not alter the recovered option writes, fixed input masks, or persistence boundary.",
+      "reopen_for": "Frontend art/layout work"
+    },
+    {
+      "residual": "Dedicated cold-boot memcard failure/retry promotion assertion",
+      "why_nonblocking": "No code, disc, asset, or save format was modified in this investigation. Existing C16/C05 runtime evidence covers Continue and results-triggered save behavior.",
+      "reopen_for": "Any save-schema, card-I/O, or frontend behavior MOD"
+    }
+  ],
+  "movie_policy": {
+    "needed_now": false,
+    "if_reopened": "Record a normal-speed Interpreter movie through Options and Save/Load only for a named presentation or card-I/O question. A modified save/disc oracle requires a pristine-base build and cold boot."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "schema": "abl-cross-port-semantic-candidate-catalog-v1",
+  "status": "curated_calibration_catalog",
+  "repository_commit": "1186eb6eb9712689a0ebd6a5d1d5c1ba61cc2f51",
+  "target": {
+    "project": "ABL",
+    "binary": {
+      "id": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "architecture": "mips-r3000a-le"
+    }
+  },
+  "candidates": [
+    {
+      "candidate_id": "PS1-CAND-BERRY-ACCUMULATOR-INCREMENT",
+      "locator": {"kind": "instruction_window", "value": "0x8004B4C0-0x8004B53C"},
+      "evidence": [
+        {
+          "path": "analysis/phase4_e14_bounded_exhaustion.json",
+          "blob_sha256": "9b9ce3bb7cce809ade4176f6ba8462df2fce275d9ee15a2235a5784bf3d47dbf"
+        },
+        {
+          "path": "ObsidianVault/Canon/Functions/FUNC_8004ABF4_proximity_updater_8004abf4.md",
+          "blob_sha256": "8b54fa6caf4b1b0220fe0ccbf01ba0e6a1c1f89205d0cbd6bb7d2258641fc675"
+        }
+      ],
+      "features": [
+        {
+          "kind": "table_shape",
+          "semantic": "per-row-type-byte-accumulator",
+          "attributes": {"columns": 5, "element_bits": 8}
+        },
+        {
+          "kind": "index_expression",
+          "semantic": "row-times-columns-plus-type",
+          "attributes": {"columns": 5, "index_bits": 32}
+        },
+        {
+          "kind": "guard",
+          "semantic": "unsigned-less-than-immediate",
+          "attributes": {"immediate": 200, "operand_bits": 8}
+        },
+        {
+          "kind": "operation",
+          "semantic": "add-immediate-under-guard",
+          "attributes": {"guard_immediate": 200, "immediate": 2, "operand_bits": 8}
+        },
+        {
+          "kind": "threshold",
+          "semantic": "unsigned-greater-or-equal-immediate",
+          "attributes": {"immediate": 100, "operand_bits": 8}
+        },
+        {
+          "kind": "selector_domain",
+          "semantic": "five-value-type-selector",
+          "attributes": {"count": 5, "element_bits": 8}
+        }
+      ]
+    },
+    {
+      "candidate_id": "PS1-CAND-BERRY-ACCUMULATOR-DECAY",
+      "locator": {"kind": "instruction_window", "value": "0x8004B2E8-0x8004B32C"},
+      "evidence": [
+        {
+          "path": "analysis/phase4_e14_bounded_exhaustion.json",
+          "blob_sha256": "9b9ce3bb7cce809ade4176f6ba8462df2fce275d9ee15a2235a5784bf3d47dbf"
+        }
+      ],
+      "features": [
+        {
+          "kind": "table_shape",
+          "semantic": "per-row-type-byte-accumulator",
+          "attributes": {"columns": 5, "element_bits": 8}
+        },
+        {
+          "kind": "index_expression",
+          "semantic": "row-times-columns-plus-type",
+          "attributes": {"columns": 5, "index_bits": 32}
+        },
+        {
+          "kind": "guard",
+          "semantic": "unsigned-greater-than-immediate",
+          "attributes": {"immediate": 64, "operand_bits": 8}
+        },
+        {
+          "kind": "operation",
+          "semantic": "subtract-immediate-under-guard",
+          "attributes": {"guard_immediate": 64, "immediate": 2, "operand_bits": 8}
+        }
+      ]
+    },
+    {
+      "candidate_id": "PS1-CAND-DANDELION-VERTICAL-UPDATE",
+      "locator": {"kind": "instruction_window", "value": "0x800486DC-0x80048728"},
+      "evidence": [
+        {
+          "path": "ObsidianVault/Experiments/EXP_2026-08-02_phase4_b03_dandelion_glide_static_continuation.md",
+          "blob_sha256": "eb1e3bda38e759a16514bd1bc85d0d99e284efe123b54f1454194e33af6fd2c7"
+        }
+      ],
+      "features": [
+        {
+          "kind": "guard",
+          "semantic": "signed-less-than-immediate",
+          "attributes": {"immediate": 350, "operand_bits": 16}
+        },
+        {
+          "kind": "operation",
+          "semantic": "add-immediate-under-guard",
+          "attributes": {"guard_immediate": 350, "immediate": 256, "operand_bits": 16}
+        },
+        {
+          "kind": "state_transition",
+          "semantic": "grounded-clears-glide-latch",
+          "attributes": {"latch": 11}
+        }
+      ]
+    },
+    {
+      "candidate_id": "PS1-CAND-WALL-CONTAINMENT-DOT-PRODUCT",
+      "locator": {"kind": "function", "value": "0x80025084"},
+      "evidence": [
+        {
+          "path": "ObsidianVault/Canon/Functions/FUNC_80025084_oriented_containment_-_range_test.md",
+          "blob_sha256": "5dd3af64df604c3064d2afa7c3031cf3dc75ee8177060494d87e7be4fde7ad1f"
+        }
+      ],
+      "features": [
+        {
+          "kind": "operation",
+          "semantic": "signed-three-axis-dot-product",
+          "attributes": {"accumulator_bits": 32, "axes": 3}
+        },
+        {
+          "kind": "operation",
+          "semantic": "arithmetic-right-shift",
+          "attributes": {"operand_bits": 32, "shift": 17}
+        },
+        {
+          "kind": "guard",
+          "semantic": "signed-radius-plane-threshold",
+          "attributes": {"radius_bits": 16}
+        }
+      ]
+    }
+  ]
+}

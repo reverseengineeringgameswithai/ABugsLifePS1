@@ -1,0 +1,5511 @@
+{
+ "_comment": "WP8 asset-provenance report over every centrally pinned pristine staged input. It verifies local bytes, classifies all required asset families, and names the load-owner frontier. Regenerate: python3 tools/phase3_asset_provenance.py",
+ "generated": "2026-07-14",
+ "exhaustive": true,
+ "exhaustive_over": "every tools/build_baselines.json staged_inputs entry",
+ "baseline_sha256": "d3b6a5a2ddf8ef7060839a801928461b20b1f109c383749014f07eee89cab00d",
+ "summary": {
+  "assets": 327,
+  "role_counts": {
+   "animation": 58,
+   "audio": 47,
+   "code_overlay": 20,
+   "collision": 24,
+   "filesystem_support": 11,
+   "fmv": 40,
+   "geometry": 35,
+   "level_specific": 129,
+   "models": 78,
+   "resident_executable": 1,
+   "textures": 44,
+   "ui": 21
+  },
+  "missing_required_roles": [],
+  "hash_mismatches_or_missing": []
+ },
+ "assets": {
+  "BITS/MEMORY.BIN": {
+   "sha256": "e3f8697223e3a1a1bdfa385d417ce87928eaff40ea3e26d1a64f6f25234d8e37",
+   "size": 36448,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "code_overlay",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "BITS/PLANTTER.ALL": {
+   "sha256": "0a0cf7fa9e110eef8e2112760dcbefaa433b391ca613a3d673ee0327767eb468",
+   "size": 17760,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "BITS/SEED.ALL": {
+   "sha256": "5a1014b22849995771519ba6c52a8d7b614993512ad5dcaa4d5284cded62a657",
+   "size": 16576,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "BITS/TTLOGO.BGR": {
+   "sha256": "9f4551c5af276365fd62cb68803136e2c303462bc3ca95f6d55c7dbe13814335",
+   "size": 153600,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "BLANK.BIN": {
+   "sha256": "83ee47245398adee79bd9c0a8bc57b821e92aba10f5f9ade8a5d1fae4d8c4302",
+   "size": 33554432,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV1A.STR": {
+   "sha256": "af28b4ba866b70e26734d80da1e05c95d6d0fc4e16eca88798e20a18436957a0",
+   "size": 4559872,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV1B.STR": {
+   "sha256": "daebacb8d3412a3a7a64baa5f9a14f11f241ec0057b014d3b12a272447233340",
+   "size": 5681152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV2A.STR": {
+   "sha256": "f89b2aa1c8cac943abcf7bdfc4907b486e748b290a441f22f84e3c3f7764ae6f",
+   "size": 16744448,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV2B.STR": {
+   "sha256": "def410bd8f749616e891f68cec43a126e371660b321297df6f18d000b2fdf472",
+   "size": 15473664,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV3A.STR": {
+   "sha256": "8094b649d1878cdd5d59da54053b3e6d63f3981b194c849055871475109603f5",
+   "size": 7774208,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV3B.STR": {
+   "sha256": "9f66772e3cb8389a046994fe625ee2f87926cc34ea93df56510d30d6f2eb6ee1",
+   "size": 14950400,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV4A.STR": {
+   "sha256": "d96648b780bdece11cd2ae7beab9f0a63cc98d41630328ccb09b4f56d06e7469",
+   "size": 5307392,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV4B.STR": {
+   "sha256": "33b86b74c3b24fcf942b80f76d42b805252842edd689f08b09fdcbb4b820c80a",
+   "size": 17716224,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV5A.STR": {
+   "sha256": "8e7eb122de66531d8a4a4ec670537eedd3bb7f6eb4d2cd32762f815a6a8689a0",
+   "size": 9194496,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV5B.STR": {
+   "sha256": "0aef0c9c7e62221705209ee75804a1dc1b98095109f021b19eccfac0af54552b",
+   "size": 8745984,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV6A.STR": {
+   "sha256": "94ebb18ba3f8d702d4d0db74b84c2b2a1d2d612513f9ed7f256bbf37bc700a86",
+   "size": 10988544,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV6B.STR": {
+   "sha256": "147f141bdffafb8c0ca3dae1e49ca5726ab2a85f2fac6df55e9800754a19a689",
+   "size": 12932096,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV7A.STR": {
+   "sha256": "d84d790a528610a8e471faa47d8b264e4723b6d7b8aa47da6ad0494d20c3707e",
+   "size": 17940480,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV7B.STR": {
+   "sha256": "936a67a14180cc438f7d1dec825e3a7f6eb5b9a03f044182e4c561313fdcfb3e",
+   "size": 10465280,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV8A.STR": {
+   "sha256": "e3a4835120d363c627747e3b5ff9f8fdee294370888c0321391f6757bba970db",
+   "size": 12707840,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV8B.STR": {
+   "sha256": "f991cf2aa8e99630356353bed3d0951d18d5c85e27096f9eabef21e5bc8ee962",
+   "size": 11437056,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV9A.STR": {
+   "sha256": "9c479297a933ab9e844710b5b8e18a45772d78e433480c56b528b620926bd4a3",
+   "size": 4718720,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV1/LEV9B.STR": {
+   "sha256": "e09d0609f2eb71c3f265c8134a97585c8c5c67396bf56723f132947a0c7ea9ce",
+   "size": 9717760,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/ALT1.STR": {
+   "sha256": "afc3865d7daa9aa03ab0eda9143a28c82911d63a443d415ba2f598c895b7eb2f",
+   "size": 8596480,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/ALT2.STR": {
+   "sha256": "c28145b9abd4184b3338db5f4fa6e1644e2a9e4fffc54c9a74685ba0fc9d8bc9",
+   "size": 5755904,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/ALT3.STR": {
+   "sha256": "135a9b55a2920933e1a25faf9ba59c047a544941fbeabf2d9a860d9a70840fec",
+   "size": 7774208,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/INTRO.STR": {
+   "sha256": "7a64633eda8d3a1ac0d21e0600248bbccbbc16dd6f1a8dbeef4f09cea6408516",
+   "size": 20482048,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV10A.STR": {
+   "sha256": "ad872e45ab28f69657a2d2aadc7b0a1c3a113f3756ee73a16b76152f22557eb1",
+   "size": 6505760,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV10B.STR": {
+   "sha256": "7a3fd634a973fb78012bf4574529c13911675d0fdf342063937523426f24f1ac",
+   "size": 13618880,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV11A.STR": {
+   "sha256": "51e40c11c8ee9e62c7c9740759a653214a644a2542a9ce075444dee372e086c5",
+   "size": 5606400,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV11B.STR": {
+   "sha256": "e053445a84c65a337fc5dea8d7f50eff25b0c08f2939f2acce7c4a818e228322",
+   "size": 6610880,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV12A.STR": {
+   "sha256": "a333a4510d24c9258a29b70acc9ed0797a2938ad5f491be33ac22dc8def6362e",
+   "size": 8222720,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV12B.STR": {
+   "sha256": "dfbab5aa912007c68818a26dd67d979f1586752996dcdc8d40965f13c60f4b87",
+   "size": 4186112,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV13A.STR": {
+   "sha256": "8fbcd7d3ba21270b7750664f3681fd1b6218c3ddd278ab3f2db21068785734c8",
+   "size": 4485120,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV13B.STR": {
+   "sha256": "c1cc984d16f27ca99946d01554cd18275d3bdeeac3ab7ee6f15b201fa2beee31",
+   "size": 8372224,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV14A.STR": {
+   "sha256": "8d21f5e034dce2f5c6c1d3aa8dce592f4989eed5ea684a54b0af5ac3d427718c",
+   "size": 6353920,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV14B.STR": {
+   "sha256": "793b1c11460e34fbb121e4ceb13b9977e8ed975cf84da32b799fb01ed5b691ba",
+   "size": 9227200,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV15A.STR": {
+   "sha256": "582113e27c4d0455a28d7c04223d4a1f81c9de807adb469c759ff4d6581f4c55",
+   "size": 3812352,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV15B.STR": {
+   "sha256": "97227268c6ce85f47f96e364f650a40a39d7a9c40e0076ea8070f8eab97282e6",
+   "size": 12408832,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV15C.STR": {
+   "sha256": "43a82b0bc3d61fe6b361b7c930be27009c8c492c3d7e76e0449ead1084f16c9a",
+   "size": 37076992,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LEV15D.STR": {
+   "sha256": "b59cefbf9ec8a7628233321e35c6f35587e7521a0e07293200c2a6e1ca5bda32",
+   "size": 21379072,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV2/LOSE.STR": {
+   "sha256": "8ea5c86a3ed166b7d4b004eabed91d8766a4b11953a15701cd82a8879a207640",
+   "size": 3363840,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV3/DLOGO.STR": {
+   "sha256": "4e6210a5e2406f6633aa0eeae801146a73175791409c964e64f69fe0f33fe3c6",
+   "size": 5466240,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGSFMV3/TT.STR": {
+   "sha256": "b486ffd424907ed76ccfaa93336e2292e5b702d1e111569cd4d5fe0a52fa5f18",
+   "size": 7774208,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "BUGXASTR/AUDIO1.XA": {
+   "sha256": "53c373edb845c9d1e19c2f6f95bfd68a41a0ac5a29f0f699e4a3682b6b25a68c",
+   "size": 91085312,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    }
+   ]
+  },
+  "BUGXASTR/AUDIO2.XA": {
+   "sha256": "5c8e0915fc267bbb2c8aac4661b145c41ae0141b93dd5a323c6e91f936876ef5",
+   "size": 97812992,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    }
+   ]
+  },
+  "BUGXASTR/AUDIO3.XA": {
+   "sha256": "dd3ef21c88581a7e46a38873e3db6061e50017d3ca945df7525fa2aee1bef5e9",
+   "size": 44963328,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    }
+   ]
+  },
+  "BUGXASTR/AUDIO4.XA": {
+   "sha256": "b4672b587970e3477c8bd9cb0e85324ed213b2195b3c197a2fc52cef986970bd",
+   "size": 8409600,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    }
+   ]
+  },
+  "BUGXASTR/AUDIO5.XA": {
+   "sha256": "cc1e69a76ef8329395720654c6938371f150f20612b86fb6c7991f44279dc2eb",
+   "size": 9960704,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    }
+   ]
+  },
+  "CHARS/BADBUG.ALL": {
+   "sha256": "b5f358e9982de514afc0739d276e3ec3891aecddc3c45722af4674f2090ea933",
+   "size": 4520,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/BADBUG.ANM": {
+   "sha256": "f03ea66e9824fd483a2aff2a9185133165fd7212cdc3647d99da3b12342b8e24",
+   "size": 4928,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/DIM.ALL": {
+   "sha256": "65cc9982f47b2e86147ecd111e6ec78af784f2a89f77f37cc1fdc95c31aba6aa",
+   "size": 12512,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/DIM.ANM": {
+   "sha256": "c4e0d4676c55fc677b0342f8a45c93c7bcb40bc92ae008273cb42cb74c65ee52",
+   "size": 10524,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/FLICK.ALL": {
+   "sha256": "a2f23220392d7fb4880bbab7acab9393fe6da059961d620e7b85c8df3f4f4ac6",
+   "size": 13548,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/FLICK.ANM": {
+   "sha256": "1743b26a13770b6453dfcf900d9f02a515e52a1b04e5679149c06ec77e5e8ab1",
+   "size": 182334,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/FLY.ALL": {
+   "sha256": "3c9bb566c736ba6d7afcb0ab5a921d978e0fc68e31df54b0ddfaa08877b7fb90",
+   "size": 6924,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/FLY.ANM": {
+   "sha256": "d2cdffba9f9ee3234599cf930d93ce0921b46fc69080474579f3243595168723",
+   "size": 10480,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/FRAN.ALL": {
+   "sha256": "f8386ae2eab4edc87c7463e2e63ef82c6ed8210eab3b133a492f47c9aa1fff34",
+   "size": 12960,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/FRAN.ANM": {
+   "sha256": "44747cacad6d82fcf383dc7f70a9e2a1bed31b1a12b362d5b63ede344c5c6166",
+   "size": 7460,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/GRUB.ALL": {
+   "sha256": "cefe8bca47487cacd0ce8f33e0ef05a54399a4859f419dc6cf0d06d661cf361e",
+   "size": 5384,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/GRUB.ANM": {
+   "sha256": "ef7c59c55b1ad6d8462beb746081d38e7336ddcc1cb480c93eb6ad846ad05ffa",
+   "size": 2064,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/GYPSY.ALL": {
+   "sha256": "6c27fac03736dd26bc79aa3cf91d9e1b4d62d64779e3400142231b503d399c63",
+   "size": 13484,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/GYPSY.ANM": {
+   "sha256": "83a8e8dca68340f7e7aaab82e2c63ef96b2d8b29416f71eb1732f2be40883c41",
+   "size": 12520,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/HEIM.ALL": {
+   "sha256": "e94b6fba98977ce7ff9bc03b080ed8ffddf77d12c9b02a1933bf3600e2545e69",
+   "size": 16104,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/HEIM.ANM": {
+   "sha256": "297f08f77a026b2dd183010b6c0b6ce2ca009ddd669977a2d453bd0add7ec0e4",
+   "size": 17984,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/MANNY.ALL": {
+   "sha256": "9daeeaa4adcd555973458c72a4d9cb7de7c4a4a9af51f5703323b71fcbf0934a",
+   "size": 11260,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/MANNY.ANM": {
+   "sha256": "b25d3f9c1b375a555cc9d216b3a67acafa05c04502d52d109ca6c879d0ba1775",
+   "size": 17924,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/MOS.ALL": {
+   "sha256": "4ba6f2f466f73eccd1f6d0bef2a86ebe851a29ac27da2463a61bfd5c64619c72",
+   "size": 6360,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/MOS.ANM": {
+   "sha256": "441ca6303308e60abc723331b8cdbee583a38052ecbdc4d4a8c47b03c864d835",
+   "size": 16604,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/ROSIE.ALL": {
+   "sha256": "12da0e3bcb0d71e56f6e1276c4e6e315d0533e36838b5f13657c18506ff86eae",
+   "size": 10156,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/ROSIE.ANM": {
+   "sha256": "a7c8c1c631645eff585e957d8549aef0dcd5c9044cbfa2dea1298ce815785ba0",
+   "size": 23558,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/SLIM.ALL": {
+   "sha256": "f580e863f24e4f40374b99790de3c2a77bb9a469231aa67ed76a8a80fc393f66",
+   "size": 9704,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/SLIM.ANM": {
+   "sha256": "def664b47f5de59499226ed47a82f67b494399ad7fd6963dc66dc14a9c28b75a",
+   "size": 15708,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/STATE.RST": {
+   "sha256": "e8fe2f0fe1e0601225c42176ed9b4f1e882408c0af7a169395a2a0163f6b4bdb",
+   "size": 297,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "CHARS/WASP.ALL": {
+   "sha256": "d47e76c29c778a66fdc2fe9b884ff4c38e76dd83f9a2a8eea0cd5b3b1251b99d",
+   "size": 7532,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS/WASP.ANM": {
+   "sha256": "984d52af1af1ba5bf123fc094ccaf078cabab3f8356bb7a178d5c07589f583b8",
+   "size": 20904,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/ATTAFLIK.ALL": {
+   "sha256": "52c2ca17ed9f1b5154b8ea551c444942e430fa916669be1e3f578eac18a1ebab",
+   "size": 24668,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/ATTAFLIK.ANM": {
+   "sha256": "267ba06ac8fbb88aecfe978795e65e2daa0f99b3cac86db46b06b7da4ccefc2d",
+   "size": 48024,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/DOT.ALL": {
+   "sha256": "9a86062f5ae18710d1051fc5c843630da5798c98b28a0f7e78c0d2a652ced97c",
+   "size": 10484,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/DOT.ANM": {
+   "sha256": "2823b702f9aa3f136081123a0b10de6cdf1f45271954c016d5fc5453a1760bab",
+   "size": 2662,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/FRANSLIM.ALL": {
+   "sha256": "5d319e92b972058536a06774f35134c9da8c57421401d22e48ec3fc81395af8c",
+   "size": 22036,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/FRANSLIM.ANM": {
+   "sha256": "70769b30d4624a8aa977625e87f52c2ca7a722d1778dcfe9442ae705624acd94",
+   "size": 56696,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/GGRASSH.ALL": {
+   "sha256": "eb5d858d9939578e6299da7ea720fde53d2561ccd4d38a564fd514f51e2343a4",
+   "size": 10152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/GGRASSH.ANM": {
+   "sha256": "19709a047ce75a358cd445c534f42e317a3f467063b6e7b9e550e1907a7d208a",
+   "size": 26378,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/GYPSY.ALL": {
+   "sha256": "c0639bcde5baa4b74367bab2a1b32dce7d3e8472de8724908a8c84b7eb48b8c5",
+   "size": 14812,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/GYPSY.ANM": {
+   "sha256": "d051f8718e19d2d7f750d241d47bdbd4872a04c1fb86f60cba9245a0b5725931",
+   "size": 13820,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/HOPPER.ALL": {
+   "sha256": "35417552618266bd3096ab712f133da5a8a5db4510a6230aa85329e0693d9938",
+   "size": 12160,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/HOPPER.ANM": {
+   "sha256": "b7eb7a1f0d3ae99704fd03ad8639c3135f933199f119f945aca9061663be3996",
+   "size": 26232,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/HSPIDER.ALL": {
+   "sha256": "a51c11eadc7d484a75f7c70f4b82d88b3c861ef07fa3a562683ef67c3ee26327",
+   "size": 7800,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/HSPIDER.ANM": {
+   "sha256": "15a5cf17972d1472d8f78b9de507b22203ef9b32ce31992bdf8f72d13896fd95",
+   "size": 11438,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/MANNY2.ALL": {
+   "sha256": "9daeeaa4adcd555973458c72a4d9cb7de7c4a4a9af51f5703323b71fcbf0934a",
+   "size": 11260,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/MANNY2.ANM": {
+   "sha256": "0fa2b8c764fb9735f156ecc07f3485cdfe1b8ca5579989264bffcadae986d015",
+   "size": 34016,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/ROACH.ALL": {
+   "sha256": "065687590a1598b44e9b1dafeaba22f49a5bb5ec1ecae87faa4f6189f4c7b371",
+   "size": 10308,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/ROACH.ANM": {
+   "sha256": "4e5e859b7fb8086eed03d2660d9a3590e4137d628395fa36e5f1b11f99d369b4",
+   "size": 13808,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/ROLL.ALL": {
+   "sha256": "abbc1cda88f2c6589850925bc4feec02eaa140a406a1a3f959cac62ba442e8e7",
+   "size": 11508,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/ROLL.ANM": {
+   "sha256": "4562cacc76cbe18745ad7ff030c558fc996057826be655e988625a13bf9720ed",
+   "size": 8200,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/TAXIBUG.ALL": {
+   "sha256": "3154110f402c5d82b5c984d4625cac044008f7598f5a1c946d39d8a6b98b5985",
+   "size": 9944,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/TAXIBUG.ANM": {
+   "sha256": "83ff6566079569331ad99cfc410714b9a6f28b0e4fa8b1f0a9b5a95fddfb2526",
+   "size": 6122,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/THUMPER.ALL": {
+   "sha256": "b76afe405db895cf3003f86667fec8a9df56aba076eaa51af155aa43554f8d12",
+   "size": 11804,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/THUMPER.ANM": {
+   "sha256": "11cd301ca887860a21dd2e17e541289613257f2fcabc06f4c3aa02e1177c7051",
+   "size": 34304,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/TUCK.ALL": {
+   "sha256": "223964069afefb09d6a539b2089b94193c6e3cddba94d2f94df0e430069aef7c",
+   "size": 11508,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/TUCK.ANM": {
+   "sha256": "4562cacc76cbe18745ad7ff030c558fc996057826be655e988625a13bf9720ed",
+   "size": 8200,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/TUCKROLL.ALL": {
+   "sha256": "74b2b647b595074e1982bd88fe0bb6e46bcaa36b639986ca40bb27a20cf29d82",
+   "size": 20456,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS2/TUCKROLL.ANM": {
+   "sha256": "92785da836a25a1a971a77d94edcdc79c9612a537c493a291938bf453684dec8",
+   "size": 6312,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/ACORN.ALL": {
+   "sha256": "af51e81d2997fbe2f612cb6cb40a66ac7ec4fc5e02c5215c6f3b1bc4df4ece7f",
+   "size": 3636,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/ACORN.ANM": {
+   "sha256": "f609687aabfebfe7308568abc589d91380f97e4b2e29a88dab901ac498b013e2",
+   "size": 224,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/ATTA.ALL": {
+   "sha256": "9c5ba3b9147b4e02b21584ec994ed49857516059ffb36733e2fcf84f7e3c6229",
+   "size": 14384,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/ATTA.ANM": {
+   "sha256": "bb4257402a4b2512b742f65ed077ae43bfc3715feab5df04d7333ac2536fd345",
+   "size": 12326,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/BBIRD.ALL": {
+   "sha256": "20d2e4ce0ef972285fd19b7e4b8abda53b665750f0522c7c7920f5a17cb16a5a",
+   "size": 24544,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/BBIRD.ANM": {
+   "sha256": "83e622e9fd01012ad8ab0975b51ae50c2e55e9bfd1f9341bdc0c3686162eb4b7",
+   "size": 5120,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/BLUESCOT.ALL": {
+   "sha256": "593ce19d5f14142c037181ed288aa343f7c866d8b29cd4eba2cb0bbfd7dd5a36",
+   "size": 11672,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/BLUESCOT.ANM": {
+   "sha256": "8ef10855a5a4593e0077639f9309cdbdac01249898803e37c199162834f23bdf",
+   "size": 5312,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/DRAGFLY.ALL": {
+   "sha256": "6df612f183e8a7b19537225bacd23efdf35e1e5269d1b7e998d046e385b427bf",
+   "size": 8344,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/DRAGFLY.ANM": {
+   "sha256": "40e768fff21d0ce3410fc4f1628597ef7cb6f900767a232666029e157defb1ab",
+   "size": 8336,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/FDIM.ALL": {
+   "sha256": "15e6e01146334a276f2b1c24b4cb3c5865c09ba1e5b7b37b0a63f7985b477ae2",
+   "size": 14096,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/FDIM.ANM": {
+   "sha256": "9db2b1f251a4cd533ebf155df3539181ba40e2019f4840458106a4f27cf418e0",
+   "size": 3980,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/FLICKD.ALL": {
+   "sha256": "6e5afb4f9ea649bc305fdafeb027aece25914b27a017d04841bf4298634079a4",
+   "size": 13548,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/FLICKD.ANM": {
+   "sha256": "1743b26a13770b6453dfcf900d9f02a515e52a1b04e5679149c06ec77e5e8ab1",
+   "size": 182334,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/FLICKP.ALL": {
+   "sha256": "285e1a904c5111a5d1b80c00bae0311d9949767ac181c69fcc34e4158ac7eecb",
+   "size": 16044,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/FLICKP.ANM": {
+   "sha256": "95e77803dfaef08b616eaed738e3edc183c0de3336f7da6473bb69ad3c0ed3b7",
+   "size": 213090,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/FLIKHARV.ALL": {
+   "sha256": "26300d0b5d0b9d93d031876f82d97566e3e2c533ff9116a95a302259e9393554",
+   "size": 11416,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/FLIKHARV.ANM": {
+   "sha256": "5442b76ff7b0911fed6f79b40390b3f7e83a04b2bcb1d5730fad86d581557f48",
+   "size": 15374,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/MOLT.ALL": {
+   "sha256": "e4d6f624abee32d1644cf1a2f8632abb88490435f24f69458316713c8ffdb1ad",
+   "size": 12088,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/MOLT.ANM": {
+   "sha256": "1c2c93d8bea9c5f2187b143034891010d47af2095875baa74ad88203265cf526",
+   "size": 13356,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/PROTECT.ALL": {
+   "sha256": "113001e0a3d6ff39d3b4f1ca5ba87e47ec12a11608b49b8c6451f2a030ca11d2",
+   "size": 7376,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/PROTECT.ANM": {
+   "sha256": "f29e8261d8d247f57210e3102d0c9e58683ffc437d1c14832f8f04f9f068c688",
+   "size": 2672,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/SOIL.ALL": {
+   "sha256": "a64871f3de0657cb1356ab01b3ecb11467026b8758cbf1a162b23f71d128f027",
+   "size": 13960,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/SOIL.ANM": {
+   "sha256": "437a8b017ca2219de975d70dac4854e668b7ca1e895235417473beeb3e02e5e2",
+   "size": 14120,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/THUD.ALL": {
+   "sha256": "8773297d7bd9e1369910f6fe96c63e128aed69bfe179e88175fdd799517f0e09",
+   "size": 9288,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/THUD.ANM": {
+   "sha256": "f6ae4b34642451887c295ce7d5d2ed52af5745c0fc1029f5f3470bbf009d334d",
+   "size": 13994,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/WEEVIL.ALL": {
+   "sha256": "93e80fe9fd406ae8a6cb00c9b4263ae4aae4fdff6df29b438effbfec56e28dcf",
+   "size": 7080,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS3/WEEVIL.ANM": {
+   "sha256": "ed402063ceaf939fe7c718ad3dffb3d592ea280d6c2170240c4ee1fc747ae5b7",
+   "size": 4064,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS4/BADCENT.ALL": {
+   "sha256": "affb114a337b073e7f092d84e7d8b569fc90bd506ca939d99ae542852411ca62",
+   "size": 11344,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS4/BADCENT.ANM": {
+   "sha256": "9e9ef34a385142c2ca09b13ec5b5450521f462d992580b6b8e8a33807be5f65a",
+   "size": 8978,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS4/BADWORM.ALL": {
+   "sha256": "ebe2da35022efe8add128f570639125572754cc25afb6ec2cd27eab462fdfe36",
+   "size": 6992,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS4/BADWORM.ANM": {
+   "sha256": "781cf3910b8f66cba373f86dd25517b3354b2eb670384cd53cfa4bc9c94a8416",
+   "size": 3312,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS4/FLICKP.ALL": {
+   "sha256": "285e1a904c5111a5d1b80c00bae0311d9949767ac181c69fcc34e4158ac7eecb",
+   "size": 16044,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "CHARS4/FLICKP.ANM": {
+   "sha256": "85ecebab2dc71bb8b6ae23b728ed8f855775dd6cf4ff1ef9be1b3b5a2e6e3fe9",
+   "size": 179460,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "FMV/FMV.BIN": {
+   "sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+   "size": 509800,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "fmv"
+   ],
+   "load_owners": [
+    {
+     "owner": "FMV.BIN/STR streaming path",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+    }
+   ]
+  },
+  "GFX/CIRCUS.RAW": {
+   "sha256": "24412badf3f533e8aa9dc829ee4852e5645c0e4a87192fece890815e113ea795",
+   "size": 59012,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/FILM.RAW": {
+   "sha256": "fccd9ed18f68c8c34c901670f0c5e96a15506115c54e85cfb8c4fbfcfe4f271a",
+   "size": 93508,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL1A.RAW": {
+   "sha256": "e8d73f18d3be077a5bbcd6fed3e570ccdd1a770d442206129e3cdd9a475cf1c7",
+   "size": 96664,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL1B.RAW": {
+   "sha256": "6346eeee613d057578b47885d613ce466ead90c78c4cce5cf3a7014b181460e6",
+   "size": 59472,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL1C.RAW": {
+   "sha256": "a96849c18fb9ce99a0034c8624dadccafa0f4fd2ad2f244eab44bf020d272783",
+   "size": 43524,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL2A.RAW": {
+   "sha256": "ef6ade578cf3788f83c6b9927275bd45c5b3770b2c96b48b6b403b99e02e43e4",
+   "size": 102576,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL2B.RAW": {
+   "sha256": "256abf817918eb2f94b1a03cd70feda4b685b143f56897d90835162ae4fa0c10",
+   "size": 98556,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL2C.RAW": {
+   "sha256": "fb6f871d407ec51db967200917ea2d54e51f204924d5648cc3ef2a44c818d1a3",
+   "size": 91868,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL3A.RAW": {
+   "sha256": "df6455f68253ee570eb600708eb0cbb729ad695a8d1a3bb20b27fc0dddf4769d",
+   "size": 67440,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL3B.RAW": {
+   "sha256": "88f6ef97b0435763bade7c032283e70ae443033907cfcdbec1808ef5300dba8f",
+   "size": 66340,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL3C.RAW": {
+   "sha256": "a64ff20041b33449660fd694e90683ee55033a482c32488b3f47d83df5c56bae",
+   "size": 48184,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL4A.RAW": {
+   "sha256": "eb5682d66109cdcac6f930ee7ecd59fc9bd78f69b262845dc5b633d6ba8b166d",
+   "size": 110180,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL4B.RAW": {
+   "sha256": "f3b3213b34791937d90763fa3518cb75db98cd9eb718dbcb04531b1e804f3308",
+   "size": 96188,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL4C.RAW": {
+   "sha256": "c5c225a9a0d26258afe02e5354e73350b24f59294fe8352eac669ebd9a9483ca",
+   "size": 84448,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL5A.RAW": {
+   "sha256": "02da4ff5397bc29d01947d11369710e5abd08561877f7a765ee43ba8091e3ba0",
+   "size": 92708,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL5B.RAW": {
+   "sha256": "e0faadaedeb5391485e9bcbf3e134682297e7ed78fbeaf293ac34a83b5156af9",
+   "size": 65040,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LEVEL5C.RAW": {
+   "sha256": "d4301ddea666d0248701944c04aadb87daadacbfd0d9c7da7d1f3dedbce088c3",
+   "size": 64064,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/LOADING.RAW": {
+   "sha256": "4d613b44dc383532785f995e394fabc10354dd1b720874766b55139b0ea7155d",
+   "size": 3604,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "GFX/TRAINING.RAW": {
+   "sha256": "d27f29ad2a11f6f2acf739a48109cba666e14391b3a0565aa0d1f8c1a1e6a0d8",
+   "size": 120744,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "textures",
+    "ui"
+   ],
+   "load_owners": [
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    },
+    {
+     "owner": "frontend/loading-screen resource loader",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md"
+    }
+   ]
+  },
+  "LEVEL00/ERRORS.ERR": {
+   "sha256": "194d32c81fd9cac98d52814d334624bb3f05e9c36a2a8db4297f19143967381c",
+   "size": 2014,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL00/LEVEL.BIN": {
+   "sha256": "fb5e512425fc9449316ec95969ebe71e2d576dbab833d61e2a5b9330fd70ee02",
+   "size": 4,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL00/LEVEL.DAT": {
+   "sha256": "b9fb1650f96aa187cf3a3cebaf588424596a4a1a164f9de71ff296131d57297f",
+   "size": 94044,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL00/LEVEL.RAW": {
+   "sha256": "9d85dc0e21fa9f2801b5e39a9715795efd80a510572accfe8062a105866cd589",
+   "size": 400632,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL00/LEVEL1.RAW": {
+   "sha256": "8a611b89e7985c6e8da45c5860bf432c851e61951f69c667886b2c5c8bef831d",
+   "size": 90612,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL00/LEVEL2.RAW": {
+   "sha256": "46ce91f5b3c88217229b1035146328633450c5da90738d5ed69e4ca724b3c0d7",
+   "size": 95276,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL00/LEVEL3.RAW": {
+   "sha256": "2969ee1f659987f6a9587141ac365d50f6a36e07fbc8fe29856cb4ebbf6f1d10",
+   "size": 95180,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL00/LEVEL4.RAW": {
+   "sha256": "ca9117621b3f047001c39f9aa87a212e59e425fdbe6f23bbdc0d922b4ceaba01",
+   "size": 275816,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL00/TERRAIN.ALL": {
+   "sha256": "dccf7db3978cce18c9e2e59733f057dcb2d6b45b9ba0da05ed4307b350421ac2",
+   "size": 194332,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL.BIN": {
+   "sha256": "f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21",
+   "size": 1680,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL.DAT": {
+   "sha256": "786b7a964129d4fee6a1983b356e172d406b17663d87b8befe645b92dbf08b53",
+   "size": 332824,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL.DAT.orig": {
+   "sha256": "786b7a964129d4fee6a1983b356e172d406b17663d87b8befe645b92dbf08b53",
+   "size": 332824,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL.DAT.prechaser": {
+   "sha256": "786b7a964129d4fee6a1983b356e172d406b17663d87b8befe645b92dbf08b53",
+   "size": 332824,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL.RAW": {
+   "sha256": "c07452bafcf3799b55574d1622a37189358f5debcbd1127e167fd0fe0181700e",
+   "size": 747748,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL.RAW.atta": {
+   "sha256": "845022dc76da07332e19cbe7b93c0c3a49a22f4f1c3949444995aeb361451ccb",
+   "size": 760863,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL.RAW.preenemy": {
+   "sha256": "c07452bafcf3799b55574d1622a37189358f5debcbd1127e167fd0fe0181700e",
+   "size": 747748,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL1.BIN": {
+   "sha256": "43c80f86eef71a3b51bef593889cfc1a3ef5a766c2eb1fd168b01db570073fd6",
+   "size": 2700,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL1.DAT": {
+   "sha256": "20a8fd66de234e5ce30131cb3997f33dd75527c1fb18c5ffed5f33681cf6da15",
+   "size": 107880,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL1.RAW": {
+   "sha256": "de7d7cf814fbaef5f86c847d55e76a3f8709e41469e6d1c6146f94a0ee5069a5",
+   "size": 541200,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL1.RAW.atta": {
+   "sha256": "7d986f3ace74d669348bfcd62de36f7740ddab27aabf8f73d73b49408f636812",
+   "size": 554317,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL1A.VB": {
+   "sha256": "48406bb924bf9c4ee977dfc9aace12e03abaad613e68900ddbabf87fa007567c",
+   "size": 501680,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL1A.VH": {
+   "sha256": "de94421c5bd0e497b9b84b907bd7a616419809536a95d12465f74f98bda5f1d2",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL2.DAT": {
+   "sha256": "196a0f729ac24a29742ff6bd989a892e153431e90386005d84d20afcbe221311",
+   "size": 264068,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL2C.VB": {
+   "sha256": "1ce4b7e4434d3d858c5183ce208f8902b0a651b552a4f2ca3cf771f57263bf25",
+   "size": 506528,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/LEVEL2C.VH": {
+   "sha256": "203c509c70719af4ee827b38abf552ffa067e9442d112715584d05ba7188e504",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/TERR1.ALL": {
+   "sha256": "602e71eefeaaf3b05cf6f441a5198d59d41d917bbd590cc623e4e1ec5edaa627",
+   "size": 61560,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL01/TERRAIN.ALL": {
+   "sha256": "62f3b73f21630eb19c04e585a92e1f3e32a76fdcb6ec36bae18f9c1ec3a2a868",
+   "size": 236940,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL.BIN": {
+   "sha256": "6e5040d0d053ad652ba2ab655af8d2d2731b7a77b704c68a815fc2868449ffed",
+   "size": 4032,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL.DAT": {
+   "sha256": "0bb00fa7387c2125ae20c55400bf5cea6a64641a7328cedc5cbd543bbd437ee7",
+   "size": 112468,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL.RAW": {
+   "sha256": "6f0c0e44daf0014de890046679f82ade7623e6b5472df3634bc056cd09b13269",
+   "size": 517912,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL1.BIN": {
+   "sha256": "71a77ba1f7a0e985f8c5208318eaff7f6054dbf64f22981b5590160c77af97b1",
+   "size": 4272,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL1.DAT": {
+   "sha256": "5e850a16ee98bd9d7feb747b53390babeef372e98a82378f602104cd7ba76471",
+   "size": 400136,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL1.RAW": {
+   "sha256": "eb68f8fd7f0415441cbebeb3a8c70da81bdb1cdef8b75d032222f5aa8abf25ad",
+   "size": 430332,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL1C.VB": {
+   "sha256": "5cc293061a58964cbf10e7857fa09b70cfc94c7a62f8224cde94f4a6a96a857d",
+   "size": 502288,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL1C.VH": {
+   "sha256": "b5c17c9ae38e4c18cd8223380363b5f203e7ab036185f3624a673f7423cc75a8",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL4B.VB": {
+   "sha256": "611efea9679fbce099a60237876c5108fd712410bc52575ccb1b39e1fac53d46",
+   "size": 501120,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL4B.VH": {
+   "sha256": "7c83585372a9e27a49f5372224293eff3b5cf3049f90fd8c246022d4ab548f44",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL4BC.VB": {
+   "sha256": "604c46beb4cfce669dc429d90d73a7e82b1855305e380a6c6e9feb4b54ab0c2e",
+   "size": 283024,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/LEVEL4BC.VH": {
+   "sha256": "53c19291921e8e4bb79117d96d5969900c923145196ce22fa3c7f29b470a79f6",
+   "size": 6688,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/TERR1.ALL": {
+   "sha256": "672412e9dc1373c9c6258a8ff0c7f780cf35c69bbf22f6df077ce08c3165c08e",
+   "size": 220036,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL02/TERRAIN.ALL": {
+   "sha256": "7f6b446fa9fac0951a6a6e3b1e70f2f9bd456ea4dc69160918aaa36c95de83fd",
+   "size": 81704,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL.BIN": {
+   "sha256": "fef7bd2a72c5c293b2f164ba1ca195f45c0843c5f19e52cbfdb48fd14fbc59a1",
+   "size": 5036,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL.DAT": {
+   "sha256": "bda28dc7287ebc3648998425b3c09f19d6470a85c9fcd439cca5ad8e391c0f2b",
+   "size": 274812,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL.RAW": {
+   "sha256": "869700f6f8cd51d3d78ca14f55f350b343d6f77692f33fb11a8aef2b5f6a3ca4",
+   "size": 654512,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL1.BIN": {
+   "sha256": "24adb413e88885b1614995e241da9961df1dc5e0f81ba5f820c32765918c04c9",
+   "size": 3184,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL1.DAT": {
+   "sha256": "c0a1d40cb912162ee5ace15efed11022b4852a55238f238a1b650030f1dfb48d",
+   "size": 236288,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL1.RAW": {
+   "sha256": "67c9b8e4bd2b7fc7339eb564bf4de419f0780c07f28f3ca2977854213c495b1f",
+   "size": 513528,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL1B.VB": {
+   "sha256": "f5d47b0352949202122bf741e7a27d0b39909ff0d6840da20e2b2b586f5d2270",
+   "size": 502032,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL1B.VH": {
+   "sha256": "0ee9af48af65bdb426fca32281e17a9086614bd4b0d3413592d214ee6caf39da",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL4C.VB": {
+   "sha256": "71076d786f065ea351494864a13f5a8a2c57bf168a34757872210e7cfa529577",
+   "size": 507760,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL03/LEVEL4C.VH": {
+   "sha256": "a9354d136d6b8a3abaf990d710825b498bba373f281710de23796b8ff6095843",
+   "size": 5664,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL03/TERR1.ALL": {
+   "sha256": "266678bbfa0475ebb14a07295f5122fc9d5be2614a53c20c6ce4d762181c0f3c",
+   "size": 24972,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL03/TERRAIN.ALL": {
+   "sha256": "b878c378c924fbdb45e450f4314808fdd3506f8685da2c3f255b7e316f4a2d9c",
+   "size": 268368,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL.BIN": {
+   "sha256": "a346b8e6a6be4f2d27f7f73cd6dba8b1a96bd079c209d844ef140e2792ffd555",
+   "size": 3068,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL.DAT": {
+   "sha256": "a6bbb538257e8652645df847623fa3623d889fdb7211891c2b145a2a18ffc905",
+   "size": 387392,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL.RAW": {
+   "sha256": "526fe962ffd5743769123229469f0129e0e754dc3387057701410281ba4108fe",
+   "size": 541536,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL1.BIN": {
+   "sha256": "816667f0ba7ae2b602cc39da7c0b3b4020d1a231651d5b90e6374c66c34f39e6",
+   "size": 4924,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL1.DAT": {
+   "sha256": "a81f2397d32983014b5f3354e1dece7604168f84a998572ef1d9a8bada1d4dd2",
+   "size": 66480,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL1.RAW": {
+   "sha256": "71ceb765fc4c08ea5e80d7584eaab2afafbee48b8d2ccb19b5651a824f3b87bf",
+   "size": 395648,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL3A.VB": {
+   "sha256": "544f75440f7a5cd2111390465a02e01647b11970389027e99246f5ec7597bbad",
+   "size": 509536,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL3A.VH": {
+   "sha256": "8b95971686accabf1a8761981701729acd465a55004a471ebf7d133232d63751",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL3AC.VB": {
+   "sha256": "08da7afd01ea27b0f879ab1ee6afc6ef046e5bbf716ecd58caa5bbb685cac856",
+   "size": 321936,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL3AC.VH": {
+   "sha256": "15aaa6c6eb03bbd5c1a39a1b447b80c2d34bbd5085d0f64fd91dd117414755ca",
+   "size": 6176,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL3C.VB": {
+   "sha256": "44d0d54b896125791a7132f126a329d6694ee45be3518d44e378292980c127a1",
+   "size": 507136,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL3C.VH": {
+   "sha256": "aa32f2d7ae85df9b282120c097c4f06045c3f28c16b3d277a0d89f0a63d4a2d9",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/LEVEL4.DAT": {
+   "sha256": "26f41f703491b260139999f9e790053a0b2971bc1661e5fc37736259e7ca58a4",
+   "size": 62448,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/TERR1.ALL": {
+   "sha256": "fb1efb453c41e2b8180a840819f1ee384ef7f979e770d59a7026ccaec5d705a1",
+   "size": 17088,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL04/TERRAIN.ALL": {
+   "sha256": "9cf8fb6990a955a808f2e4f2c22ffce3fe5d62136f4a9271bdc444a6dd7fc103",
+   "size": 201512,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL.BIN": {
+   "sha256": "93451e022e2613d9c7259e33007000155c8a8a9e2276a008327d42e0c63eba00",
+   "size": 2400,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL.DAT": {
+   "sha256": "438372b363692af46351be01f0e74d3cd0547980147766e4a00b2445b75c8d90",
+   "size": 372812,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL.RAW": {
+   "sha256": "ebfa2a5acc65a4d6ddbde57d97b9547962609c3b1a81aaba3f76bd11055e48eb",
+   "size": 424088,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL1.BIN": {
+   "sha256": "03b7bc62eae3416421f8fbea634efe28e5940b8496d1a0b0ef42dfb0d90607f2",
+   "size": 4672,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL1.DAT": {
+   "sha256": "46e24f7566aa7592d8b118369088f5ca34ec05df028dd72383fed382cf4cc30b",
+   "size": 410776,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL1.RAW": {
+   "sha256": "3bd5e71140f1d25b60c8be54f712de6f84c4e98d9bfa507003e8574305d9716c",
+   "size": 688620,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL3B.VB": {
+   "sha256": "3df4b5216db65b74ff360c23bb8ea5b31fef21f2c1e359d6a74e38fa96f89b5f",
+   "size": 500448,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL3B.VH": {
+   "sha256": "d9ef15d5d129938344ccf254cac5958523cae4d65402071aaf3d926bc9a56e3f",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL3BC.VB": {
+   "sha256": "f10918e50320ab7704a891a244916a3586dc88788fec1ec42e09462ddf1d9184",
+   "size": 314304,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL3BC.VH": {
+   "sha256": "1ac297d8e6f7f9f19bbf0a75a2d0cadcd4eae80fbd447619eaa8ae95413d7674",
+   "size": 6688,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL5C.VB": {
+   "sha256": "ad89d68df8dbbb38b65826f13604f7a23493e301dcb5f1d10fe9c0914420126e",
+   "size": 506880,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL5C.VH": {
+   "sha256": "47247d26da0a84825325519199ea046f9f1539cdd16b45a80eb16dceaf31c4ce",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL5CC.VB": {
+   "sha256": "3909b4bffd2f99c187394a718ce20b1fcba5c649fa1a74b82053985cd87fb0ba",
+   "size": 44576,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/LEVEL5CC.VH": {
+   "sha256": "444a06ecbc4eb2dd30db2b7238e6e186924e3a0f212e306a2c7bd9c36da81ab3",
+   "size": 6176,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/TERR1.ALL": {
+   "sha256": "123969b6540c66e80fa35c73276d227d4c23492347dfaabf7bdab3098e7b0307",
+   "size": 197996,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL05/TERRAIN.ALL": {
+   "sha256": "57bce45056f8ecdeebc14d9851badab5f930c3c4736059075baacd390bb701ff",
+   "size": 189888,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL06/LEVEL.BIN": {
+   "sha256": "44a914db64074b60421d27f1be844f95d12a6dc4ec5a3f411bb3173548a4d395",
+   "size": 1608,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL06/LEVEL.DAT": {
+   "sha256": "7b23281eda241e215ea35f767f3dcf9bc948ec8b14b11ae7b572a997be1ee688",
+   "size": 251644,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL06/LEVEL.RAW": {
+   "sha256": "5bbd05b081e79d7d0fe95156b3d49e541a86686a558d3e7cb2ac4c46dc06c9e3",
+   "size": 634216,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL06/LEVEL1.BIN": {
+   "sha256": "4ea72fd6caaddb287d8eef2086c3b66a74191b6c36ddbeb7feaa1fbf5c8db172",
+   "size": 1820,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL06/LEVEL1.DAT": {
+   "sha256": "7aab378d952f807ef283e93e90fc1c6f0f060e774a9c315f75b37c1cf54c2f13",
+   "size": 121984,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL06/LEVEL1.RAW": {
+   "sha256": "dba053d0ba9ef686a6f30d77fb3801f9c8298924f3659311cf0d05a6259f1e4d",
+   "size": 539032,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL06/LEVEL2A.VB": {
+   "sha256": "af8dceb722df7ec1c5733973dffd7ed6f28c887ad0d741f10a3cf92a27a3a2fb",
+   "size": 508720,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL06/LEVEL2A.VH": {
+   "sha256": "e37cf2cc001867df0cf568f4c616381fa59bc187701d6030b04554e4a4290894",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL06/TERR1.ALL": {
+   "sha256": "b024e1c0cbfb3e7070e13a0e62d76030433b416289aff0123fdb3207ba7dafc2",
+   "size": 94588,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL06/TERRAIN.ALL": {
+   "sha256": "a478f03958a4ff2ed557e2ebc1b88ccd5d4966f3608c1fabfc8707646d536f44",
+   "size": 178468,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL.BIN": {
+   "sha256": "a19927f5130bf5c8da6777f36aa5501a99dc1363a3f9e55e5997ad712473c4f5",
+   "size": 7656,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL.DAT": {
+   "sha256": "3b130e5a596b716f841e45b7fc0f8b0fea7c6e1d7fc2add795760ededca63d42",
+   "size": 350604,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL.RAW": {
+   "sha256": "e7f75265d4591a5534a76ee193a63108b9837bc318a9433d97404ef2fad6c020",
+   "size": 520408,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL1.BIN": {
+   "sha256": "08272231b91320ebaa6b0a6b91ac50d1d160640769655a318fde86f889040521",
+   "size": 4336,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL1.DAT": {
+   "sha256": "494d28187739782523757511a17414c41c04782d84f90f7333092d6f008d5a22",
+   "size": 115060,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL1.RAW": {
+   "sha256": "130fc0e2782742034388f31a093e7d17efe1ee287da448bd6b4f0c67d2404e1e",
+   "size": 541672,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL4A.VB": {
+   "sha256": "51f9bfb03f3f933bf62e525149aad4d5b7974d584e86350493b85ffaa1abcc81",
+   "size": 508400,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL4A.VH": {
+   "sha256": "2f53ed06058fb9f13ce450af9d8d944c6be7dede22f80ec31dfdbace244a571c",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL4AC.VB": {
+   "sha256": "a45cb8c6c5d48796f69c999d0dd9332fe87aa6b57f63fcb5a6ddcae4cb969778",
+   "size": 306048,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL07/LEVEL4AC.VH": {
+   "sha256": "c52e62d2615e8da8878c814849cd646dd7c352d3cc77da80aa190712f91faee6",
+   "size": 6176,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL07/TERR1.ALL": {
+   "sha256": "97141bdc9953e963329fe968f4263478dffd74af041d6a4676a984239c4dfd8c",
+   "size": 50564,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL07/TERRAIN.ALL": {
+   "sha256": "7b168efa7934cd6db15d94ae927151ed3df4e78064f1619877d5dcee463cf1c8",
+   "size": 130424,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL08/LEVEL.BIN": {
+   "sha256": "a0c0ac1da5c3a75296f0d79428ba1155f2f5d1ede3e2dcf9ffaee03fd8d2fec5",
+   "size": 3500,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL08/LEVEL.DAT": {
+   "sha256": "596a13e3b80765ee81b0331ac74dd66916075683bcd3066ba51729c07e42d7ab",
+   "size": 371892,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL08/LEVEL.RAW": {
+   "sha256": "79f7592d8de319660c1c4d36a96ebc7e9d5e7d5f01ca68593d588e364a4e2343",
+   "size": 723112,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL08/LEVEL1.BIN": {
+   "sha256": "506abc378359b61c2975b7f829becb32a6c632bf2cf8d55f0bb5146d139db605",
+   "size": 4064,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL08/LEVEL1.DAT": {
+   "sha256": "58d83d2ce2b05307ddda1eee56b730427866ae6f4b08221af45a4cf73f4db976",
+   "size": 136940,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL08/LEVEL1.RAW": {
+   "sha256": "2b888d4f322a591af47f250a8034bf5f3aee0f15272876575e86b5442beb9cb4",
+   "size": 143676,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL08/LEVEL5B.VB": {
+   "sha256": "734642517401fee10bd769ac9dfc5b47932202c8097f97f2ebd4107f27c3703b",
+   "size": 506992,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL08/LEVEL5B.VH": {
+   "sha256": "ee402df4a4772ba0276a3532f156923138acf5165e3da694f29ab270fde5e02a",
+   "size": 5664,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL08/TERRAIN.ALL": {
+   "sha256": "adde03ec0126e4e831930fd79ba5a09e2ef40469a5becf783a2d52b56122db3a",
+   "size": 202628,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL09/LEVEL.BIN": {
+   "sha256": "9472fddce759161a887968fe98f1ded3282a4d8a4dc8c72fb27cbcd9c341d879",
+   "size": 5232,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL09/LEVEL.DAT": {
+   "sha256": "92559f64f0cad9e05d31972757f7f639d86aea713b9fe7698fa455a46ddcddab",
+   "size": 316124,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL09/LEVEL.RAW": {
+   "sha256": "c9a5456e53db16bb63461c5a2ac4228ac4cd6fb1afd4aed5dfb7daa338f6a57b",
+   "size": 679212,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL09/LEVEL1.BIN": {
+   "sha256": "f38922e876f98d44e483458565a093e37ec97369f121da04d39650958b4f4f88",
+   "size": 532,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL09/LEVEL1.RAW": {
+   "sha256": "38cbb8c0554dd0643d9de65d5158873645f0bd3110a255ec0ce87e8ff9924364",
+   "size": 572892,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL09/LEVEL5A.VB": {
+   "sha256": "53f277436788bde1117e79a2107fac6c07d3a0c935006be87bf0835c31f1828b",
+   "size": 509680,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL09/LEVEL5A.VH": {
+   "sha256": "b9168d075d045770d27b87026651dc8475503ab46e612f601948f22b797800df",
+   "size": 5664,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL09/TERRAIN.ALL": {
+   "sha256": "9132b16f120a8e4202d97a75decdf1fc785d2150feccdf4a0051c4832eb2d5af",
+   "size": 207540,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL10/LEVEL.BIN": {
+   "sha256": "3bd80ee77b5ec1e12b458d330450c3963177e15470bc249f7a12fc071d8db928",
+   "size": 2080,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "code_overlay"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_file_path_build / region swap loader",
+     "evidence": "analysis/phase3_overlay_map.json"
+    }
+   ]
+  },
+  "LEVEL10/LEVEL.DAT": {
+   "sha256": "bba726988e64192d9bff73d5be8c0582f1d6a885b152050ec4e8883983a47319",
+   "size": 374468,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL10/LEVEL.RAW": {
+   "sha256": "50a1ec79a0d9b55118692dd184778959088487aa397b54c0ff0c33ff56b2fb8c",
+   "size": 691780,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "level_specific",
+    "geometry",
+    "collision",
+    "textures"
+   ],
+   "load_owners": [
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "level_load_chunks / collision source converter",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md"
+    },
+    {
+     "owner": "VRAM asset loader",
+     "evidence": "analysis/phase3_render_descriptors.json"
+    }
+   ]
+  },
+  "LEVEL10/LEVEL2B.VB": {
+   "sha256": "b6ea404e40d9ed3a63e9a7dd53d6f277536d2d5fad2879b0df7fe393d54d43b7",
+   "size": 504976,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL10/LEVEL2B.VH": {
+   "sha256": "84fd5e9d75113fe49c2830a3efd995ca75ae528f68212aa89e31767f0bc344b7",
+   "size": 5152,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "LEVEL10/TERRAIN.ALL": {
+   "sha256": "7a8471bb3fa14769de03edd58c1bae79428476b0c8f90e4bdc6d2e1d20e8206a",
+   "size": 142344,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models",
+    "geometry",
+    "level_specific"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    },
+    {
+     "owner": "level_load_chunks / geometry decompressor",
+     "evidence": "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md"
+    },
+    {
+     "owner": "resource_id_dat_load_dispatcher / level_load_chunks",
+     "evidence": "analysis/phase3_scene_asset_graph.json"
+    }
+   ]
+  },
+  "PAD/PATH01.BIN": {
+   "sha256": "19635ff98cbc14a9581f53eed5d8aecece9a1c856e17311ec3d15e81a0b19b2a",
+   "size": 872,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "PAD/PATH02.BIN": {
+   "sha256": "be4b319886df7e06faacc353ee646ebdf2d6491cfe78a7c87db2c31269b4dd61",
+   "size": 16,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "PAD/PATH03.BIN": {
+   "sha256": "950ec30646b4accc953f5fd54d0657d77bfa0d25b8e56629d4a6464550981656",
+   "size": 1068,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "PAD/PATH04.BIN": {
+   "sha256": "84ce52fea68815f9125ad15d95ac7013bcbb6cc6737ccca8fa62e750e9586fdd",
+   "size": 1064,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "PAD/PATH05.BIN": {
+   "sha256": "144a93251734b40352b30cdcc02472192a01b8408f504f31496a4199b2080dcb",
+   "size": 1224,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "PAD/PATH12.BIN": {
+   "sha256": "d5e3cf0e6b005874d643caecb448666a289e052e6bb3173f01103f4a52f82a53",
+   "size": 1344,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "PAD/PATH13.BIN": {
+   "sha256": "0f72b02153d37959174f09a11097d1a6ae43e13116a192810e53e8b242c7a2d0",
+   "size": 856,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "PLANTS/PLANT01.ALL": {
+   "sha256": "888fda7095b976a7db46215e9f6ed6b48782cabac1681c169e9b4fa07efcda23",
+   "size": 5908,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT01.ANM": {
+   "sha256": "f7a9c40be4557d13cdceb908687fcc6d40d240c31e961cec121344be02344e98",
+   "size": 4502,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT02.ALL": {
+   "sha256": "bacc106bb9c2a338f57d2dbb8ece8d6a059496826e206e7c8aa3704a2a36c7fb",
+   "size": 3984,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT02.ANM": {
+   "sha256": "07fbbc07d6db6958b8fbc017f7ba19d628c3ac1249739898a0c5ffd3ecf0af43",
+   "size": 3344,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT03.ALL": {
+   "sha256": "1c2b0d28b138e69ae0036c6348bce797169cee59bb46b05168459fba60b9d9fd",
+   "size": 2720,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT03.ANM": {
+   "sha256": "bf0160153942f711f6147d176c3bb38c3a8bde3f902a43ce512be976bf1ed2f0",
+   "size": 5072,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT04.ALL": {
+   "sha256": "486bd73c54b96f9b0ef41e2c9ccc6029c95772619feaacb8885f4f1cc424f14a",
+   "size": 3592,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT04.ANM": {
+   "sha256": "32dce9588272d4bd4d0b2054e58de2b9ca5ae563826d56f7cd12abe8b001e7ce",
+   "size": 1802,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT05.ALL": {
+   "sha256": "8630aacd1a4d0783d618179f0a1d5113578ed8072b6d8915024e4846de03ca39",
+   "size": 4624,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT05.ANM": {
+   "sha256": "d474fe3c374ce47389eb82076909007592d93718689bafaf3414a37bffa542b3",
+   "size": 1168,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT06.ALL": {
+   "sha256": "615befd2008680ee700ba8b0b249653a9fd8f820640867f48a673fbadfb78a79",
+   "size": 2868,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT06.ANM": {
+   "sha256": "d90a35b047c4f811ec5d7aec0aa73fb300dbea59a0a1df0dfd4dcef618bc04ec",
+   "size": 5066,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT07.ALL": {
+   "sha256": "68850949f7bbf98b0e49aa1d69d2537d04ac3575bfc5c8f46005bcd139feded1",
+   "size": 2544,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT07.ANM": {
+   "sha256": "4b9dd5bf3936206b660528e425ff9f55134f6d9ec907479f66b1f1e3fdaa2292",
+   "size": 5880,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT08.ALL": {
+   "sha256": "6e8ab5267e2eacea7fff652783eca0ae5f1ff34c45efae0c6adbf041fc164a42",
+   "size": 3516,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT08.ANM": {
+   "sha256": "23cf82a2b31fa5fc18bc81ae02d713ce55c218d28002f5d34b141d93e1ba17d1",
+   "size": 3542,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT09.ALL": {
+   "sha256": "ef6562ec871d093b60f99ce0f2e8fbade28459b9824bc179a62869aec63952e9",
+   "size": 4376,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT09.ANM": {
+   "sha256": "252b909e592ed577297b6d713da7c2dc0d78942a7d5ee57d51ea77385c8f59fe",
+   "size": 3542,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT10.ALL": {
+   "sha256": "0c0f244b5bef3b5a3f7148744aad9ac223b7fdeaeb0eecaa561193e7a30bf714",
+   "size": 3592,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT10.ANM": {
+   "sha256": "12d2550ea89b9156acd04ce403d1754aa244d1cedf8531eaca2c8e7bf22b5194",
+   "size": 1802,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT11.ALL": {
+   "sha256": "0adfd2f42b09ed171ff99165faa0611222c73d694d511f99b54c2e98e03f76bb",
+   "size": 5476,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS/PLANT11.ANM": {
+   "sha256": "6ba80512dafcb995de3586f14b8d0a0c9dba118ac9a164c4dab6de2e399650f4",
+   "size": 3512,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS2/PLANT12.ALL": {
+   "sha256": "eb9038786e33c99ad15599b830f940ed3da47c9b7827636033f396d64072806f",
+   "size": 4620,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS2/PLANT12.ANM": {
+   "sha256": "281c3296972806d6ac539dfa7ed4ea70ec00f0a520f8ad7041c8e246fc34279b",
+   "size": 4418,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS2/PLANT13.ALL": {
+   "sha256": "dbd5e39b7d0df175f4866a99416d714faa7447d7c57ade27af3e8117b8457384",
+   "size": 4744,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS2/PLANT13.ANM": {
+   "sha256": "29d7357675f1c60268976f9e351e9235ecadb7b3eca1e6e72fdd854095e116c8",
+   "size": 4360,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS2/PLANT14.ALL": {
+   "sha256": "f67a3e9bc44615b57b4600fc1ab6d509e0040e5deb0915cdfcb725e432d1819d",
+   "size": 4700,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "models"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + model fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "PLANTS2/PLANT14.ANM": {
+   "sha256": "9aaba90a53df4976cd89071351df112378ebd5c4516eef77ab3676fa045c8da6",
+   "size": 6608,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "animation"
+   ],
+   "load_owners": [
+    {
+     "owner": "named asset loader + animation fixup",
+     "evidence": "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md"
+    }
+   ]
+  },
+  "SCUS_942.88": {
+   "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+   "size": 471040,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "resident_executable"
+   ],
+   "load_owners": [
+    {
+     "owner": "PS-X EXE loader",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "SFX/GLOBAL.VB": {
+   "sha256": "d3efedc9e0625d0aafa85dde0572653e30b4ece06d3710aab80a2e9f477c4453",
+   "size": 178224,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    }
+   ]
+  },
+  "SFX/GLOBAL.VH": {
+   "sha256": "ef73dd8a35bfa1db61454209726b2685048fc5b84355949b1cbaecae5be149b2",
+   "size": 4128,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "audio"
+   ],
+   "load_owners": [
+    {
+     "owner": "VAB loader or XA stream selector",
+     "evidence": "ObsidianVault/Canon/Systems/SYS_sfx_system.md"
+    }
+   ]
+  },
+  "SYSTEM.CNF": {
+   "sha256": "ffa3f093bf433e770b79a1fa31247204431139fd36073319797c9110af453cca",
+   "size": 73,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  },
+  "license_data.dat": {
+   "sha256": "6f76a9947cfacfca9ccffc68953de17a1e17bc0f4e72b35b8b11938b41b174b5",
+   "size": 28032,
+   "local_hash_matches_pin": true,
+   "roles": [
+    "filesystem_support"
+   ],
+   "load_owners": [
+    {
+     "owner": "disc/build filesystem",
+     "evidence": "tools/build_baselines.json"
+    }
+   ]
+  }
+ }
+}

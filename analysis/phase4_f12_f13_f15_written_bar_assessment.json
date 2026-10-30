@@ -1,0 +1,3070 @@
+{
+ "_comment": "F12_battle_arena, F13_anthill_two and F15_canyon_showdown measured against the nine DoD dimensions AS WRITTEN (item 2 = enumerated; residuals = explicitly bounded), per engineering-specs/phase4-measurement-standard-ruling.md. Three SEPARATE scorecards; no evidence is cross-credited between them, and boss-row (D19/D20) evidence is labelled borrowed wherever it is used. Judgments authored; every fact derived from a pinned artifact at run time. Regenerate: tools/phase4_f12_f13_f15_written_bar_assessment.py",
+ "schema": "abl-phase4-f12-f13-f15-written-bar-assessment/1",
+ "generated": "2026-08-11",
+ "rows": [
+  "F12_battle_arena",
+  "F13_anthill_two",
+  "F15_canyon_showdown"
+ ],
+ "standard": {
+  "ruling": "engineering-specs/phase4-measurement-standard-ruling.md",
+  "item2_bar": "enumerated, scoped to relevant (NOT empty unresolved set)",
+  "exit_gate_bar": "explicitly bounded, not absent",
+  "vocabulary": "bounded-exhausted remains a stop decision and never reads as met; this assessment publishes measurement, not disposition",
+  "allowed_states": [
+   "met",
+   "met_candidate",
+   "partial",
+   "not_met",
+   "unmeasured"
+  ],
+  "no_cross_crediting": "a D-row disposition is a stop decision ON THE BOSS. It never carries the stage row's own objective instance, entry/exit, arena layout or lifecycle, and it never promotes a state on these scorecards. Borrowed facts appear only inside a basis string that labels them borrowed"
+ },
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "edits_registry": false,
+  "edits_mechanics_baseline": false,
+  "requires_fresh_verifier": true,
+  "author_conflict": "the assessor authored neither F12/F13/F15's baseline rows nor D19/D20's evidence, but did author this assessment and the one NEW measurement inside it (tools/phase4_f12_f13_f15_overlay_residency_pin.c) -- so on overlay residency, the governing-address ambiguity counts, the offline confirmations of the D19 guard snapshot and the D20 health counter, and the F13 scene-pair delta, the tool, the claim and the judgment share an author. Every state below is a submission to a fresh detached verifier, not a promotion; `partial` and `not_met` are as challengeable as `met`"
+ },
+ "systemic_defect_summary": {
+  "_comment": "both defects checked explicitly per row so silence is not read as absence; per-row verdicts live in each scorecard",
+  "a_overlay_misattribution_applies_to": [
+   "F12_battle_arena",
+   "F13_anthill_two",
+   "F15_canyon_showdown"
+  ],
+  "a_overlay_misattribution_resolved_for": [
+   "F12_battle_arena",
+   "F13_anthill_two",
+   "F15_canyon_showdown"
+  ],
+  "a_census_attribution_was_wrong_for": [],
+  "b_semantic_collision_applies_to": [
+   "F13_anthill_two",
+   "F15_canyon_showdown"
+  ],
+  "b_semantic_collision_does_not_apply_to": [
+   "F12_battle_arena"
+  ],
+  "both_source_registries_read": [
+   "config/segments.yml",
+   "config/overlays.yml",
+   "analysis/overlay_decomp_progress.json"
+  ]
+ },
+ "fail_loud_contract": {
+  "guards": [
+   "missing_artifact_aborts",
+   "renamed_key_aborts",
+   "fact_without_a_pinned_source_aborts"
+  ],
+  "in_band": "re-proved on every generation before any artifact is read; if a guard stops firing the run aborts instead of emitting numbers whose staleness detection cannot be trusted. Four further cross-checks abort the run: the probe's load base, region length and scene-id address must match the registries that declare them; the probe's executable sha1 must match config/segments.yml; the image population must match the registries; and the probed word and PC sets must still equal the sets derived from the byte-matched C sources and the pinned artifacts",
+  "out_of_band_probes_run_2026-08-11": [
+   "moved analysis/phase4_d19_molt.json aside -> 'STALE CITATION: analysis/phase4_d19_molt.json does not exist', exit 1, the previous output file left byte-identical (nothing rewritten)",
+   "renamed unique_pin_file inside the residency-pin artifact -> 'STALE CITATION: ... no longer has unique_pin_file', exit 1, output file left byte-identical",
+   "dropped one entry from the probe's named_words so the scanned set no longer equals the set derived from the byte-matched C -> abort naming BOTH sets, exit 1, output file left byte-identical"
+  ],
+  "note": "the out-of-band list records actions taken by the assessor; the in-band guards above are re-measured every run"
+ },
+ "fact_provenance": {
+  "facts_total": 539,
+  "facts_derived_from_pinned_artifacts": 539,
+  "facts_hand_typed": 0,
+  "rule": "facts are recorded through fact(key, value, source); a value cannot be stored without naming a pinned artifact, and every lookup is strict, so a renamed or removed key aborts the run instead of silently defaulting",
+  "by_fact": {
+   "fail_loud_guards_fired": "tools/phase4_f12_f13_f15_written_bar_assessment.py",
+   "baseline_sha256_matches_census": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "fixture_set_sha256_matches_census": [
+    "analysis/phase0_2_external_fixture_set.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "resident_build_units": "config/segments.yml",
+   "resident_build_toolchain": "config/segments.yml",
+   "overlay_track_total_code_functions": "analysis/overlay_decomp_progress.json",
+   "overlay_track_matched_functions": "analysis/overlay_decomp_progress.json",
+   "overlay_track_matched_pct": "analysis/overlay_decomp_progress.json",
+   "overlay_registry_total_overlays": "config/overlays.yml",
+   "semantic_state_entries_total": "config/semantic_state.yaml",
+   "confirmed_sites_total": "config/confirmed_sites.yaml",
+   "record_types_registered": "config/record_types.yaml",
+   "overlay_images_in_function_census": "analysis/functions.json",
+   "shared_overlay_load_base": "config/overlays.yml",
+   "shared_overlay_region_length": "config/overlays.yml",
+   "loader_arithmetic_law_pcs": "analysis/phase4_f08_scene_binding.json",
+   "loader_scene_ids_mapped": "analysis/phase4_f08_scene_binding.json",
+   "loader_rows_corrected_2026_08_05": "analysis/phase4_f08_scene_binding.json",
+   "loader_binding_status": "analysis/phase4_f08_scene_binding.json",
+   "scene_id_address": "config/semantic_state.yaml",
+   "progression_table_address": "analysis/phase4_e02_disc_region_code_census.json",
+   "progression_table_declared": "analysis/phase4_e02_disc_region_code_census.json",
+   "e02_levels_censused": "analysis/phase4_e02_disc_region_code_census.json",
+   "e02_disc_runtime_disagreements": "analysis/phase4_e02_disc_region_code_census.json",
+   "e02_authored_sectors_compared": "analysis/phase4_e02_disc_region_code_census.json",
+   "executable_declared_sha1": "config/segments.yml",
+   "candidate_images": [
+    "config/overlays.yml",
+    "OVL/LEVEL00_LEVEL.BIN",
+    "OVL/LEVEL01_LEVEL.BIN",
+    "OVL/LEVEL01_LEVEL1.BIN",
+    "OVL/LEVEL02_LEVEL.BIN",
+    "OVL/LEVEL02_LEVEL1.BIN",
+    "OVL/LEVEL03_LEVEL.BIN",
+    "OVL/LEVEL03_LEVEL1.BIN",
+    "OVL/LEVEL04_LEVEL.BIN",
+    "OVL/LEVEL04_LEVEL1.BIN",
+    "OVL/LEVEL05_LEVEL.BIN",
+    "OVL/LEVEL05_LEVEL1.BIN",
+    "OVL/LEVEL06_LEVEL.BIN",
+    "OVL/LEVEL06_LEVEL1.BIN",
+    "OVL/LEVEL07_LEVEL.BIN",
+    "OVL/LEVEL07_LEVEL1.BIN",
+    "OVL/LEVEL08_LEVEL.BIN",
+    "OVL/LEVEL08_LEVEL1.BIN",
+    "OVL/LEVEL09_LEVEL.BIN",
+    "OVL/LEVEL09_LEVEL1.BIN",
+    "OVL/LEVEL10_LEVEL.BIN",
+    "REBUILD/files/BITS/MEMORY.BIN"
+   ],
+   "semantic_entries_inside_shared_region_a": [
+    "config/semantic_state.yaml",
+    "config/overlays.yml"
+   ],
+   "semantic_entries_inside_shared_region_a_ids": "config/semantic_state.yaml",
+   "progression_table_read_from_executable": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "progression_table_matches_declared": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_e02_disc_region_code_census.json"
+   ],
+   "probe_images_scanned": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "probe_groups_scanned": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "probe_anchor_rule": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "probe_nontrivial_definition": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_durable_state": "analysis/phase4_f_row_measured_census.json",
+   "f12_durable_fraction": "analysis/phase4_f_row_measured_census.json",
+   "f12_durable_reason": "analysis/phase4_f_row_measured_census.json",
+   "f12_census_status": "analysis/phase4_f_row_measured_census.json",
+   "f12_census_triage": "analysis/phase4_f_row_measured_census.json",
+   "f12_census_declaration_understates": "analysis/phase4_f_row_measured_census.json",
+   "f12_census_has_runtime_trace_evidence": "analysis/phase4_f_row_measured_census.json",
+   "f12_census_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+   "f12_census_vault_pages": "analysis/phase4_f_row_measured_census.json",
+   "f12_census_source_files": "analysis/phase4_f_row_measured_census.json",
+   "f12_census_segments_entries": "analysis/phase4_f_row_measured_census.json",
+   "f12_stage_ordinal": "analysis/phase4_f_row_measured_census.json",
+   "f12_scene_id": "analysis/phase4_f_row_measured_census.json",
+   "f12_overlay_name": "analysis/phase4_f_row_measured_census.json",
+   "f12_row_name": "analysis/mechanics_baseline.yaml",
+   "f12_row_status": "analysis/mechanics_baseline.yaml",
+   "f12_row_binding_claims": "analysis/mechanics_baseline.yaml",
+   "f12_row_declared_fixtures": "analysis/mechanics_baseline.yaml",
+   "f12_row_declared_fixture_need": "analysis/mechanics_baseline.yaml",
+   "f12_row_declared_missing": "analysis/mechanics_baseline.yaml",
+   "f12_row_declared_next": "analysis/mechanics_baseline.yaml",
+   "f12_row_declared_evidence_classes": "analysis/mechanics_baseline.yaml",
+   "f12_row_records_prior_binding_falsified": "analysis/mechanics_baseline.yaml",
+   "f12_row_leans_on_d_rows": "analysis/mechanics_baseline.yaml",
+   "f12_row_own_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+   "f12_registry_met": "analysis/phase4_closure_debt.json",
+   "f12_registry_remaining": "analysis/phase4_closure_debt.json",
+   "f12_registry_distinct_bases": "analysis/phase4_closure_debt.json",
+   "f12_registry_distinct_states": "analysis/phase4_closure_debt.json",
+   "f12_registry_completion_state": "analysis/phase4_closure_debt.json",
+   "f12_registry_movie_count": "analysis/phase4_closure_debt.json",
+   "f12_registry_campaign_id": "analysis/phase4_closure_debt.json",
+   "f12_registry_next_lane_reason": "analysis/phase4_closure_debt.json",
+   "f12_registry_family": "analysis/phase4_closure_debt.json",
+   "f12_scheduler_eligible": "analysis/phase4_movie_priority_queue.json",
+   "f12_scheduler_reasons": "analysis/phase4_movie_priority_queue.json",
+   "f12_scheduler_sees_a_phase4_movie": "analysis/phase4_movie_priority_queue.json",
+   "f12_scheduler_ownership_function_count": "analysis/phase4_movie_priority_queue.json",
+   "f12_scheduler_ownership_input_is_current": [
+    "analysis/phase4_movie_priority_queue.json",
+    "analysis/phase3_ownership_graph.json"
+   ],
+   "f12_offline_named_unknowns": "analysis/phase4_offline_opportunity_queue.json",
+   "f12_offline_answerable_questions": "analysis/phase4_offline_opportunity_queue.json",
+   "f12_offline_available_domains": "analysis/phase4_offline_opportunity_queue.json",
+   "f12_offline_relevant_movies": "analysis/phase4_offline_opportunity_queue.json",
+   "f12_offline_classification": "analysis/phase4_offline_opportunity_queue.json",
+   "f12_coverage_status": "analysis/phase2_row_coverage.json",
+   "f12_coverage_unaudited_fixtures": "analysis/phase2_row_coverage.json",
+   "f12_coverage_non_pristine_fixtures": "analysis/phase2_row_coverage.json",
+   "f12_ownership_function_citations": "analysis/phase3_ownership_graph.json",
+   "f12_ownership_distinct_function_starts": "analysis/phase3_ownership_graph.json",
+   "f12_ownership_overlay_space_functions": "analysis/phase3_ownership_graph.json",
+   "f12_ownership_functions_with_canon": "analysis/phase3_ownership_graph.json",
+   "f12_ownership_state_addresses": "analysis/phase3_ownership_graph.json",
+   "f12_ownership_state_without_owner": "analysis/phase3_ownership_graph.json",
+   "f12_ownership_gaps": "analysis/phase3_ownership_graph.json",
+   "f12_ownership_records_no_image_field": "analysis/phase3_ownership_graph.json",
+   "f12_ownership_reader_status": "analysis/phase3_ownership_graph.json",
+   "f12_pin_result": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_file": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_sha1": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_size": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_extent": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_nontrivial_pct": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_runner_up": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_runner_up_pct": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_images_argmax_in_every_ram": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_pin_images_with_stable_declared_base": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_fixture_scene_ids": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_fixture_scene_id_matches_census": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_pin_agrees_with_census_overlay_name": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_governing_pcs_probed": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_governing_pcs_inside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_governing_pcs_decoding_to_an_instruction": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_governing_pcs_mean_images_containing_offset": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_governing_pcs_outside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_named_words_probed": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_named_words_inside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_named_words_zero_in_disc_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_named_words_differing_from_disc_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_overlay_words_live_in_this_fixture": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_byte_matched_c_sources": "analysis/phase4_f_row_measured_census.json",
+   "f12_byte_matched_c_declared_globals": "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c",
+   "f12_byte_matched_c_globals_inside_pinned_extent": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c"
+   ],
+   "f12_byte_matched_c_entry_starts": "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c",
+   "f12_overlay_code_functions": "analysis/overlay_decomp_progress.json",
+   "f12_overlay_matched_functions": "analysis/overlay_decomp_progress.json",
+   "f12_overlay_rebuild_validated": "analysis/overlay_decomp_progress.json",
+   "f12_overlay_rebuilt_sha1_matches_blob": "analysis/overlay_decomp_progress.json",
+   "f12_overlay_blob_sha1_equals_byte_pinned_image": [
+    "analysis/overlay_decomp_progress.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f12_overlay_census_functions": "analysis/functions.json",
+   "f12_overlay_census_function_names": "analysis/functions.json",
+   "f12_overlay_census_functions_unnamed": "analysis/functions.json",
+   "f12_semantic_entries_inside_this_rows_overlay_extent": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f12_semantic_collision_detail": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f12_row_state_addresses_registered": [
+    "config/semantic_state.yaml",
+    "analysis/phase3_ownership_graph.json"
+   ],
+   "f12_record_types_covering_this_rows_overlay": [
+    "config/record_types.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f12_governing_addresses": [
+    "analysis/phase4_f_row_measured_census.json",
+    "analysis/phase4_d19_molt.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+    "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c"
+   ],
+   "f12_governing_addresses_resident": [
+    "config/overlays.yml",
+    "analysis/phase4_d19_molt.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+    "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c"
+   ],
+   "f12_governing_addresses_in_pinned_overlay": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c"
+   ],
+   "f12_governing_resident_build_units": "config/segments.yml",
+   "f12_governing_resident_units_matching_c": "config/segments.yml",
+   "f12_governing_resident_units_hand_asm": "config/segments.yml",
+   "f12_governing_resident_addresses_outside_any_build_unit": "config/segments.yml",
+   "f12_governing_overlay_addresses_with_matched_c": [
+    "analysis/overlay_decomp_progress.json",
+    "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c"
+   ],
+   "f12_governing_addresses_with_matching_c_source": [
+    "config/segments.yml",
+    "analysis/phase4_d19_molt.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+   ],
+   "f12_governing_pcs_registered_as_confirmed_sites": "config/confirmed_sites.yaml",
+   "f12_byte_matched_c_globals_also_named_by_the_borrowed_row": [
+    "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c",
+    "analysis/phase4_d19_molt.json"
+   ],
+   "f12_byte_matched_c_globals_named_nowhere_else": [
+    "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c",
+    "analysis/phase4_d19_molt.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+   ],
+   "f12_e02_level_key": "analysis/phase4_e02_disc_region_code_census.json",
+   "f12_e02_container": "analysis/phase4_e02_disc_region_code_census.json",
+   "f12_e02_authored_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "f12_e02_runtime_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "f12_e02_code_histogram": "analysis/phase4_e02_disc_region_code_census.json",
+   "f12_e02_authors_no_region_codes": "analysis/phase4_e02_disc_region_code_census.json",
+   "f12_e02_uses_this_rows_own_fixture": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f12_e02_container_agrees_with_pinned_overlay_directory": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/phase4_f08_scene_binding.json"
+   ],
+   "f12_actor_records": "analysis/phase1_kind_actor_census.json",
+   "f12_actor_ids": "analysis/phase1_kind_actor_census.json",
+   "f12_actor_ids_with_canon_binding": "analysis/phase1_kind_actor_census.json",
+   "f12_actor_census_save": "analysis/phase1_kind_actor_census.json",
+   "f12_actor_census_uses_this_rows_fixture": [
+    "analysis/phase1_kind_actor_census.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f12_actor_census_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase1_kind_actor_census.json"
+   ],
+   "f12_c2_types": "analysis/phase4_c2_level_type_authority.json",
+   "f12_c2_session_token": "analysis/phase4_c2_level_type_authority.json",
+   "f12_c2_frozen_name_matches_row": [
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f12_c2_rows_sharing_this_type": "analysis/phase4_c2_level_type_authority.json",
+   "f12_c2_taxonomy_coverage_demonstrated": "analysis/phase4_c2_level_type_authority.json",
+   "f12_oracle_stage_key": "analysis/phase2_completion_oracle.json",
+   "f12_oracle_movie": "analysis/phase2_completion_oracle.json",
+   "f12_oracle_frames": "analysis/phase2_completion_oracle.json",
+   "f12_oracle_target_scene": "analysis/phase2_completion_oracle.json",
+   "f12_oracle_replay_accepted": "analysis/phase2_completion_oracle.json",
+   "f12_oracle_entered_stage_frame": "analysis/phase2_completion_oracle.json",
+   "f12_oracle_stage_exited": "analysis/phase2_completion_oracle.json",
+   "f12_oracle_snapshot_fields": "analysis/phase2_completion_oracle.json",
+   "f12_oracle_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f12_oracle_corroborates_the_scene_id": [
+    "analysis/phase2_completion_oracle.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_stage_movies_attributed": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f12_stage_movies_attributed_paths": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f12_stage_movie_frames": "analysis/phase2_fixture_audit.json",
+   "f12_stage_movies_under_phase4_interpreter": "analysis/phase2_fixture_audit.json",
+   "f12_stage_movies_declared_by_the_row": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f12_stage_movies_ordinal_token_matched_attribution_unverified": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_stage_movies_centrally_pinned": "analysis/phase0_2_external_fixture_set.json",
+   "f12_row_declared_fixtures_naming_a_d_row": "analysis/mechanics_baseline.yaml",
+   "f12_external_fixture_consumers": "analysis/phase0_2_external_fixture_set.json",
+   "f12_e16_validated_stage_movies": "analysis/phase4_e16_movie_validation.json",
+   "f12_e16_validated_stage_movies_usable": "analysis/phase4_e16_movie_validation.json",
+   "f12_e16_validated_stage_movie_truncated": "analysis/phase4_e16_movie_validation.json",
+   "f12_breadth_movie": "analysis/phase4_f01_breadth_assertions.json",
+   "f12_breadth_movie_frames": "analysis/phase4_f01_breadth_assertions.json",
+   "f12_breadth_replay_reproducible": "analysis/phase4_f01_breadth_assertions.json",
+   "f12_breadth_levels_asserted": "analysis/phase4_f01_breadth_assertions.json",
+   "f12_breadth_law_holds_everywhere": "analysis/phase4_f01_breadth_assertions.json",
+   "f12_borrowed_d_rows": [
+    "analysis/phase4_f_row_measured_census.json",
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_d19_molt.json"
+   ],
+   "f13_durable_state": "analysis/phase4_f_row_measured_census.json",
+   "f13_durable_fraction": "analysis/phase4_f_row_measured_census.json",
+   "f13_durable_reason": "analysis/phase4_f_row_measured_census.json",
+   "f13_census_status": "analysis/phase4_f_row_measured_census.json",
+   "f13_census_triage": "analysis/phase4_f_row_measured_census.json",
+   "f13_census_declaration_understates": "analysis/phase4_f_row_measured_census.json",
+   "f13_census_has_runtime_trace_evidence": "analysis/phase4_f_row_measured_census.json",
+   "f13_census_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+   "f13_census_vault_pages": "analysis/phase4_f_row_measured_census.json",
+   "f13_census_source_files": "analysis/phase4_f_row_measured_census.json",
+   "f13_census_segments_entries": "analysis/phase4_f_row_measured_census.json",
+   "f13_stage_ordinal": "analysis/phase4_f_row_measured_census.json",
+   "f13_scene_id": "analysis/phase4_f_row_measured_census.json",
+   "f13_overlay_name": "analysis/phase4_f_row_measured_census.json",
+   "f13_row_name": "analysis/mechanics_baseline.yaml",
+   "f13_row_status": "analysis/mechanics_baseline.yaml",
+   "f13_row_binding_claims": "analysis/mechanics_baseline.yaml",
+   "f13_row_declared_fixtures": "analysis/mechanics_baseline.yaml",
+   "f13_row_declared_fixture_need": "analysis/mechanics_baseline.yaml",
+   "f13_row_declared_missing": "analysis/mechanics_baseline.yaml",
+   "f13_row_declared_next": "analysis/mechanics_baseline.yaml",
+   "f13_row_declared_evidence_classes": "analysis/mechanics_baseline.yaml",
+   "f13_row_records_prior_binding_falsified": "analysis/mechanics_baseline.yaml",
+   "f13_row_leans_on_d_rows": "analysis/mechanics_baseline.yaml",
+   "f13_row_own_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+   "f13_registry_met": "analysis/phase4_closure_debt.json",
+   "f13_registry_remaining": "analysis/phase4_closure_debt.json",
+   "f13_registry_distinct_bases": "analysis/phase4_closure_debt.json",
+   "f13_registry_distinct_states": "analysis/phase4_closure_debt.json",
+   "f13_registry_completion_state": "analysis/phase4_closure_debt.json",
+   "f13_registry_movie_count": "analysis/phase4_closure_debt.json",
+   "f13_registry_campaign_id": "analysis/phase4_closure_debt.json",
+   "f13_registry_next_lane_reason": "analysis/phase4_closure_debt.json",
+   "f13_registry_family": "analysis/phase4_closure_debt.json",
+   "f13_scheduler_eligible": "analysis/phase4_movie_priority_queue.json",
+   "f13_scheduler_reasons": "analysis/phase4_movie_priority_queue.json",
+   "f13_scheduler_sees_a_phase4_movie": "analysis/phase4_movie_priority_queue.json",
+   "f13_scheduler_ownership_function_count": "analysis/phase4_movie_priority_queue.json",
+   "f13_scheduler_ownership_input_is_current": [
+    "analysis/phase4_movie_priority_queue.json",
+    "analysis/phase3_ownership_graph.json"
+   ],
+   "f13_offline_named_unknowns": "analysis/phase4_offline_opportunity_queue.json",
+   "f13_offline_answerable_questions": "analysis/phase4_offline_opportunity_queue.json",
+   "f13_offline_available_domains": "analysis/phase4_offline_opportunity_queue.json",
+   "f13_offline_relevant_movies": "analysis/phase4_offline_opportunity_queue.json",
+   "f13_offline_classification": "analysis/phase4_offline_opportunity_queue.json",
+   "f13_coverage_status": "analysis/phase2_row_coverage.json",
+   "f13_coverage_unaudited_fixtures": "analysis/phase2_row_coverage.json",
+   "f13_coverage_non_pristine_fixtures": "analysis/phase2_row_coverage.json",
+   "f13_ownership_function_citations": "analysis/phase3_ownership_graph.json",
+   "f13_ownership_distinct_function_starts": "analysis/phase3_ownership_graph.json",
+   "f13_ownership_overlay_space_functions": "analysis/phase3_ownership_graph.json",
+   "f13_ownership_functions_with_canon": "analysis/phase3_ownership_graph.json",
+   "f13_ownership_state_addresses": "analysis/phase3_ownership_graph.json",
+   "f13_ownership_state_without_owner": "analysis/phase3_ownership_graph.json",
+   "f13_ownership_gaps": "analysis/phase3_ownership_graph.json",
+   "f13_ownership_records_no_image_field": "analysis/phase3_ownership_graph.json",
+   "f13_ownership_reader_status": "analysis/phase3_ownership_graph.json",
+   "f13_pin_result": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_file": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_sha1": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_size": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_extent": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_nontrivial_pct": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_runner_up": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_runner_up_pct": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_images_argmax_in_every_ram": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pin_images_with_stable_declared_base": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_fixture_scene_ids": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_fixture_scene_id_matches_census": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f13_pin_agrees_with_census_overlay_name": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f13_governing_pcs_probed": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_governing_pcs_inside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_governing_pcs_decoding_to_an_instruction": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_governing_pcs_mean_images_containing_offset": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_governing_pcs_outside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_named_words_probed": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_named_words_inside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_named_words_zero_in_disc_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_named_words_differing_from_disc_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_overlay_words_live_in_this_fixture": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_byte_matched_c_sources": "analysis/phase4_f_row_measured_census.json",
+   "f13_byte_matched_c_declared_globals": [
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+   ],
+   "f13_byte_matched_c_globals_inside_pinned_extent": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+   ],
+   "f13_byte_matched_c_entry_starts": [
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+   ],
+   "f13_overlay_code_functions": "analysis/overlay_decomp_progress.json",
+   "f13_overlay_matched_functions": "analysis/overlay_decomp_progress.json",
+   "f13_overlay_rebuild_validated": "analysis/overlay_decomp_progress.json",
+   "f13_overlay_rebuilt_sha1_matches_blob": "analysis/overlay_decomp_progress.json",
+   "f13_overlay_blob_sha1_equals_byte_pinned_image": [
+    "analysis/overlay_decomp_progress.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f13_overlay_census_functions": "analysis/functions.json",
+   "f13_overlay_census_function_names": "analysis/functions.json",
+   "f13_overlay_census_functions_unnamed": "analysis/functions.json",
+   "f13_semantic_entries_inside_this_rows_overlay_extent": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f13_semantic_collision_detail": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f13_row_state_addresses_registered": [
+    "config/semantic_state.yaml",
+    "analysis/phase3_ownership_graph.json"
+   ],
+   "f13_record_types_covering_this_rows_overlay": [
+    "config/record_types.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f13_governing_addresses": [
+    "analysis/phase4_f_row_measured_census.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+   ],
+   "f13_governing_addresses_resident": [
+    "config/overlays.yml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+   ],
+   "f13_governing_addresses_in_pinned_overlay": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+   ],
+   "f13_governing_resident_build_units": "config/segments.yml",
+   "f13_governing_resident_units_matching_c": "config/segments.yml",
+   "f13_governing_resident_units_hand_asm": "config/segments.yml",
+   "f13_governing_resident_addresses_outside_any_build_unit": "config/segments.yml",
+   "f13_governing_overlay_addresses_with_matched_c": [
+    "analysis/overlay_decomp_progress.json",
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+   ],
+   "f13_governing_addresses_with_matching_c_source": [
+    "config/segments.yml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+   ],
+   "f13_governing_pcs_registered_as_confirmed_sites": "config/confirmed_sites.yaml",
+   "f13_byte_matched_c_globals_also_named_by_the_borrowed_row": [
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+   ],
+   "f13_byte_matched_c_globals_named_nowhere_else": [
+    "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+    "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+   ],
+   "f13_e02_level_key": "analysis/phase4_e02_disc_region_code_census.json",
+   "f13_e02_container": "analysis/phase4_e02_disc_region_code_census.json",
+   "f13_e02_authored_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "f13_e02_runtime_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "f13_e02_code_histogram": "analysis/phase4_e02_disc_region_code_census.json",
+   "f13_e02_authors_no_region_codes": "analysis/phase4_e02_disc_region_code_census.json",
+   "f13_e02_uses_this_rows_own_fixture": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f13_e02_container_agrees_with_pinned_overlay_directory": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/phase4_f08_scene_binding.json"
+   ],
+   "f13_actor_records": "analysis/phase1_kind_actor_census.json",
+   "f13_actor_ids": "analysis/phase1_kind_actor_census.json",
+   "f13_actor_ids_with_canon_binding": "analysis/phase1_kind_actor_census.json",
+   "f13_actor_census_save": "analysis/phase1_kind_actor_census.json",
+   "f13_actor_census_uses_this_rows_fixture": [
+    "analysis/phase1_kind_actor_census.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f13_actor_census_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase1_kind_actor_census.json"
+   ],
+   "f13_c2_types": "analysis/phase4_c2_level_type_authority.json",
+   "f13_c2_session_token": "analysis/phase4_c2_level_type_authority.json",
+   "f13_c2_frozen_name_matches_row": [
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f13_c2_rows_sharing_this_type": "analysis/phase4_c2_level_type_authority.json",
+   "f13_c2_taxonomy_coverage_demonstrated": "analysis/phase4_c2_level_type_authority.json",
+   "f13_oracle_stage_key": "analysis/phase2_completion_oracle.json",
+   "f13_oracle_movie": "analysis/phase2_completion_oracle.json",
+   "f13_oracle_frames": "analysis/phase2_completion_oracle.json",
+   "f13_oracle_target_scene": "analysis/phase2_completion_oracle.json",
+   "f13_oracle_replay_accepted": "analysis/phase2_completion_oracle.json",
+   "f13_oracle_entered_stage_frame": "analysis/phase2_completion_oracle.json",
+   "f13_oracle_stage_exited": "analysis/phase2_completion_oracle.json",
+   "f13_oracle_snapshot_fields": "analysis/phase2_completion_oracle.json",
+   "f13_oracle_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f13_oracle_corroborates_the_scene_id": [
+    "analysis/phase2_completion_oracle.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f13_stage_movies_attributed": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f13_stage_movies_attributed_paths": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f13_stage_movie_frames": "analysis/phase2_fixture_audit.json",
+   "f13_stage_movies_under_phase4_interpreter": "analysis/phase2_fixture_audit.json",
+   "f13_stage_movies_declared_by_the_row": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f13_stage_movies_ordinal_token_matched_attribution_unverified": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f13_stage_movies_centrally_pinned": "analysis/phase0_2_external_fixture_set.json",
+   "f13_row_declared_fixtures_naming_a_d_row": "analysis/mechanics_baseline.yaml",
+   "f13_external_fixture_consumers": "analysis/phase0_2_external_fixture_set.json",
+   "f13_e16_validated_stage_movies": "analysis/phase4_e16_movie_validation.json",
+   "f13_e16_validated_stage_movies_usable": "analysis/phase4_e16_movie_validation.json",
+   "f13_e16_validated_stage_movie_truncated": "analysis/phase4_e16_movie_validation.json",
+   "f13_breadth_movie": "analysis/phase4_f01_breadth_assertions.json",
+   "f13_breadth_movie_frames": "analysis/phase4_f01_breadth_assertions.json",
+   "f13_breadth_replay_reproducible": "analysis/phase4_f01_breadth_assertions.json",
+   "f13_breadth_levels_asserted": "analysis/phase4_f01_breadth_assertions.json",
+   "f13_breadth_law_holds_everywhere": "analysis/phase4_f01_breadth_assertions.json",
+   "f13_borrowed_d_rows": [
+    "analysis/phase4_f_row_measured_census.json",
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f15_durable_state": "analysis/phase4_f_row_measured_census.json",
+   "f15_durable_fraction": "analysis/phase4_f_row_measured_census.json",
+   "f15_durable_reason": "analysis/phase4_f_row_measured_census.json",
+   "f15_census_status": "analysis/phase4_f_row_measured_census.json",
+   "f15_census_triage": "analysis/phase4_f_row_measured_census.json",
+   "f15_census_declaration_understates": "analysis/phase4_f_row_measured_census.json",
+   "f15_census_has_runtime_trace_evidence": "analysis/phase4_f_row_measured_census.json",
+   "f15_census_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+   "f15_census_vault_pages": "analysis/phase4_f_row_measured_census.json",
+   "f15_census_source_files": "analysis/phase4_f_row_measured_census.json",
+   "f15_census_segments_entries": "analysis/phase4_f_row_measured_census.json",
+   "f15_stage_ordinal": "analysis/phase4_f_row_measured_census.json",
+   "f15_scene_id": "analysis/phase4_f_row_measured_census.json",
+   "f15_overlay_name": "analysis/phase4_f_row_measured_census.json",
+   "f15_row_name": "analysis/mechanics_baseline.yaml",
+   "f15_row_status": "analysis/mechanics_baseline.yaml",
+   "f15_row_binding_claims": "analysis/mechanics_baseline.yaml",
+   "f15_row_declared_fixtures": "analysis/mechanics_baseline.yaml",
+   "f15_row_declared_fixture_need": "analysis/mechanics_baseline.yaml",
+   "f15_row_declared_missing": "analysis/mechanics_baseline.yaml",
+   "f15_row_declared_next": "analysis/mechanics_baseline.yaml",
+   "f15_row_declared_evidence_classes": "analysis/mechanics_baseline.yaml",
+   "f15_row_records_prior_binding_falsified": "analysis/mechanics_baseline.yaml",
+   "f15_row_leans_on_d_rows": "analysis/mechanics_baseline.yaml",
+   "f15_row_own_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+   "f15_registry_met": "analysis/phase4_closure_debt.json",
+   "f15_registry_remaining": "analysis/phase4_closure_debt.json",
+   "f15_registry_distinct_bases": "analysis/phase4_closure_debt.json",
+   "f15_registry_distinct_states": "analysis/phase4_closure_debt.json",
+   "f15_registry_completion_state": "analysis/phase4_closure_debt.json",
+   "f15_registry_movie_count": "analysis/phase4_closure_debt.json",
+   "f15_registry_campaign_id": "analysis/phase4_closure_debt.json",
+   "f15_registry_next_lane_reason": "analysis/phase4_closure_debt.json",
+   "f15_registry_family": "analysis/phase4_closure_debt.json",
+   "f15_scheduler_eligible": "analysis/phase4_movie_priority_queue.json",
+   "f15_scheduler_reasons": "analysis/phase4_movie_priority_queue.json",
+   "f15_scheduler_sees_a_phase4_movie": "analysis/phase4_movie_priority_queue.json",
+   "f15_scheduler_ownership_function_count": "analysis/phase4_movie_priority_queue.json",
+   "f15_scheduler_ownership_input_is_current": [
+    "analysis/phase4_movie_priority_queue.json",
+    "analysis/phase3_ownership_graph.json"
+   ],
+   "f15_offline_named_unknowns": "analysis/phase4_offline_opportunity_queue.json",
+   "f15_offline_answerable_questions": "analysis/phase4_offline_opportunity_queue.json",
+   "f15_offline_available_domains": "analysis/phase4_offline_opportunity_queue.json",
+   "f15_offline_relevant_movies": "analysis/phase4_offline_opportunity_queue.json",
+   "f15_offline_classification": "analysis/phase4_offline_opportunity_queue.json",
+   "f15_coverage_status": "analysis/phase2_row_coverage.json",
+   "f15_coverage_unaudited_fixtures": "analysis/phase2_row_coverage.json",
+   "f15_coverage_non_pristine_fixtures": "analysis/phase2_row_coverage.json",
+   "f15_ownership_function_citations": "analysis/phase3_ownership_graph.json",
+   "f15_ownership_distinct_function_starts": "analysis/phase3_ownership_graph.json",
+   "f15_ownership_overlay_space_functions": "analysis/phase3_ownership_graph.json",
+   "f15_ownership_functions_with_canon": "analysis/phase3_ownership_graph.json",
+   "f15_ownership_state_addresses": "analysis/phase3_ownership_graph.json",
+   "f15_ownership_state_without_owner": "analysis/phase3_ownership_graph.json",
+   "f15_ownership_gaps": "analysis/phase3_ownership_graph.json",
+   "f15_ownership_records_no_image_field": "analysis/phase3_ownership_graph.json",
+   "f15_ownership_reader_status": "analysis/phase3_ownership_graph.json",
+   "f15_pin_result": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_file": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_sha1": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_size": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_extent": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_nontrivial_pct": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_runner_up": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_runner_up_pct": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_images_argmax_in_every_ram": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_pin_images_with_stable_declared_base": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_fixture_scene_ids": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_fixture_scene_id_matches_census": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f15_pin_agrees_with_census_overlay_name": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f15_governing_pcs_probed": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_governing_pcs_inside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_governing_pcs_decoding_to_an_instruction": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_governing_pcs_mean_images_containing_offset": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_governing_pcs_outside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_named_words_probed": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_named_words_inside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_named_words_zero_in_disc_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_named_words_differing_from_disc_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_overlay_words_live_in_this_fixture": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_byte_matched_c_sources": "analysis/phase4_f_row_measured_census.json",
+   "f15_byte_matched_c_declared_globals": "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c",
+   "f15_byte_matched_c_globals_inside_pinned_extent": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c"
+   ],
+   "f15_byte_matched_c_entry_starts": "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c",
+   "f15_overlay_code_functions": "analysis/overlay_decomp_progress.json",
+   "f15_overlay_matched_functions": "analysis/overlay_decomp_progress.json",
+   "f15_overlay_rebuild_validated": "analysis/overlay_decomp_progress.json",
+   "f15_overlay_rebuilt_sha1_matches_blob": "analysis/overlay_decomp_progress.json",
+   "f15_overlay_blob_sha1_equals_byte_pinned_image": [
+    "analysis/overlay_decomp_progress.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f15_overlay_census_functions": "analysis/functions.json",
+   "f15_overlay_census_function_names": "analysis/functions.json",
+   "f15_overlay_census_functions_unnamed": "analysis/functions.json",
+   "f15_semantic_entries_inside_this_rows_overlay_extent": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f15_semantic_collision_detail": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f15_row_state_addresses_registered": [
+    "config/semantic_state.yaml",
+    "analysis/phase3_ownership_graph.json"
+   ],
+   "f15_record_types_covering_this_rows_overlay": [
+    "config/record_types.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f15_governing_addresses": [
+    "analysis/phase4_f_row_measured_census.json",
+    "analysis/phase4_d20_hopper.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+    "analysis/phase4_f15_canyon_showdown.json",
+    "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c"
+   ],
+   "f15_governing_addresses_resident": [
+    "config/overlays.yml",
+    "analysis/phase4_d20_hopper.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+    "analysis/phase4_f15_canyon_showdown.json",
+    "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c"
+   ],
+   "f15_governing_addresses_in_pinned_overlay": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c"
+   ],
+   "f15_governing_resident_build_units": "config/segments.yml",
+   "f15_governing_resident_units_matching_c": "config/segments.yml",
+   "f15_governing_resident_units_hand_asm": "config/segments.yml",
+   "f15_governing_resident_addresses_outside_any_build_unit": "config/segments.yml",
+   "f15_governing_overlay_addresses_with_matched_c": [
+    "analysis/overlay_decomp_progress.json",
+    "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c"
+   ],
+   "f15_governing_addresses_with_matching_c_source": [
+    "config/segments.yml",
+    "analysis/phase4_d20_hopper.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+    "analysis/phase4_f15_canyon_showdown.json"
+   ],
+   "f15_governing_pcs_registered_as_confirmed_sites": "config/confirmed_sites.yaml",
+   "f15_byte_matched_c_globals_also_named_by_the_borrowed_row": [
+    "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c",
+    "analysis/phase4_d20_hopper.json"
+   ],
+   "f15_byte_matched_c_globals_named_nowhere_else": [
+    "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c",
+    "analysis/phase4_d20_hopper.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+    "analysis/phase4_f15_canyon_showdown.json"
+   ],
+   "f15_e02_level_key": "analysis/phase4_e02_disc_region_code_census.json",
+   "f15_e02_container": "analysis/phase4_e02_disc_region_code_census.json",
+   "f15_e02_authored_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "f15_e02_runtime_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "f15_e02_code_histogram": "analysis/phase4_e02_disc_region_code_census.json",
+   "f15_e02_authors_no_region_codes": "analysis/phase4_e02_disc_region_code_census.json",
+   "f15_e02_uses_this_rows_own_fixture": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f15_e02_container_agrees_with_pinned_overlay_directory": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/phase4_f08_scene_binding.json"
+   ],
+   "f15_actor_records": "analysis/phase1_kind_actor_census.json",
+   "f15_actor_ids": "analysis/phase1_kind_actor_census.json",
+   "f15_actor_ids_with_canon_binding": "analysis/phase1_kind_actor_census.json",
+   "f15_actor_census_save": "analysis/phase1_kind_actor_census.json",
+   "f15_actor_census_uses_this_rows_fixture": [
+    "analysis/phase1_kind_actor_census.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f15_actor_census_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase1_kind_actor_census.json"
+   ],
+   "f15_c2_types": "analysis/phase4_c2_level_type_authority.json",
+   "f15_c2_session_token": "analysis/phase4_c2_level_type_authority.json",
+   "f15_c2_frozen_name_matches_row": [
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f15_c2_rows_sharing_this_type": "analysis/phase4_c2_level_type_authority.json",
+   "f15_c2_taxonomy_coverage_demonstrated": "analysis/phase4_c2_level_type_authority.json",
+   "f15_oracle_stage_key": "analysis/phase2_completion_oracle.json",
+   "f15_oracle_movie": "analysis/phase2_completion_oracle.json",
+   "f15_oracle_frames": "analysis/phase2_completion_oracle.json",
+   "f15_oracle_target_scene": "analysis/phase2_completion_oracle.json",
+   "f15_oracle_replay_accepted": "analysis/phase2_completion_oracle.json",
+   "f15_oracle_entered_stage_frame": "analysis/phase2_completion_oracle.json",
+   "f15_oracle_stage_exited": "analysis/phase2_completion_oracle.json",
+   "f15_oracle_snapshot_fields": "analysis/phase2_completion_oracle.json",
+   "f15_oracle_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f15_oracle_corroborates_the_scene_id": [
+    "analysis/phase2_completion_oracle.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f15_stage_movies_attributed": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f15_stage_movies_attributed_paths": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "f15_stage_movie_frames": "analysis/phase2_fixture_audit.json",
+   "f15_stage_movies_under_phase4_interpreter": "analysis/phase2_fixture_audit.json",
+   "f15_stage_movies_declared_by_the_row": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "f15_stage_movies_ordinal_token_matched_attribution_unverified": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f15_stage_movies_centrally_pinned": "analysis/phase0_2_external_fixture_set.json",
+   "f15_row_declared_fixtures_naming_a_d_row": "analysis/mechanics_baseline.yaml",
+   "f15_external_fixture_consumers": "analysis/phase0_2_external_fixture_set.json",
+   "f15_e16_validated_stage_movies": "analysis/phase4_e16_movie_validation.json",
+   "f15_e16_validated_stage_movies_usable": "analysis/phase4_e16_movie_validation.json",
+   "f15_e16_validated_stage_movie_truncated": "analysis/phase4_e16_movie_validation.json",
+   "f15_breadth_movie": "analysis/phase4_f01_breadth_assertions.json",
+   "f15_breadth_movie_frames": "analysis/phase4_f01_breadth_assertions.json",
+   "f15_breadth_replay_reproducible": "analysis/phase4_f01_breadth_assertions.json",
+   "f15_breadth_levels_asserted": "analysis/phase4_f01_breadth_assertions.json",
+   "f15_breadth_law_holds_everywhere": "analysis/phase4_f01_breadth_assertions.json",
+   "f15_borrowed_d_rows": [
+    "analysis/phase4_f_row_measured_census.json",
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_d20_hopper.json"
+   ],
+   "matched_functions_per_per_level_overlay": "analysis/overlay_decomp_progress.json",
+   "per_level_overlays_with_the_most_matched_functions": "analysis/overlay_decomp_progress.json",
+   "f12_overlay_has_the_most_matched_functions_of_any_per_level_overlay": [
+    "analysis/overlay_decomp_progress.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f13_overlay_has_the_most_matched_functions_of_any_per_level_overlay": [
+    "analysis/overlay_decomp_progress.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f15_overlay_has_the_most_matched_functions_of_any_per_level_overlay": [
+    "analysis/overlay_decomp_progress.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_d19_accepted_snapshot_address": "analysis/phase4_d19_molt.json",
+   "f12_d19_boss_initial_hp": "analysis/phase4_d19_molt.json",
+   "f12_snapshot_is_declared_by_the_byte_matched_c": [
+    "analysis/phase4_d19_molt.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_boss_hp_address_is_declared_by_the_byte_matched_c": [
+    "analysis/phase4_d19_molt.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_snapshot_value_in_this_rows_own_fixture": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_d19_molt.json"
+   ],
+   "f12_snapshot_equals_the_borrowed_initial_hp": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_d19_molt.json"
+   ],
+   "f12_borrowed_rejected_candidate_addresses": "analysis/phase4_d19_molt.json",
+   "f12_rejected_candidates_fall_outside_the_byte_pinned_extent": [
+    "analysis/phase4_d19_molt.json",
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json"
+   ],
+   "f15_d20_health_counter_address": "analysis/phase4_d20_hopper.json",
+   "f15_d20_health_counter_initial_value": "analysis/phase4_d20_hopper.json",
+   "f15_only_live_overlay_word_is_the_d20_health_counter": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_d20_hopper.json"
+   ],
+   "f15_health_counter_value_in_this_rows_own_fixture": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f15_fixture_value_equals_the_borrowed_initial_value": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_d20_hopper.json"
+   ],
+   "f15_byte_matched_predicate_entry_is_named_by_the_borrowed_row": [
+    "analysis/phase4_d20_hopper.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f15_byte_matched_predicate_globals_named_by_the_borrowed_row": [
+    "analysis/phase4_d20_hopper.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_second_fixture_scene_ids": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_second_fixture_pin_file": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_second_fixture_pin_pct": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_second_fixture_holds_this_rows_overlay": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f12_second_fixture_holds_f13s_overlay": [
+    "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "f13_pair_rams": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_same_scene_id": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_pin_file": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_region_a_differing_bytes": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_differing_inside_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_differing_beyond_pinned_image": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_whole_ram_differing_words": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_differing_byte_addresses": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_differing_words_aligned": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f13_pair_differing_bytes_zero_on_disc": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "f12_registered_gate_files": "tests/test_phase4_f12_battle_arena.py",
+   "f13_registered_gate_files": "analysis/phase4_f_row_measured_census.json",
+   "f15_registered_gate_files": [
+    "tests/test_phase4_c16_boss_death.py",
+    "tests/test_phase4_f08_scene_binding.py",
+    "tests/test_phase4_f15_canyon_showdown.py"
+   ],
+   "registered_gates_executed": [
+    "tests/test_phase4_c16_boss_death.py",
+    "tests/test_phase4_f08_scene_binding.py",
+    "tests/test_phase4_f12_battle_arena.py",
+    "tests/test_phase4_f15_canyon_showdown.py"
+   ],
+   "registered_gate_tests_passed": [
+    "tests/test_phase4_c16_boss_death.py",
+    "tests/test_phase4_f08_scene_binding.py",
+    "tests/test_phase4_f12_battle_arena.py",
+    "tests/test_phase4_f15_canyon_showdown.py"
+   ],
+   "registered_gate_tests_failed": [
+    "tests/test_phase4_c16_boss_death.py",
+    "tests/test_phase4_f08_scene_binding.py",
+    "tests/test_phase4_f12_battle_arena.py",
+    "tests/test_phase4_f15_canyon_showdown.py"
+   ],
+   "registered_gate_files_with_a_failure": [
+    "tests/test_phase4_c16_boss_death.py",
+    "tests/test_phase4_f08_scene_binding.py",
+    "tests/test_phase4_f12_battle_arena.py",
+    "tests/test_phase4_f15_canyon_showdown.py"
+   ]
+  }
+ },
+ "facts": {
+  "fail_loud_guards_fired": [
+   "missing_artifact_aborts",
+   "renamed_key_aborts",
+   "fact_without_a_pinned_source_aborts"
+  ],
+  "baseline_sha256_matches_census": true,
+  "fixture_set_sha256_matches_census": false,
+  "resident_build_units": 913,
+  "resident_build_toolchain": "gcc2.7.2-psx",
+  "overlay_track_total_code_functions": 158,
+  "overlay_track_matched_functions": 15,
+  "overlay_track_matched_pct": 9.49,
+  "overlay_registry_total_overlays": 12,
+  "semantic_state_entries_total": 66,
+  "confirmed_sites_total": 12,
+  "record_types_registered": 8,
+  "overlay_images_in_function_census": 20,
+  "shared_overlay_load_base": "0x800B39A0",
+  "shared_overlay_region_length": 7656,
+  "loader_arithmetic_law_pcs": [
+   "0x8003D204",
+   "0x8003D214",
+   "0x8003D218"
+  ],
+  "loader_scene_ids_mapped": 17,
+  "loader_rows_corrected_2026_08_05": 13,
+  "loader_binding_status": "static half complete; live oracle deferred (fork mid-change)",
+  "scene_id_address": "0x80082504",
+  "progression_table_address": "0x80077FA0",
+  "progression_table_declared": [
+   17,
+   1,
+   3,
+   2,
+   6,
+   10,
+   11,
+   4,
+   5,
+   14,
+   7,
+   12,
+   13,
+   9,
+   8,
+   15
+  ],
+  "e02_levels_censused": 16,
+  "e02_disc_runtime_disagreements": 0,
+  "e02_authored_sectors_compared": 3235,
+  "executable_declared_sha1": "af43de22474f15664d0e17498fbd27faeb7ed111",
+  "candidate_images": 21,
+  "semantic_entries_inside_shared_region_a": [
+   "0x800B4A3C"
+  ],
+  "semantic_entries_inside_shared_region_a_ids": [
+   "original.training_step"
+  ],
+  "progression_table_read_from_executable": [
+   17,
+   1,
+   3,
+   2,
+   6,
+   10,
+   11,
+   4,
+   5,
+   14,
+   7,
+   12,
+   13,
+   9,
+   8,
+   15
+  ],
+  "progression_table_matches_declared": true,
+  "probe_images_scanned": 21,
+  "probe_groups_scanned": 5,
+  "probe_anchor_rule": "64-byte slices with >= 32 distinct byte values, up to 8 per image, searched across all 2097152 bytes of main RAM; >= 2 slices agreeing on one implied base is residency evidence",
+  "probe_nontrivial_definition": "positions where NOT (ram_byte == 0 && image_byte == 0); zero-vs-zero agreement is excluded because padding otherwise flatters every low-entropy image",
+  "f12_durable_state": "met",
+  "f12_durable_fraction": "4/4",
+  "f12_durable_reason": "4/4 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+  "f12_census_status": "partial",
+  "f12_census_triage": {
+   "original_oracle": "no runtime evidence found in this row's artifacts",
+   "complete_frontier": "measurable: static evidence present in artifacts",
+   "typed_state": "measurable: static evidence present in artifacts",
+   "lifecycle": "no runtime evidence found in this row's artifacts",
+   "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+   "original_interfaces": "measurable: static evidence present in artifacts",
+   "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+   "campaign_breadth": "measurable: static evidence present in artifacts"
+  },
+  "f12_census_declaration_understates": [
+   "static_code"
+  ],
+  "f12_census_has_runtime_trace_evidence": false,
+  "f12_census_analysis_artifacts": [
+   "analysis/phase4_f08_scene_binding.json",
+   "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+  ],
+  "f12_census_vault_pages": [],
+  "f12_census_source_files": [],
+  "f12_census_segments_entries": 0,
+  "f12_stage_ordinal": "12",
+  "f12_scene_id": 13,
+  "f12_overlay_name": "LEVEL03_LEVEL1",
+  "f12_row_name": "Stage 12 Battle Arena: defeat Molt with crowd berries",
+  "f12_row_status": "partial",
+  "f12_row_binding_claims": 3,
+  "f12_row_declared_fixtures": [
+   "level_12.sav",
+   "LEVEL12_ENDING.sav",
+   "movies/Phase4/Interpreter/D19.movie.json",
+   "movies/Phase4/Interpreter/D19.movie.sav"
+  ],
+  "f12_row_declared_fixture_need": "Arena layout/spawn-position mapping only, if ever needed for a MOD; not required to close the row's own named objective.",
+  "f12_row_declared_missing": "Boss/crowd/objective mechanics now closed via D19 synthesis. Genuinely open: this stage's own arena layout/critical path (spawn positions, crowd-member count, arena bounds) was never traced by D19 -- D19 characterized the mechanic in isolation, not this stage's specific level geometry.",
+  "f12_row_declared_next": "PARTIAL, bounded via D19 synthesis 2026-08-03. Move on; revisit only for the stage-specific arena-layout gap above.",
+  "f12_row_declared_evidence_classes": [
+   "manual"
+  ],
+  "f12_row_records_prior_binding_falsified": true,
+  "f12_row_leans_on_d_rows": [
+   "D19_molt"
+  ],
+  "f12_row_own_analysis_artifacts": [
+   "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+  ],
+  "f12_registry_met": 0,
+  "f12_registry_remaining": 9,
+  "f12_registry_distinct_bases": [
+   "no active child campaign"
+  ],
+  "f12_registry_distinct_states": [
+   "gap"
+  ],
+  "f12_registry_completion_state": "open",
+  "f12_registry_movie_count": 0,
+  "f12_registry_campaign_id": null,
+  "f12_registry_next_lane_reason": "no campaign exists; begin with the static semantic frontier",
+  "f12_registry_family": "bosses_special_objectives",
+  "f12_scheduler_eligible": false,
+  "f12_scheduler_reasons": [
+   "no associated movie under case-sensitive movies/Phase4/"
+  ],
+  "f12_scheduler_sees_a_phase4_movie": false,
+  "f12_scheduler_ownership_function_count": 0,
+  "f12_scheduler_ownership_input_is_current": false,
+  "f12_offline_named_unknowns": [
+   "Boss/crowd/objective mechanics.",
+   "Same as D19 \u2014 capture the fight actor layout from level_12.sav.",
+   "functions: no original function boundary is confirmed for this mechanic",
+   "functions next experiment: Same as D19 \u2014 capture the fight actor layout from level_12.sav.",
+   "overlay: the exact resident/overlay execution owner is not yet bound",
+   "overlay next experiment: Same as D19 \u2014 capture the fight actor layout from level_12.sav."
+  ],
+  "f12_offline_answerable_questions": 0,
+  "f12_offline_available_domains": [],
+  "f12_offline_relevant_movies": 0,
+  "f12_offline_classification": "no_capsule",
+  "f12_coverage_status": "pristine_trigger",
+  "f12_coverage_unaudited_fixtures": [],
+  "f12_coverage_non_pristine_fixtures": 0,
+  "f12_ownership_function_citations": 4,
+  "f12_ownership_distinct_function_starts": 1,
+  "f12_ownership_overlay_space_functions": 0,
+  "f12_ownership_functions_with_canon": 1,
+  "f12_ownership_state_addresses": [
+   "0x8001AD0C",
+   "0x8001AE98",
+   "0x8001AFB0",
+   "0x80082504",
+   "0x800B39A0"
+  ],
+  "f12_ownership_state_without_owner": [
+   "0x8001AFB0",
+   "0x800B39A0"
+  ],
+  "f12_ownership_gaps": [
+   "state 0x8001AFB0 cited with no semantic-registry owner",
+   "state 0x800B39A0 cited with no semantic-registry owner"
+  ],
+  "f12_ownership_records_no_image_field": true,
+  "f12_ownership_reader_status": "bounded_static_method_limit",
+  "f12_pin_result": "OVERLAY_RESIDENCY_PIN_UNIQUE",
+  "f12_pin_file": "OVL/LEVEL03_LEVEL1.BIN",
+  "f12_pin_sha1": "396e080a5bd203d79d17bd4015714b55e5746813",
+  "f12_pin_size": 3184,
+  "f12_pin_extent": [
+   "0x800b39a0",
+   "0x800b4610"
+  ],
+  "f12_pin_nontrivial_pct": 99.6,
+  "f12_pin_runner_up": "OVL/LEVEL07_LEVEL.BIN",
+  "f12_pin_runner_up_pct": 40.45,
+  "f12_pin_images_argmax_in_every_ram": 1,
+  "f12_pin_images_with_stable_declared_base": 3,
+  "f12_fixture_scene_ids": {
+   "level_12": 13
+  },
+  "f12_fixture_scene_id_matches_census": true,
+  "f12_pin_agrees_with_census_overlay_name": true,
+  "f12_governing_pcs_probed": 64,
+  "f12_governing_pcs_inside_pinned_image": 37,
+  "f12_governing_pcs_decoding_to_an_instruction": 37,
+  "f12_governing_pcs_mean_images_containing_offset": 11.92,
+  "f12_governing_pcs_outside_pinned_image": [
+   "0x800b4610",
+   "0x800b4620",
+   "0x800b46d0",
+   "0x800b46d4",
+   "0x800b4750",
+   "0x800b4934",
+   "0x800b4a3c",
+   "0x800b4a40",
+   "0x800b4a88",
+   "0x800b4b80",
+   "0x800b4ba8",
+   "0x800b4bb8",
+   "0x800b4be0",
+   "0x800b4cc8",
+   "0x800b4cd0",
+   "0x800b4de4",
+   "0x800b4de5",
+   "0x800b4df4",
+   "0x800b4df8",
+   "0x800b4df9",
+   "0x800b4dfc",
+   "0x800b4dfd",
+   "0x800b4e00",
+   "0x800b4e04",
+   "0x800b4e08",
+   "0x800b4e10",
+   "0x800b5000"
+  ],
+  "f12_named_words_probed": 67,
+  "f12_named_words_inside_pinned_image": 37,
+  "f12_named_words_zero_in_disc_image": 6,
+  "f12_named_words_differing_from_disc_image": 3,
+  "f12_overlay_words_live_in_this_fixture": {
+   "0x800b45f4": [
+    50
+   ],
+   "0x800b45f8": [
+    50
+   ],
+   "0x800b4604": [
+    77
+   ]
+  },
+  "f12_byte_matched_c_sources": [
+   "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c"
+  ],
+  "f12_byte_matched_c_declared_globals": [
+   "0x80077E3C",
+   "0x8009FFDC",
+   "0x8009FFFE",
+   "0x800B45F4",
+   "0x800B45F8",
+   "0x800B4600",
+   "0x800B4604",
+   "0x800B4608",
+   "0x800B460C"
+  ],
+  "f12_byte_matched_c_globals_inside_pinned_extent": 6,
+  "f12_byte_matched_c_entry_starts": [
+   "0x800B3ADC"
+  ],
+  "f12_overlay_code_functions": 3,
+  "f12_overlay_matched_functions": 1,
+  "f12_overlay_rebuild_validated": true,
+  "f12_overlay_rebuilt_sha1_matches_blob": true,
+  "f12_overlay_blob_sha1_equals_byte_pinned_image": true,
+  "f12_overlay_census_functions": 4,
+  "f12_overlay_census_function_names": [
+   "0x800B4490",
+   "init_overlay_state",
+   "level_completion_handler",
+   "level_overlay_init"
+  ],
+  "f12_overlay_census_functions_unnamed": 1,
+  "f12_semantic_entries_inside_this_rows_overlay_extent": [],
+  "f12_semantic_collision_detail": [],
+  "f12_row_state_addresses_registered": 3,
+  "f12_record_types_covering_this_rows_overlay": 0,
+  "f12_governing_addresses": 199,
+  "f12_governing_addresses_resident": 135,
+  "f12_governing_addresses_in_pinned_overlay": 37,
+  "f12_governing_resident_build_units": [
+   "asm/hand_written/80010000_per_object_mesh_draw_payload_emitter.s",
+   "asm/hand_written/8003cf2c_resource_id_dat_load_dispatcher.s",
+   "asm/hand_written/8003e4e8_sub_8003e4e8.s",
+   "asm/hand_written/8004a0a0_sub_8004a0a0.s",
+   "asm/hand_written/800502c4_sub_800502c4.s",
+   "asm/hand_written/8005905c_berry_tough_damage_dispatch.s",
+   "asm/hand_written/8005a0e0_contact_object_spawn_full.s",
+   "src/main/8005038c_scene_setup_and_load.c",
+   "src/main/800503fc_spawn_fx_object.c"
+  ],
+  "f12_governing_resident_units_matching_c": [
+   "src/main/8005038c_scene_setup_and_load.c",
+   "src/main/800503fc_spawn_fx_object.c"
+  ],
+  "f12_governing_resident_units_hand_asm": 7,
+  "f12_governing_resident_addresses_outside_any_build_unit": 122,
+  "f12_governing_overlay_addresses_with_matched_c": 1,
+  "f12_governing_addresses_with_matching_c_source": {
+   "0x8005038C": "src/main/8005038c_scene_setup_and_load.c",
+   "0x800503AC": "src/main/8005038c_scene_setup_and_load.c",
+   "0x800503FC": "src/main/800503fc_spawn_fx_object.c"
+  },
+  "f12_governing_pcs_registered_as_confirmed_sites": 0,
+  "f12_byte_matched_c_globals_also_named_by_the_borrowed_row": [
+   "0x8009FFFE",
+   "0x800B45F4"
+  ],
+  "f12_byte_matched_c_globals_named_nowhere_else": [],
+  "f12_e02_level_key": "stage12_battle_arena",
+  "f12_e02_container": "LEVEL03/LEVEL1.RAW",
+  "f12_e02_authored_sectors": 12,
+  "f12_e02_runtime_sectors": 57,
+  "f12_e02_code_histogram": {
+   "0": 12
+  },
+  "f12_e02_authors_no_region_codes": true,
+  "f12_e02_uses_this_rows_own_fixture": true,
+  "f12_e02_container_agrees_with_pinned_overlay_directory": true,
+  "f12_actor_records": 4,
+  "f12_actor_ids": [
+   9,
+   11,
+   29
+  ],
+  "f12_actor_ids_with_canon_binding": [],
+  "f12_actor_census_save": "level_12.sav",
+  "f12_actor_census_uses_this_rows_fixture": true,
+  "f12_actor_census_cited_by_the_row": false,
+  "f12_c2_types": [
+   "boss"
+  ],
+  "f12_c2_session_token": "LEVEL12_BATTLEARENA",
+  "f12_c2_frozen_name_matches_row": true,
+  "f12_c2_rows_sharing_this_type": [
+   "F03_council_chamber",
+   "F09_bug_bar",
+   "F12_battle_arena",
+   "F15_canyon_showdown"
+  ],
+  "f12_c2_taxonomy_coverage_demonstrated": false,
+  "f12_oracle_stage_key": "stage12_battle_arena",
+  "f12_oracle_movie": "movies/go_to_end/LEVEL12.movie.json",
+  "f12_oracle_frames": 12815,
+  "f12_oracle_target_scene": 13,
+  "f12_oracle_replay_accepted": true,
+  "f12_oracle_entered_stage_frame": 5000,
+  "f12_oracle_stage_exited": true,
+  "f12_oracle_snapshot_fields": [
+   "enemy_quota",
+   "equipped_berry",
+   "grain",
+   "health",
+   "lives",
+   "player_floor",
+   "player_grounded",
+   "player_x",
+   "player_y",
+   "player_z",
+   "power_word",
+   "scene_id"
+  ],
+  "f12_oracle_cited_by_the_row": false,
+  "f12_oracle_corroborates_the_scene_id": true,
+  "f12_stage_movies_attributed": 3,
+  "f12_stage_movies_attributed_paths": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL12_BATTLEARENA.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL12_battlearena.movie.json",
+   "movies/go_to_end/LEVEL12.movie.json"
+  ],
+  "f12_stage_movie_frames": {
+   "movies/Phase4/Interpreter/100% Runs/LEVEL12_BATTLEARENA.movie.json": 15889,
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL12_battlearena.movie.json": 7111,
+   "movies/go_to_end/LEVEL12.movie.json": 12815
+  },
+  "f12_stage_movies_under_phase4_interpreter": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL12_BATTLEARENA.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL12_battlearena.movie.json"
+  ],
+  "f12_stage_movies_declared_by_the_row": [],
+  "f12_stage_movies_ordinal_token_matched_attribution_unverified": [],
+  "f12_stage_movies_centrally_pinned": 3,
+  "f12_row_declared_fixtures_naming_a_d_row": [
+   "movies/Phase4/Interpreter/D19.movie.json",
+   "movies/Phase4/Interpreter/D19.movie.sav"
+  ],
+  "f12_external_fixture_consumers": [
+   "analysis/phase1_kind_actor_census.json",
+   "analysis/phase2_compare_report.json",
+   "analysis/phase2_death_matrix.json",
+   "analysis/phase2_fixture_audit.json",
+   "analysis/phase2_gate_residuals.json",
+   "analysis/phase2_pool_arc_oracle.json",
+   "analysis/phase2_presentation_baseline.json",
+   "analysis/phase2_results_baseline.json",
+   "analysis/phase2_row_coverage.json",
+   "analysis/phase2_stage_baseline.json",
+   "analysis/phase3_evidence_inventory.json",
+   "analysis/phase3_fn_ptr_fields.json",
+   "analysis/phase3_ownership_graph.json",
+   "analysis/phase3_record_probe.json",
+   "analysis/phase3_render_descriptors.json",
+   "mechanics:D19_molt",
+   "mechanics:E04_camera_system",
+   "mechanics:F12_battle_arena"
+  ],
+  "f12_e16_validated_stage_movies": [
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL12_battlearena.movie.json"
+  ],
+  "f12_e16_validated_stage_movies_usable": 1,
+  "f12_e16_validated_stage_movie_truncated": false,
+  "f12_breadth_movie": "movies/Phase4/Interpreter/100% Runs/LEVEL12_BATTLEARENA.movie.json",
+  "f12_breadth_movie_frames": 15889,
+  "f12_breadth_replay_reproducible": true,
+  "f12_breadth_levels_asserted": 19,
+  "f12_breadth_law_holds_everywhere": true,
+  "f12_borrowed_d_rows": {
+   "D19_molt": {
+    "row": "D19_molt",
+    "artifact": "analysis/phase4_d19_molt.json",
+    "status": "partial_high_value_bounded_exhausted",
+    "baseline_status": "partial",
+    "addresses_named": 24,
+    "addresses_in_this_rows_pinned_overlay": 13,
+    "canon_pages": [
+     "ObsidianVault/Canon/Systems/SYS_molt_boss.md"
+    ],
+    "src_re_files": [
+     "src_re/molt_boss.c"
+    ]
+   }
+  },
+  "f13_durable_state": "met",
+  "f13_durable_fraction": "1/1",
+  "f13_durable_reason": "1/1 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+  "f13_census_status": "external_lead",
+  "f13_census_triage": {
+   "original_oracle": "no runtime evidence found in this row's artifacts",
+   "complete_frontier": "measurable: static evidence present in artifacts",
+   "typed_state": "measurable: static evidence present in artifacts",
+   "lifecycle": "no runtime evidence found in this row's artifacts",
+   "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+   "original_interfaces": "measurable: static evidence present in artifacts",
+   "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+   "campaign_breadth": "measurable: static evidence present in artifacts"
+  },
+  "f13_census_declaration_understates": [
+   "static_code"
+  ],
+  "f13_census_has_runtime_trace_evidence": false,
+  "f13_census_analysis_artifacts": [
+   "analysis/phase4_f08_scene_binding.json",
+   "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+  ],
+  "f13_census_vault_pages": [],
+  "f13_census_source_files": [],
+  "f13_census_segments_entries": 0,
+  "f13_stage_ordinal": "13",
+  "f13_scene_id": 9,
+  "f13_overlay_name": "LEVEL09_LEVEL",
+  "f13_row_name": "Stage 13 Anthill Part Two: rescue Atta / berry-shooter solution",
+  "f13_row_status": "external_lead",
+  "f13_row_binding_claims": 2,
+  "f13_row_declared_fixtures": [
+   "level_13.sav"
+  ],
+  "f13_row_declared_fixture_need": "Objective movie; assert the authored shooter-solution trigger.",
+  "f13_row_declared_missing": "Forced-objective and transition.",
+  "f13_row_declared_next": "Walk stage 13; identify the authored berry-shooter objective actors.",
+  "f13_row_declared_evidence_classes": [
+   "manual",
+   "secondary_lead"
+  ],
+  "f13_row_records_prior_binding_falsified": true,
+  "f13_row_leans_on_d_rows": [],
+  "f13_row_own_analysis_artifacts": [
+   "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+  ],
+  "f13_registry_met": 0,
+  "f13_registry_remaining": 9,
+  "f13_registry_distinct_bases": [
+   "no active child campaign"
+  ],
+  "f13_registry_distinct_states": [
+   "gap"
+  ],
+  "f13_registry_completion_state": "open",
+  "f13_registry_movie_count": 0,
+  "f13_registry_campaign_id": null,
+  "f13_registry_next_lane_reason": "no campaign exists; begin with the static semantic frontier",
+  "f13_registry_family": "bosses_special_objectives",
+  "f13_scheduler_eligible": false,
+  "f13_scheduler_reasons": [
+   "no associated movie under case-sensitive movies/Phase4/"
+  ],
+  "f13_scheduler_sees_a_phase4_movie": false,
+  "f13_scheduler_ownership_function_count": 0,
+  "f13_scheduler_ownership_input_is_current": false,
+  "f13_offline_named_unknowns": [
+   "Forced-objective and transition.",
+   "Walk stage 13; identify the authored berry-shooter objective actors.",
+   "functions: no original function boundary is confirmed for this mechanic",
+   "functions next experiment: Walk stage 13; identify the authored berry-shooter objective actors.",
+   "overlay: the exact resident/overlay execution owner is not yet bound",
+   "overlay next experiment: Walk stage 13; identify the authored berry-shooter objective actors."
+  ],
+  "f13_offline_answerable_questions": 0,
+  "f13_offline_available_domains": [],
+  "f13_offline_relevant_movies": 0,
+  "f13_offline_classification": "no_capsule",
+  "f13_coverage_status": "pristine_trigger",
+  "f13_coverage_unaudited_fixtures": [],
+  "f13_coverage_non_pristine_fixtures": 0,
+  "f13_ownership_function_citations": 4,
+  "f13_ownership_distinct_function_starts": 1,
+  "f13_ownership_overlay_space_functions": 0,
+  "f13_ownership_functions_with_canon": 1,
+  "f13_ownership_state_addresses": [
+   "0x8001AD0C",
+   "0x8001AE98",
+   "0x8001AFB0",
+   "0x80082504",
+   "0x800B39A0"
+  ],
+  "f13_ownership_state_without_owner": [
+   "0x8001AFB0",
+   "0x800B39A0"
+  ],
+  "f13_ownership_gaps": [
+   "state 0x8001AFB0 cited with no semantic-registry owner",
+   "state 0x800B39A0 cited with no semantic-registry owner"
+  ],
+  "f13_ownership_records_no_image_field": true,
+  "f13_ownership_reader_status": "bounded_static_method_limit",
+  "f13_pin_result": "OVERLAY_RESIDENCY_PIN_UNIQUE",
+  "f13_pin_file": "OVL/LEVEL09_LEVEL.BIN",
+  "f13_pin_sha1": "154cbfa38f10531c5201763ac9585a9b31864c28",
+  "f13_pin_size": 5232,
+  "f13_pin_extent": [
+   "0x800b39a0",
+   "0x800b4e10"
+  ],
+  "f13_pin_nontrivial_pct": 99.29,
+  "f13_pin_runner_up": "OVL/LEVEL07_LEVEL.BIN",
+  "f13_pin_runner_up_pct": 29.66,
+  "f13_pin_images_argmax_in_every_ram": 1,
+  "f13_pin_images_with_stable_declared_base": 2,
+  "f13_fixture_scene_ids": {
+   "level_13": 9
+  },
+  "f13_fixture_scene_id_matches_census": true,
+  "f13_pin_agrees_with_census_overlay_name": true,
+  "f13_governing_pcs_probed": 64,
+  "f13_governing_pcs_inside_pinned_image": 62,
+  "f13_governing_pcs_decoding_to_an_instruction": 61,
+  "f13_governing_pcs_mean_images_containing_offset": 11.92,
+  "f13_governing_pcs_outside_pinned_image": [
+   "0x800b4e10",
+   "0x800b5000"
+  ],
+  "f13_named_words_probed": 66,
+  "f13_named_words_inside_pinned_image": 62,
+  "f13_named_words_zero_in_disc_image": 13,
+  "f13_named_words_differing_from_disc_image": 10,
+  "f13_overlay_words_live_in_this_fixture": {
+   "0x800b4de4": [
+    262
+   ],
+   "0x800b4de5": [
+    1
+   ],
+   "0x800b4df4": [
+    1
+   ],
+   "0x800b4df8": [
+    602
+   ],
+   "0x800b4df9": [
+    2281701378
+   ],
+   "0x800b4dfc": [
+    392
+   ],
+   "0x800b4dfd": [
+    1560281089
+   ],
+   "0x800b4e00": [
+    93
+   ],
+   "0x800b4e04": [
+    99
+   ],
+   "0x800b4e08": [
+    9
+   ]
+  },
+  "f13_byte_matched_c_sources": [
+   "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+   "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+   "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+  ],
+  "f13_byte_matched_c_declared_globals": [
+   "0x80089F58",
+   "0x800A6300"
+  ],
+  "f13_byte_matched_c_globals_inside_pinned_extent": 0,
+  "f13_byte_matched_c_entry_starts": [
+   "0x800B3B70",
+   "0x800B3BD0",
+   "0x800B3DC8"
+  ],
+  "f13_overlay_code_functions": 7,
+  "f13_overlay_matched_functions": 3,
+  "f13_overlay_rebuild_validated": true,
+  "f13_overlay_rebuilt_sha1_matches_blob": true,
+  "f13_overlay_blob_sha1_equals_byte_pinned_image": true,
+  "f13_overlay_census_functions": 8,
+  "f13_overlay_census_function_names": [
+   "0x800B4CD0",
+   "call_set_flags_clear_tail",
+   "clear_flags_set_tail",
+   "level_actor_ai_handler",
+   "level_overlay_draw",
+   "level_overlay_init",
+   "level_state_writer",
+   "set_flags_clear_tail"
+  ],
+  "f13_overlay_census_functions_unnamed": 1,
+  "f13_semantic_entries_inside_this_rows_overlay_extent": [
+   "0x800B4A3C"
+  ],
+  "f13_semantic_collision_detail": [
+   {
+    "address": "0x800B4A3C",
+    "registered_id": "original.training_step",
+    "registered_kind": "overlay_field",
+    "registered_owner": "original_game.training_overlay",
+    "confidence": "confirmed",
+    "registered_range": [
+     0,
+     13
+    ],
+    "registered_context": "Training overlay loaded (LEVEL07/LEVEL1.BIN @ 0x800B39A0). Range holds for THIS overlay: observed 2 and 13 in the two pristine fixtures, and the field indexes a 14-arm dispatch table at 0x800B39A4 whose span equals the range span. \u26a0\ufe0f THE ADDRESS IS NOT UNIQUE. Overlay-local VAs are keyed globally here with no image field, and 0x800B4A3C is also real written state in LEVEL02_LEVEL1.BIN (3 refs, 2 stores), which routes via the progression table to F11_the_tree -- where it was measured at 0..320 over 1,896 writes, far outside this range. Three rows have now collided on this entry (E07 / F00 / F11). The range is scoped to the training overlay and must not be read as a property of the address.",
+    "measured_values": [
+     811732992
+    ],
+    "measured_values_inside_registered_range": false
+   }
+  ],
+  "f13_row_state_addresses_registered": 3,
+  "f13_record_types_covering_this_rows_overlay": 0,
+  "f13_governing_addresses": 192,
+  "f13_governing_addresses_resident": 128,
+  "f13_governing_addresses_in_pinned_overlay": 62,
+  "f13_governing_resident_build_units": [
+   "asm/hand_written/80010000_per_object_mesh_draw_payload_emitter.s",
+   "asm/hand_written/8003cf2c_resource_id_dat_load_dispatcher.s",
+   "asm/hand_written/8003e4e8_sub_8003e4e8.s",
+   "asm/hand_written/800502c4_sub_800502c4.s",
+   "src/main/8005038c_scene_setup_and_load.c",
+   "src/main/800503fc_spawn_fx_object.c"
+  ],
+  "f13_governing_resident_units_matching_c": [
+   "src/main/8005038c_scene_setup_and_load.c",
+   "src/main/800503fc_spawn_fx_object.c"
+  ],
+  "f13_governing_resident_units_hand_asm": 4,
+  "f13_governing_resident_addresses_outside_any_build_unit": 118,
+  "f13_governing_overlay_addresses_with_matched_c": 3,
+  "f13_governing_addresses_with_matching_c_source": {
+   "0x8005038C": "src/main/8005038c_scene_setup_and_load.c",
+   "0x800503AC": "src/main/8005038c_scene_setup_and_load.c",
+   "0x800503FC": "src/main/800503fc_spawn_fx_object.c"
+  },
+  "f13_governing_pcs_registered_as_confirmed_sites": 0,
+  "f13_byte_matched_c_globals_also_named_by_the_borrowed_row": [],
+  "f13_byte_matched_c_globals_named_nowhere_else": [],
+  "f13_e02_level_key": "stage13_anthill_two",
+  "f13_e02_container": "LEVEL09/LEVEL.RAW",
+  "f13_e02_authored_sectors": 176,
+  "f13_e02_runtime_sectors": 221,
+  "f13_e02_code_histogram": {
+   "0": 176
+  },
+  "f13_e02_authors_no_region_codes": true,
+  "f13_e02_uses_this_rows_own_fixture": true,
+  "f13_e02_container_agrees_with_pinned_overlay_directory": true,
+  "f13_actor_records": 25,
+  "f13_actor_ids": [
+   9,
+   10,
+   11,
+   13,
+   15,
+   22,
+   23,
+   24,
+   28
+  ],
+  "f13_actor_ids_with_canon_binding": [],
+  "f13_actor_census_save": "level_13.sav",
+  "f13_actor_census_uses_this_rows_fixture": true,
+  "f13_actor_census_cited_by_the_row": false,
+  "f13_c2_types": [
+   "normal"
+  ],
+  "f13_c2_session_token": "LEVEL13_ANTHILLPT2",
+  "f13_c2_frozen_name_matches_row": true,
+  "f13_c2_rows_sharing_this_type": [
+   "F00_training",
+   "F01_anthill",
+   "F02_tunnels",
+   "F05_riverbed_run",
+   "F06_birdnest",
+   "F10_clover_forest",
+   "F13_anthill_two"
+  ],
+  "f13_c2_taxonomy_coverage_demonstrated": false,
+  "f13_oracle_stage_key": "stage13_anthill_two",
+  "f13_oracle_movie": "movies/go_to_end/LEVEL13.movie.json",
+  "f13_oracle_frames": 23926,
+  "f13_oracle_target_scene": 9,
+  "f13_oracle_replay_accepted": true,
+  "f13_oracle_entered_stage_frame": 5000,
+  "f13_oracle_stage_exited": true,
+  "f13_oracle_snapshot_fields": [
+   "enemy_quota",
+   "equipped_berry",
+   "grain",
+   "health",
+   "lives",
+   "player_floor",
+   "player_grounded",
+   "player_x",
+   "player_y",
+   "player_z",
+   "power_word",
+   "scene_id"
+  ],
+  "f13_oracle_cited_by_the_row": false,
+  "f13_oracle_corroborates_the_scene_id": true,
+  "f13_stage_movies_attributed": 3,
+  "f13_stage_movies_attributed_paths": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL13_ANTHILLPT2.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL13_anthillpt2.movie.json",
+   "movies/go_to_end/LEVEL13.movie.json"
+  ],
+  "f13_stage_movie_frames": {
+   "movies/Phase4/Interpreter/100% Runs/LEVEL13_ANTHILLPT2.movie.json": 50628,
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL13_anthillpt2.movie.json": 7628,
+   "movies/go_to_end/LEVEL13.movie.json": 23926
+  },
+  "f13_stage_movies_under_phase4_interpreter": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL13_ANTHILLPT2.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL13_anthillpt2.movie.json"
+  ],
+  "f13_stage_movies_declared_by_the_row": [],
+  "f13_stage_movies_ordinal_token_matched_attribution_unverified": [
+   "movies/b06_08_LEVEL13.movie.json"
+  ],
+  "f13_stage_movies_centrally_pinned": 3,
+  "f13_row_declared_fixtures_naming_a_d_row": [],
+  "f13_external_fixture_consumers": [
+   "analysis/phase1_kind_actor_census.json",
+   "analysis/phase2_compare_report.json",
+   "analysis/phase2_death_matrix.json",
+   "analysis/phase2_fixture_audit.json",
+   "analysis/phase2_gate_residuals.json",
+   "analysis/phase2_pool_arc_oracle.json",
+   "analysis/phase2_presentation_baseline.json",
+   "analysis/phase2_row_coverage.json",
+   "analysis/phase2_stage_baseline.json",
+   "analysis/phase3_evidence_inventory.json",
+   "analysis/phase3_fn_ptr_fields.json",
+   "analysis/phase3_ownership_graph.json",
+   "analysis/phase3_record_probe.json",
+   "analysis/phase3_render_descriptors.json",
+   "mechanics:F13_anthill_two"
+  ],
+  "f13_e16_validated_stage_movies": [
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL13_anthillpt2.movie.json"
+  ],
+  "f13_e16_validated_stage_movies_usable": 1,
+  "f13_e16_validated_stage_movie_truncated": false,
+  "f13_breadth_movie": "movies/Phase4/Interpreter/100% Runs/LEVEL13_ANTHILLPT2.movie.json",
+  "f13_breadth_movie_frames": 50628,
+  "f13_breadth_replay_reproducible": true,
+  "f13_breadth_levels_asserted": 19,
+  "f13_breadth_law_holds_everywhere": true,
+  "f13_borrowed_d_rows": {},
+  "f15_durable_state": "met",
+  "f15_durable_fraction": "4/4",
+  "f15_durable_reason": "4/4 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+  "f15_census_status": "partial",
+  "f15_census_triage": {
+   "original_oracle": "no runtime evidence found in this row's artifacts",
+   "complete_frontier": "measurable: static evidence present in artifacts",
+   "typed_state": "measurable: static evidence present in artifacts",
+   "lifecycle": "no runtime evidence found in this row's artifacts",
+   "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+   "original_interfaces": "measurable: static evidence present in artifacts",
+   "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+   "campaign_breadth": "measurable: static evidence present in artifacts"
+  },
+  "f15_census_declaration_understates": [
+   "static_code"
+  ],
+  "f15_census_has_runtime_trace_evidence": true,
+  "f15_census_analysis_artifacts": [
+   "analysis/phase4_d20_hopper.json",
+   "analysis/phase4_f08_scene_binding.json",
+   "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+   "analysis/phase4_f15_canyon_showdown.json"
+  ],
+  "f15_census_vault_pages": [
+   "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f15_canyon_showdown.md"
+  ],
+  "f15_census_source_files": [],
+  "f15_census_segments_entries": 0,
+  "f15_stage_ordinal": "15",
+  "f15_scene_id": 15,
+  "f15_overlay_name": "LEVEL05_LEVEL1",
+  "f15_row_name": "Stage 15 Canyon Showdown: drive Hopper to finale",
+  "f15_row_status": "partial",
+  "f15_row_binding_claims": 6,
+  "f15_row_declared_fixtures": [
+   "level_15.sav",
+   "hopper_boss.movie.json",
+   "movies/Phase4/Interpreter/D20.movie.json",
+   "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json (operator-supplied 100% completion run, 76310 frames, covers fight through credits + save prompt)"
+  ],
+  "f15_row_declared_fixture_need": "None required -- the ending sequence is fully mapped and the operator has closed the two remaining sub-questions about it (FMV identity, save-prompt destination) as non-issues.",
+  "f15_row_declared_missing": "Independent confirmation that the Game-Complete/credits sequence is unique to the final stage rather than a generic per-level flow (no comparison stage checked -- operator-deprioritized, not required); the full credits roll content beyond the 2 sampled screens; stage-specific hazards or content outside the boss encounter itself proper (not investigated); the barrier/gate-break opcode (shared open residual with D20_hopper); source closure; no dedicated Canon page yet (matching the thin-stub pattern already used by F06/F12, the other F-rows that point at a D-row).",
+  "f15_row_declared_next": "Not prioritized by the operator; if resumed, sample more of the credits roll content or check another stage's own completion for comparison. This row is considered bounded for now.",
+  "f15_row_declared_evidence_classes": [
+   "manual",
+   "runtime_trace",
+   "secondary_lead"
+  ],
+  "f15_row_records_prior_binding_falsified": true,
+  "f15_row_leans_on_d_rows": [
+   "D20_hopper"
+  ],
+  "f15_row_own_analysis_artifacts": [
+   "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+   "analysis/phase4_f15_canyon_showdown.json"
+  ],
+  "f15_registry_met": 0,
+  "f15_registry_remaining": 9,
+  "f15_registry_distinct_bases": [
+   "no active child campaign"
+  ],
+  "f15_registry_distinct_states": [
+   "gap"
+  ],
+  "f15_registry_completion_state": "open",
+  "f15_registry_movie_count": 0,
+  "f15_registry_campaign_id": null,
+  "f15_registry_next_lane_reason": "no campaign exists; begin with the static semantic frontier",
+  "f15_registry_family": "bosses_special_objectives",
+  "f15_scheduler_eligible": false,
+  "f15_scheduler_reasons": [
+   "no associated movie under case-sensitive movies/Phase4/"
+  ],
+  "f15_scheduler_sees_a_phase4_movie": false,
+  "f15_scheduler_ownership_function_count": 0,
+  "f15_scheduler_ownership_input_is_current": false,
+  "f15_offline_named_unknowns": [
+   "Multi-area boss/chase/ending mechanics.",
+   "Same as D20 \u2014 barrier state writes + finale trigger from the hopper movies.",
+   "functions: no original function boundary is confirmed for this mechanic",
+   "functions next experiment: Same as D20 \u2014 barrier state writes + finale trigger from the hopper movies.",
+   "overlay: the exact resident/overlay execution owner is not yet bound",
+   "overlay next experiment: Same as D20 \u2014 barrier state writes + finale trigger from the hopper movies."
+  ],
+  "f15_offline_answerable_questions": 0,
+  "f15_offline_available_domains": [],
+  "f15_offline_relevant_movies": 0,
+  "f15_offline_classification": "no_capsule",
+  "f15_coverage_status": "pristine_trigger",
+  "f15_coverage_unaudited_fixtures": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json (operator-supplied 100% completion run, 76310 frames, covers fight through credits + save prompt)"
+  ],
+  "f15_coverage_non_pristine_fixtures": 0,
+  "f15_ownership_function_citations": 6,
+  "f15_ownership_distinct_function_starts": 3,
+  "f15_ownership_overlay_space_functions": 1,
+  "f15_ownership_functions_with_canon": 2,
+  "f15_ownership_state_addresses": [
+   "0x8001AD0C",
+   "0x8001AE98",
+   "0x8001AFB0",
+   "0x80082504",
+   "0x800B39A0"
+  ],
+  "f15_ownership_state_without_owner": [
+   "0x8001AFB0",
+   "0x800B39A0"
+  ],
+  "f15_ownership_gaps": [
+   "state 0x8001AFB0 cited with no semantic-registry owner",
+   "state 0x800B39A0 cited with no semantic-registry owner",
+   "overlay address 0x800B4BA8 is inside a real function in 2 images (LEVEL07_LEVEL, LEVEL09_LEVEL); the owning image is not determined by the address alone"
+  ],
+  "f15_ownership_records_no_image_field": true,
+  "f15_ownership_reader_status": "bounded_static_method_limit",
+  "f15_pin_result": "OVERLAY_RESIDENCY_PIN_UNIQUE",
+  "f15_pin_file": "OVL/LEVEL05_LEVEL1.BIN",
+  "f15_pin_sha1": "9b7585f427097318e71ffdaad15310a45effc1cc",
+  "f15_pin_size": 4672,
+  "f15_pin_extent": [
+   "0x800b39a0",
+   "0x800b4be0"
+  ],
+  "f15_pin_nontrivial_pct": 99.24,
+  "f15_pin_runner_up": "OVL/LEVEL07_LEVEL.BIN",
+  "f15_pin_runner_up_pct": 28.74,
+  "f15_pin_images_argmax_in_every_ram": 1,
+  "f15_pin_images_with_stable_declared_base": 2,
+  "f15_fixture_scene_ids": {
+   "level_15": 15
+  },
+  "f15_fixture_scene_id_matches_census": true,
+  "f15_pin_agrees_with_census_overlay_name": true,
+  "f15_governing_pcs_probed": 64,
+  "f15_governing_pcs_inside_pinned_image": 49,
+  "f15_governing_pcs_decoding_to_an_instruction": 47,
+  "f15_governing_pcs_mean_images_containing_offset": 11.92,
+  "f15_governing_pcs_outside_pinned_image": [
+   "0x800b4be0",
+   "0x800b4cc8",
+   "0x800b4cd0",
+   "0x800b4de4",
+   "0x800b4de5",
+   "0x800b4df4",
+   "0x800b4df8",
+   "0x800b4df9",
+   "0x800b4dfc",
+   "0x800b4dfd",
+   "0x800b4e00",
+   "0x800b4e04",
+   "0x800b4e08",
+   "0x800b4e10",
+   "0x800b5000"
+  ],
+  "f15_named_words_probed": 65,
+  "f15_named_words_inside_pinned_image": 49,
+  "f15_named_words_zero_in_disc_image": 4,
+  "f15_named_words_differing_from_disc_image": 1,
+  "f15_overlay_words_live_in_this_fixture": {
+   "0x800b4ba8": [
+    30
+   ]
+  },
+  "f15_byte_matched_c_sources": [
+   "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c"
+  ],
+  "f15_byte_matched_c_declared_globals": [
+   "0x800A0282",
+   "0x800B4B80",
+   "0x800B4BB8"
+  ],
+  "f15_byte_matched_c_globals_inside_pinned_extent": 2,
+  "f15_byte_matched_c_entry_starts": [
+   "0x800B3BD4"
+  ],
+  "f15_overlay_code_functions": 5,
+  "f15_overlay_matched_functions": 1,
+  "f15_overlay_rebuild_validated": true,
+  "f15_overlay_rebuilt_sha1_matches_blob": true,
+  "f15_overlay_blob_sha1_equals_byte_pinned_image": true,
+  "f15_overlay_census_functions": 6,
+  "f15_overlay_census_function_names": [
+   "0x800B4A88",
+   "compare_overlay_halfword",
+   "level05_overlay_param_init",
+   "level_completion_handler",
+   "level_overlay_draw",
+   "level_overlay_init"
+  ],
+  "f15_overlay_census_functions_unnamed": 1,
+  "f15_semantic_entries_inside_this_rows_overlay_extent": [
+   "0x800B4A3C"
+  ],
+  "f15_semantic_collision_detail": [
+   {
+    "address": "0x800B4A3C",
+    "registered_id": "original.training_step",
+    "registered_kind": "overlay_field",
+    "registered_owner": "original_game.training_overlay",
+    "confidence": "confirmed",
+    "registered_range": [
+     0,
+     13
+    ],
+    "registered_context": "Training overlay loaded (LEVEL07/LEVEL1.BIN @ 0x800B39A0). Range holds for THIS overlay: observed 2 and 13 in the two pristine fixtures, and the field indexes a 14-arm dispatch table at 0x800B39A4 whose span equals the range span. \u26a0\ufe0f THE ADDRESS IS NOT UNIQUE. Overlay-local VAs are keyed globally here with no image field, and 0x800B4A3C is also real written state in LEVEL02_LEVEL1.BIN (3 refs, 2 stores), which routes via the progression table to F11_the_tree -- where it was measured at 0..320 over 1,896 writes, far outside this range. Three rows have now collided on this entry (E07 / F00 / F11). The range is scoped to the training overlay and must not be read as a property of the address.",
+    "measured_values": [
+     13840417
+    ],
+    "measured_values_inside_registered_range": false
+   }
+  ],
+  "f15_row_state_addresses_registered": 3,
+  "f15_record_types_covering_this_rows_overlay": 0,
+  "f15_governing_addresses": 251,
+  "f15_governing_addresses_resident": 187,
+  "f15_governing_addresses_in_pinned_overlay": 49,
+  "f15_governing_resident_build_units": [
+   "asm/hand_written/80010000_per_object_mesh_draw_payload_emitter.s",
+   "asm/hand_written/80024e04_sub_80024e04.s",
+   "asm/hand_written/8003cf2c_resource_id_dat_load_dispatcher.s",
+   "asm/hand_written/8003e4e8_sub_8003e4e8.s",
+   "asm/hand_written/80049c30_sub_80049c30.s",
+   "asm/hand_written/8004a700_resident_level_transition_initiator.s",
+   "asm/hand_written/8004abf4_proximity_updater.s",
+   "asm/hand_written/8004c13c_event_bytecode_interpreter.s",
+   "asm/hand_written/8004c32c_sub_8004c32c.s",
+   "asm/hand_written/8004c8ac_vm_motion_apply_chase.s",
+   "asm/hand_written/8004d224_mover_updater.s",
+   "asm/hand_written/8004df18_camera_follow_update.s",
+   "asm/hand_written/800502c4_sub_800502c4.s",
+   "asm/hand_written/800586b0_contact_walker.s",
+   "asm/hand_written/80058af8_contact_vs_actor_handler.s",
+   "asm/hand_written/8005905c_berry_tough_damage_dispatch.s",
+   "asm/hand_written/8005a0e0_contact_object_spawn_full.s",
+   "asm/hand_written/8005a0f0_contact_object_spawn.s",
+   "src/main/8005038c_scene_setup_and_load.c",
+   "src/main/800503fc_spawn_fx_object.c"
+  ],
+  "f15_governing_resident_units_matching_c": [
+   "src/main/8005038c_scene_setup_and_load.c",
+   "src/main/800503fc_spawn_fx_object.c"
+  ],
+  "f15_governing_resident_units_hand_asm": 18,
+  "f15_governing_resident_addresses_outside_any_build_unit": 145,
+  "f15_governing_overlay_addresses_with_matched_c": 1,
+  "f15_governing_addresses_with_matching_c_source": {
+   "0x8005038C": "src/main/8005038c_scene_setup_and_load.c",
+   "0x800503AC": "src/main/8005038c_scene_setup_and_load.c",
+   "0x800503FC": "src/main/800503fc_spawn_fx_object.c"
+  },
+  "f15_governing_pcs_registered_as_confirmed_sites": 1,
+  "f15_byte_matched_c_globals_also_named_by_the_borrowed_row": [
+   "0x800A0282",
+   "0x800B4BB8"
+  ],
+  "f15_byte_matched_c_globals_named_nowhere_else": [],
+  "f15_e02_level_key": "stage15_canyon_showdown",
+  "f15_e02_container": "LEVEL05/LEVEL1.RAW",
+  "f15_e02_authored_sectors": 352,
+  "f15_e02_runtime_sectors": 397,
+  "f15_e02_code_histogram": {
+   "0": 352
+  },
+  "f15_e02_authors_no_region_codes": true,
+  "f15_e02_uses_this_rows_own_fixture": true,
+  "f15_e02_container_agrees_with_pinned_overlay_directory": true,
+  "f15_actor_records": 24,
+  "f15_actor_ids": [
+   11,
+   15,
+   22,
+   30
+  ],
+  "f15_actor_ids_with_canon_binding": [],
+  "f15_actor_census_save": "level_15.sav",
+  "f15_actor_census_uses_this_rows_fixture": true,
+  "f15_actor_census_cited_by_the_row": false,
+  "f15_c2_types": [
+   "boss"
+  ],
+  "f15_c2_session_token": "LEVEL15",
+  "f15_c2_frozen_name_matches_row": true,
+  "f15_c2_rows_sharing_this_type": [
+   "F03_council_chamber",
+   "F09_bug_bar",
+   "F12_battle_arena",
+   "F15_canyon_showdown"
+  ],
+  "f15_c2_taxonomy_coverage_demonstrated": false,
+  "f15_oracle_stage_key": "stage15_canyon_showdown",
+  "f15_oracle_movie": "movies/go_to_end/LEVEL15.movie.json",
+  "f15_oracle_frames": 33268,
+  "f15_oracle_target_scene": 15,
+  "f15_oracle_replay_accepted": true,
+  "f15_oracle_entered_stage_frame": 5000,
+  "f15_oracle_stage_exited": true,
+  "f15_oracle_snapshot_fields": [
+   "enemy_quota",
+   "equipped_berry",
+   "grain",
+   "health",
+   "lives",
+   "player_floor",
+   "player_grounded",
+   "player_x",
+   "player_y",
+   "player_z",
+   "power_word",
+   "scene_id"
+  ],
+  "f15_oracle_cited_by_the_row": false,
+  "f15_oracle_corroborates_the_scene_id": true,
+  "f15_stage_movies_attributed": 3,
+  "f15_stage_movies_attributed_paths": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL15_canyonshowdown.movie.json",
+   "movies/go_to_end/LEVEL15.movie.json"
+  ],
+  "f15_stage_movie_frames": {
+   "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json": 76310,
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL15_canyonshowdown.movie.json": 16711,
+   "movies/go_to_end/LEVEL15.movie.json": 33268
+  },
+  "f15_stage_movies_under_phase4_interpreter": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL15_canyonshowdown.movie.json"
+  ],
+  "f15_stage_movies_declared_by_the_row": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json"
+  ],
+  "f15_stage_movies_ordinal_token_matched_attribution_unverified": [],
+  "f15_stage_movies_centrally_pinned": 3,
+  "f15_row_declared_fixtures_naming_a_d_row": [
+   "movies/Phase4/Interpreter/D20.movie.json"
+  ],
+  "f15_external_fixture_consumers": [
+   "analysis/phase1_kind_actor_census.json",
+   "analysis/phase2_compare_report.json",
+   "analysis/phase2_death_matrix.json",
+   "analysis/phase2_fixture_audit.json",
+   "analysis/phase2_gate_residuals.json",
+   "analysis/phase2_pool_arc_oracle.json",
+   "analysis/phase2_presentation_baseline.json",
+   "analysis/phase2_row_coverage.json",
+   "analysis/phase2_soak.json",
+   "analysis/phase2_stage_baseline.json",
+   "analysis/phase3_evidence_inventory.json",
+   "analysis/phase3_fn_ptr_fields.json",
+   "analysis/phase3_ownership_graph.json",
+   "analysis/phase3_record_probe.json",
+   "analysis/phase3_render_descriptors.json",
+   "mechanics:D20_hopper",
+   "mechanics:F15_canyon_showdown"
+  ],
+  "f15_e16_validated_stage_movies": [
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL15_canyonshowdown.movie.json"
+  ],
+  "f15_e16_validated_stage_movies_usable": 1,
+  "f15_e16_validated_stage_movie_truncated": false,
+  "f15_breadth_movie": "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json",
+  "f15_breadth_movie_frames": 76310,
+  "f15_breadth_replay_reproducible": true,
+  "f15_breadth_levels_asserted": 19,
+  "f15_breadth_law_holds_everywhere": true,
+  "f15_borrowed_d_rows": {
+   "D20_hopper": {
+    "row": "D20_hopper",
+    "artifact": "analysis/phase4_d20_hopper.json",
+    "status": "unresolved -> partial, BOUNDED for the core combat/chase/defeat mechanism (per the Phase 4 9-item DoD) AND for the operator's 3-section encounter structure (all 3 sections now located and structurally confirmed, including the literal 'gate' mechanism AND the real on-screen boss health bar), NOT fully solved. Identity corrected (id=22). White-berry chain and finale trigger traced end-to-end against already-Canon code. Aggro/chase gate mechanism CONFIRMED. Nine-pass session as of 2026-08-03: identity -> white-berry chain -> finale trigger -> aggro/chase gate -> 3-section phase structure -> mountain-climb confirmation -> gates + real hp-drain confirmation -> THE ACTUAL ON-SCREEN HEALTH BAR FOUND AND FULLY TRACED -> defeat-caller + overlay-identity + gate-opcode follow-up. The real, visible, defeat-tracking counter is a SEPARATE u32 at 0x800b4ba8 (NOT the decoy actor+0x6e field), the scene-15 instance of the same generic 5-segment 'tile 0x75' meter documented in src_re/hud_800526f4.c for scenes 2/11/13/14/15, decrementing 30->0 across 20 writes through the WHOLE fight and hitting exactly 0 at mf15490 -- DEFINITIVELY falsifying the archived note's Hopper claim ('No HP bar... Defeat is scripted phase/trigger progression, not HP-depletion'). 'The gate' is LITERALLY Hopper knocking down two visually-identical wooden X-barriers (mf4888 and mf11825) as part of his own scripted flee path. Section 3 (mountain climb, mf11900-14645): CONFIRMED via monotonic Y-coordinate change. FOLLOW-UP PASS 2026-08-03 (operator: 'go for those three items in well-scoped [way]'): the exact defeat-trigger caller is CLOSED (fmv_sequence_completion_check, 0x800502C4, instruction-confirmed via a matched breakpoint hit + disassembly); the overlay's own file identity is CLOSED (LEVEL05/LEVEL1.DAT, via a cold-boot transferLog capture reached by warping the from-boot flik_to_level01_stall movie to scene 15 -- REFUTES the earlier 'shares Thumper's overlay' hypothesis, since Thumper's is the separate LEVEL04/LEVEL1.BIN); the gate-break opcode is PARTIAL, not closed -- found and live-confirmed a related overlay predicate (LEVEL05-1 slot5/program28, 0x800B3BD4, Hopper's own unique VM program) that fires near both gate events but ALSO fires hundreds of times throughout the whole patrol phase, ruling it out as the specific trigger without identifying the real one. Remaining gaps (the actual gate-break trigger instruction, the LATER chase-gate re-engagement trigger near mf15000, source closure, audio, an unrelated pre-existing Canon inconsistency about 0x800A6594 discovered along the way) are well-scoped last-mile items.",
+    "baseline_status": "partial",
+    "addresses_named": 83,
+    "addresses_in_this_rows_pinned_overlay": 16,
+    "canon_pages": [],
+    "src_re_files": [
+     "src_re/enemy_ai_programs.c",
+     "src_re/hud_800526f4.c",
+     "src_re/player_health.c"
+    ]
+   }
+  },
+  "matched_functions_per_per_level_overlay": {
+   "LEVEL02_LEVEL": 1,
+   "LEVEL02_LEVEL1": 1,
+   "LEVEL03_LEVEL1": 1,
+   "LEVEL04_LEVEL1": 1,
+   "LEVEL05_LEVEL": 1,
+   "LEVEL05_LEVEL1": 1,
+   "LEVEL06_LEVEL": 1,
+   "LEVEL06_LEVEL1": 1,
+   "LEVEL07_LEVEL1": 1,
+   "LEVEL09_LEVEL": 3,
+   "LEVEL10_LEVEL": 1
+  },
+  "per_level_overlays_with_the_most_matched_functions": [
+   "LEVEL09_LEVEL"
+  ],
+  "f12_overlay_has_the_most_matched_functions_of_any_per_level_overlay": false,
+  "f13_overlay_has_the_most_matched_functions_of_any_per_level_overlay": true,
+  "f15_overlay_has_the_most_matched_functions_of_any_per_level_overlay": false,
+  "f12_d19_accepted_snapshot_address": "0x800B45F4",
+  "f12_d19_boss_initial_hp": 50,
+  "f12_snapshot_is_declared_by_the_byte_matched_c": true,
+  "f12_boss_hp_address_is_declared_by_the_byte_matched_c": true,
+  "f12_snapshot_value_in_this_rows_own_fixture": [
+   50
+  ],
+  "f12_snapshot_equals_the_borrowed_initial_hp": true,
+  "f12_borrowed_rejected_candidate_addresses": [
+   "0x800B4620",
+   "0x800B4750"
+  ],
+  "f12_rejected_candidates_fall_outside_the_byte_pinned_extent": false,
+  "f15_d20_health_counter_address": "0x800B4BA8",
+  "f15_d20_health_counter_initial_value": 30,
+  "f15_only_live_overlay_word_is_the_d20_health_counter": true,
+  "f15_health_counter_value_in_this_rows_own_fixture": [
+   30
+  ],
+  "f15_fixture_value_equals_the_borrowed_initial_value": true,
+  "f15_byte_matched_predicate_entry_is_named_by_the_borrowed_row": true,
+  "f15_byte_matched_predicate_globals_named_by_the_borrowed_row": [
+   "0x800A0282",
+   "0x800B4BB8"
+  ],
+  "f12_second_fixture_scene_ids": {
+   "LEVEL12_ENDING": 9
+  },
+  "f12_second_fixture_pin_file": "OVL/LEVEL09_LEVEL.BIN",
+  "f12_second_fixture_pin_pct": 99.39,
+  "f12_second_fixture_holds_this_rows_overlay": false,
+  "f12_second_fixture_holds_f13s_overlay": true,
+  "f13_pair_rams": [
+   "level_13",
+   "LEVEL12_ENDING"
+  ],
+  "f13_pair_same_scene_id": true,
+  "f13_pair_pin_file": "OVL/LEVEL09_LEVEL.BIN",
+  "f13_pair_region_a_differing_bytes": 10,
+  "f13_pair_differing_inside_pinned_image": 10,
+  "f13_pair_differing_beyond_pinned_image": 0,
+  "f13_pair_whole_ram_differing_words": 43969,
+  "f13_pair_differing_byte_addresses": [
+   "0x800b4de4",
+   "0x800b4de5",
+   "0x800b4df4",
+   "0x800b4df8",
+   "0x800b4df9",
+   "0x800b4dfc",
+   "0x800b4dfd",
+   "0x800b4e00",
+   "0x800b4e04",
+   "0x800b4e08"
+  ],
+  "f13_pair_differing_words_aligned": [
+   "0x800B4DE4",
+   "0x800B4DF4",
+   "0x800B4DF8",
+   "0x800B4DFC",
+   "0x800B4E00",
+   "0x800B4E04",
+   "0x800B4E08"
+  ],
+  "f13_pair_differing_bytes_zero_on_disc": true,
+  "f12_registered_gate_files": [
+   "tests/test_phase4_f12_battle_arena.py"
+  ],
+  "f13_registered_gate_files": [],
+  "f15_registered_gate_files": [
+   "tests/test_phase4_c16_boss_death.py",
+   "tests/test_phase4_f08_scene_binding.py",
+   "tests/test_phase4_f15_canyon_showdown.py"
+  ],
+  "registered_gates_executed": true,
+  "registered_gate_tests_passed": 52,
+  "registered_gate_tests_failed": 2,
+  "registered_gate_files_with_a_failure": [
+   "tests/test_phase4_c16_boss_death.py"
+  ]
+ },
+ "evidence_pins": [
+  {
+   "path": "tools/phase4_f12_f13_f15_written_bar_assessment.py",
+   "sha256": "cb18be96dd224019de059f5c5419213465278bce6de2e288e5b48082ed1a4e3b"
+  },
+  {
+   "path": "tools/phase4_f12_f13_f15_overlay_residency_pin.c",
+   "sha256": "5d288eac3be3d675d55861b2e6308a2b9e5cc2dd814fe2259f822ed1ffc73bbd"
+  },
+  {
+   "path": "tools/phase4_f08_save_ram.py",
+   "sha256": "dbe64ac066ec661f29187c4dfe8cea4e2799edd79cf7a244c7df6893f24013bd"
+  },
+  {
+   "path": "analysis/phase4_f_row_measured_census.json",
+   "sha256": "fe493509b6fcc1a435a3fd2d1ceaa6ad123a7a8d88ca52000e87ae6cce586e8a"
+  },
+  {
+   "path": "analysis/mechanics_baseline.yaml",
+   "sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58"
+  },
+  {
+   "path": "analysis/phase4_closure_debt.json",
+   "sha256": "e0bbdbfce84e744da871502d80156f5b0fa64e05d51e8885a0fdf43f3b7dea8a"
+  },
+  {
+   "path": "analysis/phase2_row_coverage.json",
+   "sha256": "62b461b051627c7dc346858c35b83f7deadcfebbe7463688b53cbd3f5c1e7103"
+  },
+  {
+   "path": "analysis/phase4_movie_priority_queue.json",
+   "sha256": "11c2d4ad5b2484e9061d11850577bb1ad4fed2c91b60e611f6cfacf1bb57299e"
+  },
+  {
+   "path": "analysis/phase4_offline_opportunity_queue.json",
+   "sha256": "84d8e46644d19eb0c4565b661644916207f85a5592079d79314f4cf35668fc24"
+  },
+  {
+   "path": "analysis/phase0_2_external_fixture_set.json",
+   "sha256": "905f2648c3b9205060553d22d0c3727e5efc1ccb903b068d878e76f0dbf4e6f6"
+  },
+  {
+   "path": "analysis/phase2_fixture_audit.json",
+   "sha256": "48625b97ed1ec4f25eb9882cbf1b8b8e983c30a5dbd2a23230b1888bf24539f0"
+  },
+  {
+   "path": "analysis/phase2_completion_oracle.json",
+   "sha256": "a027364721b9b0105f4c87ec6a0e28c8323425f6efef6954d0d80ae23055849e"
+  },
+  {
+   "path": "analysis/phase3_ownership_graph.json",
+   "sha256": "be8aea008ade0417bbe7e99e87c788df94c6ed9e50c6079b42b05e2c9f37e483"
+  },
+  {
+   "path": "analysis/phase3_jr_tables.json",
+   "sha256": "ed26a2496359a7c953011d3bb35b0a3f46e93314af9167cc00bb4e95dec0ceb5"
+  },
+  {
+   "path": "config/semantic_state.yaml",
+   "sha256": "8f5682cb32af1eac107a9af1e9128ccc07a9e7be08b86abe49642f6c21268f48"
+  },
+  {
+   "path": "config/confirmed_sites.yaml",
+   "sha256": "24c76ff0affa1875c07e72e462ce53d89a5b4af4330a6f0a33fd388728ecd639"
+  },
+  {
+   "path": "config/record_types.yaml",
+   "sha256": "99d429c8bd256214d978138eec3dcda5622ac0bb82c55d4880a5d34683ac2448"
+  },
+  {
+   "path": "config/segments.yml",
+   "sha256": "81c4df81ea8b5b1c2d265bfdeb86c3a9be92983bfc09e721379ddc6546d05477"
+  },
+  {
+   "path": "config/overlays.yml",
+   "sha256": "881c9ebea5805edd10603aef718a83460a4a701d5a3dd9a8fbeff24bdde83c09"
+  },
+  {
+   "path": "analysis/overlay_decomp_progress.json",
+   "sha256": "94fda111d1c2451b6aee846f4d07ac5ba16d77a94716c0e20e62479714cf438e"
+  },
+  {
+   "path": "analysis/functions.json",
+   "sha256": "42f99dc0f1886412751d269f586bca3fc72bac5c9f29d7447fe08fbe4f46ef61"
+  },
+  {
+   "path": "analysis/phase4_e02_disc_region_code_census.json",
+   "sha256": "20e93eae19eca6feef8fb1d03e1903ca3de910db398f0d1e607798fe553a804e"
+  },
+  {
+   "path": "analysis/phase1_kind_actor_census.json",
+   "sha256": "309270b759faefab4c88a374bc0ea0521ab53fbba41c21b8b570f537294e39ed"
+  },
+  {
+   "path": "analysis/phase4_c2_level_type_authority.json",
+   "sha256": "86b9a98310cd9dd44e53d403f37762ce944ba850e42f3f3e63c5251aeb1f59e5"
+  },
+  {
+   "path": "analysis/phase4_f08_scene_binding.json",
+   "sha256": "75e8cf8b9ad25ee0e099dbea231ba4f9c72c8250eff55e20ca4af6fe127ee9dd"
+  },
+  {
+   "path": "analysis/phase4_e16_movie_validation.json",
+   "sha256": "8ec88da4e94da9ceb394f69959993ac5d3609dc73e2b710e69a9bfc30676f131"
+  },
+  {
+   "path": "analysis/phase4_f01_breadth_assertions.json",
+   "sha256": "4b58c2c9c67c4f8f10345e4b723bc598e5f0968353385ef71c878f95559429cc"
+  },
+  {
+   "path": "REBUILD/files/SCUS_942.88",
+   "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  {
+   "path": "OVL/LEVEL00_LEVEL.BIN",
+   "sha256": "fb5e512425fc9449316ec95969ebe71e2d576dbab833d61e2a5b9330fd70ee02"
+  },
+  {
+   "path": "OVL/LEVEL01_LEVEL.BIN",
+   "sha256": "f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21"
+  },
+  {
+   "path": "OVL/LEVEL01_LEVEL1.BIN",
+   "sha256": "43c80f86eef71a3b51bef593889cfc1a3ef5a766c2eb1fd168b01db570073fd6"
+  },
+  {
+   "path": "OVL/LEVEL02_LEVEL.BIN",
+   "sha256": "6e5040d0d053ad652ba2ab655af8d2d2731b7a77b704c68a815fc2868449ffed"
+  },
+  {
+   "path": "OVL/LEVEL02_LEVEL1.BIN",
+   "sha256": "71a77ba1f7a0e985f8c5208318eaff7f6054dbf64f22981b5590160c77af97b1"
+  },
+  {
+   "path": "OVL/LEVEL03_LEVEL.BIN",
+   "sha256": "fef7bd2a72c5c293b2f164ba1ca195f45c0843c5f19e52cbfdb48fd14fbc59a1"
+  },
+  {
+   "path": "OVL/LEVEL03_LEVEL1.BIN",
+   "sha256": "24adb413e88885b1614995e241da9961df1dc5e0f81ba5f820c32765918c04c9"
+  },
+  {
+   "path": "OVL/LEVEL04_LEVEL.BIN",
+   "sha256": "a346b8e6a6be4f2d27f7f73cd6dba8b1a96bd079c209d844ef140e2792ffd555"
+  },
+  {
+   "path": "OVL/LEVEL04_LEVEL1.BIN",
+   "sha256": "816667f0ba7ae2b602cc39da7c0b3b4020d1a231651d5b90e6374c66c34f39e6"
+  },
+  {
+   "path": "OVL/LEVEL05_LEVEL.BIN",
+   "sha256": "93451e022e2613d9c7259e33007000155c8a8a9e2276a008327d42e0c63eba00"
+  },
+  {
+   "path": "OVL/LEVEL05_LEVEL1.BIN",
+   "sha256": "03b7bc62eae3416421f8fbea634efe28e5940b8496d1a0b0ef42dfb0d90607f2"
+  },
+  {
+   "path": "OVL/LEVEL06_LEVEL.BIN",
+   "sha256": "44a914db64074b60421d27f1be844f95d12a6dc4ec5a3f411bb3173548a4d395"
+  },
+  {
+   "path": "OVL/LEVEL06_LEVEL1.BIN",
+   "sha256": "4ea72fd6caaddb287d8eef2086c3b66a74191b6c36ddbeb7feaa1fbf5c8db172"
+  },
+  {
+   "path": "OVL/LEVEL07_LEVEL.BIN",
+   "sha256": "a19927f5130bf5c8da6777f36aa5501a99dc1363a3f9e55e5997ad712473c4f5"
+  },
+  {
+   "path": "OVL/LEVEL07_LEVEL1.BIN",
+   "sha256": "08272231b91320ebaa6b0a6b91ac50d1d160640769655a318fde86f889040521"
+  },
+  {
+   "path": "OVL/LEVEL08_LEVEL.BIN",
+   "sha256": "a0c0ac1da5c3a75296f0d79428ba1155f2f5d1ede3e2dcf9ffaee03fd8d2fec5"
+  },
+  {
+   "path": "OVL/LEVEL08_LEVEL1.BIN",
+   "sha256": "506abc378359b61c2975b7f829becb32a6c632bf2cf8d55f0bb5146d139db605"
+  },
+  {
+   "path": "OVL/LEVEL09_LEVEL.BIN",
+   "sha256": "9472fddce759161a887968fe98f1ded3282a4d8a4dc8c72fb27cbcd9c341d879"
+  },
+  {
+   "path": "OVL/LEVEL09_LEVEL1.BIN",
+   "sha256": "f38922e876f98d44e483458565a093e37ec97369f121da04d39650958b4f4f88"
+  },
+  {
+   "path": "OVL/LEVEL10_LEVEL.BIN",
+   "sha256": "3bd80ee77b5ec1e12b458d330450c3963177e15470bc249f7a12fc071d8db928"
+  },
+  {
+   "path": "REBUILD/files/BITS/MEMORY.BIN",
+   "sha256": "e3f8697223e3a1a1bdfa385d417ce87928eaff40ea3e26d1a64f6f25234d8e37"
+  },
+  {
+   "path": "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c",
+   "sha256": "6db406d1e1896e5ca16343fe97baa575772c4a0e8ebb8c9b50d51670a6627898"
+  },
+  {
+   "path": "analysis/phase4_d19_molt.json",
+   "sha256": "0f158c8178ed4d0b9f57f924a1fcc04c39888356497172562af0e9c7c240bf81"
+  },
+  {
+   "path": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "sha256": "a2790afdb5cff8abb5db9693b34e8a476ee1ea2303581c0b1f28696e5ddefb7e"
+  },
+  {
+   "path": "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+   "sha256": "6ce8f5b389c5c1b9a9865a03fe4026a6ee6fac3bb356c79f6327bbeca05d12e0"
+  },
+  {
+   "path": "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+   "sha256": "038086403fe27962cd8723ab93c18a013dee1a0e70c524fc06793f3007b9e71c"
+  },
+  {
+   "path": "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+   "sha256": "2be24cc519351708d48182858c0bd69e3434c2a4e18ccb581ed9f40fe938132f"
+  },
+  {
+   "path": "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c",
+   "sha256": "42ce6e770a9f4b852979ecda67aa42f63c6e79eeeae7d971a61893a824da3500"
+  },
+  {
+   "path": "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c",
+   "sha256": "896daa150132ba232509936c218506d0eb0c7a26f5904fe08e2fdb7b5a12acfe"
+  },
+  {
+   "path": "analysis/phase4_d20_hopper.json",
+   "sha256": "7251ccb0b073c17f5bdc27a3ca11c3cf8674d61e3e4e556e067ae16404374bb5"
+  },
+  {
+   "path": "analysis/phase4_f15_canyon_showdown.json",
+   "sha256": "47e56e110d4b362a936bddabc87e8b827ecc45771b6b92e21109befea2c9a3ab"
+  },
+  {
+   "path": "tests/test_phase4_f12_battle_arena.py",
+   "sha256": "63eaf0d9952ebf28262e3940af2a3d6891359a2d89a95ac8b51ee4d51f52673a"
+  },
+  {
+   "path": "tests/test_phase4_c16_boss_death.py",
+   "sha256": "fff3270938bab3b9278797de1ce99296d47eae2295bae6893c29ac1547349fbd"
+  },
+  {
+   "path": "tests/test_phase4_f08_scene_binding.py",
+   "sha256": "8e320c78c33057041488490bb39d48842a03bf584e5ca52a7287f3a43af0d608"
+  },
+  {
+   "path": "tests/test_phase4_f15_canyon_showdown.py",
+   "sha256": "8212e13e03152e379558b0d91fcf00e8d27d2c0918a2e0707ddf2891752f4721"
+  }
+ ],
+ "scorecards": {
+  "F12_battle_arena": {
+   "row_name": "Stage 12 Battle Arena: defeat Molt with crowd berries",
+   "stage_ordinal": "12",
+   "scene_id": 13,
+   "byte_pinned_overlay": "OVL/LEVEL03_LEVEL1.BIN",
+   "baseline_status": "partial",
+   "carried_forward": {
+    "dimension": "durable_evidence",
+    "from": "analysis/phase4_f_row_measured_census.json",
+    "state": "met",
+    "fraction": "4/4",
+    "note": "measured there against pinned bytes; re-deriving it here would be a second opinion on a settled measurement, not evidence"
+   },
+   "routing": {
+    "note": "`stages` is the stage ORDINAL, not the scene id. Ordinal -> scene comes from the campaign progression table, which this assessment reads out of the shipped executable rather than trusting the hand-typed copy inside the census generator",
+    "progression_table_address": "0x80077FA0",
+    "ordinal_to_scene_read_from_executable": [
+     17,
+     1,
+     3,
+     2,
+     6,
+     10,
+     11,
+     4,
+     5,
+     14,
+     7,
+     12,
+     13,
+     9,
+     8,
+     15
+    ],
+    "matches_the_artifact_declared_mapping": true,
+    "fixture_scene_ids_measured": {
+     "level_12": 13
+    },
+    "fixture_scene_id_matches_census": true,
+    "overlay_pinned_from_bytes": "OVL/LEVEL03_LEVEL1.BIN",
+    "pin_agrees_with_census_attribution": true,
+    "disc_container_agrees_with_the_pinned_directory": true
+   },
+   "systemic_defect_checks": {
+    "a_overlay_misattribution": {
+     "applies_to_this_row": true,
+     "why": "the row's claims live in the shared overlay window at 0x800B39A0; the ownership graph records no image field (True) and cites the bare base address as unowned state",
+     "how_sized": "of 21 candidate images, a governing offset from this row is contained by 11.92 on average",
+     "how_settled": "tools/phase4_f12_f13_f15_overlay_residency_pin.c: non-trivial agreement at the declared base plus >=2 high-entropy anchors agreeing on that same base, in every fixture of this row",
+     "verdict": "OVERLAY_RESIDENCY_PIN_UNIQUE -- OVL/LEVEL03_LEVEL1.BIN (99.6% vs 40.45% for OVL/LEVEL07_LEVEL.BIN)",
+     "was_the_census_attribution_wrong": false,
+     "how_close_it_was": "3 image(s) have a stable anchor base at the declared base and 1 is the agreement argmax in every fixture; both tests are needed to leave one survivor"
+    },
+    "b_semantic_registry_collision": {
+     "applies_to_this_row": false,
+     "measured": "1 semantic_state entries fall inside the SHARED region (['0x800B4A3C'], ids ['original.training_step']); 0 fall inside THIS row's byte-pinned extent ['0x800b39a0', '0x800b4610']",
+     "detail": [],
+     "row_state_addresses_registered": 3,
+     "record_types_covering_this_overlay": 0
+    }
+   },
+   "registry_disposition_for_contrast": {
+    "source": "analysis/phase4_closure_debt.json",
+    "campaign_id": null,
+    "completion_state": "open",
+    "dimensions_met": 0,
+    "dimensions_remaining": 9,
+    "distinct_basis_strings": [
+     "no active child campaign"
+    ],
+    "distinct_states": [
+     "gap"
+    ],
+    "movie_count": 0,
+    "note": "the registry carries ONE blanket basis across all nine dimensions and scores the row 0/9. That is a disposition, not a measurement -- and it records movie_count 0 for a stage with 3 attributable pinned movies, which is why the scheduler marks the row ineligible with reason ['no associated movie under case-sensitive movies/Phase4/']"
+   },
+   "borrowed_vs_owned": {
+    "borrowed_boss_mechanism": "EVERYTHING about defeating Molt: actor identity and record fields, the resident damage proposer, the overlay guard rollback and its accepted/rolled-back counts, the crowd producer and contact allocator, the HP threshold, the goal latch and the transition timer -- all from D19_molt (artifact status 'partial_high_value_bounded_exhausted', baseline status 'partial'), plus its Canon page and reconstruction source. A stop decision on the boss; it promotes nothing here",
+    "owned_stage_specific": "the overlay FILE identity for this stage, pinned from bytes in this row's own save (OVL/LEVEL03_LEVEL1.BIN at 99.6%); the fixture's scene id; the byte-matched initializer's overlay-local state block and its live values in this stage; the stage's collision container and its total absence of authored region codes; the stage's actor population; and the discovery that the row's second declared fixture is a different stage entirely",
+    "still_open_and_owned_by_this_row": "Boss/crowd/objective mechanics now closed via D19 synthesis. Genuinely open: this stage's own arena layout/critical path (spawn positions, crowd-member count, arena bounds) was never traced by D19 -- D19 characterized the mechanic in isolation, not this stage's specific level geometry."
+   },
+   "dimensions": {
+    "durable_evidence": {
+     "state": "met",
+     "basis": "CARRIED FORWARD, not re-derived: 4/4 in analysis/phase4_f_row_measured_census.json -- 4/4 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked. This assessment fails loudly if that measurement moves off 'met'. Regenerability improves here: the row's overlay identity, its overlay-local state words and the ordinal->scene routing are now produced by a compiled-C probe that runs offline from the row's own .sav and the pinned disc images (tools/phase4_f12_f13_f15_overlay_residency_pin.c), and 52 tests pass and 2 fail across the 4 gate files these three rows touch; this row contributes ['tests/test_phase4_f12_battle_arena.py'], none of them red",
+     "gap": "the carried measurement covers FIXTURE INTACTNESS, and intactness is not attribution. Two defects measured here. (1) Of 4/4 declared fixtures, 2 are the BOSS row's recordings (['movies/Phase4/Interpreter/D19.movie.json', 'movies/Phase4/Interpreter/D19.movie.sav']), and the second save is not this stage at all: {'LEVEL12_ENDING': 9} resolves to OVL/LEVEL09_LEVEL.BIN at 99.39% -- holds_this_rows_overlay=False, holds_F13s_overlay=True. (2) The declared set is incomplete: 3 stage-12 movies are attributable by the frozen session token 'LEVEL12_BATTLEARENA' ({'movies/Phase4/Interpreter/100% Runs/LEVEL12_BATTLEARENA.movie.json': 15889, 'movies/Phase4/Interpreter/Any% Runs/LEVEL12_battlearena.movie.json': 7111, 'movies/go_to_end/LEVEL12.movie.json': 12815}), 3 centrally pinned, and the row declares []",
+     "written_bar": "evidence artifacts durable, pinned, regenerable"
+    },
+    "original_oracle": {
+     "state": "partial",
+     "basis": "BORROWED (D19_molt, artifact status 'partial_high_value_bounded_exhausted'): the boss mechanism is asserted against a natural Interpreter replay of a pristine movie with no injected state, and the replay's own quality is evidenced -- clean and fully-armed runs end on the same frame and the same cycle, so the instrumentation did not move the game. OWNED, and new here: the row's own fixture independently corroborates two D19 claims OFFLINE, with no emulator -- the fixture's scene id reads [13] (matches the census routing: True), and the overlay word D19 names as the accepted-HP snapshot (0x800B45F4, which is also one of the globals the byte-matched initializer declares: True) reads back exactly the boss's initial HP in this stage's own save ([50] vs D19's declared 50; equal=True), against a disc image where every one of those words is zero. That is a borrowed claim checked by an owned, offline, independent method. Independent natural corroboration of the scene also comes from the disc-vs-runtime collision census (0 disagreements over 3235 sectors) and from the campaign completion oracle, a pristine replay of this stage (movies/go_to_end/LEVEL12.movie.json, 12815 frames, accepted=True, entered at 5000, exited by end=True)",
+     "gap": "none of that is an oracle for THIS STAGE's own behaviour, and the row itself says so: what stays open is 'Boss/crowd/objective mechanics now closed via D19 synthesis. Genuinely open: this stage's own arena layout/critical path (spawn positions, crowd-member count, arena bounds) was never traced by D19 -- D19 characterized the mechanic in isolation, not this stage's specific level geometry.'. D19 is a stop decision on the boss -- under the vocabulary it never reads as met even for the boss, and it never carries the stage's arena layout, spawn set, critical path or entry/exit. No assertion anywhere is keyed to stage 12's own objective instance. The one from-boot natural artifact that covers this stage end to end is the completion oracle, and the row does not cite it (cited=False); it asserts entry and exit, never a crowd-berry event",
+     "written_bar": "behavior asserted against the ORIGINAL game's own natural execution, not injected state"
+    },
+    "complete_frontier": {
+     "state": "partial",
+     "basis": "BORROWED: for the BOSS mechanism D19 enumerates a closed set -- 24 named addresses of which 13 fall inside this row's byte-pinned overlay extent ['0x800b39a0', '0x800b4610'], covering the damage proposer, the guard rollback, the crowd producer/allocator, the defeat threshold and the transition writers. OWNED, and new here: the overlay is now decided from BYTES, not from an address: of 21 candidate images exactly 1 is the argmax of non-trivial agreement in every fixture of this row AND carries a stable anchor base at the declared load base (OVL/LEVEL03_LEVEL1.BIN, 99.6% vs 40.45% for the runner-up OVL/LEVEL07_LEVEL.BIN; OVERLAY_RESIDENCY_PIN_UNIQUE), and it agrees with the census attribution (True) and with the overlay build registry's blob sha1 (True). The DEFECT IS ALSO SIZED rather than asserted -- across the 64 governing addresses probed, the mean number of candidate images that contain the same offset is 11.92 of 21, 37 lie inside the pinned image and 37 decode to a real instruction there. The ones that fall OUTSIDE (['0x800b4610', '0x800b4620', '0x800b46d0', '0x800b46d4', '0x800b4750', '0x800b4934', '0x800b4a3c', '0x800b4a40', '0x800b4a88', '0x800b4b80', '0x800b4ba8', '0x800b4bb8', '0x800b4be0', '0x800b4cc8', '0x800b4cd0', '0x800b4de4', '0x800b4de5', '0x800b4df4', '0x800b4df8', '0x800b4df9', '0x800b4dfc', '0x800b4dfd', '0x800b4e00', '0x800b4e04', '0x800b4e08', '0x800b4e10', '0x800b5000']) are exactly the candidates D19 itself rejected as belonging to the wrong overlay (False), so the byte pin reproduces the borrowed row's own negative result by an independent route. The overlay's own function universe is closed and small: 4 census functions (['0x800B4490', 'init_overlay_state', 'level_completion_handler', 'level_overlay_init']), 1 of 3 byte-matched",
+     "gap": "the enumerated frontier is the BOSS's, not the STAGE's. Nothing enumerates the arena: spawn positions, crowd-member count and arena bounds are the row's own declared gap, and the actor census taken from this row's own fixture (uses_this_rows_fixture=True, cited=False) shows only 4 actor records over ids [9, 11, 29] -- so the crowd is not an actor population in this fixture, and no artifact enumerates the crowd at all -- D19 traces it as contact allocations of a named type, which is borrowed and is not a stage population count. The ownership graph resolves this row to 1 distinct function(s), 0 of them in overlay space, with 2 cited state addresses carrying no semantic owner (['0x8001AFB0', '0x800B39A0']) -- and it records no image field at all (True), which is why the byte probe was needed. Newly enumerated but UNRESOLVED: of the 9 globals the byte-matched initializer declares, only the two D19 already names have any documented meaning; the rest are a candidate set, and a candidate set is not a frontier",
+     "written_bar": "item 2 AS WRITTEN: callers/callees/callbacks/indirect tables ENUMERATED, scoped to relevant -- not an empty unresolved set"
+    },
+    "campaign_breadth": {
+     "state": "not_met",
+     "basis": "there is no denominator in either direction. The pre-outcome type authority places this row as ['boss'] together with ['F03_council_chamber', 'F09_bug_bar', 'F12_battle_arena', 'F15_canyon_showdown'], and reports taxonomy_coverage_demonstrated=False campaign-wide. Within the stage, 3 routes are pinned and the row's own artifacts replay 0 of them",
+     "gap": "no variant, retry, death or exceptional-path axis is enumerated for stage 12, and the boss conclusion is explicitly per-boss (D19's own deferred list keeps the attempt/death/restart matrix out of scope). 'Every applicable stage' has no applicable set here at all",
+     "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated"
+    },
+    "typed_state": {
+     "state": "partial",
+     "basis": "BORROWED: D19 types the boss record's fields (id, HP, the acceptance gate, flags, the mover-VM IP) with concrete domains, and the guard law is stated as an exact rollback rule. OWNED, and new here: this row's overlay state block is typed from BYTE-MATCHED SOURCE rather than inferred -- the C at ['0x800B3ADC'] declares 9 globals, 6 of them inside the pinned image extent, and the probe reads every one out of the row's own fixture and out of the disc image: 6 of 37 in-image words are zero on disc, and exactly 3 are live in this fixture ({'0x800b45f4': [50], '0x800b45f8': [50], '0x800b4604': [77]}) -- so 'runtime state living inside the image' is measured, not assumed",
+     "gap": "value domains are unbounded for every one of those words except the two D19 already interprets. A single fixture cannot bound a domain: the cross-fixture diff for this row is not meaningful (one sample), and this row's second declared save turned out to be a different scene, so it cannot serve as the second sample. The registries are empty here rather than wrong: 3 of the row's cited state addresses appear in config/semantic_state.yaml (66 entries) and 0 of 8 record types cover this overlay",
+     "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)"
+    },
+    "lifecycle": {
+     "state": "partial",
+     "basis": "LOAD is the best-evidenced phase and is now evidenced twice over: the overlay's arrival at the shared base is proved by bytes in this row's own fixture, and its INITIALIZATION is proved from byte-matched source -- the matched C zeroes five overlay words and seeds the guard snapshot from the boss's own HP field, and the probe confirms the post-init values in the save. BORROWED: D19 evidences first use, repeated use and retirement OF THE BOSS across one full fight. Cold boot, stage entry and stage exit are evidenced for the stage CONTAINER by the completion oracle (entered 5000, exited by end=True, accepted=True)",
+     "gap": "no phase of the STAGE is evidenced by anything this row owns, and the phases that are evidenced come from artifacts the row does not cite. Exhaustion, retirement and reuse of the CROWD mechanism (how many crowd berries the stage can produce, whether the producer is re-armable, what happens on player death mid-fight) have no evidence of any kind; D19's own deferred list keeps the death/restart matrix out. No per-phase claim map is registered for this row the way F01 has one",
+     "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced"
+    },
+    "cross_system_behavior": {
+     "state": "not_met",
+     "basis": "nothing this row owns exercises any combination. Its registered evidence classes are ['manual'] and the census triage reports 'no runtime evidence found in this row's artifacts'. The crossing that exists (projectile damage x guard state x contact allocation x level transition) is D19's, inside the boss fight, and is borrowed -- it says nothing about this stage crossing its own systems",
+     "gap": "the material for a first crossing is sitting unused and is now named: 3 pinned routes (2 under movies/Phase4/Interpreter/), one of which a campaign validator already replayed end to end (usable=1, truncated=False), and the completion oracle's stage snapshot already carries 12 cross-system fields (['enemy_quota', 'equipped_berry', 'grain', 'health', 'lives', 'player_floor', 'player_grounded', 'player_x', 'player_y', 'player_z', 'power_word', 'scene_id']). This dimension is not blocked by a missing fixture; it is unattempted",
+     "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)"
+    },
+    "original_interfaces": {
+     "state": "partial",
+     "basis": "the SHARED loader interface is documented to the instruction (arithmetic directory law pinned at ['0x8003D204', '0x8003D214', '0x8003D218'], closed over all 17 scene ids) and this row records its own falsification of the prior binding (True). BORROWED: D19 documents the boss interface -- resident damage proposer, overlay acceptance, allocator call and contact type, transition writers -- and it has a Canon page and a reconstruction source (['ObsidianVault/Canon/Systems/SYS_molt_boss.md'], ['src_re/molt_boss.c']). OWNED and new: the routing this row depends on is no longer a hand-typed list -- the progression table at 0x80077FA0 was read out of the shipped executable and matches the artifact-declared mapping (True)",
+     "gap": "the stage's own interfaces are undocumented: no arena, spawn, crowd or completion interface is named, and 0 of the 199 governing addresses derived here are registered as confirmed sites (of 12 entries). The row holds 0 vault page(s) of its own and the ownership graph attaches 1 Canon page(s) to it. The unknown IS enumerated with a named obstruction rather than left blank -- 'Boss/crowd/objective mechanics now closed via D19 synthesis. Genuinely open: this stage's own arena layout/critical path (spawn positions, crowd-member count, arena bounds) was never traced by D19 -- D19 characterized the mechanic in isolation, not this stage's specific level geometry.' -- which is what keeps this at partial rather than not met",
+     "written_bar": "interfaces documented; unknowns enumerated with named obstructions"
+    },
+    "source_closure": {
+     "state": "partial",
+     "basis": "measured against BOTH registries. RESIDENT (config/segments.yml, 913 units, toolchain gcc2.7.2-psx): of 135 distinct resident governing addresses, the ones inside a build unit resolve to 9 unit(s) -- 2 matching C and 7 hand-written byte-exact ASM -- with 122 data addresses in no unit. OVERLAY (config/overlays.yml + src/overlays/ + analysis/overlay_decomp_progress.json, 15/158 matched campaign-wide = 9.49%): this row's overlay HAS a build entry -- 1 of 3 code functions matched from ['src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c'], rebuild validated (True) with rebuilt sha1 equal to the blob's (True), and that blob is byte-identical to the image this assessment pinned as resident (True). Overlay byte-matching is DEMONSTRATED for this row's overlay, not impossible",
+     "gap": "no BOSS or STAGE function is byte-matched C. The one matched overlay function is the state initializer -- real, directly on the frontier, and it is the function that seeds the guard snapshot, but it is not the objective logic; the remaining 2 code functions in the overlay (including a level_completion_handler) have no C. The borrowed reconstruction ['src_re/molt_boss.c'] is documentation-grade by its own header and appears in NEITHER build registry, so it is not closure. The census triage reports 'measurable: source/build entries exist (resident and/or overlay track)', which measures REGISTRATION; measured against real governing addresses the count of matching-C resident units is 2",
+     "written_bar": "byte-matched C through the original toolchain for the row's governing functions"
+    }
+   },
+   "counts": {
+    "met": 1,
+    "partial": 6,
+    "not_met": 2
+   },
+   "summary": "1 met, 0 met-candidate, 6 partial, 2 not met, 0 unmeasured -- against the WRITTEN bars, versus 0/9 by blanket disposition"
+  },
+  "F13_anthill_two": {
+   "row_name": "Stage 13 Anthill Part Two: rescue Atta / berry-shooter solution",
+   "stage_ordinal": "13",
+   "scene_id": 9,
+   "byte_pinned_overlay": "OVL/LEVEL09_LEVEL.BIN",
+   "baseline_status": "external_lead",
+   "carried_forward": {
+    "dimension": "durable_evidence",
+    "from": "analysis/phase4_f_row_measured_census.json",
+    "state": "met",
+    "fraction": "1/1",
+    "note": "measured there against pinned bytes; re-deriving it here would be a second opinion on a settled measurement, not evidence"
+   },
+   "routing": {
+    "note": "`stages` is the stage ORDINAL, not the scene id. Ordinal -> scene comes from the campaign progression table, which this assessment reads out of the shipped executable rather than trusting the hand-typed copy inside the census generator",
+    "progression_table_address": "0x80077FA0",
+    "ordinal_to_scene_read_from_executable": [
+     17,
+     1,
+     3,
+     2,
+     6,
+     10,
+     11,
+     4,
+     5,
+     14,
+     7,
+     12,
+     13,
+     9,
+     8,
+     15
+    ],
+    "matches_the_artifact_declared_mapping": true,
+    "fixture_scene_ids_measured": {
+     "level_13": 9
+    },
+    "fixture_scene_id_matches_census": true,
+    "overlay_pinned_from_bytes": "OVL/LEVEL09_LEVEL.BIN",
+    "pin_agrees_with_census_attribution": true,
+    "disc_container_agrees_with_the_pinned_directory": true
+   },
+   "systemic_defect_checks": {
+    "a_overlay_misattribution": {
+     "applies_to_this_row": true,
+     "why": "the row's claims live in the shared overlay window at 0x800B39A0; the ownership graph records no image field (True) and cites the bare base address as unowned state",
+     "how_sized": "of 21 candidate images, a governing offset from this row is contained by 11.92 on average",
+     "how_settled": "tools/phase4_f12_f13_f15_overlay_residency_pin.c: non-trivial agreement at the declared base plus >=2 high-entropy anchors agreeing on that same base, in every fixture of this row",
+     "verdict": "OVERLAY_RESIDENCY_PIN_UNIQUE -- OVL/LEVEL09_LEVEL.BIN (99.29% vs 29.66% for OVL/LEVEL07_LEVEL.BIN)",
+     "was_the_census_attribution_wrong": false,
+     "how_close_it_was": "2 image(s) have a stable anchor base at the declared base and 1 is the agreement argmax in every fixture; both tests are needed to leave one survivor"
+    },
+    "b_semantic_registry_collision": {
+     "applies_to_this_row": true,
+     "measured": "1 semantic_state entries fall inside the SHARED region (['0x800B4A3C'], ids ['original.training_step']); 1 fall inside THIS row's byte-pinned extent ['0x800b39a0', '0x800b4e10']",
+     "detail": [
+      {
+       "address": "0x800B4A3C",
+       "registered_id": "original.training_step",
+       "registered_kind": "overlay_field",
+       "registered_owner": "original_game.training_overlay",
+       "confidence": "confirmed",
+       "registered_range": [
+        0,
+        13
+       ],
+       "registered_context": "Training overlay loaded (LEVEL07/LEVEL1.BIN @ 0x800B39A0). Range holds for THIS overlay: observed 2 and 13 in the two pristine fixtures, and the field indexes a 14-arm dispatch table at 0x800B39A4 whose span equals the range span. \u26a0\ufe0f THE ADDRESS IS NOT UNIQUE. Overlay-local VAs are keyed globally here with no image field, and 0x800B4A3C is also real written state in LEVEL02_LEVEL1.BIN (3 refs, 2 stores), which routes via the progression table to F11_the_tree -- where it was measured at 0..320 over 1,896 writes, far outside this range. Three rows have now collided on this entry (E07 / F00 / F11). The range is scoped to the training overlay and must not be read as a property of the address.",
+       "measured_values": [
+        811732992
+       ],
+       "measured_values_inside_registered_range": false
+      }
+     ],
+     "row_state_addresses_registered": 3,
+     "record_types_covering_this_overlay": 0
+    }
+   },
+   "registry_disposition_for_contrast": {
+    "source": "analysis/phase4_closure_debt.json",
+    "campaign_id": null,
+    "completion_state": "open",
+    "dimensions_met": 0,
+    "dimensions_remaining": 9,
+    "distinct_basis_strings": [
+     "no active child campaign"
+    ],
+    "distinct_states": [
+     "gap"
+    ],
+    "movie_count": 0,
+    "note": "the registry carries ONE blanket basis across all nine dimensions and scores the row 0/9. That is a disposition, not a measurement -- and it records movie_count 0 for a stage with 3 attributable pinned movies, which is why the scheduler marks the row ineligible with reason ['no associated movie under case-sensitive movies/Phase4/']"
+   },
+   "borrowed_vs_owned": {
+    "borrowed_boss_mechanism": "NONE. This row's objective belongs to no D row and nothing about it is borrowed -- which is why it is the control case for the boss-borrowing question",
+    "owned_stage_specific": "everything measured for this row is its own and almost all of it is new: the overlay FILE identity (OVL/LEVEL09_LEVEL.BIN at 99.29%), the three byte-matched overlay functions and the record layouts they type, the 10-byte live overlay state block located by pairing the two scene-9 fixtures, the stage's actor population, and the stage's absence of authored region codes",
+    "still_open_and_owned_by_this_row": "Forced-objective and transition."
+   },
+   "dimensions": {
+    "durable_evidence": {
+     "state": "met",
+     "basis": "CARRIED FORWARD, not re-derived: 1/1 in analysis/phase4_f_row_measured_census.json -- 1/1 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked. This assessment fails loudly if that measurement moves off 'met'. The single declared save is genuinely load-bearing: it is consumed by 15 registered consumers, and it is the fixture the disc-vs-runtime collision census and the actor census both read (True, True)",
+     "gap": "one fixture is the thinnest declaration of any F row measured so far, and it is not what is available: 3 stage-13 movies are attributable by the frozen session token 'LEVEL13_ANTHILLPT2' ({'movies/Phase4/Interpreter/100% Runs/LEVEL13_ANTHILLPT2.movie.json': 50628, 'movies/Phase4/Interpreter/Any% Runs/LEVEL13_anthillpt2.movie.json': 7628, 'movies/go_to_end/LEVEL13.movie.json': 23926}), 3 of them centrally pinned and 2 under movies/Phase4/Interpreter/, while the row declares [] and asks for 'Objective movie; assert the authored shooter-solution trigger.'. A SECOND usable fixture for this scene also already exists and is declared by the WRONG ROW: ['level_13', 'LEVEL12_ENDING'] both read scene id 9 (same_scene=True) and both pin OVL/LEVEL09_LEVEL.BIN. this row has NO registered gate file at all",
+     "written_bar": "evidence artifacts durable, pinned, regenerable"
+    },
+    "original_oracle": {
+     "state": "not_met",
+     "basis": "this row asserts nothing, about anything. It owns 2 analysis artifacts, 0 vault pages and 0 source files; its only bindings are the shared scene-asset correction and its own falsification record (True). Nothing is borrowed either -- unlike F12 and F15, this row's objective belongs to no D row ([])",
+     "gap": "the absence is measured, not assumed, and the material is named: a pristine campaign replay of this exact stage already exists and is accepted (movies/go_to_end/LEVEL13.movie.json, 23926 frames, accepted=True, target scene 9, entered 5000, exited by end=True), the row does not cite it (cited=False), and a second natural Interpreter route through the stage was already replayed by a campaign validator (['movies/Phase4/Interpreter/Any% Runs/LEVEL13_anthillpt2.movie.json'], usable=1, truncated=False) and a third by the F01 breadth pass (movies/Phase4/Interpreter/100% Runs/LEVEL13_ANTHILLPT2.movie.json, 50628 frames, reproducible=True). None of those asserts anything about rescuing Atta or the berry-shooter",
+     "written_bar": "behavior asserted against the ORIGINAL game's own natural execution, not injected state"
+    },
+    "complete_frontier": {
+     "state": "partial",
+     "basis": "NOTHING is borrowed here, so everything below is owned -- and it is all new. the overlay is now decided from BYTES, not from an address: of 21 candidate images exactly 1 is the argmax of non-trivial agreement in every fixture of this row AND carries a stable anchor base at the declared load base (OVL/LEVEL09_LEVEL.BIN, 99.29% vs 29.66% for the runner-up OVL/LEVEL07_LEVEL.BIN; OVERLAY_RESIDENCY_PIN_UNIQUE), and it agrees with the census attribution (True) and with the overlay build registry's blob sha1 (True). That matters more for this row than for the other two: its overlay is the MOST ambiguous of the three by measurement (mean 11.92 of 21 candidate images contain the same offset), so an address-only attribution here is close to meaningless. With the file pinned, the overlay's own function universe is closed and named: 8 census functions (['0x800B4CD0', 'call_set_flags_clear_tail', 'clear_flags_set_tail', 'level_actor_ai_handler', 'level_overlay_draw', 'level_overlay_init', 'level_state_writer', 'set_flags_clear_tail']), of which 3 of 7 are byte-matched -- measured against every per-level overlay in the build registry ({'LEVEL02_LEVEL': 1, 'LEVEL02_LEVEL1': 1, 'LEVEL03_LEVEL1': 1, 'LEVEL04_LEVEL1': 1, 'LEVEL05_LEVEL': 1, 'LEVEL05_LEVEL1': 1, 'LEVEL06_LEVEL': 1, 'LEVEL06_LEVEL1': 1, 'LEVEL07_LEVEL1': 1, 'LEVEL09_LEVEL': 3, 'LEVEL10_LEVEL': 1}), this is the largest matched set of any of them (True, top set ['LEVEL09_LEVEL']). The matched C names two RESIDENT record arrays (['0x80089F58', '0x800A6300']) and a select-one-of-21 stride-0x54 halfword flag idiom, which is the first concrete mechanism ever attached to this row. NEW, and the row's first testable objective-state candidate set: pairing this row's save with the other scene-9 fixture gives 10 differing bytes in region A, ALL 10 of them inside the pinned image and all zero on disc (True), clustered in 7 aligned words ['0x800B4DE4', '0x800B4DF4', '0x800B4DF8', '0x800B4DFC', '0x800B4E00', '0x800B4E04', '0x800B4E08']",
+     "gap": "a candidate set is not a frontier. No caller, callee or callback of the objective is enumerated: the ownership graph resolves this row to 1 distinct function(s) (the shared loader), 0 in overlay space, with 2 cited state addresses carrying no semantic owner and no image field at all (True). Which of the 8 overlay functions implements the berry-shooter objective is UNRESOLVED -- no artifact walks them -- and the 7 differing words come from two samples at different points in the stage, which cannot distinguish objective state from a free-running timer. The actor census from this row's own fixture already lists 25 records over 9 distinct ids [9, 10, 11, 13, 15, 22, 23, 24, 28], 0 of which have a Canon role, and the row cites none of it (False)",
+     "written_bar": "item 2 AS WRITTEN: callers/callees/callbacks/indirect tables ENUMERATED, scoped to relevant -- not an empty unresolved set"
+    },
+    "campaign_breadth": {
+     "state": "not_met",
+     "basis": "the row has no conclusion to generalize. The pre-outcome type authority cannot even type it from its frozen name -- it records ['normal'] with the rule 'declared residual: no keyword matched' -- and reports taxonomy_coverage_demonstrated=False campaign-wide",
+     "gap": "no applicable set, no variant axis, no exceptional-path axis, and no conclusion. Of 3 pinned routes through this stage the row replays 0",
+     "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated"
+    },
+    "typed_state": {
+     "state": "partial",
+     "basis": "entirely owned and entirely new. The three byte-matched functions in this row's pinned overlay type two resident record arrays from SOURCE rather than inference: a pointer table whose entries carry a short index at +4, and a 0x54-stride record array whose halfword flag sits at +0x32, written as a run of 21 followed by an inverted 22nd -- a set/clear pair plus a wrapper. The probe reads both bases out of the row's own fixture. The overlay's live state block is located too: 10 bytes in 7 aligned words at the tail of the pinned image differ between the two scene-9 fixtures and are zero on disc, so they are runtime state living inside the image",
+     "gap": "nothing is BOUNDED. Two samples give no value domain, the select-one-of-21 idiom's index source is not typed, and neither resident array is registered anywhere: 3 of the row's cited state addresses appear in config/semantic_state.yaml (66 entries) and 0 of 8 record types cover this overlay. WORSE THAN EMPTY, and measured: the semantic registry keys overlay-local addresses globally, and 1 entry falls inside THIS row's pinned extent -- [{'address': '0x800B4A3C', 'registered_id': 'original.training_step', 'registered_kind': 'overlay_field', 'registered_owner': 'original_game.training_overlay', 'confidence': 'confirmed', 'registered_range': [0, 13], 'registered_context': 'Training overlay loaded (LEVEL07/LEVEL1.BIN @ 0x800B39A0). Range holds for THIS overlay: observed 2 and 13 in the two pristine fixtures, and the field indexes a 14-arm dispatch table at 0x800B39A4 whose span equals the range span. \u26a0\ufe0f THE ADDRESS IS NOT UNIQUE. Overlay-local VAs are keyed globally here with no image field, and 0x800B4A3C is also real written state in LEVEL02_LEVEL1.BIN (3 refs, 2 stores), which routes via the progression table to F11_the_tree -- where it was measured at 0..320 over 1,896 writes, far outside this range. Three rows have now collided on this entry (E07 / F00 / F11). The range is scoped to the training overlay and must not be read as a property of the address.', 'measured_values': [811732992], 'measured_values_inside_registered_range': False}] -- so a lookup by address returns another overlay's field, at 'confirmed' confidence, for a byte that in this stage belongs to OVL/LEVEL09_LEVEL.BIN",
+     "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)"
+    },
+    "lifecycle": {
+     "state": "partial",
+     "basis": "LOAD is evidenced, and only load: the overlay's arrival at the shared base is proved by bytes in this row's own fixture at 99.29% non-trivial agreement with a stable anchor base. Cold boot, stage entry and stage exit are evidenced for the stage CONTAINER by the completion oracle (entered 5000, exited by end=True, accepted=True) -- an artifact the row does not cite",
+     "gap": "first use, repeated use, exhaustion, retirement and reuse of the berry-shooter objective have no evidence of any kind, and the row's own declared missing item is 'Forced-objective and transition.'. The two available fixtures are two mid-stage snapshots, not a progression",
+     "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced"
+    },
+    "cross_system_behavior": {
+     "state": "not_met",
+     "basis": "nothing. The row's evidence classes are ['manual', 'secondary_lead'], it has no runtime trace evidence (False), and the census triage reports 'no runtime evidence found in this row's artifacts'. Nothing is borrowed either",
+     "gap": "unattempted rather than blocked, and the material is named: 25 actor records over ids [9, 10, 11, 13, 15, 22, 23, 24, 28] from this row's own fixture, 3 pinned routes attributable by the frozen session token, plus 1 further recording(s) that carry this stage's ordinal token with attribution UNVERIFIED (['movies/b06_08_LEVEL13.movie.json']) -- named as a lead, not credited -- and a completion-oracle snapshot carrying 12 cross-system fields",
+     "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)"
+    },
+    "original_interfaces": {
+     "state": "partial",
+     "basis": "the SHARED loader interface is documented to the instruction (['0x8003D204', '0x8003D214', '0x8003D218'], closed over all 17 scene ids) and this row records its own prior binding as falsified (True). Newly documented here: three overlay routines with recovered signatures and record layouts, and the ordinal->scene routing this row depends on, read from the shipped executable at 0x80077FA0 and matching the declared mapping (True)",
+     "gap": "the row's OWN interface -- what the berry-shooter objective is, what triggers it, what it writes -- is undocumented and its unknown is stated without a named obstruction: missing is 'Forced-objective and transition.' and next is 'Walk stage 13; identify the authored berry-shooter objective actors.', neither of which names what blocks the walk. 0 of the 192 governing addresses are registered as confirmed sites; the row has 0 vault pages and the ownership graph attaches 1 Canon page(s)",
+     "written_bar": "interfaces documented; unknowns enumerated with named obstructions"
+    },
+    "source_closure": {
+     "state": "partial",
+     "basis": "this is the row's strongest dimension, and the census never says so. Measured against BOTH registries. RESIDENT (config/segments.yml, 913 units, toolchain gcc2.7.2-psx): 128 distinct resident governing addresses, 118 of them outside any build unit (they are the two record-array bases, which are data). OVERLAY (config/overlays.yml + src/overlays/ + analysis/overlay_decomp_progress.json, 15/158 matched campaign-wide = 9.49%): this row's overlay carries 3 of the campaign's 15 matched overlay functions -- 3 of 7 of its own code functions, from ['src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c', 'src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c', 'src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c'], rebuild validated (True) with rebuilt sha1 equal to the blob's (True), and that blob is byte-identical to the image pinned as resident in this row's own fixture (True)",
+     "gap": "whether any of the three matched functions is a GOVERNING function of this row is unresolved, because the row names no governing function at all: 3 of 62 overlay governing addresses have matched C only because those addresses ARE the matched entries -- the set is self-referential until an objective is bound to code. The other 4 code functions in the overlay, including a level_actor_ai_handler and a level_state_writer, have no C. The census triage reports 'measurable: source/build entries exist (resident and/or overlay track)', which measures REGISTRATION, and the row's own declared source files number 0",
+     "written_bar": "byte-matched C through the original toolchain for the row's governing functions"
+    }
+   },
+   "counts": {
+    "met": 1,
+    "not_met": 3,
+    "partial": 5
+   },
+   "summary": "1 met, 0 met-candidate, 5 partial, 3 not met, 0 unmeasured -- against the WRITTEN bars, versus 0/9 by blanket disposition"
+  },
+  "F15_canyon_showdown": {
+   "row_name": "Stage 15 Canyon Showdown: drive Hopper to finale",
+   "stage_ordinal": "15",
+   "scene_id": 15,
+   "byte_pinned_overlay": "OVL/LEVEL05_LEVEL1.BIN",
+   "baseline_status": "partial",
+   "carried_forward": {
+    "dimension": "durable_evidence",
+    "from": "analysis/phase4_f_row_measured_census.json",
+    "state": "met",
+    "fraction": "4/4",
+    "note": "measured there against pinned bytes; re-deriving it here would be a second opinion on a settled measurement, not evidence"
+   },
+   "routing": {
+    "note": "`stages` is the stage ORDINAL, not the scene id. Ordinal -> scene comes from the campaign progression table, which this assessment reads out of the shipped executable rather than trusting the hand-typed copy inside the census generator",
+    "progression_table_address": "0x80077FA0",
+    "ordinal_to_scene_read_from_executable": [
+     17,
+     1,
+     3,
+     2,
+     6,
+     10,
+     11,
+     4,
+     5,
+     14,
+     7,
+     12,
+     13,
+     9,
+     8,
+     15
+    ],
+    "matches_the_artifact_declared_mapping": true,
+    "fixture_scene_ids_measured": {
+     "level_15": 15
+    },
+    "fixture_scene_id_matches_census": true,
+    "overlay_pinned_from_bytes": "OVL/LEVEL05_LEVEL1.BIN",
+    "pin_agrees_with_census_attribution": true,
+    "disc_container_agrees_with_the_pinned_directory": true
+   },
+   "systemic_defect_checks": {
+    "a_overlay_misattribution": {
+     "applies_to_this_row": true,
+     "why": "the row's claims live in the shared overlay window at 0x800B39A0; the ownership graph records no image field (True) and cites the bare base address as unowned state",
+     "how_sized": "of 21 candidate images, a governing offset from this row is contained by 11.92 on average",
+     "how_settled": "tools/phase4_f12_f13_f15_overlay_residency_pin.c: non-trivial agreement at the declared base plus >=2 high-entropy anchors agreeing on that same base, in every fixture of this row",
+     "verdict": "OVERLAY_RESIDENCY_PIN_UNIQUE -- OVL/LEVEL05_LEVEL1.BIN (99.24% vs 28.74% for OVL/LEVEL07_LEVEL.BIN)",
+     "was_the_census_attribution_wrong": false,
+     "how_close_it_was": "2 image(s) have a stable anchor base at the declared base and 1 is the agreement argmax in every fixture; both tests are needed to leave one survivor"
+    },
+    "b_semantic_registry_collision": {
+     "applies_to_this_row": true,
+     "measured": "1 semantic_state entries fall inside the SHARED region (['0x800B4A3C'], ids ['original.training_step']); 1 fall inside THIS row's byte-pinned extent ['0x800b39a0', '0x800b4be0']",
+     "detail": [
+      {
+       "address": "0x800B4A3C",
+       "registered_id": "original.training_step",
+       "registered_kind": "overlay_field",
+       "registered_owner": "original_game.training_overlay",
+       "confidence": "confirmed",
+       "registered_range": [
+        0,
+        13
+       ],
+       "registered_context": "Training overlay loaded (LEVEL07/LEVEL1.BIN @ 0x800B39A0). Range holds for THIS overlay: observed 2 and 13 in the two pristine fixtures, and the field indexes a 14-arm dispatch table at 0x800B39A4 whose span equals the range span. \u26a0\ufe0f THE ADDRESS IS NOT UNIQUE. Overlay-local VAs are keyed globally here with no image field, and 0x800B4A3C is also real written state in LEVEL02_LEVEL1.BIN (3 refs, 2 stores), which routes via the progression table to F11_the_tree -- where it was measured at 0..320 over 1,896 writes, far outside this range. Three rows have now collided on this entry (E07 / F00 / F11). The range is scoped to the training overlay and must not be read as a property of the address.",
+       "measured_values": [
+        13840417
+       ],
+       "measured_values_inside_registered_range": false
+      }
+     ],
+     "row_state_addresses_registered": 3,
+     "record_types_covering_this_overlay": 0
+    }
+   },
+   "registry_disposition_for_contrast": {
+    "source": "analysis/phase4_closure_debt.json",
+    "campaign_id": null,
+    "completion_state": "open",
+    "dimensions_met": 0,
+    "dimensions_remaining": 9,
+    "distinct_basis_strings": [
+     "no active child campaign"
+    ],
+    "distinct_states": [
+     "gap"
+    ],
+    "movie_count": 0,
+    "note": "the registry carries ONE blanket basis across all nine dimensions and scores the row 0/9. That is a disposition, not a measurement -- and it records movie_count 0 for a stage with 3 attributable pinned movies, which is why the scheduler marks the row ineligible with reason ['no associated movie under case-sensitive movies/Phase4/']"
+   },
+   "borrowed_vs_owned": {
+    "borrowed_boss_mechanism": "the Hopper encounter: identity, the three-section structure with its frame markers, the chase gate, the on-screen health counter and its writers, the barrier gates, and the defeat caller -- all from D20_hopper (baseline status 'partial'). A stop decision on the boss; it promotes nothing here",
+    "owned_stage_specific": "the overlay FILE identity for this stage (OVL/LEVEL05_LEVEL1.BIN at 99.24%); the offline confirmation of the health counter's live value out of this row's own save; the byte-matched predicate that closes D20's own open residual; the terminal sequence (cutscene -> Game-Complete card -> credits -> save prompt) mapped from the operator's 100% run; and the stage's absence of authored region codes",
+    "still_open_and_owned_by_this_row": "Independent confirmation that the Game-Complete/credits sequence is unique to the final stage rather than a generic per-level flow (no comparison stage checked -- operator-deprioritized, not required); the full credits roll content beyond the 2 sampled screens; stage-specific hazards or content outside the boss encounter itself proper (not investigated); the barrier/gate-break opcode (shared open residual with D20_hopper); source closure; no dedicated Canon page yet (matching the thin-stub pattern already used by F06/F12, the other F-rows that point at a D-row)."
+   },
+   "dimensions": {
+    "durable_evidence": {
+     "state": "met",
+     "basis": "CARRIED FORWARD, not re-derived: 4/4 in analysis/phase4_f_row_measured_census.json -- 4/4 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked. This assessment fails loudly if that measurement moves off 'met'. This row is the best-provisioned of the three: it declares an operator-supplied 100% completion run as well as the boss movie and a save, its declared fixtures have 17 registered consumers, and the row is the only one of the three whose census records runtime trace evidence (True). 52 tests pass and 2 fail across the 4 gate files these three rows touch; this row contributes ['tests/test_phase4_c16_boss_death.py', 'tests/test_phase4_f08_scene_binding.py', 'tests/test_phase4_f15_canyon_showdown.py'], of which ['tests/test_phase4_c16_boss_death.py'] is currently RED -- a pre-existing artifact-pin mismatch in another row's gate, not a failure of this row's evidence",
+     "gap": "1 of the declared fixtures are the BOSS row's recordings (['movies/Phase4/Interpreter/D20.movie.json']), and 1 declared fixture is still UNAUDITED in the Phase-2 coverage registry (['movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json (operator-supplied 100% completion run, 76310 frames, covers fight through credits + save prompt)']) -- the very 100% run the row's strongest conclusion rests on. Attribution by the frozen session token finds 3 stage-15 movies ({'movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json': 76310, 'movies/Phase4/Interpreter/Any% Runs/LEVEL15_canyonshowdown.movie.json': 16711, 'movies/go_to_end/LEVEL15.movie.json': 33268}); the row declares ['movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json']",
+     "written_bar": "evidence artifacts durable, pinned, regenerable"
+    },
+    "original_oracle": {
+     "state": "partial",
+     "basis": "BORROWED (D20_hopper, artifact status 'unresolved -> partial, BOUNDED for the core combat/chase/def...'): the boss mechanism is asserted from natural Interpreter replays of pristine movies. OWNED, and new here, the strongest single result in this assessment: the D20 health counter is CONFIRMED OFFLINE out of this row's own save, with no emulator -- the byte-pinned overlay is OVL/LEVEL05_LEVEL1.BIN and exactly 1 of 49 probed in-image words is live in the fixture, and it is the counter D20 polled (0x800B4BA8; only-live-word=True) at the exact value D20 reports it initializes to ([30] vs 30; equal=True), against a disc image where it is zero. The fixture's scene id reads [15] (matches the routing: True). Independent natural corroboration of the stage also comes from the disc-vs-runtime collision census (0 disagreements over 3235 sectors) and the campaign completion oracle (movies/go_to_end/LEVEL15.movie.json, 33268 frames, accepted=True), which the row does not cite (False)",
+     "gap": "the row's own headline finding was obtained by INJECTED INPUT, not natural execution: the ending-cutscene pass stopped movie playback and drove controller presses live, which is exactly what the written bar excludes. It was later re-obtained from an operator-recorded natural 100% run -- but that run is the fixture the coverage registry still lists as unaudited, and no assertion file replays it. Nothing is keyed to the stage's own non-boss content, which the row itself lists as missing: 'Independent confirmation that the Game-Complete/credits sequence is unique to the final stage rather than a generic per-level flow (no comparison stage checked ...'. D20 is a stop decision on the boss and cannot carry any of that",
+     "written_bar": "behavior asserted against the ORIGINAL game's own natural execution, not injected state"
+    },
+    "complete_frontier": {
+     "state": "partial",
+     "basis": "BORROWED: D20 enumerates the boss's structure across three sections with literal frame markers, the chase gate, the health counter and the defeat caller -- 83 named addresses, of which 16 fall inside this row's byte-pinned overlay extent ['0x800b39a0', '0x800b4be0']. OWNED, and new here: the overlay is now decided from BYTES, not from an address: of 21 candidate images exactly 1 is the argmax of non-trivial agreement in every fixture of this row AND carries a stable anchor base at the declared load base (OVL/LEVEL05_LEVEL1.BIN, 99.24% vs 28.74% for the runner-up OVL/LEVEL07_LEVEL.BIN; OVERLAY_RESIDENCY_PIN_UNIQUE), and it agrees with the census attribution (True) and with the overlay build registry's blob sha1 (True), and the ambiguity is sized -- the mean candidate image count for the 64 governing addresses probed is 11.92 of 21, with 49 inside the pinned image and 47 decoding to a real instruction. Two borrowed addresses fall OUTSIDE this row's overlay entirely (['0x800b4be0', '0x800b4cc8', '0x800b4cd0', '0x800b4de4', '0x800b4de5', '0x800b4df4', '0x800b4df8', '0x800b4df9', '0x800b4dfc', '0x800b4dfd', '0x800b4e00', '0x800b4e04', '0x800b4e08', '0x800b4e10', '0x800b5000']), which is a measured correction, not a quibble: an address-only census would have attributed them to this stage. THE BIGGEST OWNED RESULT: D20's one remaining STILL_OPEN residual is the gate-break predicate it located at an overlay address -- and that address is the entry of the ONE byte-matched C function in this row's own overlay (['0x800B3BD4'] = ['src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c']; named by the borrowed row: True), and 2 of the 3 operands that C declares are named in the same D20 section (['0x800A0282', '0x800B4BB8']); the third, the short table the predicate indexes, is named by the C and by nothing else. The predicate's semantics are therefore already closed in byte-matched source, and neither row knows it",
+     "gap": "the enumerated frontier is the BOSS's. The stage's own non-boss content, hazards and critical path are unenumerated by the row's own admission, and the credits sequence is sampled at 2 screens. The ownership graph resolves this row to 3 distinct function(s), 1 in overlay space, with 2 cited state addresses carrying no semantic owner (['0x8001AFB0', '0x800B39A0']) and no image field (True) -- including the health counter itself. Of the overlay's 6 census functions (['0x800B4A88', 'compare_overlay_halfword', 'level05_overlay_param_init', 'level_completion_handler', 'level_overlay_draw', 'level_overlay_init']) only 1 is matched, and the short table the matched predicate indexes has no established extent -- so whether the health counter is an element of that table is UNRESOLVED and is named here rather than assumed",
+     "written_bar": "item 2 AS WRITTEN: callers/callees/callbacks/indirect tables ENUMERATED, scoped to relevant -- not an empty unresolved set"
+    },
+    "campaign_breadth": {
+     "state": "not_met",
+     "basis": "the row makes a genuinely campaign-scale claim -- that stage 15 is the FINAL stage, evidenced by a Game-Complete card and a full credits roll in a 100% run -- and it correctly hedges it. The type authority places the row as ['boss'] together with ['F03_council_chamber', 'F09_bug_bar', 'F12_battle_arena', 'F15_canyon_showdown']",
+     "gap": "the claim has no denominator and the row says so: no comparison stage was ever checked, which is the first item of its own declared missing list. taxonomy_coverage_demonstrated=False campaign-wide, and no variant, retry, death or exceptional-path axis is enumerated for this stage. Of 3 pinned routes the row declares 1",
+     "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated"
+    },
+    "typed_state": {
+     "state": "partial",
+     "basis": "BORROWED: D20 types the health counter with an exact domain and an exact display law (a 30-step counter rendered as five segments) and traces its full writer set. OWNED, and new: the counter's value is now read out of THIS row's own save with no emulator ({'0x800b4ba8': [30]}) and shown to be zero in the disc image, which is what makes it runtime state rather than static data; and the matched C types the predicate's three operands exactly -- a resident halfword compared against an overlay-local short table indexed by an overlay word, with 2 of its 3 globals inside the pinned extent and the third resident",
+     "gap": "the index word's domain is unbounded, the table's extent is unknown, and one sample cannot bound either -- in this fixture the table and the index both read their DISC values, so only the counter is shown to be live (1 of 49 in-image words differ from the image). The registries are not merely empty here, they are WRONG: 1 semantic_state entry falls inside this row's pinned extent -- [{'address': '0x800B4A3C', 'registered_id': 'original.training_step', 'registered_kind': 'overlay_field', 'registered_owner': 'original_game.training_overlay', 'confidence': 'confirmed', 'registered_range': [0, 13], 'registered_context': 'Training overlay loaded (LEVEL07/LEVEL1.BIN @ 0x800B39A0). Range holds for THIS overlay: observed 2 and 13 in the two pristine fixtures, and the field indexes a 14-arm dispatch table at 0x800B39A4 whose span equals the range span. \u26a0\ufe0f THE ADDRESS IS NOT UNIQUE. Overlay-local VAs are keyed globally here with no image field, and 0x800B4A3C is also real written state in LEVEL02_LEVEL1.BIN (3 refs, 2 stores), which routes via the progression table to F11_the_tree -- where it was measured at 0..320 over 1,896 writes, far outside this range. Three rows have now collided on this entry (E07 / F00 / F11). The range is scoped to the training overlay and must not be read as a property of the address.', 'measured_values': [13840417], 'measured_values_inside_registered_range': False}] -- so an address lookup returns a different overlay's field, at 'confirmed' confidence, with a declared range the measured value does not satisfy. 3 of the row's cited state addresses are registered and 0 of 8 record types cover this overlay",
+     "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)"
+    },
+    "lifecycle": {
+     "state": "partial",
+     "basis": "more phases are evidenced for this row than for the other two, and most are borrowed. LOAD is owned and proved by bytes in this row's own fixture. BORROWED from D20: first use and repeated use across a full fight, and retirement via the defeat caller. OWNED from the row's own artifact: the terminal sequence is mapped end to end -- cutscene, Game-Complete card, scrolling credits, save prompt -- and the scene id is observed flipping to 0, which is the only whole-game retirement evidence anywhere in the campaign. Cold boot and stage entry are evidenced for the container by the completion oracle (entered 5000, exited by end=True)",
+     "gap": "exhaustion and reuse are not evidenced: whether the fight is re-enterable, what a mid-fight death does to the counter, and whether the barrier gates re-arm are all untested (D20 recorded two deaths in its own fixture and explicitly declined to treat them as a mechanic finding). The terminal-sequence evidence is a coarse sample of a 76,310-frame run, not a per-phase claim map, and the run it comes from is the unaudited fixture",
+     "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced"
+    },
+    "cross_system_behavior": {
+     "state": "partial",
+     "basis": "BORROWED and real: D20 crosses the boss against the shared mover-VM chase gate every regular enemy uses, against player damage and death (lives dropped across the recording), and against the level-transition machinery via a generic, already-Canon function -- the crossing is the point of that row's identity correction. OWNED: the row's 100% run carries the stage's own collectible systems to completion (grain and letters at full) while the scene id is unchanged, which is a genuine crossing of collection against the boss stage, and it is the row's own fixture",
+     "gap": "no combination is registered as an ASSERTION anywhere -- the crossings are narrative observations inside prose artifacts, with no combination matrix, no oracle and no gate. The census triage reports 'no runtime evidence found in this row's artifacts'. Nothing crosses the stage's own hazards or non-boss content, because none are enumerated",
+     "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)"
+    },
+    "original_interfaces": {
+     "state": "partial",
+     "basis": "BORROWED: D20 documents the defeat interface to the instruction and names the generic resident function that fires it, and the corresponding Canon function pages exist (2 attached to this row by the ownership graph). OWNED: the shared loader interface is pinned at ['0x8003D204', '0x8003D214', '0x8003D218'], this row's own experiment note is registered (['ObsidianVault/Experiments/EXP_2026-08-03_phase4_f15_canyon_showdown.md']), the row records its prior binding as falsified (True), and the ordinal->scene routing is now read from the shipped executable rather than a hand-typed list (True). Unknowns ARE enumerated with named obstructions -- the row's missing list names five, and two more were closed by the operator as non-issues rather than silently dropped",
+     "gap": "the stage's own interfaces (hazards, non-boss content, the credits sequence's own driver) are undocumented, and the row has no dedicated Canon page -- it is one of the thin stubs that point at a D row. 1 of the 251 governing addresses derived here are registered as confirmed sites, of 12 entries campaign-wide",
+     "written_bar": "interfaces documented; unknowns enumerated with named obstructions"
+    },
+    "source_closure": {
+     "state": "partial",
+     "basis": "measured against BOTH registries, and this row scores better than either sibling. RESIDENT (config/segments.yml, 913 units, toolchain gcc2.7.2-psx): of 187 distinct resident governing addresses the ones inside a build unit resolve to 20 unit(s), 2 of them MATCHING C (['src/main/8005038c_scene_setup_and_load.c', 'src/main/800503fc_spawn_fx_object.c']) and 18 hand-written byte-exact ASM -- and the addresses that land in matching C are {'0x8005038C': 'src/main/8005038c_scene_setup_and_load.c', '0x800503AC': 'src/main/8005038c_scene_setup_and_load.c', '0x800503FC': 'src/main/800503fc_spawn_fx_object.c'}, which include the exact instruction D20 traced as the finale trigger, so a governing address of this row's own ending IS byte-matched C. OVERLAY (config/overlays.yml + src/overlays/ + analysis/overlay_decomp_progress.json, 15/158 matched campaign-wide): 1 of 5 code functions matched from ['src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c'], rebuild validated (True), rebuilt sha1 equal to the blob's (True), and that blob byte-identical to the image pinned resident in this row's own fixture (True) -- and the matched function is D20's own open residual",
+     "gap": "the boss logic itself has no C: 1 of 49 overlay governing addresses has matched C, so the health-counter writer, the section structure and the barrier logic are all unmatched, as are the other 4 code functions in the overlay including a level_completion_handler. The census triage reports 'measurable: source/build entries exist (resident and/or overlay track)' and the row's own declared source files number 0",
+     "written_bar": "byte-matched C through the original toolchain for the row's governing functions"
+    }
+   },
+   "counts": {
+    "met": 1,
+    "partial": 7,
+    "not_met": 1
+   },
+   "summary": "1 met, 0 met-candidate, 7 partial, 1 not met, 0 unmeasured -- against the WRITTEN bars, versus 0/9 by blanket disposition"
+  }
+ },
+ "counts_by_row": {
+  "F12_battle_arena": {
+   "met": 1,
+   "partial": 6,
+   "not_met": 2
+  },
+  "F13_anthill_two": {
+   "met": 1,
+   "not_met": 3,
+   "partial": 5
+  },
+  "F15_canyon_showdown": {
+   "met": 1,
+   "partial": 7,
+   "not_met": 1
+  }
+ },
+ "summary": "F12_battle_arena: 1 met, 0 met-candidate, 6 partial, 2 not met, 0 unmeasured -- against the WRITTEN bars, versus 0/9 by blanket disposition; F13_anthill_two: 1 met, 0 met-candidate, 5 partial, 3 not met, 0 unmeasured -- against the WRITTEN bars, versus 0/9 by blanket disposition; F15_canyon_showdown: 1 met, 0 met-candidate, 7 partial, 1 not met, 0 unmeasured -- against the WRITTEN bars, versus 0/9 by blanket disposition",
+ "notable": [
+  "THE ROW THAT WAS NEVER WORKED HAS THE MOST BYTE-MATCHED SOURCE. F13_anthill_two owns ['analysis/phase4_f08_scene_binding.json', 'analysis/phase4_f12_f13_f15_overlay_residency_pin.json', 'analysis/phase4_f12_f13_f15_written_bar_assessment.json'] analysis artifacts, 0 vault pages, 0 source files and 0 registered gate files -- and its byte-pinned overlay OVL/LEVEL09_LEVEL.BIN carries 3 of the campaign's 15 matched overlay functions, 3 of its own 7, rebuild-validated with a rebuilt sha1 equal to the blob's. The row records none of them. Its objective belongs to no D row, so nothing here is borrowed: the source closure is genuinely this stage's own, and the census's own triage line for it ('measurable: source/build entries exist (resident and/or overlay track)') measures registration, not reality.",
+  "D20's LAST OPEN RESIDUAL IS ALREADY CLOSED IN BYTE-MATCHED C, IN F15's OWN OVERLAY. The Hopper row's remaining STILL_OPEN item is the gate-break predicate, which it located at an overlay address and could not interpret. That address is the entry of the single byte-matched function in OVL/LEVEL05_LEVEL1.BIN (['src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c']), and the three globals that C declares (['0x800A0282', '0x800B4B80', '0x800B4BB8']) are the same three operands D20 named. Neither row knows: F15 declares 0 source files and the overlay decomp track and the D-row investigation have never been joined.",
+  "F12 DECLARES A FIXTURE THAT IS A DIFFERENT STAGE. LEVEL12_ENDING reads scene id 9 and pins OVL/LEVEL09_LEVEL.BIN at 99.39% -- holds_F12s_overlay=False, holds_F13s_overlay=True. Read through it, every D19 overlay address returns LEVEL09 bytes. The same fixture is the second sample F13 does not have: paired with F13's own save it yields 10 differing bytes in the shared window, all 10 inside the pinned image and all zero on disc, in aligned words ['0x800B4DE4', '0x800B4DF4', '0x800B4DF8', '0x800B4DFC', '0x800B4E00', '0x800B4E04', '0x800B4E08'] -- F13's first testable objective-state candidate set, produced by a fixture the wrong row owns.",
+  "THE ROUTING THESE ROWS DEPEND ON WAS A HAND-TYPED PYTHON LIST. `stages` is the stage ORDINAL; the ordinal -> scene mapping lives in the campaign progression table at 0x80077FA0 and is copied by hand into the census generator. Read out of the shipped executable here (sha1-checked against config/segments.yml) it is [17, 1, 3, 2, 6, 10, 11, 4, 5, 14, 7, 12, 13, 9, 8, 15], which matches the artifact-declared mapping (True) and the scene ids measured in all four fixtures. The three rows route to scenes 13, 9 and 15.",
+  "NONE OF THE THREE STAGES AUTHORS A SINGLE REGION CODE. Containers LEVEL03/LEVEL1.RAW / LEVEL09/LEVEL.RAW / LEVEL05/LEVEL1.RAW have histograms {'0': 12} / {'0': 176} / {'0': 352} over 12 / 176 / 352 authored sectors, measured with 0 disc-vs-runtime disagreements over 3235 sectors campaign-wide. Whatever ends these stages, it is not the region-code exit mechanism F01 proved -- so none of the three inherits an exit path from a closed row, and for F12 and F15 the exit is the boss's latch, which is borrowed.",
+  "THE SCHEDULER CANNOT SEE THESE ROWS' MOVIES BECAUSE THE MOVIES ARE NAMED AFTER THE BOSS. All three rows are ineligible with reason ['no associated movie under case-sensitive movies/Phase4/'], and the debt registry records movie_count 0/0/0 -- while attribution by the frozen session token finds 3, 3 and 3 pinned movies for the three stages, including movies/Phase4/Interpreter/ recordings that a campaign validator and the F01 breadth pass have both already replayed. F12's and F15's declared Phase-4 movies are literally named D19 and D20; the borrowing has propagated out of the prose and into the scheduler.",
+  "UNMEASURED DID NOT FIRE ON ANY OF THE 27 CELLS, and that is itself the finding. Every dimension of all three rows had something to measure once the byte probe and the uncited campaign artifacts (completion oracle, E16 movie validation, F01 breadth, disc region-code census, actor census) were brought in. These rows are not un-measurable; they are un-worked. What is genuinely unresolved is named inside each gap rather than left as silence: the arena layout for F12, which overlay function implements the berry-shooter for F13, and the extent of the short table the byte-matched predicate indexes for F15."
+ ]
+}

@@ -1,0 +1,40 @@
+schema: abl-phase4-external-evidence-policy/1
+hash: sha256
+registry_schema: abl-phase4-external-evidence-registry/1
+receipt_schema: abl-phase4-external-evidence-receipts/1
+minimum_independent_copies: 2
+content_layout: objects/sha256/{prefix}/{sha256}
+external_only: true
+allow_public_remote: false
+allow_repository_root: false
+allow_symlinks: false
+allow_overwrite: false
+allowed_remote_kinds: [offline_local, offline_removable, private_annex]
+physical_domain_policy:
+  verified_local_kinds: [offline_local, offline_removable]
+  local_identity: st_dev
+  unverified_without_attestation: [private_annex]
+  reject_overlapping_roots: true
+allowed_media_classes:
+  - pristine_media
+  - capsule_tree
+  - collection_manifest
+  - input_movie
+  - save_state
+  - emulator_binary
+  - emulator_runtime_bundle
+  - emulator_source_snapshot
+  - offline_reader
+backend_pilot:
+  name: git-annex
+  execute_automatically: false
+  initialize_repository: false
+  publish_remote: false
+  preferred_content: present
+authority:
+  hash_registry_is_not_availability: true
+  same_failure_domain_counts_once: true
+  caller_labels_are_not_physical_identity: true
+  private_annex_requires_immutable_attestation: true
+  preservation_is_not_behavioral_evidence: true
+  no_campaign_promotion: true

@@ -1,0 +1,15 @@
+{
+ "_comment": "F02 Tunnels: which overlay image actually contains the debris spawner. Regenerate: tools/phase4_f02_overlay_spawner_pin.c",
+ "row_id": "F02_tunnels",
+ "method": "a jal at file offset K in an overlay based at B returns to B+K+8; score every (image, base) pair against the four overlay-space callers the live run recorded",
+ "overlay_image": "OVL/LEVEL03_LEVEL.BIN",
+ "load_base": "0x800B39A0",
+ "callers_matched": 4,
+ "callers_total": 4,
+ "unique": true,
+ "debris_call_pc": "0x800B43F0",
+ "debris_return_pc": "0x800B43F8",
+ "debris_ctor_type": "0x5A",
+ "debris_stack_arg": 22,
+ "corrects": "the prior artifact attributed 0x800B43F8 to the LEVEL02 overlay by name; overlay space is reused and the address alone does not name a file"
+}

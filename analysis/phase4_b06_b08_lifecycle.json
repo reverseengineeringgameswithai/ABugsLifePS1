@@ -1,0 +1,100 @@
+{
+ "_comment": "Phase-4 B06/B08 lifecycle + persistence probes (DoD items 4 and the save/load half of 7). Regenerate: tools/phase4_b06_b08_lifecycle.py",
+ "state": "~/Downloads/ABL/level01.sav",
+ "execution_mode": "Interpreter",
+ "probes": [
+  {
+   "probe": "P1_pause",
+   "after_30_frames_running": 385,
+   "ticks_while_running": 15,
+   "slot_entering_pause": 384,
+   "slot_after_180_paused_frames": 384,
+   "ticks_while_paused": 0,
+   "slot_after_resume_30f": 368,
+   "ticks_after_resume": 16,
+   "verdict": "PAUSE FREEZES THE TIMER",
+   "pause_freezes_timer": true
+  },
+  {
+   "probe": "P2_scene_transition",
+   "scene_before": 1,
+   "slot_before": 400,
+   "samples": [
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    },
+    {
+     "scene": 0,
+     "slot": 400
+    }
+   ],
+   "slot_writers_during_transition": [],
+   "slot_write_count": 0,
+   "first_clear": null,
+   "slot_after": 400,
+   "scene_after": 0,
+   "cleared_by_0x8005B268": false,
+   "verdict": "INCONCLUSIVE -- no tick and no clear in 3600 sampled frames, so the player update never resumed; a frozen slot here is not evidence that a power survives a transition",
+   "conclusive": false
+  },
+  {
+   "probe": "P3_persistence",
+   "slot_set": -3,
+   "slot_cleared": 0,
+   "slot_after_state_roundtrip": -3,
+   "savestate_roundtrip_restores": true,
+   "functions_touching_slot": [
+    "contact_pickup_walker",
+    "effect_render_stage",
+    "harvester_equip_and_active_update",
+    "player_action_effects_update",
+    "player_vertical_update",
+    "resident_level_transition_initiator",
+    "respawn_transition_state_handler"
+   ],
+   "any_save_or_checkpoint_writer": [],
+   "verdict": "emulator save-state restores the slot (it is plain RAM); the GAME never persists it -- no save/checkpoint routine writes 0x800A657E, so a power is runtime-only and cannot survive a checkpoint restore"
+  }
+ ]
+}

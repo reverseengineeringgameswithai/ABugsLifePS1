@@ -1,0 +1,2412 @@
+{
+ "_comment": "Measured evidence census for the F (stage) rows. durable_evidence is MEASURED against pinned bytes; the other eight dimensions get an evidence inventory and a measurability triage, never a state. Promotes nothing. Regenerate: tools/phase4_f_row_measured_census.py",
+ "schema": "abl-phase4-f-row-measured-census/1",
+ "generated": "2026-08-11",
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "assigns_states": false,
+  "measures": [
+   "durable_evidence"
+  ],
+  "requires_fresh_verifier": true
+ },
+ "baseline_sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58",
+ "fixture_set_sha256": "ec9c1a2f22508e516a91a6f79cf0e3283935c1be6b1f2cac28bf4c6a029e5321",
+ "rows_assessed": 19,
+ "durable_evidence_met": [
+  "F00_training",
+  "F01_anthill",
+  "F02_tunnels",
+  "F03_council_chamber",
+  "F04_cliffside_canyon",
+  "F05_riverbed_run",
+  "F06_birdnest",
+  "F07_city_entrance",
+  "F08_city_square",
+  "F09_bug_bar",
+  "F10_clover_forest",
+  "F11_the_tree",
+  "F12_battle_arena",
+  "F13_anthill_two",
+  "F14_riverbed_flight",
+  "F15_canyon_showdown",
+  "F16_bonus1_spiders",
+  "F17_bonus2_mushrooms",
+  "F18_bonus3_grasshoppers"
+ ],
+ "durable_evidence_met_fraction": "19/19",
+ "rows_with_zero_registered_evidence": [],
+ "rows": {
+  "F00_training": {
+   "name": "Training: Mr. Soil tutorial",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "TRAINING_NPC_STAGES.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "collecting_FLIK_LEVELTRAINING.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "2/2"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace"
+    ],
+    "derived_evidence_classes": [
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase3_training_anchor_fixture.json",
+      "static": false,
+      "runtime": true,
+      "resident_addresses": 1
+     }
+    ],
+    "binding_claims": 2,
+    "analysis_artifacts": [
+     "analysis/phase3_training_anchor_fixture.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+     "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+     "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+     "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md",
+     "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+     "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+     "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md",
+     "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md",
+     "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+     "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+     "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+     "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+     "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+     "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+     "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+     "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md",
+     "ObsidianVault/_attachments/ingame_trainingtest_N_spin_2026-07-11.gif"
+    ],
+    "source_files": [
+     "src_re/training_board_sign.c",
+     "src_re/training_tutorial_progression.c"
+    ],
+    "segments_entries": 0,
+    "stage_ordinal": "Training",
+    "scene_id": 17,
+    "overlay_name": "LEVEL07_LEVEL1",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "no static evidence found in this row's artifacts",
+    "typed_state": "no static evidence found in this row's artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "no static evidence found in this row's artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "no static evidence found in this row's artifacts"
+   },
+   "row_declared_next": "Replay TRAINING_NPC_STAGES movie asserting each stage advance write in the NPC progression state."
+  },
+  "F01_anthill": {
+   "name": "Stage 1 Anthill: reach the entrance",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "3/3 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level01.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/Bonus01_Counter_ResetTest.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "3/3"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace",
+     "static_code",
+     "movie_replay"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_extent_audit.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 88
+     },
+     {
+      "artifact": "analysis/phase4_f01_abi_ledger.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 2031
+     },
+     {
+      "artifact": "analysis/phase4_f01_abi_survey.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 51
+     },
+     {
+      "artifact": "analysis/phase4_f01_anthill.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 24
+     },
+     {
+      "artifact": "analysis/phase4_f01_breadth_assertions.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 110
+     },
+     {
+      "artifact": "analysis/phase4_f01_campaign_breadth.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 145
+     },
+     {
+      "artifact": "analysis/phase4_f01_capsule_gap_query.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 7
+     },
+     {
+      "artifact": "analysis/phase4_f01_death_lifecycle.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 144
+     },
+     {
+      "artifact": "analysis/phase4_f01_finalizer_witness.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 8
+     },
+     {
+      "artifact": "analysis/phase4_f01_fresh_adjudication.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 56
+     },
+     {
+      "artifact": "analysis/phase4_f01_fresh_adjudication_freeze.json",
+      "static": false,
+      "runtime": false,
+      "resident_addresses": 0
+     },
+     {
+      "artifact": "analysis/phase4_f01_frontier_blockers.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 6660
+     }
+    ],
+    "binding_claims": 5,
+    "analysis_artifacts": [
+     "analysis/phase4_extent_audit.json",
+     "analysis/phase4_f01_abi_ledger.json",
+     "analysis/phase4_f01_abi_survey.json",
+     "analysis/phase4_f01_anthill.json",
+     "analysis/phase4_f01_breadth_assertions.json",
+     "analysis/phase4_f01_campaign_breadth.json",
+     "analysis/phase4_f01_capsule_gap_query.json",
+     "analysis/phase4_f01_death_lifecycle.json",
+     "analysis/phase4_f01_finalizer_witness.json",
+     "analysis/phase4_f01_fresh_adjudication.json",
+     "analysis/phase4_f01_fresh_adjudication_freeze.json",
+     "analysis/phase4_f01_frontier_blockers.json",
+     "analysis/phase4_f01_frontier_extraction.json",
+     "analysis/phase4_f01_frontier_resolve.json",
+     "analysis/phase4_f01_frontier_result.json",
+     "analysis/phase4_f01_gap_semantics.json",
+     "analysis/phase4_f01_jr_tuple_capture.json",
+     "analysis/phase4_f01_lifecycle_claim_map.json",
+     "analysis/phase4_f01_lifecycle_readjudication.json",
+     "analysis/phase4_f01_lifecycle_readjudication_freeze.json",
+     "analysis/phase4_f01_live_gap_read_receipt.json",
+     "analysis/phase4_f01_local_base_recovery.json",
+     "analysis/phase4_f01_local_base_recovery_1bba2487_outcomes.json",
+     "analysis/phase4_f01_objective_lifecycle.json",
+     "analysis/phase4_f01_oracle_breadth_repair.json",
+     "analysis/phase4_f01_oracle_breadth_verification.json",
+     "analysis/phase4_f01_original_oracle.json",
+     "analysis/phase4_f01_request2_probe.json",
+     "analysis/phase4_f01_retirement_attribution.json",
+     "analysis/phase4_f01_runtime_lifecycle.json",
+     "analysis/phase4_f01_runtime_sector_table.json",
+     "analysis/phase4_f01_source_closure.json",
+     "analysis/phase4_f01_static_hard_truth.json",
+     "analysis/phase4_f01_typed_state.json",
+     "analysis/phase4_f01_witness_receipts.json",
+     "analysis/phase4_f01_written_bar_assessment.json",
+     "analysis/phase4_index_interval_non_f01_demo.json",
+     "analysis/receipts/phase4_f01_witness_control.json",
+     "analysis/receipts/phase4_f01_witness_positive.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-04_phase4_f01_anthill.md",
+     "ObsidianVault/Experiments/EXP_2026-08-05_phase4_f01_objective_lifecycle.md",
+     "ObsidianVault/Experiments/EXP_2026-08-10_phase4_f01_oracle_breadth_repair.md",
+     "ObsidianVault/Experiments/EXP_2026-08-10_phase4_f01_oracle_breadth_verification.md",
+     "ObsidianVault/Experiments/EXP_2026-08-10_phase4_f01_original_oracle.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "1",
+    "scene_id": 1,
+    "overlay_name": "LEVEL01_LEVEL",
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": true,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "STOPPED, not solved (4 of 9 measured met -- see dod_scorecard; original_oracle and complete_frontier verifier-promoted 2026-08-10, lifecycle 2026-08-11). Remaining: campaign_breadth needs C1/C2; the other partials are gated on shared engines. This row MUST be reopened before the Phase 4 exit gate."
+  },
+  "F02_tunnels": {
+   "name": "Stage 2 Tunnels: gates + falling debris",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "4/4 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level02.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "level02_graingate_locked.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL02_ENDING.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/Any% Runs/LEVEL02_Tunnels.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "4/4"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f02_actor_census.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 68
+     },
+     {
+      "artifact": "analysis/phase4_f02_contact_action_table.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 17
+     },
+     {
+      "artifact": "analysis/phase4_f02_debris_capture.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 25
+     },
+     {
+      "artifact": "analysis/phase4_f02_debris_class_bind.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 9
+     },
+     {
+      "artifact": "analysis/phase4_f02_debris_live_probe.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 8
+     },
+     {
+      "artifact": "analysis/phase4_f02_overlay_spawner_pin.json",
+      "static": false,
+      "runtime": false,
+      "resident_addresses": 4
+     },
+     {
+      "artifact": "analysis/phase4_f02_spawner_trace.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 2585
+     },
+     {
+      "artifact": "analysis/phase4_f02_written_bar_assessment.json",
+      "static": false,
+      "runtime": false,
+      "resident_addresses": 2
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     }
+    ],
+    "binding_claims": 6,
+    "analysis_artifacts": [
+     "analysis/phase4_f02_actor_census.json",
+     "analysis/phase4_f02_contact_action_table.json",
+     "analysis/phase4_f02_debris_capture.json",
+     "analysis/phase4_f02_debris_class_bind.json",
+     "analysis/phase4_f02_debris_live_probe.json",
+     "analysis/phase4_f02_overlay_spawner_pin.json",
+     "analysis/phase4_f02_spawner_trace.json",
+     "analysis/phase4_f02_written_bar_assessment.json",
+     "analysis/phase4_f08_scene_binding.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-04_phase4_f02_debris_damage_class.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "2",
+    "scene_id": 3,
+    "overlay_name": "LEVEL03_LEVEL",
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Bind the stage-2 objective/completion condition (the debris and overlay items are closed; see EXP_2026-08-04_phase4_f02_debris_damage_class)."
+  },
+  "F03_council_chamber": {
+   "name": "Stage 3 Council Chamber: defeat Thumper",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level03.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "thumper_boss.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "2/2"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace",
+     "static_code"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_d16_f03.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 62
+     },
+     {
+      "artifact": "analysis/phase4_d16_f03_oracle.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 11
+     },
+     {
+      "artifact": "analysis/phase4_d16_f03_trace.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 92
+     },
+     {
+      "artifact": "analysis/phase4_f03_council_chamber.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 22
+     },
+     {
+      "artifact": "analysis/phase4_f03_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 47
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     }
+    ],
+    "binding_claims": 7,
+    "analysis_artifacts": [
+     "analysis/phase4_d16_f03.json",
+     "analysis/phase4_d16_f03_oracle.json",
+     "analysis/phase4_d16_f03_trace.json",
+     "analysis/phase4_f03_council_chamber.json",
+     "analysis/phase4_f03_written_bar_assessment.json",
+     "analysis/phase4_f08_scene_binding.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-04_phase4_d16_f03_thumper_council_chamber.md",
+     "ObsidianVault/Experiments/EXP_2026-08-04_phase4_f03_council_chamber.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "3",
+    "scene_id": 2,
+    "overlay_name": "LEVEL02_LEVEL",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL02_LEVEL/800b3b70_set_state_60.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": true,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Shared `next` with D16 is CLOSED (no 0x80090BEE consumers reach the exit). Next for this row is the stage's own critical path, not the boss."
+  },
+  "F04_cliffside_canyon": {
+   "name": "Stage 4 Cliffside Canyon: dandelion flight + bird hazard",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "7/7 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level04.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL04_ENDING.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "canyon_bug.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "canyon_bug_aggro.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/B03.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "7/7"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "secondary_lead",
+     "runtime_trace",
+     "static_code"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f04_cliffside_canyon.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 21
+     },
+     {
+      "artifact": "analysis/phase4_f04_route_analysis.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 6
+     },
+     {
+      "artifact": "analysis/phase4_f04_written_bar_assessment.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 92
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     }
+    ],
+    "binding_claims": 6,
+    "analysis_artifacts": [
+     "analysis/phase4_f04_cliffside_canyon.json",
+     "analysis/phase4_f04_route_analysis.json",
+     "analysis/phase4_f04_written_bar_assessment.json",
+     "analysis/phase4_f08_scene_binding.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f04_cliffside_canyon.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "4",
+    "scene_id": 6,
+    "overlay_name": "LEVEL06_LEVEL",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL06_LEVEL/800b3b94_clear_overlay_state.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": true,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "MOVE ON -- substantiated partial, bounded-exhausted on 2026-08-04. Reopen only for a named residual with a concrete downstream consumer."
+  },
+  "F05_riverbed_run": {
+   "name": "Stage 5 Riverbed Run: maze + spike hazards",
+   "status": "external_lead",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level05.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL05_ENDING.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "2/2"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "secondary_lead"
+    ],
+    "derived_evidence_classes": [
+     "static_code"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f05_f07_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 257
+     },
+     {
+      "artifact": "analysis/phase4_f05_stage_identity_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 65
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     }
+    ],
+    "binding_claims": 2,
+    "analysis_artifacts": [
+     "analysis/phase4_f05_f07_written_bar_assessment.json",
+     "analysis/phase4_f05_stage_identity_pin.json",
+     "analysis/phase4_f08_scene_binding.json"
+    ],
+    "vault_pages": [],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "5",
+    "scene_id": 10,
+    "overlay_name": "LEVEL10_LEVEL",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL10_LEVEL/800b3bf0_init_overlay_state.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": false,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "no runtime evidence found in this row's artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "no runtime evidence found in this row's artifacts",
+    "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Walk stage 5 from the save; census its hazard actors and objective triggers."
+  },
+  "F06_birdnest": {
+   "name": "Stage 6 Birdnest: bird encounter",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "5/5 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_06.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "bird.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/D17.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/D17_Goldberry.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/100% Runs/LEVEL06.movie.json",
+      "kind": "external_fixture",
+      "description": "(operator-supplied 100% completion run, 12917 frames, covers fight through the newly-found cutscene and Flik's Journey)",
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "5/5"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace",
+     "secondary_lead"
+    ],
+    "derived_evidence_classes": [
+     "static_code"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_d17_bird.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 46
+     },
+     {
+      "artifact": "analysis/phase4_f06_birdnest.json",
+      "static": false,
+      "runtime": false,
+      "resident_addresses": 4
+     },
+     {
+      "artifact": "analysis/phase4_f06_f14_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 120
+     },
+     {
+      "artifact": "analysis/phase4_f06_overlay_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 156
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     }
+    ],
+    "binding_claims": 6,
+    "analysis_artifacts": [
+     "analysis/phase4_d17_bird.json",
+     "analysis/phase4_f06_birdnest.json",
+     "analysis/phase4_f06_f14_written_bar_assessment.json",
+     "analysis/phase4_f06_overlay_pin.json",
+     "analysis/phase4_f08_scene_binding.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f06_birdnest.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "6",
+    "scene_id": 11,
+    "overlay_name": "LEVEL01_LEVEL1",
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "no runtime evidence found in this row's artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "no runtime evidence found in this row's artifacts",
+    "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "STOPPING POINT JUSTIFIED 2026-08-03 (operator-confirmed, not an assumption nothing remains): lowest priority (cosmetic, not mechanical) -- the results-banner static-zero quirk, which system renders the cutscene, cross-stage banner comparison. Needs a fixture this row lacks -- Birdnest's own level-en"
+  },
+  "F07_city_entrance": {
+   "name": "Stage 7 City Entrance: goo, city enemies, circus objective",
+   "status": "external_lead",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_07.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL07_ENDING.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "2/2"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "secondary_lead"
+    ],
+    "derived_evidence_classes": [
+     "static_code"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f05_f07_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 257
+     },
+     {
+      "artifact": "analysis/phase4_f07_stage_identity_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 109
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     }
+    ],
+    "binding_claims": 2,
+    "analysis_artifacts": [
+     "analysis/phase4_f05_f07_written_bar_assessment.json",
+     "analysis/phase4_f07_stage_identity_pin.json",
+     "analysis/phase4_f08_scene_binding.json"
+    ],
+    "vault_pages": [],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "7",
+    "scene_id": 4,
+    "overlay_name": "LEVEL04_LEVEL",
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": false,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "no runtime evidence found in this row's artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "no runtime evidence found in this row's artifacts",
+    "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Walk stage 7; census goo/contact actors and the circus-member objective trigger. Do not search for a nonexistent traffic hazard."
+  },
+  "F08_city_square": {
+   "name": "Stage 8 City Square: find performers via markers",
+   "status": "external_lead",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "5/5 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_08.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL08_DIM.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL08_MANNY.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL08_ROSIE.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL08_TUCKROLL.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "5/5"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "secondary_lead"
+    ],
+    "derived_evidence_classes": [
+     "static_code"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f08_overlay_residency_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 56
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     },
+     {
+      "artifact": "analysis/phase4_f08_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 53
+     }
+    ],
+    "binding_claims": 2,
+    "analysis_artifacts": [
+     "analysis/phase4_f08_overlay_residency_pin.json",
+     "analysis/phase4_f08_scene_binding.json",
+     "analysis/phase4_f08_written_bar_assessment.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-05_phase4_f08_scene_asset_binding.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "8",
+    "scene_id": 5,
+    "overlay_name": "LEVEL05_LEVEL",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL05_LEVEL/800b3b18_init_overlay_state.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": false,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "no runtime evidence found in this row's artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "no runtime evidence found in this row's artifacts",
+    "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Static half done (scene/overlay identity corrected and pinned). Remaining: trace one performer-found event to its objective counter on a live Interpreter run, using the now-correct overlay LEVEL05/LEVEL.BIN."
+  },
+  "F09_bug_bar": {
+   "name": "Stage 9 Bug Bar: defeat Thud in rolling arena",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "4/4 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_09.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "analysis/phase3_thud.json",
+      "kind": "in_repo_artifact",
+      "description": null,
+      "exists": true,
+      "git_tracked": true,
+      "centrally_pinned": "n/a -- bytes live in git",
+      "intact": true
+     },
+     {
+      "path": "thud_boss_movie.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "analysis/phase4_d18_thud_vm_fsm.json",
+      "kind": "in_repo_artifact",
+      "description": null,
+      "exists": true,
+      "git_tracked": true,
+      "centrally_pinned": "n/a -- bytes live in git",
+      "intact": true
+     }
+    ],
+    "intact_pinned": "4/4"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace",
+     "static_code"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase3_thud.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 17
+     },
+     {
+      "artifact": "analysis/phase4_d18_thud_fight_law.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 39
+     },
+     {
+      "artifact": "analysis/phase4_d18_thud_vm_fsm.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 70
+     },
+     {
+      "artifact": "analysis/phase4_f09_overlay_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 5
+     },
+     {
+      "artifact": "analysis/phase4_f09_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 36
+     }
+    ],
+    "binding_claims": 4,
+    "analysis_artifacts": [
+     "analysis/phase3_thud.json",
+     "analysis/phase4_d18_thud_fight_law.json",
+     "analysis/phase4_d18_thud_vm_fsm.json",
+     "analysis/phase4_f09_overlay_pin.json",
+     "analysis/phase4_f09_written_bar_assessment.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Canon/Systems/SYS_thud_bug_bar_boss.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "9",
+    "scene_id": 14,
+    "overlay_name": "LEVEL04_LEVEL1",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL04_LEVEL1/800b3aec_add_child_field_20.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": true,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": false
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Thud-FSM item closed 2026-08-03 and the fight-lane writers closed 2026-08-04 (see D18, BOUNDED). Remaining F09 scope = the arena-roll visible mapping (E11's lane), now unblocked by movies/Phase4/Interpreter/D18_thud_fight.movie.json."
+  },
+  "F10_clover_forest": {
+   "name": "Stage 10 Clover Forest: five mechanical-bit pieces",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "1/1 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "movies/Phase4/Interpreter/Any% Runs/LEVEL10_cloverforest.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "1/1"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f10_clover_mask_overlay_census.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 50
+     },
+     {
+      "artifact": "analysis/phase4_f10_clover_mask_resident_census.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 36
+     },
+     {
+      "artifact": "analysis/phase4_f10_clover_objective.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 42
+     },
+     {
+      "artifact": "analysis/phase4_f10_clover_pieces_live.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 76
+     },
+     {
+      "artifact": "analysis/phase4_f10_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 25
+     }
+    ],
+    "binding_claims": 9,
+    "analysis_artifacts": [
+     "analysis/phase4_f10_clover_mask_overlay_census.json",
+     "analysis/phase4_f10_clover_mask_resident_census.json",
+     "analysis/phase4_f10_clover_objective.json",
+     "analysis/phase4_f10_clover_pieces_live.json",
+     "analysis/phase4_f10_written_bar_assessment.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Canon/Systems/SYS_clover_forest_objective.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+    "scene_id": 7,
+    "overlay_name": "LEVEL07_LEVEL",
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": true,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Mechanism CLOSED: objective law, HUD, exit, piece/bit table, record layout and the bit-0x04 gate -- 46 + 5 static pins plus live confirmation on the Any% run and a breakpoint pass. Only the stage's own route/hazards remain, which is level description. Treat as bounded-exhausted for mechanism."
+  },
+  "F11_the_tree": {
+   "name": "Stage 11 The Tree: scouts/Dot, climbing, acorns, swinging",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "8/8 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_11.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL11_1.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL11_2.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL11_3.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL11_4.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL11_5.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL11_DOT.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "dot_level01.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "8/8"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace",
+     "static_code"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     },
+     {
+      "artifact": "analysis/phase4_f11_acorn_state.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 68
+     },
+     {
+      "artifact": "analysis/phase4_f11_acorns.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 169
+     },
+     {
+      "artifact": "analysis/phase4_f11_actor_census.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 211
+     },
+     {
+      "artifact": "analysis/phase4_f11_climbing.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 15
+     },
+     {
+      "artifact": "analysis/phase4_f11_exit_gate.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 136
+     },
+     {
+      "artifact": "analysis/phase4_f11_find_event.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 89
+     },
+     {
+      "artifact": "analysis/phase4_f11_overlay_state.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 62
+     },
+     {
+      "artifact": "analysis/phase4_f11_scout_progression.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 43
+     },
+     {
+      "artifact": "analysis/phase4_f11_written_bar_assessment.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 56
+     }
+    ],
+    "binding_claims": 15,
+    "analysis_artifacts": [
+     "analysis/phase4_f08_scene_binding.json",
+     "analysis/phase4_f11_acorn_state.json",
+     "analysis/phase4_f11_acorns.json",
+     "analysis/phase4_f11_actor_census.json",
+     "analysis/phase4_f11_climbing.json",
+     "analysis/phase4_f11_exit_gate.json",
+     "analysis/phase4_f11_find_event.json",
+     "analysis/phase4_f11_overlay_state.json",
+     "analysis/phase4_f11_scout_progression.json",
+     "analysis/phase4_f11_written_bar_assessment.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-04_phase4_f11_the_tree_scouts.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "11",
+    "scene_id": 12,
+    "overlay_name": "LEVEL02_LEVEL1",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL02_LEVEL1/800b3b0c_empty_stub.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": true,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "DELIBERATE STOPPING POINT, not an omission -- the argument, so the next reader can disagree with it rather than re-derive it.\nWHAT IS DONE: every mechanic named in this row's own title is closed or bounded. Scouts/Dot closed at instruction level (counter 0x800B4A48 = 5 - found, find event = player c"
+  },
+  "F12_battle_arena": {
+   "name": "Stage 12 Battle Arena: defeat Molt with crowd berries",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "4/4 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_12.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL12_ENDING.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/D19.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/D19.movie.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "4/4"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual"
+    ],
+    "derived_evidence_classes": [
+     "static_code"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     },
+     {
+      "artifact": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 204
+     },
+     {
+      "artifact": "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 200
+     }
+    ],
+    "binding_claims": 3,
+    "analysis_artifacts": [
+     "analysis/phase4_f08_scene_binding.json",
+     "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+     "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+    ],
+    "vault_pages": [],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "12",
+    "scene_id": 13,
+    "overlay_name": "LEVEL03_LEVEL1",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL03_LEVEL1/800b3adc_init_overlay_state.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": false,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "no runtime evidence found in this row's artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "no runtime evidence found in this row's artifacts",
+    "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "PARTIAL, bounded via D19 synthesis 2026-08-03. Move on; revisit only for the stage-specific arena-layout gap above."
+  },
+  "F13_anthill_two": {
+   "name": "Stage 13 Anthill Part Two: rescue Atta / berry-shooter solution",
+   "status": "external_lead",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "1/1 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_13.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "1/1"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "secondary_lead"
+    ],
+    "derived_evidence_classes": [
+     "static_code"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     },
+     {
+      "artifact": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 204
+     },
+     {
+      "artifact": "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 200
+     }
+    ],
+    "binding_claims": 2,
+    "analysis_artifacts": [
+     "analysis/phase4_f08_scene_binding.json",
+     "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+     "analysis/phase4_f12_f13_f15_written_bar_assessment.json"
+    ],
+    "vault_pages": [],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "13",
+    "scene_id": 9,
+    "overlay_name": "LEVEL09_LEVEL",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL09_LEVEL/800b3b70_clear_flags_set_tail.c",
+     "src/overlays/LEVEL09_LEVEL/800b3bd0_set_flags_clear_tail.c",
+     "src/overlays/LEVEL09_LEVEL/800b3dc8_call_set_flags_clear_tail.c"
+    ],
+    "overlay_build_entries": 3,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": false,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "no runtime evidence found in this row's artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "no runtime evidence found in this row's artifacts",
+    "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Walk stage 13; identify the authored berry-shooter objective actors."
+  },
+  "F14_riverbed_flight": {
+   "name": "Stage 14 Riverbed Flight: Atta/Flik flight chase",
+   "status": "external_lead",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "3/3 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_14.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL14_ENDING.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "LEVEL14_ENDING_1.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "3/3"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "secondary_lead"
+    ],
+    "derived_evidence_classes": [
+     "static_code"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_f06_f14_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 120
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     },
+     {
+      "artifact": "analysis/phase4_f14_overlay_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 101
+     }
+    ],
+    "binding_claims": 2,
+    "analysis_artifacts": [
+     "analysis/phase4_f06_f14_written_bar_assessment.json",
+     "analysis/phase4_f08_scene_binding.json",
+     "analysis/phase4_f14_overlay_pin.json"
+    ],
+    "vault_pages": [],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "14",
+    "scene_id": 8,
+    "overlay_name": "LEVEL08_LEVEL",
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": false,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "no runtime evidence found in this row's artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "no runtime evidence found in this row's artifacts",
+    "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Walk stage 14; determine whether the player state machine changes for flight (vs stage-4 glide reuse)."
+  },
+  "F15_canyon_showdown": {
+   "name": "Stage 15 Canyon Showdown: drive Hopper to finale",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "4/4 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "level_15.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "hopper_boss.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/D20.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Phase4/Interpreter/100% Runs/LEVEL15.movie.json",
+      "kind": "external_fixture",
+      "description": "(operator-supplied 100% completion run, 76310 frames, covers fight through credits + save prompt)",
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "4/4"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace",
+     "secondary_lead"
+    ],
+    "derived_evidence_classes": [
+     "static_code"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_d20_hopper.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 162
+     },
+     {
+      "artifact": "analysis/phase4_f08_scene_binding.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 19
+     },
+     {
+      "artifact": "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 204
+     },
+     {
+      "artifact": "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 200
+     },
+     {
+      "artifact": "analysis/phase4_f15_canyon_showdown.json",
+      "static": true,
+      "runtime": false,
+      "resident_addresses": 9
+     }
+    ],
+    "binding_claims": 6,
+    "analysis_artifacts": [
+     "analysis/phase4_d20_hopper.json",
+     "analysis/phase4_f08_scene_binding.json",
+     "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+     "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+     "analysis/phase4_f15_canyon_showdown.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f15_canyon_showdown.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "15",
+    "scene_id": 15,
+    "overlay_name": "LEVEL05_LEVEL1",
+    "overlay_matched_sources": [
+     "src/overlays/LEVEL05_LEVEL1/800b3bd4_compare_overlay_halfword.c"
+    ],
+    "overlay_build_entries": 1,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "no runtime evidence found in this row's artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "no runtime evidence found in this row's artifacts",
+    "cross_system_behavior": "no runtime evidence found in this row's artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Not prioritized by the operator; if resumed, sample more of the credits roll content or check another stage's own completion for comparison. This row is considered bounded for now."
+  },
+  "F16_bonus1_spiders": {
+   "name": "Bonus 1: five consecutive qualifying butt-slams (any butt-slammable target)",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "movies/Bonus_Level_01.movie.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Bonus_Level_01.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "2/2"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_F16_reset_test.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 353
+     },
+     {
+      "artifact": "analysis/phase4_F16_streak_live.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 315
+     },
+     {
+      "artifact": "analysis/phase4_f16_f18_bonus_stage.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 5
+     },
+     {
+      "artifact": "analysis/phase4_f16_f18_written_bar_assessment.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 64
+     }
+    ],
+    "binding_claims": 15,
+    "analysis_artifacts": [
+     "analysis/phase4_F16_reset_test.json",
+     "analysis/phase4_F16_streak_live.json",
+     "analysis/phase4_f16_f18_bonus_stage.json",
+     "analysis/phase4_f16_f18_written_bar_assessment.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-04_phase4_f16_f18_bonus_stage.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "bonus",
+    "scene_id": null,
+    "overlay_name": null,
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Bounded. The stage side is closed by SYS_bonus_stage / EXP_2026-08-04_phase4_f16_f18_bonus_stage: 82 static pins plus a poll-only replay that measured BOTH sides of the decision boundary (672 frames with d2 never below 1859 and no fire, then 1592 and fire on frame 2683). Confirming variants 1 and 2 "
+  },
+  "F17_bonus2_mushrooms": {
+   "name": "Bonus 2: mushroom-bounce chain",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "movies/Bonus_Level_02.movie.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Bonus_Level_02.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "2/2"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_F17_duplicate_test.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 577
+     },
+     {
+      "artifact": "analysis/phase4_F17_reset_test.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 457
+     },
+     {
+      "artifact": "analysis/phase4_F17_streak_live.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 521
+     }
+    ],
+    "binding_claims": 13,
+    "analysis_artifacts": [
+     "analysis/phase4_F17_duplicate_test.json",
+     "analysis/phase4_F17_reset_test.json",
+     "analysis/phase4_F17_streak_live.json"
+    ],
+    "vault_pages": [],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "bonus",
+    "scene_id": null,
+    "overlay_name": null,
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Bounded. The stage side is closed by SYS_bonus_stage / EXP_2026-08-04_phase4_f16_f18_bonus_stage: 82 static pins plus a poll-only replay that measured BOTH sides of the decision boundary (672 frames with d2 never below 1859 and no fire, then 1592 and fire on frame 2683). Confirming variants 1 and 2 "
+  },
+  "F18_bonus3_grasshoppers": {
+   "name": "Bonus 3: consecutive grasshopper kills, no missed blue berry",
+   "status": "partial",
+   "durable_evidence": {
+    "state": "met",
+    "reason": "2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+    "fixtures": [
+     {
+      "path": "movies/Bonus_Level_03.movie.sav",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     },
+     {
+      "path": "movies/Bonus_Level_03.movie.json",
+      "kind": "external_fixture",
+      "description": null,
+      "exists": true,
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "intact": true
+     }
+    ],
+    "intact_pinned": "2/2"
+   },
+   "evidence_inventory": {
+    "declared_evidence_classes": [
+     "manual",
+     "runtime_trace"
+    ],
+    "derived_evidence_classes": [
+     "static_code",
+     "runtime_trace"
+    ],
+    "declaration_understates_reality": [
+     "static_code"
+    ],
+    "artifacts_probed": [
+     {
+      "artifact": "analysis/phase4_F18_reset_test.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 486
+     },
+     {
+      "artifact": "analysis/phase4_F18_streak_live.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 331
+     },
+     {
+      "artifact": "analysis/phase4_f16_f18_bonus_stage.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 5
+     },
+     {
+      "artifact": "analysis/phase4_f16_f18_written_bar_assessment.json",
+      "static": true,
+      "runtime": true,
+      "resident_addresses": 64
+     }
+    ],
+    "binding_claims": 12,
+    "analysis_artifacts": [
+     "analysis/phase4_F18_reset_test.json",
+     "analysis/phase4_F18_streak_live.json",
+     "analysis/phase4_f16_f18_bonus_stage.json",
+     "analysis/phase4_f16_f18_written_bar_assessment.json"
+    ],
+    "vault_pages": [
+     "ObsidianVault/Experiments/EXP_2026-08-04_phase4_f16_f18_bonus_stage.md"
+    ],
+    "source_files": [],
+    "segments_entries": 0,
+    "stage_ordinal": "bonus",
+    "scene_id": null,
+    "overlay_name": null,
+    "overlay_matched_sources": [],
+    "overlay_build_entries": 0,
+    "overlay_track_totals": {
+     "functions": 158,
+     "matched": 15,
+     "pct": 9.49
+    },
+    "has_static_code_evidence": false,
+    "has_runtime_trace_evidence": true,
+    "declares_missing_work": true,
+    "declares_fixture_need": true
+   },
+   "measurability_triage": {
+    "original_oracle": "measurable: runtime evidence present in artifacts",
+    "complete_frontier": "measurable: static evidence present in artifacts",
+    "typed_state": "measurable: static evidence present in artifacts",
+    "lifecycle": "measurable: runtime evidence present in artifacts",
+    "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+    "original_interfaces": "measurable: static evidence present in artifacts",
+    "source_closure": "no byte-matched source registered for this row in EITHER registry (config/segments.yml resident, config/overlays.yml overlay)",
+    "campaign_breadth": "measurable: static evidence present in artifacts"
+   },
+   "row_declared_next": "Bounded. The stage side is closed by SYS_bonus_stage / EXP_2026-08-04_phase4_f16_f18_bonus_stage: 82 static pins plus a poll-only replay that measured BOTH sides of the decision boundary (672 frames with d2 never below 1859 and no fire, then 1592 and fire on frame 2683). Confirming variants 1 and 2 "
+  }
+ }
+}

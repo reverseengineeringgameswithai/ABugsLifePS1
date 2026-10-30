@@ -1,0 +1,480 @@
+[
+ {
+  "address": "0x800163e0",
+  "name": "gte_mesh_vertex_normal_transform",
+  "tier": "inferred",
+  "evidence": [
+   "Saves regs to scratchpad 0x1f800000, dense COP2/GTE vector pipeline",
+   "Calls VectorNormal (0x80060284) x3 on mesh edge vectors",
+   "Reads mesh header (vertex count lh at +12 of arg0), inits per-vertex table 0x80091a38 to -1 (4x -1 per stride-32)",
+   "callers scene_geometry_draw_dispatcher, dirt_object_dispatch, boss_defeat_fsm_mesh_transform"
+  ],
+  "rationale": "GTE-heavy per-vertex normal/transform setup for a mesh, driven by draw dispatchers"
+ },
+ {
+  "address": "0x80030d64",
+  "name": "all_model_file_load_unpack",
+  "tier": "inferred",
+  "evidence": [
+   "strcpy(buf,arg0)+strcat(buf,'.all' @0x80082130)+universal_file_loader(buf,*arg2)",
+   "first-load guard gp+1316, stashes ptr to *arg2",
+   "unpacks stride-0x30 records, scales XYZ lanes <<5 at +0/4/8",
+   "caller collision_grid_builder"
+  ],
+  "rationale": "Loads a <name>.ALL model/instance file and unpacks stride-0x30 records with XYZ<<5 scaling"
+ },
+ {
+  "address": "0x80039bd8",
+  "name": "pad_rumble_update",
+  "tier": "inferred",
+  "evidence": [
+   "splits arg0 into bit0 (small motor) and &0xfe (large motor); compares last-state 0x800a5cba/0x800a5cbb, early-out if unchanged",
+   "on change writes state + PadSetAct(0,table,2)",
+   "callers gameplay_frame_render, scene_flow_dispatcher, sfx_voice_trigger_gl_glue"
+  ],
+  "rationale": "Sets controller vibration via PadSetAct only when the requested motor state changed"
+ },
+ {
+  "address": "0x8003f2f0",
+  "name": "wait_for_frame_sync_flag",
+  "tier": "inferred",
+  "evidence": [
+   "EnterCriticalSection/ExitCriticalSection bracket",
+   "drains counter gp+1696, zeroes it; sets 0x80082250=1 and busy-spins until an ISR clears it",
+   "callers gameplay_state_reset_cursor_seed, level_transition_orchestrator, sub_8005b440, sub_8005b4ec"
+  ],
+  "rationale": "Drains a queued counter then blocks on an interrupt-cleared sync flag (frame/vblank sync)"
+ },
+ {
+  "address": "0x80046538",
+  "name": "build_level_asset_path",
+  "tier": "inferred",
+  "evidence": [
+   "index<10: 'level0'+'0'+idx -> level0N; >=10: 'level'+tens/ones -> levelNN; writes '\\\\'+NUL, strcat(arg2 suffix)",
+   "callers collision_grid_builder, collision_grid_level_load_chu_glue, resource_id_dat_load_dispatcher"
+  ],
+  "rationale": "Builds a per-level directory-prefixed asset path 'levelNN\\<suffix>'"
+ },
+ {
+  "address": "0x8004c10c",
+  "name": "actor_set_anim_sequence",
+  "tier": "inferred",
+  "evidence": [
+   "indexes ptr table 0x80077e28 by arg2<<2 -> frame-sequence ptr; stores it at obj+76, first byte<<16 at obj+64 (16.16 accumulator), arg1 at obj+68",
+   "called by 15 handlers incl player_vertical_update, seed_plant_cannon_handler"
+  ],
+  "rationale": "Assigns an animation frame-index sequence (and start param) to an actor object"
+ },
+ {
+  "address": "0x80052090",
+  "name": "collect_object_short_list",
+  "tier": "inferred",
+  "evidence": [
+   "writes header 5, scans 64 object slots 0x800a9d80 stride 0x84 (type==11 + subflags), appends shorts from 0x80082044",
+   "second pass over count-list stride 16, jump-table 0x8001b2dc on byte+12; terminates -1",
+   "caller sub_8005de60"
+  ],
+  "rationale": "Builds a -1-terminated int16 token list filtered from the object table plus a jump-table pass"
+ },
+ {
+  "address": "0x8005d53c",
+  "name": "chunk_pointer_relocate_index_fixup",
+  "tier": "inferred",
+  "evidence": [
+   "iterates arg0 entries (count+2, stride 12): relocates non-zero +8 offsets by chunk base",
+   "if arg1&0xff publishes gp+1412/gp+1180; remaps -2 sentinel shorts via allocator 0x80082298 into 0x8009b368",
+   "caller level_chunk_loader"
+  ],
+  "rationale": "Post-load relocation of intra-chunk pointers plus -2-sentinel index remapping"
+ },
+ {
+  "address": "0x80060614",
+  "name": "gte_set_geom_offset",
+  "tier": "inferred",
+  "evidence": [
+   "CTC2 writes arg0<<16 to GTE ctrl reg 24 (OFX), arg1<<16 to reg 25 (OFY) \u2014 .word 0x48c4c000/0x48c5c800",
+   "<<16 fixed-point = SetGeomOffset format",
+   "caller boot_subsystem_init"
+  ],
+  "rationale": "Sets the GTE screen offset registers OFX/OFY (SetGeomOffset equivalent)"
+ },
+ {
+  "address": "0x80067fb0",
+  "name": "seq_playback_state_init",
+  "tier": "inferred",
+  "evidence": [
+   "callers SsSeqCalledTbyT (SEQ tick), sub_80068134/815c; indexes SEQ table 0x800b01a0 by arg0",
+   "clears status bits, calls _SsVmSeqKeyOff, inits 16 channels (pan 64, vol 127), master vols 127"
+  ],
+  "rationale": "Initializes/resets a SEQ sequence playback structure (16 channels, key-off, default vols)"
+ },
+ {
+  "address": "0x80027c60",
+  "name": "gp_flags_and_buffers_clear",
+  "tier": "inferred",
+  "evidence": [
+   "Zeroes 7 gp-relative halfword flags: sh $zero at gp+1196,1228,1324,1584,1840,1616,1864",
+   "Calls memset (jal 0x8005f7ac) twice: buffer 0x800b0230 size 128, buffer 0x8009b3a8 size 512",
+   "No return value; pure state-clear routine"
+  ],
+  "rationale": "Resets a group of gp flag globals and memsets two fixed buffers to zero"
+ },
+ {
+  "address": "0x800322a0",
+  "name": "collision_edge_intersection_test",
+  "tier": "inferred",
+  "evidence": [
+   "Callers collision_resolve_pass and collision_resolver_accumulate",
+   "Iterates edge/vertex array at base 0x8009087C, computes 2D cross products, divides via integer div with break-guards, compares parameter t (sra 14) against -8192",
+   "Writes results to caller output pointers on stack, calls math helper 0x800602b0"
+  ],
+  "rationale": "Per-edge 2D segment/edge intersection test producing collision parameters"
+ },
+ {
+  "address": "0x8003f358",
+  "name": "seed_cursor_state_jump_dispatch",
+  "tier": "inferred",
+  "evidence": [
+   "Callers gameplay_state_reset_cursor_seed and sub_8005b440",
+   "Stores 0x800b5790 to gp+1416, bounds-checks (a0+1) via sltiu<19, jr through jump table 0x8001b048 indexed by (a0+1)*4"
+  ],
+  "rationale": "Sets a state pointer then dispatches to one of 19 handlers via jump table"
+ },
+ {
+  "address": "0x8003f620",
+  "name": "table_836byte_record_populate",
+  "tier": "inferred",
+  "evidence": [
+   "record index = a0*836; writes halfwords/bytes and copies 16-byte vector blocks from a3,t0 into table based at 0x800a...",
+   "single caller sub_80042c70"
+  ],
+  "rationale": "Populates one fixed-stride (836-byte) record in a large global table from caller vectors"
+ },
+ {
+  "address": "0x80046618",
+  "name": "level_file_path_build",
+  "tier": "inferred",
+  "evidence": [
+   "Caller collision_grid_level_load_chu_glue; callee strcat",
+   "Builds a string from template 0x80082260/0x80082268, formats index a0 as decimal via /10, appends digit chars + backslash, strcat-selects suffix by a2"
+  ],
+  "rationale": "Constructs a level chunk filename/path with numeric index and mode-selected suffix"
+ },
+ {
+  "address": "0x800502c4",
+  "name": "fmv_sequence_completion_check",
+  "tier": "inferred",
+  "evidence": [
+   "Caller scene_flow_dispatcher; callees fmv_bin_load and sub_8005038c",
+   "Sums 16 bytes of flag array at 0x800a-18312, tests total==112, on match sets flag |=2, gp+1612=1, fmv_bin_load(41)"
+  ],
+  "rationale": "Checks a 16-entry flag array for completion then triggers an FMV load"
+ },
+ {
+  "address": "0x800524b8",
+  "name": "xz_distance_within_radius_test",
+  "tier": "inferred",
+  "evidence": [
+   "Caller seed_plant_propeller_handler",
+   "Computes ((a0[0]-a1[0])>>8)^2 + ((a0[8]-a1[8])>>8)^2 and a2*a2; returns slt(distSq,a2Sq)"
+  ],
+  "rationale": "2D (XZ) squared-distance-within-radius boolean test"
+ },
+ {
+  "address": "0x80057920",
+  "name": "spawn_object_burst_ring",
+  "tier": "inferred",
+  "evidence": [
+   "Caller sub_8004c5e4; callees contact_object_spawn_full and play_sound(20)",
+   "Loops 8x reading angle/param table 0x80074970 (stride 1024), spawns object per iter, writes -3072 to s2+32, plays sound"
+  ],
+  "rationale": "Spawns a ring/burst of 8 objects from a parameter table and plays a sound"
+ },
+ {
+  "address": "0x80058378",
+  "name": "spawn_drop_burst_16",
+  "tier": "inferred",
+  "evidence": [
+   "Caller sfx_play_sound_glue; callee spawn_drop",
+   "Loops 16x calling spawn_drop with a3=119 type, stack param 5, passthrough s1/s2/s3"
+  ],
+  "rationale": "Spawns 16 drops of type 119 via spawn_drop"
+ },
+ {
+  "address": "0x8005d924",
+  "name": "level_chunk_file_load",
+  "tier": "inferred",
+  "evidence": [
+   "Caller level_load_chunks; callees load_named_file and sub_8002fce8",
+   "Indexes table 0x800a6300 by a3, sets gp+1448=1, stores handle 0x80082340, advances offset *s0, validates chunk id==9"
+  ],
+  "rationale": "Loads a named level chunk file into the streaming buffer, records handle/offset"
+ },
+ {
+  "address": "0x80060634",
+  "name": "gte_control_reg26_set",
+  "tier": "inferred",
+  "evidence": [
+   "Single COP2 instr 0x48c4d000 = ctc2 a0,cop2_control_reg26 then jr ra",
+   "Caller boot_subsystem_init"
+  ],
+  "rationale": "Writes its argument into GTE control register 26 during boot init"
+ },
+ {
+  "address": "0x800683f0",
+  "name": "sound_state_set_if_changed",
+  "tier": "inferred",
+  "evidence": [
+   "Caller sound_system_init",
+   "Reads global 0x80080eb8; if a0==current returns; else stores a0 to 0x80080eb8"
+  ],
+  "rationale": "Conditionally updates a sound-subsystem global only when the arg differs"
+ },
+ {
+  "address": "0x80029578",
+  "name": "gp_state_clear_three_shorts",
+  "tier": "inferred",
+  "evidence": [
+   "20-byte leaf: sh $zero to gp+1280, gp+1272, gp+1866 then jr ra",
+   "sole caller level_load_chunks"
+  ],
+  "rationale": "Zeroes three gp-relative halfword state globals at level load"
+ },
+ {
+  "address": "0x80038fc4",
+  "name": "build_division_lookup_tables",
+  "tier": "inferred",
+  "evidence": [
+   "Two index loops with div + break-6/7 guards, mflo quotient",
+   "Loop1 writes 6072 halfwords to 0x800a3390 clamped <4096; loop2 1024 entries to 0x800963a8 clamped <4896",
+   "sole caller boot_video_audio_init"
+  ],
+  "rationale": "Boot-time generation of two fixed-point reciprocal/division lookup tables"
+ },
+ {
+  "address": "0x8003e3e0",
+  "name": "resource_load_buffers_reset",
+  "tier": "inferred",
+  "evidence": [
+   "Five memset calls clearing 0x80096da0(256),0x80090358(25200),0x800a7e48(0x8340),scratchpad 0x1f800000 twice(1024)",
+   "Fills 256B table 0x800a7b47 with 128, sets gp+1028/960/964 to -1, zeroes 0x8008xxxx globals",
+   "sole caller resource_id_dat_load_dispatcher; calls sub_80027c60,sub_8003f5fc"
+  ],
+  "rationale": "Clears subsystem buffers/globals during resource(DAT) load"
+ },
+ {
+  "address": "0x8003f4d4",
+  "name": "set_draw_env_offset",
+  "tier": "inferred",
+  "evidence": [
+   "Stores (a0,a1) to gp+1332/gp+1336 and to 0x801CC508/0A and 0x801E14C4/C6 (double buffer)",
+   "callers boot_video_audio_init, main_shell_state_machine, sub_80055538"
+  ],
+  "rationale": "Records an (x,y) draw offset into gp state and both display buffers"
+ },
+ {
+  "address": "0x80049c30",
+  "name": "mover_init_from_record",
+  "tier": "inferred",
+  "evidence": [
+   "Reads source record ptr obj[+0x80]; copies record XYZ (word<<5) to obj+4/8/12 and prev-pos obj+40/44/48",
+   "byte13<<2 indexes descriptor table 0x80077af8 -> obj+112; zeroes velocity obj+16..36",
+   "callers mover_updater, sub_8004a42c"
+  ],
+  "rationale": "Initializes a mover actor instance from its LEVEL.DAT source record"
+ },
+ {
+  "address": "0x8005038c",
+  "name": "scene_setup_and_load",
+  "tier": "inferred",
+  "evidence": [
+   "Saves+zeroes 0x80082504; gated a1!=-1 sets 0x800821ac=a1+1084, calls display_buffers_init(0x80039478) + resource_id_dat_load_dispatcher(0x8003cf2c) + 0x800b96e4(a0)",
+   "callers main_shell_state_machine, scene_flow_dispatcher, sub_800502c4"
+  ],
+  "rationale": "Wraps display-buffer init + DAT resource load for entering a scene"
+ },
+ {
+  "address": "0x80055414",
+  "name": "scene_flow_state_table_init",
+  "tier": "inferred",
+  "evidence": [
+   "Writes header {5,1} at a0+0/+1, clears 19 bytes at a0+2",
+   "Fills 64 five-byte records at a0+28 with {0x64,0xFF,0xFF,0xFF,0xFF}",
+   "sole caller scene_flow_dispatcher"
+  ],
+  "rationale": "Initializes a scene-flow struct with default 64-entry 5-byte record table"
+ },
+ {
+  "address": "0x800579e0",
+  "name": "spawn_objects_radial_ring",
+  "tier": "inferred",
+  "evidence": [
+   "8-iter loop (s0 0->4096 step 512) reads sine table 0x80074970 (stride 0x400) with +0x200 quadrature for cosine",
+   "contact_object_spawn_full with center XYZ, computed direction, params 64,44",
+   "sole caller seed_plant_type7_handler"
+  ],
+  "rationale": "Spawns 8 objects in a radial ring using a sine/cosine table"
+ },
+ {
+  "address": "0x8005f4ec",
+  "name": "reset_actor_slot_field50",
+  "tier": "inferred",
+  "evidence": [
+   "Indexes scene actor via 0x800a6300[a0[0]], count at +4, *84 stride",
+   "Clears halfword slot+0x32 for slots 0..19 (skip 4,7) in 0x80099F58 and 26..28 in 0x8009A7E0",
+   "callers gameplay_state_reset_cursor_seed, player_vertical_update, resident_level_transition_initiator, seed_plant_cannon_handler"
+  ],
+  "rationale": "Clears the +0x32 halfword state field across ranges of 84-byte actor slots"
+ },
+ {
+  "address": "0x800666c8",
+  "name": "interrupt_handler_dequeue",
+  "tier": "inferred",
+  "evidence": [
+   "EnterCriticalSection -> SysDeqIntRP(priority=1, cb=0x80086A90) -> ExitCriticalSection, returns 1",
+   "sole caller sub_80066618"
+  ],
+  "rationale": "Removes an interrupt-priority-chain handler in a critical section (SysDeqIntRP)"
+ },
+ {
+  "address": "0x8006ce40",
+  "name": "ss_vab_set_transfer_mode",
+  "tier": "inferred",
+  "evidence": [
+   "Sets 0x800814F8 to 0 when a0==1 else 1; 44-byte leaf",
+   "callers SsVabOpenHeadWithMode, SsVabTransBody, _SsVmInit (libsnd)"
+  ],
+  "rationale": "libsnd internal: sets a VAB/SPU transfer-mode flag from the arg"
+ },
+ {
+  "address": "0x8002fce8",
+  "name": "parse_chunk_record_table",
+  "tier": "inferred",
+  "evidence": [
+   "callers level_chunk_loader, load_named_file",
+   "a1 = pointer-cursor into a count-prefixed stream; iterates 76-byte records, filters field+0x14<256, copies words +8/12/16/20 + halfwords into 84-byte-stride array 0x8009xxxx",
+   "handles 0x12345678 relocation placeholder via pointer table; returns count"
+  ],
+  "rationale": "Parses a count-prefixed 76-byte record stream into an 84-byte resident array with pointer relocation"
+ },
+ {
+  "address": "0x80039a20",
+  "name": "graphics_reset_teardown",
+  "tier": "inferred",
+  "evidence": [
+   "caller scene_flow_dispatcher",
+   "DrawSync(0)x2, VSync(0)x2, StopCallback(), vsync_wait_glue, ResetGraph(3)"
+  ],
+  "rationale": "Drains GPU/vsync, stops callbacks, ResetGraph(3): graphics subsystem teardown"
+ },
+ {
+  "address": "0x8003eec8",
+  "name": "dat_load_256byte_table",
+  "tier": "inferred",
+  "evidence": [
+   "caller dat_parser_relocator; only callee memset",
+   "a0==0: memset(0x800901C8,0xFF,256), gp+1236=-1; else lwl/lwr copy 256B from [0x80089c9c]+24 into 0x800901C8, clears gp+1236/1240"
+  ],
+  "rationale": "Loads or 0xFF-clears a 256-byte lookup table at 0x800901C8 during DAT parsing"
+ },
+ {
+  "address": "0x8003f5b8",
+  "name": "load_memory_bin",
+  "tier": "inferred",
+  "evidence": [
+   "caller main_shell_state_machine",
+   "universal_file_loader('bits\\\\memory.bin' @0x8001ADFC, buf 0x800B5788); installs gp+1416=0x800D5790, calls setup 0x800bd518"
+  ],
+  "rationale": "Loads bits\\memory.bin into a buffer and installs its base pointer"
+ },
+ {
+  "address": "0x80042dcc",
+  "name": "get_current_actor_xyz",
+  "tier": "inferred",
+  "evidence": [
+   "caller actor_skinned_update; leaf",
+   "reads count at 0x800A6580, (count-1) indexes stride-836 array, reads words +0/4/8, stores to *a0/*a1/*a2; blez guard when count<=0"
+  ],
+  "rationale": "Returns XYZ of the current (count-1) slot of an 836-byte-stride array via output pointers"
+ },
+ {
+  "address": "0x8004a42c",
+  "name": "object_slot_type_init",
+  "tier": "inferred",
+  "evidence": [
+   "caller collision_grid_level_load_chu_glue; callees collision_candidate_builder, memset, sub_80049c30",
+   "memsets 0x800A9D80(8448),0x800B2744(512); loops 64 slots stride 132, jr jump-table on (type-6)<36 (table 0x8002B2E4) writing handler ptrs to slot+116, calls collision_candidate_builder per slot"
+  ],
+  "rationale": "Initializes the 64-slot object array, dispatching per type byte to install handlers + collision candidates"
+ },
+ {
+  "address": "0x80051358",
+  "name": "sfx_proximity_priority_gate",
+  "tier": "inferred",
+  "evidence": [
+   "11 callers, all effect/spawn/sound emitters",
+   "squared 3D distance ((listener-arg)>>8)^2 over x,y,z from listener 0x800A6500/6504/6508; early-out dist>=0xFE00; else if closer than stored nearest, records new pos/params and updates counter"
+  ],
+  "rationale": "Squared-distance proximity gate tracking the nearest positional sound source to the listener"
+ },
+ {
+  "address": "0x80055538",
+  "name": "scene_config_apply",
+  "tier": "inferred",
+  "evidence": [
+   "caller scene_flow_dispatcher; callees cd_mix_shim, sub_8003f4d4",
+   "unpacks struct a0 into resident globals (byte0->0x800A6560, halfwords 24/26->set_draw_env_offset), bytes 22/23 index tables feeding cd_mix_shim, copies 19 bytes + 64 5-byte records"
+  ],
+  "rationale": "Applies a scene descriptor struct into resident config globals and kicks CD mix setup"
+ },
+ {
+  "address": "0x80057a94",
+  "name": "spawn_drop_burst_effect",
+  "tier": "inferred",
+  "evidence": [
+   "caller sub_8004c5d4; callees spawn_drop, play_sound",
+   "double loop (8 x 0..2) issues ~24 spawn_drop calls then play_sound(24,obj+4,-3072)->obj+32; gates bit 0x2 in obj+92"
+  ],
+  "rationale": "Spawns a burst of ~24 drops at an object and plays the accompanying sound"
+ },
+ {
+  "address": "0x8005bc64",
+  "name": "plant_slot_respawn_scan",
+  "tier": "inferred",
+  "evidence": [
+   "caller gameplay_state_reset_cursor_seed; callees memset, plant_spawn",
+   "memset(0x80090BF0,0,960); loops 64 slots stride 132 at 0x800A9D80; type==11 and (hw+0x5C&0x120)==0x120 -> adjust field+8, plant_spawn(slot)"
+  ],
+  "rationale": "Scans the 64 object slots and re-spawns type-11 (plant) entries via plant_spawn"
+ },
+ {
+  "address": "0x8005f5b8",
+  "name": "record_array_state_field_set",
+  "tier": "inferred",
+  "evidence": [
+   "caller sfx_play_sound_glue; leaf",
+   "a0[0] indexes 0x800A6300, field+4 *84 -> 84-byte record array; loop1 sets hw+0x32=1 for records 0..19 (skip 4,7); loop2 +0x32=2 for 26..28"
+  ],
+  "rationale": "Sets the +0x32 state halfword across a range of the 84-byte record array keyed off a sound/voice slot"
+ },
+ {
+  "address": "0x80067bf8",
+  "name": "sound_lib_init_sequence",
+  "tier": "inferred",
+  "evidence": [
+   "caller sound_system_init",
+   "ResetCallback(), spu__spu_init_glue(), _SsInit() in sequence; 48-byte wrapper"
+  ],
+  "rationale": "Ordered SPU/sound-library initialization wrapper"
+ },
+ {
+  "address": "0x80070d60",
+  "name": "stream_config_store",
+  "tier": "inferred",
+  "evidence": [
+   "caller StSetStream (libpress); leaf",
+   "stores a0->0x800B0D08, a1->0x8009538C, a2->0x800B0CC0; 32-byte setter"
+  ],
+  "rationale": "Stashes three streaming-config arguments into globals for StSetStream"
+ }
+]

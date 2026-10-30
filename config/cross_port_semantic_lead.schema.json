@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://abl.invalid/schemas/cross-port-semantic-lead-v1.json",
+  "title": "ABL inbound cross-port semantic lead",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "lead_id",
+    "direction",
+    "status",
+    "purpose",
+    "source",
+    "target",
+    "question",
+    "signature",
+    "nonclaims",
+    "verification_required"
+  ],
+  "properties": {
+    "schema": {"const": "abl-cross-port-semantic-lead-v1"},
+    "lead_id": {"type": "string", "pattern": "^PC2PS1-[A-Z0-9][A-Z0-9-]{7,95}$"},
+    "direction": {"const": "pc-to-ps1"},
+    "status": {"const": "external_lead"},
+    "purpose": {"enum": ["calibration", "discovery"]},
+    "source": {"$ref": "#/$defs/source"},
+    "target": {"$ref": "#/$defs/target"},
+    "question": {"type": "string", "minLength": 1, "maxLength": 1000},
+    "signature": {"$ref": "#/$defs/signature"},
+    "nonclaims": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 500}
+    },
+    "verification_required": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 500}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "binary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sha256", "architecture"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1, "maxLength": 100},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "architecture": {"type": "string", "minLength": 1, "maxLength": 64}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "blob_sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1, "maxLength": 500},
+        "blob_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"enum": ["function", "instruction_window", "data", "file_offset"]},
+        "value": {"type": "string", "minLength": 1, "maxLength": 100}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "repository_commit", "binary", "locator", "evidence"],
+      "properties": {
+        "project": {"const": "ABLPC"},
+        "repository_commit": {"$ref": "#/$defs/commit"},
+        "binary": {"$ref": "#/$defs/binary"},
+        "locator": {"$ref": "#/$defs/locator"},
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/evidence"}
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "binary"],
+      "properties": {
+        "project": {"const": "ABL"},
+        "binary": {"$ref": "#/$defs/binary"}
+      }
+    },
+    "feature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "semantic", "attributes", "weight", "required"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "table_shape",
+            "index_expression",
+            "operation",
+            "guard",
+            "threshold",
+            "state_transition",
+            "control_flow",
+            "selector_domain",
+            "call_shape"
+          ]
+        },
+        "semantic": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{1,95}$"},
+        "attributes": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 16,
+          "additionalProperties": {"type": ["string", "integer", "boolean"]}
+        },
+        "weight": {"type": "integer", "minimum": 1, "maximum": 100},
+        "required": {"type": "boolean"}
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normal_form", "features"],
+      "properties": {
+        "normal_form": {"const": "abl-semantic-feature-set-v1"},
+        "features": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "items": {"$ref": "#/$defs/feature"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "row": "C02_fifty_grain_reward",
+  "date": "2026-08-03",
+  "classification": "substantiated_partial_bounded_exhaustion",
+  "media": {
+    "serial": "SCUS-94288",
+    "cue": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "executable": "REBUILD/files/SCUS_942.88",
+    "executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  "capsule": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/C02_grain_49_to_50",
+    "manifest_sha256": "f89163cd15655275a529c44a3382308e9c14a194e23a761aa41cdc7e8e9a7e8e",
+    "preservation_index": "analysis/phase4_trace_capsule_set.json",
+    "movie": "movies/Phase4/C02_grain_49_to_50.movie.json",
+    "movie_sha256": "cff9196b7b8b9d9c8391a57c85907a0271b4ff563ec8475ea676fac82012e90c",
+    "state": "movies/Phase4/C02_grain_49_to_50.movie.sav",
+    "state_sha256": "a6291970431030b5aefd8455b73c68583f10417c73e97ac820be249ee4859ebb",
+    "frames": {
+      "emulator_first": 200029,
+      "emulator_last": 200466,
+      "movie_first": 0,
+      "movie_last": 437,
+      "boundaries": 438
+    },
+    "integrity": {
+      "chunks": 8,
+      "domain_hash_checks": 1314,
+      "domain_hash_mismatches": 0,
+      "flow_items": 617333,
+      "instructions": 16797938,
+      "truncated": false
+    },
+    "reduction_sha256": "37bc5fc7ae9a7fb9e0765df55679b729d4cbcd40485ede61d76ab7c16bddba8f"
+  },
+  "natural_event": {
+    "emulator_frame": 200189,
+    "movie_frame": 160,
+    "scene": 17,
+    "grain_count": {"before": 49, "after": 50},
+    "true_health_0x800a6594": {"before": 4, "after": 4, "writer_value": 4},
+    "lives_0x800a65a0": {"before": 1, "after": 1},
+    "hud_frame_boundary": {
+      "0x800b0188_extra_life_channel": 0,
+      "0x800b018c_grain_channel": 128,
+      "0x800b0190_reward_channel": 128
+    },
+    "flow_hits": {
+      "grain_handler_0x80054eac": 1,
+      "count_block_0x80054f88": 1,
+      "exact_50_block_0x80055014": 1,
+      "sound_dispatch_0x8005044c": 2,
+      "type3f_caller_0x80054278": 1
+    }
+  },
+  "instruction_order": [
+    {"pc": "0x80054F9C", "effect": "grain count byte stores 50"},
+    {"pc_range": "0x80054FA0..0x80054FF8", "effect": "ordinary grain HUD pulse 0x800B018C"},
+    {"pc": "0x8005500C", "effect": "post-increment equality gate accepts exactly 50"},
+    {"pc_range": "0x80055014..0x8005505C", "effect": "player snapshot and scale 1024 written to 0x80090B80..0x80090B90"},
+    {"pc": "0x80055060", "effect": "0x8005044C called with event/sound id -11"},
+    {"pc": "0x80055078", "effect": "constant-address inequality skips extra-life and 0x800B0188 path"},
+    {"pc": "0x80055124", "effect": "true health 0x800A6594 set to 4"},
+    {"pc_range": "0x80055128..0x80055170", "effect": "reward HUD pulse 0x800B0190"}
+  ],
+  "accelerated_control": {
+    "method": "DuckStation debugger.callFunction in isolated disposable instance",
+    "function": "0x80054EAC",
+    "anchor_frame": 200029,
+    "config_dir": "/tmp/duckstation-c02-GGi5Vj",
+    "port": 28743,
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+    "control_48_to_49": {
+      "forced_true_health_before": 1,
+      "true_health_after": 1,
+      "lives_after": 1,
+      "grain_hud_after": 64,
+      "reward_hud_after": 0,
+      "emblem_structure_changed": false
+    },
+    "treatment_49_to_50": {
+      "forced_true_health_before": 1,
+      "true_health_after": 4,
+      "lives_after": 1,
+      "grain_hud_after": 64,
+      "reward_hud_after": 64,
+      "emblem_structure_changed": true,
+      "emblem_scale": 1024
+    },
+    "cleanup": "anchor reloaded, traces and breakpoints cleared, owned PID 930155 stopped through its config launcher",
+    "persistent_files_mutated": false
+  },
+  "presentation_lifetime": {
+    "reward_hud_0x800b0190": {
+      "armed_movie_frame": 160,
+      "last_nonzero_movie_frame": 283,
+      "zero_movie_frame": 284
+    },
+    "emblem_effect_0x80090b80": {
+      "armed_movie_frame": 160,
+      "last_active_movie_frame": 409,
+      "sentinel_movie_frame": 410
+    },
+    "grain_count_at_final_movie_frame": 50,
+    "true_health_at_final_movie_frame": 4
+  },
+  "save_boundary": {
+    "serializer": "FUNC_80055478",
+    "serialized_fields": "lives, one scene halfword byte, 19-byte header, and 64 five-byte scene records",
+    "grain_count_directly_serialized": false,
+    "true_health_directly_serialized": false,
+    "emblem_structure_directly_serialized": false,
+    "conclusion": "The pickup reward is immediate per-level state. Downstream results/campaign/movie flags are separate consumers and are not written by 0x80054EAC."
+  },
+  "canon_corrections": [
+    "0x800A6594 is true health and is set to 4 by the exact-50 branch.",
+    "0x800A7E2A is a free-running HUD/leaf animation counter, not true health.",
+    "The retail extra-life block and 0x800B0188 pulse are unreachable because 0x80090B80 and 0x800B3988 are unequal constants.",
+    "The visible grain emblem is transient presentation; completion remains count-derived at 0x800A65A1==50."
+  ],
+  "transient_evidence": {
+    "handler_static_sha256": "14d66737c9b2eb9021110897cb016f2170c8bd00cf443d9f46b8e0c967e8e704",
+    "xrefs_source_sha256": "152b469f2d5418c34154733d3623cf3c049caf6538ecf45e3baa742e599d3a1e",
+    "xrefs_output_sha256": "a0465e219f730a00624f97b145646f0d6b335fa17a7f0a03f05929c7e907b280",
+    "state_decoder_source_sha256": "1a8593aa1890e9f5ed7a0ee082516641c17d47fae8e5cd64a11f2c1eb380da20",
+    "state_decoder_output_sha256": "1e5f16c70669790dc85736c4488d04dcb0fdeff6b1667c9032a995a5545b7d54",
+    "effect_changes_sha256": "0ac7678af7c5b31c5a80391b72a7a088f1fdf7ccc3aec6bb7f02f6fa3a1da12a",
+    "reward_hud_changes_sha256": "e0373fc2c610884e691327d2771d899a8a5fee6fe9193123d652bb7f93b4c3fa"
+  },
+  "bounded_residuals": [
+    "No natural damaged-health 49-to-50 movie was required after the matched accelerated control established the causal write.",
+    "Results-screen campaign flags, save-menu consequences, and movie unlock presentation are downstream rows E13, E14, and C17 rather than writes owned by the reward handler."
+  ],
+  "interpreter_movie_required": false
+}

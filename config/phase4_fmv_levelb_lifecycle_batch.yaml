@@ -1,0 +1,91 @@
+schema: abl-phase4-duckstation-batch/1
+campaign_id: fmv_playback
+row_ids: [E15_fmv]
+escalation_ids: [P4-ITER86-E15-LEVELB-LIFECYCLE-CONTROL]
+expected_media: &pristine_media
+  path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  serial: SCUS-94288
+  title: Disney-Pixar A Bug's Life
+  sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  tracks:
+    - path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin
+      sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+expected_debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 55d589032641ad0904526742f2209c034a710a162ebba3e1bc04b4c5da6075a8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty: true
+  dirty_state_hash: 72dd936c8a6f92f6370815da7d9e192c3bcc2371
+continue_on_error: true
+
+jobs:
+  - id: level1b_full_movie_positive
+    recipe: bootAndRun
+    media_path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+    fast_boot: true
+    expected_media: *pristine_media
+    movie:
+      path: ~/Downloads/ABL/movies/100% Runs/LEVEL01.movie.json
+    instrumentation: &levelb_trace
+      - method: functionTrace.start
+        params:
+          functions: [0x8003E7C0, 0x8007094C, 0x800709AC]
+          capture_memory: false
+          max_events: 64
+      - method: accessLog.addWatch
+        params:
+          address: 0x80131EEE
+          length: 2
+          type: write
+          label: selected_frame_limit
+          max_events: 32
+      - method: accessLog.addWatch
+        params:
+          address: 0x800CAC10
+          length: 4
+          type: write
+          label: completion_request
+          max_events: 32
+      - method: execTrace.addWatch
+        params:
+          pc: 0x8005031C
+          label: completed_level_b_call
+          capture: [a0, a1, v0, v1, ra, sp]
+          max_events: 8
+    run: &shared_run
+      frames: 18000
+    capture: &shared_capture
+      trigger: e15_levelb_post_frame_18000
+      include_registers: true
+      trace_limit: 128
+      memory_dumps:
+        - {label: music_progress_id, address: 0x8008245C, length: 0x2}
+        - {label: fmv_running_latch, address: 0x80082250, length: 0x4}
+        - {label: shell_substate, address: 0x8008243C, length: 0x4}
+        - {label: scene, address: 0x80082504, length: 0x4}
+        - {label: str_backloc, address: 0x80088FFC, length: 0x4}
+        - {label: fmv_bin_head, address: 0x800B5788, length: 0x100}
+        - {label: completion_request, address: 0x800CAC10, length: 0x4}
+        - {label: selected_frame_limit, address: 0x80131EEE, length: 0x2}
+
+  - id: cold_boot_no_input_control
+    recipe: bootAndRun
+    media_path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+    fast_boot: true
+    expected_media: *pristine_media
+    instrumentation: *levelb_trace
+    run: *shared_run
+    capture: *shared_capture
+
+control_pairs:
+  - positive_job: level1b_full_movie_positive
+    negative_job: cold_boot_no_input_control
+    assertion: >-
+      From identical fast cold boots of the hash-verified pristine disc and the
+      same 18,000-frame bound, only the centrally pinned LEVEL01 input movie
+      may reach the completed-level-B call. The positive must enter fmv_bin_load
+      from 0x8005031C with table selector 11 and mode -1, select limit 485 for
+      LEV1B, publish normal completion, and execute the balanced common
+      StClearRing/callback-teardown exit. The no-input control must not reach
+      that caller or selector.

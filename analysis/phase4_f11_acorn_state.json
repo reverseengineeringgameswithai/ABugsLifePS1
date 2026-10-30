@@ -1,0 +1,590 @@
+{
+ "row": "F11_the_tree",
+ "question": "what the acorn state machine downstream of 0x800B41A8 does",
+ "movie": "~/Downloads/ABL/movies/Phase4/Interpreter/Any% Runs/LEVEL11_THETREE.movie.json",
+ "static_prediction": "an acorn that is MARKED (flags 0x1000 set, 0x4000 clear), has nonzero HP, and is NOT present in the live actor table 0x80090748 gets RETIRED: +0x6E := 0 (PC 0x800B4218), +0x5A := 0 (0x800B421C), +0x62 := 5 (0x800B4220)",
+ "falsifiable_as": "if no acorn's +0x6E goes to 0 from 0x800B4218, or +0x62 never becomes 5 from 0x800B4220, the retirement reading is wrong",
+ "frames": 12107,
+ "final_playback_index": 0,
+ "event_total": 156,
+ "ring_truncated": false,
+ "by_field": {
+  "0x800A150E": {
+   "label": "acorn0.plus5A",
+   "writes": 3,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b421c",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0
+   ]
+  },
+  "0x800A1516": {
+   "label": "acorn0.plus62",
+   "writes": 10,
+   "writer_pcs": [
+    [
+     "0x8004d40c",
+     5
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x80049cc0",
+     2
+    ],
+    [
+     "0x800b4220",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    99
+   ]
+  },
+  "0x800A1522": {
+   "label": "acorn0.hp",
+   "writes": 5,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x80049ca0",
+     2
+    ],
+    [
+     "0x800b4218",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0,
+    101
+   ]
+  },
+  "0x800A1592": {
+   "label": "acorn1.plus5A",
+   "writes": 3,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b421c",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0
+   ]
+  },
+  "0x800A159A": {
+   "label": "acorn1.plus62",
+   "writes": 10,
+   "writer_pcs": [
+    [
+     "0x8004d40c",
+     5
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x80049cc0",
+     2
+    ],
+    [
+     "0x800b4220",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    99
+   ]
+  },
+  "0x800A15A6": {
+   "label": "acorn1.hp",
+   "writes": 5,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x80049ca0",
+     2
+    ],
+    [
+     "0x800b4218",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0,
+    101
+   ]
+  },
+  "0x800A1616": {
+   "label": "acorn2.plus5A",
+   "writes": 4,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b421c",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0
+   ]
+  },
+  "0x800A161E": {
+   "label": "acorn2.plus62",
+   "writes": 17,
+   "writer_pcs": [
+    [
+     "0x8004d40c",
+     10
+    ],
+    [
+     "0x80049cc0",
+     3
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b4220",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    99
+   ]
+  },
+  "0x800A162A": {
+   "label": "acorn2.hp",
+   "writes": 7,
+   "writer_pcs": [
+    [
+     "0x80049ca0",
+     3
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b4218",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0,
+    101
+   ]
+  },
+  "0x800A169A": {
+   "label": "acorn3.plus5A",
+   "writes": 5,
+   "writer_pcs": [
+    [
+     "0x800b421c",
+     3
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0
+   ]
+  },
+  "0x800A16A2": {
+   "label": "acorn3.plus62",
+   "writes": 24,
+   "writer_pcs": [
+    [
+     "0x8004d40c",
+     15
+    ],
+    [
+     "0x80049cc0",
+     4
+    ],
+    [
+     "0x800b4220",
+     3
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    99
+   ]
+  },
+  "0x800A16AE": {
+   "label": "acorn3.hp",
+   "writes": 9,
+   "writer_pcs": [
+    [
+     "0x80049ca0",
+     4
+    ],
+    [
+     "0x800b4218",
+     3
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0,
+    101
+   ]
+  },
+  "0x800A171E": {
+   "label": "acorn4.plus5A",
+   "writes": 2,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0
+   ]
+  },
+  "0x800A1726": {
+   "label": "acorn4.plus62",
+   "writes": 3,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x80049cc0",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0,
+    99
+   ]
+  },
+  "0x800A1732": {
+   "label": "acorn4.hp",
+   "writes": 3,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x80049ca0",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0,
+    101
+   ]
+  },
+  "0x800A17A2": {
+   "label": "acorn5.plus5A",
+   "writes": 4,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b421c",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0
+   ]
+  },
+  "0x800A17AA": {
+   "label": "acorn5.plus62",
+   "writes": 17,
+   "writer_pcs": [
+    [
+     "0x8004d40c",
+     10
+    ],
+    [
+     "0x80049cc0",
+     3
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b4220",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    99
+   ]
+  },
+  "0x800A17B6": {
+   "label": "acorn5.hp",
+   "writes": 7,
+   "writer_pcs": [
+    [
+     "0x80049ca0",
+     3
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b4218",
+     2
+    ]
+   ],
+   "distinct_values": [
+    0,
+    101
+   ]
+  },
+  "0x800A1826": {
+   "label": "acorn6.plus5A",
+   "writes": 3,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x800b421c",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0
+   ]
+  },
+  "0x800A182E": {
+   "label": "acorn6.plus62",
+   "writes": 10,
+   "writer_pcs": [
+    [
+     "0x8004d40c",
+     5
+    ],
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x80049cc0",
+     2
+    ],
+    [
+     "0x800b4220",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    99
+   ]
+  },
+  "0x800A183A": {
+   "label": "acorn6.hp",
+   "writes": 5,
+   "writer_pcs": [
+    [
+     "0xbfc02bb0",
+     2
+    ],
+    [
+     "0x80049ca0",
+     2
+    ],
+    [
+     "0x800b4218",
+     1
+    ]
+   ],
+   "distinct_values": [
+    0,
+    101
+   ]
+  }
+ },
+ "findings": {
+  "retirement_hp_zero_events": [
+   {
+    "acorn": 3,
+    "f": 114202
+   },
+   {
+    "acorn": 3,
+    "f": 114849
+   },
+   {
+    "acorn": 3,
+    "f": 115222
+   },
+   {
+    "acorn": 6,
+    "f": 116704
+   },
+   {
+    "acorn": 2,
+    "f": 117080
+   },
+   {
+    "acorn": 2,
+    "f": 118425
+   },
+   {
+    "acorn": 5,
+    "f": 119138
+   },
+   {
+    "acorn": 5,
+    "f": 120082
+   },
+   {
+    "acorn": 1,
+    "f": 120398
+   },
+   {
+    "acorn": 0,
+    "f": 120926
+   }
+  ],
+  "retirement_plus62_events": [
+   {
+    "acorn": 3,
+    "f": 114202,
+    "v": 5
+   },
+   {
+    "acorn": 3,
+    "f": 114849,
+    "v": 5
+   },
+   {
+    "acorn": 3,
+    "f": 115222,
+    "v": 5
+   },
+   {
+    "acorn": 6,
+    "f": 116704,
+    "v": 5
+   },
+   {
+    "acorn": 2,
+    "f": 117080,
+    "v": 5
+   },
+   {
+    "acorn": 2,
+    "f": 118425,
+    "v": 5
+   },
+   {
+    "acorn": 5,
+    "f": 119138,
+    "v": 5
+   },
+   {
+    "acorn": 5,
+    "f": 120082,
+    "v": 5
+   },
+   {
+    "acorn": 1,
+    "f": 120398,
+    "v": 5
+   },
+   {
+    "acorn": 0,
+    "f": 120926,
+    "v": 5
+   }
+  ],
+  "acorns_retired": [
+   0,
+   1,
+   2,
+   3,
+   5,
+   6
+  ],
+  "plus62_values_at_retire": [
+   5
+  ],
+  "verdict": "CONFIRMED: 10 retirement(s) across acorn(s) [0, 1, 2, 3, 5, 6] -- 0x800B4218 zeroes +0x6E and 0x800B4220 writes +0x62 = 5, exactly as the static read predicted. The acorn state machine is a RETIREMENT path for a marked acorn that has left the live actor table."
+ }
+}

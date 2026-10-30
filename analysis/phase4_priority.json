@@ -1,0 +1,426 @@
+{
+ "_comment": "Phase-4 WP1 priority derived from the authoritative row map, Phase-3 function/state/overlay surfaces, and current baseline gaps. Regenerate: python3 tools/phase4_priority.py",
+ "generated": "2026-07-30",
+ "inputs": {
+  "campaign_registry": {
+   "path": "config/phase4_campaigns.yaml",
+   "sha256": "5c63e8dba345c8649855494431d4e1db583ad864d23fe89c740788b5406659be"
+  },
+  "mechanics": {
+   "path": "analysis/mechanics_baseline.yaml",
+   "sha256": "5cd925e5681952d565a2c3606fb06a57bbf4587c7957f020edf891916892169c",
+   "rows": 107
+  },
+  "ownership": {
+   "path": "analysis/phase3_ownership_graph.json",
+   "sha256": "ccdceb2122f6244dbb7f63e0243514712c5a6e8e5cdcae1aca4df65f825cb015"
+  }
+ },
+ "registry_gaps": [],
+ "active_mod_demand_terms": [],
+ "low_level_checks": {
+  "registry_valid": true,
+  "all_twelve_ranked": true,
+  "core_substrates_are_tier_one": true,
+  "priority_uses_shared_surface": true,
+  "priority_uses_baseline_gaps": true,
+  "active_mod_demand_not_a_priority_input": true
+ },
+ "work_package_1_met": true,
+ "priority_order": [
+  "input_player_actions",
+  "player_lifecycle",
+  "objects_events_hazards",
+  "audio_cinematics",
+  "loading_overlays_resources",
+  "movement_world_physics",
+  "rendering_camera_animation",
+  "enemies_combat",
+  "collectibles_equipment_rewards",
+  "seeds_plants_traversal_powers",
+  "hud_frontend_persistence",
+  "bosses_special_objectives"
+ ],
+ "families": [
+  {
+   "family": "input_player_actions",
+   "number": 1,
+   "priority_tier": 1,
+   "primary_rows": 11,
+   "coverage_gap_rows": [],
+   "coverage_gap_count": 0,
+   "owned_semantic_symbols": 52,
+   "dependent_family_count": 11,
+   "shared_symbol_edges": 159,
+   "shared_by_family": {
+    "audio_cinematics": 3,
+    "bosses_special_objectives": 15,
+    "collectibles_equipment_rewards": 16,
+    "enemies_combat": 22,
+    "hud_frontend_persistence": 7,
+    "loading_overlays_resources": 3,
+    "movement_world_physics": 16,
+    "objects_events_hazards": 10,
+    "player_lifecycle": 8,
+    "rendering_camera_animation": 40,
+    "seeds_plants_traversal_powers": 19
+   },
+   "priority_basis": "Core producer of player, physics, animation, combat, plant, camera, and audio state transitions."
+  },
+  {
+   "family": "player_lifecycle",
+   "number": 2,
+   "priority_tier": 1,
+   "primary_rows": 2,
+   "coverage_gap_rows": [
+    "C15_respawn_anchor",
+    "C16_lives_gameover"
+   ],
+   "coverage_gap_count": 2,
+   "owned_semantic_symbols": 37,
+   "dependent_family_count": 11,
+   "shared_symbol_edges": 133,
+   "shared_by_family": {
+    "audio_cinematics": 2,
+    "bosses_special_objectives": 13,
+    "collectibles_equipment_rewards": 37,
+    "enemies_combat": 7,
+    "hud_frontend_persistence": 37,
+    "input_player_actions": 7,
+    "loading_overlays_resources": 9,
+    "movement_world_physics": 5,
+    "objects_events_hazards": 5,
+    "rendering_camera_animation": 5,
+    "seeds_plants_traversal_powers": 6
+   },
+   "priority_basis": "Session-owned state crosses player actions, hazards, HUD, frontend persistence, death, reload, and scene transition."
+  },
+  {
+   "family": "objects_events_hazards",
+   "number": 7,
+   "priority_tier": 1,
+   "primary_rows": 6,
+   "coverage_gap_rows": [
+    "E08_props_movers_gates",
+    "E10_hazards",
+    "E11_dynamic_geometry"
+   ],
+   "coverage_gap_count": 3,
+   "owned_semantic_symbols": 43,
+   "dependent_family_count": 10,
+   "shared_symbol_edges": 169,
+   "shared_by_family": {
+    "bosses_special_objectives": 43,
+    "collectibles_equipment_rewards": 14,
+    "enemies_combat": 22,
+    "hud_frontend_persistence": 5,
+    "input_player_actions": 6,
+    "loading_overlays_resources": 12,
+    "movement_world_physics": 20,
+    "player_lifecycle": 7,
+    "rendering_camera_animation": 21,
+    "seeds_plants_traversal_powers": 19
+   },
+   "priority_basis": "Shared allocation, dispatch, scripted-event, and hazard substrate used by collectibles, enemies, bosses, and stage objectives."
+  },
+  {
+   "family": "audio_cinematics",
+   "number": 11,
+   "priority_tier": 1,
+   "primary_rows": 2,
+   "coverage_gap_rows": [
+    "E12_audio",
+    "E15_fmv"
+   ],
+   "coverage_gap_count": 2,
+   "owned_semantic_symbols": 8,
+   "dependent_family_count": 9,
+   "shared_symbol_edges": 60,
+   "shared_by_family": {
+    "bosses_special_objectives": 8,
+    "collectibles_equipment_rewards": 6,
+    "enemies_combat": 6,
+    "hud_frontend_persistence": 8,
+    "input_player_actions": 6,
+    "loading_overlays_resources": 8,
+    "objects_events_hazards": 6,
+    "rendering_camera_animation": 6,
+    "seeds_plants_traversal_powers": 6
+   },
+   "priority_basis": "Shared audio substrate is consumed by every active gameplay family; cinematic paths also cross frontend and loading ownership."
+  },
+  {
+   "family": "loading_overlays_resources",
+   "number": 12,
+   "priority_tier": 1,
+   "primary_rows": 1,
+   "coverage_gap_rows": [
+    "E16_streaming_overlays"
+   ],
+   "coverage_gap_count": 1,
+   "owned_semantic_symbols": 1,
+   "dependent_family_count": 7,
+   "shared_symbol_edges": 7,
+   "shared_by_family": {
+    "audio_cinematics": 1,
+    "bosses_special_objectives": 1,
+    "collectibles_equipment_rewards": 1,
+    "hud_frontend_persistence": 1,
+    "objects_events_hazards": 1,
+    "player_lifecycle": 1,
+    "rendering_camera_animation": 1
+   },
+   "priority_basis": "Shared scene and asset residency substrate constrains every stage, overlay-specific subsystem, frontend transition, and cinematic path."
+  },
+  {
+   "family": "movement_world_physics",
+   "number": 3,
+   "priority_tier": 1,
+   "primary_rows": 1,
+   "coverage_gap_rows": [],
+   "coverage_gap_count": 0,
+   "owned_semantic_symbols": 13,
+   "dependent_family_count": 6,
+   "shared_symbol_edges": 78,
+   "shared_by_family": {
+    "bosses_special_objectives": 13,
+    "enemies_combat": 13,
+    "input_player_actions": 13,
+    "objects_events_hazards": 13,
+    "rendering_camera_animation": 13,
+    "seeds_plants_traversal_powers": 13
+   },
+   "priority_basis": "Collision and integration are shared consumers of almost every actor, traversal power, mover, hazard, and camera path."
+  },
+  {
+   "family": "rendering_camera_animation",
+   "number": 4,
+   "priority_tier": 1,
+   "primary_rows": 4,
+   "coverage_gap_rows": [
+    "E01_terrain_visual",
+    "E03_render_pipeline",
+    "E04_camera_system",
+    "E05_actor_models_anim"
+   ],
+   "coverage_gap_count": 4,
+   "owned_semantic_symbols": 15,
+   "dependent_family_count": 6,
+   "shared_symbol_edges": 67,
+   "shared_by_family": {
+    "bosses_special_objectives": 15,
+    "enemies_combat": 11,
+    "input_player_actions": 6,
+    "loading_overlays_resources": 12,
+    "movement_world_physics": 8,
+    "objects_events_hazards": 15
+   },
+   "priority_basis": "Shared presentation substrate for every world, actor, effect, HUD-adjacent, and scene-residency conclusion."
+  },
+  {
+   "family": "enemies_combat",
+   "number": 8,
+   "priority_tier": 2,
+   "primary_rows": 16,
+   "coverage_gap_rows": [
+    "A11_seed_as_weapon",
+    "D01_enemy_spawn_update",
+    "D02_mover_vm",
+    "D03_contact_damage",
+    "D04_berry_immunity_matrix",
+    "D05_death_respawn",
+    "D06_grasshoppers",
+    "D07_mosquitoes",
+    "D08_flies",
+    "D09_cockroaches",
+    "D10_spiders",
+    "D11_mites_grubs",
+    "D12_centipedes_earthworms",
+    "D13_armored_beetles",
+    "D14_wasps_dragonflies",
+    "D15_daddy_long_legs"
+   ],
+   "coverage_gap_count": 16,
+   "owned_semantic_symbols": 28,
+   "dependent_family_count": 11,
+   "shared_symbol_edges": 134,
+   "shared_by_family": {
+    "audio_cinematics": 2,
+    "bosses_special_objectives": 22,
+    "collectibles_equipment_rewards": 13,
+    "hud_frontend_persistence": 10,
+    "input_player_actions": 18,
+    "loading_overlays_resources": 11,
+    "movement_world_physics": 8,
+    "objects_events_hazards": 10,
+    "player_lifecycle": 8,
+    "rendering_camera_animation": 11,
+    "seeds_plants_traversal_powers": 21
+   },
+   "priority_basis": "Family-specific campaigns depend on the shared player, object, render, collision, audio, and reward contracts."
+  },
+  {
+   "family": "collectibles_equipment_rewards",
+   "number": 6,
+   "priority_tier": 2,
+   "primary_rows": 14,
+   "coverage_gap_rows": [
+    "C01_grain_pickup",
+    "C02_fifty_grain_reward",
+    "C03_flik_letters",
+    "C04_enemy_token",
+    "C05_three_tokens",
+    "C06_red_berry",
+    "C07_blue_berry",
+    "C08_green_homing_berry",
+    "C09_mega_homing_berry",
+    "C10_gold_berry",
+    "C11_seed_tokens",
+    "C12_health_leaves",
+    "C13_grain_harvester",
+    "C14_telescope"
+   ],
+   "coverage_gap_count": 14,
+   "owned_semantic_symbols": 27,
+   "dependent_family_count": 10,
+   "shared_symbol_edges": 114,
+   "shared_by_family": {
+    "audio_cinematics": 6,
+    "bosses_special_objectives": 20,
+    "enemies_combat": 18,
+    "hud_frontend_persistence": 16,
+    "input_player_actions": 10,
+    "loading_overlays_resources": 9,
+    "objects_events_hazards": 3,
+    "player_lifecycle": 11,
+    "rendering_camera_animation": 10,
+    "seeds_plants_traversal_powers": 11
+   },
+   "priority_basis": "Reward state consumes object, combat, audio, HUD, persistence, and transition contracts and needs stage-wide pickup breadth."
+  },
+  {
+   "family": "seeds_plants_traversal_powers",
+   "number": 5,
+   "priority_tier": 2,
+   "primary_rows": 20,
+   "coverage_gap_rows": [
+    "A09_seed_pickup_drop",
+    "A10_handstand",
+    "A12_seed_color_change",
+    "A13_cycle_plant_output",
+    "A14_plant_seed",
+    "A15_uproot_plant",
+    "B01_mushroom_trampoline",
+    "B02_propeller_plant",
+    "B03_dandelion_glide",
+    "B04_cannon_plant",
+    "B05_green_leaf_platforms",
+    "B06_invincibility",
+    "B07_health_power",
+    "B08_bubble_shield",
+    "B09_super_jump",
+    "B10_purple_berry_plants",
+    "B11_blue_berry_shooter",
+    "B12_homing_shooter",
+    "B13_mine_plant",
+    "B14_hostile_plant_projectiles"
+   ],
+   "coverage_gap_count": 20,
+   "owned_semantic_symbols": 34,
+   "dependent_family_count": 10,
+   "shared_symbol_edges": 72,
+   "shared_by_family": {
+    "bosses_special_objectives": 9,
+    "collectibles_equipment_rewards": 8,
+    "enemies_combat": 10,
+    "hud_frontend_persistence": 6,
+    "input_player_actions": 14,
+    "loading_overlays_resources": 1,
+    "movement_world_physics": 9,
+    "objects_events_hazards": 2,
+    "player_lifecycle": 8,
+    "rendering_camera_animation": 5
+   },
+   "priority_basis": "Depends on core action, physics, object, render, and audio substrates; high unresolved and variant breadth follows those shared campaigns."
+  },
+  {
+   "family": "hud_frontend_persistence",
+   "number": 10,
+   "priority_tier": 2,
+   "primary_rows": 5,
+   "coverage_gap_rows": [
+    "A19_status_display",
+    "C17_movie_viewer",
+    "E13_hud_results",
+    "E14_frontend_save"
+   ],
+   "coverage_gap_count": 4,
+   "owned_semantic_symbols": 23,
+   "dependent_family_count": 9,
+   "shared_symbol_edges": 81,
+   "shared_by_family": {
+    "audio_cinematics": 19,
+    "bosses_special_objectives": 10,
+    "collectibles_equipment_rewards": 15,
+    "enemies_combat": 6,
+    "input_player_actions": 4,
+    "loading_overlays_resources": 9,
+    "player_lifecycle": 13,
+    "rendering_camera_animation": 3,
+    "seeds_plants_traversal_powers": 2
+   },
+   "priority_basis": "Consumes shared lifecycle, audio, loading, reward, results, and persistence state; frontend lifecycle remains a carried Phase-3 blocker."
+  },
+  {
+   "family": "bosses_special_objectives",
+   "number": 9,
+   "priority_tier": 3,
+   "primary_rows": 25,
+   "coverage_gap_rows": [
+    "C18_bonus_entry",
+    "D16_thumper",
+    "D17_bird",
+    "D18_thud",
+    "D19_molt",
+    "D20_hopper",
+    "F00_training",
+    "F01_anthill",
+    "F02_tunnels",
+    "F03_council_chamber",
+    "F04_cliffside_canyon",
+    "F05_riverbed_run",
+    "F06_birdnest",
+    "F07_city_entrance",
+    "F08_city_square",
+    "F09_bug_bar",
+    "F10_clover_forest",
+    "F11_the_tree",
+    "F12_battle_arena",
+    "F13_anthill_two",
+    "F14_riverbed_flight",
+    "F15_canyon_showdown",
+    "F16_bonus1_spiders",
+    "F17_bonus2_mushrooms",
+    "F18_bonus3_grasshoppers"
+   ],
+   "coverage_gap_count": 25,
+   "owned_semantic_symbols": 49,
+   "dependent_family_count": 11,
+   "shared_symbol_edges": 148,
+   "shared_by_family": {
+    "audio_cinematics": 1,
+    "collectibles_equipment_rewards": 24,
+    "enemies_combat": 15,
+    "hud_frontend_persistence": 17,
+    "input_player_actions": 6,
+    "loading_overlays_resources": 38,
+    "movement_world_physics": 6,
+    "objects_events_hazards": 11,
+    "player_lifecycle": 11,
+    "rendering_camera_animation": 7,
+    "seeds_plants_traversal_powers": 12
+   },
+   "priority_basis": "Special objectives compose the shared substrates and family-specific mechanics, so they follow rather than replace those campaigns."
+  }
+ ]
+}

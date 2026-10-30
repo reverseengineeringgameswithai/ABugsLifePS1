@@ -1,0 +1,31 @@
+{
+  "schema": "phase4-b04-bounded-exhaustion-v1",
+  "row": "B04_cannon_plant",
+  "date": "2026-08-03",
+  "status": "partial",
+  "classification": "substantiated bounded partial; high-yield row scope exhausted",
+  "phase4_requirements": [
+    {"requirement": "entry/contact", "status": "substantiated", "evidence": "handler gates plus movie-frame 119 transition to plant state 2 and lockout 17"},
+    {"requirement": "launch vector and source", "status": "substantiated", "evidence": "fixed (0,-8192,0) seed at shared player path 0x800486B8/0x800486CC; no vector table"},
+    {"requirement": "seated timing", "status": "substantiated", "evidence": "17 physics ticks, visible as frames 119..151 with fixed position and zero velocity"},
+    {"requirement": "air state and ballistic law", "status": "substantiated", "evidence": "frame-boundary mode 6, vy step +256 per physics tick, terminal fall 4096, apex rise 126976"},
+    {"requirement": "cannon-to-dandelion combo", "status": "substantiated", "evidence": "latch 11 at frame 275 and sustained vy=350 from frame 277"},
+    {"requirement": "landing", "status": "substantiated", "evidence": "contact frame 459; mode/latch grounded reset frame 461"},
+    {"requirement": "camera behavior", "status": "bounded", "evidence": "cannon handler and launch case contain no direct camera-struct write; flight uses the standard camera path, but exact transform evolution was not separately attributed"},
+    {"requirement": "capsule validity", "status": "substantiated", "evidence": "complete/no-error/no-truncation manifest, all chunk/domain hashes verified, independent full-state control match"}
+  ],
+  "corrections": [
+    "The cannon handler does not write player velocity directly.",
+    "The launch source is -8192, not -7680; -7680 is the second retained ballistic boundary.",
+    "The launch is fixed-literal and not table-driven."
+  ],
+  "deferred_low_return": [
+    "exact per-frame camera transform attribution during the already-observed standard follow path",
+    "animation frame and SPU asset identity",
+    "cross-level census of every cannon instance and geometry envelope"
+  ],
+  "movie_required_now": false,
+  "cold_boot_required_now": false,
+  "reopen_condition": "a concrete MOD dependency, contradictory mature type-2 contact, or demand for exact camera/animation/audio ownership",
+  "recommendation": "move on"
+}

@@ -1,0 +1,105 @@
+schema: abl-phase4-offline-fmv-batch-source/1
+description: >
+  Declarative selection and falsification contract for the E15 Start-skip capsule
+  and its C16 natural-LOSE lifecycle control. The batch reconstructs typed values
+  only at frame boundaries and guards Region-B fields by exact FMV.BIN head
+  identity. It does not promote passive block starts or RAM/VRAM/SPU-RAM
+  correlations into exact writer, GPU, DMA, voice, or transition ownership.
+selected_rows: [E15_fmv]
+expected_unique_capsules: 2
+expected_query_count: 18
+expected_queries_per_capsule: 9
+primary_capsule_movie: movies/Phase4/E15_fmv_skip.movie.json
+expected_capsule_movies:
+  - movies/Phase4/C16_gameover_continue.movie.json
+  - movies/Phase4/E15_fmv_skip.movie.json
+selection_snapshot:
+  pre_analysis_queue_sha256: ec86b5909213c06daf58f5e2fbe1177380edd2b43e5caa0bb7ed1e1143ae24e6
+  pre_analysis_ledger_sha256: 33b5030750569fbe52cf01eb1c471006c5c10b1f453d7957f5de8b6c23a45266
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 0
+    offline_partial: 42
+    live_required: 0
+    no_capsule: 65
+  rows:
+    - row_id: E15_fmv
+      queue_rank: 5
+      classification: offline_partial
+      completion_state: open
+  selection_reason: >
+    No offline-ready or live-required row exists. E15 is the highest-ranked
+    unconsumed partial campaign. Higher-ranked C16/C15 have already been repeatedly
+    deepened, E08 was consumed in iteration 71, and E10 already consumed its complete
+    13-capsule cluster. The original E15 selection had one capsule and nine exact
+    scheduled queries. Its current cross-system lifecycle frontier additionally owns
+    the centrally pinned C16 LOSE capsule, so this refreshed contract must preserve
+    two capsules and all 18 current queries.
+typed_ranges:
+  overlay_head: {offset: 0x0B5788, length: 0x100}
+  fmv_running_latch: {offset: 0x082250, width: u32}
+  scene: {offset: 0x082504, width: u32}
+  shell_substate: {offset: 0x08243C, width: u32}
+  str_backloc: {offset: 0x088FFC, width: u32}
+  completion_request: {offset: 0x0CAC10, width: u32, residency: FMV.BIN}
+  selected_frame_limit: {offset: 0x131EEE, width: s16, residency: FMV.BIN}
+  fmv_boot_buffer_start: {offset: 0x0814BC, width: u32}
+  fmv_boot_buffer_end: {offset: 0x081530, width: u32}
+expected_overlay_head_sha256: ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db
+analysis_windows_by_movie:
+  movies/Phase4/C16_gameover_continue.movie.json:
+    - {id: full_movie, start: 0, end: 4006}
+  movies/Phase4/E15_fmv_skip.movie.json:
+    - {id: full_movie, start: 0, end: 541}
+    - {id: pretrigger_and_input, start: 333, end: 342}
+    - {id: immediate_skip_response, start: 343, end: 416}
+    - {id: post_overlay_retirement, start: 417, end: 541}
+expected_findings:
+  reconstructed_records_by_movie:
+    movies/Phase4/C16_gameover_continue.movie.json: 4007
+    movies/Phase4/E15_fmv_skip.movie.json: 542
+  reconstructed_records: 542
+  overlay_resident_intervals: [{start: 69, end: 416}]
+  typed_state_event_frames:
+    fmv_running_latch: [9, 426, 450]
+    scene: [9]
+    shell_substate: []
+    str_backloc_first: 218
+    str_backloc_last: 362
+    completion_request: [69, 86, 417]
+    selected_frame_limit: [69, 168, 183, 417]
+    fmv_boot_buffer_start: []
+    fmv_boot_buffer_end: []
+  initialization_values:
+    frame_69: {completion_request: 721840489, selected_frame_limit: 1}
+    frame_86: {completion_request: 0, selected_frame_limit: 1}
+    frame_168: {completion_request: 0, selected_frame_limit: 0}
+    frame_183: {completion_request: 0, selected_frame_limit: 386}
+  range_change_frame_counts:
+    player_block: 541
+    actor_pool: 0
+    contact_pool: 0
+    full_vram: 118
+    full_spu_ram: 143
+    fmv_boot_buffer_start: 0
+    fmv_boot_buffer_end: 0
+  spu_change_intervals: [{start: 1, end: 9}, {start: 229, end: 362}]
+  selected_boundary_pcs:
+    333: 0x80070d00
+    343: 0x80065340
+    416: 0xbfc02bac
+    417: 0x8003cea4
+    418: 0x8001a66c
+    541: 0x00002494
+external_index:
+  schema: abl-phase4-external-fmv-index/1
+  domains: [registers, ram, vram, spu_ram, block_flow]
+tracked_summary:
+  schema: abl-phase4-offline-fmv-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary typed values, delta-run intersections and passive block-start
+    counts cannot identify an exact instruction/cycle, DMA/GPU/SPU producer, voice,
+    transition owner, or counterfactual behavior.

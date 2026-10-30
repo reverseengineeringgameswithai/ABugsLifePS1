@@ -1,0 +1,120 @@
+schema: abl-phase4-fmv-levelb-region-b-dma-late-result-source/1
+description: >
+  Preservation and interpretation contract for the staged late Region-B DMA
+  experiment. The passive cold-boot pair closed with equal staged and terminal
+  endpoints. The precise transfer pair failed closed before receipt emission
+  because its retained transfer pagination was incomplete or truncated, so it
+  supplies no DMA event and promotes no lifecycle dimension.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-R6-ITER3-E15-LEVELB-REGIONB-LATE-DMA-PROVENANCE
+missing_fact_id: E15/completed-level-b-region-b-first-late-dma-write
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-190657-213677-r4
+before_ledger:
+  relative_path: iteration-1-escalations-before.json
+  sha256: e7472332e7fd94c8bb239ab2dcfc89ba2425d07c886dec5075f5095c13ed4d8d
+  bytes: 462774
+work_packet:
+  relative_path: iteration-1-work-packet.json
+  sha256: 533343cef202ab671c58844cb5a59cdff8a9636dc766b1d975dc40126f0dc519
+  bytes: 3193
+static_source:
+  path: analysis/phase4_fmv_region_b_replacement_ownership.json
+  sha256: 03b5a8d9a518f5c00624f81248b721e98a513b987d8e1456e142c682cc1087a4
+reused_offline_query:
+  run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-160544-213677-r2
+  receipt:
+    relative_path: iteration-1-receipts/offline-fmv-levelb-region-b-dma-index.receipt.json
+    sha256: ecfd091f44f49943e5e8431ba92e823d55c155f6317a7e6242fcc841934d9126
+  external_index_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  movie_sha256: ece62d4e6f92b887b0500dd8ac3bec48f3638ad5d9858cda7d5b0afb3a8d2602
+  settings_sha256: ca37f959ec414e803b1f64686c1af3fe987853bcf8ee0f263883cb1ad01fa733
+  serial: SCUS-94288
+debugger:
+  binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+  source_sha256: e8c9976147e426f5ccfb92c985ccd82b6857779feaa4c94fdacfc0e64ebed319
+  api_surface_sha256: ced74a93e38a80eae8ee6af966a02aba3fa1f555a52314307fa058adffa7e5dd
+  adapter_sha256_at_execution: 512caf031b9bdea0b95452698cd7d528b58b049501f1f9f43a19e8b11d2b13c8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+passive:
+  role: passive
+  precise: false
+  capture_start: 15720
+  replay_stop: 16120
+  plan:
+    path: config/phase4_fmv_levelb_region_b_dma_staged_passive_batch.yaml
+    sha256: 520fe5c318cb206a09fe3cc004483938b28b350e326138c1b3c1bc4869a0f628
+  receipt:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-late-passive-prelude/receipt.json
+    sha256: d1c901b7c9aebcf9141088332cf4d625f5101d10c10410c50d65d7f14ccce833
+    bytes: 4467
+  batch_result:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-late-passive-prelude/batch-result.json
+    sha256: ee8b36d851409dfa4dcdc8c6ab3fd1c7912c874d49f18b19e4c76466912cf414
+    bytes: 274048
+  raw_results:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-late-passive-prelude/raw-results.json
+    sha256: 4512fbb7dbf3e02aeccf2fa45413a8d99f4d529e5e2638e4ed8a269c8ddfa85f
+    bytes: 1219
+  cleanup:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-late-passive-prelude/owned-pid-cleanup.json
+    sha256: e29da6195dce654c1a15f25709ce8949207204756890527e8ed18f2db41012fd
+    bytes: 391
+  pagination:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-late-passive-prelude/pagination.json
+    sha256: d301a76f022e5df63326e746139d0822bb2cfe2b4b0c0a96567b8359b4d7c1d2
+    bytes: 202
+  command_events:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-late-passive-prelude/command-events.json
+    sha256: 0b5aeb5a759a8d991ed8085721338ab930593b5b7148d5753ace49ba541a2a01
+    bytes: 27814
+precise_rejection:
+  plan:
+    path: config/phase4_fmv_levelb_region_b_dma_late_transfer_batch.yaml
+    sha256: a3e050c550470555df4c7220167eca951a486a150f887a55c53394e6a4c6e12f
+  receipt_relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-late-provenance/receipt.json
+  receipt_absent: true
+  classification: failed_closed_before_receipt
+  rejected_condition: transfer_pagination_incomplete_or_truncated
+  evidence_admitted: false
+  retry_same_method: false
+expected_endpoint:
+  staged_start_frame: 1
+  staged_stop_frame: 15720
+  staged_frames_advanced: 15719
+  observed_frames: 400
+  frame: 16120
+  cycle: 9126623583
+  pc: '0x8004fea4'
+  sp: '0x801fffd0'
+  movie_frame_count: 15230
+  scene_hex_le: '01000000'
+  fmv_running_latch_hex_le: '01000000'
+  music_progress_id_hex_le: '0100'
+  selected_frame_limit_hex_le: 'e3ff'
+claim_boundary:
+  classification: staged_passive_control_closed_precise_dma_unadmitted
+  passive_control_closed: true
+  precise_dma_claim_admitted: false
+  first_region_b_dma_identified: false
+  lifecycle_promoted: false
+  dimension_promoted: false
+  investigator_receipt_requires_fresh_verifier: true
+  next_lane: static
+  next_method: >
+    Before another emulator launch, use the retained teardown frame and static
+    transition edge to decompose the late interval into a causally complete
+    bounded subwindow whose transfer volume fits the typed pagination limit.
+    Predeclare a new escalation and paired passive/precise plans for that
+    subwindow. Do not replay the 340-frame transfer observer, and do not infer
+    a DMA event from either passive endpoint or the rejected precise attempt.
+  not_claimed:
+    - any retained channel-3 CDROM transfer event
+    - the first write cycle or transfer size at 0x800B5788
+    - execution of the rejected precise branch as a closed live receipt
+    - lifecycle or any other nine-dimension promotion
+    - fresh-verifier acceptance of the passive investigator receipt

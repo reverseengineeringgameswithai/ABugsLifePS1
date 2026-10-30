@@ -1,0 +1,97 @@
+{
+  "schema": "abl.phase4.a19.status-display.v1",
+  "row": "A19_status_display",
+  "date": "2026-08-03",
+  "classification": "partial_high_value_bounded_exhausted",
+  "authority": {
+    "executable": "REBUILD/files/SCUS_942.88",
+    "executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "media": "Disney-Pixar A Bug's Life (v1.0).cue",
+    "media_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "save_state": "level01.sav",
+    "save_state_sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2"
+  },
+  "input_contract": {
+    "button_mask": "0x0001",
+    "button": "SELECT",
+    "test_pc": "0x800484B0",
+    "zero_branch_pc": "0x800484C4",
+    "normalizer": "0x800503FC",
+    "pulses": ["0x800B0188", "0x800B018C", "0x800B0190", "0x800B0194"]
+  },
+  "pulse_contract": {
+    "step": "0x0040 per 30 Hz gameplay update",
+    "sustained_pre_render_plateau": "0x0400",
+    "sustained_frame_boundary_value": "0x0440",
+    "wrap": "0x1000 to zero",
+    "open_latency_at_anchor": "32 display frames from injection to stable 0x0440",
+    "release_observation": [
+      {"display_frame": 1, "pulse": "0x0440"},
+      {"display_frame": 2, "pulse": "0x0480"},
+      {"display_frame": 4, "pulse": "0x04C0"},
+      {"display_frame": 8, "pulse": "0x0540"},
+      {"display_frame": 16, "pulse": "0x0640"},
+      {"display_frame": 32, "pulse": "0x0840"},
+      {"display_frame": 64, "pulse": "0x0C40"},
+      {"display_frame": 128, "pulse": "0x0000"}
+    ],
+    "static_tail_bound": "health/grain/FLIK reset on the 47th release tick; lives permits 0x1000 and resets one 30 Hz tick later"
+  },
+  "sources": {
+    "lives": {"authoritative": "0x800A65A0", "latch": "0x800B018A"},
+    "grain": {"authoritative": "0x800A65A1", "packed_digits": "0x800B018E"},
+    "health": {"authoritative": "0x800A6594", "latch": "0x800B0192"},
+    "flik_letters": {"authoritative_bits": "0x800A65A2", "mask": "0x0F"},
+    "health_animation_not_authoritative": "0x800A7E2A"
+  },
+  "capsules": [
+    {
+      "id": "C01_grain_pickup",
+      "manifest_sha256": "9cd98e28d7a7fd253f8f1227b3ebe290d49140022a4a2983b3159273ffa3f2fa",
+      "frames": 645,
+      "domain_hash_mismatches": 0,
+      "grain": "10 -> 12",
+      "digit_updates": 2
+    },
+    {
+      "id": "C02_grain_49_to_50",
+      "manifest_sha256": "f89163cd15655275a529c44a3382308e9c14a194e23a761aa41cdc7e8e9a7e8e",
+      "frames": 438,
+      "domain_hash_mismatches": 0,
+      "grain": "49 -> 50",
+      "packed_digits": "0x0904 -> 0x0005"
+    }
+  ],
+  "runtime_control": {
+    "frames": 60,
+    "actor_pool_equal": "8fc315587a9bbda329de2f1c6a09abfdb21ab53e3df3fba9f013ad8565c4fa87",
+    "contact_pool_equal": "ca72edaebe3867cf4371c6c895735e73979741765afec35072204a1acdb67eea",
+    "plant_region_equal": "51a55140e40f04471d351b46accf3bba9d220f5067ee3d26775b578f6b5b1679",
+    "camera_equal": "cde7bd842ac2e11dd4c9167c55eacea4d0dd49ce7bb2cad1d3a0ec9016e905cb",
+    "player_equal": "4d7002398bfd1fd8c64af4dd563cfa2bde4d3a2749d76ea85f3062c2d4264dba",
+    "only_named_difference": "four HUD pulse halfwords",
+    "conclusion": "SELECT status display does not pause gameplay simulation"
+  },
+  "trace_attribution": {
+    "access_events": 150,
+    "access_truncated": false,
+    "normalizer_store_pc_reported": "0x8005042C",
+    "hud_writers_reported": ["0x800528E4", "0x80052A24", "0x80052BA0", "0x80052F0C"],
+    "hud_entry_events": 24,
+    "hud_entry_truncated": false,
+    "hud_entry_a0": "0x00000040",
+    "hud_entry_ra": "0x8004F3EC"
+  },
+  "transient_tools": {
+    "static_output_sha256": "fe84c555ef3d960fd9697383bf0c51dfbf5429027ff3b9d7cb7d51e0d7c091de",
+    "capsule_query_output_sha256": "afbad70cccd85a50f4744f3111155ec74fc718705bc29caf69ec934be5e1f254"
+  },
+  "residuals": [
+    "Pixel-perfect atlas provenance for every glyph animation frame.",
+    "Live screenshot matrix for every scene-specific status branch.",
+    "Story labels for the numeric progress sources in scenes 2, 7, and 11 through 15."
+  ],
+  "movie_required": false,
+  "cold_boot_required": false,
+  "next": "Move on; reopen only for a named scene-panel, glyph-art, or MOD-intersection question."
+}

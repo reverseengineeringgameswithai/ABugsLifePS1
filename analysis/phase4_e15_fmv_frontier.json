@@ -1,0 +1,326 @@
+{
+ "row": "E15_fmv",
+ "scope": "static-only pass, DoD item 2 (complete frontier)",
+ "method": [
+  "Manifest is the documented first 0x100 bytes (Canon: Core_-_FMV_and_MDEC_Playback); code/data scan starts at base+0x100.",
+  "Linear jal/j/jr decode over the whole post-manifest blob -- NOT function-boundary-aware (FMV.BIN has never been through function_census.py's block-start/string-exclusion pipeline, unlike the 19 LEVEL*.BIN + MEMORY.BIN overlays). Treat as a bounded probe, not a sound complete disassembly.",
+  "census_overlays.py --extra for the two known coordination addresses (completion flag 0x800CAC10, frame-limit table read 0x80131EEE) -- this IS the existing sound tool, reused as designed."
+ ],
+ "source": {
+  "path": "REBUILD/files/FMV/FMV.BIN",
+  "base": "0x800B5788",
+  "size": 509800,
+  "sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9"
+ },
+ "RESOLVED_the_open_MDEC_DMA_residual": {
+  "prior_status": "Named open residual since 2026-06-22 in Core_-_FMV_and_MDEC_Playback.md: 'MDEC decode/DMA call site inside the FMV.BIN overlay -- Region-B disasm or a cold-boot execTrace.'",
+  "finding": "39 of 54 out-of-blob jal targets in valid PS1 RAM land EXACTLY on a named resident function start (verified against analysis/functions.csv, not asserted). This is the streaming/MDEC/CD pump the residual asked for.",
+  "named_callees": [
+   "StSetStream",
+   "StGetNext",
+   "StClearRing",
+   "StCdInterrupt",
+   "StSetRing",
+   "CdRead",
+   "CdRead2",
+   "CdReadSync",
+   "CdControl",
+   "CdControlF",
+   "CdMix",
+   "CdGetToc2",
+   "DMACallback",
+   "ResetCallback",
+   "OpenEvent",
+   "CloseEvent",
+   "WaitEvent",
+   "EnableEvent",
+   "EnterCriticalSection",
+   "ExitCriticalSection",
+   "SetDefDrawEnv",
+   "SetDefDispEnv",
+   "SetDispMask",
+   "DrawSync",
+   "PutDispEnv",
+   "ClearImage",
+   "LoadImage",
+   "frame_render_driver",
+   "VSync",
+   "SsSetSerialVol",
+   "FntPrint",
+   "strcpy",
+   "strlen",
+   "toupper",
+   "free",
+   "printf",
+   "controller_input_latch_update",
+   "cd_ready_poll_control_09ac"
+  ],
+  "confidence": "high for the 39 -- matching a NAMED function start by coincidence at this rate (39/54, spanning distinct PsyQ library clusters) is not plausible from a decode of arbitrary data bytes."
+ },
+ "completion_flag_0x800CAC10": {
+  "overlay_side": "FULLY RESOLVED. 3 writers + 1 reader, ALL inside FMV.BIN: write 0x800B6B24 (limit reached), write 0x800B6B48 (limit reached, second compare), write 0x800B6DD0 (sw zero -- clear/reset), read 0x800B743C (near the CdControl/CdRead2 stream-start sequence at 0x800B7030, already Canon).",
+  "resident_side": "census_address.py over the resident EXE: 0 writers, 0 readers. No resident code touches this address by any statically-resolvable path.",
+  "implication": "The teardown-to-scene-flow consumer this row's 'next' step asks for does NOT read this flag directly. Either it goes through a different resident-side proxy this pass has not identified, or the overlay itself performs the transition (e.g. by calling back into a resident scene-flow function directly) rather than signalling through a flag resident code polls. STILL OPEN -- named, not solved."
+ },
+ "frame_limit_table_0x80131EEE": {
+  "overlay_side": "FULLY RESOLVED, and in the SAME code block as the completion flag: read 0x800B6B2C (lh v0,0x1eee(v0) -- loads the per-movie limit immediately before the 0x800B6B24/0x800B6B48 compares) and write 0x800B6DC0 (sh s2,0x1eee(at) -- sets the limit, presumably per-STR from the manifest). This tightens Canon's documented 'limit_compare: 0x800b6b28..0x800b6b48' to the exact bracketing instructions.",
+  "resident_side": "0 writers, 0 readers -- same as the completion flag."
+ },
+ "STILL_OPEN_not_a_complete_frontier": {
+  "code_data_interleave_proven": "169 of 538 jal-opcode decodes in the post-manifest region point at addresses outside valid PS1 RAM (e.g. 0x8ff00018) -- direct proof the blob mixes code and data/tables the way every other overlay does, and this pass did NOT do the block-start/string-exclusion separation function_census.py applies to the other 20 code overlays. FMV.BIN has never been through that pipeline.",
+  "15_unresolved_jal_targets": "in valid RAM but not at a named function start -- could be genuine mid-function entries or still be decode noise; not resolved either way.",
+  "jr_indirect_dispatch_unusable_as_is": "404 jr sites found; 215 are jr $ra (plain returns, uninteresting). Of the remaining 189, multiple decode as `jr $0` -- not a real MIPS pattern (register 0 is hardwired zero; no compiler emits this) and further proof of hitting non-code bytes. No indirect-table claim can be made from this data without the same code/data separation named above.",
+  "conclusion": "Item 2 for E15 is ADVANCED, not MET. The specific long-open residual (MDEC/DMA call site) is discharged with high confidence, and both known coordination addresses now have a fully characterized overlay-side frontier. But FMV.BIN as a whole has never been through proper function-boundary recovery, so an unclassified_xrefs:0 claim for the whole blob would be unsupported -- exactly the kind of overclaim already retracted twice today for B06/B08. Next static step: run FMV.BIN through the same block-start + string-range-exclusion pipeline function_census.py already applies to the other 20 overlays (extend staged_overlay_targets()'s pinned-count invariant from 20 to 21)."
+ },
+ "TRIGGER_AND_INTERFACE_TRACE_2026-08-01": {
+  "scope": "DoD items 5 (original interfaces) and 6 (campaign breadth groundwork), static-only",
+  "method": "Manual instruction decode (own verified decoder, not hand-parsed hex) of the call chain resolved via analysis/phase3_call_graph.json's callers map.",
+  "CORRECTS_CANON": [
+   "Core_-_FMV_and_MDEC_Playback.md said trigger logic is 'likely overlay-resident, un-RE'd'. WRONG -- it is RESIDENT: scene_flow_dispatcher (0x8004FCA0), the jr-dispatch target of main_shell_substate_table (already known from functions.csv), calls fmv_bin_load from 3 distinct sites.",
+   "Same note said 'FMV.BIN entry point is NOT confirmed'. NOW CONFIRMED: 0x800B6250 (offset 0xAC8 into FMV.BIN, well past the manifest) -- fmv_bin_load's final call, passed the raw movie-id argument unchanged."
+  ],
+  "call_chain": {
+   "trigger": "scene_flow_dispatcher (0x8004FCA0, resident, jr-dispatch target of main_shell_substate_table) calls fmv_bin_load (0x8003E7C0) from 3 sites:",
+   "sites": [
+    {
+     "pc": "0x8004FFD4",
+     "a0": "(a2 & 0xFF) + 41 -- COMPUTED, likely per-level/scene dependent (a2 is an incoming parameter to this region of the dispatcher)"
+    },
+    {
+     "pc": "0x800500D8",
+     "a0": "46 (literal constant, addiu $a0,$zero,46 -- verified raw=0x2404002e)"
+    },
+    {
+     "pc": "0x80050284",
+     "a0": "40 (literal constant, addiu $a0,$zero,40 -- verified raw=0x24040028 -- distinct from site 2, gated by a different bit-flag check beforehand)"
+    }
+   ],
+   "fmv_bin_load(a0=movie_id, a1=flag)": [
+    "jal display_buffers_init (0x80039478)",
+    "if (a1 != 0): jal transition_fade_draw_loop(a0=a1)",
+    "jal universal_file_loader(a0=&\"fmv\\\\fmv.bin\" [0x8001AE6C], a1=0x800B5788) -- byte-exact confirmation of Canon's existing claim, now with the actual operand evidence (string dumped, address matches Region-B base exactly)",
+    "if (a1 != 0): jal animated_overlay_display_loop_entry(a0=a1)",
+    "jal 0x800B6250(a0=movie_id) -- INTO THE JUST-LOADED OVERLAY. Confirmed FMV entry point. Not in analysis/functions.csv -- FMV.BIN has never been function-censused (consistent with today's other E15 finding).",
+    "jal boot_subsystem_init (0x80039854) -- name suggests boot-time use; being called here from a runtime FMV trigger is either a naming artifact (function reused generically) or evidence fmv_bin_load participates in a shared re-init path. NOT resolved either way -- flagged, not claimed."
+   ]
+  },
+  "movie_id_vs_manifest_index": "The manifest's raw STR file order is 0-24 (3 boot clips + 22 per-level A/B pairs). The movie_id argument threaded through this whole chain (40, and a computed value >= 41) is a DIFFERENT, larger ID space -- consistent with Canon's already-documented '40-case frame-count table'. The ID -> manifest-index resolution was NOT found; it must happen inside FMV.BIN at/after 0x800B6250, which has never been disassembled. This is the concrete next step, not the block-boundary-recovery step alone.",
+  "manifest_correction": "Full 25-entry manifest decoded (Header count=25, format=0xA6425): 3 boot/frontend clips (tt.str, dlogo.str, ad.str) + 22 per-level clips = LEV1A/B .. LEV11A/B. Canon's archived note only quoted an excerpt ending '...LEV9A.STR, LEV9B.STR', which reads as though there were 9 levels; the true count is 11. This is a correction, not new discovery -- the file was already decoded, just not exhaustively quoted."
+ },
+ "MOVIE_ID_TABLE_2026-08-02": {
+  "scope": "Resolves item 2's last named residual and closes item 6 groundwork -- the movie_id -> STR-filename + frame-count table, fully decoded.",
+  "method": "Manual instruction decode past the confirmed FMV.BIN entry point (0x800B6250): sltiu $v0,$s0,0x2f bounds movie_id to 0..46 (47 slots); jr table at 0x800B5AA4 (47 x 4-byte words); each of 41 distinct case-handler addresses decoded for its a0 (lui/addiu string pointer) and a1 (literal frame count), OR flagged as the shared DEFAULT/no-op handler (addiu $a0,$sp,24 signature, at 0x800B6574, clears the screen instead of playing a movie). One decoder bug caught and fixed before banking: an early version didn't stop scanning at the `j` instruction and leaked frame-count literals from unrelated adjacent code (ids 0/1 both showed 1410; ids 44-46 all showed 281). Fixed to stop after the jump's delay slot. Independently spot-verified 8 of the 'new' (post-original-manifest) strings via raw byte dump, not just the ascii-filter path, before trusting them.",
+  "result": "47 slots: 3 boot/frontend clips (ids 0-2), 7 UNUSED/reserved (ids 3-9, all share one DEFAULT handler), 40 REAL dispatchable movies (ids 0-2 + 10-46) -- exactly matching the already-documented Canon '40-case frame-count table' claim, now with the actual case contents instead of just the count.",
+  "table": {
+   "0": [
+    "BUGSFMV3\\tt.str",
+    440
+   ],
+   "1": [
+    "BUGSFMV3\\dlogo.str",
+    156
+   ],
+   "2": [
+    "fmv\\ad.str",
+    1410
+   ],
+   "3": [
+    "DEFAULT",
+    null
+   ],
+   "4": [
+    "DEFAULT",
+    null
+   ],
+   "5": [
+    "DEFAULT",
+    null
+   ],
+   "6": [
+    "DEFAULT",
+    null
+   ],
+   "7": [
+    "DEFAULT",
+    null
+   ],
+   "8": [
+    "DEFAULT",
+    null
+   ],
+   "9": [
+    "DEFAULT",
+    null
+   ],
+   "10": [
+    "BUGSFMV1\\LEV1A.STR",
+    386
+   ],
+   "11": [
+    "BUGSFMV1\\LEV1B.STR",
+    485
+   ],
+   "12": [
+    "BUGSFMV1\\LEV2A.STR",
+    1428
+   ],
+   "13": [
+    "BUGSFMV1\\LEV2B.STR",
+    1318
+   ],
+   "14": [
+    "BUGSFMV1\\LEV3A.STR",
+    661
+   ],
+   "15": [
+    "BUGSFMV1\\LEV3B.STR",
+    1277
+   ],
+   "16": [
+    "BUGSFMV1\\LEV5A.STR",
+    782
+   ],
+   "17": [
+    "BUGSFMV1\\LEV4B.STR",
+    1514
+   ],
+   "18": [
+    "BUGSFMV1\\LEV4A.STR",
+    454
+   ],
+   "19": [
+    "BUGSFMV1\\LEV5B.STR",
+    747
+   ],
+   "20": [
+    "BUGSFMV1\\LEV6A.STR",
+    936
+   ],
+   "21": [
+    "BUGSFMV1\\LEV6B.STR",
+    1098
+   ],
+   "22": [
+    "BUGSFMV1\\LEV7A.STR",
+    1532
+   ],
+   "23": [
+    "BUGSFMV1\\LEV7B.STR",
+    890
+   ],
+   "24": [
+    "BUGSFMV1\\LEV8A.STR",
+    1083
+   ],
+   "25": [
+    "BUGSFMV1\\LEV8B.STR",
+    967
+   ],
+   "26": [
+    "BUGSFMV1\\LEV9A.STR",
+    404
+   ],
+   "27": [
+    "BUGSFMV1\\LEV9B.STR",
+    830
+   ],
+   "28": [
+    "BUGSFMV2\\LEV10A.STR",
+    557
+   ],
+   "29": [
+    "BUGSFMV2\\LEV10B.STR",
+    1166
+   ],
+   "30": [
+    "BUGSFMV2\\LEV11A.STR",
+    475
+   ],
+   "31": [
+    "BUGSFMV2\\LEV11B.STR",
+    566
+   ],
+   "32": [
+    "BUGSFMV2\\LEV12A.STR",
+    704
+   ],
+   "33": [
+    "BUGSFMV2\\LEV12B.STR",
+    356
+   ],
+   "34": [
+    "BUGSFMV2\\LEV13A.STR",
+    381
+   ],
+   "35": [
+    "BUGSFMV2\\LEV13B.STR",
+    715
+   ],
+   "36": [
+    "BUGSFMV2\\LEV14A.STR",
+    538
+   ],
+   "37": [
+    "BUGSFMV2\\LEV14B.STR",
+    790
+   ],
+   "38": [
+    "BUGSFMV2\\LEV15A.STR",
+    315
+   ],
+   "39": [
+    "BUGSFMV2\\LEV15B.STR",
+    1057
+   ],
+   "40": [
+    "BUGSFMV2\\LEV15C.STR",
+    3162
+   ],
+   "41": [
+    "BUGSFMV2\\LEV15D.STR",
+    1828
+   ],
+   "42": [
+    "BUGSFMV2\\ALT1.STR",
+    673
+   ],
+   "43": [
+    "BUGSFMV2\\ALT2.STR",
+    486
+   ],
+   "44": [
+    "BUGSFMV2\\ALT3.STR",
+    665
+   ],
+   "45": [
+    "BUGSFMV2\\INTRO.STR",
+    1750
+   ],
+   "46": [
+    "BUGSFMV2\\LOSE.STR",
+    281
+   ]
+  },
+  "SUPERSEDES_the_2026-08-01_manifest_recount": "Yesterday's same-day correction said 'true count is 11 levels, not 9' -- that was reading the FILE'S OWN 25-entry header manifest, which only lists LEV1-LEV11. The header's declared count is STALE relative to what the dispatch table actually references: THE TRUE COUNT IS 15 LEVELS, matching the campaign's 15 stages (F01-F15) exactly, plus 3 ALT endings, 1 INTRO, 1 LOSE clip. The manifest and the dispatch table are two different, inconsistent in-file sources; the dispatch table is authoritative for what code can actually invoke.",
+  "level_id_formula": "id = 10 + (N-1)*2 for the A-clip, +1 for the B-clip, N=1..14. ONE VERIFIED IRREGULARITY: levels 4 and 5's A-clips are swapped in table order (id16 -> LEV5A, id18 -> LEV4A) while their B-clips are not (id17 -> LEV4B, id19 -> LEV5B). Real, re-verified against raw bytes, not a decode artifact. Level 15 is a special case with FOUR clips (ids 38-41: A/B/C/D) instead of the usual two.",
+  "literal_call_site_semantics_INFERRED_not_confirmed": {
+   "a0=40 (site 0x800500D8)": "LEV15C, 3162 frames -- the LONGEST clip in the entire table by a wide margin (next longest is 1828). Strongly suggests the campaign finale/climax cutscene. INFERRED from content, not from tracing the guard condition's semantic meaning.",
+   "a0=46 (site 0x80050284)": "LOSE, 281 frames -- short, and the literal filename LOSE makes the game-over inference almost certain. Still not confirmed via the guard condition's actual semantics.",
+   "a0=(a2&0xFF)+41 (site 0x8004FFD4)": "reaches LEV15D/ALT1/ALT2/ALT3 for a2=0..3 -- consistent with a variant-ending selector (e.g. completion quality), but a2's own source was not traced this pass."
+  }
+ },
+ "ROW_STATUS_2026-08-02": {
+  "dod_progress": {
+   "1_original_oracle": "NOT STARTED -- needs a cold-boot fixture with observable assertions",
+   "2_complete_frontier": "ADVANCED -- movie-id dispatch region fully resolved; MDEC/DMA call site discharged; completion-flag/frame-limit resolved; bulk of the blob (the playback loop itself) still needs function-boundary recovery",
+   "3_typed_state": "MET for the state resolved so far -- completion flag (u32, {0,1}), frame-limit cache (s16, [156,3162]), movie_id (register arg, domain [0,46]),  dispatch table (u32[47]) all typed with confidence-backed evidence. NOT a row-wide MET -- only covers the state this pass touched.",
+   "4_lifecycle": "NOT STARTED -- pause/scene-transition/reload behavior needs runtime evidence",
+   "5_original_interfaces": "ADVANCED -- fmv_bin_load and the movie-id entry point (0x800B6250) calling conventions fully characterized; MDEC/DMA internal interfaces past the dispatch point not yet",
+   "6_campaign_breadth": "ADVANCED -- confirmed cutscene coverage for all 15 campaign stages + 3 ALT endings + INTRO + LOSE; NOT MET because the trigger CONDITIONS (when each of the 3 call sites actually fires, and a2's source for the computed site) were not traced",
+   "7_cross_system": "NOT STARTED -- needs runtime validation against player-state/HUD/save",
+   "8_source_closure": "ADVANCED -- src_re/fmv_player_streaming.c extended with the selection-mechanism section (2026-08-01/02), AND a full documentation-grade, gcc-compiling C file added (src_re/fmv_movie_dispatch_800b6250.c, 2026-08-02 later pass): the complete 47-slot movie-id table as a real C array, the bounds check, the DEFAULT path, the tail-call -- not just prose. Guarded by tests/test_phase4_e15_fmv_movie_table.py and tests/test_phase4_e15_e06_c_decompiles.py (compiles with zero errors; the C table round-trips exactly against this artifact's own MOVIE_ID_TABLE_2026-08-02, catching transcription drift). Properly attributes the 2026-07-04 frame-count discovery vs. the 2026-08-01/02 dispatch-mechanism discovery. NOT MET -- the MDEC/CD playback loop itself (FUNC_800B6D68 onward, the bulk of the blob) remains undocumented in C or otherwise.",
+   "9_durable_evidence": "PARTIAL -- Canon/artifact/baseline/roadmap all updated and cross-consistent for what's resolved; no formal evidence-wrapper contract exists for this row (unlike B06/B08's engineering-specs contract)"
+  },
+  "verdict": "E15 row stays partial. Static-only investigation has reached practical diminishing returns for this pass -- the remaining code (MDEC/CD streaming pump, ~497KB of the ~500KB blob) is large, low-marginal-value for DoD closure without Ghidra-level tooling, and items 1/4/7 need runtime fixtures this pass did not request. Moving to a different Phase 4 row; revisit only if fixtures are recorded or the FMV.BIN function-census extension becomes worthwhile project-wide. [Updated same day, later pass: item 8 strengthened from prose to real compiling C for the dispatch mechanism -- see src_re/fmv_movie_dispatch_800b6250.c. Does not change the overall verdict: the row stays partial, and the remaining playback-loop gap is unchanged.]"
+ }
+}

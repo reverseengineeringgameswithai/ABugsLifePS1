@@ -1,0 +1,54 @@
+{
+  "schema": "phase4-b04-capsule-v1",
+  "row": "B04_cannon_plant",
+  "date": "2026-08-03",
+  "capsule": {
+    "directory": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/B04_cannon_dandelion_combo",
+    "manifest_sha256": "41ff30733e08c5b4e070ea7ac2c7129ecc807d3c19aaf998f990fbf13b914e37",
+    "tree_sha256": "7efb83f5e09186a8f93eec10336a490c20f86d57f4091dc6716d4bf225bb09b6",
+    "schema": "duckstation-trace-capsule-v1",
+    "block_mode": "counts",
+    "frame_range": [164199, 164686],
+    "frame_boundaries": 488,
+    "movie_frames_advanced": 487,
+    "instructions": 121909399,
+    "blocks": 17209424,
+    "chunks": 9,
+    "complete": true,
+    "truncated": false,
+    "error": "",
+    "all_chunk_hashes_verified_by_c": true,
+    "all_frame_ram_vram_spu_reconstruction_hashes_verified_by_c": true,
+    "control_match": {"cycle": true, "frame": true, "registers": true, "ram": true, "vram": true, "spu_ram": true, "full_machine_state": true, "mismatches": {}},
+    "precision_limit": "frame-boundary state plus passive per-frame basic-block counts; not every-cycle evidence or exact writer attribution"
+  },
+  "fixture": {
+    "movie": "movies/Phase4/B04_cannon_dandelion_combo.movie.json",
+    "movie_sha256": "7028dbd49115a9fe181a2405fd7800af8f37a822adba06da256629ed1ac05d72",
+    "start_state": "movies/Phase4/B04_cannon_dandelion_combo.movie.sav",
+    "start_state_sha256": "c3c0f69ce28e8d264b328d95231d40e5159922771e8150e7f4cf25ad6325a28e",
+    "anchor": "hash-pinned save state",
+    "media_serial": "SCUS-94288",
+    "media_role": "hash-verified pristine retail media"
+  },
+  "timeline": [
+    {"movie_frame": 119, "event": "contact trigger", "plant_state": 2, "lockout": 17, "handler_blocks": 7, "player_y": -21850},
+    {"movie_frames": [119, 151], "event": "seated lockout", "lockout_values": "17 through 1 on alternating movie frames", "position_fixed": true, "velocity": [0, 0, 0]},
+    {"movie_frame": 153, "event": "first post-launch boundary", "mode": 6, "position": [-92632, -29786, -71533], "velocity": [-133, -7936, 55], "interpretation": "fixed seed (0,-8192,0), then same-update gravity and ordinary lateral steering"},
+    {"movie_frame": 191, "event": "cannon animation rearms state 1", "plant_state": 1},
+    {"movie_frame": 215, "event": "apex boundary", "player_y": -148826, "vy": 0, "rise_from_seat": 126976},
+    {"movie_frame": 247, "event": "ordinary ballistic fall reaches terminal vy", "vy": 4096},
+    {"movie_frame": 275, "event": "dandelion volume sets interaction latch", "latch": 11, "vy": 4096},
+    {"movie_frame": 277, "event": "dandelion slow-fall applies", "latch": 11, "vy": 350},
+    {"movie_frames": [277, 457], "event": "sustained slow-fall", "vy": 350, "horizontal_steering_observed": true},
+    {"movie_frame": 459, "event": "landing contact", "mode": 6, "ground_word": 257, "player_y": -24732},
+    {"movie_frame": 461, "event": "ordinary grounded reset", "mode": 0, "ground_word": 257, "latch": 0, "player_y": -24728}
+  ],
+  "coverage": {
+    "cannon_handler_range": "0x8005C110..0x8005C254",
+    "cannon_handler_blocks": 266,
+    "shared_launch_case_range": "0x80048670..0x80048720",
+    "shared_launch_case_blocks": 524
+  },
+  "result": "valid complete behavioral path; no live replay required"
+}

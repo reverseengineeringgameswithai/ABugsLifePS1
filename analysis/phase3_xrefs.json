@@ -1,0 +1,4482 @@
+{
+ "_comment": "Phase-3 STATIC data xrefs: which instructions read/write each OWNED semantic address. Resolves gp-relative and lui-formed absolute accesses. Accesses through a RUNTIME POINTER cannot be resolved statically and are counted separately \u2014 an entry with no static xref is 'not statically referenced', which is NOT the same as 'nothing touches it'. Hand-declared writers are VERIFIED here; ones this scan cannot see are reported as contradictions rather than dropped. Regenerate: python3 tools/phase3_xrefs.py",
+ "generated": "2026-07-15",
+ "fixture_sha256": {
+  "REBUILD/files/SCUS_942.88": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+ },
+ "gp": "0x80081D98",
+ "scan_stats": {
+  "loads": 15971,
+  "stores": 10586,
+  "gp_relative": 914,
+  "absolute": 5274,
+  "pointer_based": 20369
+ },
+ "entries_owned": 63,
+ "entries_with_static_xrefs": 40,
+ "entries_without_static_xrefs": [
+  "original.scene_asset_table",
+  "original.gfx_loadscreen_table",
+  "original.level_bin_table",
+  "original.berry_throw_jump_table",
+  "original.mover_vm_opcode_table",
+  "original.plant_behavior_jump_table",
+  "original.berry_throw",
+  "original.spawn_coord_table",
+  "original.mover_vm_program_bank",
+  "original.plant_type_table",
+  "original.overlay_streaming_table",
+  "mod_private.blackberry_spawn_fast_flag",
+  "mod_private.blackberry_equipped",
+  "mod_private.blackberry_effective_index",
+  "original.fmv_boot_buffer_end",
+  "original.skeleton_bone_transform_bank",
+  "original.pass3_decor_visibility_bitmap",
+  "original.plant_slots",
+  "original.object_pointer_list",
+  "original.chunk31_actor_records",
+  "original.worm_anchor",
+  "original.player_anim_frame_pair",
+  "original.shared_mesh_vertex_buffer"
+ ],
+ "declared_writer_contradictions": [],
+ "mod_private_not_verifiable_against_pristine": [
+  {
+   "entry": "mod_private.blackberry_equipped",
+   "declared_writers": [
+    "0x8008134C",
+    "0x800813B0"
+   ],
+   "why": "mod_private state is written by MOD CAVE code, which does not exist in the pristine image \u2014 not verifiable here, and not a contradiction."
+  },
+  {
+   "entry": "mod_private.blackberry_effective_index",
+   "declared_writers": [
+    "0x8008134C",
+    "0x800813B0"
+   ],
+   "why": "mod_private state is written by MOD CAVE code, which does not exist in the pristine image \u2014 not verifiable here, and not a contradiction."
+  }
+ ],
+ "declared_writers_via_pointer_unverifiable": [
+  {
+   "entry": "original.pass3_decor_visibility_bitmap",
+   "address": "0x800902C7",
+   "declared_writers": [
+    "0x80014360"
+   ],
+   "why": "the named function writes this state through a POINTER (cursor/base register), which a static absolute-address scan cannot attribute. NOT a contradiction \u2014 a limit of the method, stated rather than hidden."
+  },
+  {
+   "entry": "original.plant_slots",
+   "address": "0x80090BF0",
+   "declared_writers": [
+    "0x8005BDBC"
+   ],
+   "why": "the named function writes this state through a POINTER (cursor/base register), which a static absolute-address scan cannot attribute. NOT a contradiction \u2014 a limit of the method, stated rather than hidden."
+  },
+  {
+   "entry": "original.camera_struct",
+   "address": "0x80095358",
+   "declared_writers": [
+    "0x8004DF18"
+   ],
+   "why": "the named function writes this state through a POINTER (cursor/base register), which a static absolute-address scan cannot attribute. NOT a contradiction \u2014 a limit of the method, stated rather than hidden."
+  },
+  {
+   "entry": "original.player_y",
+   "address": "0x800A6504",
+   "declared_writers": [
+    "0x80036CEC"
+   ],
+   "why": "the named function writes this state through a POINTER (cursor/base register), which a static absolute-address scan cannot attribute. NOT a contradiction \u2014 a limit of the method, stated rather than hidden."
+  },
+  {
+   "entry": "original.player_floor_y",
+   "address": "0x800A6548",
+   "declared_writers": [
+    "0x80048138"
+   ],
+   "why": "the named function writes this state through a POINTER (cursor/base register), which a static absolute-address scan cannot attribute. NOT a contradiction \u2014 a limit of the method, stated rather than hidden."
+  },
+  {
+   "entry": "original.contact_pool",
+   "address": "0x800B0D18",
+   "declared_writers": [
+    "0x80059E44"
+   ],
+   "why": "the named function writes this state through a POINTER (cursor/base register), which a static absolute-address scan cannot attribute. NOT a contradiction \u2014 a limit of the method, stated rather than hidden."
+  }
+ ],
+ "declared_writers_in_overlay_space": [
+  {
+   "entry": "original.training_step",
+   "address": "0x800B4A3C",
+   "declared_writers": [
+    "0x800B477C"
+   ],
+   "why": "the declared writer lies in OVERLAY space (0x800B39A4..0x800BE5E8) \u2014 overlay code is not part of the resident EXE image, so this scan cannot see it. Verifying it needs the overlay blob."
+  }
+ ],
+ "entries": {
+  "original.scene_asset_table": {
+   "address": "0x8001AD0C",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.gfx_loadscreen_table": {
+   "address": "0x8001AE98",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.level_bin_table": {
+   "address": "0x8001B174",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.berry_throw_jump_table": {
+   "address": "0x8001B1C0",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.mover_vm_opcode_table": {
+   "address": "0x8001B2F4",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.plant_behavior_jump_table": {
+   "address": "0x8001B848",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.berry_throw": {
+   "address": "0x80047170",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "reached only through a runtime POINTER, or written by overlay/mod code outside this image \u2014 NOT evidence that nothing touches it"
+  },
+  "original.spawn_coord_table": {
+   "address": "0x80077314",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.mover_vm_program_bank": {
+   "address": "0x8007745C",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.plant_type_table": {
+   "address": "0x8007A448",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.overlay_streaming_table": {
+   "address": "0x8007EFE8",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "mod_private.blackberry_spawn_fast_flag": {
+   "address": "0x80081230",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "reached only through a runtime POINTER, or written by overlay/mod code outside this image \u2014 NOT evidence that nothing touches it"
+  },
+  "mod_private.blackberry_equipped": {
+   "address": "0x80081231",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "reached only through a runtime POINTER, or written by overlay/mod code outside this image \u2014 NOT evidence that nothing touches it"
+  },
+  "mod_private.blackberry_effective_index": {
+   "address": "0x80081232",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "reached only through a runtime POINTER, or written by overlay/mod code outside this image \u2014 NOT evidence that nothing touches it"
+  },
+  "original.fmv_boot_buffer_start": {
+   "address": "0x800814BC",
+   "readers": [
+    {
+     "pc": "0x8006CAAC",
+     "function": "_SpuSetAnyVoice",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8006CB10",
+     "function": "_SpuSetAnyVoice",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8006CBCC",
+     "function": "_SpuSetAnyVoice",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8006B784",
+     "function": "_SpuInit",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 3,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.fmv_boot_buffer_end": {
+   "address": "0x80081530",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.bonus1_stomp_streak": {
+   "address": "0x8008223C",
+   "readers": [
+    {
+     "pc": "0x8004B38C",
+     "function": "proximity_updater",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x800470D8",
+     "function": "berry_throw_dispatch",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004A6C4",
+     "function": "object_slot_type_init",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004A854",
+     "function": "resident_level_transition_initiator",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004B1D4",
+     "function": "proximity_updater",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004B350",
+     "function": "proximity_updater",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004B3A8",
+     "function": "proximity_updater",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004B3D0",
+     "function": "proximity_updater",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 1,
+   "writer_count": 7,
+   "statically_referenced": true
+  },
+  "original.bonus3_blue_grasshopper_streak": {
+   "address": "0x80082240",
+   "readers": [
+    {
+     "pc": "0x800591A4",
+     "function": "berry_tough_damage_dispatch",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x80057428",
+     "function": "clear_gameplay_pool_on_reset",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80058B34",
+     "function": "contact_vs_actor_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x800591C0",
+     "function": "berry_tough_damage_dispatch",
+     "op": "sw"
+    },
+    {
+     "pc": "0x800591EC",
+     "function": "berry_tough_damage_dispatch",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80059A0C",
+     "function": "pickup_effect_dispatch",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 1,
+   "writer_count": 5,
+   "statically_referenced": true
+  },
+  "original.bonus2_mushroom_slot_0": {
+   "address": "0x80082248",
+   "readers": [],
+   "writers": [
+    {
+     "pc": "0x8005BC94",
+     "function": "plant_slot_respawn_scan",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8005C06C",
+     "function": "plant_behavior_walker",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8005C54C",
+     "function": "seed_plant_propeller_handler",
+     "op": "sb"
+    }
+   ],
+   "reader_count": 0,
+   "writer_count": 3,
+   "statically_referenced": true
+  },
+  "original.plant_slot_cursor": {
+   "address": "0x800822B8",
+   "readers": [
+    {
+     "pc": "0x8005BE6C",
+     "function": "plant_spawn",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005BF58",
+     "function": "plant_spawn",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005BF84",
+     "function": "plant_spawn",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005BCC0",
+     "function": "plant_slot_respawn_scan",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005BF68",
+     "function": "plant_spawn",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005BF7C",
+     "function": "plant_spawn",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 3,
+   "writer_count": 3,
+   "statically_referenced": true
+  },
+  "original.contact_alloc_cursor": {
+   "address": "0x8008234C",
+   "readers": [
+    {
+     "pc": "0x80059E68",
+     "function": "spawn_drop",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80059E94",
+     "function": "spawn_drop",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A100",
+     "function": "contact_object_spawn",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A12C",
+     "function": "contact_object_spawn",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005AC3C",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005AC68",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005AE74",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005AEA0",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x80057424",
+     "function": "clear_gameplay_pool_on_reset",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80059E78",
+     "function": "spawn_drop",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80059E8C",
+     "function": "spawn_drop",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005A110",
+     "function": "contact_object_spawn",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005A124",
+     "function": "contact_object_spawn",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005AC4C",
+     "function": "berry_projectile_update",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005AC60",
+     "function": "berry_projectile_update",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005AE84",
+     "function": "berry_projectile_update",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005AE98",
+     "function": "berry_projectile_update",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 8,
+   "writer_count": 9,
+   "statically_referenced": true
+  },
+  "original.pad_prev_word": {
+   "address": "0x80082380",
+   "readers": [
+    {
+     "pc": "0x800473E0",
+     "function": "player_contact_response",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80047738",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80047900",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80047AF8",
+     "function": "player_contact_response",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80047C38",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80047D28",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800481B0",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80048A24",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048F64",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80048FD4",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80051DDC",
+     "function": "sfx_play_sound_glue",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8004EE9C",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FE3C",
+     "function": "scene_flow_dispatcher",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 11,
+   "writer_count": 2,
+   "statically_referenced": true
+  },
+  "original.bonus_transition_latch": {
+   "address": "0x800823A0",
+   "readers": [
+    {
+     "pc": "0x8004852C",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004965C",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80049818",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004A7C0",
+     "function": "resident_level_transition_initiator",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004D95C",
+     "function": "setpiece_sfx_cue",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004EEE8",
+     "function": "gameplay_state_machine",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004F158",
+     "function": "gameplay_state_machine",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004F204",
+     "function": "gameplay_state_machine",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004F26C",
+     "function": "gameplay_state_machine",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004F2D0",
+     "function": "gameplay_state_machine",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004F9D0",
+     "function": "gameplay_frame_render",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004FB40",
+     "function": "main_shell_state_machine",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004FEF0",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004FF28",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004FF90",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800500A8",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800501AC",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80050220",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80050B84",
+     "function": "sfx_dispatch",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80050C70",
+     "function": "contact_pickup_sfx",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80051120",
+     "function": "ambient_sfx_sequence_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80052734",
+     "function": "results_screen_render",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80054F24",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800553AC",
+     "function": "sfx_voice_trigger_gl_glue",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80056888",
+     "function": "actor_skinned_update",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x800496D8",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800496F8",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A8B4",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A9F4",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004B3C0",
+     "function": "proximity_updater",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F224",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F28C",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F2F0",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F6B8",
+     "function": "gameplay_frame_render",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F9E4",
+     "function": "gameplay_frame_render",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FADC",
+     "function": "main_shell_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FCB4",
+     "function": "scene_flow_dispatcher",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FE44",
+     "function": "scene_flow_dispatcher",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800591DC",
+     "function": "berry_tough_damage_dispatch",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005B888",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005C6B8",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 25,
+   "writer_count": 16,
+   "statically_referenced": true
+  },
+  "original.checkpoint_fp_save": {
+   "address": "0x800823CC",
+   "readers": [
+    {
+     "pc": "0x8004D69C",
+     "function": "setpiece_spawn_manager",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004D8CC",
+     "function": "setpiece_sfx_cue",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005456C",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005B9D8",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 2,
+   "writer_count": 2,
+   "statically_referenced": true
+  },
+  "original.bonus_progress_command": {
+   "address": "0x80082444",
+   "readers": [
+    {
+     "pc": "0x80055820",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005587C",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005C684",
+     "function": "seed_plant_trampoline_handler",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005C6A4",
+     "function": "seed_plant_trampoline_handler",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8004B3A0",
+     "function": "proximity_updater",
+     "op": "sw"
+    },
+    {
+     "pc": "0x800558BC",
+     "function": "player_action_effects_update",
+     "op": "sw"
+    },
+    {
+     "pc": "0x800591B8",
+     "function": "berry_tough_damage_dispatch",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005BCC8",
+     "function": "plant_slot_respawn_scan",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005C660",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005C690",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 4,
+   "writer_count": 6,
+   "statically_referenced": true
+  },
+  "original.music_id": {
+   "address": "0x8008245C",
+   "readers": [
+    {
+     "pc": "0x8004FCF0",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004FD80",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004FDA4",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80050148",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800502DC",
+     "function": "fmv_sequence_completion_check",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80051D20",
+     "function": "effect_render_stage",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80051D54",
+     "function": "effect_render_stage",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80051D88",
+     "function": "effect_render_stage",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8005B74C",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8005BB90",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8004FC44",
+     "function": "scene_flow_set_substate_1",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FC58",
+     "function": "scene_flow_set_substate_11",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FC6C",
+     "function": "scene_flow_set_substate_2",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FC80",
+     "function": "scene_flow_set_substate_7",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FC94",
+     "function": "scene_flow_set_substate_12",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FD5C",
+     "function": "scene_flow_dispatcher",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800501A4",
+     "function": "scene_flow_dispatcher",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 10,
+   "writer_count": 7,
+   "statically_referenced": true
+  },
+  "original.bonus_fade_timer": {
+   "address": "0x80082470",
+   "readers": [
+    {
+     "pc": "0x80048518",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004EEFC",
+     "function": "gameplay_state_machine",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004FF04",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800526F8",
+     "function": "hud_draw",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80054CCC",
+     "function": "checkpoint_save",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80055398",
+     "function": "sfx_voice_trigger_gl_glue",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800553E0",
+     "function": "sfx_voice_trigger_gl_glue",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x80049704",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A8C0",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004AA00",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004B3CC",
+     "function": "proximity_updater",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F230",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F298",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F2FC",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F6CC",
+     "function": "gameplay_frame_render",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004F9FC",
+     "function": "gameplay_frame_render",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FE4C",
+     "function": "scene_flow_dispatcher",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800553F8",
+     "function": "sfx_voice_trigger_gl_glue",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800591E8",
+     "function": "berry_tough_damage_dispatch",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005B890",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005C6CC",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 7,
+   "writer_count": 14,
+   "statically_referenced": true
+  },
+  "original.pad_held_word": {
+   "address": "0x80082488",
+   "readers": [
+    {
+     "pc": "0x800473C8",
+     "function": "player_contact_response",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80047720",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800478E8",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80047AE0",
+     "function": "player_contact_response",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80047C20",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80047D10",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80047F6C",
+     "function": "contact_alloc_cursor_mesh_transform",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048094",
+     "function": "contact_alloc_cursor_mesh_transform",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x800481A8",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80048218",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004848C",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048798",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048804",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048A0C",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048B60",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048EEC",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048F44",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048FBC",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800490B4",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x800490E4",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80049180",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x800491D8",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80049200",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004DF64",
+     "function": "camera_follow_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004DFD4",
+     "function": "camera_follow_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004E034",
+     "function": "camera_follow_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004E868",
+     "function": "camera_follow_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EE8C",
+     "function": "gameplay_state_machine",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EF14",
+     "function": "gameplay_state_machine",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EF50",
+     "function": "gameplay_state_machine",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EF90",
+     "function": "gameplay_state_machine",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EFBC",
+     "function": "gameplay_state_machine",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80051308",
+     "function": "controller_action_mask_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80051338",
+     "function": "controller_action_mask_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80051DB8",
+     "function": "global_mode_flags_read",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80052814",
+     "function": "results_screen_render",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80056474",
+     "function": "actor_skinned_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80056678",
+     "function": "actor_skinned_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x800566D0",
+     "function": "actor_skinned_update",
+     "op": "lhu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x800487A8",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004882C",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80048838",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EEB8",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EF24",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EF6C",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EFA0",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EFCC",
+     "function": "gameplay_state_machine",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FE34",
+     "function": "scene_flow_dispatcher",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800512D0",
+     "function": "controller_action_mask_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800512E8",
+     "function": "controller_action_mask_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80051318",
+     "function": "controller_action_mask_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80051348",
+     "function": "controller_action_mask_update",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 39,
+   "writer_count": 13,
+   "statically_referenced": true
+  },
+  "original.current_scene_id": {
+   "address": "0x80082504",
+   "readers": [
+    {
+     "pc": "0x8001CDE4",
+     "function": "dat_parser_relocator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003A54C",
+     "function": "high_heap_loader_level_raw_decompress_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003A748",
+     "function": "high_heap_loader_level_raw_decompress_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003A81C",
+     "function": "high_heap_loader_level_raw_decompress_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003A968",
+     "function": "high_heap_loader_level_raw_decompress_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003A9C0",
+     "function": "high_heap_loader_level_raw_decompress_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003AB48",
+     "function": "high_heap_loader_level_raw_decompress_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003ABF0",
+     "function": "high_heap_loader_level_raw_decompress_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003DD50",
+     "function": "scroll_backdrop_moveimage",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003E4E4",
+     "function": "tpage_prim_setup_entry",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003F510",
+     "function": "scene_load_init",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8003F540",
+     "function": "scene_load_init",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80047B10",
+     "function": "player_contact_response",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004845C",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80048758",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80049478",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004B118",
+     "function": "proximity_updater",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004B37C",
+     "function": "proximity_updater",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004D8A4",
+     "function": "setpiece_sfx_cue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E16C",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004EFA8",
+     "function": "gameplay_state_machine",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004F034",
+     "function": "gameplay_state_machine",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004F088",
+     "function": "gameplay_state_machine",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004F0F4",
+     "function": "gameplay_state_machine",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004F1A8",
+     "function": "gameplay_state_machine",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004FDEC",
+     "function": "scene_flow_dispatcher",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004FF54",
+     "function": "scene_flow_dispatcher",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800501D4",
+     "function": "scene_flow_dispatcher",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005039C",
+     "function": "scene_setup_and_load",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80050AB4",
+     "function": "sfx_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80050B14",
+     "function": "sfx_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005150C",
+     "function": "setpiece_light_color_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005224C",
+     "function": "level_transition_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005228C",
+     "function": "level_transition_orchestrator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053134",
+     "function": "results_screen_render",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053268",
+     "function": "results_screen_render",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800533C8",
+     "function": "results_screen_render",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053460",
+     "function": "results_screen_render",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054D04",
+     "function": "checkpoint_save",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054EE8",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055B20",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055D40",
+     "function": "load_numbered_asset_file_scene_entry",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055DF0",
+     "function": "load_stage_vram_upload",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056414",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056568",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005692C",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056A7C",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005883C",
+     "function": "contact_pickup_walker",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80058FD0",
+     "function": "contact_vs_actor_handler",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80059A80",
+     "function": "pickup_effect_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005B130",
+     "function": "respawn_transition_state_handler_entry",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005B7BC",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005B83C",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005BDC4",
+     "function": "plant_spawn",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005C044",
+     "function": "plant_behavior_walker",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005DB8C",
+     "function": "level_load_chunks",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005DC0C",
+     "function": "level_load_chunks",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8003F524",
+     "function": "scene_load_init",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8003F59C",
+     "function": "scene_load_init",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004FD0C",
+     "function": "scene_flow_dispatcher",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004FDC0",
+     "function": "scene_flow_dispatcher",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004FDE4",
+     "function": "scene_flow_dispatcher",
+     "op": "sw"
+    },
+    {
+     "pc": "0x800503AC",
+     "function": "scene_setup_and_load",
+     "op": "sw"
+    },
+    {
+     "pc": "0x800503E0",
+     "function": "scene_setup_and_load",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80052274",
+     "function": "level_transition_orchestrator",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80052314",
+     "function": "level_transition_orchestrator",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80052474",
+     "function": "level_transition_orchestrator",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 57,
+   "writer_count": 10,
+   "statically_referenced": true
+  },
+  "original.skeleton_bone_transform_bank": {
+   "address": "0x8008A1F8",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.pass3_decor_visibility_bitmap": {
+   "address": "0x800902C7",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "reached only through a runtime POINTER, or written by overlay/mod code outside this image \u2014 NOT evidence that nothing touches it"
+  },
+  "original.enemy_live_table": {
+   "address": "0x80090748",
+   "readers": [
+    {
+     "pc": "0x8001E01C",
+     "function": "scene_geometry_draw_dispatcher",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80024E28",
+     "function": "damageable_object_ptr_mesh_transform",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80046D40",
+     "function": "projectile_aim",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800472CC",
+     "function": "player_contact_response",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80047774",
+     "function": "player_contact_response",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80049B98",
+     "function": "enemy_deathanim_finalize_remove_from_list",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004AC00",
+     "function": "proximity_updater",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004B714",
+     "function": "damageable_object_ptr_mesh_transform_b6dc",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004D44C",
+     "function": "mover_updater",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80057468",
+     "function": "berry_homing_target_acquire",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80058B3C",
+     "function": "contact_vs_actor_handler",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005C45C",
+     "function": "seed_plant_propeller_handler",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005C92C",
+     "function": "seed_plant_mine_handler",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8003A49C",
+     "function": "high_heap_loader_level_raw_decompress_orchestrator",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004A4B4",
+     "function": "object_slot_type_init",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 13,
+   "writer_count": 2,
+   "statically_referenced": true
+  },
+  "original.thumper_defeat_flag": {
+   "address": "0x80090BEE",
+   "readers": [
+    {
+     "pc": "0x8004EB0C",
+     "function": "enemy_ai_dispatcher",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EB40",
+     "function": "enemy_ai_dispatcher",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EB98",
+     "function": "enemy_ai_dispatcher",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EBF4",
+     "function": "enemy_ai_dispatcher",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004F3D0",
+     "function": "gameplay_state_machine",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004F6DC",
+     "function": "gameplay_frame_render",
+     "op": "lhu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8004DA7C",
+     "function": "setpiece_spawn_init",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004DB44",
+     "function": "level_complete_finale",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EB1C",
+     "function": "enemy_ai_dispatcher",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EBAC",
+     "function": "enemy_ai_dispatcher",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 6,
+   "writer_count": 4,
+   "statically_referenced": true
+  },
+  "original.plant_slots": {
+   "address": "0x80090BF0",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.enemy_spawn_source_table": {
+   "address": "0x80094A38",
+   "readers": [
+    {
+     "pc": "0x8004A634",
+     "function": "object_slot_type_init",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8004A640",
+     "function": "object_slot_type_init",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 1,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.camera_struct": {
+   "address": "0x80095358",
+   "readers": [
+    {
+     "pc": "0x8004EC18",
+     "function": "enemy_ai_dispatcher",
+     "op": "lw"
+    }
+   ],
+   "writers": [],
+   "reader_count": 1,
+   "writer_count": 0,
+   "statically_referenced": true
+  },
+  "original.object_pointer_list": {
+   "address": "0x80096B98",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.bonus_unlock_flags": {
+   "address": "0x8009B889",
+   "readers": [
+    {
+     "pc": "0x8004B364",
+     "function": "proximity_updater",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8004FFB0",
+     "function": "scene_flow_dispatcher",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8004FFE8",
+     "function": "scene_flow_dispatcher",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80059190",
+     "function": "berry_tough_damage_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005C058",
+     "function": "plant_behavior_walker",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005C6D0",
+     "function": "seed_plant_trampoline_handler",
+     "op": "lbu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8004B3B4",
+     "function": "proximity_updater",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8004FFC8",
+     "function": "scene_flow_dispatcher",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80050000",
+     "function": "scene_flow_dispatcher",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800591D0",
+     "function": "berry_tough_damage_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8005C6E4",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sb"
+    }
+   ],
+   "reader_count": 6,
+   "writer_count": 5,
+   "statically_referenced": true
+  },
+  "original.chunk31_actor_records": {
+   "address": "0x8009FE04",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.worm_anchor": {
+   "address": "0x800A0C9C",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  },
+  "original.player_x": {
+   "address": "0x800A6500",
+   "readers": [
+    {
+     "pc": "0x8001D3DC",
+     "function": "dirt_object_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8001D614",
+     "function": "dirt_object_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8001D7C0",
+     "function": "dirt_object_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80041BF4",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80041D10",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800425AC",
+     "function": "visual_sprite_object_pool_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80047BBC",
+     "function": "player_contact_response",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800497D8",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004A248",
+     "function": "actor_turn_toward_player",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004A348",
+     "function": "aimed_object_spawn_sfx",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004AC50",
+     "function": "proximity_updater",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004BAA0",
+     "function": "mover_actor_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004BB80",
+     "function": "mover_actor_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004C718",
+     "function": "mover_vm_op17_player_proximity",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004C954",
+     "function": "vm_motion_apply_chase",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E13C",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E248",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E364",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E5A4",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E7B4",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005135C",
+     "function": "sfx_proximity_priority_gate",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800515DC",
+     "function": "setpiece_light_color_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051844",
+     "function": "all_enemies_defeated_event",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051C10",
+     "function": "effect_render_stage",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051C54",
+     "function": "effect_render_stage",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051EBC",
+     "function": "sfx_play_sound_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051F68",
+     "function": "sfx_play_sound_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005386C",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053D88",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053EE4",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054040",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005419C",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054E44",
+     "function": "checkpoint_save",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055018",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800556E8",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005578C",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055860",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055960",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055A2C",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055AC4",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055C38",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055CB8",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056BF0",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056DC4",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056E68",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80057C0C",
+     "function": "vm_native_aimed_drop_spawn",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80057FDC",
+     "function": "spawn_drop_burst_8",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80058700",
+     "function": "contact_pickup_walker",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80058A34",
+     "function": "contact_pickup_walker",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A384",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005CF68",
+     "function": "gameplay_effect_spawner",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005B29C",
+     "function": "respawn_transition_state_handler",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 51,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.player_y": {
+   "address": "0x800A6504",
+   "readers": [
+    {
+     "pc": "0x8001D430",
+     "function": "dirt_object_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8001D7D8",
+     "function": "dirt_object_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80041C10",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80041D24",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800425C4",
+     "function": "visual_sprite_object_pool_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80047BDC",
+     "function": "player_contact_response",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800483BC",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80049800",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004AC14",
+     "function": "proximity_updater",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004BA50",
+     "function": "mover_actor_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004BBA0",
+     "function": "mover_actor_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004CA24",
+     "function": "vm_motion_apply_chase",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004D580",
+     "function": "mover_updater",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E2FC",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E4CC",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E5BC",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E6D0",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E794",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051374",
+     "function": "sfx_proximity_priority_gate",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051608",
+     "function": "setpiece_light_color_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051854",
+     "function": "all_enemies_defeated_event",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051BB8",
+     "function": "effect_render_stage",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051C5C",
+     "function": "effect_render_stage",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051EC4",
+     "function": "sfx_play_sound_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051F70",
+     "function": "sfx_play_sound_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053874",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053D90",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053EEC",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054048",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800541A4",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054E4C",
+     "function": "checkpoint_save",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055020",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800556A4",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800556F0",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005572C",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055770",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055794",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055870",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055910",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800559D8",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055ACC",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055BF8",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055CC0",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800568EC",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056D38",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056E1C",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80057FD4",
+     "function": "spawn_drop_burst_8",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80058710",
+     "function": "contact_pickup_walker",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A3BC",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005C37C",
+     "function": "seed_plant_propeller_handler",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005CF80",
+     "function": "gameplay_effect_spawner",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005B2A4",
+     "function": "respawn_transition_state_handler",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 51,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.player_z": {
+   "address": "0x800A6508",
+   "readers": [
+    {
+     "pc": "0x8001D454",
+     "function": "dirt_object_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8001D640",
+     "function": "dirt_object_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8001D7F4",
+     "function": "dirt_object_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80041C24",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80041D44",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800425EC",
+     "function": "visual_sprite_object_pool_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80047C00",
+     "function": "player_contact_response",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800497E8",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004A250",
+     "function": "actor_turn_toward_player",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004A354",
+     "function": "aimed_object_spawn_sfx",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004AC60",
+     "function": "proximity_updater",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004BAB4",
+     "function": "mover_actor_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004BBBC",
+     "function": "mover_actor_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004C734",
+     "function": "mover_vm_op17_player_proximity",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004C96C",
+     "function": "vm_motion_apply_chase",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E148",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E254",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E3A0",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E5DC",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004E7D0",
+     "function": "camera_follow_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005138C",
+     "function": "sfx_proximity_priority_gate",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051620",
+     "function": "setpiece_light_color_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051864",
+     "function": "all_enemies_defeated_event",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051BC8",
+     "function": "effect_render_stage",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051C64",
+     "function": "effect_render_stage",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051EC0",
+     "function": "sfx_play_sound_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051F78",
+     "function": "sfx_play_sound_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053890",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053D98",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053EF4",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054050",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800541AC",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054E54",
+     "function": "checkpoint_save",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055028",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800556F8",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005579C",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055864",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800559AC",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055A70",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055AD4",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055C60",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055CC8",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056C34",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056DDC",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056E80",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80057C1C",
+     "function": "vm_native_aimed_drop_spawn",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80057FE4",
+     "function": "spawn_drop_burst_8",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80058720",
+     "function": "contact_pickup_walker",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80058A40",
+     "function": "contact_pickup_walker",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A390",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005CF94",
+     "function": "gameplay_effect_spawner",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005B2AC",
+     "function": "respawn_transition_state_handler",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 51,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.player_prev_pos": {
+   "address": "0x800A6510",
+   "readers": [
+    {
+     "pc": "0x80036D5C",
+     "function": "player_y_commit_store",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005B2B4",
+     "function": "respawn_transition_state_handler",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 1,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.player_velocity_x": {
+   "address": "0x800A652C",
+   "readers": [
+    {
+     "pc": "0x80041D60",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80042570",
+     "function": "visual_sprite_object_pool_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800557B0",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x800423C8",
+     "function": "vec_normalize_len_1ac4",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047890",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047BD0",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047CF0",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047D74",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004A774",
+     "function": "resident_level_transition_initiator",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004B0A0",
+     "function": "proximity_updater",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004D6D8",
+     "function": "setpiece_sfx_cue",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005457C",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005B210",
+     "function": "respawn_transition_state_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005D008",
+     "function": "gameplay_effect_spawner",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005D068",
+     "function": "gameplay_effect_spawner",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 3,
+   "writer_count": 12,
+   "statically_referenced": true
+  },
+  "original.player_velocity_y": {
+   "address": "0x800A6530",
+   "readers": [
+    {
+     "pc": "0x80041DB4",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004258C",
+     "function": "visual_sprite_object_pool_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800557D4",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055CA0",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055CDC",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055CFC",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056818",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005C3F8",
+     "function": "seed_plant_propeller_handler",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x800423DC",
+     "function": "vec_normalize_len_1ac4",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047BF4",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004A85C",
+     "function": "resident_level_transition_initiator",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80054584",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005B218",
+     "function": "respawn_transition_state_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005C424",
+     "function": "seed_plant_propeller_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005C454",
+     "function": "seed_plant_propeller_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005C5FC",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005C6DC",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005C848",
+     "function": "seed_plant_dandelion_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005D000",
+     "function": "gameplay_effect_spawner",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005D024",
+     "function": "gameplay_effect_spawner",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005D050",
+     "function": "gameplay_effect_spawner",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 8,
+   "writer_count": 13,
+   "statically_referenced": true
+  },
+  "original.player_velocity_z": {
+   "address": "0x800A6534",
+   "readers": [
+    {
+     "pc": "0x80041E08",
+     "function": "vec_normalize_len_1ac4",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004259C",
+     "function": "visual_sprite_object_pool_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800557F8",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x800423F0",
+     "function": "vec_normalize_len_1ac4",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047898",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047C18",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047CF8",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x80047D7C",
+     "function": "player_contact_response",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004A78C",
+     "function": "resident_level_transition_initiator",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004B0A8",
+     "function": "proximity_updater",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8004D6E0",
+     "function": "setpiece_sfx_cue",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005458C",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005B220",
+     "function": "respawn_transition_state_handler",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005D010",
+     "function": "gameplay_effect_spawner",
+     "op": "sw"
+    },
+    {
+     "pc": "0x8005D07C",
+     "function": "gameplay_effect_spawner",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 3,
+   "writer_count": 12,
+   "statically_referenced": true
+  },
+  "original.player_anim_frame_pair": {
+   "address": "0x800A6542",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "reached only through a runtime POINTER, or written by overlay/mod code outside this image \u2014 NOT evidence that nothing touches it"
+  },
+  "original.player_floor_y": {
+   "address": "0x800A6548",
+   "readers": [
+    {
+     "pc": "0x800483B4",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800497E0",
+     "function": "player_vertical_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004A95C",
+     "function": "resident_level_transition_initiator",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80051874",
+     "function": "all_enemies_defeated_event",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053DA0",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80053EFC",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80054058",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800541B4",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055030",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005569C",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055724",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80055768",
+     "function": "player_action_effects_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x800568E4",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80056D30",
+     "function": "actor_skinned_update",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005B2DC",
+     "function": "respawn_transition_state_handler",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 14,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.kick_timer": {
+   "address": "0x800A657A",
+   "readers": [
+    {
+     "pc": "0x8004770C",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80048EA4",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80048EC0",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80048ED8",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80049024",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004B170",
+     "function": "proximity_updater",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004B43C",
+     "function": "proximity_updater",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800556D4",
+     "function": "player_action_effects_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800558D8",
+     "function": "player_action_effects_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80055A9C",
+     "function": "player_action_effects_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80056700",
+     "function": "actor_skinned_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800567E8",
+     "function": "actor_skinned_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8005684C",
+     "function": "actor_skinned_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80056910",
+     "function": "actor_skinned_update",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x80046D00",
+     "function": "resident_level_t_seed_plant_dan_glue",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004838C",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80048EB8",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80048ED4",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80048F3C",
+     "function": "player_vertical_update",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A738",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005B280",
+     "function": "respawn_transition_state_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005C1FC",
+     "function": "seed_plant_cannon_handler",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 14,
+   "writer_count": 8,
+   "statically_referenced": true
+  },
+  "original.player_state_word": {
+   "address": "0x800A6580",
+   "readers": [
+    {
+     "pc": "0x80055C8C",
+     "function": "player_action_effects_update",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8004A84C",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005B270",
+     "function": "respawn_transition_state_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005C404",
+     "function": "seed_plant_propeller_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005C608",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005C854",
+     "function": "seed_plant_dandelion_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005D0B4",
+     "function": "gameplay_effect_spawner",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 1,
+   "writer_count": 6,
+   "statically_referenced": true
+  },
+  "original.player_grounded": {
+   "address": "0x800A6582",
+   "readers": [
+    {
+     "pc": "0x80021408",
+     "function": "setpiece_actor_mesh_transform",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8002168C",
+     "function": "setpiece_actor_mesh_transform",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80038E4C",
+     "function": "player_sector_lookup",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800476BC",
+     "function": "player_contact_response",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80051E10",
+     "function": "sfx_play_sound_glue",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80054CB8",
+     "function": "checkpoint_save",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800563F8",
+     "function": "actor_skinned_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8005C01C",
+     "function": "plant_behavior_walker",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8005C39C",
+     "function": "seed_plant_propeller_handler",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8002142C",
+     "function": "setpiece_actor_mesh_transform",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800216B0",
+     "function": "setpiece_actor_mesh_transform",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80047C08",
+     "function": "player_contact_response",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A86C",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80054594",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005B278",
+     "function": "respawn_transition_state_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005C614",
+     "function": "seed_plant_trampoline_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005C860",
+     "function": "seed_plant_dandelion_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005D0A4",
+     "function": "gameplay_effect_spawner",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 9,
+   "writer_count": 9,
+   "statically_referenced": true
+  },
+  "original.enemy_permanence_quota": {
+   "address": "0x800A658E",
+   "readers": [
+    {
+     "pc": "0x800498F8",
+     "function": "enemy_update_deathanim",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80052CC8",
+     "function": "results_screen_render",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800592F4",
+     "function": "sfx_all_enemies_defe_glue",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8005BADC",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x80049904",
+     "function": "enemy_update_deathanim",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80059300",
+     "function": "sfx_all_enemies_defe_glue",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 4,
+   "writer_count": 2,
+   "statically_referenced": true
+  },
+  "original.player_powerup_flags": {
+   "address": "0x800A6590",
+   "readers": [
+    {
+     "pc": "0x8001D5E8",
+     "function": "dirt_object_dispatch",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8001D750",
+     "function": "dirt_object_dispatch",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80047750",
+     "function": "player_contact_response",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004776C",
+     "function": "player_contact_response",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80047A90",
+     "function": "player_contact_response",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80048314",
+     "function": "player_vertical_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004A79C",
+     "function": "resident_level_transition_initiator",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004A8C8",
+     "function": "resident_level_transition_initiator",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004A914",
+     "function": "resident_level_transition_initiator",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004A938",
+     "function": "resident_level_transition_initiator",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004A9C8",
+     "function": "resident_level_transition_initiator",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004A9DC",
+     "function": "resident_level_transition_initiator",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004B158",
+     "function": "proximity_updater",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004C7EC",
+     "function": "mover_vm_op25_cond_powerup_flag",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EB5C",
+     "function": "enemy_ai_dispatcher",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EBC0",
+     "function": "enemy_ai_dispatcher",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EED0",
+     "function": "gameplay_state_machine",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004EF78",
+     "function": "gameplay_state_machine",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004FA10",
+     "function": "gameplay_frame_render",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80050C84",
+     "function": "contact_pickup_sfx",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80051138",
+     "function": "ambient_sfx_sequence_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80051E24",
+     "function": "sfx_play_sound_glue",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80051E98",
+     "function": "sfx_play_sound_glue",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80051EE4",
+     "function": "sfx_play_sound_glue",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80053BEC",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80054CA8",
+     "function": "checkpoint_save",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80054E5C",
+     "function": "checkpoint_save",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80054F38",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80055BD8",
+     "function": "player_action_effects_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80055C74",
+     "function": "player_action_effects_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80056550",
+     "function": "actor_skinned_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80056D54",
+     "function": "actor_skinned_update",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x800588E8",
+     "function": "contact_pickup_walker",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8005B330",
+     "function": "respawn_transition_state_handler",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8005C360",
+     "function": "seed_plant_propeller_handler",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8005C77C",
+     "function": "seed_plant_type7_handler",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8005C8A4",
+     "function": "seed_plant_dandelion_handler",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8005D070",
+     "function": "gameplay_effect_spawner",
+     "op": "lhu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8001D5F8",
+     "function": "dirt_object_dispatch",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80047780",
+     "function": "player_contact_response",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80047AA0",
+     "function": "player_contact_response",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A7B0",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A8E0",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A94C",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004A9E8",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EB6C",
+     "function": "enemy_ai_dispatcher",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004EBD0",
+     "function": "enemy_ai_dispatcher",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8004FA1C",
+     "function": "gameplay_frame_render",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80051EB0",
+     "function": "sfx_play_sound_glue",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80054CB4",
+     "function": "checkpoint_save",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80054E90",
+     "function": "checkpoint_save",
+     "op": "sh"
+    },
+    {
+     "pc": "0x800588F8",
+     "function": "contact_pickup_walker",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005B340",
+     "function": "respawn_transition_state_handler",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005D088",
+     "function": "gameplay_effect_spawner",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 38,
+   "writer_count": 16,
+   "statically_referenced": true
+  },
+  "original.player_health_true": {
+   "address": "0x800A6594",
+   "readers": [
+    {
+     "pc": "0x8004876C",
+     "function": "player_vertical_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800499A0",
+     "function": "enemy_update_deathanim",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004A844",
+     "function": "resident_level_transition_initiator",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8004B058",
+     "function": "proximity_updater",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004B49C",
+     "function": "proximity_updater",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004B4AC",
+     "function": "proximity_updater",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8004F0D8",
+     "function": "gameplay_state_machine",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800501C0",
+     "function": "scene_flow_dispatcher",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80052908",
+     "function": "results_screen_render",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800529AC",
+     "function": "results_screen_render",
+     "op": "lh"
+    },
+    {
+     "pc": "0x800529E4",
+     "function": "results_screen_render",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80052A00",
+     "function": "results_screen_render",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x8005665C",
+     "function": "actor_skinned_update",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80058880",
+     "function": "contact_pickup_walker",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80059D98",
+     "function": "pickup_effect_dispatch",
+     "op": "lh"
+    },
+    {
+     "pc": "0x8005BB4C",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "lhu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8004A888",
+     "function": "resident_level_transition_initiator",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005291C",
+     "function": "results_screen_render",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80055124",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "sh"
+    },
+    {
+     "pc": "0x80058890",
+     "function": "contact_pickup_walker",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005B30C",
+     "function": "respawn_transition_state_handler",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 16,
+   "writer_count": 5,
+   "statically_referenced": true
+  },
+  "original.player_berries_in_flight": {
+   "address": "0x800A6596",
+   "readers": [
+    {
+     "pc": "0x8004C7D8",
+     "function": "mover_vm_op25_cond_powerup_flag",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800595BC",
+     "function": "pickup_effect_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005960C",
+     "function": "pickup_effect_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005965C",
+     "function": "pickup_effect_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800596AC",
+     "function": "pickup_effect_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80059854",
+     "function": "pickup_effect_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800598B8",
+     "function": "pickup_effect_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80059924",
+     "function": "pickup_effect_dispatch",
+     "op": "lbu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x800595C8",
+     "function": "pickup_effect_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80059618",
+     "function": "pickup_effect_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80059668",
+     "function": "pickup_effect_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800596B8",
+     "function": "pickup_effect_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80059860",
+     "function": "pickup_effect_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800598C4",
+     "function": "pickup_effect_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80059930",
+     "function": "pickup_effect_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8005B304",
+     "function": "respawn_transition_state_handler",
+     "op": "sb"
+    }
+   ],
+   "reader_count": 8,
+   "writer_count": 8,
+   "statically_referenced": true
+  },
+  "original.player_equipped_berry": {
+   "address": "0x800A6597",
+   "readers": [
+    {
+     "pc": "0x80049D14",
+     "function": "mover_init_from_record",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80049D44",
+     "function": "mover_init_from_record",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80049E3C",
+     "function": "mover_init_from_record",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8004B280",
+     "function": "proximity_updater",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8004B4CC",
+     "function": "proximity_updater",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8004B508",
+     "function": "proximity_updater",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8004B5E0",
+     "function": "proximity_updater",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005387C",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80054630",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80057B18",
+     "function": "spawn_drop_burst_effect",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800586F8",
+     "function": "contact_pickup_walker",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80058A58",
+     "function": "contact_pickup_walker",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80058B00",
+     "function": "contact_vs_actor_handler",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800590F0",
+     "function": "berry_tough_damage_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80059358",
+     "function": "sfx_all_enemies_defe_glue",
+     "op": "lbu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005428C",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800542A0",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800542B4",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800542C8",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800542DC",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80058934",
+     "function": "contact_pickup_walker",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80058948",
+     "function": "contact_pickup_walker",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8005895C",
+     "function": "contact_pickup_walker",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8005896C",
+     "function": "contact_pickup_walker",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80058980",
+     "function": "contact_pickup_walker",
+     "op": "sb"
+    }
+   ],
+   "reader_count": 15,
+   "writer_count": 10,
+   "statically_referenced": true
+  },
+  "original.player_lives": {
+   "address": "0x800A65A0",
+   "readers": [
+    {
+     "pc": "0x8004983C",
+     "function": "player_vertical_update",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800500BC",
+     "function": "scene_flow_dispatcher",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800501FC",
+     "function": "scene_flow_dispatcher",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005189C",
+     "function": "all_enemies_defeated_event",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800528CC",
+     "function": "results_screen_render",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80053DDC",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80053F38",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80054094",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x800541F0",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80055084",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005547C",
+     "function": "serialize_savegame_buffer",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005B2EC",
+     "function": "respawn_transition_state_handler",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005BB18",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "lbu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x80049858",
+     "function": "player_vertical_update",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80050210",
+     "function": "scene_flow_dispatcher",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800518B8",
+     "function": "all_enemies_defeated_event",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80053DF8",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80053F54",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800540B0",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8005420C",
+     "function": "type_0x3f_construct_contact_action_dispatch",
+     "op": "sb"
+    },
+    {
+     "pc": "0x800550A0",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "sb"
+    },
+    {
+     "pc": "0x80055550",
+     "function": "scene_config_apply",
+     "op": "sb"
+    },
+    {
+     "pc": "0x8005B348",
+     "function": "respawn_transition_state_handler",
+     "op": "sb"
+    }
+   ],
+   "reader_count": 13,
+   "writer_count": 10,
+   "statically_referenced": true
+  },
+  "original.grain_count": {
+   "address": "0x800A65A1",
+   "readers": [
+    {
+     "pc": "0x8004F16C",
+     "function": "gameplay_state_machine",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80052AB8",
+     "function": "results_screen_render",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80052B58",
+     "function": "results_screen_render",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80054F90",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x80055004",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "lbu"
+    },
+    {
+     "pc": "0x8005BB20",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "lbu"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x80054F9C",
+     "function": "sfx_nearest_pickup_f_glue",
+     "op": "sb"
+    }
+   ],
+   "reader_count": 6,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.player_health_display": {
+   "address": "0x800A7E2A",
+   "readers": [
+    {
+     "pc": "0x80052638",
+     "function": "hud_anim_driver",
+     "op": "lh"
+    },
+    {
+     "pc": "0x80052658",
+     "function": "hud_anim_driver",
+     "op": "lhu"
+    },
+    {
+     "pc": "0x80052C10",
+     "function": "results_screen_render",
+     "op": "lh"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005267C",
+     "function": "hud_anim_driver",
+     "op": "sh"
+    },
+    {
+     "pc": "0x8005BB80",
+     "function": "gameplay_state_reset_cursor_seed",
+     "op": "sh"
+    }
+   ],
+   "reader_count": 3,
+   "writer_count": 2,
+   "statically_referenced": true
+  },
+  "original.contact_pool": {
+   "address": "0x800B0D18",
+   "readers": [
+    {
+     "pc": "0x80058754",
+     "function": "contact_pickup_walker",
+     "op": "lw"
+    },
+    {
+     "pc": "0x80058C88",
+     "function": "contact_vs_actor_handler",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A388",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A40C",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A538",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A67C",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A6D4",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A934",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005A990",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005AC2C",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005AE64",
+     "function": "berry_projectile_update",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8005D2D8",
+     "function": "gameplay_effect_spawner",
+     "op": "lw"
+    }
+   ],
+   "writers": [
+    {
+     "pc": "0x8005A548",
+     "function": "berry_projectile_update",
+     "op": "sw"
+    }
+   ],
+   "reader_count": 12,
+   "writer_count": 1,
+   "statically_referenced": true
+  },
+  "original.training_step": {
+   "address": "0x800B4A3C",
+   "readers": [
+    {
+     "pc": "0x8004F09C",
+     "function": "gameplay_state_machine",
+     "op": "lw"
+    },
+    {
+     "pc": "0x8004F108",
+     "function": "gameplay_state_machine",
+     "op": "lw"
+    }
+   ],
+   "writers": [],
+   "reader_count": 2,
+   "writer_count": 0,
+   "statically_referenced": true
+  },
+  "original.shared_mesh_vertex_buffer": {
+   "address": "0x8012C1D0",
+   "readers": [],
+   "writers": [],
+   "reader_count": 0,
+   "writer_count": 0,
+   "statically_referenced": false,
+   "no_static_xref_because": "accessed by INDEX (a table read as base + idx*4) \u2014 consumers are enumerated in analysis/phase3_dispatch_map.json and analysis/phase3_jr_tables.json, NOT lost"
+  }
+ }
+}

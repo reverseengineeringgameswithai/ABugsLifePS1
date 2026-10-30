@@ -1,0 +1,66 @@
+{
+ "_comment": "Live A/B platform constraint. Regenerate only on a fresh isolated pristine instance: python3 tools/phase2_platform_gotchas.py --port PORT --token TOKEN.",
+ "generated": "2026-07-15",
+ "authority": {
+  "serial": "SCUS-94288",
+  "media": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+  "duckstation_fork_head": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+  "duckstation_binary_sha256": "c668bf0974a7da5dabdbc4f1bd5311df3027e8af56faceb19ac7648f6f24ccec",
+  "debugger_transport": "ws loopback; isolated config required by AGENTS.md"
+ },
+ "fixture": {
+  "movie": "movies/Phase4/A13/blue_seed_levels.movie.json",
+  "movie_sha256": "79d0aa0d26bcd760316f6bf685bf781f571ec63806a09d78be84d36ab01b68e1",
+  "state": "movies/Phase4/A13/blue_seed_levels.movie.sav",
+  "state_sha256": "9198c8c3daa896813f0198ecb2a1b7068c7035116aed0aadbc1072ffdb01f5c3"
+ },
+ "execTrace_movie_desynchronization": {
+  "target_frame": 120,
+  "poll_only_a": {
+   "watch_armed": false,
+   "watch_id": null,
+   "frame": 120,
+   "slot0_type": 7,
+   "plant_cursor": 1,
+   "plant_table_sha256": "6061d7af563a64bfa6b5227c655b007a8ff1332af44c6bbfc252c80286ebe1bc"
+  },
+  "poll_only_b": {
+   "watch_armed": false,
+   "watch_id": null,
+   "frame": 120,
+   "slot0_type": 7,
+   "plant_cursor": 1,
+   "plant_table_sha256": "6061d7af563a64bfa6b5227c655b007a8ff1332af44c6bbfc252c80286ebe1bc"
+  },
+  "watch_armed": {
+   "watch_armed": true,
+   "watch_id": 1,
+   "frame": 120,
+   "slot0_type": 0,
+   "plant_cursor": 0,
+   "plant_table_sha256": "3dc463a76fc170607c07b104c3cb531362ce7d6e10c1a34e0c0f370aeae08ce8",
+   "watch_events": 0
+  },
+  "poll_only_byte_deterministic": true,
+  "poll_only_expected_first_plant": true,
+  "watch_changes_behavioral_state": true,
+  "confirmed": true
+ },
+ "input_edge_rule": {
+  "classification": "confirmed_by_kick_control_artifact",
+  "source": "analysis/phase2_action_behavior.json:controls.kick.trials",
+  "constraint": "A held button does not create a fresh-press edge; edge-gated actions require a released frame before the press."
+ },
+ "non_regenerable_residuals": [
+  {
+   "claim": "A11 PC watches shift timing enough for the dropped seed to miss.",
+   "status": "observed_not_independently_banked",
+   "next": "Add an isolated same-anchor watch/no-watch seed-hit A/B probe if PC-level attribution is needed."
+  },
+  {
+   "claim": "CachedInterpreter accessLog/write breakpoints did not engage in the A11 repro.",
+   "status": "observed_not_independently_banked",
+   "next": "Add a fork-level write-watch conformance test before relying on this limitation."
+  }
+ ]
+}

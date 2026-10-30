@@ -1,0 +1,862 @@
+{
+ "_comment": "Phase-4 E02b: all-level collision source->runtime round trip (independent C reimplementation of FUNC_80030F60 diffed against actual save RAM) + campaign plane census. Regenerate: tools/phase4_e02_collision_roundtrip.py",
+ "generated": "2026-08-04",
+ "campaign_totals": {
+  "planes": 58555,
+  "floors": 52518,
+  "walls_vertical": 351,
+  "ceilings": 5686,
+  "groups": 16653,
+  "normal_len_off": 0,
+  "bad_blocks": 0
+ },
+ "flag2c_summary": {
+  "eq_src14": 3235,
+  "nonzero": 3235,
+  "total_sectors": 3955,
+  "authored": 3235,
+  "runtime_extra": 720
+ },
+ "levels": {
+  "training": {
+   "save": "phase3_pristine_training_gameplay_i5.sav",
+   "scene": 17,
+   "sector_count": 70,
+   "sector0_block_ptr": "0x800c90a8",
+   "matched_raw": "LEVEL07/LEVEL1.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 48512,
+    "block_base": 8,
+    "sector_count": 70,
+    "authored_count": 25,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 25,
+     "eq_src14": 25,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      25,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 25,
+     "groups": 324,
+     "planes": 1360,
+     "floors": 1359,
+     "walls_vertical": 0,
+     "ceilings": 1,
+     "normal_len_0x4000": 1360,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL07/LEVEL1.RAW",
+    "LEVEL07/TERR1.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL07/LEVEL1.RAW",
+    "LEVEL07/TERR1.ALL"
+   ]
+  },
+  "stage01_anthill": {
+   "save": "level01.sav",
+   "scene": 1,
+   "sector_count": 223,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL01/LEVEL.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 1,
+    "src_offset": 222576,
+    "block_base": 8,
+    "sector_count": 223,
+    "authored_count": 178,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 35,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 178,
+     "eq_src14": 178,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      178,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 93,
+     "groups": 1223,
+     "planes": 6379,
+     "floors": 5952,
+     "walls_vertical": 0,
+     "ceilings": 427,
+     "normal_len_0x4000": 6379,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL01/LEVEL.RAW",
+    "LEVEL01/TERRAIN.ALL",
+    "LEVEL09/LEVEL.RAW",
+    "LEVEL09/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL01/LEVEL.RAW",
+    "LEVEL01/TERRAIN.ALL",
+    "LEVEL09/LEVEL.RAW",
+    "LEVEL09/TERRAIN.ALL"
+   ]
+  },
+  "stage02_tunnels": {
+   "save": "level02.sav",
+   "scene": 3,
+   "sector_count": 634,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL03/LEVEL.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 223376,
+    "block_base": 8,
+    "sector_count": 634,
+    "authored_count": 589,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 589,
+     "eq_src14": 589,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      589,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 126,
+     "groups": 1353,
+     "planes": 6074,
+     "floors": 5926,
+     "walls_vertical": 72,
+     "ceilings": 76,
+     "normal_len_0x4000": 6074,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL03/LEVEL.RAW",
+    "LEVEL03/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL03/LEVEL.RAW",
+    "LEVEL03/TERRAIN.ALL"
+   ]
+  },
+  "stage03_council_chamber": {
+   "save": "level03.sav",
+   "scene": 2,
+   "sector_count": 145,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL02/LEVEL.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 73952,
+    "block_base": 8,
+    "sector_count": 145,
+    "authored_count": 100,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 36,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 100,
+     "eq_src14": 100,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      100,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 59,
+     "groups": 742,
+     "planes": 1994,
+     "floors": 1851,
+     "walls_vertical": 0,
+     "ceilings": 143,
+     "normal_len_0x4000": 1994,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL02/LEVEL.DAT",
+    "LEVEL02/LEVEL.RAW",
+    "LEVEL02/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL02/LEVEL.RAW",
+    "LEVEL02/TERRAIN.ALL"
+   ]
+  },
+  "stage04_cliffside_canyon": {
+   "save": "level04.sav",
+   "scene": 6,
+   "sector_count": 177,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL06/LEVEL.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 168284,
+    "block_base": 8,
+    "sector_count": 177,
+    "authored_count": 132,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 132,
+     "eq_src14": 132,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      132,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 68,
+     "groups": 780,
+     "planes": 4829,
+     "floors": 4548,
+     "walls_vertical": 4,
+     "ceilings": 277,
+     "normal_len_0x4000": 4829,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL06/LEVEL.RAW",
+    "LEVEL06/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL06/LEVEL.RAW",
+    "LEVEL06/TERRAIN.ALL"
+   ]
+  },
+  "stage05_riverbed_run": {
+   "save": "level05.sav",
+   "scene": 10,
+   "sector_count": 343,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL10/LEVEL.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 119468,
+    "block_base": 8,
+    "sector_count": 343,
+    "authored_count": 298,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 36,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 298,
+     "eq_src14": 298,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      298,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 131,
+     "groups": 1143,
+     "planes": 2909,
+     "floors": 2630,
+     "walls_vertical": 0,
+     "ceilings": 279,
+     "normal_len_0x4000": 2909,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL10/LEVEL.RAW",
+    "LEVEL10/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL10/LEVEL.RAW",
+    "LEVEL10/TERRAIN.ALL"
+   ]
+  },
+  "stage06_birdnest": {
+   "save": "level_06.sav",
+   "scene": 11,
+   "sector_count": 120,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL01/LEVEL1.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 55708,
+    "block_base": 8,
+    "sector_count": 120,
+    "authored_count": 75,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 75,
+     "eq_src14": 75,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      75,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 48,
+     "groups": 479,
+     "planes": 1519,
+     "floors": 1258,
+     "walls_vertical": 0,
+     "ceilings": 261,
+     "normal_len_0x4000": 1519,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL01/LEVEL1.DAT",
+    "LEVEL01/LEVEL1.RAW",
+    "LEVEL01/TERR1.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL01/LEVEL1.RAW",
+    "LEVEL01/TERR1.ALL"
+   ]
+  },
+  "stage07_city_entrance": {
+   "save": "level_07.sav",
+   "scene": 4,
+   "sector_count": 274,
+   "sector0_block_ptr": "0x800c569c",
+   "matched_raw": "LEVEL04/LEVEL.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 183804,
+    "block_base": 8,
+    "sector_count": 274,
+    "authored_count": 229,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 36,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 229,
+     "eq_src14": 229,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      229,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 171,
+     "groups": 1752,
+     "planes": 4830,
+     "floors": 4227,
+     "walls_vertical": 102,
+     "ceilings": 501,
+     "normal_len_0x4000": 4830,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL04/LEVEL.RAW",
+    "LEVEL04/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL04/LEVEL.RAW",
+    "LEVEL04/TERRAIN.ALL"
+   ]
+  },
+  "stage08_city_square": {
+   "save": "level_08.sav",
+   "scene": 5,
+   "sector_count": 378,
+   "sector0_block_ptr": "0x8016b3c4",
+   "matched_raw": "LEVEL05/TERRAIN.ALL",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 163892,
+    "block_base": 4,
+    "sector_count": 378,
+    "authored_count": 333,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 333,
+     "eq_src14": 333,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      333,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 251,
+     "groups": 2412,
+     "planes": 3993,
+     "floors": 3512,
+     "walls_vertical": 127,
+     "ceilings": 354,
+     "normal_len_0x4000": 3993,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL05/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL05/TERRAIN.ALL"
+   ]
+  },
+  "stage09_bug_bar": {
+   "save": "level_09.sav",
+   "scene": 14,
+   "sector_count": 46,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL04/LEVEL1.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 16860,
+    "block_base": 8,
+    "sector_count": 46,
+    "authored_count": 1,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 1,
+     "eq_src14": 1,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 1,
+     "groups": 16,
+     "planes": 504,
+     "floors": 504,
+     "walls_vertical": 0,
+     "ceilings": 0,
+     "normal_len_0x4000": 504,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL04/LEVEL1.RAW"
+   ],
+   "all_clean_candidates": [
+    "LEVEL04/LEVEL1.RAW"
+   ]
+  },
+  "stage10_clover_forest": {
+   "save": "level_10.sav",
+   "scene": 7,
+   "sector_count": 183,
+   "sector0_block_ptr": "0x8017a0a8",
+   "matched_raw": "LEVEL07/TERRAIN.ALL",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 119628,
+    "block_base": 4,
+    "sector_count": 183,
+    "authored_count": 138,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 36,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 138,
+     "eq_src14": 138,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      138,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 55,
+     "groups": 730,
+     "planes": 3348,
+     "floors": 3016,
+     "walls_vertical": 3,
+     "ceilings": 329,
+     "normal_len_0x4000": 3348,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL07/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL07/TERRAIN.ALL"
+   ]
+  },
+  "stage11_the_tree": {
+   "save": "level_11.sav",
+   "scene": 12,
+   "sector_count": 307,
+   "sector0_block_ptr": "0x80169498",
+   "matched_raw": "LEVEL02/TERR1.ALL",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 199892,
+    "block_base": 4,
+    "sector_count": 307,
+    "authored_count": 262,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 262,
+     "eq_src14": 262,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      262,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 158,
+     "groups": 1545,
+     "planes": 5580,
+     "floors": 4209,
+     "walls_vertical": 0,
+     "ceilings": 1371,
+     "normal_len_0x4000": 5580,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL02/LEVEL1.DAT",
+    "LEVEL02/TERR1.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL02/TERR1.ALL"
+   ]
+  },
+  "stage12_battle_arena": {
+   "save": "level_12.sav",
+   "scene": 13,
+   "sector_count": 57,
+   "sector0_block_ptr": "0x800c679c",
+   "matched_raw": "LEVEL03/LEVEL1.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 23300,
+    "block_base": 8,
+    "sector_count": 57,
+    "authored_count": 12,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 12,
+     "eq_src14": 12,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      12,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 10,
+     "groups": 116,
+     "planes": 641,
+     "floors": 608,
+     "walls_vertical": 0,
+     "ceilings": 33,
+     "normal_len_0x4000": 641,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL01/LEVEL.RAW",
+    "LEVEL01/TERRAIN.ALL",
+    "LEVEL03/LEVEL1.RAW",
+    "LEVEL03/TERR1.ALL",
+    "LEVEL09/LEVEL.RAW",
+    "LEVEL09/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL03/LEVEL1.RAW",
+    "LEVEL03/TERR1.ALL"
+   ]
+  },
+  "stage13_anthill_two": {
+   "save": "level_13.sav",
+   "scene": 9,
+   "sector_count": 221,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL09/LEVEL.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 193252,
+    "block_base": 8,
+    "sector_count": 221,
+    "authored_count": 176,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 36,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 176,
+     "eq_src14": 176,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      176,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 78,
+     "groups": 1069,
+     "planes": 5508,
+     "floors": 5196,
+     "walls_vertical": 0,
+     "ceilings": 312,
+     "normal_len_0x4000": 5508,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL01/LEVEL.RAW",
+    "LEVEL01/TERRAIN.ALL",
+    "LEVEL09/LEVEL.RAW",
+    "LEVEL09/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL01/LEVEL.RAW",
+    "LEVEL01/TERRAIN.ALL",
+    "LEVEL09/LEVEL.RAW",
+    "LEVEL09/TERRAIN.ALL"
+   ]
+  },
+  "stage14_riverbed_flight": {
+   "save": "level_14.sav",
+   "scene": 8,
+   "sector_count": 380,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL08/LEVEL.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 176560,
+    "block_base": 8,
+    "sector_count": 380,
+    "authored_count": 335,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 34,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 335,
+     "eq_src14": 335,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      335,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 168,
+     "groups": 1603,
+     "planes": 4412,
+     "floors": 3367,
+     "walls_vertical": 3,
+     "ceilings": 1042,
+     "normal_len_0x4000": 4412,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL08/LEVEL.RAW",
+    "LEVEL08/TERRAIN.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL08/LEVEL.RAW",
+    "LEVEL08/TERRAIN.ALL"
+   ]
+  },
+  "stage15_canyon_showdown": {
+   "save": "level_15.sav",
+   "scene": 15,
+   "sector_count": 397,
+   "sector0_block_ptr": "0x800c1690",
+   "matched_raw": "LEVEL05/LEVEL1.RAW",
+   "match": {
+    "located": true,
+    "fixed_offset_used": 0,
+    "src_offset": 171092,
+    "block_base": 8,
+    "sector_count": 397,
+    "authored_count": 352,
+    "runtime_extra": 45,
+    "runtime_extra_zero_origin": 37,
+    "roundtrip_mismatches": 0,
+    "first_bad_sector": -1,
+    "flag2c": {
+     "nonzero": 352,
+     "eq_src14": 352,
+     "hist_0_to_5_other_neg": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      352,
+      0
+     ]
+    },
+    "census": {
+     "blocks_nonempty": 143,
+     "groups": 1366,
+     "planes": 4675,
+     "floors": 4355,
+     "walls_vertical": 40,
+     "ceilings": 280,
+     "normal_len_0x4000": 4675,
+     "normal_len_off": 0,
+     "bad_blocks": 0
+    }
+   },
+   "candidates_tried": [
+    "LEVEL05/LEVEL1.RAW",
+    "LEVEL05/TERR1.ALL"
+   ],
+   "all_clean_candidates": [
+    "LEVEL05/LEVEL1.RAW",
+    "LEVEL05/TERR1.ALL"
+   ]
+  }
+ },
+ "failing_levels": []
+}

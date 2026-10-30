@@ -1,0 +1,61 @@
+{
+ "_comment": "Phase-4 E02: region-code -> consumer-branch binding, decoded from the committed byte-verified hand-asm (v5 corpus) + committed live proofs. Companion census: analysis/phase4_e02_region_code_census.json.",
+ "row": "E02_collision",
+ "date": "2026-08-03",
+ "query": {
+  "fn": "0x80038F38 sector_region_code_query (byte-matched C, src/main/80038f38_sector_region_code_query.c)",
+  "reads": "gate byte (caller-supplied, must == 1) -> G_CUR_SECTOR [0x80090560 + idx*20] -> code s16 [0x800A7E48 + sector*0x30 + 0x2E]",
+  "cur_sector_maintainer": "FUNC_80038090 point_in_polygon_region_test (Canon)"
+ },
+ "callers": {
+  "player_dispatch_0x80048138": {
+   "site": "0x8004963C-region call; dispatch decoded from asm/hand_written/80048138_player_vertical_update.s lines ~1482-1556",
+   "gates": [
+    "query != 0",
+    "[0x800823A0] (exit latch, lh gp-rel 9120) still 0",
+    "flik+0x82 gate == 1 (inside the query)"
+   ],
+   "branches": {
+    "0": "no-op (also returned when the flik gate != 1)",
+    "1": "FUNC_8004A700(0, 0, sp+44, a3=1) -- transition initiator variant A (.L_800496A8); sets the handled flag",
+    "2": ".L_800496C4: [0x800823A0]=1, fade [0x80082470]=23, FUNC_80050994(58,0) -- the live-proven exit body",
+    "3": ".L_800496E8: [0x800823A0]=1, fade [0x80082470]=23, FUNC_80050994(58,0) via the shared tail .L_80049700 -- a SECOND exit-code value. \u26a0\ufe0f NOT identical to code 2: the code-2 arm additionally stores the position-commit flag sp+0x50=1 and code 3 does not, so at the join .L_80049748 code 2 re-commits position and clears player+0x82 while code 3 leaves both. Shared EFFECT, different ARMS.",
+    "4": ".L_80049718: gated on player+0x7E==0 AND player+0x92==0, then FUNC_8004A700(0, 0, sp+44, a3=0) -- transition variant B",
+    ">=5": "falls to the common tail -- no consumer (and the unfiltered census proves no such codes exist in retail data)"
+   },
+   "first_call_site_note": "an earlier call site (~line 1422) uses the query only as a zero/nonzero gate combined with three player velocity fields",
+   "code3_correction_2026_08_11": {
+    "superseded_text": ".L_800496E8: IDENTICAL body to code 2 via the shared tail .L_80049700 -- a SECOND exit-code value",
+    "why": "Body-level reading. An instruction-level decode shows the writes to sp+0x50 are an exact set of three -- 0x800481BC zero-init, 0x800496C0 (code-1 arm), 0x800496E4 (code-2 arm) -- with one read at 0x80049748. Codes 3 and 4 never set it.",
+    "authority": "analysis/phase4_f01_objective_lifecycle.json and the Canon exit-trigger matrix; the disagreement was caught by the F04 row assessment, which found F04 inheriting the older of two pinned artifacts.",
+    "unaffected": "E02's census and its live be-here proofs stand -- both arms produce the exit effect, so code 3 remains live-proven. Only the 'identical body' phrasing was wrong."
+   }
+  },
+  "checkpoint_save_0x80054C90": {
+   "site": "asm/hand_written/80054c90_checkpoint_save.s line ~52",
+   "behavior": "after a state gate via 0x80038F84, queries the code and BAILS if code == 4: standing in a code-4 sector suppresses checkpoint/respawn-anchor saving (dovetails with C15 safe-anchor canon)"
+  },
+  "mover_actor_update_0x8004B940": {
+   "site": "asm/hand_written/8004b940_sub_8004b940.s line ~531 (0x8004C0CC region)",
+   "behavior": "queries with the object's own gate byte (+0x5E); if code == 1: stores +0x5A=0, +0x62=2, +0x6E=0 on the object -- +0x6E is the pool-actor HP offset, so actors in a code-1 sector are retired (state 2). Measured stores; role naming is offset-based inference.",
+   "tier": "static_decoded; semantics inferred from confirmed +0x6E=HP layout"
+  }
+ },
+ "code_semantics_summary": {
+  "0": "inert (default)",
+  "1": "pre-exit/transition band (player: FUNC_8004A700 variant A; actors: retirement) -- census shows code-1 bands leading INTO ending sectors (tunnels 570-578, riverbed_run 292-296, city_entrance 219)",
+  "2": "exit latch (LEVEL01 sector 177 live-proven; riverbed_flight 334 live-proven via be-here run)",
+  "3": "exit latch, same body as 2 (STATIC: shared tail in the committed hand-asm; census: training 24, tunnels 579, cliffside 131, riverbed_run 297 -- all at level-end placements per the committed catalog)",
+  "4": "no-checkpoint zone (checkpoint_save bail) + state-gated transition variant B (city_entrance 220-225)"
+ },
+ "corroborations": [
+  "committed level_goal_trigger_catalog (RCG-003): live be-here proofs LEVEL02/04/05/14; store PCs 0x800496D8/0x800496F8 = the two exit-latch stores in the decoded bodies (LEVEL02/04/05 rows are code-3 sectors -> code 3's exit body is LIVE-proven by the committed catalog itself)",
+  "unfiltered census: campaign code domain is exactly {0,1,2,3,4} (3,955 sectors, 16 anchors, count from the loader global [0x800822A0])",
+  "NOTE: SYS_training_ending_trigger_field.md (training sector 24 = code 3) exists in the working tree but is ANOTHER AGENT'S UNCOMMITTED page -- corroboration only, not cited as primary evidence; my census reads (24,3) independently"
+ ],
+ "open_residuals": [
+  "FUNC_8004A700's destination/resource semantics (transition variants A/B) -- per-level semantic work, shared with the goal-matrix row",
+  "live behavioral test of a code-4 checkpoint-suppression crossing (teleport-into-sector at city_entrance; not run -- static+committed evidence deemed sufficient for the binding)",
+  "the exit latch 0x800823A0 is multi-valued elsewhere (B06/B08 saw value 5 as a no-damage region state) -- outside this row's scope"
+ ]
+}

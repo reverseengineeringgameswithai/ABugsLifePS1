@@ -1,0 +1,118 @@
+schema: abl-phase4-promotion-packets/1
+generated: 2026-07-31
+policy: config/phase4_closure_policy.yaml
+policy_sha256: ad3036e976086cf56773624c0b377c0af41f91af0c3bcc2d8a660423f59ee674
+debt_snapshot:
+  path: analysis/phase4_closure_debt.json
+  sha256: 999ac9fa8984ac61bc18ba5459b0408ef49c088d2ce4195f32821eee68281840
+layer_ids: [oracle, frontier, typed_state, interfaces, lifecycle, breadth,
+            controls, source, knowledge]
+packets:
+  - id: E15_complete_frontier_retained_control
+    row_id: E15_fmv
+    campaign_id: fmv_playback
+    dimension: complete_frontier
+    proposed_transition: met
+    confidence: confirmed
+    claim_source: registry_dimension_claim
+    layer_dispositions:
+      oracle: {status: not_applicable, reason: The packet promotes only the already-bounded static frontier; the oracle has its own retained claim.}
+      frontier: {status: required}
+      typed_state: {status: not_applicable, reason: Typed-state promotion is a separate retained claim and is not inherited here.}
+      interfaces: {status: not_applicable, reason: Interface promotion remains separately governed by its own evidence packet.}
+      lifecycle: {status: not_applicable, reason: Region-B replacement lifecycle remains outside this static-frontier packet.}
+      breadth: {status: not_applicable, reason: Campaign breadth remains outside this single-dimension static-frontier packet.}
+      controls: {status: not_applicable, reason: Runtime causal controls remain outside this static-frontier promotion.}
+      source: {status: required}
+      knowledge: {status: required}
+    static_frontier:
+      artifact: analysis/phase4_static_frontier_pilots.json
+      sha256: f3c87f70fd0c08d93cbdbfddaa6282144a89aa5baa09bd8071cf4ada4f0ed8ec
+      guards:
+        - {code: FRONTIER_WIDENED, json_path: E15_fmv.actual.region_b_address_rows, op: eq, expected: 30}
+        - {code: FRONTIER_XREF_DRIFT, json_path: E15_fmv.actual.absolute_xrefs, op: eq, expected: 99}
+        - {code: FRONTIER_PLAYER_XREF_DRIFT, json_path: E15_fmv.actual.player_xrefs, op: eq, expected: 58}
+        - {code: FRONTIER_UNCLASSIFIED, json_path: E15_fmv.actual.unclassified_xrefs, op: eq, expected: 0}
+    clean_checkout_dependencies:
+      - analysis/phase4_static_frontier_pilots.json
+      - analysis/phase4_static_frontier_index.json
+      - config/phase4_static_analysis.yaml
+      - tools/phase4_static_frontier.py
+    external_dependencies:
+      status: not_applicable
+      reason: This retained static-frontier packet consumes hash-pinned staged binaries, not an untracked runtime fixture.
+    disposable_falsifier:
+      mutation: Change the expected E15 player-xref count from 58 to 57 in a disposable copy.
+      expected_code: FRONTIER_PLAYER_XREF_DRIFT
+
+  - id: E08_original_oracle_retained_control
+    row_id: E08_props_movers_gates
+    campaign_id: props_movers_gates
+    dimension: original_oracle
+    proposed_transition: met
+    confidence: confirmed
+    claim_source: registry_dimension_claim
+    layer_dispositions:
+      oracle: {status: required}
+      frontier: {status: not_applicable, reason: Complete-frontier ownership remains open and is not inherited by this oracle claim.}
+      typed_state: {status: not_applicable, reason: Typed-state closure remains open and is not inherited by this oracle claim.}
+      interfaces: {status: not_applicable, reason: Original-interface closure remains outside this bounded oracle packet.}
+      lifecycle: {status: not_applicable, reason: Persistence and broader lifecycle remain outside this bounded oracle packet.}
+      breadth: {status: not_applicable, reason: Native-outcome breadth remains open and is not inherited by the oracle.}
+      controls: {status: required}
+      source: {status: not_applicable, reason: Matching-source closure is not needed to retain the measured original oracle.}
+      knowledge: {status: required}
+    static_frontier:
+      artifact: analysis/phase4_static_frontier_pilots.json
+      sha256: f3c87f70fd0c08d93cbdbfddaa6282144a89aa5baa09bd8071cf4ada4f0ed8ec
+      guards:
+        - {code: FRONTIER_CLASS_DRIFT, json_path: E08_props_movers_gates.actual.uncontrolled_classes, op: eq, expected: 28}
+        - {code: FRONTIER_SELECTOR_DRIFT, json_path: E08_props_movers_gates.actual.selectors, op: eq, expected: 40}
+        - {code: FRONTIER_CALLBACK_DRIFT, json_path: E08_props_movers_gates.actual.callbacks, op: eq, expected: 10}
+        - {code: FAKE_OWNER_PROMOTION, json_path: E08_props_movers_gates.actual.automatic_owner_promotions, op: eq, expected: 0}
+    clean_checkout_dependencies:
+      - analysis/phase4_e08_oracle_audit.json
+      - analysis/phase4_static_frontier_pilots.json
+      - config/phase4_e08_oracle_audit.yaml
+      - tools/phase4_e08_oracle_audit.py
+    external_dependencies:
+      status: campaign_oracle_fixtures
+    disposable_falsifier:
+      mutation: Replace the pinned debt snapshot hash with sixty-four zeroes in a disposable copy.
+      expected_code: DEBT_HASH_STALE
+
+  - id: C13_complete_frontier_open_control
+    row_id: C13_grain_harvester
+    campaign_id: grain_collection_harvester
+    dimension: complete_frontier
+    proposed_transition: met
+    confidence: partial
+    claim_source: registry_dimension_claim
+    layer_dispositions:
+      oracle: {status: not_applicable, reason: The cold-boot original oracle is explicitly open and cannot be inherited by a frontier claim.}
+      frontier: {status: required}
+      typed_state: {status: not_applicable, reason: Typed-state promotion is outside this deliberately rejected frontier packet.}
+      interfaces: {status: not_applicable, reason: Interface promotion is outside this deliberately rejected frontier packet.}
+      lifecycle: {status: not_applicable, reason: Lifecycle and persistence are explicit intersecting residuals, not inherited facts.}
+      breadth: {status: not_applicable, reason: Enemy and all-level breadth remain explicit intersecting residuals.}
+      controls: {status: not_applicable, reason: Same-anchor bit and radius controls remain explicit intersecting residuals.}
+      source: {status: required}
+      knowledge: {status: required}
+    static_frontier:
+      artifact: analysis/phase4_static_frontier_pilots.json
+      sha256: f3c87f70fd0c08d93cbdbfddaa6282144a89aa5baa09bd8071cf4ada4f0ed8ec
+      guards:
+        - {code: WRITER_DRIFT, json_path: C13_grain_harvester.state_contract.powerup_flags.selected_writer.pc, op: eq, expected: '0x80051EB0'}
+        - {code: SIGNEDNESS_DRIFT, json_path: C13_grain_harvester.state_contract.powerup_flags.reader_signedness, op: eq, expected: [unsigned]}
+        - {code: FRONTIER_RESIDUAL_DRIFT, json_path: C13_grain_harvester.open_boundaries, op: eq, expected: [causal controls, lifecycle and breadth, original oracle]}
+    clean_checkout_dependencies:
+      - analysis/phase4_collectibles_frontier.json
+      - analysis/phase4_static_frontier_pilots.json
+      - config/phase4_collectibles_frontier.yaml
+      - tools/phase4_collectibles_frontier.py
+    external_dependencies:
+      status: not_applicable
+      reason: This diagnostic packet is rejected before any new runtime fixture could become relevant.
+    disposable_falsifier:
+      mutation: Add an authored success boolean to a disposable packet copy.
+      expected_code: FAKE_SUCCESS_FIELD

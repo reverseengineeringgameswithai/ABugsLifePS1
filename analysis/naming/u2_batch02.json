@@ -1,0 +1,137 @@
+[
+ {
+  "address": "0x8004268c",
+  "name": "visual_sprite_object_mesh_transform_268c",
+  "tier": "inferred",
+  "evidence": [
+   "calls:gte_rotation_matrix_setup",
+   "refs:visual_sprite_object_pool,G_SETPIECE_RECORD_IDX"
+  ],
+  "rationale": "u2: gte_math fingerprint ['gte_rotation_matrix_setup']; globals ['visual_sprite_object_pool', 'G_SETPIECE_RECORD_IDX']"
+ },
+ {
+  "address": "0x8005518c",
+  "name": "sfx_voice_trigger_gl_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:sfx_voice_trigger_glue",
+   "caller:gameplay_state_machine",
+   "refs:G_GPU_OT_OUTPUT_BUFFER_PTR,G_DAT_ENTRY_COUNTER,main_shell_substate",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['sfx_voice_trigger_glue']; globals ['G_GPU_OT_OUTPUT_BUFFER_PTR', 'G_DAT_ENTRY_COUNTER']"
+ },
+ {
+  "address": "0x80014ee0",
+  "name": "boss_defeat_fsm__scene_geometry_glue",
+  "tier": "inferred",
+  "evidence": [
+   "caller:boss_defeat_fsm_mesh_transform",
+   "caller:scene_geometry_draw_dispatcher",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ },
+ {
+  "address": "0x8001478c",
+  "name": "boss_defeat_fsm__mesh_payload_e_glue",
+  "tier": "inferred",
+  "evidence": [
+   "caller:boss_defeat_fsm_mesh_transform",
+   "caller:dirt_object_dispatch",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ },
+ {
+  "address": "0x8003d620",
+  "name": "collision_grid_l_level_overlay__glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:level_overlay_init",
+   "calls:universal_file_loader",
+   "caller:collision_grid_level_load_chu_glue",
+   "refs:region_a_overlay_base",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: level_scene fingerprint ['level_overlay_init', 'universal_file_loader']; globals ['region_a_overlay_base']"
+ },
+ {
+  "address": "0x80041a74",
+  "name": "player_vertical_resident_level_glue",
+  "tier": "inferred",
+  "evidence": [
+   "caller:player_vertical_update",
+   "caller:proximity_updater",
+   "refs:visual_sprite_object_pool",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: level_scene fingerprint []; globals ['visual_sprite_object_pool']"
+ },
+ {
+  "address": "0x8001474c",
+  "name": "matrix_lut_mesh__mesh_payload_e_glue",
+  "tier": "inferred",
+  "evidence": [
+   "caller:dirt_object_dispatch",
+   "caller:matrix_lut_mesh_transform_07f0",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ },
+ {
+  "address": "0x8001881c",
+  "name": "bone_matrix_arra_object_mesh_dr_glue",
+  "tier": "inferred",
+  "evidence": [
+   "caller:bone_matrix_array_mesh_transform",
+   "caller:object_mesh_draw",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ },
+ {
+  "address": "0x80060674",
+  "name": "bone_matrix_arra_object_mesh_dr_glue_0674",
+  "tier": "inferred",
+  "evidence": [
+   "caller:bone_matrix_array_mesh_transform",
+   "caller:object_mesh_draw",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ },
+ {
+  "address": "0x8002b424",
+  "name": "boss_defeat_fsm__scene_geometry_glue_b424",
+  "tier": "inferred",
+  "evidence": [
+   "caller:boss_defeat_fsm_mesh_transform",
+   "caller:call_8002b424_wrapper",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ },
+ {
+  "address": "0x80030018",
+  "name": "boss_defeat_fsm__scene_geometry_glue_0018",
+  "tier": "inferred",
+  "evidence": [
+   "caller:boss_defeat_fsm_mesh_transform",
+   "caller:scene_geometry_draw_dispatcher",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ },
+ {
+  "address": "0x8003043c",
+  "name": "boss_defeat_fsm__scene_geometry_glue_043c",
+  "tier": "inferred",
+  "evidence": [
+   "caller:boss_defeat_fsm_mesh_transform",
+   "caller:scene_geometry_draw_dispatcher",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ }
+]

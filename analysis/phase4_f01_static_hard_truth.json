@@ -1,0 +1,727 @@
+{
+ "c_probe": {
+  "actual_dispatch_controls": [
+   {
+    "bound_instruction": {
+     "meaning": "sltiu v0,v1,13 gates the table load",
+     "pc": "0x8005C0EC",
+     "word": "0x2C62000D"
+    },
+    "decoded_kind": "jr",
+    "entries": [
+     {
+      "index": 0,
+      "target": "0x8005C110"
+     },
+     {
+      "index": 1,
+      "target": "0x8005C258"
+     },
+     {
+      "index": 2,
+      "target": "0x8005CCE8"
+     },
+     {
+      "index": 3,
+      "target": "0x8005C58C"
+     },
+     {
+      "index": 4,
+      "target": "0x8005C6F0"
+     },
+     {
+      "index": 5,
+      "target": "0x8005C744"
+     },
+     {
+      "index": 6,
+      "target": "0x8005C818"
+     },
+     {
+      "index": 7,
+      "target": "0x8005CCE8"
+     },
+     {
+      "index": 8,
+      "target": "0x8005CCE8"
+     },
+     {
+      "index": 9,
+      "target": "0x8005C918"
+     },
+     {
+      "index": 10,
+      "target": "0x8005CCE8"
+     },
+     {
+      "index": 11,
+      "target": "0x8005CA24"
+     },
+     {
+      "index": 12,
+      "target": "0x8005CA7C"
+     }
+    ],
+    "function": "plant_behavior_walker",
+    "index_domain": [
+     0,
+     12
+    ],
+    "observed_target": "0x8005C58C",
+    "observed_target_is_member": true,
+    "pc": "0x8005C108",
+    "stride_bytes": 4,
+    "table": "0x8001B848",
+    "target_set_complete": true
+   },
+   {
+    "bound_instruction": {
+     "meaning": "sltiu v0,v1,12 gates the table load",
+     "pc": "0x80058E5C",
+     "word": "0x2C62000C"
+    },
+    "decoded_kind": "jr",
+    "entries": [
+     {
+      "index": 0,
+      "target": "0x80058E80"
+     },
+     {
+      "index": 1,
+      "target": "0x80058EA8"
+     },
+     {
+      "index": 2,
+      "target": "0x80058E88"
+     },
+     {
+      "index": 3,
+      "target": "0x80058E90"
+     },
+     {
+      "index": 4,
+      "target": "0x80058EA8"
+     },
+     {
+      "index": 5,
+      "target": "0x80058EA8"
+     },
+     {
+      "index": 6,
+      "target": "0x80058EA8"
+     },
+     {
+      "index": 7,
+      "target": "0x80058E98"
+     },
+     {
+      "index": 8,
+      "target": "0x80058EA8"
+     },
+     {
+      "index": 9,
+      "target": "0x80058EA8"
+     },
+     {
+      "index": 10,
+      "target": "0x80058EA8"
+     },
+     {
+      "index": 11,
+      "target": "0x80058EA0"
+     }
+    ],
+    "function": "contact_vs_actor_handler",
+    "index_domain": [
+     0,
+     11
+    ],
+    "observed_target": "0x8005905C",
+    "observed_target_is_member": false,
+    "pc": "0x80058E78",
+    "stride_bytes": 4,
+    "table": "0x8001B748",
+    "target_set_complete": true
+   },
+   {
+    "actual_entry_edges": [
+     {
+      "kind": "conditional_branch",
+      "pc": "0x80058EE8"
+     },
+     {
+      "kind": "conditional_branch",
+      "pc": "0x80058F08"
+     }
+    ],
+    "explanation": "the helper jal at 0x80058EB8 leaves ra=0x80058EC0; later branches enter the handler without relinking, so an entry-time ra-8 attribution names the helper call rather than the true edge",
+    "target": "0x8005905C"
+   }
+  ],
+  "image_layout": {
+   "file_va_base": "0x8000F800",
+   "format": "PS-X EXE",
+   "instruction_pins_checked": 144,
+   "load_address": "0x80010000",
+   "text_size": 468992
+  },
+  "requested_dispatch_sites": [
+   {
+    "claimed_runtime_target": "0x8005C58C",
+    "decoded_kind": "direct_jal",
+    "direct_target": "0x80038E48",
+    "fail_closed_reason": "blocking instruction is direct jal 0x80038E48, not jalr; no target set exists at this PC",
+    "function": "plant_behavior_walker",
+    "instruction_word": "0x0C00E392",
+    "pc": "0x8005BFE4",
+    "target_set_proved": false
+   },
+   {
+    "claimed_runtime_target": "0x8005905C",
+    "decoded_kind": "direct_jal",
+    "direct_target": "0x80060284",
+    "fail_closed_reason": "blocking instruction is direct jal 0x80060284, not jalr; no target set exists at this PC",
+    "function": "contact_vs_actor_handler",
+    "instruction_word": "0x0C0180A1",
+    "pc": "0x80058EB8",
+    "target_set_proved": false
+   }
+  ],
+  "schema": "abl-phase4-f01-static-hard-truth-c/1",
+  "trigonometric_tables": [
+   {
+    "amplitude": 16384,
+    "base": "0x80074970",
+    "content_comparison": {
+     "first_mismatch": null,
+     "mismatched_entries": 0
+    },
+    "end": "0x80077170",
+    "entry_count": 5120,
+    "entry_encoding": "little-endian signed 16-bit",
+    "formula": "llround(16384*sin(2*pi*i/4096)) for i=0..5119",
+    "gap": {
+     "byte_count": 4216,
+     "end": "0x800769A8",
+     "entry_count": 2108,
+     "first_entry": 2016,
+     "first_mismatch": null,
+     "mismatched_entries": 0,
+     "start": "0x80075930"
+    },
+    "id": "q14_sine_4096_plus_quadrature_tail",
+    "image": "SCUS_942_88",
+    "period_entries": 4096,
+    "readers": [
+     {
+      "effective_address_range": [
+       "0x80075170",
+       "0x80077170"
+      ],
+      "function": "gte_rotation_matrix_setup",
+      "instruction_derivation": "lui/ori base; sll 1 then andi 0x1ffe; +0x0800",
+      "mnemonic": "lh",
+      "pc": "0x80017BCC",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80075170",
+       "0x80077170"
+      ],
+      "function": "gte_rotation_matrix_setup",
+      "instruction_derivation": "lui/ori base; sll 1 then andi 0x1ffe; +0x0800",
+      "mnemonic": "lh",
+      "pc": "0x80017BD0",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80075170",
+       "0x80077170"
+      ],
+      "function": "gte_rotation_matrix_setup",
+      "instruction_derivation": "lui/ori base; sll 1 then andi 0x1ffe; +0x0800",
+      "mnemonic": "lh",
+      "pc": "0x80017BD4",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "gte_rotation_matrix_setup",
+      "instruction_derivation": "lui/ori base; sll 1 then andi 0x1ffe; +0",
+      "mnemonic": "lh",
+      "pc": "0x80017BD8",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "gte_rotation_matrix_setup",
+      "instruction_derivation": "lui/ori base; sll 1 then andi 0x1ffe; +0",
+      "mnemonic": "lh",
+      "pc": "0x80017BDC",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "gte_rotation_matrix_setup",
+      "instruction_derivation": "lui/ori base; sll 1 then andi 0x1ffe; +0",
+      "mnemonic": "lh",
+      "pc": "0x80017C0C",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "contact_vs_actor_handler",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x80058B8C",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "contact_vs_actor_handler",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x80058BC4",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "camera_follow_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lh 0x4970",
+      "mnemonic": "lh",
+      "pc": "0x8004E2E8",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "camera_follow_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lh 0x4970",
+      "mnemonic": "lh",
+      "pc": "0x8004E328",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "camera_follow_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lh 0x4970",
+      "mnemonic": "lh",
+      "pc": "0x8004E350",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "camera_follow_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lh 0x4970",
+      "mnemonic": "lh",
+      "pc": "0x8004E38C",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "camera_follow_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lh 0x4970",
+      "mnemonic": "lh",
+      "pc": "0x8004E750",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "camera_follow_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lh 0x4970",
+      "mnemonic": "lh",
+      "pc": "0x8004E78C",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x8007696E"
+      ],
+      "function": "camera_follow_update",
+      "instruction_derivation": "sll 2; andi 0x1ffc; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x8004EA48",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "player_vertical_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lh 0x4970",
+      "mnemonic": "lh",
+      "pc": "0x800489CC",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "player_vertical_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lh 0x4970",
+      "mnemonic": "lh",
+      "pc": "0x800489F0",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "player_vertical_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x80048A90",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "player_vertical_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x80048ABC",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "player_vertical_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x800492C8",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "player_vertical_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x800492F8",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "player_vertical_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x800494C8",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     },
+     {
+      "effective_address_range": [
+       "0x80074970",
+       "0x80076970"
+      ],
+      "function": "player_vertical_update",
+      "instruction_derivation": "andi 0x0fff; sll 1; lui 0x8007; addu; lhu 0x4970",
+      "mnemonic": "lhu",
+      "pc": "0x800494E8",
+      "range_semantics": "half_open_byte_range",
+      "width": 2
+     }
+    ],
+    "stride_bytes": 2
+   },
+   {
+    "amplitude": 4096,
+    "base": "0x8007A7E4",
+    "content_comparison": {
+     "first_mismatch": null,
+     "mismatched_entries": 0
+    },
+    "end": "0x8007E7E4",
+    "entry_count": 4096,
+    "entry_encoding": "little-endian word: signed 16-bit low plus signed 16-bit high",
+    "formula": "f(j)=llround(4096*sin(2*pi*(j+(((j mod 4096)>>10)&1))/4096)); entry i=(f(i),f(i+1024))",
+    "gap": {
+     "byte_count": 8068,
+     "end": "0x8007D5C0",
+     "entry_count": 2017,
+     "first_entry": 918,
+     "first_mismatch": null,
+     "mismatched_entries": 0,
+     "start": "0x8007B63C"
+    },
+    "id": "q12_packed_rotmatrix_sine_phase_pair",
+    "image": "SCUS_942_88",
+    "period_entries": 4096,
+    "readers": [
+     {
+      "effective_address_range": [
+       "0x8007A7E4",
+       "0x8007E7E4"
+      ],
+      "function": "RotMatrix",
+      "instruction_derivation": "andi 0x0fff; sll 2; lui 0x8008; addu; lw -0x581c",
+      "mnemonic": "lw",
+      "pc": "0x8006087C",
+      "range_semantics": "half_open_byte_range",
+      "width": 4
+     },
+     {
+      "effective_address_range": [
+       "0x8007A7E4",
+       "0x8007E7E4"
+      ],
+      "function": "RotMatrix",
+      "instruction_derivation": "andi 0x0fff; sll 2; lui 0x8008; addu; lw -0x581c",
+      "mnemonic": "lw",
+      "pc": "0x800608A4",
+      "range_semantics": "half_open_byte_range",
+      "width": 4
+     },
+     {
+      "effective_address_range": [
+       "0x8007A7E4",
+       "0x8007E7E4"
+      ],
+      "function": "RotMatrix",
+      "instruction_derivation": "andi 0x0fff; sll 2; lui 0x8008; addu; lw -0x581c",
+      "mnemonic": "lw",
+      "pc": "0x800608E0",
+      "range_semantics": "half_open_byte_range",
+      "width": 4
+     },
+     {
+      "effective_address_range": [
+       "0x8007A7E4",
+       "0x8007E7E4"
+      ],
+      "function": "RotMatrix",
+      "instruction_derivation": "andi 0x0fff; sll 2; lui 0x8008; addu; lw -0x581c",
+      "mnemonic": "lw",
+      "pc": "0x80060908",
+      "range_semantics": "half_open_byte_range",
+      "width": 4
+     },
+     {
+      "effective_address_range": [
+       "0x8007A7E4",
+       "0x8007E7E4"
+      ],
+      "function": "RotMatrix",
+      "instruction_derivation": "andi 0x0fff; sll 2; lui 0x8008; addu; lw -0x581c",
+      "mnemonic": "lw",
+      "pc": "0x8006096C",
+      "range_semantics": "half_open_byte_range",
+      "width": 4
+     },
+     {
+      "effective_address_range": [
+       "0x8007A7E4",
+       "0x8007E7E4"
+      ],
+      "function": "RotMatrix",
+      "instruction_derivation": "andi 0x0fff; sll 2; lui 0x8008; addu; lw -0x581c",
+      "mnemonic": "lw",
+      "pc": "0x800609A0",
+      "range_semantics": "half_open_byte_range",
+      "width": 4
+     }
+    ],
+    "stride_bytes": 4
+   }
+  ],
+  "verdicts": {
+   "instruction_evidence_complete": true,
+   "new_indirect_target_sets_to_register": 0,
+   "packed_table_content_match": true,
+   "raw_table_content_match": true,
+   "requested_dispatch_sets_proved": false,
+   "requested_dispatches_fail_closed": true,
+   "trig_semantic_disposition_supported": true
+  }
+ },
+ "claimed_pc_registration_check": [
+  {
+   "decoded_kind": "direct_jal",
+   "new_set_registered": false,
+   "pc": "0x8005BFE4",
+   "present_as_gate_jalr": false,
+   "present_as_gate_jr": false,
+   "present_as_phase3_jr": false
+  },
+  {
+   "decoded_kind": "direct_jal",
+   "new_set_registered": false,
+   "pc": "0x80058EB8",
+   "present_as_gate_jalr": false,
+   "present_as_gate_jr": false,
+   "present_as_phase3_jr": false
+  }
+ ],
+ "dispatch_import_delta": {
+  "new_site_count": 0,
+  "new_sites": [],
+  "reason": "both requested PCs decode as direct jal; the nearby real jr sets were already present and match the C enumeration exactly",
+  "removed_sites": []
+ },
+ "evidence_boundary": {
+  "gap_extent_rule": "the full tables are compared, but downstream census ownership may cover only the two exact pre-existing gap intervals; no extent may be widened",
+  "live_replay_role": "lead and attribution falsifier only; no runtime observation is promoted to a complete target set",
+  "static_instruction_and_content_facts": "proof-grade within the pinned image"
+ },
+ "generated": "2026-08-06",
+ "inputs": {
+  "build_baselines": "tools/build_baselines.json",
+  "build_baselines_sha256": "d3b6a5a2ddf8ef7060839a801928461b20b1f109c383749014f07eee89cab00d",
+  "c_binary_sha256": "764598452f5a0c0054a7657058b6c60fa1c33185be9f7cf0832708c4e5769145",
+  "c_source": "tools/phase4_f01_static_hard_truth.c",
+  "c_source_sha256": "c1b75002d3083c9b188fb9e46093b1e4553443201b6b87466d15550180f22c8d",
+  "compile_argv": [
+   "cc",
+   "-O2",
+   "-std=c11",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "tools/phase4_f01_static_hard_truth.c",
+   "-lm",
+   "-o",
+   "<temporary-binary>"
+  ],
+  "phase3_jr_tables": "analysis/phase3_jr_tables.json",
+  "phase3_jr_tables_sha256": "ed26a2496359a7c953011d3bb35b0a3f46e93314af9167cc00bb4e95dec0ceb5",
+  "pristine_image": "REBUILD/files/SCUS_942.88",
+  "pristine_image_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+  "pristine_image_size": 471040,
+  "static_asm_gate": "analysis/phase4_static_asm_prerequisites.json",
+  "static_asm_gate_sha256": "10b7e72d6117d9517baae09684698c7670ea25272dcbb13a5eb15ce177cd24ec"
+ },
+ "question": "Do instruction-derived reader ranges plus an independent full content derivation semantically dispose the two trig gaps, and do the two live-attributed PCs really carry bounded jalr dispatches?",
+ "registered_actual_jr_reconciliation": [
+  {
+   "c_only_gate": [],
+   "c_only_phase3": [],
+   "comparison": "exact (index,target) set in both directions",
+   "distinct_target_count": 10,
+   "distinct_targets": [
+    "0x8005C110",
+    "0x8005C258",
+    "0x8005C58C",
+    "0x8005C6F0",
+    "0x8005C744",
+    "0x8005C818",
+    "0x8005C918",
+    "0x8005CA24",
+    "0x8005CA7C",
+    "0x8005CCE8"
+   ],
+   "entry_count": 13,
+   "entry_identity_sha256": "2375210543d7bbf600866ec77d30cb0678764e67af57c21514119b805db5a732",
+   "gate_artifact": "analysis/phase4_static_asm_prerequisites.json",
+   "gate_artifact_sha256": "10b7e72d6117d9517baae09684698c7670ea25272dcbb13a5eb15ce177cd24ec",
+   "gate_only_c": [],
+   "pc": "0x8005C108",
+   "phase3_artifact": "analysis/phase3_jr_tables.json",
+   "phase3_artifact_sha256": "ed26a2496359a7c953011d3bb35b0a3f46e93314af9167cc00bb4e95dec0ceb5",
+   "phase3_only_c": [],
+   "table": "0x8001B848",
+   "verified": true
+  },
+  {
+   "c_only_gate": [],
+   "c_only_phase3": [],
+   "comparison": "exact (index,target) set in both directions",
+   "distinct_target_count": 6,
+   "distinct_targets": [
+    "0x80058E80",
+    "0x80058E88",
+    "0x80058E90",
+    "0x80058E98",
+    "0x80058EA0",
+    "0x80058EA8"
+   ],
+   "entry_count": 12,
+   "entry_identity_sha256": "159b03cf8a39fafb47e4a5725b789b2f9e6699b39f9ef1c4316fea8465a301d3",
+   "gate_artifact": "analysis/phase4_static_asm_prerequisites.json",
+   "gate_artifact_sha256": "10b7e72d6117d9517baae09684698c7670ea25272dcbb13a5eb15ce177cd24ec",
+   "gate_only_c": [],
+   "pc": "0x80058E78",
+   "phase3_artifact": "analysis/phase3_jr_tables.json",
+   "phase3_artifact_sha256": "ed26a2496359a7c953011d3bb35b0a3f46e93314af9167cc00bb4e95dec0ceb5",
+   "phase3_only_c": [],
+   "table": "0x8001B748",
+   "verified": true
+  }
+ ],
+ "schema": "abl-phase4-f01-static-hard-truth/1",
+ "verdicts": {
+  "actual_jr_sets_exactly_reconciled": true,
+  "gate_receipt_modified": false,
+  "new_indirect_target_sets_to_register": 0,
+  "requested_dispatch_sites_fail_closed": true,
+  "requested_dispatch_sites_proved": false,
+  "trig_semantic_disposition_supported": true
+ }
+}

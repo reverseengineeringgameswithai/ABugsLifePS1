@@ -1,0 +1,63 @@
+{
+  "row": "D01_enemy_spawn_update",
+  "date": "2026-08-03",
+  "status": "partial, substantially advanced via synthesis -- scheduler, init/reset lifecycle, quota derivation, and 17 of the census's 36 unknown-role actor ids are now bound from committed evidence; zero new live instrumentation this pass",
+  "trigger": "Operator: 'move on to maybe D01.' The row's own named scope (role binding for 36 unknown ids, scheduler, reset/respawn, lifecycle, Thud's actor source) turned out to be substantially covered by evidence committed across this session's own D02/D05/E07/C04 passes plus a dozen per-species rows -- none of it ever cited back into D01's own registry entry.",
+
+  "SCHEDULER_AND_LIFECYCLE_SYNTHESIS_2026-08-03": {
+    "pool_init": "0x8004A42C clears 8448 bytes -- exactly 64 records of stride 0x84 -- then calls the initializer for active records (committed E07 evidence, analysis/phase4_e07_bounded_exhaustion.json 'pool_lifecycle').",
+    "program_selection": "Initializer 0x80049C30 is the SOLE resident reference to the mover-VM program table: reads actor metadata byte +13, indexes the 40-pointer table at 0x80077AF8, writes actor +0x70 (committed E07 deep-static closure).",
+    "per_frame_scheduler": "0x8004D224..0x8004D6A4 (functionBounds exact) loops the live actor-pointer table 0x80090748 (64 slots) each frame: ticks each actor's +0x4A death-anim countdown (a per-species negative constant set at death via FUNC_800498AC's a1=1 jump table), fires FUNC_800498AC(actor, 1|2) on zero-crossing, owns the conditional re-init call (0x8004D3F0, committed E07), and runs the distance-based admission check against the camera-derived anchor 0x8009EC50 (committed D12 evidence; the admission-direction contradiction remains D05's own flagged open lead, not re-litigated here).",
+    "death_and_removal": "FUNC_800498AC a1=2 = terminal retirement: clears actor id at +0x00, clears +0x6E/+0x5A, removes and COMPACTS the live pointer table 0x80090748 (committed Canon, FUNC_800498AC/FUNC_80049B60 pages) -- hence a live-table index is not a stable identity; the record address is (committed phase3_record_types lifetime).",
+    "respawn": "Temporary-KO respawn is a from-scratch re-instantiation at 0x80049C2C from the actor's own spawn-chunk template via backlink +0x80 (committed D12/D05 evidence; requires real walk-away, position pokes never trigger it).",
+    "quota_derivation": "The per-level elimination quota is COMPUTED at level load by FUNC_80046B20's second half scanning the pool at 0x8009FD80 (64 slots, skip id==0 and flags+0x5C&0x08A0) -- committed C04 evidence, which itself refined the archived Enemy_spawn_architecture page's older observation that adding a chunk-31 record raised the quota automatically."
+  },
+
+  "POOL_BASE_RECONCILIATION_2026-08-03": {
+    "observation": "Phase-1's census claims records at 'FIXED 0x8009FE04, stride 0x84' while every later Phase-4 row (C04's scan loop, D02's watches, D19's Molt at 0x8009FF90) uses base 0x8009FD80. These are CONSISTENT: 0x8009FE04 = 0x8009FD80 + 0x84 exactly -- the census enumerated from slot 1 of the same 64-slot pool. Cross-check: D19's Molt record 0x8009FF90 = 0x8009FD80 + 4*0x84 (slot 4), and D14's bee slot addresses reconcile the same way.",
+    "caveat": "Committed D09 evidence adds that actor records are NOT always in this pool: the Redbug fixture's record lived at 0x800A095C, with both 0x8009FE04 and 0x8009FD80 reading all-zero ids there -- per-level placement varies. The authoritative access path is the live pointer table 0x80090748 (committed across D09/D14/phase3_thud), not either fixed base."
+  },
+
+  "ID_ROSTER_RECONCILIATION_2026-08-03": {
+    "method": "Joined the Phase-1 census's 36 unknown-role ids against identity claims in COMMITTED evidence only: per-species Phase-4 artifacts (D09/D11/D12/D13/D14/D15/D17/D19/D20), committed Canon (SYS_bonus_unlock_challenges, phase3_thud), and the committed archived Enemy_spawn_architecture page (whose cross-level table live-verified backlinks in 14 enemy saves and established the type-word-low-byte==id rule, 44/44 actors). Uncommitted artifacts from other agents' active rows (D07 mosquitoes, D10 spider-chain) are NOT cited as primary sources.",
+    "newly_bound_from_the_36_unknowns": {
+      "6": "Horsefly (0x0F06; committed D15 identity section + archived table; species belongs to D08_flies' scope)",
+      "9": "spider, the common per-level chaser (0x0109; committed archived Enemy_spawn_architecture table + relocation/ADD POCs)",
+      "10": "mosquito (LEVEL01 cross-level save table in the committed archived page; D07's own active-row artifact concurs but is uncommitted -- corroboration only)",
+      "12": "grub (0x060C; committed D11/D12 -- the static table's older 'earthworm' name corrected)",
+      "13": "internal 'bee' = campaign wasp (committed D14; also the archived page's LEVEL01 'bee' save)",
+      "15": "grasshopper (0x080F; committed SYS_bonus_unlock_challenges Bonus-3 evidence)",
+      "17": "huge_spider = daddy long legs (0x0B11; committed D15)",
+      "18": "shell_bug / armored beetle (0x1712; committed D13)",
+      "19": "Redbug = the row-name 'cockroach' (0x0C13; committed D09)",
+      "22": "Hopper (committed D20)",
+      "29": "Molt (committed D19)",
+      "30": "bird -- Birdnest boss (hp 50) AND Cliffside hazard (hp 101), same species (identity committed via D17/F04/F06's live-table reads). Type-word 0x1A1E: originally only the archived table's 'canyon 0x1a1e->30' row (an inference); RESOLVED same day by a direct live read of the bird's own backlink type-word in canyon_bug.sav (see ID11_CHARACTERIZED_LIVE_2026-08-03.bird_type_word_hedge_resolved). Distinct from D13's later ad-hoc 'canyon_bug' working name for id 37.",
+      "34": "dragonfly (0x0422; committed D14)",
+      "37": "mite (committed D11; formerly working-named canyon_bug)",
+      "39": "pill (0x2427; committed archived table + ABL_PILL POC)",
+      "40": "worm (0x2528; committed D12)",
+      "41": "wall_worm (0x2629; committed D12 sweep)"
+    },
+    "bound_outside_the_census": "Thud = id 0x24 (36), NOT in the census's observed list -- consistent with the census's own finding that Bug Bar authors ZERO chunk-31 records: Thud is live-table-sourced (committed phase3_thud), not chunk-31-spawned. His exact spawner remains open and is E11_dynamic_geometry's active-row territory (their in-progress work names 0x8004C10C; not cited as primary here because uncommitted).",
+    "count": "17 of 36 unknown-role ids now bound with committed evidence (plus Dot 14 / Thumper 16 already bound at census time, plus Thud 36 outside the census set). 19 remain unknown-role: 0,1,2,3,4,5,7,8,11,20,21,23,24,25,26,27,28,32,35.",
+    "leads_on_the_remaining_19": "id 11 is observed in nearly every level (committed E07 stage_join census) and working-named 'the large beetle' in committed D11 text -- observed, not identity-confirmed. id 23 appears in the committed D02 fixture (slot 2). id 35 appears widely in the stage_join census. ids 0-5/7/8 and 20/21/24-28/32 have no committed identity claims; several are likely non-enemy actor kinds (NPCs/props sharing the pool), since the pool hosts more than combat enemies (Dot id 14 is already a counter-example NPC)."
+  },
+
+  "ID11_CHARACTERIZED_LIVE_2026-08-03": {
+    "trigger": "Operator asked whether D01 is genuinely bounded-exhausted; id 11 was the one remaining unknown that looked enemy-shaped (widespread per the stage-join census, working-named 'the large beetle'). One short live pass to close it before declaring bounded.",
+    "scope": "Isolated Interpreter instance /tmp/dsrepro-d01-id11-20260803, port 23640, canyon_bug.sav (scene 6, Cliffside -- the save D11's committed text names as containing an id 11).",
+    "result": "Live table walk found 4 actors: bird (id 30, slot 0), two mites (id 37), and ONE id 11 at 0x800A0B6C: hp=1, flags=0x4030, vm_ip=0x8007755C, callback +0x7C = 0 (none), backlink type-word 0x040B (low byte 0x0B=11, rule holds).",
+    "interpretation": "id 11 is structurally a NON-ENEMY ambient critter, and the exclusion is not just a guess -- its flags carry bit 0x20, which is EXACTLY one of the bits C04's quota-scan exclusion mask (0x08A0) skips AND one of the bits D14's homing-targetability filter (rejects 0xA0) refuses. The same flag bit simultaneously excludes it from the elimination quota and from homing-berry targeting: the game's own code already classifies it as not-a-real-enemy. Its VM entry 0x8007755C is the same wander-only bytecode block D14 documented for the dragonfly (entries can share bytecode, per E07's committed corpus finding); hp=1 and no species callback complete the ambient profile. Type-word high bytes VARY per level for this id (0x04 here; the archived page's LEVEL01 census shows 0x030B and 0x000B) -- consistent with a generic critter class with per-level variants.",
+    "bird_type_word_hedge_resolved": "The same table walk read the bird's own backlink type-word DIRECTLY: 0x1A1E at backlink 0x80094A38 -- upgrading this artifact's earlier hedged inference (id-30 entry above) to a direct read. Also re-confirmed the mite rule case: id 37's type-word reads 0x0125, low byte 0x25=37.",
+    "quota_cross_check": "This also explains C04's own low LEVEL01 quota (4) despite many more live actors: widespread id-11-class critters carry the 0x20 exclusion bit and never count."
+  },
+
+  "STILL_OPEN": "18 of 36 census ids remain unbound after id 11's characterization -- and with id 11 resolved as a flag-excluded ambient critter, NONE of the remaining 18 (0-5,7,8,20,21,23-28,32,35) has any committed evidence suggesting enemy-role status; binding them is per-id enumeration with no named consumer. The actor-instantiation constructor PC between the loader copy and the first mover-VM frame (the archived page's own longest-standing residual, still unisolated); Thud's exact spawner (E11's active row); type-word HIGH-byte semantics and the +0x10/+0x14/+0x18 chunk-31 param words; runtime record-slot mutation semantics during play; the D05-flagged admission-check direction contradiction (not re-litigated here).",
+
+  "evidence": {
+    "scheduler_and_lifecycle": ["analysis/phase4_e07_bounded_exhaustion.json", "analysis/phase4_d12_worm_id40.json", "analysis/phase4_d05_death_respawn.json", "analysis/phase4_c04_enemy_token.json"],
+    "id_roster": ["analysis/phase1_kind_actor_census.json", "ObsidianVault/Archive/Superseded/Systems_Enemy_spawn_architecture.md", "analysis/phase4_d09_redbug_identity.json", "analysis/phase4_d11_mite.json", "analysis/phase4_d12_worm_id40.json", "analysis/phase4_d13_shell_bug_armor.json", "analysis/phase4_d14_wasps_dragonflies.json", "analysis/phase4_d15_daddy_long_legs.json", "analysis/phase4_d17_bird.json", "analysis/phase4_d19_molt.json", "analysis/phase4_d20_hopper.json", "analysis/phase3_thud.json", "ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md (HEAD version)"],
+    "breadth_census": "analysis/phase4_e07_stage_join.json (per-level actor_id_counts, 17/20 stage pairs)"
+  }
+}

@@ -1,0 +1,51 @@
+schema: abl-phase4-offline-traversal-plants-batch-source/1
+description: >
+  Declarative selection and evidence contract for the six highest-ranked open
+  traversal-plant rows. The reconstructed frame index remains external
+  game-derived evidence; Git retains hashes, bounded summaries, the generator
+  and falsifiable guards only.
+selected_rows:
+  - B01_mushroom_trampoline
+  - B02_propeller_plant
+  - B03_dandelion_glide
+  - B04_cannon_plant
+  - B05_green_leaf_platforms
+  - B10_purple_berry_plants
+expected_unique_capsules: 6
+selection_snapshot:
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 6
+    offline_partial: 27
+    live_required: 6
+    no_capsule: 68
+  rows:
+    - {row_id: B01_mushroom_trampoline, queue_rank: 1, classification: offline_ready, completion_state: open}
+    - {row_id: B02_propeller_plant, queue_rank: 2, classification: offline_ready, completion_state: open}
+    - {row_id: B03_dandelion_glide, queue_rank: 3, classification: offline_ready, completion_state: open}
+    - {row_id: B04_cannon_plant, queue_rank: 4, classification: offline_ready, completion_state: open}
+    - {row_id: B05_green_leaf_platforms, queue_rank: 5, classification: offline_ready, completion_state: open}
+    - {row_id: B10_purple_berry_plants, queue_rank: 6, classification: offline_ready, completion_state: open}
+handler_blocks:
+  mushroom: 0x8005C58C
+  propeller: 0x8005C258
+  dandelion: 0x8005C818
+  cannon: 0x8005C110
+  green_collision_tail: 0x8005CCE8
+  purple_plant: 0x8005C6F0
+  berry_grant_type_1: 0x80058968
+  berry_grant_type_2: 0x80058940
+  berry_grant_type_4: 0x80058978
+  berry_grant_type_3: 0x80058954
+external_index:
+  schema: abl-phase4-external-traversal-plants-index/1
+  domains: [registers, ram, vram, spu_ram, block_flow]
+tracked_summary:
+  schema: abl-phase4-offline-traversal-plants-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary state changes, range intersections and passive block starts
+    do not identify an exact CPU writer, collision primitive, DMA/GPU/SPU
+    producer, causal control, or behavior between retained boundaries.

@@ -1,0 +1,115 @@
+{
+ "engine": {
+  "extensions_allowed": false,
+  "name": "DuckDB",
+  "version": "1.5.5"
+ },
+ "inputs": {
+  "capsules": 3,
+  "domains": 3,
+  "events": 8
+ },
+ "production_contract": {
+  "campaign_promotion": false,
+  "capsule_set_complete_and_control_matched": true,
+  "event_frame_interval": {
+   "coordinate": "movie_relative_frame_boundary",
+   "interval": "closed",
+   "lower_bound": 0,
+   "upper_bound": "retained_capsule.frames"
+  },
+  "external_database_and_parquet_only": true,
+  "frame_boundary_localization_not_exact_causality": true
+ },
+ "queries": {
+  "block_enrichment": [
+   {
+    "block_pc": "0x80010000",
+    "comparison_count": 2,
+    "positive_count": 12
+   },
+   {
+    "block_pc": "0x80020000",
+    "comparison_count": 3,
+    "positive_count": null
+   }
+  ],
+  "cohort_contrast": [
+   {
+    "comparison_movies": 0,
+    "domain": "ram",
+    "key": "goal.flag",
+    "positive_movies": 1
+   },
+   {
+    "comparison_movies": 0,
+    "domain": "ram",
+    "key": "player.hp",
+    "positive_movies": 1
+   },
+   {
+    "comparison_movies": 0,
+    "domain": "register",
+    "key": "v0",
+    "positive_movies": 1
+   }
+  ],
+  "cross_movie": [
+   {
+    "domain": "ram",
+    "first_frame": 5,
+    "key": "goal.flag",
+    "last_frame": 5,
+    "movies": 1
+   },
+   {
+    "domain": "ram",
+    "first_frame": 2,
+    "key": "player.hp",
+    "last_frame": 2,
+    "movies": 1
+   },
+   {
+    "domain": "register",
+    "first_frame": 1,
+    "key": "v0",
+    "last_frame": 1,
+    "movies": 1
+   }
+  ],
+  "first_change": [
+   {
+    "capsule_id": "p",
+    "domain": "ram",
+    "first_frame": 5,
+    "key": "goal.flag",
+    "movie": "positive.movie"
+   },
+   {
+    "capsule_id": "p",
+    "domain": "ram",
+    "first_frame": 2,
+    "key": "player.hp",
+    "movie": "positive.movie"
+   },
+   {
+    "capsule_id": "p",
+    "domain": "register",
+    "first_frame": 1,
+    "key": "v0",
+    "movie": "positive.movie"
+   }
+  ]
+ },
+ "runtime_evidence": false,
+ "schema": "abl-phase4-trace-warehouse-pilot/1",
+ "source_dependencies": {
+  "config/phase4_trace_warehouse.yaml": "31bb71d5e725043c6373d716503d85070b0576c7560494d6d7c2b5f47faa74e7",
+  "tools/phase4_trace_warehouse.py": "8be84360b40ddab4d86d9f762c738daa5ba6c4680cfde0756b835dad718352c0"
+ },
+ "summary": {
+  "failures": 0,
+  "query_packs": 4
+ },
+ "synthetic_only": true
+}

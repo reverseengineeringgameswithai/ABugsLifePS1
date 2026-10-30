@@ -1,0 +1,14 @@
+[
+  {"address": "0x80050c40", "name": "contact_pickup_sfx", "tier": "inferred",
+   "evidence": ["dynamic:LEVEL01", "caller:contact_vs_actor_handler", "callees:sfx_voice_manager,nearest_pickup_finalize"],
+   "rationale": "On actor contact, finalizes the nearest pickup and plays its sound (sfx_voice_manager); called from contact_vs_actor_handler."},
+  {"address": "0x8004dc0c", "name": "respawn_collision_reset", "tier": "inferred",
+   "evidence": ["dynamic:LEVEL01", "callers:respawn_transition_state_handler,gameplay_state_reset_cursor_seed", "callees:collision_candidate_builder,memset"],
+   "rationale": "Rebuilds/zeroes the collision candidate state on respawn/level reset (collision_candidate_builder + memset)."},
+  {"address": "0x80046d24", "name": "projectile_aim", "tier": "inferred",
+   "evidence": ["dynamic:LEVEL01", "byte_matched:asm", "caller:seed_plant_blue_shooter_handler", "callees:SquareRoot0,atan2_heading"],
+   "rationale": "Computes a projectile aim/heading toward a target: distance (SquareRoot0) + angle (atan2_heading). Used by the blue-shooter plant."},
+  {"address": "0x80043068", "name": "loadscreen_image_setup", "tier": "inferred",
+   "evidence": ["dynamic:LEVEL01", "callees:vab_bank_loader,SetDispMask,DrawSync,ClearImage,LoadImage"],
+   "rationale": "Sets up a load/boot screen: clears VRAM (ClearImage), uploads the image (LoadImage), enables display (SetDispMask), and loads an audio bank."}
+]

@@ -1,0 +1,70 @@
+schema: abl-phase4-fmv-player-exit-ownership-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-081032-3325038-r5
+offline_query:
+  receipt:
+    relative_path: iteration-1-receipts/offline-fmv-player-exit-index.receipt.json
+    sha256: 244e5b5ac038d6b9b805a13581007d36cfe4cd268e3f8881c8ed80d7e2b4aa0d
+  output:
+    relative_path: iteration-1-receipts/outputs/fmv-player-exit-index-search.json
+    sha256: 13a98c8d30b51de9b60e9d05171ab3ff12459b42b66a68167002c6a7ccfc2142
+  preservation:
+    relative_path: iteration-1-receipts/offline-fmv-player-exit-index.preservation.json
+    sha256: 7da3c8f30743a509d3804d1445a1a20e8fecc28c4e0cb65aeae30deb1bb47a20
+  external_index_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+  expected_zero_terms:
+    - '0x800B7294'
+    - '0x800B7428'
+    - '0x800B7430'
+    - '0x800B7444'
+    - '0x800B745C'
+    - '0x4008'
+    - CdControl
+    - CdlStop
+    - CdlPause
+    - post-helper exit
+prior_evidence:
+  fmv_runtime:
+    path: analysis/phase4_fmv.json
+    sha256: ae6b6baf0bec3c0e77649c714560c7425a3d0a8e95ab86cbc54d7cc9ab294a40
+  lifecycle_continuations:
+    path: analysis/phase4_fmv_lifecycle_continuations.json
+    sha256: c026a89b3d1e6ec8dd39f14e61855274f8520d3885c20e14bcbadc8d7244844b
+claim_boundary:
+  claim: >
+    In pristine FMV.BIN, every post-helper continuation is owned by one of
+    five exact predicates: the u8 decode-stop latch, resident CD-event value
+    one, a controller-derived 12-step skip sentinel, completion request value
+    one, or decoded-frame-index less than the signed selected limit. The
+    completion-request branch alone issues CdlStop command 8 before joining
+    the shared CdlPause command 11 and common teardown. The controller path
+    polls resident input state, masks 0x4008, seeds the countdown at one, and
+    exits only when it reaches twelve. CdlPause here is stream teardown, not
+    the frontend pause-shell action.
+  falsifier: >
+    Reject the claim if the retained index already answers an exact requested
+    term, another encoded edge enters 0x800B6E38, 0x800B7464 or 0x800B7468,
+    a producer load or comparison is missing, the controller mask/countdown
+    differs from 0x4008 and twelve, completion does not issue command 8 before
+    command 11, a runtime outcome is inferred from static routing, or a
+    load-bearing pristine byte/artifact/source mutation leaves the focused
+    guard green.
+  dimension_promoted: false
+  lifecycle_promoted: false
+  closed_sub_boundary: post_helper_exit_and_cd_command_ownership
+  next_lane: static
+  next_method: >
+    Preserve this complete in-player exit partition. Next, statically identify
+    the first caller-owned Region-B overwrite after one selected level/viewer
+    return and classify its E16/E14 owner before considering another live
+    control.
+  not_claimed:
+    - native delivery frequency for the resident CD event
+    - native malformed-stream or timeout outcomes
+    - a user-visible pause menu caused by CdlPause command 11
+    - behavior of every manifest selector or movie-viewer path
+    - the first caller-owned Region-B replacement instruction
+    - lifecycle or any other nine-dimension promotion

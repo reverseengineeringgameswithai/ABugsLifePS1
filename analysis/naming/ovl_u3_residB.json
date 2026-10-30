@@ -1,0 +1,4 @@
+[
+ {"overlay":"LEVEL06_LEVEL","address":"0x800b3bbc","name":"transition_handler_arg_entry","tier":"inferred","evidence":["bytes: lui/lh v0,[0x800A659E] (player-state halfword) then falls into level_transition_handler @0x800b3bc4","runtime: 40 hits from RESIDENT scene-verb dispatcher 0x80054A3C with (obj 0x80094B50, 0x215, 0x302)"],"rationale":"u3-3: 2-insn alternate entry preloading a player-state arg for level_transition_handler (same pattern as LEVEL07 state_writer_arg_entry)"},
+ {"overlay":"LEVEL02_LEVEL1","address":"0x800b48f4","name":"color_channel_lerp","tier":"inferred","evidence":["runtime: 40 hits/frame-loop in level02.sav, args (0x00FF0000 channel mask, 0x000D1A00, step -54), internal caller 0x800B4884","pure computation (no stores, no calls)"],"rationale":"u3-3: hot per-frame pure color-channel computation (settles the borderline-data question: it IS code)"}
+]

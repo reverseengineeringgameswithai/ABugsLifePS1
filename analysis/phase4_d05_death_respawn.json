@@ -1,0 +1,37 @@
+{
+  "row": "D05_death_respawn",
+  "date": "2026-08-03",
+  "status": "substantiated partial, bounded-exhausted after pristine-ASM scheduler resolution; no new runtime replay required",
+  "trigger": "Operator: 'find another row to work on.' D05's own named scope (death animation, drops, delayed respawn, quota, family exceptions) turned out to already be substantially covered by SYS_enemy_death_and_permanence.md's own 'Temporary-KO respawn' section -- a cross-species finding banked under D09_redbug/D12_worm/D13_shell_bug's own rows but never cited in D05's own registry entry.",
+
+  "SYNTHESIZED_FROM_D09_D12_D13_2026-08-03": {
+    "respawn_condition_confirmed_live": "A non-permanently-killed enemy respawns ONLY once Flik genuinely walks away (real controller input, ~76,000+ units, reliable on repeat runs) and back -- confirmed for worm (D12), Redbug (D09), and shell_bug (D13) via three independent live runs the same day. Position pokes (single teleport + 50s continuous execution, a constructed 'realistic' one-frame delta, and many small per-frame scatterWrite increments totaling 111,000+ units) NEVER reproduce it -- only genuine continuous execution with real input does.",
+    "reinit_mechanism_confirmed": "The reset is a genuine FROM-SCRATCH re-instantiation, not a state toggle, at a previously-undocumented routine 0x80049C2C (immediately adjacent to, and functionBounds-merged into, the already-Canon FUNC_800498AC/enemy_update_deathanim -- a real internal function boundary exists: 'jr ra' at 0x80049C28 then a fresh prologue-equivalent at 0x80049C2C). Copies id/position/mover-VM-program-pointer/hp/flags fresh from the actor's own spawn-chunk template via its runtime-record backlink (+0x80): id from backlink+0xc, XYZ from backlink+0/4/8 each shifted <<5 (matching the documented spawn-anchor law exactly), program pointer via the 13-entry table at 0x80077AF8 keyed by backlink+0xd, hp from backlink+0x10 (write caught live: 'sh v0,0x6e(t0)' at 0x80049CA4), flags from backlink+0x12. Explains why a revived actor's vm_ip lands near its program's own start rather than resuming where it died.",
+    "self_caught_correction": "An earlier draft mis-attributed this reset to FUNC_800498AC's own a1=2 branch (already Canon-documented as TERMINAL RETIREMENT -- the OPPOSITE direction). Caught before banking by noticing the accessLog-captured write uses register t0, not s0 (the register the documented a1=1/a1=2 branches use throughout).",
+    "death_side_timer_confirmed": "xrefsTo on FUNC_800498AC finds exactly 3 callers: 0x80059340 (death tail, a1=1, right after the hp=999 sentinel write), and two calls inside the per-actor per-frame update function (0x8004D618 a1=1, 0x8004D644 a1=2). a1 bit-0 runs a per-species jump table (keyed on id-6) writing a per-species negative countdown constant into actor+0x4A (observed: -24,-33,-16,-25 for different id ranges; worm's own exact constant not isolated). a1 bit-1 is the already-documented terminal-retirement path.",
+    "per_frame_scheduler_confirmed": "The per-actor update function (0x8004D224..0x8004D6A4, functionBounds exact) loops the live actor-pointer table (0x80090748, 64 slots) each frame, ticking each entry's +0x4A countdown, firing FUNC_800498AC(actor,1-or-2) on crossing zero. Confirmed to exist and fire; its exact causal link to the SEPARATE 0x80049C2C reinit routine is the row's own open residual (see STILL_OPEN)."
+  },
+
+  "RESOLUTION_2026_08_04": {
+    "corrected_entry": "0x80049C2C is padding; the reinitializer starts at 0x80049C30",
+    "direct_callers": ["0x8004A664 construction", "0x8004D3F0 runtime scheduler"],
+    "scheduler_split": "0x8004D29C sends HP>0 actors to live near-anchor admission and HP<=0 actors directly to the KO lifecycle path",
+    "ko_gate": "actor+0x62 counts down below 5000; at zero, flag 0x10 bypasses visibility or 0x80025084 requires the fixed spawn to be off-screen before 0x8004D3F0 calls 0x80049C30",
+    "timer_separation": "actor+0x4A is the distinct live-list death-animation/retirement timer",
+    "runtime_correlation": "D12's natural walk-away reproduction reaches the exact HP restore instruction 0x80049CA0; the access callback reports advanced PC 0x80049CA4",
+    "disposition": "The former admission contradiction is resolved. Per-species timer values and cosmetic death/drop/audio detail remain low-return cataloging, not a blocker to moving on."
+  },
+
+  "STILL_OPEN": {
+    "status": "historical gap text retained for provenance; superseded by RESOLUTION_2026_08_04",
+    "reinit_trigger_unconfirmed": "0x80049C2C has ZERO static callers (indirect/computed call, matching the per-species jump-table pattern seen elsewhere). An execTrace watch armed on it during a live reset produced ZERO hits despite the reset demonstrably firing in the same run -- almost certainly an execTrace reliability gap under this project's usual resume/pause pattern (the same 0-hits-despite-real-event pattern was independently hit once already this session tracing a wall_worm throw dispatch), not evidence the routine wasn't reached. The exact caller and precise trigger condition remain unconfirmed.",
+    "admission_check_unresolved_contradiction": "The per-frame function (0x8004D224) ALSO contains an earlier pass (~0x8004D264-0x8004D410) scanning the level's full static actor array and admitting each into the live table (0x80090748) only when its distance to a cached reference point (0x8009EC50, itself fed from the camera's own tracked state via already-Canon camera_follow_update) is within a per-actor radius. Read literally this means 'near the anchor -> admitted/ticking, far -> not admitted/frozen' -- the OPPOSITE of the confirmed live behavior (walking FAR triggers the reset). NOT resolved: plausible unexamined explanations include a too-small admission radius, an unlocated hp-gate branch, a partial-disassembly register misread, or the admission check and the actual reinit trigger being unrelated systems entirely. Named explicitly as an open contradiction, not glossed over -- this is D05's own single most concrete remaining lead, well-scoped for a future live pass (watch 0x8009EC50 and the actual admission branch outcome across a real walk-away-and-back sequence)."
+  },
+
+  "evidence": {
+    "donor_rows": ["D09_redbug", "D12_worm", "D13_shell_bug"],
+    "donor_artifact": "analysis/phase4_d12_worm_id40.json (RESPAWN_MECHANISM_2026-08-02)",
+    "canon": "ObsidianVault/Canon/Systems/SYS_enemy_death_and_permanence.md",
+    "also_cross_referenced": "analysis/phase4_d09_redbug_identity.json, analysis/phase4_d13_shell_bug_armor.json"
+  }
+}

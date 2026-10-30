@@ -1,0 +1,194 @@
+{
+ "generated_by": "manual - substrate function-boundary corrections",
+ "note": "Overrides pin functions whose real extent is split by analyzer artifacts. Most are jr-table dispatchers whose case bodies were mistaken for functions. The libpad entries added in the understanding campaign load a callback before reserving the stack; Ghidra therefore created a second false start at the delayed stack prologue. Each range was checked against the retail disassembly, r2 extent, call targets, and matching PsyQ object boundaries.",
+ "overrides": {
+  "0x80054810": {
+   "end": "0x80054964",
+   "reason": "scene-verb dispatcher #1: 18-case jr-table @0x8001b4b4; absorbs gap_code 0x8005484c; real epilogue jr ra @0x8005495c"
+  },
+  "0x80054964": {
+   "end": "0x80054aac",
+   "reason": "scene_verb_dispatcher: 17-case jr-table @0x8001b4fc (a0-1); absorbs case-body tail; real epilogue jr ra @0x80054aa4 + its delay nop @0x80054aa8; next fn store_four_bytes @0x80054aac"
+  },
+  "0x800470ac": {
+   "end": "0x80047284",
+   "reason": "berry throw dispatch: jr-table switch (inline cases); 0 external jal-targets; real epilogue jr ra before 0x80047284"
+  },
+  "0x800586b0": {
+   "end": "0x80058af8",
+   "reason": "contact_walker: jr-table switch (inline cases); 0 external jal-targets; ends before contact_vs_actor 0x80058af8"
+  },
+  "0x80053814": {
+   "end": "0x80054810",
+   "reason": "source3f record dispatcher: jr-table switch (inline cases); 0 external jal-targets; ends before scene_verb_dispatch 0x80054810"
+  },
+  "0x8001d3cc": {
+   "end": "0x8001dfe4",
+   "reason": "jr-table dispatcher dirt_object_dispatch (inline-case switch); self-contained (0 external jal-targets, 0 interior named symbols); real epilogue jr ra before 0x8001dfe4"
+  },
+  "0x8001dfe4": {
+   "end": "0x8001ea6c",
+   "reason": "jr-table dispatcher scene_geometry_draw_dispatcher (inline-case switch); self-contained (0 external jal-targets, 0 interior named symbols); real epilogue jr ra before 0x8001ea6c"
+  },
+  "0x8005953c": {
+   "end": "0x80059e44",
+   "reason": "jr-table dispatcher  (inline-case switch); self-contained (0 external jal-targets, 0 interior named symbols); real epilogue jr ra before 0x80059e44"
+  },
+  "0x800593e8": {
+   "end": "0x8005953c",
+   "reason": "contact scatter-component selector: six-case jr table at 0x8001b778; 0x80059414..0x80059530 are inline cases and the shared epilogue is at 0x80059534"
+  },
+  "0x8006deb8": {
+   "end": "0x8006e440",
+   "reason": "jr-table dispatcher getintr (inline-case switch); self-contained (0 external jal-targets, 0 interior named symbols); real epilogue jr ra before 0x8006e440"
+  },
+  "0x8005b134": {
+   "end": "0x8005b440",
+   "reason": "jr-table dispatcher respawn_transition_state_handler (inline-case switch); self-contained (0 external jal-targets, 0 interior named symbols); real epilogue jr ra before 0x8005b440"
+  },
+  "0x8004a42c": {
+   "end": "0x8004a700",
+   "reason": "jr-table dispatcher  (inline-case switch); self-contained (0 external jal-targets, 0 interior named symbols); real epilogue jr ra before 0x8004a700"
+  },
+  "0x80052090": {
+   "end": "0x8005222c",
+   "reason": "jr-table dispatcher  (inline-case switch); self-contained (0 external jal-targets, 0 interior named symbols); real epilogue jr ra before 0x8005222c"
+  },
+  "0x80039c34": {
+   "end": "0x8003a2dc",
+   "reason": "controller manager: 0x80039c38 is the delayed stack prologue after the entry's global load; r2 covers the full function from 0x80039c34"
+  },
+  "0x8007198c": {
+   "end": "0x80071a58",
+   "reason": "PsyQ PadGetState: 0x80071994 is the delayed stack prologue after loading _padFuncPort2Info"
+  },
+  "0x80071a58": {
+   "end": "0x80071b50",
+   "reason": "PsyQ PadInfoMode: 0x80071a60 is the delayed stack prologue after loading _padFuncPort2Info"
+  },
+  "0x80071b50": {
+   "end": "0x80071c24",
+   "reason": "PsyQ PadInfoAct: 0x80071b58 is the delayed stack prologue; r2 and the PsyQ object-size match cover 212 bytes"
+  },
+  "0x80071c24": {
+   "end": "0x80071ccc",
+   "reason": "PsyQ PadInfoComb: 0x80071c2c is the delayed stack prologue after loading _padFuncPort2Info"
+  },
+  "0x80071ccc": {
+   "end": "0x80071d04",
+   "reason": "PsyQ PadSetActAlign: 0x80071cd4 is the delayed stack prologue after loading _padFuncPort2Info"
+  },
+  "0x80071d04": {
+   "end": "0x80071d4c",
+   "reason": "PsyQ PadSetMainMode: 0x80071d0c is the delayed stack prologue after loading _padFuncPort2Info"
+  },
+  "0x80071d4c": {
+   "end": "0x80071da0",
+   "reason": "PsyQ PadSetAct: 0x80071d54 is the delayed stack prologue after loading _padFuncPort2Info; trailing words are alignment padding"
+  },
+  "0x80071da0": {
+   "end": "0x80071eb8",
+   "reason": "PsyQ PadEnableCom: 0x80071db0 is the delayed stack prologue after two entry-state loads"
+  },
+  "0x80071ee4": {
+   "end": "0x80071f4c",
+   "reason": "libpad SIO callback: 0x80071eec is the delayed stack prologue after loading the SIO register pointer"
+  },
+  "0x80071f4c": {
+   "end": "0x800720dc",
+   "reason": "libpad VSync/SIO handler: 0x80071f54 is the delayed stack prologue after loading the SIO register pointer"
+  },
+  "0x800737b8": {
+   "end": "0x80073890",
+   "reason": "libpad direct-port SIO stage: 0x800737c8 is the delayed stack prologue after entry-state loads"
+  },
+  "0x80073890": {
+   "end": "0x8007393c",
+   "reason": "libpad direct-port SIO stage: 0x80073898 is the delayed stack prologue after the entry test"
+  },
+  "0x80013108": {
+   "end": "0x800140a0",
+   "reason": "grass/terrain mesh dispatcher: 0x80013288 and the following gap are inline jump-table cases; shared epilogue returns at 0x80014098"
+  },
+  "0x800186ec": {
+   "end": "0x8001881c",
+   "reason": "gte_rtps_mesh_assembler is called at the leading nop 0x800186ec; 0x800186f0 is its stack prologue"
+  },
+  "0x80027004": {
+   "end": "0x80027c60",
+   "reason": "OT depth-fade dispatcher: 0x80027010 is the delayed stack prologue and 0x800272f0-0x80027c5c are inline switch bodies ending at the shared jr ra"
+  },
+  "0x8003d7b0": {
+   "end": "0x8003daec",
+   "reason": "backdrop gradient renderer: 0x8003d7b8 is the delayed stack prologue after the entry global load"
+  },
+  "0x80042428": {
+   "end": "0x80042c70",
+   "reason": "visual-sprite pool update/render loop: 0x80042494 and 0x80042a40 are loop-body analyzer starts; loop back-edge targets 0x80042494 and real function ends before 0x80042c70"
+  },
+  "0x80045b00": {
+   "end": "0x80045cac",
+   "reason": "cd_audio_mix_control: 0x80045b04 is the delayed stack prologue after the entry gp load"
+  },
+  "0x800510f0": {
+   "end": "0x80051294",
+   "reason": "ambient SFX sequence update: 0x800510f4 is the delayed stack prologue after the entry gp load"
+  },
+  "0x8005149c": {
+   "end": "0x8005182c",
+   "reason": "setpiece light/color update: 0x800514a4 is the delayed stack prologue after the entry global load"
+  },
+  "0x80055644": {
+   "end": "0x80055d38",
+   "reason": "player action-effects update: 0x80055654 is the delayed stack prologue after four entry instructions form a global address"
+  },
+  "0x800625fc": {
+   "end": "0x80062668",
+   "reason": "PsyQ DrawSync: 0x80062604 is the delayed stack prologue after the entry gp loads"
+  },
+  "0x80062b04": {
+   "end": "0x80062b9c",
+   "reason": "PsyQ ClearOTagR: 0x80062b0c is the delayed stack prologue after the entry gp load"
+  },
+  "0x80062bfc": {
+   "end": "0x80062c70",
+   "reason": "PsyQ DrawOTag: 0x80062c04 is the delayed stack prologue after the entry gp load"
+  },
+  "0x80065b4c": {
+   "end": "0x80065bc4",
+   "reason": "PsyQ trapIntrVSync: 0x80065b54 is the delayed stack prologue after the entry global load"
+  },
+  "0x80067f20": {
+   "end": "0x80067f60",
+   "reason": "PsyQ _SsTrapIntrVSync: 0x80067f28 is the delayed stack prologue after the entry global load"
+  },
+  "0x8003e104": {
+   "end": "0x8003e3e0",
+   "reason": "dynamic render-budget update: 0x8003e124 is the delayed stack prologue after the entry constant/global setup; r2 covers the full 732-byte function"
+  },
+  "0x80070a30": {
+   "end": "0x80070ac0",
+   "reason": "libpress CD-ready callback: 0x80070a40 is the delayed stack prologue after the entry loads the ring index and ring base"
+  },
+  "0x80070ac0": {
+   "end": "0x80070b20",
+   "reason": "PsyQ StGetBackloc: 0x80070ac8 is the delayed stack prologue after the entry loads the stream-state flag"
+  },
+  "0x8005a308": {
+   "end": "0x8005b12c",
+   "reason": "berry_projectile_update: absorbs 1920B tail 0x5a9ac (no prologue, live regs from parent, 0 callers)"
+  },
+  "0x800563d4": {
+   "end": "0x80056f68",
+   "reason": "actor_skinned_update: absorbs 128B epilogue 0x56ef0 (parent flows off end with no jr ra; frees the -128 frame)"
+  },
+  "0x8003d620": {
+   "end": "0x8003d7b0",
+   "reason": "collision_grid_l_level_overlay__glue: absorbs jump-table case bodies 0x3d678 (dispatched via 0x8001B078; shared epilogue)"
+  },
+  "0x80019934": {
+   "end": "0x80019ce8",
+   "reason": "bulk_ground_sub_emitter: absorbs case-body 0x19b48 + gap nop (jr $at to sibling case starts; shared s7 base)"
+  }
+ }
+}

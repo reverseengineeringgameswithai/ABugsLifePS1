@@ -1,0 +1,92 @@
+schema_version: 1
+row: C13_grain_harvester
+movie: movies/Phase4/c13_GRAIN_HARVESTER.movie.json
+movie_sha256: 849ad9a4092502dcbac280f3bf92f61612d72bdb3718b0f0ad84b4c4dfc005ac
+start_state: movies/Phase4/c13_GRAIN_HARVESTER.movie.sav
+start_state_sha256: abb7eb74ce316d437f5ee6c168d1e9f876d0fe11ec30ffa2273bfaeec31666ce
+frame_basis:
+  kind: movie_local
+  first: 0
+  last: 616
+  emulator_initial_frame: 171499
+authority:
+  source: operator_annotation
+  recorded: 2026-07-30
+  media_requirement: hash_verified_pristine_retail_SCUS-94288
+annotations:
+  - id: approach_unequipped
+    kind: interval
+    frames: [0, 79]
+    confidence: confirmed
+    state:
+      harvester_equipped: false
+    observation: Flik walks toward the grain harvester.
+
+  - id: equip_input
+    kind: event
+    frame: 80
+    confidence: confirmed
+    input:
+      square: pressed
+    observation: Square is pressed to enter/equip the grain harvester.
+
+  - id: equip_visual_onset
+    kind: event_window
+    frames: [86, 88]
+    nominal_frame: 87
+    confidence: approximate
+    observation: First visually apparent frame of Flik beginning the equip animation.
+
+  - id: first_grain_attraction
+    kind: event_window
+    frames: [168, 171]
+    confidence: approximate
+    observation: First grain visibly begins converging toward the equipped harvester.
+
+  - id: last_grain_attraction
+    kind: event_window
+    frames: [509, 513]
+    nominal_frame: 511
+    confidence: approximate
+    observation: Last grain visibly begins converging toward the equipped harvester.
+
+  - id: movie_end_equipped
+    kind: event
+    frame: 616
+    confidence: confirmed
+    state:
+      harvester_equipped: true
+    observation: The retained movie ends while Flik is still using the harvester.
+
+post_movie_leads:
+  - id: manual_disengage
+    retained_in_movie: false
+    confidence: operator_instruction
+    action: Press Cross after playback to disengage from the harvester.
+    required_controls:
+      - Capture the last equipped frame before the press.
+      - Capture the first stable unequipped interval after the press.
+
+  - id: harvester_enemy_contact
+    retained_in_movie: false
+    confidence: approximate_operator_lead
+    timing: Roughly 100 frames after the retained movie ends if Flik remains equipped.
+    observation: A bee can contact the harvester and die.
+    action: Keep the harvester equipped through the bee contact, then press Cross to disengage.
+    required_controls:
+      - Attribute the bee damage/death writer and attack class.
+      - Replay a matched continuation with Flik disengaged before contact.
+      - Do not promote cross-family permanence or immunity claims from the bee alone.
+
+analysis_contract:
+  capsule_first: true
+  candidate_predicates:
+    - Stable or consistently classified as unequipped during frames 0-79.
+    - Changes at or after the frame-80 Square press and the frames-86-88 visual onset.
+    - Remains consistently classified as equipped through frame 616.
+    - Grain-state changes correlated with attraction must begin no earlier than frames 168-171.
+  limitations:
+    - The retained movie contains no disengage edge.
+    - The retained movie contains no confirmed enemy-contact event.
+    - Approximate visual frames are search windows, not exact causal boundaries.
+    - Frame-boundary capsule deltas cannot identify the exact writer instruction.

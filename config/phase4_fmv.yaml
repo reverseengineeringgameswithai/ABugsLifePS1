@@ -1,0 +1,547 @@
+schema: abl-phase4-fmv/11
+row: E15_fmv
+owner: audio_cinematics
+campaign_state: active_partial
+
+pristine_frontier:
+  fmv_bin:
+    path: REBUILD/files/FMV/FMV.BIN
+    sha256: a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9
+    size: 509800
+    overlay_base: 0x800B5788
+    overlay_head_sha256: ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db
+  manifest:
+    entries: 40
+    frame_count_rows: 40
+    frame_count_instruction: addiu a1, zero, frame_count
+    minimum_frame_count: 156
+    maximum_frame_count: 3162
+  resident_regions:
+    fmv_bin_load: [0x8003E7C0, 0x8003E83C]
+    fmv_wait_and_completion_bridge: [0x8003EFC8, 0x8003F358]
+    fmv_sequence_completion_check: [0x800502C4, 0x8005038C]
+
+typed_state:
+  frame_sync_wait_latch:
+    address: 0x80082250
+    width: u32
+    residency: resident
+    owner: shared_frame_sync_interrupt_handshake
+    wait_value: 1
+    clear_value: 0
+    legacy_capture_alias: fmv_running_latch
+    evidence: analysis/phase4_fmv_frame_sync_wait_ownership.json
+    boundary: >-
+      Shared transition/display/reset frame-sync state, not FMV-running or
+      FMV-retirement state. Historical live artifacts retain the
+      fmv_running_latch capture label for byte-stable provenance only.
+  scene: {address: 0x80082504, width: u32, residency: resident}
+  shell_substate: {address: 0x8008243C, width: u32, residency: resident}
+  str_backloc: {address: 0x80088FFC, width: u32, residency: resident}
+  completion_request: {address: 0x800CAC10, width: u32, residency: FMV.BIN}
+  selected_frame_limit: {address: 0x80131EEE, width: s16, residency: FMV.BIN}
+  residency_guard: >-
+    Region-B fields are typed only while the first 0x100 FMV.BIN bytes hash to
+    ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db.
+  player_boundary:
+    artifact: analysis/phase4_fmv_static_owners.json
+    code_scope: [0x800B5788, 0x800B9A4C]
+    player: [0x800B6D68, 0x800B752C]
+    region_b_address_rows: 30
+    enumerated_state_ranges:
+      - {start: 0x800B9A4C, end: 0x800B9A60, role: decode_commit_scalars}
+      - {start: 0x800CABD4, end: 0x800CAC24, role: player_boundary}
+      - {start: 0x80131EE8, end: 0x80131EF0, role: selector_parameters}
+    structures:
+      double_buffer: {base: 0x800CABE0, size: 12, layout: [pointer32, pointer32, u32_active_index]}
+      rect_bank: {base: 0x800CABF0, slots: 2, stride: 8, fields: [s16_x, s16_y, s16_w, s16_h]}
+      present_rect: {base: 0x800CAC04, size: 8, fields: [s16_x, s16_y, s16_w, s16_h]}
+    scalar_domains:
+      decoded_frame_index: {address: 0x800B9A4C, type: s32, domain: nonnegative_decoder_output}
+      previous_decoded_frame_index: {address: 0x800B9A50, type: s32, domain: prior_decoded_frame_index}
+      decode_stop_latch: {address: 0x800B9A54, type: u8, domain: [0, 1]}
+      cached_frame_width: {address: 0x800B9A58, type: u32, source_width: u16}
+      cached_frame_height: {address: 0x800B9A5C, type: u32, source_width: u16}
+      presentation_active_latch: {address: 0x800CABD4, type: u32, domain: [0, 1]}
+      rect_ready_latch: {address: 0x800CAC0C, type: u32, domain: [0, 1]}
+      presentation_counter: {address: 0x800CAC20, type: u32, dispatch_domain: [0, 7]}
+      workspace_pointer: {address: 0x80131EE8, type: pointer32, pristine_value: 0x800CAEE8}
+      display_mode: {address: 0x80131EEC, type: s16, special_value: 3}
+      selected_frame_limit: {address: 0x80131EEE, type: s16, pristine_domain: [156, 3162]}
+    resident_dependencies:
+      - {address: 0x80082218, type: s16, owner: audio_presentation_policy}
+      - {address: 0x80082412, type: u16, local_mask: 0x4008, owner: decoded_input}
+      - {address: 0x80082484, type: u32, exit_value: 1, owner: resident_shell}
+    boundary: >-
+      The typed-state claim exhaustively covers direct absolute accesses inside
+      the three declared FMV decode/player/selector state ranges, including
+      absolute xrefs, pointer aliases, signed views and allocation/RECT reuse.
+      SDK-private libpress/MDEC records outside those ranges remain
+      source/interface owners and are not safe MOD state.
+  decode_helper_ownership:
+    artifact: analysis/phase4_fmv_present_rect_height_helper_loop.json
+    commit_function: [0x800B6A7C, 0x800B6C24]
+    helper_function: [0x800B6C24, 0x800B6CA4]
+    helper_to_commit_call_instruction: 0x800B6C34
+    player_initialization_call: 0x800B70A0
+    player_outer_loop_call: 0x800B7280
+    player_outer_loop_back_edge: 0x800B745C
+    semantic_entry_arguments: [a0]
+    dead_on_entry_arguments:
+      a1: {first_definition: 0x800B6A9C, classification: caller_saved_passthrough}
+      a2: {first_definition: 0x800B6B8C, classification: caller_saved_passthrough}
+      a3: {first_definition: 0x800B6B90, classification: caller_saved_passthrough}
+    retained_trace_partition:
+      player_initialization_calls: 1
+      player_outer_loop_calls: 10
+      incidental_argument_class_counts: [1, 1, 9]
+      fixed_nine_loop_bound: false
+    boundary: >-
+      The helper invokes the commit function exactly once per helper call. The
+      player invokes the helper once during initialization and once per outer
+      loop iteration. The retained 1/1/9 a1-a3 classes are incidental
+      caller-saved register snapshots, not three decoded-record types; nine is
+      only the final class count inside the bounded trace window.
+
+reproduced_control:
+  fixture_movie: movies/Phase4/E15_fmv_skip.movie.json
+  fixture_movie_sha256: ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba
+  fixture_state: movies/Phase4/E15_fmv_skip.movie.sav
+  fixture_state_sha256: 851e8ebffa8b8417abb30ff0791ca4c1872a43cf06101247ee1ff97e4cdac417
+  selected_movie: BUGSFMV1/LEV1A.STR
+  selected_frame_limit: 386
+  edit: remove only ports.0.start from movie frames 334 through 342
+  identical_pre_trigger:
+    movie_frame: 333
+    cycle: 2585837573
+    pc: 0x80070D00
+    ram_sha256: 1044d5b7d0bb6dc5a563a18c98e497e66f7919152d3ddcf1b093e2f4a01224e5
+    registers_sha256: 754f0d34004d6508c9410c0c667bcf2726cb94bcb12241db10630a0622b63117
+  immediate_post_input:
+    movie_frame: 343
+    start_pc: 0x80065340
+    start_removed_pc: 0x800B98F0
+    overlay_resident_on_both: true
+  final_boundary:
+    movie_frame: 541
+    start_overlay_resident: false
+    start_str_backloc: 73
+    start_removed_overlay_resident: true
+    start_removed_str_backloc: 163
+  interpretation: >-
+    At this inspected pristine LEV1A anchor, Start is a native FMV skip input.
+    This first 541-frame single-variable control did not reach natural
+    completion. The longer same-anchor control below closes that one level-A
+    fact without generalizing to any other manifest entry, viewer path,
+    pause/stop behavior, or error policy.
+
+level_a_natural_completion_control:
+  artifact: analysis/phase4_fmv_natural_completion.json
+  fixture: same_hash_pinned_LEV1A_state_and_pristine_media_as_reproduced_control
+  prior_no_input_boundary:
+    frames_advanced: 541
+    emulator_frame: 4776
+    str_backloc: 162
+    selected_frame_limit: 386
+    fmv_bin_resident: true
+  atomic_control:
+    frames_advanced: 1500
+    start_common_exit_frame: 4671
+    natural_common_exit_frame: 5305
+    frame_delta: 634
+    common_call_sites: [0x800B749C, 0x800B74A4]
+    callees: [0x8007094C, 0x800709AC]
+    both_endpoints_retire_fmv_bin: true
+  return_distinction:
+    start_function_trace_synthetic_unwind: true
+    natural_function_trace_synthetic_unwind: false
+    static_guest_return: conventional_balanced_return
+  boundary: >-
+    No-input LEV1A reaches the same common player exit as Start-skip after the
+    retained 541-frame horizon. This receipt proves reachability, not the cause
+    of that converging exit. Region-B fields are untyped after retirement.
+
+level_a_selected_limit_completion_control:
+  artifact: analysis/phase4_fmv_natural_exit_cause.json
+  fixture: same_hash_pinned_LEV1A_state_and_pristine_media_as_reachability_control
+  atomic_control:
+    frames_advanced: 1100
+    selected_limit_write: {site: 0x800B6DC0, frame: 4418, value: 386}
+    late_backloc_writer: 0x80070A8C
+    limit_minus_two: {frame: 5216, value: 384}
+    completion_set: {site: 0x800B6B48, frame: 5253, old: 0, new: 1}
+    decoded_record_stop_latch_writes: 0
+    common_exit_frame: 5305
+    fmv_bin_resident_at_endpoint: true
+  discriminators:
+    frame_order_regression_writer: {site: 0x800B6B24, observed: false}
+    stream_start_clear_writer: {site: 0x800B6DD0, observed_only_at_start: true}
+    decoded_record_absent_writer: {site: 0x800B6C84, observed: false}
+  boundary: >-
+    For this pristine no-input LEV1A run, instruction-attributed access
+    provenance identifies the selected-limit writer as the cause of completion
+    before the already bound common exit. This closes one level-A cause; level-B,
+    alternate, viewer, pause/repeat and failure behavior remain open.
+
+game_over_lose_lifecycle_control:
+  artifact: analysis/phase4_fmv_lose_lifecycle.json
+  fixture_movie: movies/Phase4/C16_gameover_continue.movie.json
+  fixture_state: movies/Phase4/C16_gameover_continue.movie.sav
+  cached_stage:
+    movie_frame: 300
+    internal_control_cycle_neutral: true
+    retained_capsule_domains_matched: [ram, vram, spu_ram]
+  loader:
+    function: 0x8003E7C0
+    caller: 0x800500D8
+    selector: 46
+    mode: 0
+    return: 0x800500E0
+  stream:
+    manifest_path: BUGSFMV2/LOSE.STR
+    selected_frame_limit: 281
+    selected_limit_writer: 0x800B6DC0
+    completion_writer: 0x800B6B48
+  common_exit:
+    st_clear_ring_call: 0x800B749C
+    callback_teardown_call: 0x800B74A4
+    loader_return_movie_frame: 1337
+  control_boundary: >-
+    A frame-zero precise observer made the pinned movie non-reproducible and
+    reached the no-input scene-9 endpoint, so that positive is retained only as
+    failed-observer provenance. The behavioral positive first consumes the
+    directional input through DuckStation's internally controlled cached replay
+    and arms exact stops at movie frame 300. The same-save no-input job reaches
+    no loader, selected-limit or completion event.
+  boundary: >-
+    This binds one natural game-over LOSE selector/load/completion/teardown
+    path. It does not establish alternate continue/quit choices, pause/repeat,
+    viewer policy, audio presentation or decode/CD failure behavior.
+
+level_b_reachability:
+  artifact: analysis/phase4_fmv_levelb_reachability.json
+  from_boot_movie:
+    fixture: movies/100% Runs/LEVEL01.movie.json
+    frames: 15230
+    phase_neutral_target_frame: 15230
+    reproducible: {positive: true, neutral: true}
+    passive_coverage_cycle_neutral: {positive: true, neutral: true}
+    completed_level_b_call_covered: {positive: true, neutral: false}
+    level_a_reset_call_covered: {positive: true, neutral: false}
+    exact_first_call_frame: null
+    level_b_limit_485_observed: null
+  save_anchor_recipe:
+    fixture: level01_end_of_stage.sav
+    anchor: {frame: 7162, cycle: 4054570165, pc: 0x80010498, scene: 1}
+    endpoint: {frame: 12302, cycle: 6964857570}
+    scene: {native_recipe: 0, neutral: 1}
+    completed_level_b_caller_hits: {native_recipe: 0, neutral: 0}
+    fmv_function_events: {native_recipe: 0, neutral: 0}
+  observer_boundaries:
+    - The superseded 18,000-frame precise-observer receipt made the from-boot movie non-reproducible; its zero caller hits and typed-limit sequence are not route authority.
+    - The corrected passive census is cumulative through movie frame 15,230 and does not provide the exact first 0x8005031C frame/cycle or arguments.
+    - Fixed Region-B FMV addresses are untyped in the save branches because fmv_bin_load never runs.
+    - The identical save-anchor recipe still excludes only that save trigger; it cannot contradict the recorded-anchor positive.
+  boundary: >-
+    The recorded from-boot movie is now positive natural level-B reachability
+    evidence: only its original input prefix covers 0x8005031C. The save recipe
+    remains a bounded negative. Exact first-call timing, selector 11/limit 485,
+    completion/teardown, alternate/viewer policy and campaign breadth remain
+    open, so this correction promotes no closure dimension.
+
+level_b_first_call_lifecycle:
+  artifact: analysis/phase4_fmv_levelb_first_call.json
+  fixture: movies/100% Runs/LEVEL01.movie.json
+  localization:
+    last_absent_movie_frame: 14381
+    first_present_movie_frame: 14382
+    passive_queries: 12
+    all_internal_controls_cycle_neutral: true
+    all_coverage_untruncated: true
+  caller_boundary:
+    call_site: 0x8005031C
+    frame: 14382
+    cycle: 8142856967
+    progress_id_s0: 1
+    pre_delay_arguments: {a0: 0, a1: 0}
+  loader_boundary:
+    entry: 0x8003E7C0
+    frame: 14382
+    cycle: 8142856981
+    selector: 11
+    mode_signed: -1
+    return_address: 0x80050324
+  stream:
+    manifest_path: BUGSFMV1/LEV1B.STR
+    selected_frame_limit: 485
+    selected_limit_writer: 0x800B6DC0
+    selected_limit_frame: 14719
+    completion_writer: 0x800B6B24
+    completion_frame: 15763
+    selected_limit_completion_writer_observed: false
+    decoded_record_stop_latch_game_writes: 0
+  common_exit:
+    st_clear_ring_call: 0x800B749C
+    callback_teardown_call: 0x800B74A4
+    frame: 15816
+    callback_synthetic_unwind: false
+    elapsed_frames_from_first_call: 1434
+  phase_neutral_control:
+    completed_level_b_caller_events: 0
+    completed_level_b_loader_entries: 0
+    selected_limit_485_events: 0
+    generic_loader_entries_retained:
+      - {caller: 0x8004FB68, frame: 14385, selector: 0, mode: 10}
+      - {caller: 0x8004FB74, frame: 16018, selector: 45, mode: 10}
+  boundary: >-
+    This binds one natural completed-Level-B caller through selector 11,
+    limit 485, frame-order-regression completion and balanced common teardown.
+    The all-neutral control excludes that exact route, not generic frontend
+    loader use. Other Level-B IDs, alternate/advert/viewer streams,
+    pause/repeat and decode/CD failures remain lifecycle or breadth debt, so no
+    subsystem dimension is promoted.
+
+cold_boot_control:
+  fixture_movie: movies/go_to_end/LEVEL01.movie.json
+  fixture_movie_sha256: bfedc0d0f4828998fc598257b35ad090180ad6cb01ea317bc40229f977dc40fb
+  anchor: from_boot
+  transient_recipe:
+    source_frames: 10348
+    changed_non_neutral_frames: 7429
+    changed_frames_sha256: 59c6cc2d2375fdfe91b25e8c84de36a6560ca5617f4f3a162022b1e1d212c77c
+    edit: all non-neutral port-0 buttons and axes become neutral
+    retention: derivative bytes are deleted before evidence retention
+  natural_sequence:
+    - {path: BUGSFMV3/dlogo.str, frame_limit: 156, completion_movie_frame: 3000, completion_backloc: 154}
+    - {path: BUGSFMV3/tt.str, frame_limit: 440, completion_movie_frame: 4600, completion_backloc: 438}
+    - {path: BUGSFMV2/INTRO.STR, frame_limit: 1750, completion_movie_frame: 8400, completion_backloc: 1748}
+  reuse: >-
+    The exact FMV.BIN head remains resident across all three streams. Completion
+    and selected-limit fields reset to 0 at movie frames 3200 and 4800 before
+    the next stream reaches its retained completion boundary.
+  retirement: {movie_frame: 8500, overlay_resident: false, str_backloc: 1748}
+  frontend_transition: {movie_frame: 9400, scene: 1, shell_substate: 1, overlay_resident: false}
+  trace: >-
+    Every retained point is RAM/register/cycle/frame neutral against its own
+    uninstrumented replay. The final trace has nonzero, untruncated resident,
+    libcd/libpress, FMV-overlay and 0x800B6B00..0x800B6B60 completion coverage.
+  interpretation: >-
+    Neutral cold boot naturally completes the Disney logo, title and intro,
+    reuses one Region-B FMV.BIN residency window, retires it, and reaches the
+    scene-1 frontend. This does not generalize to level, alternate, lose or
+    movie-viewer callers.
+
+ownership_boundaries:
+  owned_now:
+    - Exact 40-entry FMV path/frame-count table and resident load/wait/completion-region identities.
+    - Region-B residency guard and selected LEV1A frame limit 386.
+    - State-anchored causal Start-only skip, no-input common-exit reachability and selected-limit completion cause for one pristine LEV1A playback.
+    - Natural dlogo/title/intro completion, per-stream reset, Region-B reuse, retirement, and scene-1 frontend handoff from neutral cold boot.
+    - Natural game-over LOSE selector 46/load/limit-281 completion and balanced common teardown from one C16 state anchor.
+    - Corrected natural level-B reachability for the full-level recording, with the end-of-stage save retained only as a bounded negative trigger.
+    - Exact libcd/libpress callback install/delivery/teardown chain, all nine synchronous resident consumers and their return continuations.
+  still_open:
+    - Representative level-B, alternate, advert, and movie-viewer paths for the 35 manifest entries without live evidence.
+    - Pause, stop, repeated playback, scene unload/reload, decode timeout, CD failure, and malformed-stream behavior.
+    - E12 audio, C17 movie viewer, E14 persistence, and E16 overlay-loader consumers retain their own policy.
+
+static_selector_ownership:
+  artifact: analysis/phase4_fmv_static_owners.json
+  inputs: [REBUILD/files/SCUS_942.88, REBUILD/files/FMV/FMV.BIN, REBUILD/files/BITS/MEMORY.BIN]
+  selector_domain: {minimum: 0, maximum: 46, no_stream: [3, 4, 5, 6, 7, 8, 9]}
+  direct_resident_calls: 9
+  level_a_table: {address: 0x8007A08B, music_ids: [1, 15], selectors: [10, 38]}
+  level_b_table: {address: 0x80077FE3, music_ids: [1, 15], selectors: [11, 39]}
+  bonus_cursor:
+    address: 0x8009B88A
+    width: u8
+    selector_expression: '(((old_cursor + 1) & 0xFF) + 41)'
+    ordinary_streaming_old_values: [0, 1, 2, 3, 4]
+    wrap_streaming_old_value: 255
+  reachability:
+    reachable_stream_selectors: [0, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]
+    reviewed_unreachable_stream_selectors: [2]
+    selector_2: {path: fmv/ad.str, frame_limit: 1410, classification: unreachable_pristine_manifest_row}
+    direct_loader_address_taken: false
+    resident_jalr_sites_reviewed: 139
+    pristine_code_owner_images_scanned: 23
+    unresolved_jalr_def_use_sites: [0x80060C78, 0x800647C4, 0x8006684C, 0x800668C4]
+  completion_request:
+    address: 0x800CAC10
+    xrefs: 4
+    writers: 3
+    readers: 1
+    player: {start: 0x800B6D68, end: 0x800B752C, direct_calls: 50, unique_targets: 30, indirect_calls: 0}
+    stop_target: 0x800B6E38
+    teardown: [0x800B7464, 0x800B752C]
+  historical_oracle_acceptance:
+    classification: closed_exact_historical_receipt_exception
+    artifact: analysis/phase4_fmv.json
+    sha256: 19070548afd0f0182917c9905a926fefcc7c7ce4375db68017fe1994fe8716ce
+    rule: >-
+      This exact legacy receipt is accepted only because the static-owner
+      generator verifies its pristine mounted/save media, binary/RPC identity,
+      same-anchor positive/negative controls, bounded untruncated traces,
+      from-boot oracle, and owned cleanup. Every future E15 live experiment
+      requires a predeclared escalation and validated DuckStation batch plan.
+  boundary: >-
+    Selector/caller, player-call, completion-request and important typed-state
+    slices are exact. The companion interface-frontier artifact closes the
+    remaining callback, consumer, return-continuation and exceptional-function
+    code owners. Selector 2 is a reviewed unreachable manifest row, not a
+    movie-viewer behavior claim.
+
+interface_frontier:
+  artifact: analysis/phase4_fmv_interface_frontier.json
+  inputs: [REBUILD/files/SCUS_942.88, REBUILD/files/FMV/FMV.BIN]
+  callback_chain:
+    player_setup:
+      st_set_ring: {call: 0x800B6F9C, records: 32}
+      st_set_stream:
+        call: 0x800B6FC4
+        arguments: {a0: display_mode_equals_3, a1: 1, a2: 0x0FFFFFFF, a3_callback: 0, stack_arg5: 0}
+        optional_callback_slots:
+          frame_ready: {address: 0x800910F0, argument: a3, store: 0x80070B58, delivery_sites: [0x80070AA0], enabled: false}
+          sector_ready: {address: 0x800910F4, argument: stack_arg5, argument_load: 0x80070B38, store: 0x80070B88, delivery_sites: [0x800712DC, 0x80071388], enabled: false}
+        optional_callbacks_enabled: false
+      cd_read2: {call: 0x800B704C, mode: 0x1C0, retry_branch: 0x800B7054}
+    installation:
+      - {site: 0x800708F0, api: CdDataCallback, handler: 0x80070A30}
+      - {site: 0x80070900, api: CdReadyCallback, handler: 0x8007092C}
+    delivery:
+      ready_wrapper: {range: [0x8007092C, 0x8007094C], target: 0x80070D80}
+      interrupt_to_data_handler: {site: 0x800716D8, target: 0x80070A30}
+    teardown:
+      common_player_range: [0x800B7464, 0x800B752C]
+      ring_clear_call: 0x800B749C
+      callback_clear_call: 0x800B74A4
+      critical_section: [0x800709AC, 0x80070A30]
+      default_callback_clears: [0x800709E8, 0x800709F0]
+  resident_consumers:
+    direct_call_count: 9
+    synchronous_loader: [0x8003E7C0, 0x8003E83C]
+    hook_semantics: fixed_pre_post_transition_enable_not_callback_pointer
+    owners:
+      - boot_dlogo
+      - boot_title
+      - boot_intro
+      - bonus_clip_sequence
+      - game_over_lose
+      - finale_lev15c
+      - completed_level_b
+      - all_levels_complete_lev15d
+      - level_a_reset_handoff
+    return_owner_regions:
+      - [0x8004FA40, 0x8004FC3C]
+      - [0x8004FCA0, 0x800502C4]
+      - [0x800502C4, 0x8005038C]
+      - [0x8005B714, 0x8005BC64]
+    level_a_post_fmv_continuation:
+      range: [0x8005B790, 0x8005BC64]
+      scene_load_call: {site: 0x8005B7CC, target: 0x8003F358}
+      direct_call_count: 20
+      owner_source: asm/hand_written/8005b714_gameplay_state_reset_cursor_seed.s
+      owner_source_sha256: 07b436d13edd1628b61702d27030a1b02af23212758f8e99b352f2831f1c15ca
+      source_retention: external_local_media_hash_pinned_by_tools_repro_inputs_sha256
+    main_shell_dispatch:
+      boot_loader_return_pcs: [0x8004FB64, 0x8004FB70, 0x8004FB7C]
+      owner_range: [0x8004FA40, 0x8004FC3C]
+      selector: {address: 0x8008243C, type: u32, guarded_domain: [0, 5]}
+      dispatch_site: 0x8004FC34
+      table: {address: 0x8001B3C4, entries: 6, sha256: 9f29dc248a56655a207894378cbd2f3f535345704f617938f7e3efa885639da1}
+      targets:
+        - {index: 0, target: 0x8004FC3C, range: [0x8004FC3C, 0x8004FC50], destination_index: 1, resolved_scene: 1, source: asm/hand_written/8004fc3c_sub_8004fc3c.s}
+        - {index: 1, target: 0x8004FC50, range: [0x8004FC50, 0x8004FC64], destination_index: 11, resolved_scene: 12, source: asm/hand_written/8004fc50_sub_8004fc50.s}
+        - {index: 2, target: 0x8004FC64, range: [0x8004FC64, 0x8004FC78], destination_index: 2, resolved_scene: 3, source: asm/hand_written/8004fc64_sub_8004fc64.s}
+        - {index: 3, target: 0x8004FC78, range: [0x8004FC78, 0x8004FC8C], destination_index: 7, resolved_scene: 4, source: asm/hand_written/8004fc78_sub_8004fc78.s}
+        - {index: 4, target: 0x8004FC8C, range: [0x8004FC8C, 0x8004FCA0], destination_index: 12, resolved_scene: 13, source: asm/hand_written/8004fc8c_sub_8004fc8c.s}
+        - {index: 5, target: 0x8004FCA0, range: [0x8004FCA0, 0x800502C4], shell_substate_reset: 0, orchestrator: 0x8005222C, orchestrator_a0: 1, master_state_store: 0x8004FCB4, source: asm/hand_written/8004fca0_scene_flow_dispatcher.s}
+      destination_index: {address: 0x8008245C, load: 0x8004FCF0, scene_table: 0x80077FA0, scene_table_load: 0x8004FD04, scene_store: 0x8004FD0C, scene_address: 0x80082504, shared_join: 0x8004FCC0}
+  exceptional_static_paths:
+    file_open_failure: {predicate: 0x800B6DE8, target: 0x800B6E4C}
+    decode_record_absent: {predicate: 0x800B6C40, stop_latch_store: 0x800B6C84}
+    decode_poll_timeout: {budget_setup: 0x800B6CBC, budget: 0x800000, diagnostic_call: 0x800B6CF8}
+    cd_submit_retry: {getlocp_branch: 0x800B7044, read2_branch: 0x800B7054}
+  source_status:
+    callback_functions: 11
+    semantic_c: 8
+    matching_c: 1
+    handwritten_asm: 12
+    validated_source_files: 21
+    central_external_source_manifest: tools/repro_inputs.sha256
+    unclassified_callbacks: 0
+    unclassified_direct_consumers: 0
+  boundary: >-
+    Complete-frontier is met for E15 because both optional callback slots, their
+    three guarded deliveries, every direct callback installer,
+    delivery edge, teardown path, resident loader caller, synchronous return
+    continuation and reachable exceptional function category is byte/opcode
+    bounded with an explicit source status. The level-A continuation is bounded
+    through its full 0x8005B714..0x8005BC64 owner, the exact scene-load call at
+    0x8005B7CC and all 20 post-FMV direct calls. The three boot returns remain
+    in the exact 0x8004FA40..0x8004FC3C owner and
+    reach the guarded six-entry 0x8001B3C4 dispatch; all six target partitions,
+    stores, downstream scene resolutions, sources and source pins are bound.
+    Runtime callback cadence, pause/repeat/failure outcomes and 36 unexercised manifest entries remain
+    lifecycle/breadth debt. C17 viewer and E14 unlock persistence are adjacent
+    policy, not unclassified E15 code owners.
+
+teardown_ownership:
+  artifact: analysis/phase4_fmv_teardown_ownership.json
+  inputs: [REBUILD/files/SCUS_942.88, REBUILD/files/FMV/FMV.BIN]
+  guest_return:
+    function: [0x800709AC, 0x80070A30]
+    classification: conventional_balanced_return
+    stack_allocation: 24
+    ra_store: 0x800709B0
+    ra_load: 0x80070A20
+    stack_restore: 0x80070A24
+    return_instruction: 0x80070A28
+    caller_continuation: 0x800B74AC
+    function_trace_synthetic_unwind_preserved: true
+    boundary: The retained observer flag is not promoted to a guest synthetic-return edge.
+  default_ready_slot:
+    address: 0x800818C8
+    swap_function: [0x8006D8D0, 0x8006D8E8]
+    direct_xrefs: 8
+    reads: 5
+    writes: 3
+    guarded_dispatches: [0x8006E5D8, 0x8006E860, 0x8006ECD0, 0x8006F61C]
+  default_data_callback:
+    wrapper: [0x8006DCF0, 0x8006DD14]
+    behavior: DMACallback(3, callback)
+    sdk_dispatch: 0x8006544C
+    storage_boundary: kernel_private_not_game_owned_mod_state
+  mode_1_backend:
+    data_wrapper: [0x800B9A28, 0x800B9A4C]
+    ready_swap: [0x800B9A14, 0x800B9A28]
+    ready_slot: 0x800CAECC
+  mmio_pointer_table:
+    range: [0x80081C28, 0x80081C38]
+    values: [0x1F801800, 0x1F801801, 0x1F801802, 0x1F801803]
+    captured_words_are_pointer_cells: true
+    captured_words_are_callback_storage: false
+    target_stores:
+      - {pointer_cell: 0x80081C28, target: 0x1F801800, store: 0x80070A04, width: u8, value: 0}
+      - {pointer_cell: 0x80081C34, target: 0x1F801803, store: 0x80070A14, width: u8, value: 0}
+  mod_safety: >-
+    Use the public callback APIs and preserve the critical-section/MMIO order.
+    Do not patch the CD-ROM pointer table, assume kernel-private DMACallback
+    storage is game-owned, or infer pause/repeat/error policy from this teardown.
+
+mod_contract:
+  owner: Preserve E15 playback, skip, completion, transition and Region-B residency ordering; declare every FMV edit or hook.
+  readers: Enumerate resident shell/wait code, FMV.BIN stream/decode code, libcd/libpress callbacks, frontend/movie-viewer callers and transition consumers before changing state.
+  writers: Do not write the running latch, completion request, selected frame limit, backloc, overlay bytes or shell state outside the original ownership and residency window.
+  valid_domains: Manifest paths and signed frame limits must remain within the exact 40-row table; Region-B fields are invalid once the FMV.BIN head identity is absent.
+  initialization: Verify pristine FMV.BIN and executable identity, load Region B once, select the exact manifest row and initialize stream/decode state before playback.
+  reset: Clear or rebuild stream, callback, shell and private state on stop, error, scene reset, state load and every subsequent playback.
+  retirement: Stop callbacks and retire Region-B pointers exactly once before FMV.BIN unload or replacement.
+  consumers: Boot logos, level cinematics, intro/lose paths, movie viewer, audio, frontend, results, scene loading and overlay ownership.
+  capacity: Preserve the 40-entry dispatch/frame table and the original stream/ring-buffer bounds; any extension needs explicit storage and overflow guards.
+  residency: Resident shell/load/wait code survives playback; FMV.BIN code and data are Region-B transient and must be identity-checked before typed access.
+  unsafe_assumptions: >-
+    A serial, filename, table row, state-anchored skip or natural level-A
+    completion, nonzero coverage hit or stale Region-B address does not prove
+    media origin, natural completion for another caller, movie-viewer
+    ownership, error handling, or cross-playback persistence.

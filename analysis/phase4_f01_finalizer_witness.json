@@ -1,0 +1,89 @@
+{
+ "assertions": [
+  {
+   "control": 1,
+   "detail": null,
+   "id": "finalizer_skipped",
+   "op": "eq",
+   "passed": true,
+   "path": "finalizer_hits",
+   "positive": 0
+  },
+  {
+   "control": 1,
+   "detail": null,
+   "id": "request_value_is_the_variable",
+   "op": "eq",
+   "passed": true,
+   "path": "request_at_decision",
+   "positive": 2
+  },
+  {
+   "control": 1,
+   "detail": null,
+   "id": "consumer_still_proceeded",
+   "op": "unchanged",
+   "passed": true,
+   "path": "consumer_proceeded_hits",
+   "positive": 1
+  },
+  {
+   "control": 0,
+   "detail": null,
+   "id": "other_skip_condition_ruled_out",
+   "op": "unchanged",
+   "passed": true,
+   "path": "gp4c4_at_decision",
+   "positive": 0
+  }
+ ],
+ "authority": {
+  "changes_campaign_registry": false,
+  "frame_boundary_proves_exact_instruction": false,
+  "promotes_row_or_dimension": false,
+  "requires_fresh_verifier": true,
+  "runtime_silence_proves_absence": false
+ },
+ "claim": {
+  "id": "F01_request2_skips_finalizer",
+  "observation_scope": "Four declared leaves only: hit counts of 0x8004FF14 (consumer proceeded past its request!=0 && timer==0 guard) and 0x8004FF48 (finalizer call), plus the request word and [gp+0x4c4] captured pre-instruction at the 0x8004FF28 re-read. Both arms replay movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.json from the same hash-bound anchor to movie frame 1950, then the positive arm writes u16 2 to 0x800823A0, then both resume to movie frame 2100. Narrow observation is deliberate: every observed difference is asserted, but unobserved state is not claimed.",
+  "statement": "Setting the scene-transition request word 0x800823A0 to 2 while a completion transition is pending causes the consumer to skip the transition finalizer 0x80045A60, with the other skip condition [gp+0x4c4] measured at 0 in both arms."
+ },
+ "errors": [],
+ "identity": {
+  "anchor_class": "validated_save_state",
+  "debugger_binary_sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4",
+  "debugger_source_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5+dirty:c059f118e38617495974064820d2ac33330c6f9a",
+  "dimension": "original_oracle",
+  "executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+  "execution_mode": "Interpreter",
+  "fixture_sha256": "a035bd39a62d4217a23fa2e5a020e81d5cd6d1571f606ab7ac9dd6a7510a32a8",
+  "media_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+  "overlay_sha256": "f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21",
+  "row_id": "F01_anthill",
+  "scope": "LEVEL01 Anthill scene-transition consumer at 0x8004FEEC: does request==2 cause the transition finalizer 0x80045A60 to be skipped?"
+ },
+ "matched_origin": true,
+ "observations": {
+  "differing_leaf_paths": [
+   "finalizer_hits",
+   "request_at_decision"
+  ],
+  "unasserted_differing_paths": []
+ },
+ "perturbations": {
+  "changed_keys": [
+   "request_word_override"
+  ],
+  "expected_keys": [
+   "request_word_override"
+  ]
+ },
+ "receipts": {
+  "control": "498783e315f4fa2ca051d9e492ef37e2b2e91abde64029519e4fedffea982140",
+  "positive": "f1a958ae4ccd3223781f8fe313dd6280a530bf988a1e56e7a5ad7a74c22d6cd8"
+ },
+ "schema": "abl-phase4-differential-witness-result/1",
+ "source_witness_sha256": "6ce3599b34c04a0258022b909eb4ffbb8c66b6e7491e2fd41bff880b5e7385c0",
+ "verdict": "witness_ready_for_fresh_verifier"
+}

@@ -1,0 +1,220 @@
+{
+ "row": "b08",
+ "movie": "~/Downloads/ABL/movies/Phase4/B08_bubble_repeated_hits_from_boot.movie.json",
+ "disc": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+ "regime": "60 Hz (debugger.resume + poll); no advanceToFrame; no pokes",
+ "execution_mode": "Interpreter",
+ "run_provenance": {
+  "generator": "tools/phase4_b06_b08_oracle.py",
+  "generator_sha256": "2b2b7b177afb61ba96893fb9f39a24cbe368be064e3fa648acd7c19ca7fedf2a",
+  "repository_head": "fc0cd9314f5e1d5f7f9c4d1ba4dda329829e8d78",
+  "repository_dirty": true,
+  "recorded_utc": "2026-08-01T22:02:44.215504+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "dirty": true
+  },
+  "media_identity": {
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "rpc_before_hash": {
+    "cd_overlays_removed": 0,
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "has_media": true,
+    "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "subimage_count": 0,
+    "subimage_index": 0
+   },
+   "rpc_after_hash": {
+    "cd_overlays_removed": 0,
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "has_media": true,
+    "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "subimage_count": 0,
+    "subimage_index": 0
+   },
+   "hash_verification": {
+    "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "pin_source": "tools/build_baselines.json",
+    "pristine_verified": true,
+    "files": {
+     "Disney-Pixar A Bug's Life (v1.0).cue": {
+      "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+      "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+      "matches_pin": true
+     },
+     "Disney-Pixar A Bug's Life (v1.0).bin": {
+      "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+      "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+      "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+      "matches_pin": true
+     }
+    }
+   }
+  }
+ },
+ "frames": 6959,
+ "from_boot": true,
+ "wall_seconds": 122.4,
+ "final_playback_index": 0,
+ "scene_writes": [
+  {
+   "f": 1141,
+   "scene": 0
+  },
+  {
+   "f": 1750,
+   "scene": 0
+  },
+  {
+   "f": 2000,
+   "scene": 0
+  },
+  {
+   "f": 3052,
+   "scene": 0
+  },
+  {
+   "f": 3227,
+   "scene": 0
+  },
+  {
+   "f": 3227,
+   "scene": 0
+  },
+  {
+   "f": 4324,
+   "scene": 0
+  },
+  {
+   "f": 4324,
+   "scene": 11
+  }
+ ],
+ "final_scene_id": 11,
+ "watch_saturation": {
+  "accessLog": {
+   "truncated": false,
+   "total": 307
+  },
+  "execTrace": {
+   "truncated": false,
+   "total": 0
+  },
+  "any_truncated": false,
+  "indeterminate": false,
+  "errors": null
+ },
+ "grant_count": 1,
+ "first_grant": {
+  "f": 6046,
+  "addr": "0x800a657e",
+  "pc": "0x800589a8",
+  "new": -3
+ },
+ "absorbs": [
+  {
+   "f": 6172,
+   "addr": "0x800a657e",
+   "pc": "0x8004a808",
+   "new": -2
+  },
+  {
+   "f": 6268,
+   "addr": "0x800a657e",
+   "pc": "0x8004a808",
+   "new": -1
+  },
+  {
+   "f": 6554,
+   "addr": "0x800a657e",
+   "pc": "0x8004a808",
+   "new": 0
+  }
+ ],
+ "pop_frame": 6554,
+ "health_writes_while_shielded": [],
+ "health_writes_after_pop": [
+  {
+   "f": 6652,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 2
+  },
+  {
+   "f": 6754,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 1
+  },
+  {
+   "f": 6874,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 0
+  }
+ ],
+ "checks": {
+  "1_natural_grant": {
+   "pass": true,
+   "detail": "0x800589A8 wrote -3 at frame 6046"
+  },
+  "2_absorb_increments": {
+   "pass": true,
+   "detail": "3 absorbs, values [-2, -1, 0]"
+  },
+  "3_bubble_not_time_consumed": {
+   "pass": true,
+   "detail": "0 tick writes while the quota was negative (must be 0)"
+  },
+  "4_pop_lands_on_zero": {
+   "pass": true,
+   "detail": "quota reached 0 at frame 6554"
+  },
+  "2b_no_damage_while_shielded": {
+   "pass": true,
+   "detail": "0 health writes between grant and pop (must be 0)"
+  },
+  "5_vulnerable_after_pop": {
+   "pass": true,
+   "detail": "3 damage writes at 0x8004A888 after the pop"
+  }
+ },
+ "failures": [],
+ "verdict": "PASS",
+ "totals": {
+  "slot_writes": 6,
+  "health_writes": 8,
+  "stagger_writes": 279
+ },
+ "all_health_writes": [
+  {
+   "f": 5126,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 3
+  },
+  {
+   "f": 6652,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 2
+  },
+  {
+   "f": 6754,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 1
+  },
+  {
+   "f": 6874,
+   "addr": "0x800a6594",
+   "pc": "0x8004a888",
+   "new": 0
+  }
+ ]
+}

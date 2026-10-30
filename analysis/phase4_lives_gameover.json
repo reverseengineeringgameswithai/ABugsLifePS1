@@ -1,0 +1,2169 @@
+{
+ "_comment": "Active C16 evidence: pristine natural final-life game over, one-byte ordinary-respawn control, neutral no-death control, and fourth-Start Continue reset control. Checkpoints, remaining death classes, menu/save policy and stage breadth remain open.",
+ "generated": "2026-07-16",
+ "schema": "abl-phase4-lives-gameover/1",
+ "campaign_state": "active_partial",
+ "static_census": {
+  "resident_executable": {
+   "path": "REBUILD/files/SCUS_942.88",
+   "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+   "size": 471040
+  },
+  "regions": {
+   "damage_and_death_initiator": {
+    "start": "0x8004A700",
+    "end": "0x8004AA34",
+    "size": 820,
+    "file_offset": "0x3AF00",
+    "sha256": "006837971da56526412ace711aa560d72eef0b9aff8ee0c9087c97303edc1626"
+   },
+   "scene_flow_dispatcher": {
+    "start": "0x8004FCA0",
+    "end": "0x800502C4",
+    "size": 1572,
+    "file_offset": "0x404A0",
+    "sha256": "02fc946a4c8757792f646d23e5cabdac5e0cf4755211b733cc75aa15b2f0592f"
+   },
+   "scene_config_apply": {
+    "start": "0x80055538",
+    "end": "0x80055648",
+    "size": 272,
+    "file_offset": "0x45D38",
+    "sha256": "32e2df7247a028e7d97da611b590ea3b64f1e36a3c12c8406569240d05632995"
+   },
+   "respawn_transition_state_handler": {
+    "start": "0x8005B12C",
+    "end": "0x8005B440",
+    "size": 788,
+    "file_offset": "0x4B92C",
+    "sha256": "53cdfe30cec5af34e63107017d5f4a9d357fefb857fd4a511dc1bad56b32cdaf"
+   },
+   "gameplay_state_reset_cursor_seed": {
+    "start": "0x8005B714",
+    "end": "0x8005B7EC",
+    "size": 216,
+    "file_offset": "0x4BF14",
+    "sha256": "a255b1caab20d3e1cafd205ea693a07cf5c448a5266f6e471ad69ac1013f89b0"
+   }
+  },
+  "instructions": {
+   "fatal_health_write": {
+    "address": "0x8004A888",
+    "file_offset": "0x3B088",
+    "instruction_word": "0xA4236594"
+   },
+   "final_life_reader": {
+    "address": "0x800500BC",
+    "file_offset": "0x408BC",
+    "instruction_word": "0x904265A0"
+   },
+   "final_life_branch": {
+    "address": "0x800500C4",
+    "file_offset": "0x408C4",
+    "instruction_word": "0x1440000B"
+   },
+   "game_over_movie_selector": {
+    "address": "0x800500D4",
+    "file_offset": "0x408D4",
+    "instruction_word": "0x2404002E"
+   },
+   "ordinary_respawn_call": {
+    "address": "0x800500F4",
+    "file_offset": "0x408F4",
+    "instruction_word": "0x0C016C4B"
+   },
+   "respawn_health_restore": {
+    "address": "0x8005B30C",
+    "file_offset": "0x4BB0C",
+    "instruction_word": "0xA4226594"
+   },
+   "respawn_lives_decrement": {
+    "address": "0x8005B348",
+    "file_offset": "0x4BB48",
+    "instruction_word": "0xA02665A0"
+   },
+   "continue_scene_config_lives_write": {
+    "address": "0x80055550",
+    "file_offset": "0x45D50",
+    "instruction_word": "0xA02265A0"
+   }
+  },
+  "typed_state": {
+   "scene": {
+    "address": "0x80082504",
+    "width": "u32",
+    "residency": "resident"
+   },
+   "master_state": {
+    "address": "0x800823A0",
+    "width": "u16",
+    "residency": "resident"
+   },
+   "fade_timer": {
+    "address": "0x80082470",
+    "width": "s16",
+    "residency": "resident"
+   },
+   "health": {
+    "address": "0x800A6594",
+    "width": "s16",
+    "residency": "resident"
+   },
+   "lives": {
+    "address": "0x800A65A0",
+    "width": "u8",
+    "residency": "resident"
+   }
+  },
+  "source_status": {
+   "scene_config_apply": "matching C exists at src/main/80055538_scene_config_apply.c; the retained executable slice and exact lives store are authority",
+   "other_regions": "exact resident assembly transcriptions are hashed as source dependencies; semantic names do not replace executable bytes"
+  }
+ },
+ "fixture_census": {
+  "manifest": "analysis/phase0_2_external_fixture_set.json",
+  "movie": {
+   "path": "movies/Phase4/C16_gameover_continue.movie.json",
+   "sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+   "size": 2739616,
+   "media_class": "pristine_serial",
+   "version": 3,
+   "frames": 4006,
+   "initial_frame": 265211,
+   "input_segments": [
+    {
+     "first": 0,
+     "last": 39,
+     "input": {}
+    },
+    {
+     "first": 40,
+     "last": 69,
+     "input": {
+      "down": true,
+      "right": true
+     }
+    },
+    {
+     "first": 70,
+     "last": 109,
+     "input": {
+      "right": true
+     }
+    },
+    {
+     "first": 110,
+     "last": 118,
+     "input": {
+      "down": true,
+      "right": true
+     }
+    },
+    {
+     "first": 119,
+     "last": 121,
+     "input": {
+      "right": true
+     }
+    },
+    {
+     "first": 122,
+     "last": 2585,
+     "input": {}
+    },
+    {
+     "first": 2586,
+     "last": 2595,
+     "input": {
+      "start": true
+     }
+    },
+    {
+     "first": 2596,
+     "last": 3009,
+     "input": {}
+    },
+    {
+     "first": 3010,
+     "last": 3017,
+     "input": {
+      "start": true
+     }
+    },
+    {
+     "first": 3018,
+     "last": 3361,
+     "input": {}
+    },
+    {
+     "first": 3362,
+     "last": 3365,
+     "input": {
+      "start": true
+     }
+    },
+    {
+     "first": 3366,
+     "last": 3662,
+     "input": {}
+    },
+    {
+     "first": 3663,
+     "last": 3669,
+     "input": {
+      "start": true
+     }
+    },
+    {
+     "first": 3670,
+     "last": 4005,
+     "input": {}
+    }
+   ]
+  },
+  "save": {
+   "path": "movies/Phase4/C16_gameover_continue.movie.sav",
+   "sha256": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592",
+   "size": 2052577,
+   "media_class": "pristine",
+   "manifest": "analysis/phase0_2_external_fixture_set.json"
+  },
+  "declared_start_state": {
+   "frame": 265211,
+   "pc": "0x8004fea4",
+   "sp": "0x801fffd0",
+   "game_serial": "SCUS-94288",
+   "from_boot": false,
+   "reproducible_only_from_state": true
+  },
+  "classification_boundary": "The filename is only a lead. Central byte pins, load-free save inspection, pristine mounted-media verification, natural replay, and three single-variable controls establish the retained result."
+ },
+ "live": {
+  "discarded_execution_mode_warmup": {
+   "movie_frame": 0,
+   "movie_status": {
+    "reproducible": true,
+    "truncated": false,
+    "frame_count": 4006,
+    "playback_index": 0,
+    "playing": true
+   },
+   "snapshot": {
+    "status": {
+     "pc": "0x8004fea4",
+     "sp": "0x801fffd0",
+     "frame": 265211,
+     "cycle": 150162888151,
+     "paused": true,
+     "game_serial": "SCUS-94288"
+    },
+    "typed": {
+     "scene": 9,
+     "master_state": 0,
+     "fade_timer": 0,
+     "health": 1,
+     "lives": 0
+    }
+   },
+   "cycle_neutral_trace": {
+    "target_frame": 0,
+    "trace_mode": "passive_cached_block_coverage",
+    "configured_execution_mode": "Recompiler",
+    "comparison_execution_mode": "CachedInterpreter",
+    "control": {
+     "cycle": 150162888151,
+     "frame": 265211,
+     "movie_frame": 0,
+     "pc": "0x8004fea4",
+     "ram_sha256": "d2dc35237ab5933287146295a38f4ee6d703c3543d46860f4b6895cc01975142",
+     "registers_sha256": "074c3ab0eab533a3fdb36a30296d91ae6c954f2cc5e72d1e009e3a7cbce845be",
+     "sp": "0x801fffd0"
+    },
+    "instrumented": {
+     "cycle": 150162888151,
+     "frame": 265211,
+     "movie_frame": 0,
+     "pc": "0x8004fea4",
+     "ram_sha256": "d2dc35237ab5933287146295a38f4ee6d703c3543d46860f4b6895cc01975142",
+     "registers_sha256": "074c3ab0eab533a3fdb36a30296d91ae6c954f2cc5e72d1e009e3a7cbce845be",
+     "sp": "0x801fffd0"
+    },
+    "comparison": {
+     "cycle_neutral": true,
+     "same_cycle": true,
+     "same_frame": true,
+     "same_ram": true,
+     "same_registers": true
+    },
+    "coverage": [
+     {
+      "label": "damage_and_death_initiator",
+      "range": {
+       "end": "0x8004aa34",
+       "start": "0x8004a700"
+      },
+      "total_hits": 0,
+      "distinct_pc_count": 0,
+      "truncated": false,
+      "pcs": [],
+      "pcs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+     }
+    ]
+   }
+  },
+  "natural_movie_recipe": {
+   "source_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+   "semantic_sha256": "53379719162aadd1bdb1991487e52d0b5f98c0a048313a6ba649863a753853be",
+   "source_frame_count": 4006,
+   "derived_frame_count": 4006,
+   "changed_frames": [],
+   "changed_field": "start_state host path normalized to centrally pinned save",
+   "anchor": "<centrally-pinned-C16-save>",
+   "transient_storage": "temporary directory; derivative deleted before retention"
+  },
+  "final_life_game_over": {
+   "damage_trace": {
+    "movie_frame": 400,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 400,
+     "playing": true
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x80065210",
+      "sp": "0x801ffda0",
+      "frame": 265611,
+      "cycle": 150389369660,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 9,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 0
+     }
+    },
+    "cycle_neutral_trace": {
+     "target_frame": 400,
+     "trace_mode": "passive_cached_block_coverage",
+     "configured_execution_mode": "Recompiler",
+     "comparison_execution_mode": "CachedInterpreter",
+     "control": {
+      "cycle": 150389369660,
+      "frame": 265611,
+      "movie_frame": 400,
+      "pc": "0x80065210",
+      "ram_sha256": "d994b8530999a3c194df433721450573fc70953c9fafbb17222d3e123928ecef",
+      "registers_sha256": "25763a2e720bde74582f921c5e171d55ac36941b9983d1d85ba9354fdf5cecc2",
+      "sp": "0x801ffda0"
+     },
+     "instrumented": {
+      "cycle": 150389369660,
+      "frame": 265611,
+      "movie_frame": 400,
+      "pc": "0x80065210",
+      "ram_sha256": "d994b8530999a3c194df433721450573fc70953c9fafbb17222d3e123928ecef",
+      "registers_sha256": "25763a2e720bde74582f921c5e171d55ac36941b9983d1d85ba9354fdf5cecc2",
+      "sp": "0x801ffda0"
+     },
+     "comparison": {
+      "cycle_neutral": true,
+      "same_cycle": true,
+      "same_frame": true,
+      "same_ram": true,
+      "same_registers": true
+     },
+     "coverage": [
+      {
+       "label": "damage_and_death_initiator",
+       "range": {
+        "end": "0x8004aa34",
+        "start": "0x8004a700"
+       },
+       "total_hits": 266,
+       "distinct_pc_count": 126,
+       "truncated": false,
+       "pcs": [
+        "0x8004a700",
+        "0x8004a704",
+        "0x8004a708",
+        "0x8004a70c",
+        "0x8004a710",
+        "0x8004a714",
+        "0x8004a718",
+        "0x8004a71c",
+        "0x8004a720",
+        "0x8004a724",
+        "0x8004a728",
+        "0x8004a72c",
+        "0x8004a730",
+        "0x8004a734",
+        "0x8004a738",
+        "0x8004a73c",
+        "0x8004a740",
+        "0x8004a744",
+        "0x8004a748",
+        "0x8004a74c",
+        "0x8004a750",
+        "0x8004a754",
+        "0x8004a758",
+        "0x8004a75c",
+        "0x8004a760",
+        "0x8004a764",
+        "0x8004a768",
+        "0x8004a76c",
+        "0x8004a770",
+        "0x8004a774",
+        "0x8004a778",
+        "0x8004a77c",
+        "0x8004a780",
+        "0x8004a784",
+        "0x8004a788",
+        "0x8004a78c",
+        "0x8004a790",
+        "0x8004a794",
+        "0x8004a798",
+        "0x8004a79c",
+        "0x8004a7a0",
+        "0x8004a7a4",
+        "0x8004a7a8",
+        "0x8004a7ac",
+        "0x8004a7b0",
+        "0x8004a7b4",
+        "0x8004a7b8",
+        "0x8004a7bc",
+        "0x8004a7c0",
+        "0x8004a7c4",
+        "0x8004a7c8",
+        "0x8004a7cc",
+        "0x8004a7d0",
+        "0x8004a7d4",
+        "0x8004a818",
+        "0x8004a81c",
+        "0x8004a820",
+        "0x8004a824",
+        "0x8004a828",
+        "0x8004a82c",
+        "0x8004a830",
+        "0x8004a834",
+        "0x8004a838",
+        "0x8004a83c",
+        "0x8004a840",
+        "0x8004a844",
+        "0x8004a848",
+        "0x8004a84c",
+        "0x8004a850",
+        "0x8004a854",
+        "0x8004a858",
+        "0x8004a85c",
+        "0x8004a860",
+        "0x8004a864",
+        "0x8004a868",
+        "0x8004a86c",
+        "0x8004a870",
+        "0x8004a874",
+        "0x8004a878",
+        "0x8004a87c",
+        "0x8004a880",
+        "0x8004a884",
+        "0x8004a888",
+        "0x8004a88c",
+        "0x8004a890",
+        "0x8004a894",
+        "0x8004a898",
+        "0x8004a89c",
+        "0x8004a8a0",
+        "0x8004a8a4",
+        "0x8004a8a8",
+        "0x8004a8ac",
+        "0x8004a8b0",
+        "0x8004a8b4",
+        "0x8004a8b8",
+        "0x8004a8bc",
+        "0x8004a8c0",
+        "0x8004a8c4",
+        "0x8004a8c8",
+        "0x8004a8cc",
+        "0x8004a8d0",
+        "0x8004a8d4",
+        "0x8004a8d8",
+        "0x8004a8dc",
+        "0x8004a8e0",
+        "0x8004a8e4",
+        "0x8004a8e8",
+        "0x8004a8ec",
+        "0x8004a8f0",
+        "0x8004a8f4",
+        "0x8004a8f8",
+        "0x8004a8fc",
+        "0x8004a900",
+        "0x8004a904",
+        "0x8004a908",
+        "0x8004aa08",
+        "0x8004aa0c",
+        "0x8004aa10",
+        "0x8004aa14",
+        "0x8004aa18",
+        "0x8004aa1c",
+        "0x8004aa20",
+        "0x8004aa24",
+        "0x8004aa28",
+        "0x8004aa2c",
+        "0x8004aa30"
+       ],
+       "pcs_sha256": "574ccd8c537adf2bf598bfceacac13f0a7c59b14a70614cc317b5635dc25b148"
+      }
+     ]
+    }
+   },
+   "scene_flow_trace": {
+    "movie_frame": 400,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 400,
+     "playing": true
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x80065210",
+      "sp": "0x801ffda0",
+      "frame": 265611,
+      "cycle": 150389369660,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 9,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 0
+     }
+    },
+    "cycle_neutral_trace": {
+     "target_frame": 400,
+     "trace_mode": "passive_cached_block_coverage",
+     "configured_execution_mode": "Recompiler",
+     "comparison_execution_mode": "CachedInterpreter",
+     "control": {
+      "cycle": 150389369660,
+      "frame": 265611,
+      "movie_frame": 400,
+      "pc": "0x80065210",
+      "ram_sha256": "d994b8530999a3c194df433721450573fc70953c9fafbb17222d3e123928ecef",
+      "registers_sha256": "25763a2e720bde74582f921c5e171d55ac36941b9983d1d85ba9354fdf5cecc2",
+      "sp": "0x801ffda0"
+     },
+     "instrumented": {
+      "cycle": 150389369660,
+      "frame": 265611,
+      "movie_frame": 400,
+      "pc": "0x80065210",
+      "ram_sha256": "d994b8530999a3c194df433721450573fc70953c9fafbb17222d3e123928ecef",
+      "registers_sha256": "25763a2e720bde74582f921c5e171d55ac36941b9983d1d85ba9354fdf5cecc2",
+      "sp": "0x801ffda0"
+     },
+     "comparison": {
+      "cycle_neutral": true,
+      "same_cycle": true,
+      "same_frame": true,
+      "same_ram": true,
+      "same_registers": true
+     },
+     "coverage": [
+      {
+       "label": "scene_flow_dispatcher",
+       "range": {
+        "end": "0x800502c4",
+        "start": "0x8004fca0"
+       },
+       "total_hits": 20003895,
+       "distinct_pc_count": 79,
+       "truncated": false,
+       "pcs": [
+        "0x8004fe68",
+        "0x8004fe6c",
+        "0x8004fe70",
+        "0x8004fe74",
+        "0x8004fe78",
+        "0x8004fe7c",
+        "0x8004fe80",
+        "0x8004fe84",
+        "0x8004fe88",
+        "0x8004fe8c",
+        "0x8004fe90",
+        "0x8004fe94",
+        "0x8004fe98",
+        "0x8004fe9c",
+        "0x8004fea0",
+        "0x8004fea4",
+        "0x8004fea8",
+        "0x8004feac",
+        "0x8004feb0",
+        "0x8004feb4",
+        "0x8004feb8",
+        "0x8004febc",
+        "0x8004fec0",
+        "0x8004fec4",
+        "0x8004fec8",
+        "0x8004fecc",
+        "0x8004fed0",
+        "0x8004fed4",
+        "0x8004fed8",
+        "0x8004fee4",
+        "0x8004fee8",
+        "0x8004feec",
+        "0x8004fef0",
+        "0x8004fef4",
+        "0x8004fef8",
+        "0x8004fefc",
+        "0x8004ff00",
+        "0x8004ff04",
+        "0x8004ff08",
+        "0x8004ff0c",
+        "0x8004ff10",
+        "0x8004ff14",
+        "0x8004ff18",
+        "0x8004ff1c",
+        "0x8004ff20",
+        "0x8004ff24",
+        "0x8004ff28",
+        "0x8004ff2c",
+        "0x8004ff30",
+        "0x8004ff34",
+        "0x8004ff50",
+        "0x8004ff54",
+        "0x8004ff58",
+        "0x8004ff5c",
+        "0x8004ff60",
+        "0x8004ff7c",
+        "0x8004ff80",
+        "0x8004ff84",
+        "0x8004ff88",
+        "0x80050004",
+        "0x80050008",
+        "0x8005000c",
+        "0x80050010",
+        "0x80050014",
+        "0x800500a4",
+        "0x800500a8",
+        "0x800500ac",
+        "0x800500b0",
+        "0x800500b4",
+        "0x800500b8",
+        "0x800500bc",
+        "0x800500c0",
+        "0x800500c4",
+        "0x800500c8",
+        "0x800500cc",
+        "0x800500d0",
+        "0x800500d4",
+        "0x800500d8",
+        "0x800500dc"
+       ],
+       "pcs_sha256": "4f52db0bbedbedb20c7ff7aacc8ee275facb51d6469279ee11bbb20cf0f8f63a"
+      }
+     ]
+    }
+   }
+  },
+  "neutral_input_no_death": {
+   "movie_recipe": {
+    "source_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+    "semantic_sha256": "4c40a175b55c97635cf0e762437796da48071b50931455ecbee940ef85d05084",
+    "source_frame_count": 4006,
+    "derived_frame_count": 4006,
+    "changed_frames": [
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60,
+     61,
+     62,
+     63,
+     64,
+     65,
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79,
+     80,
+     81,
+     82,
+     83,
+     84,
+     85,
+     86,
+     87,
+     88,
+     89,
+     90,
+     91,
+     92,
+     93,
+     94,
+     95,
+     96,
+     97,
+     98,
+     99,
+     100,
+     101,
+     102,
+     103,
+     104,
+     105,
+     106,
+     107,
+     108,
+     109,
+     110,
+     111,
+     112,
+     113,
+     114,
+     115,
+     116,
+     117,
+     118,
+     119,
+     120,
+     121
+    ],
+    "changed_field": "pre-death movement port -> neutral",
+    "anchor": "<centrally-pinned-C16-save>",
+    "transient_storage": "temporary directory; derivative deleted before retention"
+   },
+   "damage_trace": {
+    "movie_frame": 400,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 400,
+     "playing": true
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x8004fea4",
+      "sp": "0x801fffd0",
+      "frame": 265611,
+      "cycle": 150389369660,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 9,
+      "master_state": 0,
+      "fade_timer": 0,
+      "health": 1,
+      "lives": 0
+     }
+    },
+    "cycle_neutral_trace": {
+     "target_frame": 400,
+     "trace_mode": "passive_cached_block_coverage",
+     "configured_execution_mode": "Recompiler",
+     "comparison_execution_mode": "CachedInterpreter",
+     "control": {
+      "cycle": 150389369660,
+      "frame": 265611,
+      "movie_frame": 400,
+      "pc": "0x8004fea4",
+      "ram_sha256": "8de6c37b5a9dbbcb4b8f8d90404208418780f28c1d31995276a5e65246075578",
+      "registers_sha256": "c85d3dfcce67302d035ecfca51403529d22e5b499cdc40415444fca293b391f2",
+      "sp": "0x801fffd0"
+     },
+     "instrumented": {
+      "cycle": 150389369660,
+      "frame": 265611,
+      "movie_frame": 400,
+      "pc": "0x8004fea4",
+      "ram_sha256": "8de6c37b5a9dbbcb4b8f8d90404208418780f28c1d31995276a5e65246075578",
+      "registers_sha256": "c85d3dfcce67302d035ecfca51403529d22e5b499cdc40415444fca293b391f2",
+      "sp": "0x801fffd0"
+     },
+     "comparison": {
+      "cycle_neutral": true,
+      "same_cycle": true,
+      "same_frame": true,
+      "same_ram": true,
+      "same_registers": true
+     },
+     "coverage": [
+      {
+       "label": "damage_and_death_initiator",
+       "range": {
+        "end": "0x8004aa34",
+        "start": "0x8004a700"
+       },
+       "total_hits": 0,
+       "distinct_pc_count": 0,
+       "truncated": false,
+       "pcs": [],
+       "pcs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+     ]
+    }
+   }
+  },
+  "one_life_ordinary_respawn": {
+   "state_recipe": {
+    "source_fixture": "movies/Phase4/C16_gameover_continue.movie.sav",
+    "source_sha256": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592",
+    "derived_sha256": "bbdd2b205d1570074f31598ee70d27a59271001a8b73c26a4add6a2f06be844a",
+    "derived_size": 2047083,
+    "derived_state_version": 84,
+    "derived_serial": "SCUS-94288",
+    "mutation": {
+     "address": "0x800A65A0",
+     "width": "u8",
+     "before": 0,
+     "after": 1,
+     "main_ram_difference_count": 1,
+     "main_ram_difference_addresses": [
+      "0x800A65A0"
+     ],
+     "source_main_ram_sha256": "d2dc35237ab5933287146295a38f4ee6d703c3543d46860f4b6895cc01975142",
+     "derived_main_ram_sha256": "de78a5c77e4393d3a8d8efe347ec653c562e04b49ecebe39c6f8b136cfbab34f"
+    },
+    "transient_storage": "temporary directory; derivative deleted before retention"
+   },
+   "movie_recipe": {
+    "source_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+    "semantic_sha256": "6901316bdaa3874bbdb1facb240f24ef4eeff7a30a759b252c8cdd782de46474",
+    "source_frame_count": 4006,
+    "derived_frame_count": 4006,
+    "changed_frames": [],
+    "changed_field": "start_state host path normalized to centrally pinned save",
+    "anchor": "<transient-one-byte-lives-state>",
+    "transient_storage": "temporary directory; derivative deleted before retention"
+   },
+   "respawn_trace": {
+    "movie_frame": 400,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 400,
+     "playing": true
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x800135a8",
+      "sp": "0x801ffe60",
+      "frame": 265611,
+      "cycle": 150389369661,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 9,
+      "master_state": 0,
+      "fade_timer": 22,
+      "health": 4,
+      "lives": 0
+     }
+    },
+    "cycle_neutral_trace": {
+     "target_frame": 400,
+     "trace_mode": "passive_cached_block_coverage",
+     "configured_execution_mode": "Recompiler",
+     "comparison_execution_mode": "CachedInterpreter",
+     "control": {
+      "cycle": 150389369661,
+      "frame": 265611,
+      "movie_frame": 400,
+      "pc": "0x800135a8",
+      "ram_sha256": "f7d0dd15172dea1528dec205a4d26aeb98f0cc449cd315970af9dc1959400e57",
+      "registers_sha256": "6ec0b0d3ba6fdae7f864a7b63c5036d0f23860d5f80c0f78125514aeba6fd935",
+      "sp": "0x801ffe60"
+     },
+     "instrumented": {
+      "cycle": 150389369661,
+      "frame": 265611,
+      "movie_frame": 400,
+      "pc": "0x800135a8",
+      "ram_sha256": "f7d0dd15172dea1528dec205a4d26aeb98f0cc449cd315970af9dc1959400e57",
+      "registers_sha256": "6ec0b0d3ba6fdae7f864a7b63c5036d0f23860d5f80c0f78125514aeba6fd935",
+      "sp": "0x801ffe60"
+     },
+     "comparison": {
+      "cycle_neutral": true,
+      "same_cycle": true,
+      "same_frame": true,
+      "same_ram": true,
+      "same_registers": true
+     },
+     "coverage": [
+      {
+       "label": "respawn_transition_state_handler",
+       "range": {
+        "end": "0x8005b440",
+        "start": "0x8005b12c"
+       },
+       "total_hits": 974,
+       "distinct_pc_count": 173,
+       "truncated": false,
+       "pcs": [
+        "0x8005b12c",
+        "0x8005b130",
+        "0x8005b134",
+        "0x8005b138",
+        "0x8005b13c",
+        "0x8005b140",
+        "0x8005b144",
+        "0x8005b148",
+        "0x8005b14c",
+        "0x8005b150",
+        "0x8005b154",
+        "0x8005b158",
+        "0x8005b15c",
+        "0x8005b160",
+        "0x8005b164",
+        "0x8005b168",
+        "0x8005b16c",
+        "0x8005b170",
+        "0x8005b1bc",
+        "0x8005b1c0",
+        "0x8005b1c4",
+        "0x8005b1c8",
+        "0x8005b1cc",
+        "0x8005b1d0",
+        "0x8005b1d4",
+        "0x8005b1d8",
+        "0x8005b1dc",
+        "0x8005b1e0",
+        "0x8005b1e4",
+        "0x8005b1e8",
+        "0x8005b1ec",
+        "0x8005b1f0",
+        "0x8005b1f4",
+        "0x8005b1f8",
+        "0x8005b1fc",
+        "0x8005b200",
+        "0x8005b204",
+        "0x8005b208",
+        "0x8005b20c",
+        "0x8005b210",
+        "0x8005b214",
+        "0x8005b218",
+        "0x8005b21c",
+        "0x8005b220",
+        "0x8005b224",
+        "0x8005b228",
+        "0x8005b22c",
+        "0x8005b230",
+        "0x8005b234",
+        "0x8005b238",
+        "0x8005b23c",
+        "0x8005b240",
+        "0x8005b244",
+        "0x8005b248",
+        "0x8005b24c",
+        "0x8005b250",
+        "0x8005b254",
+        "0x8005b258",
+        "0x8005b25c",
+        "0x8005b260",
+        "0x8005b264",
+        "0x8005b268",
+        "0x8005b26c",
+        "0x8005b270",
+        "0x8005b274",
+        "0x8005b278",
+        "0x8005b27c",
+        "0x8005b280",
+        "0x8005b284",
+        "0x8005b288",
+        "0x8005b28c",
+        "0x8005b290",
+        "0x8005b294",
+        "0x8005b298",
+        "0x8005b29c",
+        "0x8005b2a0",
+        "0x8005b2a4",
+        "0x8005b2a8",
+        "0x8005b2ac",
+        "0x8005b2b0",
+        "0x8005b2b4",
+        "0x8005b2b8",
+        "0x8005b2bc",
+        "0x8005b2c0",
+        "0x8005b2c4",
+        "0x8005b2c8",
+        "0x8005b2cc",
+        "0x8005b2d0",
+        "0x8005b2d4",
+        "0x8005b2d8",
+        "0x8005b2dc",
+        "0x8005b2e0",
+        "0x8005b2e4",
+        "0x8005b2e8",
+        "0x8005b2ec",
+        "0x8005b2f0",
+        "0x8005b2f4",
+        "0x8005b2f8",
+        "0x8005b2fc",
+        "0x8005b300",
+        "0x8005b304",
+        "0x8005b308",
+        "0x8005b30c",
+        "0x8005b310",
+        "0x8005b314",
+        "0x8005b318",
+        "0x8005b31c",
+        "0x8005b320",
+        "0x8005b324",
+        "0x8005b328",
+        "0x8005b32c",
+        "0x8005b330",
+        "0x8005b334",
+        "0x8005b338",
+        "0x8005b33c",
+        "0x8005b340",
+        "0x8005b344",
+        "0x8005b348",
+        "0x8005b34c",
+        "0x8005b350",
+        "0x8005b354",
+        "0x8005b358",
+        "0x8005b35c",
+        "0x8005b360",
+        "0x8005b364",
+        "0x8005b368",
+        "0x8005b36c",
+        "0x8005b370",
+        "0x8005b37c",
+        "0x8005b380",
+        "0x8005b384",
+        "0x8005b388",
+        "0x8005b38c",
+        "0x8005b390",
+        "0x8005b394",
+        "0x8005b398",
+        "0x8005b39c",
+        "0x8005b3a0",
+        "0x8005b3a4",
+        "0x8005b3a8",
+        "0x8005b3ac",
+        "0x8005b3c0",
+        "0x8005b3c4",
+        "0x8005b3c8",
+        "0x8005b3cc",
+        "0x8005b3d0",
+        "0x8005b3d4",
+        "0x8005b3d8",
+        "0x8005b3dc",
+        "0x8005b3e0",
+        "0x8005b3e4",
+        "0x8005b3e8",
+        "0x8005b3ec",
+        "0x8005b3f0",
+        "0x8005b3f4",
+        "0x8005b3f8",
+        "0x8005b3fc",
+        "0x8005b400",
+        "0x8005b404",
+        "0x8005b408",
+        "0x8005b40c",
+        "0x8005b410",
+        "0x8005b414",
+        "0x8005b418",
+        "0x8005b41c",
+        "0x8005b420",
+        "0x8005b424",
+        "0x8005b428",
+        "0x8005b42c",
+        "0x8005b430",
+        "0x8005b434",
+        "0x8005b438",
+        "0x8005b43c"
+       ],
+       "pcs_sha256": "951f06d598366cf1434b1b6fdd583e20d78e6def61b5c41c205bdea3b86fe2ab"
+      }
+     ]
+    }
+   },
+   "writer_attribution": {
+    "execution_mode_boundary": "accessLog forces the interpreter; event PCs/words/old/new values are writer attribution only, while fixed-frame behavior comes from the separate cycle-neutral cached-interpreter traces",
+    "start_movie_frame": 200,
+    "frames_run": 500,
+    "watches": [
+     {
+      "address": "0x800a6594",
+      "hit_count": 0,
+      "label": "health",
+      "length": 2,
+      "max_events": 128,
+      "stop_on_hit": false,
+      "type": "write",
+      "watch_id": 2
+     },
+     {
+      "address": "0x800a65a0",
+      "hit_count": 0,
+      "label": "lives",
+      "length": 1,
+      "max_events": 128,
+      "stop_on_hit": false,
+      "type": "write",
+      "watch_id": 3
+     }
+    ],
+    "events": [
+     {
+      "address": "0x800a6594",
+      "cycle": 150333802770,
+      "frame": 265512,
+      "instruction": "sh v1, 0x6594(at)",
+      "instruction_pc": "0x8004a888",
+      "instruction_word": "0xa4236594",
+      "new_value": 65535,
+      "new_value_hex": "0x0000ffff",
+      "pc": "0x8004a88c",
+      "reported_pc": "0x8004a88c",
+      "type": "write",
+      "value": 0,
+      "value_hex": "0x00000000",
+      "watch_id": 2,
+      "width": 2
+     },
+     {
+      "address": "0x800a6594",
+      "cycle": 150510149864,
+      "frame": 265824,
+      "instruction": "sh v0, 0x6594(at)",
+      "instruction_pc": "0x8005b30c",
+      "instruction_word": "0xa4226594",
+      "new_value": 4,
+      "new_value_hex": "0x00000004",
+      "pc": "0x8005b310",
+      "reported_pc": "0x8005b310",
+      "type": "write",
+      "value": 65535,
+      "value_hex": "0x0000ffff",
+      "watch_id": 2,
+      "width": 2
+     },
+     {
+      "address": "0x800a65a0",
+      "cycle": 150510149981,
+      "frame": 265824,
+      "instruction": "sb a2, 0x65a0(at)",
+      "instruction_pc": "0x8005b348",
+      "instruction_word": "0xa02665a0",
+      "new_value": 0,
+      "new_value_hex": "0x00000000",
+      "pc": "0x8005b34c",
+      "reported_pc": "0x8005b34c",
+      "type": "write",
+      "value": 1,
+      "value_hex": "0x00000001",
+      "watch_id": 3,
+      "width": 1
+     }
+    ],
+    "total": 3,
+    "truncated": false,
+    "final_status": {
+     "pc": "0x80017c08",
+     "sp": "0x801ffea0",
+     "frame": 265911,
+     "cycle": 150559230793
+    },
+    "final_snapshot": {
+     "status": {
+      "pc": "0x80017c08",
+      "sp": "0x801ffea0",
+      "frame": 265911,
+      "cycle": 150559230793,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 9,
+      "master_state": 0,
+      "fade_timer": 27,
+      "health": 4,
+      "lives": 0
+     }
+    }
+   }
+  },
+  "continue_transition": {
+   "removed_movie_recipe": {
+    "source_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+    "semantic_sha256": "b558ca50099ad4f8577f4d50ba136c926cdbee5b726eef769961e327fb95ce7b",
+    "source_frame_count": 4006,
+    "derived_frame_count": 4006,
+    "changed_frames": [
+     3663,
+     3664,
+     3665,
+     3666,
+     3667,
+     3668,
+     3669
+    ],
+    "changed_field": "ports.0.start true -> false",
+    "anchor": "<centrally-pinned-C16-save>",
+    "transient_storage": "temporary directory; derivative deleted before retention"
+   },
+   "natural_pre": {
+    "movie_frame": 3662,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 3662,
+     "playing": true
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x8003f334",
+      "sp": "0x801fff58",
+      "frame": 268873,
+      "cycle": 152236326375,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 0,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 0
+     }
+    },
+    "cycle_neutral_trace": {
+     "target_frame": 3662,
+     "trace_mode": "passive_cached_block_coverage",
+     "configured_execution_mode": "Recompiler",
+     "comparison_execution_mode": "CachedInterpreter",
+     "control": {
+      "cycle": 152236326375,
+      "frame": 268873,
+      "movie_frame": 3662,
+      "pc": "0x8003f334",
+      "ram_sha256": "1f9d550e6ff8dfe24c5975aee7ab3d5217949392ca338feaebcb64a00da67166",
+      "registers_sha256": "bdb08aa76ba80422b3d1989cf11e1959478f5ba7d0e1d00f2d9feebd27e20a2f",
+      "sp": "0x801fff58"
+     },
+     "instrumented": {
+      "cycle": 152236326375,
+      "frame": 268873,
+      "movie_frame": 3662,
+      "pc": "0x8003f334",
+      "ram_sha256": "1f9d550e6ff8dfe24c5975aee7ab3d5217949392ca338feaebcb64a00da67166",
+      "registers_sha256": "bdb08aa76ba80422b3d1989cf11e1959478f5ba7d0e1d00f2d9feebd27e20a2f",
+      "sp": "0x801fff58"
+     },
+     "comparison": {
+      "cycle_neutral": true,
+      "same_cycle": true,
+      "same_frame": true,
+      "same_ram": true,
+      "same_registers": true
+     },
+     "coverage": [
+      {
+       "label": "scene_config_apply",
+       "range": {
+        "end": "0x80055644",
+        "start": "0x80055538"
+       },
+       "total_hits": 177,
+       "distinct_pc_count": 1,
+       "truncated": false,
+       "pcs": [
+        "0x80055644"
+       ],
+       "pcs_sha256": "059b3db75270b5fc65bf48d711bbf0c192f4d0399968cfd5026716df6f51230f"
+      }
+     ]
+    }
+   },
+   "removed_pre": {
+    "movie_frame": 3662,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 3662,
+     "playing": true
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x8003f334",
+      "sp": "0x801fff58",
+      "frame": 268873,
+      "cycle": 152236326375,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 0,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 0
+     }
+    },
+    "cycle_neutral_trace": {
+     "target_frame": 3662,
+     "trace_mode": "passive_cached_block_coverage",
+     "configured_execution_mode": "Recompiler",
+     "comparison_execution_mode": "CachedInterpreter",
+     "control": {
+      "cycle": 152236326375,
+      "frame": 268873,
+      "movie_frame": 3662,
+      "pc": "0x8003f334",
+      "ram_sha256": "1f9d550e6ff8dfe24c5975aee7ab3d5217949392ca338feaebcb64a00da67166",
+      "registers_sha256": "bdb08aa76ba80422b3d1989cf11e1959478f5ba7d0e1d00f2d9feebd27e20a2f",
+      "sp": "0x801fff58"
+     },
+     "instrumented": {
+      "cycle": 152236326375,
+      "frame": 268873,
+      "movie_frame": 3662,
+      "pc": "0x8003f334",
+      "ram_sha256": "1f9d550e6ff8dfe24c5975aee7ab3d5217949392ca338feaebcb64a00da67166",
+      "registers_sha256": "bdb08aa76ba80422b3d1989cf11e1959478f5ba7d0e1d00f2d9feebd27e20a2f",
+      "sp": "0x801fff58"
+     },
+     "comparison": {
+      "cycle_neutral": true,
+      "same_cycle": true,
+      "same_frame": true,
+      "same_ram": true,
+      "same_registers": true
+     },
+     "coverage": [
+      {
+       "label": "scene_config_apply",
+       "range": {
+        "end": "0x80055644",
+        "start": "0x80055538"
+       },
+       "total_hits": 177,
+       "distinct_pc_count": 1,
+       "truncated": false,
+       "pcs": [
+        "0x80055644"
+       ],
+       "pcs_sha256": "059b3db75270b5fc65bf48d711bbf0c192f4d0399968cfd5026716df6f51230f"
+      }
+     ]
+    }
+   },
+   "natural_post": {
+    "movie_frame": 3700,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 3700,
+     "playing": true
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0xbfc02bac",
+      "sp": "0x801ffed8",
+      "frame": 268911,
+      "cycle": 152257842119,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 0,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 5
+     }
+    },
+    "cycle_neutral_trace": {
+     "target_frame": 3700,
+     "trace_mode": "passive_cached_block_coverage",
+     "configured_execution_mode": "Recompiler",
+     "comparison_execution_mode": "CachedInterpreter",
+     "control": {
+      "cycle": 152257842119,
+      "frame": 268911,
+      "movie_frame": 3700,
+      "pc": "0xbfc02bac",
+      "ram_sha256": "7eb6b6386c492c839fd7ccc981527c3fa40c669b0cd63620d7794251e6fb96cd",
+      "registers_sha256": "9654bfa43bfb4ddb1fa32a828382d491e7e28ddc71c7293f03ad69eb7ab972ac",
+      "sp": "0x801ffed8"
+     },
+     "instrumented": {
+      "cycle": 152257842119,
+      "frame": 268911,
+      "movie_frame": 3700,
+      "pc": "0xbfc02bac",
+      "ram_sha256": "7eb6b6386c492c839fd7ccc981527c3fa40c669b0cd63620d7794251e6fb96cd",
+      "registers_sha256": "9654bfa43bfb4ddb1fa32a828382d491e7e28ddc71c7293f03ad69eb7ab972ac",
+      "sp": "0x801ffed8"
+     },
+     "comparison": {
+      "cycle_neutral": true,
+      "same_cycle": true,
+      "same_frame": true,
+      "same_ram": true,
+      "same_registers": true
+     },
+     "coverage": [
+      {
+       "label": "scene_config_apply",
+       "range": {
+        "end": "0x80055644",
+        "start": "0x80055538"
+       },
+       "total_hits": 1900,
+       "distinct_pc_count": 68,
+       "truncated": false,
+       "pcs": [
+        "0x80055538",
+        "0x8005553c",
+        "0x80055540",
+        "0x80055544",
+        "0x80055548",
+        "0x8005554c",
+        "0x80055550",
+        "0x80055554",
+        "0x80055558",
+        "0x8005555c",
+        "0x80055560",
+        "0x80055564",
+        "0x80055568",
+        "0x8005556c",
+        "0x80055570",
+        "0x80055574",
+        "0x80055578",
+        "0x8005557c",
+        "0x80055580",
+        "0x80055584",
+        "0x80055588",
+        "0x8005558c",
+        "0x80055590",
+        "0x80055594",
+        "0x80055598",
+        "0x8005559c",
+        "0x800555a0",
+        "0x800555a4",
+        "0x800555a8",
+        "0x800555ac",
+        "0x800555b0",
+        "0x800555b4",
+        "0x800555b8",
+        "0x800555bc",
+        "0x800555c0",
+        "0x800555c4",
+        "0x800555c8",
+        "0x800555cc",
+        "0x800555d0",
+        "0x800555d4",
+        "0x800555d8",
+        "0x800555dc",
+        "0x800555e0",
+        "0x800555e4",
+        "0x800555e8",
+        "0x800555ec",
+        "0x800555f0",
+        "0x800555f4",
+        "0x800555f8",
+        "0x800555fc",
+        "0x80055600",
+        "0x80055604",
+        "0x80055608",
+        "0x8005560c",
+        "0x80055610",
+        "0x80055614",
+        "0x80055618",
+        "0x8005561c",
+        "0x80055620",
+        "0x80055624",
+        "0x80055628",
+        "0x8005562c",
+        "0x80055630",
+        "0x80055634",
+        "0x80055638",
+        "0x8005563c",
+        "0x80055640",
+        "0x80055644"
+       ],
+       "pcs_sha256": "a524501152bf97900835adf081dd3ba4bc22334dace196d30b449b4b67b115f4"
+      }
+     ]
+    }
+   },
+   "removed_post": {
+    "movie_frame": 3700,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 3700,
+     "playing": true
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x8003f334",
+      "sp": "0x801fff58",
+      "frame": 268911,
+      "cycle": 152257842118,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 0,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 0
+     }
+    },
+    "cycle_neutral_trace": {
+     "target_frame": 3700,
+     "trace_mode": "passive_cached_block_coverage",
+     "configured_execution_mode": "Recompiler",
+     "comparison_execution_mode": "CachedInterpreter",
+     "control": {
+      "cycle": 152257842118,
+      "frame": 268911,
+      "movie_frame": 3700,
+      "pc": "0x8003f334",
+      "ram_sha256": "414a0966f9cc352ee4bc0e8c8ff86deed5251d5e315691b7291f14163a40fb60",
+      "registers_sha256": "e944e3a1b67e0f1f8e53e48a3fbb4125f2f384122a2389dfc2eb4bef3d4185b8",
+      "sp": "0x801fff58"
+     },
+     "instrumented": {
+      "cycle": 152257842118,
+      "frame": 268911,
+      "movie_frame": 3700,
+      "pc": "0x8003f334",
+      "ram_sha256": "414a0966f9cc352ee4bc0e8c8ff86deed5251d5e315691b7291f14163a40fb60",
+      "registers_sha256": "e944e3a1b67e0f1f8e53e48a3fbb4125f2f384122a2389dfc2eb4bef3d4185b8",
+      "sp": "0x801fff58"
+     },
+     "comparison": {
+      "cycle_neutral": true,
+      "same_cycle": true,
+      "same_frame": true,
+      "same_ram": true,
+      "same_registers": true
+     },
+     "coverage": [
+      {
+       "label": "scene_config_apply",
+       "range": {
+        "end": "0x80055644",
+        "start": "0x80055538"
+       },
+       "total_hits": 177,
+       "distinct_pc_count": 1,
+       "truncated": false,
+       "pcs": [
+        "0x80055644"
+       ],
+       "pcs_sha256": "059b3db75270b5fc65bf48d711bbf0c192f4d0399968cfd5026716df6f51230f"
+      }
+     ]
+    }
+   },
+   "natural_final": {
+    "movie_frame": 4006,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 0,
+     "playing": false
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x8003f334",
+      "sp": "0x801ffee0",
+      "frame": 269217,
+      "cycle": 152431100474,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 0,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 5
+     }
+    }
+   },
+   "removed_final": {
+    "movie_frame": 4006,
+    "movie_status": {
+     "reproducible": true,
+     "truncated": false,
+     "frame_count": 4006,
+     "playback_index": 0,
+     "playing": false
+    },
+    "snapshot": {
+     "status": {
+      "pc": "0x8003f334",
+      "sp": "0x801fff58",
+      "frame": 269217,
+      "cycle": 152431100474,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 0,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 0
+     }
+    }
+   },
+   "writer_attribution": {
+    "execution_mode_boundary": "accessLog forces the interpreter; event PCs/words/old/new values are writer attribution only, while fixed-frame behavior comes from the separate cycle-neutral cached-interpreter traces",
+    "start_movie_frame": 3662,
+    "frames_run": 40,
+    "watches": [
+     {
+      "address": "0x800a65a0",
+      "hit_count": 0,
+      "label": "lives",
+      "length": 1,
+      "max_events": 64,
+      "stop_on_hit": false,
+      "type": "write",
+      "watch_id": 1
+     }
+    ],
+    "events": [
+     {
+      "address": "0x800a65a0",
+      "cycle": 152250689204,
+      "frame": 268898,
+      "instruction": "sb v0, 0x65a0(at)",
+      "instruction_pc": "0x80055550",
+      "instruction_word": "0xa02265a0",
+      "new_value": 5,
+      "new_value_hex": "0x00000005",
+      "pc": "0x80055554",
+      "reported_pc": "0x80055554",
+      "type": "write",
+      "value": 0,
+      "value_hex": "0x00000000",
+      "watch_id": 1,
+      "width": 1
+     }
+    ],
+    "total": 1,
+    "truncated": false,
+    "final_status": {
+     "pc": "0xbfc02bb8",
+     "sp": "0x801ffed8",
+     "frame": 268913,
+     "cycle": 152258974527
+    },
+    "final_snapshot": {
+     "status": {
+      "pc": "0xbfc02bb8",
+      "sp": "0x801ffed8",
+      "frame": 268913,
+      "cycle": 152258974527,
+      "paused": true,
+      "game_serial": "SCUS-94288"
+     },
+     "typed": {
+      "scene": 0,
+      "master_state": 2,
+      "fade_timer": 0,
+      "health": -1,
+      "lives": 5
+     }
+    }
+   }
+  }
+ },
+ "bounded_interpretation": {
+  "observation": "Natural movement reaches health -1 on lives 0 and selects game-over flow. With only lives 0->1 at the same anchor it restores health 4 and decrements lives to 0 in scene 9. With only pre-death movement neutralized no damage occurs. Natural fourth Start executes scene_config_apply and writes lives 0->5; removing only that Start leaves lives 0.",
+  "inference": "Lives zero is the final playable life; death then selects game over, while ordinary death restores health and consumes one stored life. Continue applies scene configuration whose first byte supplies the five-life reset.",
+  "causal_confirmation": "The controls alter exactly one RAM byte, 82 pre-death input frames, or the seven fourth-Start samples. Fixed-frame traces are RAM/register/cycle/frame neutral against their own uninstrumented runs and exact writer PCs are byte-pinned.",
+  "forbidden_claim": "This recording does not close checkpoint coupling, every hazard/death class, Continue menu choice breadth, card-save effects, stage breadth, or C15/E10/E14 ownership."
+ },
+ "bounded_open_frontier": {
+  "checkpoint_interaction": "C15 must reproduce mid-level checkpoint capture and death restore before C16 can claim checkpoint coupling.",
+  "death_classes": "Join representative pit, actor/contact and scripted hazard deaths to the same scene-flow boundary without borrowing enemy or hazard-family completion.",
+  "menu_and_save": "Reproduce Continue versus alternate frontend choices and join E14 native card serialization before claiming save policy.",
+  "stage_breadth": "The dedicated natural game-over anchor is Bug Bar only; other stage classes remain supporting Phase-2 breadth, not C16 closure.",
+  "next_experiment": "Select an existing mid-level death recording that crosses an authored checkpoint, then trace checkpoint capture, respawn restore, and Continue/card boundaries separately."
+ },
+ "source_dependencies": {
+  "asm/hand_written/8004a700_resident_level_transition_initiator.s": "fb31e71e5eb0eaaebd74907c8c294f81f008defe3e8de0a2c0bc67cb3565f642",
+  "asm/hand_written/8004fca0_scene_flow_dispatcher.s": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+  "asm/hand_written/8005b134_respawn_transition_state_handler.s": "e0c25caf0b484f0469e0f9330488b8fe3dff8a6c01ed632fcaed00553c69271c",
+  "asm/hand_written/8005b714_gameplay_state_reset_cursor_seed.s": "07b436d13edd1628b61702d27030a1b02af23212758f8e99b352f2831f1c15ca",
+  "src/main/80055538_scene_config_apply.c": "0b9ebd29439dbc09635ac2adf2a3883d0650d2ce71c54d744c4d3075c09915f9"
+ },
+ "run_provenance": {
+  "command": "/usr/bin/python3 tools/phase4_lives_gameover.py --port 19973 --token '<redacted-token>' --config-dir /tmp/abl-phase4-i9-c16-final-19973 --instance-state recreated",
+  "generator_sha256": "c503e42eacbf8ed517222d7314602ae65f261f4268518259f3e52a8f3e030ac2",
+  "provenance_helper_sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678",
+  "launcher_helper_sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821",
+  "repository_head": "f6da31b1cc4af2e66db2c81a8eea953045939477",
+  "recorded_utc": "2026-07-16T11:16:17.984602+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "status": "M EXTERNAL_DEBUGGER_CONTROL.md\n M docs/external-debugger-determinism.md\n M docs/external-debugger-experiment-runner.md\n M docs/external-debugger-movie.md\n M docs/external-debugger.md\n M scripts/debugger-client/README.md\n M scripts/debugger-client/duckstation_debug_client.py\n M scripts/debugger-client/mcp_bridge.py\n M src/CMakeLists.txt\n M src/core/CMakeLists.txt\n M src/core/achievements.cpp\n M src/core/analog_controller.cpp\n M src/core/analog_controller.h\n M src/core/analog_joystick.cpp\n M src/core/analog_joystick.h\n M src/core/cdrom.cpp\n M src/core/cdrom.h\n M src/core/controller.cpp\n M src/core/controller.h\n M src/core/core.vcxproj\n M src/core/core.vcxproj.filters\n M src/core/cpu_core.cpp\n M src/core/cpu_core.h\n M src/core/debugger_control_service.cpp\n M src/core/debugger_control_service.h\n M src/core/dma.cpp\n M src/core/fullscreenui_settings.cpp\n M src/core/gpu.cpp\n M src/core/gpu.h\n M src/core/gpu_backend.cpp\n M src/core/gpu_backend.h\n M src/core/imgui_overlays.cpp\n M src/core/input_movie.cpp\n M src/core/input_movie.h\n M src/core/negcon.cpp\n M src/core/negcon.h\n M src/core/negcon_rumble.cpp\n M src/core/negcon_rumble.h\n M src/core/settings.cpp\n M src/core/settings.h\n M src/core/spu.cpp\n M src/core/spu.h\n M src/core/system.cpp\n M src/core/system.h\n M src/core/system_private.h\n M src/duckstation-qt/debuggerrpc.cpp\n M src/duckstation-qt/debuggerrpc.h\n M src/duckstation-qt/debuggerserver.cpp\n M src/duckstation-qt/debuggerserver.h\n M src/duckstation-qt/input_movie_file.cpp\n M src/duckstation-qt/input_movie_file.h\n M src/duckstation-qt/interfacesettingswidget.cpp\n M src/duckstation-qt/interfacesettingswidget.ui\n M src/duckstation-qt/logwindow.cpp\n M src/duckstation-qt/mainwindow.cpp\n M src/duckstation-qt/mainwindow.h\n M src/duckstation-qt/mainwindow.ui\n M src/duckstation-qt/osdsettingswidget.cpp\n M src/duckstation-qt/osdsettingswidget.ui\n M src/duckstation-qt/qthost.cpp\n M src/duckstation-qt/qtutils.cpp\n M src/duckstation-qt/qtutils.h\n M src/duckstation-regtest/regtest_host.cpp\n M src/scmversion/gen_scmversion.bat\n M src/scmversion/gen_scmversion.sh\n M src/scmversion/scmversion.h\n?? api-hardening-artifacts-20260714/\n?? docs/external-debugger-scenarios.md\n?? scripts/debugger-client/launch_debugger_instance.sh\n?? scripts/debugger-client/test_code_patch_invalidation.py\n?? scripts/debugger-client/test_framebuffer_capture.py\n?? scripts/debugger-client/test_function_bounds.py\n?? scripts/debugger-client/test_gp0trace_dma.py\n?? src/core-tests/\n?? src/core/cd_provenance.cpp\n?? src/core/cd_provenance.h\n?? src/core/code_analysis.cpp\n?? src/core/code_analysis.h\n?? src/core/frame_diff.cpp\n?? src/core/frame_diff.h\n?? src/core/gpu_object_picker.cpp\n?? src/core/gpu_object_picker.h\n?? src/core/gte_camera.cpp\n?? src/core/gte_camera.h\n?? src/core/movie_edit.cpp\n?? src/core/movie_edit.h\n?? src/core/write_index.cpp\n?? src/core/write_index.h",
+   "binary_path": "~/duckstation/build-release/bin/duckstation-qt",
+   "binary_sha256": "c668bf0974a7da5dabdbc4f1bd5311df3027e8af56faceb19ac7648f6f24ccec"
+  },
+  "rpc_manifest": {
+   "path": "analysis/phase3_duckstation_rpc_manifest.json",
+   "semantic_sha256": "0f3e6a032a81318afaacbddf5512dd75d0e4fbcda0f4be91d1142acc83f15ed4",
+   "source": {
+    "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "status_sha256": "1c1a325041c78e0545816a605a2dbc7c41a08549642d4f4b8289d9df87baf130",
+    "dispatcher_sha256": "b1be4d512eae5c67608453adcbabb32e03612c3ead51856c41ab9c0d140f47be",
+    "method_count": 203
+   },
+   "binary": {
+    "path": "~/duckstation/build-release/bin/duckstation-qt",
+    "sha256": "c668bf0974a7da5dabdbc4f1bd5311df3027e8af56faceb19ac7648f6f24ccec",
+    "size": 37862904
+   }
+  },
+  "debugger": {
+   "config_dir": "/tmp/abl-phase4-i9-c16-final-19973",
+   "port": 19973,
+   "transport": "ws",
+   "token_sha256": "eaa21ba03b37a2bcc64f37742f48f8cfe74dd449ed7b9c4a4297247431d506fd",
+   "recreated": true,
+   "owned_pid": 630087
+  },
+  "anchor": {
+   "type": "state-anchored pristine natural game over plus transient one-byte lives, neutral-input and fourth-Start controls",
+   "save": "movies/Phase4/C16_gameover_continue.movie.sav",
+   "fixture_sha256": {
+    "movies/Phase4/C16_gameover_continue.movie.sav": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592"
+   },
+   "state_inspections": [
+    {
+     "path": "~/Downloads/ABL-phase4-ratchet/worktrees/phase4-20260715-220101-2857888/movies/Phase4/C16_gameover_continue.movie.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2052577,
+     "timestamp": 1784199247,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "movies/Phase4/C16_gameover_continue.movie.sav",
+      "sha256": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592",
+      "size": 2052577,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    }
+   ],
+   "media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   },
+   "final_media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   },
+   "movie": {
+    "path": "movies/Phase4/C16_gameover_continue.movie.json",
+    "sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+    "size": 2739616,
+    "media_class": "pristine_serial",
+    "version": 3,
+    "frames": 4006,
+    "initial_frame": 265211,
+    "input_segments": [
+     {
+      "first": 0,
+      "last": 39,
+      "input": {}
+     },
+     {
+      "first": 40,
+      "last": 69,
+      "input": {
+       "down": true,
+       "right": true
+      }
+     },
+     {
+      "first": 70,
+      "last": 109,
+      "input": {
+       "right": true
+      }
+     },
+     {
+      "first": 110,
+      "last": 118,
+      "input": {
+       "down": true,
+       "right": true
+      }
+     },
+     {
+      "first": 119,
+      "last": 121,
+      "input": {
+       "right": true
+      }
+     },
+     {
+      "first": 122,
+      "last": 2585,
+      "input": {}
+     },
+     {
+      "first": 2586,
+      "last": 2595,
+      "input": {
+       "start": true
+      }
+     },
+     {
+      "first": 2596,
+      "last": 3009,
+      "input": {}
+     },
+     {
+      "first": 3010,
+      "last": 3017,
+      "input": {
+       "start": true
+      }
+     },
+     {
+      "first": 3018,
+      "last": 3361,
+      "input": {}
+     },
+     {
+      "first": 3362,
+      "last": 3365,
+      "input": {
+       "start": true
+      }
+     },
+     {
+      "first": 3366,
+      "last": 3662,
+      "input": {}
+     },
+     {
+      "first": 3663,
+      "last": 3669,
+      "input": {
+       "start": true
+      }
+     },
+     {
+      "first": 3670,
+      "last": 4005,
+      "input": {}
+     }
+    ]
+   },
+   "transient_controls": {
+    "one_life_state": {
+     "source_fixture": "movies/Phase4/C16_gameover_continue.movie.sav",
+     "source_sha256": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592",
+     "derived_sha256": "bbdd2b205d1570074f31598ee70d27a59271001a8b73c26a4add6a2f06be844a",
+     "derived_size": 2047083,
+     "derived_state_version": 84,
+     "derived_serial": "SCUS-94288",
+     "mutation": {
+      "address": "0x800A65A0",
+      "width": "u8",
+      "before": 0,
+      "after": 1,
+      "main_ram_difference_count": 1,
+      "main_ram_difference_addresses": [
+       "0x800A65A0"
+      ],
+      "source_main_ram_sha256": "d2dc35237ab5933287146295a38f4ee6d703c3543d46860f4b6895cc01975142",
+      "derived_main_ram_sha256": "de78a5c77e4393d3a8d8efe347ec653c562e04b49ecebe39c6f8b136cfbab34f"
+     },
+     "transient_storage": "temporary directory; derivative deleted before retention"
+    },
+    "neutral_input_movie": {
+     "source_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+     "semantic_sha256": "4c40a175b55c97635cf0e762437796da48071b50931455ecbee940ef85d05084",
+     "source_frame_count": 4006,
+     "derived_frame_count": 4006,
+     "changed_frames": [
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121
+     ],
+     "changed_field": "pre-death movement port -> neutral",
+     "anchor": "<centrally-pinned-C16-save>",
+     "transient_storage": "temporary directory; derivative deleted before retention"
+    },
+    "continue_removed_movie": {
+     "source_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+     "semantic_sha256": "b558ca50099ad4f8577f4d50ba136c926cdbee5b726eef769961e327fb95ce7b",
+     "source_frame_count": 4006,
+     "derived_frame_count": 4006,
+     "changed_frames": [
+      3663,
+      3664,
+      3665,
+      3666,
+      3667,
+      3668,
+      3669
+     ],
+     "changed_field": "ports.0.start true -> false",
+     "anchor": "<centrally-pinned-C16-save>",
+     "transient_storage": "temporary directory; derivative deleted before retention"
+    }
+   }
+  },
+  "timing": {
+   "cpu_overclock_percent": 100,
+   "cd_read_speedup": 1,
+   "cd_seek_speedup": 1,
+   "rewind": false,
+   "run_ahead": false,
+   "movie_frames": {
+    "death_sample": 400,
+    "continue_pre": 3662,
+    "continue_post": 3700,
+    "final": 4006
+   },
+   "coverage_control": "one discarded backend-transition warm-up, then movie.traceToFrame uninstrumented versus passive cached-block replay; accessLog runs are writer attribution only"
+  },
+  "cleanup": {
+   "owned_pid_stopped": true,
+   "launcher_returncode": 0,
+   "launcher_output": "Stopped isolated instance (pid 630087).\nowned cleanup: pid=630087 stopped=true final_state=None waited_ms=0",
+   "process_final_state": null
+  }
+ }
+}

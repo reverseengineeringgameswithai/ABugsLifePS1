@@ -1,0 +1,208 @@
+schema: abl-phase4-props-movers/5
+row: E08_props_movers_gates
+owner: objects_events_hazards
+campaign_state: active_partial
+
+original_oracle:
+  fixture:
+    path: movies/go_to_end/LEVEL01.movie.json
+    sha256: bfedc0d0f4828998fc598257b35ad090180ad6cb01ea317bc40229f977dc40fb
+    bytes: 7631156
+    frames: 10348
+    media_class: pristine_serial
+    game_serial: SCUS-94288
+    from_boot: true
+  observation:
+    movie_window: [8550, 8580]
+    scene: 1
+    pass1_rows: 484
+    pass3_rows: 140
+    actor_capacity: 64
+    collision_sha256: 6b7d858f913b7f04fb40ed45f673cc264a0dd4a34a7fc045db982b4e91499793
+  paired_render_controls:
+    pass1_payload_swap:
+      changed_pixels: 2872
+      collision_and_player_stable: true
+    pass3_bitmap_disable:
+      changed_pixels: 5938
+      collision_and_player_stable: true
+    pass3_anchor_nudge_negative:
+      changed_pixels: 0
+      collision_and_player_stable: true
+  executable:
+    path: REBUILD/files/SCUS_942.88
+    sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+    regions:
+      dat_parser_relocator: {start: 0x8001CDC0, end: 0x8001D3CC, sha256: 7ffcc86cb4c6f0af5dc27d591a07ccbe7315a427a66e6f2a715fee7c9b553981}
+      pass1_culler: {start: 0x800140A0, end: 0x80014360, sha256: 7115871065d2ab1cab3fed0a72c8805f43451a0f37e78085ab719f4f7530fb24}
+      pass3_culler: {start: 0x80014360, end: 0x80014504, sha256: 2c7fcc436fd79f0de652c86c74adf578e5c190b5354966c752baf0a43015461a}
+      mover_initializer: {start: 0x80049C30, end: 0x80049E88, sha256: 8e6f5d763e30277b3fcc0de738940d919fdfb0b38bf53a4b86fb7d4dc2b686fb}
+      mover_actor_update: {start: 0x8004B940, end: 0x8004C10C, sha256: 6214410fe2eca57148a12f150d037f6354f99fe6d4c9589a080130af998c8a83}
+      mover_updater: {start: 0x8004D224, end: 0x8004D698, sha256: 85aa1d2f42863367ea016bd83435c47b136af99d829080fad1ccada34da6c273}
+  boundary:
+    met_dimension: original_oracle
+    proves: >-
+      A deterministic pristine from-boot scene-1 oracle, its exact pass-table
+      and actor-pool observations, and phase-matched positive/negative rendering
+      outcomes separated from collision.
+    does_not_prove: >-
+      Final interaction ownership, authored switch/gate state, lifecycle,
+      persistence, campaign breadth, cross-system interfaces, source closure,
+      durable evidence, or any E10/D11 species or hazard owner.
+
+pristine_census:
+  staged_level_dat_files: 21
+  pass1_rows: 9097
+  pass3_rows: 1684
+  external_source_rows: 2
+  external_payload_rows: 114
+  source_pointer_classes:
+    external_positive: 1
+    external_relative_negative: 1
+    in_file: 10779
+  payload_pointer_classes:
+    external_relative_negative: 112
+    in_file: 10667
+    unresolved_external_source: 2
+
+pass_table_record:
+  stride: 0x14
+  sentinel: {field: flags, predicate: signed_u16_bit15_set}
+  fields:
+    - {offset: 0x00, width: s32, name: x}
+    - {offset: 0x04, width: s32, name: y}
+    - {offset: 0x08, width: s32, name: z}
+    - {offset: 0x0C, width: s16, name: extent}
+    - {offset: 0x0E, width: u16, name: flags}
+    - {offset: 0x10, width: u32, name: source_pointer}
+  nested_payload_field: source + (0x1C if flags bit 0x08 else 0x14)
+
+pass1_contract:
+  runtime_pointer_field: 0x800824AC
+  consumer: 0x800140A0
+  role: instance placement and per-frame source/model handoff
+  confirmed_control: acorn fixture record 214 source pointer replaced by record 117
+
+pass3_contract:
+  runtime_pointer_field: 0x80082508
+  culler: 0x80014360
+  enable_bitmap_high_byte: 0x800902C7
+  visible_list: 0x80096EA8
+  bit_mapping: record i uses byte (0x800902C7 - (i >> 3)), mask (0x80 >> (i & 7))
+  role: bitmap-gated cull group; XYZ is a cull anchor, not a draw position
+  confirmed_controls:
+    positive: clearing all active LEVEL01 bitmap bytes changes the rendered frame
+    negative: nudging visible record 61 X by 32 preserves visibility and changes zero pixels
+
+actor_mover_contract:
+  table: {address: 0x8009FD80, stride: 0x84, capacity: 64}
+  initializer: 0x80049C30
+  per_actor_update: 0x8004B940
+  pool_updater: 0x8004D224
+  observed_actor_ids: {min: 1, max: 41, distinct: 41}
+  ownership: scene-owned source/actor records are rebuilt while resident code and fixed buffers are reused
+
+actor_source_contract:
+  table: {address: 0x80094A38, stride: 0x1C, capacity: 64}
+  actor_backlink: {actor_offset: 0x80, type: u32}
+  initializer: 0x80049C30
+  fields:
+    - {offset: 0x00, width: s32, name: source_x}
+    - {offset: 0x04, width: s32, name: source_y}
+    - {offset: 0x08, width: s32, name: source_z}
+    - {offset: 0x0C, width: u8, name: actor_id}
+    - {offset: 0x0D, width: u8, name: vm_program_selector}
+    - {offset: 0x0E, width: u8, name: runtime_state_byte}
+    - {offset: 0x0F, width: u8, name: initializer_config_byte}
+    - {offset: 0x10, width: u8, name: initial_hp}
+    - {offset: 0x11, width: u8, name: initial_wait}
+    - {offset: 0x12, width: u16, name: actor_flags}
+    - {offset: 0x14, width: u32, name: authored_parameter_unknown}
+    - {offset: 0x18, width: u32, name: runtime_tail_unknown}
+  stable_behavior_key: u16 type word = (vm_program_selector << 8) | actor_id
+  runtime_mutable: [0x0E, 0x18..0x1B]
+  observed:
+    records: 605
+    behavior_classes: 54
+    authored_variants: 283
+    actor_ids: 41
+    program_selectors: 37
+    nonzero_callbacks: 10
+    unclassified_behavior_classes: 47
+  confirmed_downstream_actor_ids:
+    11: seeds/plants/traversal powers
+    14: F13 Dot guide objective
+    16: D16 Thumper
+    36: D18 Thud
+  classification_boundary: >-
+    The remaining 47 type-word classes are exhaustive candidates, not semantic
+    roles. Native state/outcome evidence is required before assigning them to
+    E08, enemies, objectives, hazards, or other downstream rows.
+
+focused_fixture_controls:
+  controls:
+    - {save: wooden_fence.sav, scene: 1, pass1_rows: 484, pass3_rows: 140, actor_records: 32, mover_trace_events: 0}
+    - {save: offering_stone_and_ramp.sav, scene: 1, pass1_rows: 484, pass3_rows: 140, actor_records: 32, mover_trace_events: 4}
+  interpretation: >-
+    These filenames are visual leads only. They reproduced the ordinary scene-1
+    tables and actor pool; neither name establishes a switch, gate or mover
+    trigger without a measured native state/outcome delta.
+
+native_contact_outcome_frontier:
+  artifact: analysis/phase4_e08_outcome_join.json
+  operator_contact_artifact: analysis/phase4_e08_operator_contacts.json
+  hazard_outcome_artifact: analysis/phase4_e08_hazard_outcomes.json
+  joined_representatives: 28
+  contact_controlled_type_words: 22
+  unclassified_with_native_contact_controls: 18
+  unclassified_without_native_contact_control: 29
+  natural_type_0x0109_control: accepted abdomen bounce versus expired damaging contact
+  operator_movies_replayed: 5
+  operator_movies_with_stable_typed_outcomes: 4
+  operator_movies_without_stable_typed_outcomes: 1
+  new_natural_outcome_type_words: ['0x060C']
+  hazard_movies_replayed: 8
+  hazard_movies_with_player_health_or_lives_outcomes: 8
+  hazard_movies_with_stable_typed_actor_outcomes: 0
+  hazard_new_natural_outcome_type_words: []
+  aggregate_unclassified_with_native_outcome_controls: 19
+  aggregate_unclassified_without_native_outcome_control: 28
+  species_or_row_owners_promoted: 0
+  classification_boundary: >-
+    Measured contact response does not establish species, switch/gate role,
+    final campaign ownership or persistence. Operator filenames remain row and
+    species leads even after a typed natural outcome is measured.
+
+ownership_boundaries:
+  owned_now: >-
+    Exhaustive pinned pass-1/pass-3 rows, record shape and relocation branches,
+    render-only payload/bitmap/cull controls, the fixed actor/mover pool breadth,
+    all 605 actor/source joins grouped into 54 behavior classes and 283 authored
+    variants, exact A04/A06 native contact joins for 22 type words, a natural
+    A05 accepted/expired control for type 0x0109, four stable typed natural
+    outcomes across five existing operator contact movies (adding type 0x060C
+    to the aggregate control frontier), eight cycle-neutral hazard leads with
+    player health/lives outcomes but no stable typed actor outcome, focused
+    fixture controls, pause freeze, and scene rebuild ownership.
+  still_open:
+    - Classify final ownership for 19 unowned type-word classes with measured native outcomes and obtain native outcome controls for the remaining 28.
+    - Identify switch, gate and mover trigger/read/write paths and authored state.
+    - Reproduce denial/success, death, checkpoint, reload and save/load persistence.
+    - Preserve E01/E02/E11 ownership of terrain payloads, collision and dynamic geometry.
+
+mod_contract:
+  owner: Preserve parser, culler, actor initialization/update and scene lifecycle order; name every hook and table edit.
+  readers: Enumerate pass-table, bitmap, visible-list, actor/source, collision, render, contact, event-VM, objective and persistence consumers before changing ownership.
+  writers: Do not add unordered writes to table XYZ/extent/flags/source, nested payload pointers, bitmap bits, actor fields, callbacks or scene-owned source records.
+  valid_domains: Preserve stride 0x14, signed sentinel semantics, pointer class, fixed 64-record actor capacity and per-DAT row bounds; reject arithmetic overflow and unverified external-relative pointers.
+  initialization: Verify all pristine inputs and complete relocation before any pass-table, actor or MOD-private consumer runs.
+  reset: Freeze on pause and rebuild or clear private state on death, checkpoint reload, save load and every scene transition.
+  retirement: Retire actor, source, callback, gate/mover and overlay references once before their owning scene or image unloads.
+  consumers: Rendering, collision, contacts, event VM, movers, switches, gates, objectives, pause, persistence, stages and bonuses.
+  capacity: Preserve 64 actor records; declare row, bitmap, authored-state, hook and cave bounds for every MOD extension.
+  residency: Parser/culler/updater code and fixed buffers are resident; DAT tables, actor sources and authored interaction state are scene-owned unless separately proven.
+  unsafe_assumptions: >-
+    A pass-3 anchor is not a draw position; a visual prop does not imply its
+    collision; an out-of-file relative pointer is not automatically corrupt;
+    actor slots are not cross-scene identity; static catalog membership does
+    not prove contact, switch, gate, mover or persistence policy.

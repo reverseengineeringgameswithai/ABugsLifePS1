@@ -1,0 +1,73 @@
+schema: abl-duckstation-two-process-scenario/1
+id: pristine_c15_authored_row_provenance
+runner: tools/phase4_respawn_row_provenance.py
+description: >-
+  Generate isolated pristine LEVEL02 progression with native game input, stop
+  that process, then cold-boot the centrally pinned LEVEL02 movie. Retain the
+  unedited scene-1 control and an unsaved nine-frame Left-only repair that
+  reaches the exact scene-3 authored DAT row source.
+target:
+  media_class: pristine
+  expected_serial: SCUS-94288
+  cue_sha1: 25adb139e50ba28c2d9c1ecab4528e9cf004b1d5
+  bin_sha1: 0bc1a29748d4bd608d076495d085e825574880d1
+launch:
+  process_count: 2
+  reuse_absolute_config: true
+  first_instance_state: recreated
+  second_instance_state: reused
+  require_owned_pid_cleanup: true
+progression:
+  state: level01_end_of_stage.sav
+  state_sha256: 42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f
+  require_preload_media_inspection: true
+  initial_card: fresh_absent_or_hash_pinned_blank
+  actions:
+    - {kind: hold, button: up, frames: 1500}
+    - {kind: press, button: cross, frames: 10}
+    - {kind: wait, frames: 400}
+    - {kind: press, button: square, frames: 10}
+    - {kind: wait, frames: 1200}
+    - {kind: press, button: square, frames: 10}
+    - {kind: wait, frames: 1000}
+    - {kind: press, button: square, frames: 10}
+    - {kind: wait, frames: 1000}
+  expected_card:
+    size: 131072
+    sha256: 5ca4ee4e23d76fe4eb596d0fe7766c481dcac456557756734f28c903fa242d4c
+    marker: BASCUS-94288LEV02:00
+    marker_count: 1
+    retained_bytes: false
+playback:
+  movie: movies/go_to_end/LEVEL02.movie.json
+  movie_sha256: 09daafa2f94a2252e805dea1096e82458bca6864863092b2269ffe57b6dcc502
+  from_boot: true
+  require_reproducible: true
+  require_nontruncated: true
+  control:
+    target_frame: 7600
+    expected_scene: 1
+  branch:
+    derivative_saved: false
+    edit:
+      button: left
+      value: false
+      start_frame: 6307
+      end_frame_exclusive: 6316
+      edited_frame_count: 9
+    semantic_sha256: 8ad070c7d00135e6f48956819a8b73669203691145139edb1db5f4c635389e47
+    pre_edit_frame: 6300
+    require_pre_edit_boundary_equal_to_control: true
+    target_frame: 7600
+assertions:
+  - {id: scene, address: 0x80082504, width: u32, expected: 3}
+  - {id: dat_base, address: 0x80082498, width: u32, expected: 0x8015E22C}
+  - {id: type_01_pointer, address: 0x80096DA4, width: u32, expected: 0x8015E684}
+  - {id: type_01_count, source: runtime_record, expected: 18}
+  - {id: type_01_record_sha256, source: runtime_record, expected: 6adbdd60b3935d76caf6b929cb108fd4b338d39c1888a2ad4abe92d21416fee3}
+  - {id: selected_row, source: runtime_record, expected: 6}
+  - {id: selected_row_address, source: runtime_record, expected: 0x8015E6D0}
+  - {id: selected_row_raw_xyz, source: runtime_record, expected: [15678, 0, 15438]}
+  - {id: card_unchanged, source: isolated_memory_card, expected: true}
+  - {id: progression_pid_stopped, source: run_provenance, expected: true}
+  - {id: replay_pid_stopped, source: run_provenance, expected: true}

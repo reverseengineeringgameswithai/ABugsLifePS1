@@ -1,0 +1,56 @@
+schema_version: 1
+exhaustive: true
+description: >
+  Phase-3 WP2 census of original-game state needed by every active subsystem
+  campaign in the acceptance scope. State IDs resolve through
+  config/semantic_state.yaml; a campaign may be empty only with a structured
+  missing-link/evidence/next-experiment blocker.
+sources_checked:
+  - analysis/mechanics_baseline.yaml
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md
+  - analysis/phase3_ownership_graph.json
+campaigns:
+  - id: global_scene
+    state_ids: [original.current_scene_id, original.bonus_transition_latch,
+                original.bonus_fade_timer, original.scene_asset_table]
+  - id: player
+    state_ids: [original.player_x, original.player_y, original.player_z,
+                original.player_state_word, original.player_grounded,
+                original.player_health_true, original.player_lives,
+                original.player_velocity_x, original.player_velocity_y,
+                original.player_velocity_z, original.player_health_display,
+                original.player_equipped_berry, original.kick_timer,
+                original.player_anim_frame_pair, original.player_floor_y,
+                original.player_powerup_flags,
+                original.pad_held_word,
+                original.pad_prev_word]
+  - id: object
+    state_ids: [original.chunk31_actor_records,
+                original.pass3_decor_visibility_bitmap]
+  - id: contact
+    state_ids: [original.contact_pool, original.contact_alloc_cursor]
+  - id: enemy
+    state_ids: [original.enemy_live_table, original.enemy_spawn_source_table,
+                original.mover_vm_program_bank, original.enemy_permanence_quota,
+                original.thumper_defeat_flag]
+  - id: projectile
+    state_ids: [original.player_berries_in_flight, original.contact_pool]
+  - id: plant
+    state_ids: [original.plant_slots, original.plant_slot_cursor,
+                original.plant_type_table, original.plant_behavior_jump_table]
+  - id: camera
+    state_ids: [original.camera_struct, original.checkpoint_fp_save]
+  - id: render
+    state_ids: [original.object_pointer_list, original.shared_mesh_vertex_buffer,
+                original.skeleton_bone_transform_bank]
+  - id: audio
+    state_ids: [original.music_id]
+  - id: objective
+    state_ids: [original.grain_count, original.bonus1_stomp_streak,
+                original.bonus2_mushroom_slot_0,
+                original.bonus3_blue_grasshopper_streak, original.bonus_unlock_flags]
+  - id: frontend
+    state_ids: [original.gfx_loadscreen_table, original.bonus_progress_command,
+                original.training_step]
+  - id: save
+    state_ids: [original.player_lives, original.bonus_unlock_flags]

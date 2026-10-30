@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "row": "A09",
+  "date": "2026-08-03",
+  "status": "partial_but_bounded_exhausted",
+  "disposition": "move_on",
+  "requirements_closed": [
+    "Square edge and player-state admission gates",
+    "pickup proximity, facing, actor flags, actor enable, and actor-state conditions",
+    "selected actor offset and carry phase field widths and owners",
+    "lift-to-carry modes and stable X/Z/Y attachment law",
+    "manual Square release, flag teardown, outward motion, collision settling, and transient release state",
+    "level-load, respawn, action-cancel, separation, cannon, and plant cross-system clearers",
+    "native positive repetitions in LEVEL01 and independent Training-scene corroboration",
+    "no-Square negative controls for both proximity-only pickup and automatic release"
+  ],
+  "evidence": [
+    "analysis/phase4_a09_static.json",
+    "analysis/phase4_a09_capsule.json",
+    "analysis/phase2_carry_handstand_oracle.json",
+    "ObsidianVault/Canon/Systems/SYS_seed_carry_plant_lifecycle.md",
+    "ObsidianVault/Experiments/EXP_2026-08-03_phase4_a09_seed_pickup_drop.md"
+  ],
+  "residuals": [
+    {
+      "item": "Every level's movable-seed placement and approach geometry",
+      "classification": "content breadth outside the resident input/state law",
+      "why_not_blocking": "Training and LEVEL01 independently reproduce the same resident attachment law; ASM contains no level-specific pickup/drop branch."
+    },
+    {
+      "item": "Alternate mode-14 and negative plant-slot offset branches",
+      "classification": "cross-row behavior",
+      "why_not_blocking": "A09 is movable actor id 11 with positive actor offset and mode 8..12. Plant/cannon/uproot behavior is owned by A13-A15 and B04."
+    }
+  ],
+  "fixture_need": [],
+  "closure_claim": "A09 remains Partial in the whole-game registry because exhaustive content breadth is not claimed, but its Phase 4 input, state, control-flow, lifecycle, interaction, and native-control questions are bounded-exhausted. No Interpreter movie is required."
+}

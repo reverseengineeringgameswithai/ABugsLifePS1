@@ -1,0 +1,36 @@
+schema: abl-phase4-binary-schema-fuzz-policy/1
+seed: 424242
+limits:
+  max_input_bytes: 1048576
+  max_output_bytes: 4194304
+  max_cases_per_target: 96
+  timeout_ms: 500
+  memory_bytes: 268435456
+schemas:
+  - id: seed_table
+    path: schemas/phase4/abl_seed_table.ksy
+    adapter: seed_table
+    endian: le
+  - id: level_raw_container
+    path: schemas/phase4/abl_level_raw_container.ksy
+    adapter: level_raw_container
+    endian: be
+  - id: level_raw_chunk
+    path: schemas/phase4/abl_level_raw_chunk.ksy
+    adapter: level_raw_chunk
+    endian: be
+mutation_operators:
+  - truncate
+  - flip_bit
+  - overwrite_u32_boundary
+  - append_bytes
+policy:
+  synthetic_corpus_only: true
+  read_only_schemas: true
+  existing_writers_unchanged: true
+  reject_crash: true
+  reject_timeout: true
+  reject_output_limit: true
+  deterministic_replay_required: true
+  afl_or_libfuzzer_export_external_only: true
+  retail_or_derived_corpus_must_remain_external: true

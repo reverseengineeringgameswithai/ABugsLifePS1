@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "phase4_row": "A13_cycle_plant_output",
+  "status": "substantiated_partial",
+  "disposition": "high_value_row_specific_work_exhausted",
+  "input": {
+    "path": "REBUILD/files/SCUS_942.88",
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  "method": {
+    "resident": "compiled C opcode, table, and state-space analysis",
+    "overlays": "compiled C direct-reference scan of every retail BIN",
+    "live_replay": false,
+    "live_escalation_reason": "none; static control/data flow answers the investigated domains"
+  },
+  "state": {
+    "base": "0x800A6598",
+    "count": 5,
+    "lanes": ["brown", "blue", "green", "purple", "yellow"],
+    "selected": "bits 7..4",
+    "maximum_available": "bits 3..0",
+    "natural_domain": "1 <= selected <= maximum_available <= 4"
+  },
+  "cycle": {
+    "owner": "0x80047284",
+    "range": "0x80047A88..0x80047B9C",
+    "input_current": "0x80082488 & 0x4000",
+    "input_previous": "0x80082380 & 0x4000",
+    "scene_rejection": "scene 0x11",
+    "carried_actor_index": "0x800A655C",
+    "seed_color_source": "held actor +0x80 -> source record +0x0E",
+    "availability_test": "selector & 7 >= 2",
+    "sequence_for_maximum_4": ["0x14", "0x24", "0x34", "0x44", "0x14"],
+    "accepted_feedback": ["descriptor reskin 0x8003E760", "event -16 via 0x8005044C", "timer 0x800824A4 := 120"],
+    "denied_feedback": "none; branch occurs before write, reskin, event, and timer arm"
+  },
+  "writers": {
+    "active": [
+      "0x80046BEC level-load brown default 0x11 after player-block clear",
+      "0x800475C0/0x800475F8/0x80047630/0x80047668/0x800476A0 timeout normalization",
+      "0x80047B6C player X-cycle indexed write",
+      "0x8005431C/0x80054364/0x800543E0/0x8005445C/0x800544F8 source token upgrades"
+    ],
+    "latent": [
+      "0x80053794 generic token upgrade helper; no resident call, jump, or literal-pointer owner found"
+    ],
+    "overlay_writers": []
+  },
+  "readers": {
+    "resident": [
+      "0x8005BE1C plant spawner indexed consumer",
+      "0x80052FAC HUD loop over brown/blue/green",
+      "cycle, timeout, and token-upgrade read/modify/write paths"
+    ],
+    "overlays": [
+      "REBUILD/files/LEVEL07/LEVEL.BIN reads brown and green",
+      "REBUILD/files/LEVEL09/LEVEL.BIN reads yellow"
+    ]
+  },
+  "lifecycle": {
+    "cycle_timeout": "120 active ticks, then every high nibble becomes its low-nibble ceiling",
+    "respawn": "preserved; 0x8005B1BC..0x8005B440 does not cover 0x800A6598..0x800A659C",
+    "level_load": "memset(0x800A6500,0,168), then brown := 0x11; other four remain zero",
+    "save_state": "full-machine save states preserve the bytes but are not an original-game persistence mechanism",
+    "memory_card": "no selector-specific serialization or restore path found"
+  },
+  "invalid_states": {
+    "zero_or_one_available": "X is ignored with no feedback",
+    "selected_above_available": "one accepted X edge repairs selected to 1 when low-three-bit availability is at least 2",
+    "availability_5_to_7": "accepted by the X handler and can cross the four-row lane boundary",
+    "low_bit_3": "ignored by X comparisons but consumed by timeout normalization",
+    "consumer_bounds": "0x8005BDBC does not validate selected 1..4 before table indexing",
+    "natural_protection": "level initialization and authored maximum-four token upgrades produce 0x11..0x44"
+  },
+  "closure_metrics": {
+    "original_oracle": "advanced: retained brown/purple operator controls, but no scripted denied/timeout oracle",
+    "complete_frontier": "met for direct resident and retail-BIN references; generic indirect-copy absence remains a whole-engine limitation",
+    "typed_state": "met",
+    "lifecycle": "advanced: timeout, respawn, and level-load reset bound; no memory-card persistence path",
+    "original_interfaces": "met",
+    "campaign_breadth": "advanced: all five static lanes and full 20-row table; brown and purple natural controls",
+    "cross_system": "met for input, carry, HUD, token, plant-spawn, overlay readers, event, and reset joins",
+    "source_closure": "advanced: byte-guarded C reconstruction; no compiler match claimed for the full player function",
+    "durable_evidence": "advanced: C guard, JSON, YAML, Canon, and Experiment; runtime oracle still named"
+  },
+  "movie_request": {
+    "required_for_current_static_conclusions": false,
+    "required_for_strict_runtime_promotion": true,
+    "fixtures": [
+      "movies/Phase4/Interpreter/A13_wrap_timeout.movie.json",
+      "movies/Phase4/Interpreter/A13_denied_one_tier.movie.json"
+    ]
+  }
+}

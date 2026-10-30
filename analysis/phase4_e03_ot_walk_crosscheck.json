@@ -1,0 +1,85 @@
+{
+ "_comment": "Phase-4 E03 double-implementation cross-check: C linked-list walker over a mid-frame RAM dump vs gp0Trace dispatch stream of the same frame. Agreement proves both readings (region_provenance.c pattern). Regenerate: midframe_walk.py per scene, then this script.",
+ "generated": "2026-08-03",
+ "scenes": {
+  "boss_showdown": {
+   "meta": {
+    "save": "level_15.sav",
+    "save_sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+    "present_pc": "0x80064f28",
+    "ram_dump_sha256": "65e26e213d26c5792f188fd7c4f88f987c1d0caefae77b0c62b2777e6fae6a6b"
+   },
+   "traced_frame": 233058,
+   "env_node_ops": [],
+   "body_head_node": "0x801cd870",
+   "walk": {
+    "nodes": 1932,
+    "empty_link_nodes": 1228,
+    "max_empty_run": 260,
+    "packets": 712,
+    "payload_words": 7995,
+    "min_node": "0x8007fc84",
+    "max_node": "0x801d600c",
+    "terminated": true,
+    "cycle": false,
+    "oob": false
+   },
+   "trace_body_cmds": 712,
+   "opcode_mismatches": {},
+   "ok": true
+  },
+  "normal_gameplay": {
+   "meta": {
+    "save": "level02.sav",
+    "save_sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+    "present_pc": "0x80064f28",
+    "ram_dump_sha256": "23462992534ca16a4de443670b643490c7ebfeeed39aa2fcbfbcdc5d17c8ffdf"
+   },
+   "traced_frame": 39575,
+   "env_node_ops": [],
+   "body_head_node": "0x801e282c",
+   "walk": {
+    "nodes": 1713,
+    "empty_link_nodes": 1228,
+    "max_empty_run": 351,
+    "packets": 492,
+    "payload_words": 5600,
+    "min_node": "0x8007fc84",
+    "max_node": "0x801e86fc",
+    "terminated": true,
+    "cycle": false,
+    "oob": false
+   },
+   "trace_body_cmds": 492,
+   "opcode_mismatches": {},
+   "ok": true
+  },
+  "training": {
+   "meta": {
+    "save": "phase3_pristine_training_gameplay_i5.sav",
+    "save_sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+    "present_pc": "0x80064f28",
+    "ram_dump_sha256": "ee1a66a6bc83cf5b712cf0522bb8553d3a03da9b35f74e8f8735ef916a9bf7ec"
+   },
+   "traced_frame": 6935,
+   "env_node_ops": [],
+   "body_head_node": "0x801e282c",
+   "walk": {
+    "nodes": 1961,
+    "empty_link_nodes": 1228,
+    "max_empty_run": 329,
+    "packets": 749,
+    "payload_words": 7757,
+    "min_node": "0x8007fc84",
+    "max_node": "0x801eacac",
+    "terminated": true,
+    "cycle": false,
+    "oob": false
+   },
+   "trace_body_cmds": 749,
+   "opcode_mismatches": {},
+   "ok": true
+  }
+ },
+ "failing": []
+}

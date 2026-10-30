@@ -1,0 +1,1554 @@
+{
+ "schema": "abl-phase4-f01-request2-probe-consolidated/1",
+ "authority": {
+  "promotes_original_oracle": false
+ },
+ "declared_movies": [
+  "movies/Phase4/Interpreter/D18_thud_fight.movie.json",
+  "movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json",
+  "movies/Phase4/Interpreter/F01_natural_death_FromBoot.movie.json"
+ ],
+ "exact_set_replayed": true,
+ "captures_accepted": 3,
+ "captures_required": 3,
+ "receipt_validation_errors": {},
+ "results": {
+  "movies/Phase4/Interpreter/D18_thud_fight.movie.json": {
+   "schema": "abl-phase4-f01-request2-probe/1",
+   "authority": {
+    "is_proof": false,
+    "promotes_original_oracle": false,
+    "injection": "NONE"
+   },
+   "fixture": {
+    "movie": "movies/Phase4/Interpreter/D18_thud_fight.movie.json",
+    "movie_sha256": "a3010e8a817d47865451645526688bd8744cc01b41b3de0501856d384e8f888f",
+    "movie_size": 12491762,
+    "frames": 15600,
+    "from_boot": true,
+    "reproducible": true,
+    "playback_completed": true
+   },
+   "runtime": {
+    "port": 24753,
+    "config_label": "b1-d18-v6b-exact-final",
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "method": {
+    "launcher": "tools/launch_repro_playback.sh --execution-mode Interpreter",
+    "playback": "movie.resumeUntilMovieFrame",
+    "watches": {
+     "consumer": "0x8004FF14",
+     "decision": "0x8004FF28",
+     "finalizer": "0x8004FF48"
+    },
+    "guard": "each retained PC hit equals the pristine word at that PC",
+    "writer_attribution": "an accessLog write watch covers the request word itself; the last instruction-attributed write before each decision must be a resident death store, with no intervening write",
+    "writer_to_decision_bound_frames": 600,
+    "writer_to_decision_bound_reason": "death timer is at most 60 and decrements every two frames; 600 frames retains a five-times scheduling margin while the address write watch excludes intervening writes",
+    "consumer_to_decision_cycle_window": 100000,
+    "consumer_to_decision_window_reason": "the intervening consumer call measured 50,311 cycles in D18; 100,000 is a bounded near-two-times margin",
+    "injection": "none; read-only execTrace instrumentation"
+   },
+   "preload_noise_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 326
+   },
+   "watch_certification": {
+    "consumer": {
+     "pc": "0x8004FF14",
+     "pristine_instruction_word": "0x0C00E6F6",
+     "retained_events": 1,
+     "all_retained_events_certified": true
+    },
+    "decision": {
+     "pc": "0x8004FF28",
+     "pristine_instruction_word": "0x846323A0",
+     "retained_events": 1,
+     "all_retained_events_certified": true
+    },
+    "finalizer": {
+     "pc": "0x8004FF48",
+     "pristine_instruction_word": "0x0C011698",
+     "retained_events": 1,
+     "all_retained_events_certified": true
+    }
+   },
+   "request_write_watch": {
+    "address": "0x800823A0",
+    "length": 2,
+    "type": "write",
+    "attribution": "accessLog instruction_pc/instruction_word/new_value",
+    "overlay_identity_policy": "do not infer an overlay file from a runtime PC",
+    "retained_events": 8
+   },
+   "consumer_cycles": [
+    6785978946
+   ],
+   "finalizer_cycles": [
+    6786029285
+   ],
+   "request_writes": [
+    {
+     "frame": 98,
+     "cycle": 54975735,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 1,
+     "instruction_pc": "0xBFC02B7C",
+     "instruction_word": "0xA08EFFFF",
+     "instruction": "sb t6, -0x1(a0)",
+     "new_value": 127,
+     "new_value_hex": "0x7F",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 98,
+     "cycle": 54975891,
+     "address": "0x800823A1",
+     "physical_address": "0x000823A1",
+     "type": "write",
+     "width": 1,
+     "instruction_pc": "0xBFC02B7C",
+     "instruction_word": "0xA08EFFFF",
+     "instruction": "sb t6, -0x1(a0)",
+     "new_value": 4,
+     "new_value_hex": "0x04",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 946,
+     "cycle": 535484519,
+     "address": "0xA00823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 4,
+     "instruction_pc": "0xBFC0D864",
+     "instruction_word": "0xAD200000",
+     "instruction": "sw zero, 0x0(t1)",
+     "new_value": 0,
+     "new_value_hex": "0x00000000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 1141,
+     "cycle": 645873154,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 4,
+     "instruction_pc": "0x8005F6A0",
+     "instruction_word": "0xAC400000",
+     "instruction": "sw zero, 0x0(v0)",
+     "new_value": 0,
+     "new_value_hex": "0x00000000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 1386,
+     "cycle": 784588395,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004FADC",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 5487,
+     "cycle": 3106227977,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8005B888",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 5488,
+     "cycle": 3107116668,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004FE44",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 11687,
+     "cycle": 6616782279,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x800B3E84",
+     "instruction_word": "0xA42223A0",
+     "instruction": "sh v0, 0x23a0(at)",
+     "new_value": 1,
+     "new_value_hex": "0x0001",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    }
+   ],
+   "decisions": [
+    {
+     "frame": 11986,
+     "cycle": 6786029257,
+     "request": 1,
+     "gp4c4": 0,
+     "consumer_proceeded": true,
+     "finalizer_observed": true,
+     "last_request_writer": {
+      "frame": 11687,
+      "cycle": 6616782279,
+      "address": "0x800823A0",
+      "physical_address": "0x000823A0",
+      "type": "write",
+      "width": 2,
+      "instruction_pc": "0x800B3E84",
+      "instruction_word": "0xA42223A0",
+      "instruction": "sh v0, 0x23a0(at)",
+      "new_value": 1,
+      "new_value_hex": "0x0001",
+      "stored_u16": null,
+      "overlaps_request_word": true,
+      "resident_death_store": false,
+      "resident_pristine_certificate": {
+       "required": false,
+       "expected_instruction_word": null,
+       "passed": null
+      },
+      "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+     },
+     "request_writer_to_decision_frames": 299,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     }
+    }
+   ],
+   "request_values": [
+    1
+   ],
+   "natural_request2_skip_controls": [],
+   "natural_request2_skip_control_observed": false,
+   "provenance_assertions": [
+    {
+     "id": "movie_identity_declared",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_hash_matches_central_pin",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_size_matches_central_pin",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_media_class_is_pristine",
+     "expected": "pristine_serial",
+     "actual": "pristine_serial",
+     "passed": true
+    },
+    {
+     "id": "movie_preservation_required",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_from_boot",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_path_empty",
+     "expected": "",
+     "actual": "",
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_size_zero",
+     "expected": 0,
+     "actual": 0,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_hash_absent",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_not_loaded_before_recording",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_not_state_only",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "movie_top_level_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "playback_reproducible",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "playback_completed",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "exec_trace_not_truncated",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "pristine_media_has_media",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "pristine_media_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_title",
+     "expected": "Disney-Pixar A Bug's Life",
+     "actual": "Disney-Pixar A Bug's Life",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_cue_identity",
+     "expected": "Disney-Pixar A Bug's Life (v1.0).cue",
+     "actual": "Disney-Pixar A Bug's Life (v1.0).cue",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_cue_sha256",
+     "expected": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+     "actual": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_track_identity",
+     "expected": "Disney-Pixar A Bug's Life (v1.0).bin",
+     "actual": "Disney-Pixar A Bug's Life (v1.0).bin",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_track_sha256",
+     "expected": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+     "actual": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_executable_identity",
+     "expected": "SCUS_942.88",
+     "actual": "SCUS_942.88",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_executable_sha256",
+     "expected": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "actual": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "passed": true
+    }
+   ],
+   "capture_assertions": [
+    {
+     "id": "trace_page_complete",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "request_write_page_complete",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "all_retained_events_self_certified",
+     "expected": 0,
+     "actual": 0,
+     "passed": true
+    }
+   ],
+   "capture_accepted": true,
+   "exec_trace": {
+    "total": 329,
+    "returned": 329,
+    "truncated": false
+   },
+   "access_log": {
+    "total": 8,
+    "returned": 8,
+    "truncated": false
+   },
+   "receipt_self_validation_errors": []
+  },
+  "movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json": {
+   "schema": "abl-phase4-f01-request2-probe/1",
+   "authority": {
+    "is_proof": false,
+    "promotes_original_oracle": false,
+    "injection": "NONE"
+   },
+   "fixture": {
+    "movie": "movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json",
+    "movie_sha256": "479f2f2d7b28f3d0abaa88f6443b13927f4aea02c4ea39d5b69bd0202c8982f7",
+    "movie_size": 4491134,
+    "frames": 5562,
+    "from_boot": true,
+    "reproducible": true,
+    "playback_completed": true
+   },
+   "runtime": {
+    "port": 24754,
+    "config_label": "b1-e02-v6b-exact-final",
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "method": {
+    "launcher": "tools/launch_repro_playback.sh --execution-mode Interpreter",
+    "playback": "movie.resumeUntilMovieFrame",
+    "watches": {
+     "consumer": "0x8004FF14",
+     "decision": "0x8004FF28",
+     "finalizer": "0x8004FF48"
+    },
+    "guard": "each retained PC hit equals the pristine word at that PC",
+    "writer_attribution": "an accessLog write watch covers the request word itself; the last instruction-attributed write before each decision must be a resident death store, with no intervening write",
+    "writer_to_decision_bound_frames": 600,
+    "writer_to_decision_bound_reason": "death timer is at most 60 and decrements every two frames; 600 frames retains a five-times scheduling margin while the address write watch excludes intervening writes",
+    "consumer_to_decision_cycle_window": 100000,
+    "consumer_to_decision_window_reason": "the intervening consumer call measured 50,311 cycles in D18; 100,000 is a bounded near-two-times margin",
+    "injection": "none; read-only execTrace instrumentation"
+   },
+   "preload_noise_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 326
+   },
+   "watch_certification": {
+    "consumer": {
+     "pc": "0x8004FF14",
+     "pristine_instruction_word": "0x0C00E6F6",
+     "retained_events": 0,
+     "all_retained_events_certified": true
+    },
+    "decision": {
+     "pc": "0x8004FF28",
+     "pristine_instruction_word": "0x846323A0",
+     "retained_events": 0,
+     "all_retained_events_certified": true
+    },
+    "finalizer": {
+     "pc": "0x8004FF48",
+     "pristine_instruction_word": "0x0C011698",
+     "retained_events": 0,
+     "all_retained_events_certified": true
+    }
+   },
+   "request_write_watch": {
+    "address": "0x800823A0",
+    "length": 2,
+    "type": "write",
+    "attribution": "accessLog instruction_pc/instruction_word/new_value",
+    "overlay_identity_policy": "do not infer an overlay file from a runtime PC",
+    "retained_events": 7
+   },
+   "consumer_cycles": [],
+   "finalizer_cycles": [],
+   "request_writes": [
+    {
+     "frame": 98,
+     "cycle": 54975735,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 1,
+     "instruction_pc": "0xBFC02B7C",
+     "instruction_word": "0xA08EFFFF",
+     "instruction": "sb t6, -0x1(a0)",
+     "new_value": 127,
+     "new_value_hex": "0x7F",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 98,
+     "cycle": 54975891,
+     "address": "0x800823A1",
+     "physical_address": "0x000823A1",
+     "type": "write",
+     "width": 1,
+     "instruction_pc": "0xBFC02B7C",
+     "instruction_word": "0xA08EFFFF",
+     "instruction": "sb t6, -0x1(a0)",
+     "new_value": 4,
+     "new_value_hex": "0x04",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 946,
+     "cycle": 535484519,
+     "address": "0xA00823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 4,
+     "instruction_pc": "0xBFC0D864",
+     "instruction_word": "0xAD200000",
+     "instruction": "sw zero, 0x0(t1)",
+     "new_value": 0,
+     "new_value_hex": "0x00000000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 1141,
+     "cycle": 645873154,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 4,
+     "instruction_pc": "0x8005F6A0",
+     "instruction_word": "0xAC400000",
+     "instruction": "sw zero, 0x0(v0)",
+     "new_value": 0,
+     "new_value_hex": "0x00000000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 1386,
+     "cycle": 784588395,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004FADC",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 5417,
+     "cycle": 3066593727,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8005B888",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 5418,
+     "cycle": 3067490136,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004FE44",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    }
+   ],
+   "decisions": [],
+   "request_values": [],
+   "natural_request2_skip_controls": [],
+   "natural_request2_skip_control_observed": false,
+   "provenance_assertions": [
+    {
+     "id": "movie_identity_declared",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_hash_matches_central_pin",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_size_matches_central_pin",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_media_class_is_pristine",
+     "expected": "pristine_serial",
+     "actual": "pristine_serial",
+     "passed": true
+    },
+    {
+     "id": "movie_preservation_required",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_from_boot",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_path_empty",
+     "expected": "",
+     "actual": "",
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_size_zero",
+     "expected": 0,
+     "actual": 0,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_hash_absent",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_not_loaded_before_recording",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_not_state_only",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "movie_top_level_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "playback_reproducible",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "playback_completed",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "exec_trace_not_truncated",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "pristine_media_has_media",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "pristine_media_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_title",
+     "expected": "Disney-Pixar A Bug's Life",
+     "actual": "Disney-Pixar A Bug's Life",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_cue_identity",
+     "expected": "Disney-Pixar A Bug's Life (v1.0).cue",
+     "actual": "Disney-Pixar A Bug's Life (v1.0).cue",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_cue_sha256",
+     "expected": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+     "actual": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_track_identity",
+     "expected": "Disney-Pixar A Bug's Life (v1.0).bin",
+     "actual": "Disney-Pixar A Bug's Life (v1.0).bin",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_track_sha256",
+     "expected": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+     "actual": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_executable_identity",
+     "expected": "SCUS_942.88",
+     "actual": "SCUS_942.88",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_executable_sha256",
+     "expected": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "actual": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "passed": true
+    }
+   ],
+   "capture_assertions": [
+    {
+     "id": "trace_page_complete",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "request_write_page_complete",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "all_retained_events_self_certified",
+     "expected": 0,
+     "actual": 0,
+     "passed": true
+    }
+   ],
+   "capture_accepted": true,
+   "exec_trace": {
+    "total": 326,
+    "returned": 326,
+    "truncated": false
+   },
+   "access_log": {
+    "total": 7,
+    "returned": 7,
+    "truncated": false
+   },
+   "receipt_self_validation_errors": []
+  },
+  "movies/Phase4/Interpreter/F01_natural_death_FromBoot.movie.json": {
+   "schema": "abl-phase4-f01-request2-probe/1",
+   "authority": {
+    "is_proof": false,
+    "promotes_original_oracle": false,
+    "injection": "NONE"
+   },
+   "fixture": {
+    "movie": "movies/Phase4/Interpreter/F01_natural_death_FromBoot.movie.json",
+    "movie_sha256": "766a7a87892b56b6ed916a9e96561cfe0410805becfb8c62d30670d2677fd0b8",
+    "movie_size": 4678121,
+    "frames": 6840,
+    "from_boot": true,
+    "reproducible": true,
+    "playback_completed": true
+   },
+   "runtime": {
+    "port": 23492,
+    "config_label": "b1-natural-death",
+    "execution_mode": "Interpreter",
+    "media": {
+     "has_media": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "cue": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+     },
+     "track": {
+      "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+      "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+     },
+     "executable": {
+      "identity": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+     }
+    }
+   },
+   "method": {
+    "launcher": "tools/launch_repro_playback.sh --execution-mode Interpreter",
+    "playback": "movie.resumeUntilMovieFrame",
+    "watches": {
+     "consumer": "0x8004FF14",
+     "decision": "0x8004FF28",
+     "finalizer": "0x8004FF48"
+    },
+    "guard": "each retained PC hit equals the pristine word at that PC",
+    "writer_attribution": "an accessLog write watch covers the request word itself; the last instruction-attributed write before each decision must be a resident death store, with no intervening write",
+    "writer_to_decision_bound_frames": 600,
+    "writer_to_decision_bound_reason": "death timer is at most 60 and decrements every two frames; 600 frames retains a five-times scheduling margin while the address write watch excludes intervening writes",
+    "consumer_to_decision_cycle_window": 100000,
+    "consumer_to_decision_window_reason": "the intervening consumer call measured 50,311 cycles in D18; 100,000 is a bounded near-two-times margin",
+    "injection": "none; read-only execTrace instrumentation"
+   },
+   "preload_noise_rejected": {
+    "consumer": 0,
+    "decision": 0,
+    "finalizer": 326
+   },
+   "watch_certification": {
+    "consumer": {
+     "pc": "0x8004FF14",
+     "pristine_instruction_word": "0x0C00E6F6",
+     "retained_events": 1,
+     "all_retained_events_certified": true
+    },
+    "decision": {
+     "pc": "0x8004FF28",
+     "pristine_instruction_word": "0x846323A0",
+     "retained_events": 1,
+     "all_retained_events_certified": true
+    },
+    "finalizer": {
+     "pc": "0x8004FF48",
+     "pristine_instruction_word": "0x0C011698",
+     "retained_events": 0,
+     "all_retained_events_certified": true
+    }
+   },
+   "request_write_watch": {
+    "address": "0x800823A0",
+    "length": 2,
+    "type": "write",
+    "attribution": "accessLog instruction_pc/instruction_word/new_value",
+    "overlay_identity_policy": "do not infer an overlay file from a runtime PC",
+    "retained_events": 9
+   },
+   "consumer_cycles": [
+    3767893842
+   ],
+   "finalizer_cycles": [],
+   "request_writes": [
+    {
+     "frame": 98,
+     "cycle": 54975735,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 1,
+     "instruction_pc": "0xBFC02B7C",
+     "instruction_word": "0xA08EFFFF",
+     "instruction": "sb t6, -0x1(a0)",
+     "new_value": 127,
+     "new_value_hex": "0x7F",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 98,
+     "cycle": 54975891,
+     "address": "0x800823A1",
+     "physical_address": "0x000823A1",
+     "type": "write",
+     "width": 1,
+     "instruction_pc": "0xBFC02B7C",
+     "instruction_word": "0xA08EFFFF",
+     "instruction": "sb t6, -0x1(a0)",
+     "new_value": 4,
+     "new_value_hex": "0x04",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 946,
+     "cycle": 535484519,
+     "address": "0xA00823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 4,
+     "instruction_pc": "0xBFC0D864",
+     "instruction_word": "0xAD200000",
+     "instruction": "sw zero, 0x0(t1)",
+     "new_value": 0,
+     "new_value_hex": "0x00000000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 1141,
+     "cycle": 645873154,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 4,
+     "instruction_pc": "0x8005F6A0",
+     "instruction_word": "0xAC400000",
+     "instruction": "sw zero, 0x0(v0)",
+     "new_value": 0,
+     "new_value_hex": "0x00000000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 1386,
+     "cycle": 784588395,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004FADC",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 5724,
+     "cycle": 3240418286,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8005B888",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 5725,
+     "cycle": 3241320598,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004FE44",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    },
+    {
+     "frame": 6536,
+     "cycle": 3700285397,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004A8B4",
+     "instruction_word": "0xA42223A0",
+     "instruction": "sh v0, 0x23a0(at)",
+     "new_value": 2,
+     "new_value_hex": "0x0002",
+     "stored_u16": 2,
+     "overlaps_request_word": true,
+     "resident_death_store": true,
+     "resident_pristine_certificate": {
+      "required": true,
+      "expected_instruction_word": "0xA42223A0",
+      "passed": true
+     },
+     "source_scope": "resident pristine executable"
+    },
+    {
+     "frame": 6656,
+     "cycle": 3768499578,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004FE44",
+     "instruction_word": "0xA42023A0",
+     "instruction": "sh zero, 0x23a0(at)",
+     "new_value": 0,
+     "new_value_hex": "0x0000",
+     "stored_u16": null,
+     "overlaps_request_word": true,
+     "resident_death_store": false,
+     "resident_pristine_certificate": {
+      "required": false,
+      "expected_instruction_word": null,
+      "passed": null
+     },
+     "source_scope": "runtime writer; overlay file identity deliberately not inferred"
+    }
+   ],
+   "decisions": [
+    {
+     "frame": 6655,
+     "cycle": 3767944153,
+     "request": 2,
+     "gp4c4": 0,
+     "consumer_proceeded": true,
+     "finalizer_observed": false,
+     "last_request_writer": {
+      "frame": 6536,
+      "cycle": 3700285397,
+      "address": "0x800823A0",
+      "physical_address": "0x000823A0",
+      "type": "write",
+      "width": 2,
+      "instruction_pc": "0x8004A8B4",
+      "instruction_word": "0xA42223A0",
+      "instruction": "sh v0, 0x23a0(at)",
+      "new_value": 2,
+      "new_value_hex": "0x0002",
+      "stored_u16": 2,
+      "overlaps_request_word": true,
+      "resident_death_store": true,
+      "resident_pristine_certificate": {
+       "required": true,
+       "expected_instruction_word": "0xA42223A0",
+       "passed": true
+      },
+      "source_scope": "resident pristine executable"
+     },
+     "request_writer_to_decision_frames": 119,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     }
+    }
+   ],
+   "request_values": [
+    2
+   ],
+   "natural_request2_skip_controls": [
+    {
+     "frame": 6655,
+     "cycle": 3767944153,
+     "request": 2,
+     "gp4c4": 0,
+     "consumer_proceeded": true,
+     "finalizer_observed": false,
+     "last_request_writer": {
+      "frame": 6536,
+      "cycle": 3700285397,
+      "address": "0x800823A0",
+      "physical_address": "0x000823A0",
+      "type": "write",
+      "width": 2,
+      "instruction_pc": "0x8004A8B4",
+      "instruction_word": "0xA42223A0",
+      "instruction": "sh v0, 0x23a0(at)",
+      "new_value": 2,
+      "new_value_hex": "0x0002",
+      "stored_u16": 2,
+      "overlaps_request_word": true,
+      "resident_death_store": true,
+      "resident_pristine_certificate": {
+       "required": true,
+       "expected_instruction_word": "0xA42223A0",
+       "passed": true
+      },
+      "source_scope": "resident pristine executable"
+     },
+     "request_writer_to_decision_frames": 119,
+     "self_certification": {
+      "pc": "0x8004FF28",
+      "instruction_word": "0x846323A0",
+      "pristine_instruction_word": "0x846323A0",
+      "passed": true
+     }
+    }
+   ],
+   "natural_request2_skip_control_observed": true,
+   "provenance_assertions": [
+    {
+     "id": "movie_identity_declared",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_hash_matches_central_pin",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_size_matches_central_pin",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_media_class_is_pristine",
+     "expected": "pristine_serial",
+     "actual": "pristine_serial",
+     "passed": true
+    },
+    {
+     "id": "movie_preservation_required",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_from_boot",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_path_empty",
+     "expected": "",
+     "actual": "",
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_size_zero",
+     "expected": 0,
+     "actual": 0,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_start_hash_absent",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_not_loaded_before_recording",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_not_state_only",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "movie_metadata_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "movie_top_level_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "playback_reproducible",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "playback_completed",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "exec_trace_not_truncated",
+     "expected": false,
+     "actual": false,
+     "passed": true
+    },
+    {
+     "id": "pristine_media_has_media",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "pristine_media_serial",
+     "expected": "SCUS-94288",
+     "actual": "SCUS-94288",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_title",
+     "expected": "Disney-Pixar A Bug's Life",
+     "actual": "Disney-Pixar A Bug's Life",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_cue_identity",
+     "expected": "Disney-Pixar A Bug's Life (v1.0).cue",
+     "actual": "Disney-Pixar A Bug's Life (v1.0).cue",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_cue_sha256",
+     "expected": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+     "actual": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_track_identity",
+     "expected": "Disney-Pixar A Bug's Life (v1.0).bin",
+     "actual": "Disney-Pixar A Bug's Life (v1.0).bin",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_track_sha256",
+     "expected": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+     "actual": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_executable_identity",
+     "expected": "SCUS_942.88",
+     "actual": "SCUS_942.88",
+     "passed": true
+    },
+    {
+     "id": "pristine_media_executable_sha256",
+     "expected": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "actual": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "passed": true
+    }
+   ],
+   "capture_assertions": [
+    {
+     "id": "trace_page_complete",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "request_write_page_complete",
+     "expected": true,
+     "actual": true,
+     "passed": true
+    },
+    {
+     "id": "all_retained_events_self_certified",
+     "expected": 0,
+     "actual": 0,
+     "passed": true
+    }
+   ],
+   "capture_accepted": true,
+   "exec_trace": {
+    "total": 328,
+    "returned": 328,
+    "truncated": false
+   },
+   "access_log": {
+    "total": 9,
+    "returned": 9,
+    "truncated": false
+   },
+   "receipt_self_validation_errors": []
+  }
+ },
+ "natural_request2_skip_controls": [
+  {
+   "movie": "movies/Phase4/Interpreter/F01_natural_death_FromBoot.movie.json",
+   "control": {
+    "frame": 6655,
+    "cycle": 3767944153,
+    "request": 2,
+    "gp4c4": 0,
+    "consumer_proceeded": true,
+    "finalizer_observed": false,
+    "last_request_writer": {
+     "frame": 6536,
+     "cycle": 3700285397,
+     "address": "0x800823A0",
+     "physical_address": "0x000823A0",
+     "type": "write",
+     "width": 2,
+     "instruction_pc": "0x8004A8B4",
+     "instruction_word": "0xA42223A0",
+     "instruction": "sh v0, 0x23a0(at)",
+     "new_value": 2,
+     "new_value_hex": "0x0002",
+     "stored_u16": 2,
+     "overlaps_request_word": true,
+     "resident_death_store": true,
+     "resident_pristine_certificate": {
+      "required": true,
+      "expected_instruction_word": "0xA42223A0",
+      "passed": true
+     },
+     "source_scope": "resident pristine executable"
+    },
+    "request_writer_to_decision_frames": 119,
+    "self_certification": {
+     "pc": "0x8004FF28",
+     "instruction_word": "0x846323A0",
+     "pristine_instruction_word": "0x846323A0",
+     "passed": true
+    }
+   }
+  }
+ ],
+ "element_outcome": "DONE",
+ "dependency": null,
+ "would_satisfy": null
+}

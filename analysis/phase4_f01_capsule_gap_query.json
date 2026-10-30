@@ -1,0 +1,622 @@
+{
+ "authority": {
+  "changes_campaign_registry": false,
+  "changes_census_or_blockers": false,
+  "promotes_dimension": false
+ },
+ "domains": {
+  "gap_80075930": [
+   "0x80075930",
+   "0x800769a8"
+  ],
+  "gap_8007B63C": [
+   "0x8007b63c",
+   "0x8007d5c0"
+  ],
+  "pool_lattice": {
+   "base": "0x8009fd80",
+   "slots": 64,
+   "stride": 132
+  },
+  "table": [
+   "0x80090748",
+   "0x8009084c"
+  ]
+ },
+ "inputs": {
+  "capsule_count": 50,
+  "capsule_index": "analysis/phase4_trace_capsule_set.json",
+  "capsule_index_sha256": "569b3ebf073b2384c04edecbc54ca52d4f7a35a0387a02e9540e7a936509cc53",
+  "census": "analysis/phase4_frontier_static_census.json",
+  "census_sha256": "2d72443bc659b7a56d95a1e37f2e80ffaf2cf031a1a49facb11648184646dee3",
+  "image_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+  "offline_reader": "~/Downloads/ABL-external-evidence/duckstation-tools/trace_capsule_query-v1-20260718.py",
+  "offline_reader_sha256": "b3898f928800efad5a949d1369aa65d786067505e0ed915eec8fdb99f0aa1dde"
+ },
+ "integrity": "per-capsule manifest sha256 checked against the central preservation index; the reader re-applies every RAM delta and verifies the per-frame sha256 of the full reconstructed image, so a corrupted capsule fails the sweep rather than passing quietly",
+ "meaning": {
+  "block_start_caveat": "runtime execution is probed at basic-block STARTS; linear overrun into a gap from a preceding block is excluded STATICALLY by the boundary-edge census (zero direct edges enter any gap, all seven successor kinds), so the two evidence classes close each other's blind spot",
+  "escalation": "the named missing domains justify a live isolated Interpreter-movie replay with accessLog watches and a positive control, per the standing runtime rules",
+  "named_missing_domains": [
+   "reads of any queried range (capsules record execution flow and RAM deltas, not loads)",
+   "writer PCs for observed table writes",
+   "jalr caller identity for the dispatched handlers"
+  ],
+  "table_result_is_not_exhaustiveness": "value-level corroboration of the proved writer domain over captured runs only; no writer PCs are observed and the writer-universe exhaustiveness gate is untouched",
+  "what_a_zero_is": "a BOUNDED NON-OBSERVATION over the captured universe -- 50 capsules, 50102 frames, plus boot-to-anchor content evidence -- never proof that the bytes are padding, unused, or semantically owned. The census gaps remain unevidenced and IMAGE_CENSUS_INCOMPLETE stands."
+ },
+ "question": "Do the retained trace capsules carry any evidence for the two largest unevidenced census gaps, and do the observed actor-table writes stay inside the machine-proved value domain?",
+ "results": {
+  "capsules": [
+   {
+    "anchor_frame": 160378,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "A09_seed_blocked_drop_LEVEL01",
+    "frames": 870,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/A09_seed_blocked_drop_LEVEL01.movie.json",
+    "movie_sha256": "803729cd6279facb5710b9c61173b431db9481ead83fe642da0f5cd7bfdc53f9",
+    "table_events": 3
+   },
+   {
+    "anchor_frame": 110486,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "A13__blue_seed_levels",
+    "frames": 3796,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/A13/blue_seed_levels.movie.json",
+    "movie_sha256": "79d0aa0d26bcd760316f6bf685bf781f571ec63806a09d78be84d36ab01b68e1",
+    "table_events": 33
+   },
+   {
+    "anchor_frame": 47454,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "A13__brown_seed_levels",
+    "frames": 2382,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/A13/brown_seed_levels.movie.json",
+    "movie_sha256": "a32c768a9f98b5ad2ce543c0053f07e917be8efb10778ea36e1531bcdf508bd9",
+    "table_events": 35
+   },
+   {
+    "anchor_frame": 121368,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "A13__green_seed_levels",
+    "frames": 2714,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/A13/green_seed_levels.movie.json",
+    "movie_sha256": "7675c13828907e1a52509e685dbeb6b1e4ecacce64c7decaca58222e36c05afe",
+    "table_events": 35
+   },
+   {
+    "anchor_frame": 133143,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "A13__purple_seed_levels",
+    "frames": 2316,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/A13/purple_seed_levels.movie.json",
+    "movie_sha256": "6dd25c666bdd8040a84e62b1ebeb9bbe33100f151f4534773c8043d79cc31176",
+    "table_events": 10
+   },
+   {
+    "anchor_frame": 262374,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "A13__yellow_seed_levels",
+    "frames": 3424,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/A13/yellow_seed_levels.movie.json",
+    "movie_sha256": "a694c08034893a52f1cbf924cab06f4fb57417cc5e4aff8f8377761e6272c087",
+    "table_events": 16
+   },
+   {
+    "anchor_frame": 23637,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B01_mushroom_chain",
+    "frames": 978,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B01_mushroom_chain.movie.json",
+    "movie_sha256": "c1542c669ff0ad7e5373de4f1570e953b9b6ddf61477c0ca62d6a74c690109be",
+    "table_events": 7
+   },
+   {
+    "anchor_frame": 27920,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B02_propeller_alone_and_seed",
+    "frames": 1078,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B02_propeller_alone_and_seed.movie.json",
+    "movie_sha256": "6f23391849085893cd3c6ed4c67a4f1231f31fde95f7e583d300c7e7adfc9e67",
+    "table_events": 8
+   },
+   {
+    "anchor_frame": 61416,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B03_dandelion_updraft",
+    "frames": 998,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B03_dandelion_updraft.movie.json",
+    "movie_sha256": "e0a278a5fe546d93b81a98f1c1c8f67d172e567fa03f02d6bfde9860ab524188",
+    "table_events": 2
+   },
+   {
+    "anchor_frame": 164199,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B04_cannon_dandelion_combo",
+    "frames": 488,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B04_cannon_dandelion_combo.movie.json",
+    "movie_sha256": "7028dbd49115a9fe181a2405fd7800af8f37a822adba06da256629ed1ac05d72",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 212300,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B07_health_partial_full",
+    "frames": 324,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B07_health_partial_full.movie.json",
+    "movie_sha256": "d587fec32c94dd618302cdcaf0f24f3c10007d1a4ccff321a50de4637eb59817",
+    "table_events": 5
+   },
+   {
+    "anchor_frame": 111089,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B08_bubble_repeated_hits",
+    "frames": 520,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B08_bubble_repeated_hits.movie.json",
+    "movie_sha256": "79ca8b68d3d807cbf4b72563cde28720890489d71ec3201e15b816af037ffdb3",
+    "table_events": 6
+   },
+   {
+    "anchor_frame": 114952,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B09_super_jump_comparison",
+    "frames": 211,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B09_super_jump_comparison.movie.json",
+    "movie_sha256": "aa234aef8c091f6633d1f1702f5ba4486d7c9d79d2ae2b49dcdf2c3015975c01",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 112997,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B11_blue_shooter_enemy",
+    "frames": 632,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B11_blue_shooter_enemy.movie.json",
+    "movie_sha256": "7ae34afff0afa72e1eb313e76f6346fe132754c57bd117d6e970495260f5eb69",
+    "table_events": 6
+   },
+   {
+    "anchor_frame": 264082,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "B13_mine_enemy",
+    "frames": 480,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/B13_mine_enemy.movie.json",
+    "movie_sha256": "da74dffb43a4a77b8683fa7a3baada20346a06bf4465d4d0369d3fdc83b15cf1",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 173978,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "C01_grain_pickup",
+    "frames": 645,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/C01_grain_pickup.movie.json",
+    "movie_sha256": "385bb743192200bad070919cd048a1a6315523057f104f1c5555e9d1e057d076",
+    "table_events": 3
+   },
+   {
+    "anchor_frame": 200029,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "C02_grain_49_to_50",
+    "frames": 438,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/C02_grain_49_to_50.movie.json",
+    "movie_sha256": "cff9196b7b8b9d9c8391a57c85907a0271b4ff563ec8475ea676fac82012e90c",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 265211,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "C16_gameover_continue",
+    "frames": 4007,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/C16_gameover_continue.movie.json",
+    "movie_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+    "table_events": 3
+   },
+   {
+    "anchor_frame": 117082,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "D08_fly_contact_kill",
+    "frames": 555,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/D08_fly_contact_kill.movie.json",
+    "movie_sha256": "fa735f27a99106f6bd457d44fd5f458b96e518da20220a0597cc66b0d1e6367f",
+    "table_events": 1
+   },
+   {
+    "anchor_frame": 141130,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "D09_cockroach_contact_kill",
+    "frames": 585,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/D09_cockroach_contact_kill.movie.json",
+    "movie_sha256": "9f4b295f2f92d6d08f1004011c239b0b229e011c58963289c9e1be5a6608faef",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 39755,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "D11_grub_contact_kill",
+    "frames": 409,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/D11_grub_contact_kill.movie.json",
+    "movie_sha256": "faa2fe0c98583338eae01381413a27c43ffc3735a7b4e2311f5e9f11e570febb",
+    "table_events": 4
+   },
+   {
+    "anchor_frame": 106857,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "D11_mite_contact_kill",
+    "frames": 402,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/D11_mite_contact_kill.movie.json",
+    "movie_sha256": "cc59d6c19e3df5b0a498242b0ac1aa99da7a6908dca89f70255810f8d1bccc8f",
+    "table_events": 6
+   },
+   {
+    "anchor_frame": 142045,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "D15_daddy_long_legs_contact_kill",
+    "frames": 417,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/D15_daddy_long_legs_contact_kill.movie.json",
+    "movie_sha256": "d2021b76cd30ad5bbfed92582d57726e858dbe0e77307e69aedd37753fb6bf6f",
+    "table_events": 2
+   },
+   {
+    "anchor_frame": 144492,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate01_closed_open",
+    "frames": 1011,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate01_closed_open.movie.json",
+    "movie_sha256": "66073a155c158cb0d89186658471b94de3c8916e0e964763d939cd5feef5c7b2",
+    "table_events": 13
+   },
+   {
+    "anchor_frame": 147808,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate02_closed_open",
+    "frames": 1048,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate02_closed_open.movie.json",
+    "movie_sha256": "7e9f482d8ffd80140c93f7a692e3c2b84168b8e3df3a2a6a1d3d1e9ad45f84b0",
+    "table_events": 1
+   },
+   {
+    "anchor_frame": 152947,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate03_closed_open",
+    "frames": 536,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate03_closed_open.movie.json",
+    "movie_sha256": "d5ea2607a36d1471a97fa75d680183e030ac2162d7605d12450b334d40d4d090",
+    "table_events": 4
+   },
+   {
+    "anchor_frame": 154668,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate04_closed_open",
+    "frames": 1909,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate04_closed_open.movie.json",
+    "movie_sha256": "cdb061c0abcee9d88f8b7e5158771a69d888682bd9f3a488c69bce12d69937c6",
+    "table_events": 15
+   },
+   {
+    "anchor_frame": 157143,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate05_open",
+    "frames": 205,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate05_open.movie.json",
+    "movie_sha256": "2ce1b5025d33790726e0175535475b2819acb9ec59051b2786d6169fba470f09",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 159678,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate06_open",
+    "frames": 188,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate06_open.movie.json",
+    "movie_sha256": "07bc2e7b1ac462bccb3c991c73981343dcdc3045b1215fab27d8bcf7eedc9f23",
+    "table_events": 1
+   },
+   {
+    "anchor_frame": 156223,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate07_closed_open",
+    "frames": 896,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate07_closed_open.movie.json",
+    "movie_sha256": "6fdd86765a5ab48ade07d940a164d8a56816e7e31952d6bf2c9b0741eeefeba3",
+    "table_events": 8
+   },
+   {
+    "anchor_frame": 156438,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate08_closed_open",
+    "frames": 724,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate08_closed_open.movie.json",
+    "movie_sha256": "fc7b24511bada427aebb4852db4060bfe89840c2d2a12e8a59257dbaf4ee58bc",
+    "table_events": 3
+   },
+   {
+    "anchor_frame": 160424,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL02_gate09_closed_open",
+    "frames": 3832,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL02_gate09_closed_open.movie.json",
+    "movie_sha256": "cf4a6b5bb6bf9180bc5fb3fdc94452ba767e9a46f9866bbbd5929cfe01c6bc88",
+    "table_events": 29
+   },
+   {
+    "anchor_frame": 119676,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL07_gate01_closed_open",
+    "frames": 634,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL07_gate01_closed_open.movie.json",
+    "movie_sha256": "214fed9c318d10e9b7b76c1aa91dbf6a35acbe67730d66973daa7022949a8318",
+    "table_events": 4
+   },
+   {
+    "anchor_frame": 122784,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL07_gate02_closed_open",
+    "frames": 523,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL07_gate02_closed_open.movie.json",
+    "movie_sha256": "bfae24fb84a91927b072caac417a46a42f2c1a658ec3cb97668da0a3ced237b8",
+    "table_events": 12
+   },
+   {
+    "anchor_frame": 125978,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E09__LEVEL07_gate03_closed_open",
+    "frames": 733,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E09/LEVEL07_gate03_closed_open.movie.json",
+    "movie_sha256": "9d60693569f954ecd23257175536261944ef8eef5768a61c1700f5653c1b4c49",
+    "table_events": 9
+   },
+   {
+    "anchor_frame": 196870,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E10__hazard_acorn_LEVEL11",
+    "frames": 661,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E10/hazard_acorn_LEVEL11.movie.json",
+    "movie_sha256": "473864a552e33b7ad419ca8efc18b9441ba1657accd45194eaac010a9b9b15e2",
+    "table_events": 4
+   },
+   {
+    "anchor_frame": 48466,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E10__hazard_falling_rocks_LEVEL02",
+    "frames": 456,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E10/hazard_falling_rocks_LEVEL02.movie.json",
+    "movie_sha256": "3f7c9414d83226ad3762cfb13c00660192923fade5a476c7af0933e0a091517c",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 85316,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E10__hazard_fallingspikes_LEVEL05",
+    "frames": 363,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E10/hazard_fallingspikes_LEVEL05.movie.json",
+    "movie_sha256": "3e321f3e8d8c061d9ad6f6c75fa93edec65c12a940a5bcd56d8449b1e08ec0ec",
+    "table_events": 3
+   },
+   {
+    "anchor_frame": 141810,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E10__hazard_goo_LEVEL07",
+    "frames": 359,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E10/hazard_goo_LEVEL07.movie.json",
+    "movie_sha256": "c05522e0656000da9e0b7b8226b7c533b354b79ef6bd247482c1ff71be308bf6",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 61273,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E10__hazard_ground_bird_LEVEL04",
+    "frames": 581,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+    "movie_sha256": "7b985f296d7a74311488bb05d9715fa95e82dab17025d737098d53364792dd98",
+    "table_events": 2
+   },
+   {
+    "anchor_frame": 43095,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E10__hazard_pit_LEVEL02",
+    "frames": 359,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E10/hazard_pit_LEVEL02.movie.json",
+    "movie_sha256": "55c2bb7729ad4460b13a26d91b70f835cd370336dd58aecee05339467c4fc1b8",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 86698,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E10__hazard_pit_LEVEL05",
+    "frames": 263,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E10/hazard_pit_LEVEL05.movie.json",
+    "movie_sha256": "c049d9b8075f458f87301134a3cb9998137ae0a82fa5d8d5516dd05b69c99e24",
+    "table_events": 14
+   },
+   {
+    "anchor_frame": 148831,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E10__hazard_pit_LEVEL07",
+    "frames": 343,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E10/hazard_pit_LEVEL07.movie.json",
+    "movie_sha256": "a06c81943700db5bd4e570165d54b098e54c67644cb116fde826bf75db8fee99",
+    "table_events": 2
+   },
+   {
+    "anchor_frame": 4235,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "E15_fmv_skip",
+    "frames": 542,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/E15_fmv_skip.movie.json",
+    "movie_sha256": "ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba",
+    "table_events": 0
+   },
+   {
+    "anchor_frame": 210229,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "b06_invincibility_hits",
+    "frames": 1098,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/b06_invincibility_hits.movie.json",
+    "movie_sha256": "80d8475d884348eb86bcf4c4eaa518f4f41aa439aea5100d36efbcf6d12f097a",
+    "table_events": 14
+   },
+   {
+    "anchor_frame": 150155,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "b12_homing_shooter_multi_target",
+    "frames": 1294,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/b12_homing_shooter_multi_target.movie.json",
+    "movie_sha256": "5276994b2b5eba7bac2882e7bddcfbbe5edd55fe9302cba9b7418bdca73f165f",
+    "table_events": 8
+   },
+   {
+    "anchor_frame": 171499,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "c13_GRAIN_HARVESTER",
+    "frames": 618,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/c13_GRAIN_HARVESTER.movie.json",
+    "movie_sha256": "849ad9a4092502dcbac280f3bf92f61612d72bdb3718b0f0ad84b4c4dfc005ac",
+    "table_events": 33
+   },
+   {
+    "anchor_frame": 33762,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "c14_telescope_full",
+    "frames": 653,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/c14_telescope_full.movie.json",
+    "movie_sha256": "a212f470f665de7ff69d0ace33b9e279ab8c47cad6ab163e2755e4de8b9219c2",
+    "table_events": 12
+   },
+   {
+    "anchor_frame": 15125,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "kick",
+    "frames": 554,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/kick.movie.json",
+    "movie_sha256": "65248409e250ff3f6230ad89f2aa0c12a7b2fa6b4b82bc62c954f3e61aac57c9",
+    "table_events": 10
+   },
+   {
+    "anchor_frame": 13482,
+    "anchor_gaps_identical_to_disc": true,
+    "capsule": "swing",
+    "frames": 1050,
+    "gap_exec_hits": {},
+    "gap_runtime_write_runs": 0,
+    "movie": "movies/Phase4/swing.movie.json",
+    "movie_sha256": "774e98961aecbd34332103418a5dea7d5044d82bad0c5d51b9d0304c7c73f780",
+    "table_events": 19
+   }
+  ],
+  "totals": {
+   "anchors_identical_to_disc": 50,
+   "frames": 50102,
+   "gap_exec_hits": 0,
+   "gap_runtime_write_runs": 0,
+   "table_events": 405,
+   "table_lattice": 887,
+   "table_null": 198,
+   "table_values": 1085,
+   "table_values_outside_domain": []
+  }
+ },
+ "schema": "abl-phase4-f01-capsule-gap-query/1",
+ "verdicts": {
+  "anchors_with_both_gaps_identical_to_disc": "50/50",
+  "gap_execution_observed": false,
+  "gap_runtime_writes_observed": false,
+  "table_values_outside_proved_domain": 0,
+  "writer_value_falsifier_fired": false
+ }
+}

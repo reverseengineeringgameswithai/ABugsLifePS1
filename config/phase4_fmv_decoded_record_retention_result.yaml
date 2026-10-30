@@ -1,0 +1,116 @@
+schema: abl-phase4-fmv-decoded-record-retention-result-source/1
+description: >
+  Preservation and interpretation contract for the iteration-104 decoded-record
+  retention control. The guarded 128-event successor retains the complete
+  native helper sequence without reaching capacity. This closes the observer
+  saturation fact only; E15 lifecycle and every roadmap dimension remain open.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-ITER104-E15-DECODED-RECORD-RETENTION-CONTROL
+missing_fact_id: E15/decoded-record-retention-lifecycle
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260727-172243-52225-r4
+before_ledger:
+  relative_path: iteration-1-escalations-before.json
+  sha256: 3fd0a8ba1373e3ca17f59d69ca5dae7a1312eaa44c59e5361a536c83c6f7dfb4
+  bytes: 351231
+retention_source:
+  path: analysis/phase4_fmv_decoded_record_control_result.json
+  sha256: 3604c7ba201cc0a8aa0a8e1067bb649e734b2effb6b2883bca31041f6d8f9697
+  prior_max_events: 64
+  prior_total_events: 90
+  prior_first_retained_index: 27
+  prior_last_retained_index: 90
+  prior_discarded_prefix_events: 26
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  movie_sha256: 39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf
+  state_sha256: e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592
+  settings_sha256: e030ef17c97fa30cd71d84a14ea15075a4fdb6b33e12bb439a3374066d9c08d1
+  serial: SCUS-94288
+debugger:
+  binary_sha256: a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1
+  adapter_sha256_at_execution: 3fceb29bcf0fea2b98de4666825a87478dcacb96901849c5cc5297be9b757c1d
+receipts:
+  - role: passive
+    precise: false
+    stage_stop: 649
+    observer_start: 649
+    replay_stop: 900
+    plan:
+      path: config/phase4_fmv_decoded_record_retention_passive_batch.yaml
+      sha256: f0321cb92047931d55868810a4dc559e323cb119e4de885263424fbc9b14aa1e
+    receipt:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-passive-prelude/receipt.json
+      sha256: 39890a769959d8b2876cd5d37f4e35e40915bee6ff9952bffaa4a26a628e52fe
+      bytes: 4506
+    batch_result:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-passive-prelude/batch-result.json
+      sha256: 91475f91296fdc47cd182833d70273c503862afbff62730b6d7398a940927cde
+      bytes: 184553
+    raw_results:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-passive-prelude/raw-results.json
+      sha256: 58f1491103cba6192399d570d9f05f30e817572d60a048dcc68946906defc012
+      bytes: 1216
+    cleanup:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-passive-prelude/owned-pid-cleanup.json
+      sha256: 414e42ce7fd6f794ab7a8fe40bba54ea729700b95631af29e39e534712913bba
+      bytes: 406
+    pagination:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-passive-prelude/pagination.json
+      sha256: d301a76f022e5df63326e746139d0822bb2cfe2b4b0c0a96567b8359b4d7c1d2
+      bytes: 202
+    command_events:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-passive-prelude/command-events.json
+      sha256: ef0821f3c0b08c3e7689dcfd8a2deab0abeb61a36cb5b7af670197c341eae0eb
+      bytes: 23914
+  - role: precise
+    precise: true
+    stage_stop: 650
+    observer_start: 650
+    replay_stop: 850
+    function_max_events: 128
+    plan:
+      path: config/phase4_fmv_decoded_record_retention_control_batch.yaml
+      sha256: 5bd046d978cb531a2d90e307b8abc1a6b31d5efaeef883b333d537198adfc6fc
+    receipt:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-control/receipt.json
+      sha256: 7a27c73b8141155ea24f8cf7e941d32ec4f1677440a38f8a06a67a15732ce187
+      bytes: 4626
+    batch_result:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-control/batch-result.json
+      sha256: bb7e5d0a0bc05471150606bd373e3863bd39a299158b82a73579604edba757d0
+      bytes: 334415
+    raw_results:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-control/raw-results.json
+      sha256: 3e6e2cb3b24dc0f56921bd012a8e0efc3467dafcf8eb0ad763c83cfcf9b70902
+      bytes: 1216
+    cleanup:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-control/owned-pid-cleanup.json
+      sha256: 4443bd6fdee4a48dacbf4b7b96c9a547d9c1583a5de8074ea23085d4ef9461a1
+      bytes: 406
+    pagination:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-control/pagination.json
+      sha256: 68783e2e4fb0fb09321b47771076be260c855a9b5967d6fdc8dcdd09eef2b20e
+      bytes: 203
+    command_events:
+      relative_path: iteration-1-receipts/live/e15-decoded-record-retention-control/command-events.json
+      sha256: 8c78e33baab41ad750b834e39750b554851becb38e3a59b9be4b85608fae3fb2
+      bytes: 23914
+claim_boundary:
+  classification: bounded_native_decoded_record_control
+  dimension_promoted: false
+  lifecycle_promoted: false
+  observer_retention_fact_closed: true
+  investigator_receipts_require_fresh_verifier: true
+  next_lane: static
+  next_method: >
+    Partition the remaining native pause, repeated-playback, unload/reload and
+    error outcomes by exact selector/owner before predeclaring another live
+    control. Do not replay this same decoded-record window.
+  not_claimed:
+    - native decoded-record failure frequency or malformed-media policy
+    - lifecycle behavior outside movie frames 650 through 850
+    - natural completion, pause, repeat, viewer return, unload or error ownership
+    - lifecycle or any other nine-dimension promotion
+    - verifier acceptance of either investigator receipt

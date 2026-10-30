@@ -1,0 +1,60 @@
+schema: abl-phase4-offline-contact-batch-source/1
+description: >
+  Declarative schema and selection contract for the first cross-movie Phase-4
+  contact/hazard index. The full decoded index is game-derived external
+  evidence; Git retains only the generator, this schema, its hash manifest,
+  bounded summaries, and falsifiable guards.
+selected_rows:
+  - E10_hazards
+  - D11_mites_grubs
+  - D08_flies
+  - D09_cockroaches
+  - D15_daddy_long_legs
+expected_unique_capsules: 13
+tracked_player_outcome_fields: [health, lives, grain]
+selection_snapshot:
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 26
+    offline_partial: 7
+    live_required: 6
+    no_capsule: 68
+  rows:
+    - {row_id: E10_hazards, queue_rank: 1, classification: offline_ready, completion_state: open}
+    - {row_id: D11_mites_grubs, queue_rank: 2, classification: offline_ready, completion_state: open}
+    - {row_id: D08_flies, queue_rank: 3, classification: offline_ready, completion_state: open}
+    - {row_id: D09_cockroaches, queue_rank: 4, classification: offline_ready, completion_state: open}
+    - {row_id: D15_daddy_long_legs, queue_rank: 5, classification: offline_ready, completion_state: open}
+external_index:
+  schema: abl-phase4-external-contact-index/1
+  top_level_fields:
+    - schema
+    - generated
+    - selected_rows
+    - reader
+    - queue_sha256
+    - capsule_index_sha256
+    - capsules
+  frame_record_fields:
+    - movie_frame
+    - emulator_frame
+    - cycle
+    - pc
+    - register_sha256
+    - domain_sha256
+    - changed
+    - range_correlations
+    - player
+    - actors
+    - contacts
+    - top_frame_blocks
+  domains: [registers, ram, vram, spu_ram, block_flow]
+tracked_summary:
+  schema: abl-phase4-offline-contact-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary intersection and hotspot correlation do not identify an
+    exact CPU writer, actor or hazard owner, DMA/GPU/SPU producer, or causal
+    behavioral control.

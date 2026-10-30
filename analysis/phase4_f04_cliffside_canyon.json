@@ -1,0 +1,77 @@
+{
+ "row": "F04_cliffside_canyon",
+ "status": "unresolved -> partial. First pass on this row (2026-08-03), a triple-synthesis pass -- the third application of the 'thin F-row stub -> synthesize from its paired row(s)' pattern proven twice already this session (F15/D20, F06/D17), extended here to a row with NO explicit 'See Dxx' pointer of its own but whose 'missing: Special flight and kill-zone mechanics' item maps cleanly onto TWO already-developed rows plus a third that already confirms campaign breadth for this exact scene. B03_dandelion_glide (already partial, explicitly scoped 'Cliffside Canyon (4) primary', deliberately closed as 'bounded-exhaustion, STOP') covers the 'special flight' half. D17_bird's own CLIFFSIDE_HAZARD_ENCOUNTER_2026-08-02 section (already partial) covers the 'kill-zone' half with a complete, live-traced dive-attack/contact-death/respawn cycle. D11_mites_grubs already confirms the mite enemy (id=37) spawns in this exact scene (scene_id=6) as part of an unrelated campaign-breadth census. No new live instrumentation was performed this pass -- this is citation, not re-derivation.",
+ "scope": "No new isolated-instance work this pass. All evidence cited from analysis/phase4_d17_bird.json (CLIFFSIDE_HAZARD_ENCOUNTER_2026-08-02), the B03_dandelion_glide registry row and its own artifacts (analysis/phase4_b03_dandelion_static.json, analysis/phase4_b03_dandelion_capsule.json, analysis/phase4_b03_dandelion_runtime.json), and D11_mites_grubs' own registry row.",
+
+ "SPECIAL_FLIGHT_SYNTHESIZED_FROM_B03_2026-08-03": {
+  "note": "B03_dandelion_glide is an already-partial row explicitly scoped to this exact stage ('stages: Cliffside Canyon (4) primary') and was deliberately closed as 'bounded-exhaustion, STOP' -- not because the mechanism is trivial, but because further breadth work was judged low-value without a general pointer-typing capability or a concrete MOD need. Cited here, not re-derived.",
+  "mechanism": "Dandelion handler 0x8005C818 (plant_behaviors[6], plant type 8). Contact with a mature dandelion plant (requires the walker's selected slot plus extra_state bit 1, and the plant's own mature bit 2) calls 0x80046CAC, which detaches any currently-carried actor, clears player state fields 0x800A655C/657A/65A3, writes vy=-4096 (a strong upward launch), sets mode 5, zeroes fields +82/+84, sets +88=3, and plays positional sound 15. Live-confirmed in the Interpreter runtime trace (movies/Phase4/Interpreter/B03.movie.json): the trigger fires once at movie frame 180, terminal vy peaks then settles to 350 by frame 261, with 212 latch-active updates and active VX/VZ steering (the player can steer during the glide, not a fixed trajectory), apex rise measured at exactly 30,720 units, ending in a native grounded state at frame 717 with the latch auto-clearing at frame 719.",
+  "propeller_updraft_interaction": "A separate mechanism in the same handler family: a quantized 3D radius-40 test centered at the plant's own position (Y offset -0x7400) writes latch 11 to the player's power-state field (0x800A659E) unless a harvester-active bit is set. A propeller object (a distinct actor) consumes latch 11 within its own inner vertical band via an X/Z radius-40 test, applying vy-=512 and clamping the descent at -3072 -- i.e. propellers provide a SLOWER, sustained updraft rather than the dandelion's own single strong launch impulse. Both share the same power-state field (11=dandelion latch, 12=a separate player-contact-response latch, both cleared by the propeller handler)."
+ },
+
+ "KILL_ZONE_SYNTHESIZED_FROM_D17_2026-08-03": {
+  "note": "D17_bird's own CLIFFSIDE_HAZARD_ENCOUNTER_2026-08-02 section is a complete, live-traced, operator-cross-verified account of this exact hazard, recorded specifically for this purpose (movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json/.sav, 527 frames). Cited here, not re-derived. See analysis/phase4_d17_bird.json for the full evidence trail.",
+  "identity": "scene_id=6 at frame 50, matching this row's own campaign-progression ordinal ('Level 4') exactly. The SAME actor (id=30) that fights as the Birdnest boss (D17/F06) is reused here as a pure environmental hazard -- max hp 101 in this fixture (vs. 50 as the fightable Birdnest boss), never damaged across the whole 527-frame recording. This is Canon confirmation that Cliffside's own 'bird hazard' and Birdnest's own boss are the SAME underlying actor/species, reused across two different stages with different stat tuning and different behavioral roles (fightable boss vs. pure environmental hazard).",
+  "mechanism": "The bird's own steering TARGET position tracks Flik's X/Z exactly at every sampled frame (only Y is offset, a fixed hover altitude above Flik) -- this is the AI's setpoint, not its physical position. The bird's actual PHYSICAL position dives toward Flik in a clean, steady-velocity stoop: closing from 30,037 units above Flik (frame 300) to a closest approach of 1,365 units (frame 327), a genuine physical dive-strike, not an invisible proximity trigger. Landing (Flik's grounded flag flipping 0x800A6582 0->257 and air-state 0x800A6580 flipping 2->0) occurs at frame 192-194 and is the precondition -- matching the operator's own framing exactly: 'an enemy that attacks Flik if he lands on the ground.'",
+  "damage_and_respawn_cycle": "The contact/death branch fires at frame 329 (2 frames after the dive's closest approach) via the SAME generic contact-damage handler used for ordinary enemy hits elsewhere in the game (0x8004A814, inside FUNC_8004A700 player_damage_handler), routed down its death path -- not a bespoke bird-attack mechanism. The stagger timer (0x800A6592) jumps to exactly -45 at the hit frame, then recovers at a steady 1 tick per 2 frames, reaching 0 at frame 419 (~90 frames later). A black-screen transition follows (frames 419-447, confirmed via screenshots), and at frame 448 the actual respawn commits: lives drop 9->8, Flik and the bird actor both teleport in lockstep to a new shared location, power-flags reset to 0, and the stagger timer resets to 35. Flik's true health (0x800A6594) stays constant at 4 throughout the ENTIRE sequence including the death -- this hazard kills via a direct lives decrement + forced reposition, NOT by depleting health to 0.",
+  "not_fully_closed_by_d17": "The exact branch/threshold inside FUNC_8004ABF4 (the well-evidenced but not fully decoded contact-caller) that actually fires the Cliffside contact; the undocumented power-flags bit 0x10 seen at the death branch (exhaustively checked against all known resident writers, not found among them -- very likely uncharted Cliffside-overlay code, not a resident writer being missed)."
+ },
+
+ "CAMPAIGN_BREADTH_SYNTHESIZED_FROM_D11_2026-08-03": {
+  "note": "D11_mites_grubs' own row already established, as a side effect of an unrelated campaign-breadth census, that this scene's own enemy roster includes at least one already-fully-solved species. Cited here for completeness, not re-derived.",
+  "result": "The mite (id=37, already fully identified and combat/respawn-traced in D11_mites_grubs) spawns in LEVEL01/06/08/10 -- LEVEL06 = Cliffside Canyon, scene_id=6, this row's own subject. This row's own pre-existing fixture_have already listed canyon_bug.sav/canyon_bug_aggro.sav, which D11's own investigation traced to this exact species (the 'canyon_bug' ad-hoc name was an artifact of an unrelated D13 tangent, corrected to 'mite' in D11's own pass)."
+ },
+
+  "ROUTE_CLOSURE_2026-08-04": {
+    "method": "A normal-speed debugger.resume replay of movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json on a fresh isolated repro profile in Interpreter mode. Movie playback was started from its embedded save anchor while paused; execTrace/accessLog instrumentation was armed only after the state load. No fast-forward or movie.advanceToFrame was used.",
+    "identity": {
+      "disc_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+      "movie_sha256": "dec4cb6196b35015494f806045495ff0beb1c65cadf3aa494be552475e7129c8",
+      "start_state_sha256": "1b12a0729a80a0c6e636ba01f0d28f674bd49298d618ab90f803ff7bbda112a6",
+      "movie_version": 4,
+      "movie_frames": 3907,
+      "armed_while_paused": true,
+      "reproducible": true,
+      "game_serial": "SCUS-94288",
+      "execution_mode": "Interpreter",
+      "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+      "duckstation_binary_sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9",
+      "config": "/tmp/dsrepro-f04-20260804",
+      "port": 23544
+    },
+    "observation": {
+      "initial_emulator_frame": 152778,
+      "scene6_load_movie_frame": 59,
+      "dandelion_handler_hits": 162,
+      "dandelion_handler_movie_span": [789, 1111],
+      "dandelion_launch_pc": "0x8005C848",
+      "dandelion_launch_movie_frame": 819,
+      "dandelion_launch_v0": -4096,
+      "dandelion_launch_hits": 1,
+      "latch11_pc": "0x8005C8BC",
+      "latch11_exec_and_access_writes": 19,
+      "latch11_first_movie_frame": 831,
+      "latch11_last_refresh_movie_frame": 867,
+      "grounded_clear_pc": "0x80048700",
+      "grounded_clear_movie_frame": 3215,
+      "latch11_residence_frames": 2384,
+      "first_scene6_exit_pc": "0x800503AC",
+      "first_scene6_exit_movie_frame": 3258,
+      "scene_exit_after_ground_frames": 43,
+      "bird_contact_path_pc_0x8004A814_hits": 0,
+      "life_decrements_after_launch": 0,
+      "all_exec_and_access_logs_untruncated": true
+    },
+    "static_asm": "The C11 reducer matched six exact sites in the pristine hand-written ASM: dandelion vy=-4096 store 0x8005C848, mode-5 store 0x8005C854, latch-11 store 0x8005C8BC, scene clear/restore stores 0x800503AC/0x800503E0, and contact stagger store 0x8004A814.",
+    "inference": "The successful critical path requires the dandelion flight state to persist until the intended terminal landing immediately before scene exit. The bird path is absent from that successful route.",
+    "causal_composition": "D17_Cliffside_Bird_Death independently supplies the complementary behavioral control: premature ground contact is followed by actor-30's physical dive, the 0x8004A814 contact/death path, direct life loss, and respawn. Together the two fixtures establish flight first and bird punishment on premature landing without claiming an unobserved single conditional branch linking them."
+  },
+  "BOUNDED_EXHAUSTION_2026-08-04": {
+    "status": "substantiated partial / bounded-exhausted",
+    "reason": "F04's named dandelion-flight, bird-hazard, encounter-order, and successful critical-path requirements now have static and runtime support. Further work is disproportionately expensive and limited to implementation breadth that cannot change the established row behavior.",
+    "route_analysis": "analysis/phase4_f04_route_analysis.json",
+    "c_analyzer": "tools/phase4_f04_route_analyzer.c",
+    "scenario": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml"
+  },
+  "STILL_OPEN": "Low-return residuals retained without blocking row closure: the exact sub-branch/threshold inside FUNC_8004ABF4; the Cliffside-overlay writer of power bit 0x10; B03's repository-wide pointer-alias and exhaustive instance breadth; exhaustive non-mite enemy census; source closure; cross-system audio/HUD; no dedicated Canon page. Reopen only for a named downstream consumer."
+}

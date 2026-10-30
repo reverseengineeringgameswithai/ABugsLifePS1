@@ -1,0 +1,28 @@
+{
+ "_comment": "Repair of the resident function census. Regenerate: tools/repair_function_coverage.c",
+ "rule": "jal target = function entry (new entry); j/branch target = same function (extend it). Iterated to a fixpoint because gap code calls other gap code.",
+ "will_not_do": "Claim bytes nothing branches into, or follow jr (jump tables, function pointers). Recovery is a floor.",
+ "text_bytes": 468992,
+ "listed_functions": 998,
+ "listed_covered_bytes": 422632,
+ "listed_covered_percent": 90.11,
+ "recovered_entries": 0,
+ "functions_extended": 6,
+ "bytes_recovered_by_extension": 12472,
+ "overlaps_clamped": 0,
+ "repaired_functions": 998,
+ "repaired_covered_bytes": 435104,
+ "repaired_covered_percent": 92.77,
+ "still_unclaimed_bytes": 33888,
+ "extended": [
+  {"addr": "0x80010000", "name": "per_object_mesh_draw_payload_emitter", "new_size": 12552, "added": 11828},
+  {"addr": "0x8001A1E0", "name": "decompress_lz_bitstream", "new_size": 1824, "added": 4},
+  {"addr": "0x80042E94", "name": "vab_bank_loader", "new_size": 268, "added": 8},
+  {"addr": "0x80068284", "name": "SsSetTickMode", "new_size": 364, "added": 180},
+  {"addr": "0x8006CE84", "name": "SpuSetCommonAttr", "new_size": 916, "added": 112},
+  {"addr": "0x80082108", "name": "?", "new_size": 488, "added": 340}
+ ],
+ "recovered": [
+
+ ]
+}

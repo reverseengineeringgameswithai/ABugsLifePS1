@@ -1,0 +1,309 @@
+{
+  "schema": "abl-phase4-fmv-resident-identity/1",
+  "generated": "2026-07-27",
+  "campaign_id": "fmv_playback",
+  "row_id": "E15_fmv",
+  "lane": "static",
+  "inputs": {
+    "resident_executable": {
+      "path": "REBUILD/files/SCUS_942.88",
+      "size": 471040,
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "identity_verified": true
+    },
+    "source_contract": {
+      "path": "config/phase4_fmv_resident_identity.yaml",
+      "sha256": "7e3185be60b3b63bd0142980f87054edfdcc74ab8d99b9baecd0b46f17e50aeb"
+    },
+    "exact_owner_source": {
+      "path": "asm/hand_written/8004fca0_scene_flow_dispatcher.s",
+      "sha256": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+      "manifest": "tools/repro_inputs.sha256",
+      "manifest_sha256": "d0afeaf584450a0253ecb60d3de37e6d966c981bbb2f07d6cd043439f095e231",
+      "pin_verified": true
+    }
+  },
+  "resident_owner": {
+    "id": "scene_flow_dispatcher",
+    "start": "0x8004FCA0",
+    "end": "0x800502C4",
+    "size": 1572,
+    "sha256": "02fc946a4c8757792f646d23e5cabdac5e0cf4755211b733cc75aa15b2f0592f",
+    "source_status": "exact_handwritten_asm",
+    "semantic_source": {
+      "path": "src_re/fmv_resident_code_identity.c",
+      "sha256": "434df8421b7fcf61753263f7783d7ff382c5278e8c9f5e5241c8206609a1d1cb",
+      "status": "documentation_grade_not_build_input"
+    }
+  },
+  "callsites": [
+    {
+      "id": "game_over_lose",
+      "owner": "scene_flow_dispatcher",
+      "identity_window": {
+        "start": "0x800500A4",
+        "end": "0x80050104",
+        "size": 96,
+        "sha256": "4aa82b8843e66504c47cee1f8c22dae99941580632a307a6e2f617abc53922aa"
+      },
+      "selector": {
+        "instruction": {
+          "pc": "0x800500D4",
+          "word": "0x2404002E",
+          "mnemonic": "addiu a0,zero,46"
+        },
+        "value": 46
+      },
+      "call": {
+        "instruction": {
+          "pc": "0x800500D8",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "target": "0x8003E7C0"
+      },
+      "delay": {
+        "instruction": {
+          "pc": "0x800500DC",
+          "word": "0x00002821",
+          "mnemonic": "addu a1,zero,zero"
+        },
+        "mode": 0
+      },
+      "return_pc": "0x800500E0",
+      "runtime_admission": [
+        "resident_executable_sha256",
+        "scene_flow_owner_sha256",
+        "identity_window_sha256",
+        "selector_word",
+        "loader_call_word",
+        "delay_slot_word"
+      ]
+    },
+    {
+      "id": "finale_lev15c",
+      "owner": "scene_flow_dispatcher",
+      "identity_window": {
+        "start": "0x80050258",
+        "end": "0x8005029C",
+        "size": 68,
+        "sha256": "f0636a7464d92d8fe63b63887ad1848be90d6f1701014f35a7a530ab9361602d"
+      },
+      "selector": {
+        "instruction": {
+          "pc": "0x80050280",
+          "word": "0x24040028",
+          "mnemonic": "addiu a0,zero,40"
+        },
+        "value": 40
+      },
+      "call": {
+        "instruction": {
+          "pc": "0x80050284",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "target": "0x8003E7C0"
+      },
+      "delay": {
+        "instruction": {
+          "pc": "0x80050288",
+          "word": "0x00002821",
+          "mnemonic": "addu a1,zero,zero"
+        },
+        "mode": 0
+      },
+      "return_pc": "0x8005028C",
+      "runtime_admission": [
+        "resident_executable_sha256",
+        "scene_flow_owner_sha256",
+        "identity_window_sha256",
+        "selector_word",
+        "loader_call_word",
+        "delay_slot_word"
+      ]
+    }
+  ],
+  "synthetic_control": {
+    "status": "executed_confirmed_staged_interface_unadmitted",
+    "anchor": {
+      "movie": "movies/Phase4/C16_gameover_continue.movie.json",
+      "movie_sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf",
+      "state": "movies/Phase4/C16_gameover_continue.movie.sav",
+      "state_sha256": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592"
+    },
+    "execution_bound": {
+      "clock": "movie_frame",
+      "start": 300,
+      "stop": 4006,
+      "stop_inclusive": false
+    },
+    "passive_prelude": {
+      "clock": "movie_frame",
+      "start": 299,
+      "stop": 4006,
+      "stop_inclusive": false
+    },
+    "only_difference": {
+      "kind": "code_write",
+      "address": 2147811540,
+      "original_word": 604241966,
+      "replacement_word": 604241960
+    },
+    "baseline": {
+      "caller": 2147811544,
+      "return_pc": 2147811552,
+      "selector": 46,
+      "mode": 0,
+      "selected_frame_limit": 281
+    },
+    "positive": {
+      "caller": 2147811544,
+      "return_pc": 2147811552,
+      "selector": 40,
+      "mode": 0,
+      "selected_frame_limit": 3162
+    },
+    "required_observations": [
+      "exact resident executable and owner-range identity before the edit",
+      "exact original word before replacement and exact replacement after it",
+      "loader entry a0/a1/ra and return to 0x800500E0 in both branches",
+      "selected-frame-limit writer, completion writer, common teardown and endpoint",
+      "identical anchor, movie span, observer plan and finite result limits"
+    ],
+    "rejection_predicates": [
+      "resident image, owner range, callsite word or loader target differs",
+      "replacement changes any word other than 0x800500D4",
+      "either branch truncates, loses its anchor, or lacks owned-PID cleanup",
+      "the precise window lacks a separately retained strictly wider passive prelude",
+      "guest execution and movie input do not advance together through the typed prelude"
+    ],
+    "method_support": {
+      "status": "staged_prelude_executed_and_banked",
+      "scenario_method": "scenario.loadStateAndRun",
+      "atomic_method": "scenario.runBatch",
+      "ordering": "after_state_load_and_movie_prelude_then_instrumentation_and_code_write",
+      "staged_prelude": {
+        "kind": "movie_advance",
+        "exact_keys": [
+          "kind",
+          "target_frame",
+          "max_frames"
+        ],
+        "require_loaded_movie": true,
+        "require_positive_target": true,
+        "require_actual_playback_counters": true,
+        "boot_recipe_rejected": true
+      },
+      "operation": {
+        "kind": "code_write",
+        "address": 2147811540,
+        "original_word": 604241966,
+        "replacement_word": 604241960
+      },
+      "fail_closed": {
+        "exact_keys": [
+          "kind",
+          "address",
+          "original_word",
+          "replacement_word"
+        ],
+        "require_aligned_cached_main_ram": true,
+        "require_original_word_match": true,
+        "require_replacement_readback": true,
+        "invalidate_code_cache": true,
+        "boot_recipe_rejected": true
+      },
+      "duckstation": {
+        "source_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+        "dispatcher_sha256": "3c08833a893dca2b4db57d51fc452568bb2c4d14c2595d4b6a15612af9833151",
+        "scenario_doc_sha256": "2b984ed2db98d9b14f228851c39a7dd4b2f2eee63badb4a20a98fd55f3f0fb45",
+        "release_binary_sha256": "a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1",
+        "source_dirty_state_hash": "9beb0a7c2df2a77202685fea702a0c443a2d005e"
+      },
+      "adapter": {
+        "path": "tools/phase4_duckstation_batch.py",
+        "sha256": "f0022c92ebcba87250379261af5fd720fabf4f4c1cfb9607979f0b81946f3d27",
+        "positive_negative_pair_required": true,
+        "typed_v2_perturbation_required": true,
+        "atomic_staged_prelude_supported": true,
+        "raw_counter_clock_derived": true
+      },
+      "predeclared_plans": {
+        "escalation_id": "P4-ITER99-E15-C16-STAGED-SELECTOR-LIFECYCLE-CONTROL",
+        "missing_fact_id": "E15/c16-staged-selector40-lifecycle",
+        "passive": "config/phase4_fmv_c16_staged_selector_passive_batch.yaml",
+        "precise": "config/phase4_fmv_c16_staged_selector_control_batch.yaml",
+        "execution_state": "executed"
+      },
+      "result_artifact": {
+        "path": "analysis/phase4_fmv_c16_selector_control_result.json",
+        "sha256": "831389a00758bf3fa75dfd6fdd46e2115b72cb5c04a517b716c1750c330bdcaf",
+        "falsifier_json_path": "falsifier.outcome",
+        "falsifier_expected": "survived"
+      },
+      "current_iteration_boundary": "The atomic staged-prelude method executed under P4-ITER99 with a closed passive receipt and a same-anchor precise selector-46/40 pair. The result artifact rederives the exact write, loader 46/40, limits 281/3162 and balanced teardown. Both receipts are intrinsically valid, but the trial-pinned P4-ITER83 conservative deny overlaps this C16 anchor, so zero receipts are method-trial admissible. The natural lifecycle and remaining continuations stay open.\n"
+    },
+    "admissibility": {
+      "static_specification_complete": true,
+      "scenario_method_supported": true,
+      "atomic_staged_prelude_supported": true,
+      "live_execution_predeclared": true,
+      "intrinsic_v2_receipts_valid": true,
+      "method_trial_receipts_admissible": false,
+      "reason": "The atomic staged-prelude method executed under P4-ITER99 with a closed passive receipt and a same-anchor precise selector-46/40 pair. The result artifact rederives the exact write, loader 46/40, limits 281/3162 and balanced teardown. Both receipts are intrinsically valid, but the trial-pinned P4-ITER83 conservative deny overlaps this C16 anchor, so zero receipts are method-trial admissible. The natural lifecycle and remaining continuations stay open.\n",
+      "next_autonomous_action": "Statically enumerate the remaining natural-completion, pause, repeat, viewer, level and error continuations before another live escalation."
+    },
+    "runtime_result": {
+      "path": "analysis/phase4_fmv_c16_selector_control_result.json",
+      "sha256": "831389a00758bf3fa75dfd6fdd46e2115b72cb5c04a517b716c1750c330bdcaf",
+      "classification": "confirmed_staged_selector_interface_control_unadmitted",
+      "falsifier": "survived",
+      "intrinsically_valid_live_receipts": 2,
+      "method_trial_admissible_live_receipts": 0,
+      "method_admission_status": "rejected_conservative_pre_v2_overlap",
+      "dimension_promoted": false
+    }
+  },
+  "claims": {
+    "confirmed": [
+      "both shared PCs have exact pristine resident-code identities and one owner",
+      "selector, mode, loader target and return ABI are byte-exact at both callsites",
+      "one single-word synthetic selector discriminator is statically bounded",
+      "intrinsically validated staged bytes preserve caller, mode and return while changing selector 46/limit 281 to selector 40/limit 3162"
+    ],
+    "not_claimed": [
+      "natural Menu ownership at either shared PC",
+      "natural finale reachability",
+      "selector-40 natural completion, pause, viewer, error or persistence behavior",
+      "any roadmap dimension promotion",
+      "either staged receipt as method-trial-admissible evidence"
+    ]
+  },
+  "summary": {
+    "resident_owner_ranges": 1,
+    "qualified_shared_pcs": 2,
+    "unclassified_shared_pcs": 0,
+    "synthetic_only_difference_words": 1,
+    "live_runs_authorized": 2,
+    "method_trial_live_receipts_admitted": 0,
+    "scenario_after_load_method_supported": true,
+    "atomic_staged_prelude_supported": true,
+    "dimension_promoted": false
+  },
+  "source_dependencies": {
+    "config/phase4_fmv_resident_identity.yaml": "7e3185be60b3b63bd0142980f87054edfdcc74ab8d99b9baecd0b46f17e50aeb",
+    "src_re/fmv_resident_code_identity.c": "434df8421b7fcf61753263f7783d7ff382c5278e8c9f5e5241c8206609a1d1cb",
+    "asm/hand_written/8004fca0_scene_flow_dispatcher.s": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+    "src/main/8003e7c0_fmv_bin_load.c": "7e946ef8c34371c056e305ebfbe1be20b499112d4c07da237b4c7461007c42f3",
+    "analysis/phase3_duckstation_rpc_manifest.json": "a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062",
+    "tools/phase3_duckstation_rpc_manifest.py": "b3d83ab106b5ece410aaf7ef3c9ee6bf317aa4cb9c9784daeac91c46620d7896",
+    "tools/phase4_duckstation_batch.py": "e94ec290a489484587b50fe72a472dbfa8578a7f17dcaf32f57af2efcf8bb375",
+    "config/phase4_fmv_c16_staged_selector_passive_batch.yaml": "90ac2377dc1a5cf04364bc55d21834155d86016844471b2d89aa8a5015607f30",
+    "config/phase4_fmv_c16_staged_selector_control_batch.yaml": "53d3ee8f6bda4aa2769fd02b8961e233268b160692bf4157d1810b962993bc03",
+    "config/phase4_live_escalations.yaml": "9a4c62ce8017102bb376f79fc3543a039e22bd68aaf3ad795d700f8c113bbda0",
+    "analysis/phase4_fmv_c16_selector_control_result.json": "831389a00758bf3fa75dfd6fdd46e2115b72cb5c04a517b716c1750c330bdcaf",
+    "tools/phase4_fmv_resident_identity.py": "db8f2c73b758b908113ef1504f97e76e7c1f937b3f2e0d8f69fc113a4a044448",
+    "tools/repro_inputs.sha256": "d0afeaf584450a0253ecb60d3de37e6d966c981bbb2f07d6cd043439f095e231"
+  }
+}

@@ -1,0 +1,96 @@
+row: A18
+mechanic: pause_shell
+status: partial_high_value_bounded_exhausted
+date: 2026-08-03
+
+identity:
+  game_serial: SCUS-94288
+  media: pristine_SCUS-94288
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  execution_mode: inherited_from_state_no_cpu_instrumentation
+
+fixture:
+  state: level01.sav
+  state_sha256: 5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2
+  anchor: state
+  movie: null
+  cold_boot: false
+
+runtime:
+  config_dir: /tmp/duckstation-debugger-phase4-a18-20260803
+  port: 24418
+  fork_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  binary_sha256: ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9
+  instrumentation: none
+  cleanup: launcher_confirmed_stopped
+
+steps:
+  freeze_control:
+    - load_state_pause_after_load_validate_disc
+    - clear_controller_pad_0
+    - capture_named_ram_domains
+    - advance_60_frames_gameplay
+    - capture_same_domains
+    - reload_anchor
+    - press_start_3_frames
+    - advance_to_60_paused_frames
+    - capture_same_domains
+    - advance_60_more_paused_frames
+    - capture_same_domains_and_frame_diff
+  resume:
+    - from_settled_pause_press_start
+    - sample_pause_and_input_latches_each_display_frame
+  exit:
+    - from_settled_pause_press_down
+    - press_cross_to_open_confirmation
+    - press_left_to_select_exit
+    - press_cross_to_commit
+    - sample_pause_flow_state_transition_timer_and_player_flags
+
+assertions:
+  admission:
+    pause_flag: 0x8008224E
+    admitted_value: 1
+  paused_same:
+    - actor_pool_0x8009FE04_40x0x84
+    - contact_pool_0x800B0D18_64x0x38
+    - plant_region_0x80090BF0_plus_0x600
+    - hud_region_0x800A7E00_plus_0x100
+    - camera_0x80095358_plus_0x60
+  presentation:
+    frame_diff_changed: true
+    settled_changed_pixels: 3568
+  cd_xa:
+    pause_lba_60: 187189
+    pause_lba_120: 187189
+  sound_service:
+    ss_vm_flush_cursor_60: 3
+    ss_vm_flush_cursor_120: 15
+  resume:
+    pause_value: 0
+  exit:
+    pause_value: 0
+    flow_state: 5
+    transition_timer_seed: 23
+    player_flag_set: 0x0004
+
+evidence:
+  static_tool: tools/phase4_a18_static.c
+  semantic_c: src_re/pause_shell_8004ecd4_8004f480.c
+  analysis: analysis/phase4_a18_pause.json
+  experiment: ObsidianVault/Experiments/EXP_2026-08-03_phase4_a18_pause.md
+  canon: ObsidianVault/Canon/Systems/SYS_pause_shell.md
+  transient_runtime_root: /tmp/phase4_a18_runtime
+
+closure:
+  result: partial_high_value_bounded_exhausted
+  disposition: move_on
+  cold_boot_required: false
+  new_interpreter_movie_needed: false
+  deferred_low_return:
+    - special_context_and_overlay_breadth
+    - exact_per_voice_spu_behavior_on_a_compatible_binary
+    - semantic_names_for_numeric_admission_gates
+    - every_authored_active_object_combination

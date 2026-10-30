@@ -1,0 +1,19 @@
+schema_version: 1
+description: >
+  Centrally pinned non-Git runtime inputs used only to reproduce retained Phase-3
+  live evidence. Bytes remain external and must never be committed.
+fixtures:
+  go_to_end_repro_memory_card:
+    path: ~/.cache/abl/abl_card_seed.mcd
+    size: 131072
+    sha256: 63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517
+    media_class: operator_owned_memory_card
+    consumers:
+      - tools/launch_repro_playback.sh
+      - tools/phase3_transition_reset.py
+    preservation_required: true
+    copyrighted_or_operator_owned: true
+    purpose: >
+      The from-boot go_to_end movies were recorded with two ABL saves on this
+      card. A blank card takes a different BIOS/menu path and desynchronizes the
+      movie even while movie.status.reproducible remains true.

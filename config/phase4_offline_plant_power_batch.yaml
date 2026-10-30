@@ -1,0 +1,38 @@
+schema: abl-phase4-offline-plant-power-batch-source/1
+description: >
+  Declarative selection and evidence contract for the top-ranked plant-cycle and
+  player-power offline cluster. The reconstructed per-frame index remains
+  external game-derived evidence; Git retains only hashes, bounded summaries,
+  the generator and falsifiable guards.
+selected_rows:
+  - A13_cycle_plant_output
+  - B06_invincibility
+  - B07_health_power
+  - B08_bubble_shield
+  - B09_super_jump
+expected_unique_capsules: 9
+selection_snapshot:
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 17
+    offline_partial: 16
+    live_required: 6
+    no_capsule: 68
+  rows:
+    - {row_id: A13_cycle_plant_output, queue_rank: 1, classification: offline_ready, completion_state: open}
+    - {row_id: B06_invincibility, queue_rank: 2, classification: offline_ready, completion_state: open}
+    - {row_id: B07_health_power, queue_rank: 3, classification: offline_ready, completion_state: open}
+    - {row_id: B08_bubble_shield, queue_rank: 4, classification: offline_ready, completion_state: open}
+    - {row_id: B09_super_jump, queue_rank: 5, classification: offline_ready, completion_state: open}
+external_index:
+  schema: abl-phase4-external-plant-power-index/1
+  domains: [registers, ram, vram, spu_ram, block_flow]
+tracked_summary:
+  schema: abl-phase4-offline-plant-power-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary state changes, range intersections and hotspots do not
+    identify an exact CPU writer, plant/power owner, GPU/SPU producer or causal
+    behavioral control.

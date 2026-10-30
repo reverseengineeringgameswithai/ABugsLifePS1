@@ -1,0 +1,69 @@
+{
+ "_comment": "Characterisation of the campaign's unenumerated PC. Regenerate: tools/phase4_e16_speculative_read_probe.py",
+ "generated": "2026-08-04",
+ "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.json",
+ "suspect_pc_in_log": "0x80010bf8",
+ "actual_access_instruction": "0x80010BF4  lhu $t9,0($t9)  (accessLog reports the PC after the access)",
+ "why_static_work_missed_it": {
+  "scope": "0x80010BF4 is in no function in analysis/functions_resident.txt; the emitter entry at 0x80010000 is 724 bytes and ends at 0x800102D4, which is the loop head 0x80010C88 jumps back to.",
+  "form": "the base register $s1 is not a lui constant, so the access is not region-formed and the affine census is structurally blind to it -- fixing the function list alone would NOT have surfaced it."
+ },
+ "total_events_all_pcs": 119,
+ "pc_histogram": {
+  "0x8003bf4c": 39,
+  "0x8003a3bc": 32,
+  "0x8003a3c0": 32,
+  "0x8003c924": 8,
+  "0x8003bc58": 3,
+  "0x8003c3c4": 2,
+  "0x8003c5f0": 2,
+  "0x80010bf8": 1
+ },
+ "control_fired": true,
+ "final_playback_index": 0,
+ "movie_frames": 3267,
+ "watches_laid": 3,
+ "pad_bytes": 0,
+ "ring_saturated": false,
+ "events_from_this_pc": 1,
+ "access_types": {
+  "read": 1
+ },
+ "writes_from_this_pc": 0,
+ "distinct_addresses": 1,
+ "address_stride_histogram": {},
+ "frames_touched": 1,
+ "per_window": {
+  "markers_0x30_0x57": {
+   "window": "0x8009B5A8..0x8009B648",
+   "distinct_addresses_inside": 0,
+   "distinct_addresses_below": 0,
+   "distinct_addresses_above": 0,
+   "inside": [],
+   "lowest_seen": "0x800A65C0",
+   "highest_seen": "0x800A65C0"
+  },
+  "markers_0x28_0x2F": {
+   "window": "0x8009C210..0x8009C230",
+   "distinct_addresses_inside": 0,
+   "distinct_addresses_below": 0,
+   "distinct_addresses_above": 0,
+   "inside": [],
+   "lowest_seen": "0x800A65C0",
+   "highest_seen": "0x800A65C0"
+  },
+  "markers_0x58_0x5F": {
+   "window": "0x800A65B0..0x800A65D0",
+   "distinct_addresses_inside": 1,
+   "distinct_addresses_below": 0,
+   "distinct_addresses_above": 0,
+   "inside": [
+    "0x800A65C0"
+   ],
+   "lowest_seen": "0x800A65C0",
+   "highest_seen": "0x800A65C0"
+  }
+ },
+ "addresses_inside_any_window": 1,
+ "verdict": "READS INSIDE THE WINDOW -- 1 distinct in-window addresses, read only (no writes). Consistent with the load being hoisted past its own bounds check at 0x80010BF8 and the value discarded, but that makes it a real reader of these bytes for enumeration purposes: add it to the enumerated set with this characterisation."
+}

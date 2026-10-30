@@ -1,0 +1,179 @@
+{
+ "_comment": "B09: which launch plants can co-exist with super jump. Derived from the fresh-level lane state, the token-upgrade law and the per-FILE type-0x3f census. Regenerate: tools/phase4_b09_launch_plant_reachability.py",
+ "generated": "2026-08-10",
+ "row_id": "B09_super_jump",
+ "row_item": "super-jump's interaction with plants/dandelion/cannon",
+ "chain": {
+  "fresh_level_lanes": "[0x11, 0, 0, 0, 0] -- memset 0x80046B68 then brown 0x11 at 0x80046BEC; no authored per-level brown value",
+  "token_upgrade": "n = (old+1) & 7 then store (n<<4)|n -- one tier per token (0x8005431C/0x80054364/0x800543E0/0x8005445C/0x800544F8)",
+  "brown_tiers": {
+   "1": "mushroom",
+   "2": "propeller",
+   "3": "dandelion",
+   "4": "cannon"
+  },
+  "super_jump": "blue tier 4",
+  "granularity": "per FILE -- directory != stage (LEVEL01/ holds stage 1 and stage 6); per-directory aggregation is wrong"
+ },
+ "stages": [
+  {
+   "file": "LEVEL01/LEVEL.DAT",
+   "blue_tokens": 3,
+   "orange_tokens": 3,
+   "max_blue_tier": 3,
+   "max_brown_tier": 4,
+   "super_jump_possible": false,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller",
+    "dandelion",
+    "cannon"
+   ]
+  },
+  {
+   "file": "LEVEL01/LEVEL1.DAT",
+   "blue_tokens": 4,
+   "orange_tokens": 0,
+   "max_blue_tier": 4,
+   "max_brown_tier": 1,
+   "super_jump_possible": true,
+   "brown_outputs_available": [
+    "mushroom"
+   ]
+  },
+  {
+   "file": "LEVEL02/LEVEL1.DAT",
+   "blue_tokens": 0,
+   "orange_tokens": 3,
+   "max_blue_tier": 0,
+   "max_brown_tier": 4,
+   "super_jump_possible": false,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller",
+    "dandelion",
+    "cannon"
+   ]
+  },
+  {
+   "file": "LEVEL04/LEVEL.DAT",
+   "blue_tokens": 1,
+   "orange_tokens": 0,
+   "max_blue_tier": 1,
+   "max_brown_tier": 1,
+   "super_jump_possible": false,
+   "brown_outputs_available": [
+    "mushroom"
+   ]
+  },
+  {
+   "file": "LEVEL05/LEVEL.DAT",
+   "blue_tokens": 4,
+   "orange_tokens": 1,
+   "max_blue_tier": 4,
+   "max_brown_tier": 2,
+   "super_jump_possible": true,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller"
+   ]
+  },
+  {
+   "file": "LEVEL05/LEVEL1.DAT",
+   "blue_tokens": 3,
+   "orange_tokens": 1,
+   "max_blue_tier": 3,
+   "max_brown_tier": 2,
+   "super_jump_possible": false,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller"
+   ]
+  },
+  {
+   "file": "LEVEL06/LEVEL.DAT",
+   "blue_tokens": 0,
+   "orange_tokens": 2,
+   "max_blue_tier": 0,
+   "max_brown_tier": 3,
+   "super_jump_possible": false,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller",
+    "dandelion"
+   ]
+  },
+  {
+   "file": "LEVEL06/LEVEL1.DAT",
+   "blue_tokens": 0,
+   "orange_tokens": 3,
+   "max_blue_tier": 0,
+   "max_brown_tier": 4,
+   "super_jump_possible": false,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller",
+    "dandelion",
+    "cannon"
+   ]
+  },
+  {
+   "file": "LEVEL07/LEVEL.DAT",
+   "blue_tokens": 3,
+   "orange_tokens": 3,
+   "max_blue_tier": 3,
+   "max_brown_tier": 4,
+   "super_jump_possible": false,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller",
+    "dandelion",
+    "cannon"
+   ]
+  },
+  {
+   "file": "LEVEL09/LEVEL.DAT",
+   "blue_tokens": 4,
+   "orange_tokens": 1,
+   "max_blue_tier": 4,
+   "max_brown_tier": 2,
+   "super_jump_possible": true,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller"
+   ]
+  },
+  {
+   "file": "LEVEL10/LEVEL.DAT",
+   "blue_tokens": 3,
+   "orange_tokens": 1,
+   "max_blue_tier": 3,
+   "max_brown_tier": 2,
+   "super_jump_possible": false,
+   "brown_outputs_available": [
+    "mushroom",
+    "propeller"
+   ]
+  }
+ ],
+ "stages_where_super_jump_is_possible": [
+  "LEVEL01/LEVEL1.DAT",
+  "LEVEL05/LEVEL.DAT",
+  "LEVEL09/LEVEL.DAT"
+ ],
+ "co_occurrence": {
+  "mushroom": [
+   "LEVEL01/LEVEL1.DAT",
+   "LEVEL05/LEVEL.DAT",
+   "LEVEL09/LEVEL.DAT"
+  ],
+  "propeller": [
+   "LEVEL05/LEVEL.DAT",
+   "LEVEL09/LEVEL.DAT"
+  ],
+  "dandelion": [],
+  "cannon": []
+ },
+ "verdict": "SUPER JUMP + dandelion / cannon: UNREACHABLE campaign-wide. mushroom / propeller remain reachable. Dandelion needs brown tier 3 and cannon tier 4, i.e. 2 and 3 orange tokens; no stage file carrying 4 blue tokens carries more than ONE orange token. This closes the row item as a REVIEWED NEGATIVE -- the Phase-4 exit gate admits \"a reviewed proof that it is not present in the pristine PS1 version\" -- rather than deferring it.",
+ "confirmation": "Measured on movies/Phase4/Interpreter/B08_SuperJump_EOL.movie.json (bird level = LEVEL01/LEVEL1.DAT, 4 blue / 0 orange): brown reads 1/1 for the whole level while blue climbs 0->4. Predicted max brown 1, measured 1."
+}

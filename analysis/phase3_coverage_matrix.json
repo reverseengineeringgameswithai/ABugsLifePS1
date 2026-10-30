@@ -1,0 +1,292 @@
+{
+ "_comment": "Phase-3 WP1-WP9 coverage computed from low-level evidence. No roadmap checkbox, finding-audit verdict, or representative sample can silently satisfy an exhaustive work package. Regenerate: python3 tools/phase3_coverage_matrix.py",
+ "generated": "2026-07-15",
+ "overall_met": false,
+ "work_packages": {
+  "WP1": {
+   "description": "Mechanic frontier",
+   "met": false,
+   "findings": [
+    "mechanic_ownership_frontier",
+    "spin_move_bounded_negative",
+    "bug_bar_thud_boss_bound"
+   ],
+   "unfinished_findings": [],
+   "mechanics": 107,
+   "address_bound": 106,
+   "required_facets": [
+    "functions",
+    "state",
+    "assets",
+    "overlay",
+    "readers",
+    "writers",
+    "lifecycle"
+   ],
+   "rows_with_open_frontier": {
+    "D08_flies": {
+     "missing_facets": [],
+     "declared_gaps": [
+      "state 0x800776D0 cited with no semantic-registry owner"
+     ]
+    }
+   }
+  },
+  "WP2": {
+   "description": "Semantic-state registry",
+   "met": true,
+   "findings": [
+    "mechanic_ownership_frontier",
+    "semantic_lifetime_complete",
+    "camera_is_a_derived_output",
+    "render_descriptors_are_loader_patched",
+    "sfx_dispatch_interface"
+   ],
+   "unfinished_findings": [],
+   "addressed_entries": 63,
+   "lifetime_entries": 63,
+   "required_scope_groups": [
+    "audio",
+    "camera",
+    "contact",
+    "enemy",
+    "frontend",
+    "global_scene",
+    "object",
+    "objective",
+    "plant",
+    "player",
+    "projectile",
+    "render",
+    "save"
+   ],
+   "missing_scope_groups": [],
+   "scope_manifest": "config/phase3_campaign_state_scope.yaml",
+   "scope_manifest_gaps": [],
+   "lifetime_missing": []
+  },
+  "WP3": {
+   "description": "Fixed-width native domains and consumers",
+   "met": true,
+   "findings": [
+    "player_and_contact_integrators",
+    "render_descriptors_are_loader_patched",
+    "sfx_dispatch_interface",
+    "indirect_dispatch_map"
+   ],
+   "unfinished_findings": [],
+   "domain_census": "analysis/phase3_native_domains.json",
+   "domain_rows": 134,
+   "domain_gaps": [],
+   "independent_universe": {
+    "campaign_state_domains": 36,
+    "typed_record_field_domains": 62,
+    "decoded_dispatch_selector_domains": 36,
+    "total": 134
+   },
+   "decoded_dispatch_tables": [
+    "berry_throw",
+    "mover_vm_opcodes",
+    "plant_behaviors"
+   ]
+  },
+  "WP4": {
+   "description": "Indirect dispatch, callbacks, overlays",
+   "met": true,
+   "findings": [
+    "indirect_dispatch_map",
+    "jr_dispatch_frontier_resolved",
+    "jalr_callback_slots",
+    "actor_event_callback_field",
+    "overlay_boundary_map"
+   ],
+   "unfinished_findings": [],
+   "indirect_sites_total": 234,
+   "jr_sites": 95,
+   "jalr_sites": 139,
+   "jr_classified": true,
+   "jr_unresolved_reasons_complete": true,
+   "jalr_classified": true,
+   "jalr_unresolved_reasons_complete": true,
+   "dynamic_program_selection_bound": true,
+   "overlays": 20,
+   "overlay_rows": 20
+  },
+  "WP5": {
+   "description": "Typed records without hidden unknowns",
+   "met": true,
+   "findings": [
+    "player_and_contact_integrators",
+    "actor_motion_and_y_disproof",
+    "camera_is_a_derived_output",
+    "render_descriptors_are_loader_patched",
+    "sfx_dispatch_interface"
+   ],
+   "unfinished_findings": [],
+   "required_record_families": [
+    "object",
+    "contact",
+    "enemy",
+    "projectile",
+    "seed",
+    "plant",
+    "player",
+    "camera",
+    "render",
+    "audio",
+    "objective",
+    "frontend"
+   ],
+   "represented_by": {
+    "object": [
+     "actor_record"
+    ],
+    "contact": [
+     "contact_record"
+    ],
+    "enemy": [
+     "actor_record"
+    ],
+    "projectile": [
+     "contact_record"
+    ],
+    "seed": [
+     "actor_record"
+    ],
+    "plant": [
+     "plant_slot"
+    ],
+    "player": [
+     "player_block"
+    ],
+    "camera": [
+     "camera_record"
+    ],
+    "render": [
+     "render_descriptor_pointer_entry"
+    ],
+    "audio": [
+     "sfx_voice_slot"
+    ],
+    "objective": [
+     "player_block"
+    ],
+    "frontend": [
+     "frontend_progress_record"
+    ]
+   },
+   "missing_record_families": [],
+   "record_unknowns_visible": true,
+   "declared_records": [
+    "actor_record",
+    "camera_record",
+    "contact_record",
+    "frontend_progress_record",
+    "plant_slot",
+    "player_block",
+    "render_descriptor_pointer_entry",
+    "sfx_voice_slot"
+   ],
+   "known_bytes": 181,
+   "total_bytes": 524
+  },
+  "WP6": {
+   "description": "Allocation capacity, reuse, transfer, retirement, reset",
+   "met": true,
+   "findings": [
+    "contact_pool_ttl_retirement",
+    "transition_ownership_and_load_gap",
+    "semantic_lifetime_complete",
+    "bug_bar_thud_boss_bound"
+   ],
+   "unfinished_findings": [],
+   "required_model_fields": [
+    "capacity",
+    "slot_reuse",
+    "ownership_transfer",
+    "retirement",
+    "reset"
+   ],
+   "ownership_model_gaps": {},
+   "contact_capacity": 64,
+   "contact_peak_alloc_occupied": 4,
+   "anchors_used": 42,
+   "transition_laws": [
+    "exit_reclaims_world",
+    "load_gap_frames",
+    "session_owned_everywhere"
+   ]
+  },
+  "WP7": {
+   "description": "Scene, overlay, and resource load/unload graph",
+   "met": true,
+   "findings": [
+    "scene_asset_load_graph",
+    "overlay_boundary_map"
+   ],
+   "unfinished_findings": [],
+   "table_scenes": 15,
+   "overlays": 20,
+   "gaps": [],
+   "exceptional_routes_complete": true,
+   "unload_graph_complete": true
+  },
+  "WP8": {
+   "description": "Machine-readable xrefs and asset provenance",
+   "met": true,
+   "findings": [
+    "static_reader_writer_xrefs",
+    "scene_asset_load_graph",
+    "mechanic_ownership_frontier",
+    "overlay_boundary_map"
+   ],
+   "unfinished_findings": [],
+   "reader_writer_report_complete": true,
+   "entries_without_static_xrefs": [
+    "original.scene_asset_table",
+    "original.gfx_loadscreen_table",
+    "original.level_bin_table",
+    "original.berry_throw_jump_table",
+    "original.mover_vm_opcode_table",
+    "original.plant_behavior_jump_table",
+    "original.berry_throw",
+    "original.spawn_coord_table",
+    "original.mover_vm_program_bank",
+    "original.plant_type_table",
+    "original.overlay_streaming_table",
+    "mod_private.blackberry_spawn_fast_flag",
+    "mod_private.blackberry_equipped",
+    "mod_private.blackberry_effective_index",
+    "original.fmv_boot_buffer_end",
+    "original.skeleton_bone_transform_bank",
+    "original.pass3_decor_visibility_bitmap",
+    "original.plant_slots",
+    "original.object_pointer_list",
+    "original.chunk31_actor_records",
+    "original.worm_anchor",
+    "original.player_anim_frame_pair",
+    "original.shared_mesh_vertex_buffer"
+   ],
+   "caller_callee_report": "analysis/phase3_call_graph.json",
+   "caller_callee_report_complete": true,
+   "asset_provenance_report": "analysis/phase3_asset_provenance.json",
+   "asset_provenance_report_complete": true
+  },
+  "WP9": {
+   "description": "Contradictions reconciled and superseded",
+   "met": true,
+   "findings": [
+    "spin_move_bounded_negative",
+    "bug_bar_thud_boss_bound"
+   ],
+   "unfinished_findings": [],
+   "machine_statuses_reconciled": true,
+   "contradiction_ledger": "analysis/phase3_contradictions.json",
+   "contradiction_gaps": [],
+   "documentation_contradictions": [],
+   "a07_status": "external_lead",
+   "f09_status": "partial",
+   "d18_status": "partial"
+  }
+ }
+}

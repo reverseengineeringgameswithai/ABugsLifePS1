@@ -1,0 +1,4839 @@
+{
+  "_comment": "Mandatory target-domain/exclusion pilot, run only after freeze 2e67ac74498c96989a858e08918983aaf5bdf73a. It is a strict NO-GO and stops before any gate/index/caller-domain/full-pass mutation.",
+  "c_controls": {
+    "all_12_classifications_agree": true,
+    "all_landed_exact_target_sets_agree": true,
+    "independent_algorithm": "forward finite-set fixpoint from image bytes",
+    "independent_binary_sha256": "2ba9231450ffdebb4ffbcceee098c756862cf4967022c8d38a63b3a1c3bcc1b7",
+    "independent_compile_flags": "-std=c11 -O2 -Wall -Wextra -Werror",
+    "independent_selftest": {
+      "passed": 8,
+      "tool": "phase4_target_exclusion_crosscheck",
+      "total": 8,
+      "verdict": true
+    },
+    "independent_source": "tools/phase4_target_exclusion_crosscheck.c",
+    "instruction_decoding_in_python": false,
+    "primary_algorithm": "backward reaching-definition proof from image bytes",
+    "primary_binary_sha256": "c74a3dff32c460b0de04e1861b31db489ef20bd0ce0ae288e6fc55d8b339f027",
+    "primary_compile_flags": "-std=c11 -O2 -Wall -Wextra -Werror",
+    "primary_query_form": "IMAGE:START:END:REG:PC",
+    "primary_selftest": {
+      "passed": 9,
+      "stdout_sha256": "b3d709fab4ed7c9159177e497d1ca903fcfcb795c04bfb898311cabe5234245d",
+      "tool": "phase4_target_exclusion_prover",
+      "total": 9,
+      "verdict": true
+    },
+    "primary_source": "tools/phase4_target_exclusion_prover.c"
+  },
+  "capsule_and_preserved_session_crosscheck": {
+    "all_observed_targets_within_proved_sets": null,
+    "capsule_site_time_target_records": 0,
+    "capsule_universe": 50,
+    "clean_for_go": false,
+    "live_or_instrumented_replay_performed": false,
+    "locally_decided_but_not_gate_grade_site_ids": [
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6"
+    ],
+    "preserved_entry_observations": [
+      {
+        "entry": "0x80018cc4",
+        "hits_capped_at_60": 0,
+        "level": 1,
+        "recorded_callers": [],
+        "save": "level01.sav",
+        "semantics": "entry-PC watch; does not identify the indirect source site"
+      },
+      {
+        "entry": "0x80018f4c",
+        "hits_capped_at_60": 60,
+        "level": 1,
+        "recorded_callers": [],
+        "save": "level01.sav",
+        "semantics": "entry-PC watch; does not identify the indirect source site"
+      },
+      {
+        "entry": "0x80019244",
+        "hits_capped_at_60": 60,
+        "level": 1,
+        "recorded_callers": [],
+        "save": "level01.sav",
+        "semantics": "entry-PC watch; does not identify the indirect source site"
+      },
+      {
+        "entry": "0x8001961c",
+        "hits_capped_at_60": 60,
+        "level": 1,
+        "recorded_callers": [],
+        "save": "level01.sav",
+        "semantics": "entry-PC watch; does not identify the indirect source site"
+      }
+    ],
+    "preserved_u3_sha256": "c477efcac04199d6d40032dbf3654c216cd5e0cd061b1180e2ffaa8b5ec26282",
+    "preserved_u3_source_semantics": "execTrace watches candidate entry PCs and captures registers at the entry; it does not retain the originating jr PC/target tuple",
+    "preserved_u3_source_sha256": "57e7eddb0a91092fb31e6768ac6aa96394c6e450071ace8fd09144ac37653dd4",
+    "reason": "neither frame-boundary capsules nor the preserved entry-PC watches contain a source-site/indirect-target tuple; zero tuples cannot satisfy the mandatory clean cross-check",
+    "site_time_observations": [],
+    "soundness_violation": false,
+    "status": "UNAVAILABLE_SITE_TIME_INDIRECT_TARGETS"
+  },
+  "configuration": {
+    "caller_domain_rerun": false,
+    "full_union_stage2_pass_run": false,
+    "gate_artifact_mutated": false,
+    "instrumented_run_performed": false,
+    "pilot_budget_scope_only": true,
+    "pilot_frozen_before_outcomes": true,
+    "runtime_replay_performed": false,
+    "static_index_mutated": false
+  },
+  "decision": {
+    "cascade_started": false,
+    "full_pass_authorized": false,
+    "go_conditions": {
+      "at_least_four_landed": false,
+      "at_least_one_whole_table_value_domain_invariant": false,
+      "runtime_crosscheck_clean": false,
+      "soundness_violation_absent": true
+    },
+    "landed_count": 0,
+    "local_domain_basis_count": 4,
+    "queued_successor": null,
+    "reason": "four entry-scoped exact domains remain below gate grade because the owner has 175 unresolved interior-entry sources; the frozen pilot also has no table-backed site and retained evidence cannot supply the mandatory site-time runtime cross-check",
+    "soundness_halt": false,
+    "verdict": "NO-GO",
+    "whole_table_invariant_landed_count": 0
+  },
+  "gate_grade_entry_scope": {
+    "accepted_gate_helper_unknown_count": 156,
+    "accepted_gate_helper_unknown_site_ids": [
+      "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+      "MEMORY:0x800b970c:jr:v0",
+      "MEMORY:0x800bb8bc:jr:v0",
+      "MEMORY:0x800bd6ac:jr:t2",
+      "MEMORY:0x800bd6bc:jr:t2",
+      "MEMORY:0x800bd6cc:jr:t2",
+      "MEMORY:0x800bd714:jr:t2",
+      "MEMORY:0x800bd724:jr:t2",
+      "MEMORY:0x800bd7ec:jr:t2",
+      "MEMORY:0x800bd7fc:jr:t2",
+      "MEMORY:0x800bd80c:jr:t2",
+      "MEMORY:0x800bd82c:jalr:t2",
+      "SCUS_942_88:0x80019c28:jr:at",
+      "SCUS_942_88:0x80019c84:jr:at",
+      "SCUS_942_88:0x80019ce0:jr:at",
+      "SCUS_942_88:0x8004d1e8:jalr:v0",
+      "SCUS_942_88:0x80060c78:jalr:t2",
+      "SCUS_942_88:0x80061ae4:jalr:v0",
+      "SCUS_942_88:0x80061b24:jalr:v0",
+      "SCUS_942_88:0x80061fac:jalr:v1",
+      "SCUS_942_88:0x80061fcc:jalr:v0",
+      "SCUS_942_88:0x80061ff4:jalr:v1",
+      "SCUS_942_88:0x80062010:jalr:v0",
+      "SCUS_942_88:0x8006202c:jalr:v0",
+      "SCUS_942_88:0x80062074:jalr:t0",
+      "SCUS_942_88:0x800620c0:jalr:v1",
+      "SCUS_942_88:0x800620e8:jalr:v1",
+      "SCUS_942_88:0x80062104:jalr:v0",
+      "SCUS_942_88:0x80062120:jalr:v0",
+      "SCUS_942_88:0x80062284:jalr:v0",
+      "SCUS_942_88:0x800622a0:jalr:v0",
+      "SCUS_942_88:0x80062308:jalr:v0",
+      "SCUS_942_88:0x80062324:jalr:v0",
+      "SCUS_942_88:0x80062364:jalr:v0",
+      "SCUS_942_88:0x800623ac:jalr:v0",
+      "SCUS_942_88:0x80062418:jalr:v0",
+      "SCUS_942_88:0x80062480:jalr:v0",
+      "SCUS_942_88:0x800624ac:jalr:v0",
+      "SCUS_942_88:0x80062534:jalr:v0",
+      "SCUS_942_88:0x800625a0:jalr:v0",
+      "SCUS_942_88:0x800625dc:jalr:v0",
+      "SCUS_942_88:0x80062630:jalr:v0",
+      "SCUS_942_88:0x8006264c:jalr:v0",
+      "SCUS_942_88:0x8006274c:jalr:v0",
+      "SCUS_942_88:0x80062774:jalr:v1",
+      "SCUS_942_88:0x800627fc:jalr:v0",
+      "SCUS_942_88:0x80062898:jalr:v0",
+      "SCUS_942_88:0x80062904:jalr:v0",
+      "SCUS_942_88:0x80062968:jalr:v0",
+      "SCUS_942_88:0x80062a28:jalr:v0",
+      "SCUS_942_88:0x80062a88:jalr:v0",
+      "SCUS_942_88:0x80062b44:jalr:v0",
+      "SCUS_942_88:0x80062b60:jalr:v0",
+      "SCUS_942_88:0x80062bc0:jalr:v0",
+      "SCUS_942_88:0x80062bdc:jalr:v0",
+      "SCUS_942_88:0x80062c30:jalr:v0",
+      "SCUS_942_88:0x80062c54:jalr:v0",
+      "SCUS_942_88:0x80062cb4:jalr:v0",
+      "SCUS_942_88:0x80062cfc:jalr:v0",
+      "SCUS_942_88:0x80062dc4:jalr:v0",
+      "SCUS_942_88:0x80062e18:jalr:v0",
+      "SCUS_942_88:0x80062f0c:jalr:v0",
+      "SCUS_942_88:0x80062f88:jalr:v0",
+      "SCUS_942_88:0x80063198:jalr:v1",
+      "SCUS_942_88:0x800631c4:jalr:v1",
+      "SCUS_942_88:0x80063330:jalr:v0",
+      "SCUS_942_88:0x800633c0:jalr:v0",
+      "SCUS_942_88:0x800647c4:jalr:s3",
+      "SCUS_942_88:0x80064aec:jalr:v0",
+      "SCUS_942_88:0x80064c4c:jalr:v0",
+      "SCUS_942_88:0x800653ec:jalr:v0",
+      "SCUS_942_88:0x8006541c:jalr:v0",
+      "SCUS_942_88:0x8006544c:jalr:v0",
+      "SCUS_942_88:0x80065480:jalr:v0",
+      "SCUS_942_88:0x800654b0:jalr:v0",
+      "SCUS_942_88:0x800654e0:jalr:v0",
+      "SCUS_942_88:0x80065510:jalr:v0",
+      "SCUS_942_88:0x80065728:jalr:v0",
+      "SCUS_942_88:0x80065b94:jalr:v0",
+      "SCUS_942_88:0x80065d0c:jalr:v0",
+      "SCUS_942_88:0x8006645c:jalr:v0",
+      "SCUS_942_88:0x80066818:jr:t1",
+      "SCUS_942_88:0x8006682c:jr:t1",
+      "SCUS_942_88:0x8006684c:jalr:t2",
+      "SCUS_942_88:0x800668c4:jalr:t2",
+      "SCUS_942_88:0x80067814:jalr:v0",
+      "SCUS_942_88:0x80067878:jalr:v0",
+      "SCUS_942_88:0x800678d0:jalr:v0",
+      "SCUS_942_88:0x80067f34:jalr:v0",
+      "SCUS_942_88:0x80067f48:jalr:v0",
+      "SCUS_942_88:0x80067f98:jalr:v0",
+      "SCUS_942_88:0x800697dc:jalr:v0",
+      "SCUS_942_88:0x80069808:jalr:v0",
+      "SCUS_942_88:0x8006bd0c:jalr:v0",
+      "SCUS_942_88:0x8006e5d8:jalr:v0",
+      "SCUS_942_88:0x8006e60c:jalr:v0",
+      "SCUS_942_88:0x8006e860:jalr:v0",
+      "SCUS_942_88:0x8006e894:jalr:v0",
+      "SCUS_942_88:0x8006ecd0:jalr:v0",
+      "SCUS_942_88:0x8006ed04:jalr:v0",
+      "SCUS_942_88:0x8006f61c:jalr:v0",
+      "SCUS_942_88:0x8006f650:jalr:v0",
+      "SCUS_942_88:0x800702d0:jalr:v1",
+      "SCUS_942_88:0x800703d0:jalr:v0",
+      "SCUS_942_88:0x80070aa0:jalr:a0",
+      "SCUS_942_88:0x800712dc:jalr:v1",
+      "SCUS_942_88:0x80071388:jalr:v1",
+      "SCUS_942_88:0x8007199c:jalr:v0",
+      "SCUS_942_88:0x80071a74:jalr:v0",
+      "SCUS_942_88:0x80071b6c:jalr:v0",
+      "SCUS_942_88:0x80071c40:jalr:v0",
+      "SCUS_942_88:0x80071ce0:jalr:v0",
+      "SCUS_942_88:0x80071d20:jalr:v0",
+      "SCUS_942_88:0x80071d68:jalr:v0",
+      "SCUS_942_88:0x80071e20:jalr:v0",
+      "SCUS_942_88:0x80071e78:jalr:v0",
+      "SCUS_942_88:0x80071f30:jalr:v0",
+      "SCUS_942_88:0x80072054:jalr:v0",
+      "SCUS_942_88:0x8007216c:jalr:v0",
+      "SCUS_942_88:0x80072188:jalr:v0",
+      "SCUS_942_88:0x800722dc:jalr:v1",
+      "SCUS_942_88:0x80072340:jalr:v0",
+      "SCUS_942_88:0x80072354:jalr:v0",
+      "SCUS_942_88:0x80072568:jalr:v0",
+      "SCUS_942_88:0x800725d4:jalr:v0",
+      "SCUS_942_88:0x8007260c:jalr:v0",
+      "SCUS_942_88:0x80072e04:jalr:v0",
+      "SCUS_942_88:0x80072ef0:jalr:v0",
+      "SCUS_942_88:0x80073448:jalr:v0",
+      "SCUS_942_88:0x800735a4:jalr:v0",
+      "SCUS_942_88:0x800736a8:jalr:v0",
+      "SCUS_942_88:0x80073784:jalr:v0",
+      "SCUS_942_88:0x800737fc:jalr:v0",
+      "SCUS_942_88:0x80073810:jalr:v0",
+      "SCUS_942_88:0x8007383c:jalr:v0",
+      "SCUS_942_88:0x80073854:jalr:v0",
+      "SCUS_942_88:0x800738bc:jalr:v0",
+      "SCUS_942_88:0x800738d4:jalr:v0",
+      "SCUS_942_88:0x80073980:jalr:v0",
+      "SCUS_942_88:0x800739f0:jalr:v0",
+      "SCUS_942_88:0x80073a74:jalr:v0",
+      "SCUS_942_88:0x80073a8c:jalr:v0",
+      "SCUS_942_88:0x80073b54:jalr:v0",
+      "SCUS_942_88:0x80073bb0:jalr:v0",
+      "SCUS_942_88:0x80073bdc:jalr:v0",
+      "SCUS_942_88:0x80073bf0:jalr:v0",
+      "SCUS_942_88:0x80073c10:jalr:v0",
+      "SCUS_942_88:0x80073ca0:jalr:v0",
+      "SCUS_942_88:0x80073d48:jalr:v0",
+      "SCUS_942_88:0x80074488:jalr:v0",
+      "SCUS_942_88:0x80074508:jalr:v0",
+      "SCUS_942_88:0x8007458c:jalr:v0",
+      "SCUS_942_88:0x80074678:jalr:v0",
+      "SCUS_942_88:0x800746e0:jalr:v0",
+      "SCUS_942_88:0x80074760:jalr:v0",
+      "SCUS_942_88:0x80074828:jalr:v0"
+    ],
+    "concrete_external_interior_entries": [],
+    "corrected_union_additional_count": 19,
+    "corrected_union_additional_site_ids": [
+      "MEMORY:0x800bd878:jr:ra",
+      "SCUS_942_88:0x80011128:jr:ra",
+      "SCUS_942_88:0x800163d8:jr:ra",
+      "SCUS_942_88:0x800172d4:jr:ra",
+      "SCUS_942_88:0x8001897c:jr:ra",
+      "SCUS_942_88:0x80018f44:jr:ra",
+      "SCUS_942_88:0x8001923c:jr:ra",
+      "SCUS_942_88:0x80019614:jr:ra",
+      "SCUS_942_88:0x80019b3c:jr:ra",
+      "SCUS_942_88:0x80019f34:jr:ra",
+      "SCUS_942_88:0x8001a0dc:jr:ra",
+      "SCUS_942_88:0x8001a1d4:jr:ra",
+      "SCUS_942_88:0x80060144:jr:ra",
+      "SCUS_942_88:0x800602a8:jr:ra",
+      "SCUS_942_88:0x800602d8:jr:ra",
+      "SCUS_942_88:0x80060478:jr:ra",
+      "SCUS_942_88:0x80060cc4:jr:ra",
+      "SCUS_942_88:0x8006689c:jr:ra",
+      "SCUS_942_88:0x8006690c:jr:ra"
+    ],
+    "definition": "accepted proved-or-unknown external-entry gate, extended by the corrected convention-free 179-site work-order universe",
+    "entry_scope_closed": false,
+    "locally_exact_internal_site_count": 4,
+    "locally_exact_internal_site_ids": [
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6"
+    ],
+    "owner": {
+      "end": "0x80018cc4",
+      "entry": "0x80018850",
+      "image": "SCUS_942_88",
+      "name": "gte_quad_near_clip_dispatch",
+      "predecessor_name_matched": true,
+      "range_type": "code"
+    },
+    "set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+    "unresolved_entry_source_count": 175,
+    "unresolved_entry_source_ids": [
+      "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+      "MEMORY:0x800b970c:jr:v0",
+      "MEMORY:0x800bb8bc:jr:v0",
+      "MEMORY:0x800bd6ac:jr:t2",
+      "MEMORY:0x800bd6bc:jr:t2",
+      "MEMORY:0x800bd6cc:jr:t2",
+      "MEMORY:0x800bd714:jr:t2",
+      "MEMORY:0x800bd724:jr:t2",
+      "MEMORY:0x800bd7ec:jr:t2",
+      "MEMORY:0x800bd7fc:jr:t2",
+      "MEMORY:0x800bd80c:jr:t2",
+      "MEMORY:0x800bd82c:jalr:t2",
+      "MEMORY:0x800bd878:jr:ra",
+      "SCUS_942_88:0x80011128:jr:ra",
+      "SCUS_942_88:0x800163d8:jr:ra",
+      "SCUS_942_88:0x800172d4:jr:ra",
+      "SCUS_942_88:0x8001897c:jr:ra",
+      "SCUS_942_88:0x80018f44:jr:ra",
+      "SCUS_942_88:0x8001923c:jr:ra",
+      "SCUS_942_88:0x80019614:jr:ra",
+      "SCUS_942_88:0x80019b3c:jr:ra",
+      "SCUS_942_88:0x80019c28:jr:at",
+      "SCUS_942_88:0x80019c84:jr:at",
+      "SCUS_942_88:0x80019ce0:jr:at",
+      "SCUS_942_88:0x80019f34:jr:ra",
+      "SCUS_942_88:0x8001a0dc:jr:ra",
+      "SCUS_942_88:0x8001a1d4:jr:ra",
+      "SCUS_942_88:0x8004d1e8:jalr:v0",
+      "SCUS_942_88:0x80060144:jr:ra",
+      "SCUS_942_88:0x800602a8:jr:ra",
+      "SCUS_942_88:0x800602d8:jr:ra",
+      "SCUS_942_88:0x80060478:jr:ra",
+      "SCUS_942_88:0x80060c78:jalr:t2",
+      "SCUS_942_88:0x80060cc4:jr:ra",
+      "SCUS_942_88:0x80061ae4:jalr:v0",
+      "SCUS_942_88:0x80061b24:jalr:v0",
+      "SCUS_942_88:0x80061fac:jalr:v1",
+      "SCUS_942_88:0x80061fcc:jalr:v0",
+      "SCUS_942_88:0x80061ff4:jalr:v1",
+      "SCUS_942_88:0x80062010:jalr:v0",
+      "SCUS_942_88:0x8006202c:jalr:v0",
+      "SCUS_942_88:0x80062074:jalr:t0",
+      "SCUS_942_88:0x800620c0:jalr:v1",
+      "SCUS_942_88:0x800620e8:jalr:v1",
+      "SCUS_942_88:0x80062104:jalr:v0",
+      "SCUS_942_88:0x80062120:jalr:v0",
+      "SCUS_942_88:0x80062284:jalr:v0",
+      "SCUS_942_88:0x800622a0:jalr:v0",
+      "SCUS_942_88:0x80062308:jalr:v0",
+      "SCUS_942_88:0x80062324:jalr:v0",
+      "SCUS_942_88:0x80062364:jalr:v0",
+      "SCUS_942_88:0x800623ac:jalr:v0",
+      "SCUS_942_88:0x80062418:jalr:v0",
+      "SCUS_942_88:0x80062480:jalr:v0",
+      "SCUS_942_88:0x800624ac:jalr:v0",
+      "SCUS_942_88:0x80062534:jalr:v0",
+      "SCUS_942_88:0x800625a0:jalr:v0",
+      "SCUS_942_88:0x800625dc:jalr:v0",
+      "SCUS_942_88:0x80062630:jalr:v0",
+      "SCUS_942_88:0x8006264c:jalr:v0",
+      "SCUS_942_88:0x8006274c:jalr:v0",
+      "SCUS_942_88:0x80062774:jalr:v1",
+      "SCUS_942_88:0x800627fc:jalr:v0",
+      "SCUS_942_88:0x80062898:jalr:v0",
+      "SCUS_942_88:0x80062904:jalr:v0",
+      "SCUS_942_88:0x80062968:jalr:v0",
+      "SCUS_942_88:0x80062a28:jalr:v0",
+      "SCUS_942_88:0x80062a88:jalr:v0",
+      "SCUS_942_88:0x80062b44:jalr:v0",
+      "SCUS_942_88:0x80062b60:jalr:v0",
+      "SCUS_942_88:0x80062bc0:jalr:v0",
+      "SCUS_942_88:0x80062bdc:jalr:v0",
+      "SCUS_942_88:0x80062c30:jalr:v0",
+      "SCUS_942_88:0x80062c54:jalr:v0",
+      "SCUS_942_88:0x80062cb4:jalr:v0",
+      "SCUS_942_88:0x80062cfc:jalr:v0",
+      "SCUS_942_88:0x80062dc4:jalr:v0",
+      "SCUS_942_88:0x80062e18:jalr:v0",
+      "SCUS_942_88:0x80062f0c:jalr:v0",
+      "SCUS_942_88:0x80062f88:jalr:v0",
+      "SCUS_942_88:0x80063198:jalr:v1",
+      "SCUS_942_88:0x800631c4:jalr:v1",
+      "SCUS_942_88:0x80063330:jalr:v0",
+      "SCUS_942_88:0x800633c0:jalr:v0",
+      "SCUS_942_88:0x800647c4:jalr:s3",
+      "SCUS_942_88:0x80064aec:jalr:v0",
+      "SCUS_942_88:0x80064c4c:jalr:v0",
+      "SCUS_942_88:0x800653ec:jalr:v0",
+      "SCUS_942_88:0x8006541c:jalr:v0",
+      "SCUS_942_88:0x8006544c:jalr:v0",
+      "SCUS_942_88:0x80065480:jalr:v0",
+      "SCUS_942_88:0x800654b0:jalr:v0",
+      "SCUS_942_88:0x800654e0:jalr:v0",
+      "SCUS_942_88:0x80065510:jalr:v0",
+      "SCUS_942_88:0x80065728:jalr:v0",
+      "SCUS_942_88:0x80065b94:jalr:v0",
+      "SCUS_942_88:0x80065d0c:jalr:v0",
+      "SCUS_942_88:0x8006645c:jalr:v0",
+      "SCUS_942_88:0x80066818:jr:t1",
+      "SCUS_942_88:0x8006682c:jr:t1",
+      "SCUS_942_88:0x8006684c:jalr:t2",
+      "SCUS_942_88:0x8006689c:jr:ra",
+      "SCUS_942_88:0x800668c4:jalr:t2",
+      "SCUS_942_88:0x8006690c:jr:ra",
+      "SCUS_942_88:0x80067814:jalr:v0",
+      "SCUS_942_88:0x80067878:jalr:v0",
+      "SCUS_942_88:0x800678d0:jalr:v0",
+      "SCUS_942_88:0x80067f34:jalr:v0",
+      "SCUS_942_88:0x80067f48:jalr:v0",
+      "SCUS_942_88:0x80067f98:jalr:v0",
+      "SCUS_942_88:0x800697dc:jalr:v0",
+      "SCUS_942_88:0x80069808:jalr:v0",
+      "SCUS_942_88:0x8006bd0c:jalr:v0",
+      "SCUS_942_88:0x8006e5d8:jalr:v0",
+      "SCUS_942_88:0x8006e60c:jalr:v0",
+      "SCUS_942_88:0x8006e860:jalr:v0",
+      "SCUS_942_88:0x8006e894:jalr:v0",
+      "SCUS_942_88:0x8006ecd0:jalr:v0",
+      "SCUS_942_88:0x8006ed04:jalr:v0",
+      "SCUS_942_88:0x8006f61c:jalr:v0",
+      "SCUS_942_88:0x8006f650:jalr:v0",
+      "SCUS_942_88:0x800702d0:jalr:v1",
+      "SCUS_942_88:0x800703d0:jalr:v0",
+      "SCUS_942_88:0x80070aa0:jalr:a0",
+      "SCUS_942_88:0x800712dc:jalr:v1",
+      "SCUS_942_88:0x80071388:jalr:v1",
+      "SCUS_942_88:0x8007199c:jalr:v0",
+      "SCUS_942_88:0x80071a74:jalr:v0",
+      "SCUS_942_88:0x80071b6c:jalr:v0",
+      "SCUS_942_88:0x80071c40:jalr:v0",
+      "SCUS_942_88:0x80071ce0:jalr:v0",
+      "SCUS_942_88:0x80071d20:jalr:v0",
+      "SCUS_942_88:0x80071d68:jalr:v0",
+      "SCUS_942_88:0x80071e20:jalr:v0",
+      "SCUS_942_88:0x80071e78:jalr:v0",
+      "SCUS_942_88:0x80071f30:jalr:v0",
+      "SCUS_942_88:0x80072054:jalr:v0",
+      "SCUS_942_88:0x8007216c:jalr:v0",
+      "SCUS_942_88:0x80072188:jalr:v0",
+      "SCUS_942_88:0x800722dc:jalr:v1",
+      "SCUS_942_88:0x80072340:jalr:v0",
+      "SCUS_942_88:0x80072354:jalr:v0",
+      "SCUS_942_88:0x80072568:jalr:v0",
+      "SCUS_942_88:0x800725d4:jalr:v0",
+      "SCUS_942_88:0x8007260c:jalr:v0",
+      "SCUS_942_88:0x80072e04:jalr:v0",
+      "SCUS_942_88:0x80072ef0:jalr:v0",
+      "SCUS_942_88:0x80073448:jalr:v0",
+      "SCUS_942_88:0x800735a4:jalr:v0",
+      "SCUS_942_88:0x800736a8:jalr:v0",
+      "SCUS_942_88:0x80073784:jalr:v0",
+      "SCUS_942_88:0x800737fc:jalr:v0",
+      "SCUS_942_88:0x80073810:jalr:v0",
+      "SCUS_942_88:0x8007383c:jalr:v0",
+      "SCUS_942_88:0x80073854:jalr:v0",
+      "SCUS_942_88:0x800738bc:jalr:v0",
+      "SCUS_942_88:0x800738d4:jalr:v0",
+      "SCUS_942_88:0x80073980:jalr:v0",
+      "SCUS_942_88:0x800739f0:jalr:v0",
+      "SCUS_942_88:0x80073a74:jalr:v0",
+      "SCUS_942_88:0x80073a8c:jalr:v0",
+      "SCUS_942_88:0x80073b54:jalr:v0",
+      "SCUS_942_88:0x80073bb0:jalr:v0",
+      "SCUS_942_88:0x80073bdc:jalr:v0",
+      "SCUS_942_88:0x80073bf0:jalr:v0",
+      "SCUS_942_88:0x80073c10:jalr:v0",
+      "SCUS_942_88:0x80073ca0:jalr:v0",
+      "SCUS_942_88:0x80073d48:jalr:v0",
+      "SCUS_942_88:0x80074488:jalr:v0",
+      "SCUS_942_88:0x80074508:jalr:v0",
+      "SCUS_942_88:0x8007458c:jalr:v0",
+      "SCUS_942_88:0x80074678:jalr:v0",
+      "SCUS_942_88:0x800746e0:jalr:v0",
+      "SCUS_942_88:0x80074760:jalr:v0",
+      "SCUS_942_88:0x80074828:jalr:v0"
+    ],
+    "unresolved_external_source_count": 174,
+    "unresolved_external_source_ids": [
+      "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+      "MEMORY:0x800b970c:jr:v0",
+      "MEMORY:0x800bb8bc:jr:v0",
+      "MEMORY:0x800bd6ac:jr:t2",
+      "MEMORY:0x800bd6bc:jr:t2",
+      "MEMORY:0x800bd6cc:jr:t2",
+      "MEMORY:0x800bd714:jr:t2",
+      "MEMORY:0x800bd724:jr:t2",
+      "MEMORY:0x800bd7ec:jr:t2",
+      "MEMORY:0x800bd7fc:jr:t2",
+      "MEMORY:0x800bd80c:jr:t2",
+      "MEMORY:0x800bd82c:jalr:t2",
+      "MEMORY:0x800bd878:jr:ra",
+      "SCUS_942_88:0x80011128:jr:ra",
+      "SCUS_942_88:0x800163d8:jr:ra",
+      "SCUS_942_88:0x800172d4:jr:ra",
+      "SCUS_942_88:0x80018f44:jr:ra",
+      "SCUS_942_88:0x8001923c:jr:ra",
+      "SCUS_942_88:0x80019614:jr:ra",
+      "SCUS_942_88:0x80019b3c:jr:ra",
+      "SCUS_942_88:0x80019c28:jr:at",
+      "SCUS_942_88:0x80019c84:jr:at",
+      "SCUS_942_88:0x80019ce0:jr:at",
+      "SCUS_942_88:0x80019f34:jr:ra",
+      "SCUS_942_88:0x8001a0dc:jr:ra",
+      "SCUS_942_88:0x8001a1d4:jr:ra",
+      "SCUS_942_88:0x8004d1e8:jalr:v0",
+      "SCUS_942_88:0x80060144:jr:ra",
+      "SCUS_942_88:0x800602a8:jr:ra",
+      "SCUS_942_88:0x800602d8:jr:ra",
+      "SCUS_942_88:0x80060478:jr:ra",
+      "SCUS_942_88:0x80060c78:jalr:t2",
+      "SCUS_942_88:0x80060cc4:jr:ra",
+      "SCUS_942_88:0x80061ae4:jalr:v0",
+      "SCUS_942_88:0x80061b24:jalr:v0",
+      "SCUS_942_88:0x80061fac:jalr:v1",
+      "SCUS_942_88:0x80061fcc:jalr:v0",
+      "SCUS_942_88:0x80061ff4:jalr:v1",
+      "SCUS_942_88:0x80062010:jalr:v0",
+      "SCUS_942_88:0x8006202c:jalr:v0",
+      "SCUS_942_88:0x80062074:jalr:t0",
+      "SCUS_942_88:0x800620c0:jalr:v1",
+      "SCUS_942_88:0x800620e8:jalr:v1",
+      "SCUS_942_88:0x80062104:jalr:v0",
+      "SCUS_942_88:0x80062120:jalr:v0",
+      "SCUS_942_88:0x80062284:jalr:v0",
+      "SCUS_942_88:0x800622a0:jalr:v0",
+      "SCUS_942_88:0x80062308:jalr:v0",
+      "SCUS_942_88:0x80062324:jalr:v0",
+      "SCUS_942_88:0x80062364:jalr:v0",
+      "SCUS_942_88:0x800623ac:jalr:v0",
+      "SCUS_942_88:0x80062418:jalr:v0",
+      "SCUS_942_88:0x80062480:jalr:v0",
+      "SCUS_942_88:0x800624ac:jalr:v0",
+      "SCUS_942_88:0x80062534:jalr:v0",
+      "SCUS_942_88:0x800625a0:jalr:v0",
+      "SCUS_942_88:0x800625dc:jalr:v0",
+      "SCUS_942_88:0x80062630:jalr:v0",
+      "SCUS_942_88:0x8006264c:jalr:v0",
+      "SCUS_942_88:0x8006274c:jalr:v0",
+      "SCUS_942_88:0x80062774:jalr:v1",
+      "SCUS_942_88:0x800627fc:jalr:v0",
+      "SCUS_942_88:0x80062898:jalr:v0",
+      "SCUS_942_88:0x80062904:jalr:v0",
+      "SCUS_942_88:0x80062968:jalr:v0",
+      "SCUS_942_88:0x80062a28:jalr:v0",
+      "SCUS_942_88:0x80062a88:jalr:v0",
+      "SCUS_942_88:0x80062b44:jalr:v0",
+      "SCUS_942_88:0x80062b60:jalr:v0",
+      "SCUS_942_88:0x80062bc0:jalr:v0",
+      "SCUS_942_88:0x80062bdc:jalr:v0",
+      "SCUS_942_88:0x80062c30:jalr:v0",
+      "SCUS_942_88:0x80062c54:jalr:v0",
+      "SCUS_942_88:0x80062cb4:jalr:v0",
+      "SCUS_942_88:0x80062cfc:jalr:v0",
+      "SCUS_942_88:0x80062dc4:jalr:v0",
+      "SCUS_942_88:0x80062e18:jalr:v0",
+      "SCUS_942_88:0x80062f0c:jalr:v0",
+      "SCUS_942_88:0x80062f88:jalr:v0",
+      "SCUS_942_88:0x80063198:jalr:v1",
+      "SCUS_942_88:0x800631c4:jalr:v1",
+      "SCUS_942_88:0x80063330:jalr:v0",
+      "SCUS_942_88:0x800633c0:jalr:v0",
+      "SCUS_942_88:0x800647c4:jalr:s3",
+      "SCUS_942_88:0x80064aec:jalr:v0",
+      "SCUS_942_88:0x80064c4c:jalr:v0",
+      "SCUS_942_88:0x800653ec:jalr:v0",
+      "SCUS_942_88:0x8006541c:jalr:v0",
+      "SCUS_942_88:0x8006544c:jalr:v0",
+      "SCUS_942_88:0x80065480:jalr:v0",
+      "SCUS_942_88:0x800654b0:jalr:v0",
+      "SCUS_942_88:0x800654e0:jalr:v0",
+      "SCUS_942_88:0x80065510:jalr:v0",
+      "SCUS_942_88:0x80065728:jalr:v0",
+      "SCUS_942_88:0x80065b94:jalr:v0",
+      "SCUS_942_88:0x80065d0c:jalr:v0",
+      "SCUS_942_88:0x8006645c:jalr:v0",
+      "SCUS_942_88:0x80066818:jr:t1",
+      "SCUS_942_88:0x8006682c:jr:t1",
+      "SCUS_942_88:0x8006684c:jalr:t2",
+      "SCUS_942_88:0x8006689c:jr:ra",
+      "SCUS_942_88:0x800668c4:jalr:t2",
+      "SCUS_942_88:0x8006690c:jr:ra",
+      "SCUS_942_88:0x80067814:jalr:v0",
+      "SCUS_942_88:0x80067878:jalr:v0",
+      "SCUS_942_88:0x800678d0:jalr:v0",
+      "SCUS_942_88:0x80067f34:jalr:v0",
+      "SCUS_942_88:0x80067f48:jalr:v0",
+      "SCUS_942_88:0x80067f98:jalr:v0",
+      "SCUS_942_88:0x800697dc:jalr:v0",
+      "SCUS_942_88:0x80069808:jalr:v0",
+      "SCUS_942_88:0x8006bd0c:jalr:v0",
+      "SCUS_942_88:0x8006e5d8:jalr:v0",
+      "SCUS_942_88:0x8006e60c:jalr:v0",
+      "SCUS_942_88:0x8006e860:jalr:v0",
+      "SCUS_942_88:0x8006e894:jalr:v0",
+      "SCUS_942_88:0x8006ecd0:jalr:v0",
+      "SCUS_942_88:0x8006ed04:jalr:v0",
+      "SCUS_942_88:0x8006f61c:jalr:v0",
+      "SCUS_942_88:0x8006f650:jalr:v0",
+      "SCUS_942_88:0x800702d0:jalr:v1",
+      "SCUS_942_88:0x800703d0:jalr:v0",
+      "SCUS_942_88:0x80070aa0:jalr:a0",
+      "SCUS_942_88:0x800712dc:jalr:v1",
+      "SCUS_942_88:0x80071388:jalr:v1",
+      "SCUS_942_88:0x8007199c:jalr:v0",
+      "SCUS_942_88:0x80071a74:jalr:v0",
+      "SCUS_942_88:0x80071b6c:jalr:v0",
+      "SCUS_942_88:0x80071c40:jalr:v0",
+      "SCUS_942_88:0x80071ce0:jalr:v0",
+      "SCUS_942_88:0x80071d20:jalr:v0",
+      "SCUS_942_88:0x80071d68:jalr:v0",
+      "SCUS_942_88:0x80071e20:jalr:v0",
+      "SCUS_942_88:0x80071e78:jalr:v0",
+      "SCUS_942_88:0x80071f30:jalr:v0",
+      "SCUS_942_88:0x80072054:jalr:v0",
+      "SCUS_942_88:0x8007216c:jalr:v0",
+      "SCUS_942_88:0x80072188:jalr:v0",
+      "SCUS_942_88:0x800722dc:jalr:v1",
+      "SCUS_942_88:0x80072340:jalr:v0",
+      "SCUS_942_88:0x80072354:jalr:v0",
+      "SCUS_942_88:0x80072568:jalr:v0",
+      "SCUS_942_88:0x800725d4:jalr:v0",
+      "SCUS_942_88:0x8007260c:jalr:v0",
+      "SCUS_942_88:0x80072e04:jalr:v0",
+      "SCUS_942_88:0x80072ef0:jalr:v0",
+      "SCUS_942_88:0x80073448:jalr:v0",
+      "SCUS_942_88:0x800735a4:jalr:v0",
+      "SCUS_942_88:0x800736a8:jalr:v0",
+      "SCUS_942_88:0x80073784:jalr:v0",
+      "SCUS_942_88:0x800737fc:jalr:v0",
+      "SCUS_942_88:0x80073810:jalr:v0",
+      "SCUS_942_88:0x8007383c:jalr:v0",
+      "SCUS_942_88:0x80073854:jalr:v0",
+      "SCUS_942_88:0x800738bc:jalr:v0",
+      "SCUS_942_88:0x800738d4:jalr:v0",
+      "SCUS_942_88:0x80073980:jalr:v0",
+      "SCUS_942_88:0x800739f0:jalr:v0",
+      "SCUS_942_88:0x80073a74:jalr:v0",
+      "SCUS_942_88:0x80073a8c:jalr:v0",
+      "SCUS_942_88:0x80073b54:jalr:v0",
+      "SCUS_942_88:0x80073bb0:jalr:v0",
+      "SCUS_942_88:0x80073bdc:jalr:v0",
+      "SCUS_942_88:0x80073bf0:jalr:v0",
+      "SCUS_942_88:0x80073c10:jalr:v0",
+      "SCUS_942_88:0x80073ca0:jalr:v0",
+      "SCUS_942_88:0x80073d48:jalr:v0",
+      "SCUS_942_88:0x80074488:jalr:v0",
+      "SCUS_942_88:0x80074508:jalr:v0",
+      "SCUS_942_88:0x8007458c:jalr:v0",
+      "SCUS_942_88:0x80074678:jalr:v0",
+      "SCUS_942_88:0x800746e0:jalr:v0",
+      "SCUS_942_88:0x80074760:jalr:v0",
+      "SCUS_942_88:0x80074828:jalr:v0"
+    ],
+    "unresolved_internal_source_count": 1,
+    "unresolved_internal_source_ids": [
+      "SCUS_942_88:0x8001897c:jr:ra"
+    ]
+  },
+  "inputs": {
+    "accepted_external_entry_gate_sha256": "5e4f468cdd329ed0b07ce435fb3ada62ccd9a98535977f88f344b3de19b6ed33",
+    "capsule_set_sha256": "569b3ebf073b2384c04edecbc54ca52d4f7a35a0387a02e9540e7a936509cc53",
+    "derived_input_snapshot_commit": "2e67ac74498c96989a858e08918983aaf5bdf73a",
+    "freeze_artifact": "analysis/phase4_target_exclusion_freeze.json",
+    "freeze_artifact_sha256": "8b6cb83f9d2b95b099606f87e3b0f76b8520e391bdebfc5629f0bf45e1864ad2",
+    "freeze_note_sha256": "33f63ded3883dac7abfd4e9cda4db69acc6bc1f15fbd4000564ed19661c31af3",
+    "frontier_result_sha256": "e24b2efbecb24ad1d6bdb857d8dd1ad79c1e3dfadc63642671694ca64d77f817",
+    "image_identities": [
+      {
+        "identity_verified": true,
+        "image": "LEVEL01_LEVEL",
+        "path": "REBUILD/files/LEVEL01/LEVEL.BIN",
+        "sha256": "f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21",
+        "size": 1680
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL01_LEVEL1",
+        "path": "REBUILD/files/LEVEL01/LEVEL1.BIN",
+        "sha256": "43c80f86eef71a3b51bef593889cfc1a3ef5a766c2eb1fd168b01db570073fd6",
+        "size": 2700
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL02_LEVEL",
+        "path": "REBUILD/files/LEVEL02/LEVEL.BIN",
+        "sha256": "6e5040d0d053ad652ba2ab655af8d2d2731b7a77b704c68a815fc2868449ffed",
+        "size": 4032
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL02_LEVEL1",
+        "path": "REBUILD/files/LEVEL02/LEVEL1.BIN",
+        "sha256": "71a77ba1f7a0e985f8c5208318eaff7f6054dbf64f22981b5590160c77af97b1",
+        "size": 4272
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL03_LEVEL",
+        "path": "REBUILD/files/LEVEL03/LEVEL.BIN",
+        "sha256": "fef7bd2a72c5c293b2f164ba1ca195f45c0843c5f19e52cbfdb48fd14fbc59a1",
+        "size": 5036
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL03_LEVEL1",
+        "path": "REBUILD/files/LEVEL03/LEVEL1.BIN",
+        "sha256": "24adb413e88885b1614995e241da9961df1dc5e0f81ba5f820c32765918c04c9",
+        "size": 3184
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL04_LEVEL",
+        "path": "REBUILD/files/LEVEL04/LEVEL.BIN",
+        "sha256": "a346b8e6a6be4f2d27f7f73cd6dba8b1a96bd079c209d844ef140e2792ffd555",
+        "size": 3068
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL04_LEVEL1",
+        "path": "REBUILD/files/LEVEL04/LEVEL1.BIN",
+        "sha256": "816667f0ba7ae2b602cc39da7c0b3b4020d1a231651d5b90e6374c66c34f39e6",
+        "size": 4924
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL05_LEVEL",
+        "path": "REBUILD/files/LEVEL05/LEVEL.BIN",
+        "sha256": "93451e022e2613d9c7259e33007000155c8a8a9e2276a008327d42e0c63eba00",
+        "size": 2400
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL05_LEVEL1",
+        "path": "REBUILD/files/LEVEL05/LEVEL1.BIN",
+        "sha256": "03b7bc62eae3416421f8fbea634efe28e5940b8496d1a0b0ef42dfb0d90607f2",
+        "size": 4672
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL06_LEVEL",
+        "path": "REBUILD/files/LEVEL06/LEVEL.BIN",
+        "sha256": "44a914db64074b60421d27f1be844f95d12a6dc4ec5a3f411bb3173548a4d395",
+        "size": 1608
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL06_LEVEL1",
+        "path": "REBUILD/files/LEVEL06/LEVEL1.BIN",
+        "sha256": "4ea72fd6caaddb287d8eef2086c3b66a74191b6c36ddbeb7feaa1fbf5c8db172",
+        "size": 1820
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL07_LEVEL",
+        "path": "REBUILD/files/LEVEL07/LEVEL.BIN",
+        "sha256": "a19927f5130bf5c8da6777f36aa5501a99dc1363a3f9e55e5997ad712473c4f5",
+        "size": 7656
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL07_LEVEL1",
+        "path": "REBUILD/files/LEVEL07/LEVEL1.BIN",
+        "sha256": "08272231b91320ebaa6b0a6b91ac50d1d160640769655a318fde86f889040521",
+        "size": 4336
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL08_LEVEL",
+        "path": "REBUILD/files/LEVEL08/LEVEL.BIN",
+        "sha256": "a0c0ac1da5c3a75296f0d79428ba1155f2f5d1ede3e2dcf9ffaee03fd8d2fec5",
+        "size": 3500
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL08_LEVEL1",
+        "path": "REBUILD/files/LEVEL08/LEVEL1.BIN",
+        "sha256": "506abc378359b61c2975b7f829becb32a6c632bf2cf8d55f0bb5146d139db605",
+        "size": 4064
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL09_LEVEL",
+        "path": "REBUILD/files/LEVEL09/LEVEL.BIN",
+        "sha256": "9472fddce759161a887968fe98f1ded3282a4d8a4dc8c72fb27cbcd9c341d879",
+        "size": 5232
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL09_LEVEL1",
+        "path": "REBUILD/files/LEVEL09/LEVEL1.BIN",
+        "sha256": "f38922e876f98d44e483458565a093e37ec97369f121da04d39650958b4f4f88",
+        "size": 532
+      },
+      {
+        "identity_verified": true,
+        "image": "LEVEL10_LEVEL",
+        "path": "REBUILD/files/LEVEL10/LEVEL.BIN",
+        "sha256": "3bd80ee77b5ec1e12b458d330450c3963177e15470bc249f7a12fc071d8db928",
+        "size": 2080
+      },
+      {
+        "identity_verified": true,
+        "image": "MEMORY",
+        "path": "REBUILD/files/BITS/MEMORY.BIN",
+        "sha256": "e3f8697223e3a1a1bdfa385d417ce87928eaff40ea3e26d1a64f6f25234d8e37",
+        "size": 36448
+      },
+      {
+        "identity_verified": true,
+        "image": "SCUS_942_88",
+        "path": "REBUILD/files/SCUS_942.88",
+        "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+        "size": 471040
+      }
+    ],
+    "image_map_sha256": "8ace74e9e0a75fd407c0c6118fb3a635a255e96fbbae90d4fbf64def37a5ebd3",
+    "independent_C_sha256": "3fa202fc0827db9ffc8b2fbd432c6f1afff35b56de61fe43ba414fd343e86711",
+    "issued_baseline_commit": "2a617486b30fce115933900e307c233ddb121f56",
+    "mechanics_baseline_sha256": "2bbd491c5cd314fb9e922c13689b7441d1f72e39b7addf9ba150d3ea25195383",
+    "pre_outcome_freeze_commit": "2e67ac74498c96989a858e08918983aaf5bdf73a",
+    "primary_C_sha256": "844c9b924471cde25b3c6af396fff2aa406766637f21197869b5244f900ec195",
+    "static_index_sha256": "893775dcbebdfd008b629f58f74cbd8c50d3d6a0d5492c42dde8276084d7c328",
+    "u3_evidence_sha256": "c477efcac04199d6d40032dbf3654c216cd5e0cd061b1180e2ffaa8b5ec26282",
+    "u3_source_sha256": "57e7eddb0a91092fb31e6768ac6aa96394c6e450071ace8fd09144ac37653dd4",
+    "work_order_commit": "d4c60047fb2d1419f7691f6e2b6a628eea2fdb42",
+    "work_order_sha256": "86bd5d329b94b011bccfc5cc29f36c55645d5192867c390da9b3509ec8fff082"
+  },
+  "no_go_report": {
+    "attempted_wall_count": 12,
+    "attempted_wall_ids": [
+      "SCUS_942_88:0x80011128:jr:ra",
+      "SCUS_942_88:0x800163d8:jr:ra",
+      "SCUS_942_88:0x800172d4:jr:ra",
+      "SCUS_942_88:0x8001897c:jr:ra",
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6",
+      "SCUS_942_88:0x80018f44:jr:ra",
+      "SCUS_942_88:0x8001923c:jr:ra",
+      "SCUS_942_88:0x80019614:jr:ra",
+      "SCUS_942_88:0x80019b3c:jr:ra"
+    ],
+    "full_union_count": 179,
+    "full_union_histogram": {
+      "computed": 19,
+      "mixed_reaching_definitions": 33,
+      "register_provenance": 6,
+      "return_like": 0,
+      "return_like_unproved_incoming_ra": 9,
+      "table_backed": 74,
+      "unclassified_opaque_definition": 38
+    },
+    "item2_bar_facts_no_recommendation": "The item-2 bar would have to accept exclusion for all 179 corrected code-only indirect sites that this increment does not prove at gate grade: twelve attempted pilot sites with named walls and 167 sites stopped by the mandatory pilot gate. Four attempted sites have exact domains only from their declared entry; 175 unresolved transfer sites can still enter that owner interior and bypass those definitions. The 179 include all 74 table/cell-backed candidates without a complete whole-table runtime-state invariant and 105 sites in the computed, register, incoming-ra, opaque, or mixed strata. The retained 50 frame-boundary capsules and preserved u3 entry watches contain zero source-site/indirect-target tuples for those sites. The u3 watches record entry hits of 0, 60, 60, and 60 at 0x80018CC4, 0x80018F4C, 0x80019244, and the dead-lexical 0x8001961C value, respectively; those hits do not identify which indirect site supplied the target and therefore do not prove exclusion.",
+    "local_domain_basis_count": 4,
+    "local_domain_basis_ids": [
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6"
+    ],
+    "per_attempted_site": [
+      {
+        "frozen_rank": 1,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": false,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80010000:0x80013108:ra:0x80011128",
+          "register": "ra",
+          "site_pc": "0x80011128",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80011128",
+            "reason": "query_site_not_entry_reachable",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x8001112c",
+          "delay_slot_word": "0x23bd0020",
+          "derivations": [
+            {
+              "failure": "query_site_not_entry_reachable",
+              "kind": "query_failure",
+              "pc": "0x80011128",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80013108",
+          "full_target_domain_complete": false,
+          "function": "0x80010000",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80011128",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "query_site_not_entry_reachable",
+              "kind": "query_failure",
+              "pc": "0x80011128",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x80011128:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80011128",
+          "reason": "query_site_not_entry_reachable",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 2,
+        "frozen_stratum": "register_provenance",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "register_provenance",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x800153d0:0x800163e0:ra:0x800163d8",
+          "register": "ra",
+          "site_pc": "0x800163d8",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "register_copy_source_untracked"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80015544",
+            "reason": "source_constant_not_path_complete_or_evaluators_disagree",
+            "word": "0x02c0f820"
+          },
+          "delay_slot_pc": "0x800163dc",
+          "delay_slot_word": "0x8c57001c",
+          "derivations": [
+            {
+              "definition_pc": "0x80015544",
+              "definition_word": "0x02c0f820",
+              "failure": "source_constant_not_path_complete_or_evaluators_disagree",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "failure": "call_crossing_without_register_preservation_proof",
+                      "kind": "call_crossing",
+                      "pc": "0x8001551c",
+                      "proved": false,
+                      "word": "0x0c0180a1"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "register_copy_exact",
+              "proved": false
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x800163e0",
+          "full_target_domain_complete": false,
+          "function": "0x800153d0",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 1,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x800163d8",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x80015544",
+              "definition_word": "0x02c0f820",
+              "failure": "source_constant_not_path_complete_or_evaluators_disagree",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "failure": "call_crossing_without_register_preservation_proof",
+                      "kind": "call_crossing",
+                      "pc": "0x8001551c",
+                      "proved": false,
+                      "word": "0x0c0180a1"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "register_copy_exact",
+              "proved": false
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x800163d8:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80015544",
+          "reason": "source_constant_not_path_complete_or_evaluators_disagree",
+          "word": "0x02c0f820"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 3,
+        "frozen_stratum": "register_provenance",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "register_provenance",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x800163e0:0x800172dc:ra:0x800172d4",
+          "register": "ra",
+          "site_pc": "0x800172d4",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "register_copy_source_untracked"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80016554",
+            "reason": "source_constant_not_path_complete_or_evaluators_disagree",
+            "word": "0x02c0f820"
+          },
+          "delay_slot_pc": "0x800172d8",
+          "delay_slot_word": "0x8c57001c",
+          "derivations": [
+            {
+              "definition_pc": "0x80016554",
+              "definition_word": "0x02c0f820",
+              "failure": "source_constant_not_path_complete_or_evaluators_disagree",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "failure": "call_crossing_without_register_preservation_proof",
+                      "kind": "call_crossing",
+                      "pc": "0x8001652c",
+                      "proved": false,
+                      "word": "0x0c0180a1"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "register_copy_exact",
+              "proved": false
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x800172dc",
+          "full_target_domain_complete": false,
+          "function": "0x800163e0",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 1,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x800172d4",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x80016554",
+              "definition_word": "0x02c0f820",
+              "failure": "source_constant_not_path_complete_or_evaluators_disagree",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "failure": "call_crossing_without_register_preservation_proof",
+                      "kind": "call_crossing",
+                      "pc": "0x8001652c",
+                      "proved": false,
+                      "word": "0x0c0180a1"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "register_copy_exact",
+              "proved": false
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x800172d4:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80016554",
+          "reason": "source_constant_not_path_complete_or_evaluators_disagree",
+          "word": "0x02c0f820"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 4,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:ra:0x8001897c",
+          "register": "ra",
+          "site_pc": "0x8001897c",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x8001897c",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80018980",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x8001897c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": false,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x8001897c",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x8001897c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x8001897c:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x8001897c",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 5,
+        "frozen_stratum": "computed",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "computed",
+          "entry_reached": true,
+          "full_target_domain_complete": true,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:s6:0x80018a4c",
+          "register": "s6",
+          "site_pc": "0x80018a4c",
+          "site_word": "0x02c00008",
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": "entry_scoped_full_target_domain",
+        "open_dependency": "entry-scoped exact domain is not gate grade while 175 corrected unresolved transfer sites can still enter the owner interior",
+        "outcome": "NOT_LANDED_EXTERNAL_INTERIOR_ENTRY_UNIVERSE",
+        "primary": {
+          "all_reaching_definitions_whitelisted": true,
+          "breaking_instruction": null,
+          "delay_slot_pc": "0x80018a50",
+          "delay_slot_word": "0x85390004",
+          "derivations": [
+            {
+              "definition_pc": "0x80018978",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018970",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x80018930",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018928",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x8001889c",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018894",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "distinct_target_count": 3,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": true,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 3,
+          "register": "s6",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018a4c",
+          "site_word": "0x02c00008",
+          "target_domain_query": true,
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "verdict": true,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x80018978",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018970",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x80018930",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018928",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x8001889c",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018894",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "target_register": "s6"
+        },
+        "site": "SCUS_942_88:0x80018a4c:jr:s6",
+        "target_owner_entries": [
+          {
+            "end": "0x80018f4c",
+            "entry": "0x80018cc4",
+            "image": "SCUS_942_88",
+            "name": "poly_interpolate_midpoint_prim",
+            "range_type": "code"
+          },
+          {
+            "end": "0x80019244",
+            "entry": "0x80018f4c",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_a",
+            "range_type": "code"
+          },
+          {
+            "end": "0x8001961c",
+            "entry": "0x80019244",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_b",
+            "range_type": "code"
+          }
+        ],
+        "targets": [
+          "0x80018cc4",
+          "0x80018f4c",
+          "0x80019244"
+        ],
+        "wall": {
+          "entry_source_count": 175,
+          "entry_source_set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+          "first_entry_source_site_id": "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+          "pc": "0x800b3fcc",
+          "reason": "blocked_external_interior_entry_universe",
+          "word": "0x00400008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 6,
+        "frozen_stratum": "computed",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "computed",
+          "entry_reached": true,
+          "full_target_domain_complete": true,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:s6:0x80018b1c",
+          "register": "s6",
+          "site_pc": "0x80018b1c",
+          "site_word": "0x02c00008",
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": "entry_scoped_full_target_domain",
+        "open_dependency": "entry-scoped exact domain is not gate grade while 175 corrected unresolved transfer sites can still enter the owner interior",
+        "outcome": "NOT_LANDED_EXTERNAL_INTERIOR_ENTRY_UNIVERSE",
+        "primary": {
+          "all_reaching_definitions_whitelisted": true,
+          "breaking_instruction": null,
+          "delay_slot_pc": "0x80018b20",
+          "delay_slot_word": "0x85590004",
+          "derivations": [
+            {
+              "definition_pc": "0x80018964",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x8001895c",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x80018958",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018950",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x8001891c",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018914",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "distinct_target_count": 3,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": true,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 3,
+          "register": "s6",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018b1c",
+          "site_word": "0x02c00008",
+          "target_domain_query": true,
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "verdict": true,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x80018964",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x8001895c",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x80018958",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018950",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x8001891c",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018914",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "target_register": "s6"
+        },
+        "site": "SCUS_942_88:0x80018b1c:jr:s6",
+        "target_owner_entries": [
+          {
+            "end": "0x80018f4c",
+            "entry": "0x80018cc4",
+            "image": "SCUS_942_88",
+            "name": "poly_interpolate_midpoint_prim",
+            "range_type": "code"
+          },
+          {
+            "end": "0x80019244",
+            "entry": "0x80018f4c",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_a",
+            "range_type": "code"
+          },
+          {
+            "end": "0x8001961c",
+            "entry": "0x80019244",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_b",
+            "range_type": "code"
+          }
+        ],
+        "targets": [
+          "0x80018cc4",
+          "0x80018f4c",
+          "0x80019244"
+        ],
+        "wall": {
+          "entry_source_count": 175,
+          "entry_source_set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+          "first_entry_source_site_id": "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+          "pc": "0x800b3fcc",
+          "reason": "blocked_external_interior_entry_universe",
+          "word": "0x00400008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 7,
+        "frozen_stratum": "computed",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "computed",
+          "entry_reached": true,
+          "full_target_domain_complete": true,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:s6:0x80018bec",
+          "register": "s6",
+          "site_pc": "0x80018bec",
+          "site_word": "0x02c00008",
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": "entry_scoped_full_target_domain",
+        "open_dependency": "entry-scoped exact domain is not gate grade while 175 corrected unresolved transfer sites can still enter the owner interior",
+        "outcome": "NOT_LANDED_EXTERNAL_INTERIOR_ENTRY_UNIVERSE",
+        "primary": {
+          "all_reaching_definitions_whitelisted": true,
+          "breaking_instruction": null,
+          "delay_slot_pc": "0x80018bf0",
+          "delay_slot_word": "0x85790004",
+          "derivations": [
+            {
+              "definition_pc": "0x800188f8",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188f0",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x800188d0",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188c8",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x800188c4",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188bc",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "distinct_target_count": 3,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": true,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 3,
+          "register": "s6",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018bec",
+          "site_word": "0x02c00008",
+          "target_domain_query": true,
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "verdict": true,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x800188f8",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188f0",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x800188d0",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188c8",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x800188c4",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188bc",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "target_register": "s6"
+        },
+        "site": "SCUS_942_88:0x80018bec:jr:s6",
+        "target_owner_entries": [
+          {
+            "end": "0x80018f4c",
+            "entry": "0x80018cc4",
+            "image": "SCUS_942_88",
+            "name": "poly_interpolate_midpoint_prim",
+            "range_type": "code"
+          },
+          {
+            "end": "0x80019244",
+            "entry": "0x80018f4c",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_a",
+            "range_type": "code"
+          },
+          {
+            "end": "0x8001961c",
+            "entry": "0x80019244",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_b",
+            "range_type": "code"
+          }
+        ],
+        "targets": [
+          "0x80018cc4",
+          "0x80018f4c",
+          "0x80019244"
+        ],
+        "wall": {
+          "entry_source_count": 175,
+          "entry_source_set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+          "first_entry_source_site_id": "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+          "pc": "0x800b3fcc",
+          "reason": "blocked_external_interior_entry_universe",
+          "word": "0x00400008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 8,
+        "frozen_stratum": "computed",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "computed",
+          "entry_reached": true,
+          "full_target_domain_complete": true,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:s6:0x80018cbc",
+          "register": "s6",
+          "site_pc": "0x80018cbc",
+          "site_word": "0x02c00008",
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": "entry_scoped_full_target_domain",
+        "open_dependency": "entry-scoped exact domain is not gate grade while 175 corrected unresolved transfer sites can still enter the owner interior",
+        "outcome": "NOT_LANDED_EXTERNAL_INTERIOR_ENTRY_UNIVERSE",
+        "primary": {
+          "all_reaching_definitions_whitelisted": true,
+          "breaking_instruction": null,
+          "delay_slot_pc": "0x80018cc0",
+          "delay_slot_word": "0x85190004",
+          "derivations": [
+            {
+              "definition_pc": "0x8001893c",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018934",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x800188a8",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188a0",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x80018888",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018880",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            },
+            {
+              "definition_pc": "0x800188ec",
+              "definition_word": "0x36d6961c",
+              "excluded_from_domain": true,
+              "proved": false,
+              "reason": "definition_not_reachable_from_declared_entry"
+            }
+          ],
+          "distinct_target_count": 3,
+          "excluded_unreachable_definition_occurrence_count": 1,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": true,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 3,
+          "register": "s6",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018cbc",
+          "site_word": "0x02c00008",
+          "target_domain_query": true,
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "verdict": true,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x8001893c",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018934",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x800188a8",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188a0",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x80018888",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018880",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            },
+            {
+              "definition_pc": "0x800188ec",
+              "definition_word": "0x36d6961c",
+              "excluded_from_domain": true,
+              "proved": false,
+              "reason": "definition_not_reachable_from_declared_entry"
+            }
+          ],
+          "target_register": "s6"
+        },
+        "site": "SCUS_942_88:0x80018cbc:jr:s6",
+        "target_owner_entries": [
+          {
+            "end": "0x80018f4c",
+            "entry": "0x80018cc4",
+            "image": "SCUS_942_88",
+            "name": "poly_interpolate_midpoint_prim",
+            "range_type": "code"
+          },
+          {
+            "end": "0x80019244",
+            "entry": "0x80018f4c",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_a",
+            "range_type": "code"
+          },
+          {
+            "end": "0x8001961c",
+            "entry": "0x80019244",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_b",
+            "range_type": "code"
+          }
+        ],
+        "targets": [
+          "0x80018cc4",
+          "0x80018f4c",
+          "0x80019244"
+        ],
+        "wall": {
+          "entry_source_count": 175,
+          "entry_source_set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+          "first_entry_source_site_id": "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+          "pc": "0x800b3fcc",
+          "reason": "blocked_external_interior_entry_universe",
+          "word": "0x00400008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 9,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018cc4:0x80018f4c:ra:0x80018f44",
+          "register": "ra",
+          "site_pc": "0x80018f44",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80018f44",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80018f48",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80018f44",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018f4c",
+          "full_target_domain_complete": false,
+          "function": "0x80018cc4",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018f44",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80018f44",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x80018f44:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80018f44",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 10,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018f4c:0x80019244:ra:0x8001923c",
+          "register": "ra",
+          "site_pc": "0x8001923c",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x8001923c",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80019240",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x8001923c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80019244",
+          "full_target_domain_complete": false,
+          "function": "0x80018f4c",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x8001923c",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x8001923c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x8001923c:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x8001923c",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 11,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80019244:0x8001961c:ra:0x80019614",
+          "register": "ra",
+          "site_pc": "0x80019614",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80019614",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80019618",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80019614",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x8001961c",
+          "full_target_domain_complete": false,
+          "function": "0x80019244",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80019614",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80019614",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x80019614:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80019614",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 12,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80019934:0x80019ce8:ra:0x80019b3c",
+          "register": "ra",
+          "site_pc": "0x80019b3c",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80019b3c",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80019b40",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80019b3c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80019ce8",
+          "full_target_domain_complete": false,
+          "function": "0x80019934",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80019b3c",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80019b3c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x80019b3c:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80019b3c",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      }
+    ],
+    "proved_in_this_pilot_count": 0,
+    "proved_in_this_pilot_ids": [],
+    "recommendation_to_lower_bar": null,
+    "remaining_stratum_histogram": {
+      "computed": 19,
+      "mixed_reaching_definitions": 33,
+      "register_provenance": 6,
+      "return_like": 0,
+      "return_like_unproved_incoming_ra": 9,
+      "table_backed": 74,
+      "unclassified_opaque_definition": 38
+    },
+    "remaining_without_this_proof_count": 179,
+    "remaining_without_this_proof_ids": [
+      "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+      "MEMORY:0x800b970c:jr:v0",
+      "MEMORY:0x800bb8bc:jr:v0",
+      "MEMORY:0x800bd6ac:jr:t2",
+      "MEMORY:0x800bd6bc:jr:t2",
+      "MEMORY:0x800bd6cc:jr:t2",
+      "MEMORY:0x800bd714:jr:t2",
+      "MEMORY:0x800bd724:jr:t2",
+      "MEMORY:0x800bd7ec:jr:t2",
+      "MEMORY:0x800bd7fc:jr:t2",
+      "MEMORY:0x800bd80c:jr:t2",
+      "MEMORY:0x800bd82c:jalr:t2",
+      "MEMORY:0x800bd878:jr:ra",
+      "SCUS_942_88:0x80011128:jr:ra",
+      "SCUS_942_88:0x800163d8:jr:ra",
+      "SCUS_942_88:0x800172d4:jr:ra",
+      "SCUS_942_88:0x8001897c:jr:ra",
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6",
+      "SCUS_942_88:0x80018f44:jr:ra",
+      "SCUS_942_88:0x8001923c:jr:ra",
+      "SCUS_942_88:0x80019614:jr:ra",
+      "SCUS_942_88:0x80019b3c:jr:ra",
+      "SCUS_942_88:0x80019c28:jr:at",
+      "SCUS_942_88:0x80019c84:jr:at",
+      "SCUS_942_88:0x80019ce0:jr:at",
+      "SCUS_942_88:0x80019f34:jr:ra",
+      "SCUS_942_88:0x8001a0dc:jr:ra",
+      "SCUS_942_88:0x8001a1d4:jr:ra",
+      "SCUS_942_88:0x8004d1e8:jalr:v0",
+      "SCUS_942_88:0x80060144:jr:ra",
+      "SCUS_942_88:0x800602a8:jr:ra",
+      "SCUS_942_88:0x800602d8:jr:ra",
+      "SCUS_942_88:0x80060478:jr:ra",
+      "SCUS_942_88:0x80060c78:jalr:t2",
+      "SCUS_942_88:0x80060cc4:jr:ra",
+      "SCUS_942_88:0x80061ae4:jalr:v0",
+      "SCUS_942_88:0x80061b24:jalr:v0",
+      "SCUS_942_88:0x80061fac:jalr:v1",
+      "SCUS_942_88:0x80061fcc:jalr:v0",
+      "SCUS_942_88:0x80061ff4:jalr:v1",
+      "SCUS_942_88:0x80062010:jalr:v0",
+      "SCUS_942_88:0x8006202c:jalr:v0",
+      "SCUS_942_88:0x80062074:jalr:t0",
+      "SCUS_942_88:0x800620c0:jalr:v1",
+      "SCUS_942_88:0x800620e8:jalr:v1",
+      "SCUS_942_88:0x80062104:jalr:v0",
+      "SCUS_942_88:0x80062120:jalr:v0",
+      "SCUS_942_88:0x80062284:jalr:v0",
+      "SCUS_942_88:0x800622a0:jalr:v0",
+      "SCUS_942_88:0x80062308:jalr:v0",
+      "SCUS_942_88:0x80062324:jalr:v0",
+      "SCUS_942_88:0x80062364:jalr:v0",
+      "SCUS_942_88:0x800623ac:jalr:v0",
+      "SCUS_942_88:0x80062418:jalr:v0",
+      "SCUS_942_88:0x80062480:jalr:v0",
+      "SCUS_942_88:0x800624ac:jalr:v0",
+      "SCUS_942_88:0x80062534:jalr:v0",
+      "SCUS_942_88:0x800625a0:jalr:v0",
+      "SCUS_942_88:0x800625dc:jalr:v0",
+      "SCUS_942_88:0x80062630:jalr:v0",
+      "SCUS_942_88:0x8006264c:jalr:v0",
+      "SCUS_942_88:0x8006274c:jalr:v0",
+      "SCUS_942_88:0x80062774:jalr:v1",
+      "SCUS_942_88:0x800627fc:jalr:v0",
+      "SCUS_942_88:0x80062898:jalr:v0",
+      "SCUS_942_88:0x80062904:jalr:v0",
+      "SCUS_942_88:0x80062968:jalr:v0",
+      "SCUS_942_88:0x80062a28:jalr:v0",
+      "SCUS_942_88:0x80062a88:jalr:v0",
+      "SCUS_942_88:0x80062b44:jalr:v0",
+      "SCUS_942_88:0x80062b60:jalr:v0",
+      "SCUS_942_88:0x80062bc0:jalr:v0",
+      "SCUS_942_88:0x80062bdc:jalr:v0",
+      "SCUS_942_88:0x80062c30:jalr:v0",
+      "SCUS_942_88:0x80062c54:jalr:v0",
+      "SCUS_942_88:0x80062cb4:jalr:v0",
+      "SCUS_942_88:0x80062cfc:jalr:v0",
+      "SCUS_942_88:0x80062dc4:jalr:v0",
+      "SCUS_942_88:0x80062e18:jalr:v0",
+      "SCUS_942_88:0x80062f0c:jalr:v0",
+      "SCUS_942_88:0x80062f88:jalr:v0",
+      "SCUS_942_88:0x80063198:jalr:v1",
+      "SCUS_942_88:0x800631c4:jalr:v1",
+      "SCUS_942_88:0x80063330:jalr:v0",
+      "SCUS_942_88:0x800633c0:jalr:v0",
+      "SCUS_942_88:0x800647c4:jalr:s3",
+      "SCUS_942_88:0x80064aec:jalr:v0",
+      "SCUS_942_88:0x80064c4c:jalr:v0",
+      "SCUS_942_88:0x800653ec:jalr:v0",
+      "SCUS_942_88:0x8006541c:jalr:v0",
+      "SCUS_942_88:0x8006544c:jalr:v0",
+      "SCUS_942_88:0x80065480:jalr:v0",
+      "SCUS_942_88:0x800654b0:jalr:v0",
+      "SCUS_942_88:0x800654e0:jalr:v0",
+      "SCUS_942_88:0x80065510:jalr:v0",
+      "SCUS_942_88:0x80065728:jalr:v0",
+      "SCUS_942_88:0x80065b94:jalr:v0",
+      "SCUS_942_88:0x80065d0c:jalr:v0",
+      "SCUS_942_88:0x8006645c:jalr:v0",
+      "SCUS_942_88:0x80066818:jr:t1",
+      "SCUS_942_88:0x8006682c:jr:t1",
+      "SCUS_942_88:0x8006684c:jalr:t2",
+      "SCUS_942_88:0x8006689c:jr:ra",
+      "SCUS_942_88:0x800668c4:jalr:t2",
+      "SCUS_942_88:0x8006690c:jr:ra",
+      "SCUS_942_88:0x80067814:jalr:v0",
+      "SCUS_942_88:0x80067878:jalr:v0",
+      "SCUS_942_88:0x800678d0:jalr:v0",
+      "SCUS_942_88:0x80067f34:jalr:v0",
+      "SCUS_942_88:0x80067f48:jalr:v0",
+      "SCUS_942_88:0x80067f98:jalr:v0",
+      "SCUS_942_88:0x800697dc:jalr:v0",
+      "SCUS_942_88:0x80069808:jalr:v0",
+      "SCUS_942_88:0x8006bd0c:jalr:v0",
+      "SCUS_942_88:0x8006e5d8:jalr:v0",
+      "SCUS_942_88:0x8006e60c:jalr:v0",
+      "SCUS_942_88:0x8006e860:jalr:v0",
+      "SCUS_942_88:0x8006e894:jalr:v0",
+      "SCUS_942_88:0x8006ecd0:jalr:v0",
+      "SCUS_942_88:0x8006ed04:jalr:v0",
+      "SCUS_942_88:0x8006f61c:jalr:v0",
+      "SCUS_942_88:0x8006f650:jalr:v0",
+      "SCUS_942_88:0x800702d0:jalr:v1",
+      "SCUS_942_88:0x800703d0:jalr:v0",
+      "SCUS_942_88:0x80070aa0:jalr:a0",
+      "SCUS_942_88:0x800712dc:jalr:v1",
+      "SCUS_942_88:0x80071388:jalr:v1",
+      "SCUS_942_88:0x8007199c:jalr:v0",
+      "SCUS_942_88:0x80071a74:jalr:v0",
+      "SCUS_942_88:0x80071b6c:jalr:v0",
+      "SCUS_942_88:0x80071c40:jalr:v0",
+      "SCUS_942_88:0x80071ce0:jalr:v0",
+      "SCUS_942_88:0x80071d20:jalr:v0",
+      "SCUS_942_88:0x80071d68:jalr:v0",
+      "SCUS_942_88:0x80071e20:jalr:v0",
+      "SCUS_942_88:0x80071e78:jalr:v0",
+      "SCUS_942_88:0x80071f30:jalr:v0",
+      "SCUS_942_88:0x80072054:jalr:v0",
+      "SCUS_942_88:0x8007216c:jalr:v0",
+      "SCUS_942_88:0x80072188:jalr:v0",
+      "SCUS_942_88:0x800722dc:jalr:v1",
+      "SCUS_942_88:0x80072340:jalr:v0",
+      "SCUS_942_88:0x80072354:jalr:v0",
+      "SCUS_942_88:0x80072568:jalr:v0",
+      "SCUS_942_88:0x800725d4:jalr:v0",
+      "SCUS_942_88:0x8007260c:jalr:v0",
+      "SCUS_942_88:0x80072e04:jalr:v0",
+      "SCUS_942_88:0x80072ef0:jalr:v0",
+      "SCUS_942_88:0x80073448:jalr:v0",
+      "SCUS_942_88:0x800735a4:jalr:v0",
+      "SCUS_942_88:0x800736a8:jalr:v0",
+      "SCUS_942_88:0x80073784:jalr:v0",
+      "SCUS_942_88:0x800737fc:jalr:v0",
+      "SCUS_942_88:0x80073810:jalr:v0",
+      "SCUS_942_88:0x8007383c:jalr:v0",
+      "SCUS_942_88:0x80073854:jalr:v0",
+      "SCUS_942_88:0x800738bc:jalr:v0",
+      "SCUS_942_88:0x800738d4:jalr:v0",
+      "SCUS_942_88:0x80073980:jalr:v0",
+      "SCUS_942_88:0x800739f0:jalr:v0",
+      "SCUS_942_88:0x80073a74:jalr:v0",
+      "SCUS_942_88:0x80073a8c:jalr:v0",
+      "SCUS_942_88:0x80073b54:jalr:v0",
+      "SCUS_942_88:0x80073bb0:jalr:v0",
+      "SCUS_942_88:0x80073bdc:jalr:v0",
+      "SCUS_942_88:0x80073bf0:jalr:v0",
+      "SCUS_942_88:0x80073c10:jalr:v0",
+      "SCUS_942_88:0x80073ca0:jalr:v0",
+      "SCUS_942_88:0x80073d48:jalr:v0",
+      "SCUS_942_88:0x80074488:jalr:v0",
+      "SCUS_942_88:0x80074508:jalr:v0",
+      "SCUS_942_88:0x8007458c:jalr:v0",
+      "SCUS_942_88:0x80074678:jalr:v0",
+      "SCUS_942_88:0x800746e0:jalr:v0",
+      "SCUS_942_88:0x80074760:jalr:v0",
+      "SCUS_942_88:0x80074828:jalr:v0"
+    ],
+    "unattempted_due_pilot_stop_count": 167,
+    "unattempted_due_pilot_stop_ids": [
+      "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+      "MEMORY:0x800b970c:jr:v0",
+      "MEMORY:0x800bb8bc:jr:v0",
+      "MEMORY:0x800bd6ac:jr:t2",
+      "MEMORY:0x800bd6bc:jr:t2",
+      "MEMORY:0x800bd6cc:jr:t2",
+      "MEMORY:0x800bd714:jr:t2",
+      "MEMORY:0x800bd724:jr:t2",
+      "MEMORY:0x800bd7ec:jr:t2",
+      "MEMORY:0x800bd7fc:jr:t2",
+      "MEMORY:0x800bd80c:jr:t2",
+      "MEMORY:0x800bd82c:jalr:t2",
+      "MEMORY:0x800bd878:jr:ra",
+      "SCUS_942_88:0x80019c28:jr:at",
+      "SCUS_942_88:0x80019c84:jr:at",
+      "SCUS_942_88:0x80019ce0:jr:at",
+      "SCUS_942_88:0x80019f34:jr:ra",
+      "SCUS_942_88:0x8001a0dc:jr:ra",
+      "SCUS_942_88:0x8001a1d4:jr:ra",
+      "SCUS_942_88:0x8004d1e8:jalr:v0",
+      "SCUS_942_88:0x80060144:jr:ra",
+      "SCUS_942_88:0x800602a8:jr:ra",
+      "SCUS_942_88:0x800602d8:jr:ra",
+      "SCUS_942_88:0x80060478:jr:ra",
+      "SCUS_942_88:0x80060c78:jalr:t2",
+      "SCUS_942_88:0x80060cc4:jr:ra",
+      "SCUS_942_88:0x80061ae4:jalr:v0",
+      "SCUS_942_88:0x80061b24:jalr:v0",
+      "SCUS_942_88:0x80061fac:jalr:v1",
+      "SCUS_942_88:0x80061fcc:jalr:v0",
+      "SCUS_942_88:0x80061ff4:jalr:v1",
+      "SCUS_942_88:0x80062010:jalr:v0",
+      "SCUS_942_88:0x8006202c:jalr:v0",
+      "SCUS_942_88:0x80062074:jalr:t0",
+      "SCUS_942_88:0x800620c0:jalr:v1",
+      "SCUS_942_88:0x800620e8:jalr:v1",
+      "SCUS_942_88:0x80062104:jalr:v0",
+      "SCUS_942_88:0x80062120:jalr:v0",
+      "SCUS_942_88:0x80062284:jalr:v0",
+      "SCUS_942_88:0x800622a0:jalr:v0",
+      "SCUS_942_88:0x80062308:jalr:v0",
+      "SCUS_942_88:0x80062324:jalr:v0",
+      "SCUS_942_88:0x80062364:jalr:v0",
+      "SCUS_942_88:0x800623ac:jalr:v0",
+      "SCUS_942_88:0x80062418:jalr:v0",
+      "SCUS_942_88:0x80062480:jalr:v0",
+      "SCUS_942_88:0x800624ac:jalr:v0",
+      "SCUS_942_88:0x80062534:jalr:v0",
+      "SCUS_942_88:0x800625a0:jalr:v0",
+      "SCUS_942_88:0x800625dc:jalr:v0",
+      "SCUS_942_88:0x80062630:jalr:v0",
+      "SCUS_942_88:0x8006264c:jalr:v0",
+      "SCUS_942_88:0x8006274c:jalr:v0",
+      "SCUS_942_88:0x80062774:jalr:v1",
+      "SCUS_942_88:0x800627fc:jalr:v0",
+      "SCUS_942_88:0x80062898:jalr:v0",
+      "SCUS_942_88:0x80062904:jalr:v0",
+      "SCUS_942_88:0x80062968:jalr:v0",
+      "SCUS_942_88:0x80062a28:jalr:v0",
+      "SCUS_942_88:0x80062a88:jalr:v0",
+      "SCUS_942_88:0x80062b44:jalr:v0",
+      "SCUS_942_88:0x80062b60:jalr:v0",
+      "SCUS_942_88:0x80062bc0:jalr:v0",
+      "SCUS_942_88:0x80062bdc:jalr:v0",
+      "SCUS_942_88:0x80062c30:jalr:v0",
+      "SCUS_942_88:0x80062c54:jalr:v0",
+      "SCUS_942_88:0x80062cb4:jalr:v0",
+      "SCUS_942_88:0x80062cfc:jalr:v0",
+      "SCUS_942_88:0x80062dc4:jalr:v0",
+      "SCUS_942_88:0x80062e18:jalr:v0",
+      "SCUS_942_88:0x80062f0c:jalr:v0",
+      "SCUS_942_88:0x80062f88:jalr:v0",
+      "SCUS_942_88:0x80063198:jalr:v1",
+      "SCUS_942_88:0x800631c4:jalr:v1",
+      "SCUS_942_88:0x80063330:jalr:v0",
+      "SCUS_942_88:0x800633c0:jalr:v0",
+      "SCUS_942_88:0x800647c4:jalr:s3",
+      "SCUS_942_88:0x80064aec:jalr:v0",
+      "SCUS_942_88:0x80064c4c:jalr:v0",
+      "SCUS_942_88:0x800653ec:jalr:v0",
+      "SCUS_942_88:0x8006541c:jalr:v0",
+      "SCUS_942_88:0x8006544c:jalr:v0",
+      "SCUS_942_88:0x80065480:jalr:v0",
+      "SCUS_942_88:0x800654b0:jalr:v0",
+      "SCUS_942_88:0x800654e0:jalr:v0",
+      "SCUS_942_88:0x80065510:jalr:v0",
+      "SCUS_942_88:0x80065728:jalr:v0",
+      "SCUS_942_88:0x80065b94:jalr:v0",
+      "SCUS_942_88:0x80065d0c:jalr:v0",
+      "SCUS_942_88:0x8006645c:jalr:v0",
+      "SCUS_942_88:0x80066818:jr:t1",
+      "SCUS_942_88:0x8006682c:jr:t1",
+      "SCUS_942_88:0x8006684c:jalr:t2",
+      "SCUS_942_88:0x8006689c:jr:ra",
+      "SCUS_942_88:0x800668c4:jalr:t2",
+      "SCUS_942_88:0x8006690c:jr:ra",
+      "SCUS_942_88:0x80067814:jalr:v0",
+      "SCUS_942_88:0x80067878:jalr:v0",
+      "SCUS_942_88:0x800678d0:jalr:v0",
+      "SCUS_942_88:0x80067f34:jalr:v0",
+      "SCUS_942_88:0x80067f48:jalr:v0",
+      "SCUS_942_88:0x80067f98:jalr:v0",
+      "SCUS_942_88:0x800697dc:jalr:v0",
+      "SCUS_942_88:0x80069808:jalr:v0",
+      "SCUS_942_88:0x8006bd0c:jalr:v0",
+      "SCUS_942_88:0x8006e5d8:jalr:v0",
+      "SCUS_942_88:0x8006e60c:jalr:v0",
+      "SCUS_942_88:0x8006e860:jalr:v0",
+      "SCUS_942_88:0x8006e894:jalr:v0",
+      "SCUS_942_88:0x8006ecd0:jalr:v0",
+      "SCUS_942_88:0x8006ed04:jalr:v0",
+      "SCUS_942_88:0x8006f61c:jalr:v0",
+      "SCUS_942_88:0x8006f650:jalr:v0",
+      "SCUS_942_88:0x800702d0:jalr:v1",
+      "SCUS_942_88:0x800703d0:jalr:v0",
+      "SCUS_942_88:0x80070aa0:jalr:a0",
+      "SCUS_942_88:0x800712dc:jalr:v1",
+      "SCUS_942_88:0x80071388:jalr:v1",
+      "SCUS_942_88:0x8007199c:jalr:v0",
+      "SCUS_942_88:0x80071a74:jalr:v0",
+      "SCUS_942_88:0x80071b6c:jalr:v0",
+      "SCUS_942_88:0x80071c40:jalr:v0",
+      "SCUS_942_88:0x80071ce0:jalr:v0",
+      "SCUS_942_88:0x80071d20:jalr:v0",
+      "SCUS_942_88:0x80071d68:jalr:v0",
+      "SCUS_942_88:0x80071e20:jalr:v0",
+      "SCUS_942_88:0x80071e78:jalr:v0",
+      "SCUS_942_88:0x80071f30:jalr:v0",
+      "SCUS_942_88:0x80072054:jalr:v0",
+      "SCUS_942_88:0x8007216c:jalr:v0",
+      "SCUS_942_88:0x80072188:jalr:v0",
+      "SCUS_942_88:0x800722dc:jalr:v1",
+      "SCUS_942_88:0x80072340:jalr:v0",
+      "SCUS_942_88:0x80072354:jalr:v0",
+      "SCUS_942_88:0x80072568:jalr:v0",
+      "SCUS_942_88:0x800725d4:jalr:v0",
+      "SCUS_942_88:0x8007260c:jalr:v0",
+      "SCUS_942_88:0x80072e04:jalr:v0",
+      "SCUS_942_88:0x80072ef0:jalr:v0",
+      "SCUS_942_88:0x80073448:jalr:v0",
+      "SCUS_942_88:0x800735a4:jalr:v0",
+      "SCUS_942_88:0x800736a8:jalr:v0",
+      "SCUS_942_88:0x80073784:jalr:v0",
+      "SCUS_942_88:0x800737fc:jalr:v0",
+      "SCUS_942_88:0x80073810:jalr:v0",
+      "SCUS_942_88:0x8007383c:jalr:v0",
+      "SCUS_942_88:0x80073854:jalr:v0",
+      "SCUS_942_88:0x800738bc:jalr:v0",
+      "SCUS_942_88:0x800738d4:jalr:v0",
+      "SCUS_942_88:0x80073980:jalr:v0",
+      "SCUS_942_88:0x800739f0:jalr:v0",
+      "SCUS_942_88:0x80073a74:jalr:v0",
+      "SCUS_942_88:0x80073a8c:jalr:v0",
+      "SCUS_942_88:0x80073b54:jalr:v0",
+      "SCUS_942_88:0x80073bb0:jalr:v0",
+      "SCUS_942_88:0x80073bdc:jalr:v0",
+      "SCUS_942_88:0x80073bf0:jalr:v0",
+      "SCUS_942_88:0x80073c10:jalr:v0",
+      "SCUS_942_88:0x80073ca0:jalr:v0",
+      "SCUS_942_88:0x80073d48:jalr:v0",
+      "SCUS_942_88:0x80074488:jalr:v0",
+      "SCUS_942_88:0x80074508:jalr:v0",
+      "SCUS_942_88:0x8007458c:jalr:v0",
+      "SCUS_942_88:0x80074678:jalr:v0",
+      "SCUS_942_88:0x800746e0:jalr:v0",
+      "SCUS_942_88:0x80074760:jalr:v0",
+      "SCUS_942_88:0x80074828:jalr:v0"
+    ],
+    "writer_recursion_cycle_count": 0,
+    "writer_recursion_cycles": []
+  },
+  "per_edge_gate_movement": {
+    "applied_edge_additions": [],
+    "applied_edge_removals": [],
+    "applied_site_additions": [],
+    "applied_site_removals": [],
+    "baseline_proved_edge_count": 492,
+    "baseline_proved_site_count": 87,
+    "candidate_gate_grade_edge_ids": [],
+    "candidate_gate_grade_edge_occurrence_count": 0,
+    "candidate_gate_grade_site_count": 0,
+    "candidate_gate_grade_site_ids": [],
+    "comparison": "exact site and site->target edge sets in both directions",
+    "current_proved_edge_count": 492,
+    "current_proved_site_count": 87,
+    "local_proof_basis_edge_ids": [
+      "SCUS_942_88:0x80018a4c:jr:s6->SCUS_942_88:0x80018cc4",
+      "SCUS_942_88:0x80018a4c:jr:s6->SCUS_942_88:0x80018f4c",
+      "SCUS_942_88:0x80018a4c:jr:s6->SCUS_942_88:0x80019244",
+      "SCUS_942_88:0x80018b1c:jr:s6->SCUS_942_88:0x80018cc4",
+      "SCUS_942_88:0x80018b1c:jr:s6->SCUS_942_88:0x80018f4c",
+      "SCUS_942_88:0x80018b1c:jr:s6->SCUS_942_88:0x80019244",
+      "SCUS_942_88:0x80018bec:jr:s6->SCUS_942_88:0x80018cc4",
+      "SCUS_942_88:0x80018bec:jr:s6->SCUS_942_88:0x80018f4c",
+      "SCUS_942_88:0x80018bec:jr:s6->SCUS_942_88:0x80019244",
+      "SCUS_942_88:0x80018cbc:jr:s6->SCUS_942_88:0x80018cc4",
+      "SCUS_942_88:0x80018cbc:jr:s6->SCUS_942_88:0x80018f4c",
+      "SCUS_942_88:0x80018cbc:jr:s6->SCUS_942_88:0x80019244"
+    ],
+    "local_proof_basis_edge_occurrence_count": 12,
+    "local_proof_basis_site_count": 4,
+    "local_proof_basis_site_ids": [
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6"
+    ],
+    "why_not_applied": "NO-GO stops before gate/index mutation"
+  },
+  "pilot": {
+    "attempted_count": 12,
+    "dead_lexical_definition_correction": [
+      {
+        "excluded_definition_occurrences": [
+          {
+            "definition_pc": "0x800188ec",
+            "definition_word": "0x36d6961c",
+            "excluded_from_domain": true,
+            "proved": false,
+            "reason": "definition_not_reachable_from_declared_entry"
+          }
+        ],
+        "site": "SCUS_942_88:0x80018cbc:jr:s6"
+      }
+    ],
+    "landed_count": 0,
+    "landed_site_ids": [],
+    "local_domain_basis_count": 4,
+    "local_domain_basis_site_ids": [
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6"
+    ],
+    "not_landed_count": 12,
+    "not_landed_site_ids": [
+      "SCUS_942_88:0x80011128:jr:ra",
+      "SCUS_942_88:0x800163d8:jr:ra",
+      "SCUS_942_88:0x800172d4:jr:ra",
+      "SCUS_942_88:0x8001897c:jr:ra",
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6",
+      "SCUS_942_88:0x80018f44:jr:ra",
+      "SCUS_942_88:0x8001923c:jr:ra",
+      "SCUS_942_88:0x80019614:jr:ra",
+      "SCUS_942_88:0x80019b3c:jr:ra"
+    ],
+    "outcomes": [
+      {
+        "frozen_rank": 1,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": false,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80010000:0x80013108:ra:0x80011128",
+          "register": "ra",
+          "site_pc": "0x80011128",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80011128",
+            "reason": "query_site_not_entry_reachable",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x8001112c",
+          "delay_slot_word": "0x23bd0020",
+          "derivations": [
+            {
+              "failure": "query_site_not_entry_reachable",
+              "kind": "query_failure",
+              "pc": "0x80011128",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80013108",
+          "full_target_domain_complete": false,
+          "function": "0x80010000",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80011128",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "query_site_not_entry_reachable",
+              "kind": "query_failure",
+              "pc": "0x80011128",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x80011128:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80011128",
+          "reason": "query_site_not_entry_reachable",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 2,
+        "frozen_stratum": "register_provenance",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "register_provenance",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x800153d0:0x800163e0:ra:0x800163d8",
+          "register": "ra",
+          "site_pc": "0x800163d8",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "register_copy_source_untracked"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80015544",
+            "reason": "source_constant_not_path_complete_or_evaluators_disagree",
+            "word": "0x02c0f820"
+          },
+          "delay_slot_pc": "0x800163dc",
+          "delay_slot_word": "0x8c57001c",
+          "derivations": [
+            {
+              "definition_pc": "0x80015544",
+              "definition_word": "0x02c0f820",
+              "failure": "source_constant_not_path_complete_or_evaluators_disagree",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "failure": "call_crossing_without_register_preservation_proof",
+                      "kind": "call_crossing",
+                      "pc": "0x8001551c",
+                      "proved": false,
+                      "word": "0x0c0180a1"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "register_copy_exact",
+              "proved": false
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x800163e0",
+          "full_target_domain_complete": false,
+          "function": "0x800153d0",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 1,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x800163d8",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x80015544",
+              "definition_word": "0x02c0f820",
+              "failure": "source_constant_not_path_complete_or_evaluators_disagree",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "failure": "call_crossing_without_register_preservation_proof",
+                      "kind": "call_crossing",
+                      "pc": "0x8001551c",
+                      "proved": false,
+                      "word": "0x0c0180a1"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "register_copy_exact",
+              "proved": false
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x800163d8:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80015544",
+          "reason": "source_constant_not_path_complete_or_evaluators_disagree",
+          "word": "0x02c0f820"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 3,
+        "frozen_stratum": "register_provenance",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "register_provenance",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x800163e0:0x800172dc:ra:0x800172d4",
+          "register": "ra",
+          "site_pc": "0x800172d4",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "register_copy_source_untracked"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80016554",
+            "reason": "source_constant_not_path_complete_or_evaluators_disagree",
+            "word": "0x02c0f820"
+          },
+          "delay_slot_pc": "0x800172d8",
+          "delay_slot_word": "0x8c57001c",
+          "derivations": [
+            {
+              "definition_pc": "0x80016554",
+              "definition_word": "0x02c0f820",
+              "failure": "source_constant_not_path_complete_or_evaluators_disagree",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "failure": "call_crossing_without_register_preservation_proof",
+                      "kind": "call_crossing",
+                      "pc": "0x8001652c",
+                      "proved": false,
+                      "word": "0x0c0180a1"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "register_copy_exact",
+              "proved": false
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x800172dc",
+          "full_target_domain_complete": false,
+          "function": "0x800163e0",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 1,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x800172d4",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x80016554",
+              "definition_word": "0x02c0f820",
+              "failure": "source_constant_not_path_complete_or_evaluators_disagree",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "failure": "call_crossing_without_register_preservation_proof",
+                      "kind": "call_crossing",
+                      "pc": "0x8001652c",
+                      "proved": false,
+                      "word": "0x0c0180a1"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "register_copy_exact",
+              "proved": false
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x800172d4:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80016554",
+          "reason": "source_constant_not_path_complete_or_evaluators_disagree",
+          "word": "0x02c0f820"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 4,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:ra:0x8001897c",
+          "register": "ra",
+          "site_pc": "0x8001897c",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x8001897c",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80018980",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x8001897c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": false,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x8001897c",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x8001897c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x8001897c:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x8001897c",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 5,
+        "frozen_stratum": "computed",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "computed",
+          "entry_reached": true,
+          "full_target_domain_complete": true,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:s6:0x80018a4c",
+          "register": "s6",
+          "site_pc": "0x80018a4c",
+          "site_word": "0x02c00008",
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": "entry_scoped_full_target_domain",
+        "open_dependency": "entry-scoped exact domain is not gate grade while 175 corrected unresolved transfer sites can still enter the owner interior",
+        "outcome": "NOT_LANDED_EXTERNAL_INTERIOR_ENTRY_UNIVERSE",
+        "primary": {
+          "all_reaching_definitions_whitelisted": true,
+          "breaking_instruction": null,
+          "delay_slot_pc": "0x80018a50",
+          "delay_slot_word": "0x85390004",
+          "derivations": [
+            {
+              "definition_pc": "0x80018978",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018970",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x80018930",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018928",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x8001889c",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018894",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "distinct_target_count": 3,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": true,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 3,
+          "register": "s6",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018a4c",
+          "site_word": "0x02c00008",
+          "target_domain_query": true,
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "verdict": true,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x80018978",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018970",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x80018930",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018928",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x8001889c",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018894",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "target_register": "s6"
+        },
+        "site": "SCUS_942_88:0x80018a4c:jr:s6",
+        "target_owner_entries": [
+          {
+            "end": "0x80018f4c",
+            "entry": "0x80018cc4",
+            "image": "SCUS_942_88",
+            "name": "poly_interpolate_midpoint_prim",
+            "range_type": "code"
+          },
+          {
+            "end": "0x80019244",
+            "entry": "0x80018f4c",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_a",
+            "range_type": "code"
+          },
+          {
+            "end": "0x8001961c",
+            "entry": "0x80019244",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_b",
+            "range_type": "code"
+          }
+        ],
+        "targets": [
+          "0x80018cc4",
+          "0x80018f4c",
+          "0x80019244"
+        ],
+        "wall": {
+          "entry_source_count": 175,
+          "entry_source_set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+          "first_entry_source_site_id": "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+          "pc": "0x800b3fcc",
+          "reason": "blocked_external_interior_entry_universe",
+          "word": "0x00400008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 6,
+        "frozen_stratum": "computed",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "computed",
+          "entry_reached": true,
+          "full_target_domain_complete": true,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:s6:0x80018b1c",
+          "register": "s6",
+          "site_pc": "0x80018b1c",
+          "site_word": "0x02c00008",
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": "entry_scoped_full_target_domain",
+        "open_dependency": "entry-scoped exact domain is not gate grade while 175 corrected unresolved transfer sites can still enter the owner interior",
+        "outcome": "NOT_LANDED_EXTERNAL_INTERIOR_ENTRY_UNIVERSE",
+        "primary": {
+          "all_reaching_definitions_whitelisted": true,
+          "breaking_instruction": null,
+          "delay_slot_pc": "0x80018b20",
+          "delay_slot_word": "0x85590004",
+          "derivations": [
+            {
+              "definition_pc": "0x80018964",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x8001895c",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x80018958",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018950",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x8001891c",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018914",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "distinct_target_count": 3,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": true,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 3,
+          "register": "s6",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018b1c",
+          "site_word": "0x02c00008",
+          "target_domain_query": true,
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "verdict": true,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x80018964",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x8001895c",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x80018958",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018950",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x8001891c",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018914",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "target_register": "s6"
+        },
+        "site": "SCUS_942_88:0x80018b1c:jr:s6",
+        "target_owner_entries": [
+          {
+            "end": "0x80018f4c",
+            "entry": "0x80018cc4",
+            "image": "SCUS_942_88",
+            "name": "poly_interpolate_midpoint_prim",
+            "range_type": "code"
+          },
+          {
+            "end": "0x80019244",
+            "entry": "0x80018f4c",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_a",
+            "range_type": "code"
+          },
+          {
+            "end": "0x8001961c",
+            "entry": "0x80019244",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_b",
+            "range_type": "code"
+          }
+        ],
+        "targets": [
+          "0x80018cc4",
+          "0x80018f4c",
+          "0x80019244"
+        ],
+        "wall": {
+          "entry_source_count": 175,
+          "entry_source_set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+          "first_entry_source_site_id": "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+          "pc": "0x800b3fcc",
+          "reason": "blocked_external_interior_entry_universe",
+          "word": "0x00400008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 7,
+        "frozen_stratum": "computed",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "computed",
+          "entry_reached": true,
+          "full_target_domain_complete": true,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:s6:0x80018bec",
+          "register": "s6",
+          "site_pc": "0x80018bec",
+          "site_word": "0x02c00008",
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": "entry_scoped_full_target_domain",
+        "open_dependency": "entry-scoped exact domain is not gate grade while 175 corrected unresolved transfer sites can still enter the owner interior",
+        "outcome": "NOT_LANDED_EXTERNAL_INTERIOR_ENTRY_UNIVERSE",
+        "primary": {
+          "all_reaching_definitions_whitelisted": true,
+          "breaking_instruction": null,
+          "delay_slot_pc": "0x80018bf0",
+          "delay_slot_word": "0x85790004",
+          "derivations": [
+            {
+              "definition_pc": "0x800188f8",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188f0",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x800188d0",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188c8",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x800188c4",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188bc",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "distinct_target_count": 3,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": true,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 3,
+          "register": "s6",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018bec",
+          "site_word": "0x02c00008",
+          "target_domain_query": true,
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "verdict": true,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x800188f8",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188f0",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x800188d0",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188c8",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x800188c4",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188bc",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            }
+          ],
+          "target_register": "s6"
+        },
+        "site": "SCUS_942_88:0x80018bec:jr:s6",
+        "target_owner_entries": [
+          {
+            "end": "0x80018f4c",
+            "entry": "0x80018cc4",
+            "image": "SCUS_942_88",
+            "name": "poly_interpolate_midpoint_prim",
+            "range_type": "code"
+          },
+          {
+            "end": "0x80019244",
+            "entry": "0x80018f4c",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_a",
+            "range_type": "code"
+          },
+          {
+            "end": "0x8001961c",
+            "entry": "0x80019244",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_b",
+            "range_type": "code"
+          }
+        ],
+        "targets": [
+          "0x80018cc4",
+          "0x80018f4c",
+          "0x80019244"
+        ],
+        "wall": {
+          "entry_source_count": 175,
+          "entry_source_set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+          "first_entry_source_site_id": "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+          "pc": "0x800b3fcc",
+          "reason": "blocked_external_interior_entry_universe",
+          "word": "0x00400008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 8,
+        "frozen_stratum": "computed",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "computed",
+          "entry_reached": true,
+          "full_target_domain_complete": true,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018850:0x80018cc4:s6:0x80018cbc",
+          "register": "s6",
+          "site_pc": "0x80018cbc",
+          "site_word": "0x02c00008",
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "unknown_reasons": []
+        },
+        "local_proof_basis_kind": "entry_scoped_full_target_domain",
+        "open_dependency": "entry-scoped exact domain is not gate grade while 175 corrected unresolved transfer sites can still enter the owner interior",
+        "outcome": "NOT_LANDED_EXTERNAL_INTERIOR_ENTRY_UNIVERSE",
+        "primary": {
+          "all_reaching_definitions_whitelisted": true,
+          "breaking_instruction": null,
+          "delay_slot_pc": "0x80018cc0",
+          "delay_slot_word": "0x85190004",
+          "derivations": [
+            {
+              "definition_pc": "0x8001893c",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018934",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x800188a8",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188a0",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x80018888",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018880",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            },
+            {
+              "definition_pc": "0x800188ec",
+              "definition_word": "0x36d6961c",
+              "excluded_from_domain": true,
+              "proved": false,
+              "reason": "definition_not_reachable_from_declared_entry"
+            }
+          ],
+          "distinct_target_count": 3,
+          "excluded_unreachable_definition_occurrence_count": 1,
+          "extent_end": "0x80018cc4",
+          "full_target_domain_complete": true,
+          "function": "0x80018850",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 3,
+          "register": "s6",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018cbc",
+          "site_word": "0x02c00008",
+          "target_domain_query": true,
+          "targets": [
+            "0x80018cc4",
+            "0x80018f4c",
+            "0x80019244"
+          ],
+          "verdict": true,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "definition_pc": "0x8001893c",
+              "definition_word": "0x36d69244",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018934",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80019244"
+            },
+            {
+              "definition_pc": "0x800188a8",
+              "definition_word": "0x36d68f4c",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x800188a0",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018f4c"
+            },
+            {
+              "definition_pc": "0x80018888",
+              "definition_word": "0x36d68cc4",
+              "inputs": [
+                {
+                  "proof": [
+                    {
+                      "definition_pc": "0x80018880",
+                      "definition_word": "0x3c168001",
+                      "inputs": [],
+                      "operation": "lui_exact",
+                      "proved": true,
+                      "value": "0x80010000"
+                    }
+                  ],
+                  "register": "s6"
+                }
+              ],
+              "operation": "ori_exact",
+              "proved": true,
+              "value": "0x80018cc4"
+            },
+            {
+              "definition_pc": "0x800188ec",
+              "definition_word": "0x36d6961c",
+              "excluded_from_domain": true,
+              "proved": false,
+              "reason": "definition_not_reachable_from_declared_entry"
+            }
+          ],
+          "target_register": "s6"
+        },
+        "site": "SCUS_942_88:0x80018cbc:jr:s6",
+        "target_owner_entries": [
+          {
+            "end": "0x80018f4c",
+            "entry": "0x80018cc4",
+            "image": "SCUS_942_88",
+            "name": "poly_interpolate_midpoint_prim",
+            "range_type": "code"
+          },
+          {
+            "end": "0x80019244",
+            "entry": "0x80018f4c",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_a",
+            "range_type": "code"
+          },
+          {
+            "end": "0x8001961c",
+            "entry": "0x80019244",
+            "image": "SCUS_942_88",
+            "name": "gte_quad_clip_emit_variant_b",
+            "range_type": "code"
+          }
+        ],
+        "targets": [
+          "0x80018cc4",
+          "0x80018f4c",
+          "0x80019244"
+        ],
+        "wall": {
+          "entry_source_count": 175,
+          "entry_source_set_id": "gte_quad_near_clip_dispatch:unresolved_entry_sources",
+          "first_entry_source_site_id": "LEVEL07_LEVEL1:0x800b3fcc:jr:v0",
+          "pc": "0x800b3fcc",
+          "reason": "blocked_external_interior_entry_universe",
+          "word": "0x00400008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 9,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018cc4:0x80018f4c:ra:0x80018f44",
+          "register": "ra",
+          "site_pc": "0x80018f44",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80018f44",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80018f48",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80018f44",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80018f4c",
+          "full_target_domain_complete": false,
+          "function": "0x80018cc4",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80018f44",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80018f44",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x80018f44:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80018f44",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 10,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80018f4c:0x80019244:ra:0x8001923c",
+          "register": "ra",
+          "site_pc": "0x8001923c",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x8001923c",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80019240",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x8001923c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80019244",
+          "full_target_domain_complete": false,
+          "function": "0x80018f4c",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x8001923c",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x8001923c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x8001923c:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x8001923c",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 11,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80019244:0x8001961c:ra:0x80019614",
+          "register": "ra",
+          "site_pc": "0x80019614",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80019614",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80019618",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80019614",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x8001961c",
+          "full_target_domain_complete": false,
+          "function": "0x80019244",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80019614",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80019614",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x80019614:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80019614",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      },
+      {
+        "frozen_rank": 12,
+        "frozen_stratum": "return_like_unproved_incoming_ra",
+        "independent": {
+          "algorithm": "independent forward finite-set fixpoint from image bytes",
+          "classification": "return_like_unproved_incoming_ra",
+          "entry_reached": true,
+          "full_target_domain_complete": false,
+          "image": "SCUS_942_88",
+          "kind": "jr",
+          "query": "SCUS_942_88:0x80019934:0x80019ce8:ra:0x80019b3c",
+          "register": "ra",
+          "site_pc": "0x80019b3c",
+          "site_word": "0x03e00008",
+          "targets": [],
+          "unknown_reasons": [
+            "entry_value"
+          ]
+        },
+        "local_proof_basis_kind": null,
+        "open_dependency": "declared entry/caller value remains unproved",
+        "outcome": "NOT_LANDED",
+        "primary": {
+          "all_reaching_definitions_whitelisted": false,
+          "breaking_instruction": {
+            "pc": "0x80019b3c",
+            "reason": "entry_path_without_definition",
+            "word": "0x03e00008"
+          },
+          "delay_slot_pc": "0x80019b40",
+          "delay_slot_word": "0x8eff0090",
+          "derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80019b3c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "distinct_target_count": 0,
+          "excluded_unreachable_definition_occurrence_count": 0,
+          "extent_end": "0x80019ce8",
+          "full_target_domain_complete": false,
+          "function": "0x80019934",
+          "image": "SCUS_942_88",
+          "reaching_definition_occurrence_count": 0,
+          "register": "ra",
+          "scope": "all paths reachable from the declared extent entry; external interior-entry exclusion remains a separate consumer gate",
+          "site_pc": "0x80019b3c",
+          "site_word": "0x03e00008",
+          "target_domain_query": true,
+          "targets": [],
+          "verdict": false,
+          "whitelist": [
+            "lui",
+            "ori",
+            "andi",
+            "addiu_mod32",
+            "zero_operand_register_copy",
+            "sll",
+            "srl"
+          ]
+        },
+        "proof_kind": null,
+        "protected_set_intersection": [],
+        "register_or_cell_chain": {
+          "cell": null,
+          "primary_derivations": [
+            {
+              "failure": "entry_path_without_definition",
+              "kind": "entry_path_without_definition",
+              "pc": "0x80019b3c",
+              "proved": false,
+              "word": "0x03e00008"
+            }
+          ],
+          "target_register": "ra"
+        },
+        "site": "SCUS_942_88:0x80019b3c:jr:ra",
+        "target_owner_entries": [],
+        "targets": [],
+        "wall": {
+          "pc": "0x80019b3c",
+          "reason": "entry_path_without_definition",
+          "word": "0x03e00008"
+        },
+        "writer_recursion_cycle": []
+      }
+    ],
+    "site_ids": [
+      "SCUS_942_88:0x80011128:jr:ra",
+      "SCUS_942_88:0x800163d8:jr:ra",
+      "SCUS_942_88:0x800172d4:jr:ra",
+      "SCUS_942_88:0x8001897c:jr:ra",
+      "SCUS_942_88:0x80018a4c:jr:s6",
+      "SCUS_942_88:0x80018b1c:jr:s6",
+      "SCUS_942_88:0x80018bec:jr:s6",
+      "SCUS_942_88:0x80018cbc:jr:s6",
+      "SCUS_942_88:0x80018f44:jr:ra",
+      "SCUS_942_88:0x8001923c:jr:ra",
+      "SCUS_942_88:0x80019614:jr:ra",
+      "SCUS_942_88:0x80019b3c:jr:ra"
+    ],
+    "universe_name": "12 sites frozen before outcomes in the committed Stage-0/1 barrier",
+    "whole_table_candidate_count": 0,
+    "whole_table_candidate_ids": [],
+    "whole_table_invariant_landed_count": 0
+  },
+  "protected_state": {
+    "dimension_promoted": false,
+    "f01_status": "partial",
+    "gate_receipt_modified": false,
+    "item2_ready_for_review": false,
+    "item_2": "not_met",
+    "mechanics_baseline_modified": false,
+    "registry_modified": false,
+    "review_blockers": [
+      "IMAGE_CENSUS_INCOMPLETE",
+      "MECHANICALLY_INCOMPLETE"
+    ],
+    "value_domain_gate_modified": false,
+    "writer_universe_gate_modified": false
+  },
+  "schema": "abl-phase4-target-exclusion-pilot/1",
+  "stage_1_full_union_histogram": {
+    "computed": 19,
+    "mixed_reaching_definitions": 33,
+    "register_provenance": 6,
+    "return_like": 0,
+    "return_like_unproved_incoming_ra": 9,
+    "table_backed": 74,
+    "unclassified_opaque_definition": 38
+  },
+  "stage_c_not_run": {
+    "caller_domain_frozen_20_rerun": false,
+    "campaign_regenerated": false,
+    "closure_census_delta": null,
+    "old_pins_replaced": [],
+    "typed_state_regenerated": false
+  }
+}

@@ -1,0 +1,196 @@
+{
+ "_comment": "E16's bounded_residuals block in the promotion linter's schema, with the linter's own two rules applied verbatim. Regenerate: tools/phase4_e16_promotion_residuals.py",
+ "generated": "2026-08-04",
+ "row_id": "E16_streaming_overlays",
+ "dimension": 2,
+ "schema_source": "tools/phase4_promotion_preflight.py at 151a5a3b (accepted, UNMERGED). RESIDUAL_MALFORMED requires boundary + evidence + next_experiment non-empty; RESIDUAL_INTERSECTS requires intersects_dimension is exactly False.",
+ "cannot_run_the_full_gate_here": "The complete linter also needs packet identity, a campaign registry with dimension_claims, external fixture hash pins, authoritative paths, a frontier artifact hash and a disposable falsifier. That registry lives in the unmerged tranche.",
+ "bounded_residuals": [
+  {
+   "boundary": "trig lookup table at 0x80074970 -- 240 region-formed accesses based here",
+   "evidence": "index masked by `andi 0x0fff` at 0x800470E0 -> 4096 entries x u16 Extent bound 8192 B; reaching the nearest E16 window would need index 6370.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x80074970; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "actor berry column state table, 64 rows x 5 columns at 0x80089938 -- 186 region-formed accesses based here",
+   "evidence": "Canon MEM_80089938: a 320-byte table. scene_flow_state_table_init creates 64 records, scene_config_apply copies 64x5 bytes IN, serialize_savegame_buffer copies the same 64x5 back OUT, and spawn_drop_burst_effect reads g_80089938[id*5 + selector]. Extent bound 320 B; reaching the nearest E16 window would need index 117880.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x80089938; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "LoadImage RECT staged by level_texture_stage at 0x80089864 -- 54 region-formed accesses based here",
+   "evidence": "E16: x/y/w/h u16 rect Extent bound 8 B; reaching the nearest E16 window would need index 118092.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x80089864; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "actor id -> model registry at 0x800A6300 -- 44 region-formed accesses based here",
+   "evidence": "My first claim (41*4 = 164 B from E05 Canon) was REFUTED: 0x8005D69C reads 0x800A6300 + (short)a3*4 with a proven non-width-cast reach of 467 B. E05's '41 ids' is the POPULATED id range, not the allocation. The bound comes from layout instead: the player state block begins at 0x800A6500 (B06 Canon, an independently established object), capping this object at 512 B -- which is CONSISTENT with the 467 B proven reach rather than contradicted by it. level_load_chunks 0x8005DB24 clears only the first word, so there is no initialiser loop to read a count from. Extent bound 512 B; reaching the nearest E16 window would need index 688.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x800A6300; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "LoadImage RECT staged by level_texture_stage at 0x80089860 -- 39 region-formed accesses based here",
+   "evidence": "E16: x/y/w/h u16 rect Extent bound 8 B; reaching the nearest E16 window would need index 118096.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x80089860; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "LoadImage RECT staged by level_texture_stage at 0x80089850 -- 36 region-formed accesses based here",
+   "evidence": "E16: x/y/w/h u16 rect Extent bound 8 B; reaching the nearest E16 window would need index 29528.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x80089850; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "movie unlock array at 0x8009B878 -- 36 region-formed accesses based here",
+   "evidence": "C17 Canon: 16-entry unlock array read by 0x800b4084 Extent bound 16 B; reaching the nearest E16 window would need index 44344.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009B878; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "chunk relocation index table, 128 x u16 at 0x8009B2A8 -- 27 region-formed accesses based here",
+   "evidence": "REFUTED LEAD: the `slti $s2,128` at 0x800295B0 does NOT gate these accesses -- it guards a DIFFERENT table at 0x800992A8 (lui 0x8009 / addiu -27992) with stride 4. The real gate at 0x80029750 is `slt $s2, gp[1280]`, a runtime count at 0x80082298 appended by chunk_pointer_relocate_index_fixup 0x8005D614 in a loop bounded only by a u16 header field, so CODE alone gives no useful bound. LAYOUT does: the next object is the matrix LUT at 0x8009B3A8, whose 64x8 extent is independently established from `andi 0x3f` -- so this table occupies at most 0x8009B2A8..0x8009B3A7 = 256 B = 128 x u16, max index 127 at stride 2 (255 at stride 1), against the 384/768 needed. Extent bound 256 B; reaching the nearest E16 window would need index 22916.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009B2A8; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "player state block, byte field at +0x98 at 0x800A6598 -- 20 region-formed accesses based here",
+   "evidence": "RE-BASED 2026-08-04. The old basis was 'B06 Canon says the block is 168 B, so it ends at 0x800A65A8' -- which leans on the block's LENGTH, the weakest thing claimed about it (the highest KNOWN field is lives at 0x800A65A0, so 168 is a lower bound dressed as an upper one). The next ESTABLISHED object above this field is E16's own markers 0x58..0x5F table at 0x800A65B0 -- live-confirmed by this row -- capping the field at 24 bytes, max index 23 against the 24 needed. Bounded by one element, and with no dependency on the 168. Extent bound 24 B; reaching the nearest E16 window would need index 24.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x800A6598; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "matrix LUT, 64 entries x 8 bytes at 0x8009B3A8 -- 12 region-formed accesses based here",
+   "evidence": "matrix_lut_mesh_transform 0x80027CBC masks its index with `andi 0x3f` (0x80027F20/F68, 0x80027FF4/8008) -> at most 63. Corroborated exactly by layout: 0x8009B3A8 + 64*8 = 0x8009B5A8, precisely where E16's markers 0x30..0x57 table begins. Bounded by one element. Extent bound 512 B; reaching the nearest E16 window would need index 5697.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009B3A8; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "actor berry column state table, 64 rows x 5 columns at 0x80089939 -- 12 region-formed accesses based here",
+   "evidence": "Canon MEM_80089938: a 320-byte table. scene_flow_state_table_init creates 64 records, scene_config_apply copies 64x5 bytes IN, serialize_savegame_buffer copies the same 64x5 back OUT, and spawn_drop_burst_effect reads g_80089938[id*5 + selector]. Extent bound 320 B; reaching the nearest E16 window would need index 117879.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x80089939; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "actor berry column state table, 64 rows x 5 columns at 0x8008993A -- 12 region-formed accesses based here",
+   "evidence": "Canon MEM_80089938: a 320-byte table. scene_flow_state_table_init creates 64 records, scene_config_apply copies 64x5 bytes IN, serialize_savegame_buffer copies the same 64x5 back OUT, and spawn_drop_burst_effect reads g_80089938[id*5 + selector]. Extent bound 320 B; reaching the nearest E16 window would need index 117878.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8008993A; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "actor berry column state table, 64 rows x 5 columns at 0x8008993B -- 12 region-formed accesses based here",
+   "evidence": "Canon MEM_80089938: a 320-byte table. scene_flow_state_table_init creates 64 records, scene_config_apply copies 64x5 bytes IN, serialize_savegame_buffer copies the same 64x5 back OUT, and spawn_drop_burst_effect reads g_80089938[id*5 + selector]. Extent bound 320 B; reaching the nearest E16 window would need index 117877.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8008993B; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "actor berry column state table, 64 rows x 5 columns at 0x8008993C -- 12 region-formed accesses based here",
+   "evidence": "Canon MEM_80089938: a 320-byte table. scene_flow_state_table_init creates 64 records, scene_config_apply copies 64x5 bytes IN, serialize_savegame_buffer copies the same 64x5 back OUT, and spawn_drop_burst_effect reads g_80089938[id*5 + selector]. Extent bound 320 B; reaching the nearest E16 window would need index 117876.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8008993C; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "setpiece/boss actor transform working set at 0x800A649C -- 10 region-formed accesses based here",
+   "evidence": "owners setpiece_actor_mesh_transform / boss_defeat_fsm_mesh_transform. Bounded by its established neighbour: the player state block begins at 0x800A6500 (B06 Canon, 168 B), so this object can occupy at most the 100 bytes below it -- max index 24 at stride 4, against the 69 needed. Extent bound 100 B; reaching the nearest E16 window would need index 69.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x800A649C; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "PsyQ voice-manager table, 32 x u16 at 0x8009FBE8 -- 9 region-formed accesses based here",
+   "evidence": "CORRECTED: the first claim (24*16=384 B) came from 'the SPU has 24 voices' -- general knowledge imported from OUTSIDE this codebase. The codebase says 32: _SsVmInit 0x800699F8 loads a literal count of 32 and zero-fills 32 entries of 2 bytes from this base. Extent bound 64 B; reaching the nearest E16 window would need index 13540.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009FBE8; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "PsyQ voice-manager table (+2 field) at 0x8009FBEA -- 7 region-formed accesses based here",
+   "evidence": "as 0x8009FBE8 Extent bound 62 B; reaching the nearest E16 window would need index 1693.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009FBEA; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "matrix LUT, 64 entries x 8 bytes at 0x8009B3AC -- 6 region-formed accesses based here",
+   "evidence": "matrix_lut_mesh_transform 0x80027CBC masks its index with `andi 0x3f` (0x80027F20/F68, 0x80027FF4/8008) -> at most 63. Corroborated exactly by layout: 0x8009B3A8 + 64*8 = 0x8009B5A8, precisely where E16's markers 0x30..0x57 table begins. Bounded by one element. Extent bound 512 B; reaching the nearest E16 window would need index 5697.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009B3AC; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "E16 registered-chunk table, markers 0x30..0x57 at 0x8009B5A8 -- 6 region-formed accesses based here",
+   "evidence": "E16: 40 slots x 4 bytes, occupied window 0x8009B5A8..0x8009B647, confirmed live (38 slots populated in the frontend) Extent bound 160 B; reaching the nearest E16 window would need index 11266.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009B5A8; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "PsyQ voice-manager table (+2 field) at 0x8009FBEE -- 5 region-formed accesses based here",
+   "evidence": "as 0x8009FBE8 Extent bound 62 B; reaching the nearest E16 window would need index 27074.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009FBEE; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "PsyQ voice-manager table (+2 field) at 0x8009FBF0 -- 3 region-formed accesses based here",
+   "evidence": "as 0x8009FBE8 Extent bound 62 B; reaching the nearest E16 window would need index 13536.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009FBF0; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "PsyQ voice-manager table (+2 field) at 0x8009FBF2 -- 3 region-formed accesses based here",
+   "evidence": "as 0x8009FBE8 Extent bound 62 B; reaching the nearest E16 window would need index 13535.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009FBF2; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "E16 registered-chunk table, markers 0x28..0x2F at 0x8009C210 -- 2 region-formed accesses based here",
+   "evidence": "E16: 8 slots x 4 bytes, occupied window 0x8009C210..0x8009C22F Extent bound 32 B; reaching the nearest E16 window would need index 10472.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009C210; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "PsyQ voice-manager table (+2 field) at 0x8009FBEC -- 2 region-formed accesses based here",
+   "evidence": "as 0x8009FBE8 Extent bound 62 B; reaching the nearest E16 window would need index 27076.",
+   "next_experiment": "Watch the E16 table windows with a readwrite accessLog and confirm no event's PC lies in a function that indexes 0x8009FBEC; a hit would falsify this extent.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "Accesses whose region base lies ABOVE the target window. Reaching the window from them requires a NEGATIVE index.",
+   "evidence": "MAGNITUDE is what makes this sound, and it was measured rather than assumed (analysis/phase4_e16_signed_index_audit.json). Of the 2,922 accesses discharged this way, ZERO need a small (<64) negative index; 47 need 64-1k and 2,875 need >= 1k. The convention is not being asked to rule out an off-by-one -- it is ruling out an array running hundreds to thousands of elements BACKWARDS past its own base. 27.5% of the indices are signed-CAPABLE (lh, sra, subu, the sll16/sra16 short cast), but not one of them is asked to be even slightly negative. Same disclosed convention as region_provenance.c TIER 2. 0x8005D69C computes 0x800A6300 + (short)a3*4, a SIGNED short index -- the site that made this residual un-assertable. It is based BELOW its target, so it is not among the sites this convention discharges at all, and the measured risk set (small negative index AND not provably non-negative) is EMPTY.",
+   "next_experiment": "Watch all three table windows with a readwrite accessLog across a campaign of per-level replays. Any write arriving from a base above a window falsifies this. One run (boot -> frontend -> Clover Forest) already passed: 7 PCs observed, none from a base above the window.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "Accesses whose object has a distinct neighbouring object starting within 1 KB above it, where reaching an E16 window would need at least 10x that distance.",
+   "evidence": "Bases are first clustered into OBJECTS (gap < 0x100), because the naive `nearest distinct base` version was retracted -- its median gap is 4 bytes, since adjacent bases are usually sibling FIELDS. Unconstrained the clustered version discharges 100% of the residual, which is the tautology signature; its tight-margin cases (ratio 1.0x) are exactly those where NO neighbour was observed for 12-18 KB, so the `extent` is a GAP, not a bound. Constraining it to a real neighbour within 1 KB AND a 10x margin keeps only the cases where the argument means something.",
+   "next_experiment": "Watch the E16 windows across the per-level campaign; a write from a base whose object has a close neighbour would falsify the no-overlap assumption this rests on.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "Accesses needing an index >= 1k to reach a window, against objects whose extents are not documented (4166 site-instances across the three tables, in 538 (base, stride) clusters over 33 base regions)",
+   "evidence": "Median required index 10,977; the objects involved are pools and tables of tens to hundreds of elements. Still not PROVEN -- no element count has been read for them -- but its declared falsifier has now been executed in full: a 16-level any% campaign watched all three windows at 60 Hz, 1,930 events, and produced no unexplained PC. The only PCs found were the hoisted-load idiom, measured read-only and provably unable to form these pointers deliberately. This is asserted on the SAME basis the non-negative-index convention already uses: a magnitude argument plus a named, now-executed falsifier. It is a declared assumption, not a proof -- a replay shows what DID execute and can never show an untaken branch would not have written the slot. analysis/phase4_e16_campaign_verdict.json",
+   "next_experiment": "Read the element count at each object's allocation or fill loop, largest cluster first (the 836-byte record array, the collision sector/grid working set, the sprite pool).",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "SCOPE: every earlier static figure for this row was computed over the 998 functions in functions_resident.txt, which cover 90.1% of the resident text. 32144 bytes in 12 gaps are reached by direct j/jal/branch AND majority non-zero -- the defensible figure for dropped live code. (Reachability alone gives 46020 B, but 20.5% of that is zero words: the largest such gap sits below $gp = 0x80081D98 and is small data, not code.)",
+   "evidence": "Found by the campaign, not by inspection: a movie caught 0x80010BF4 reading a window, and that PC is in no listed function. The gaps are now censused -- 12 region-formed sites, ALL needing an index >= 16k to reach a window, 0 priority sites -- so they add no region-formed risk. analysis/phase4_text_coverage_audit.json, analysis/phase4_resident_gap_census.json",
+   "next_experiment": "Re-run tools/text_coverage_audit.c whenever functions_resident.txt changes; a new CODE gap means new unscanned text and every residual figure must be redone. MEASURED 2026-08-04: repairing the list to 95.0% coverage (tools/repair_function_coverage.c, analysis/phase4_coverage_repair_impact.json) leaves the region-formed site set BYTE-IDENTICAL (5,810 both ways), so the hole cost this row nothing.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "FORM: register-based (pointer-formed) accesses are invisible to the affine census, which only sees a lui-constant base. Repairing the function list would not surface them.",
+   "evidence": "Bounded by materialisation instead: deliberate access to an address requires building it, and on MIPS that is always a lui-based constant. Scanning 100% of the text finds 5 sites reaching these windows, ALL already enumerated (815 near misses within 512 B). So no register-based access here can be deliberate. The 2 observed are the hoisted-load idiom -- 22 sites project-wide -- measured read-only. analysis/phase4_e16_address_materialization.json, analysis/hoisted_load_idiom_scan.json",
+   "next_experiment": "Re-run tools/const_address_materialization.c against the windows; a sixth site, or any site not reducible to the enumerated set, falsifies this.",
+   "intersects_dimension": false
+  },
+  {
+   "boundary": "Overlay code (22 images: 20 LEVEL*.BIN + MEMORY.BIN + FMV.BIN)",
+   "evidence": "Region-censused at true load bases (958 region-formed sites). Only 36 need an index < 1k, in 3 of 22 images, and they reduce to two objects already bounded elsewhere in this packet (0x8009B878, 0x800A6300). No new unknowns. analysis/phase4_e16_overlay_census.json",
+   "next_experiment": "Re-run the overlay census if any overlay image changes; the function starts are derived from `jr ra` boundaries and would shift with the bytes.",
+   "intersects_dimension": false
+  }
+ ],
+ "linter_result": {
+  "residual_entries": 30,
+  "rejections": [],
+  "passes_the_residual_rules": true,
+  "verdict": "PASSES the residual rules"
+ }
+}

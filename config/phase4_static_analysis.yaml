@@ -1,0 +1,77 @@
+schema: abl-phase4-static-analysis-source/1
+generated: 2026-07-31
+seed_commit: dbab87c1c2bfe87ae2cb7ffe222ee2b87f745f8b
+runtime_gp: 0x80081D98
+# records = canonical_source_records + target_root_island_records: one
+# authoritative executable universe. Re-pinned 2026-08-06 when the decoded
+# target-root island 0x8004C898..0x8004C8AC (proved jr target of the mover
+# dispatch at 0x8004C868) was promoted from a side list to a census record; the
+# delta was DERIVED from the generator's count-mismatch errors, not assumed.
+expected_census:
+  records: 1191
+  canonical_source_records: 1190
+  target_root_island_records: 1
+  resident_records: 999
+  resident_code: 901
+  overlay_code: 158
+  data: 78
+  thunks: 54
+resident:
+  image_id: SCUS_942_88
+  path: REBUILD/files/SCUS_942.88
+  file_va_base: 0x8000F800
+  text_start: 0x80010000
+  text_end: 0x80082800
+overlays:
+  region_a_base: 0x800B39A0
+  region_a_code_offset: 4
+  region_b_base: 0x800B5788
+  memory_path: REBUILD/files/BITS/MEMORY.BIN
+fmv:
+  image_id: FMV_BIN
+  path: REBUILD/files/FMV/FMV.BIN
+  base: 0x800B5788
+  code_start: 0x800B5788
+  code_end: 0x800B9A4C
+toolchain:
+  mode: flatpak
+  app_id: org.ghidra_sre.Ghidra
+  version: 12.1.2
+  flatpak_commit: 87718b5091fe9ce604cc5a2ae0cfb80cc9af2ef18ab3c1830e923fae61733194
+  psx_loader_release: 2026.07.02
+  exporter: ghidra/scripts/ExportPhase4StaticFrontier.java
+targets:
+  E15_fmv:
+    row_id: E15_fmv
+    image_id: FMV_BIN
+    source: analysis/phase4_fmv_static_owners.json
+    expected:
+      region_b_address_rows: 30
+      absolute_xrefs: 99
+      player_xrefs: 58
+      unclassified_xrefs: 0
+  E08_props_movers_gates:
+    row_id: E08_props_movers_gates
+    source: analysis/phase4_e08_class_frontier.json
+    selector_source: analysis/phase4_event_vm.json
+    expected:
+      uncontrolled_classes: 28
+      selectors: 40
+      callbacks: 10
+      priority_slices: 5
+      automatic_owner_promotions: 0
+  C13_grain_harvester:
+    row_id: C13_grain_harvester
+    source: analysis/phase4_collectibles_frontier.json
+    function_roots:
+      - [0x8004EFF8, 0x8004F020]
+      - [0x80051DB4, 0x80052090]
+      - [0x80053BE8, 0x80053C5C]
+      - [0x80054F88, 0x80055174]
+      - [0x8005A308, 0x8005B12C]
+      - [0x8005E17C, 0x8005E1A0]
+    state_roots: [0x800A6590, 0x800A6594]
+    required_open_boundaries:
+      - original oracle
+      - causal controls
+      - lifecycle and breadth

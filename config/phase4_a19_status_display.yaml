@@ -1,0 +1,27 @@
+id: phase4_a19_status_display
+row: A19_status_display
+authority: pristine_retail_SCUS_94288
+anchor:
+  type: save_state
+  path: level01.sav
+  sha256: 5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2
+input:
+  button: select
+  hold_display_frames: 60
+control:
+  button: none
+  display_frames: 60
+assertions:
+  - actor_pool_equal
+  - contact_pool_equal
+  - plant_region_equal
+  - camera_equal
+  - player_state_equal
+  - hud_pulses_differ
+  - held_pulses_equal_0x0440
+mutation: controller_only
+instrumentation:
+  access_watch: 0x800B0188+0x10 write
+  exec_watch: 0x800526F4 capture_pc_a0_ra
+movie_required: false
+cold_boot_required: false

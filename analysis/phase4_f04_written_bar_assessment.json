@@ -1,0 +1,1522 @@
+{
+ "_comment": "F04_cliffside_canyon measured against the nine DoD dimensions AS WRITTEN (item 2 = enumerated; residuals = explicitly bounded), per engineering-specs/phase4-measurement-standard-ruling.md. Judgments authored; every fact derived from a pinned artifact at run time. Regenerate: tools/phase4_f04_written_bar_assessment.py",
+ "schema": "abl-phase4-f04-written-bar-assessment/1",
+ "generated": "2026-08-11",
+ "row_id": "F04_cliffside_canyon",
+ "row_name": "Stage 4 Cliffside Canyon: dandelion flight + bird hazard",
+ "standard": {
+  "ruling": "engineering-specs/phase4-measurement-standard-ruling.md",
+  "item2_bar": "enumerated, scoped to relevant (NOT empty unresolved set)",
+  "exit_gate_bar": "explicitly bounded, not absent",
+  "vocabulary": "bounded-exhausted remains a stop decision and never reads as met; this assessment publishes measurement, not disposition",
+  "allowed_states": [
+   "met",
+   "met_candidate",
+   "partial",
+   "not_met",
+   "unmeasured"
+  ]
+ },
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "edits_registry": false,
+  "requires_fresh_verifier": true,
+  "author_conflict": "the assessor did not author F04's underlying evidence, but did author this assessment, the C probe it runs, and the F-row census whose durable_evidence result it carries forward -- so the standard being applied and the application of it share an author. Every state below is a submission to a fresh detached verifier, not a promotion; `partial` and `not_met` are as challengeable as a `met` would be. The two measured falsifications below (the row's red test module, and the bit-0x10 hypothesis) are the assessor's own new findings and have not been independently reviewed"
+ },
+ "carried_forward": {
+  "dimension": "durable_evidence",
+  "from": "analysis/phase4_f_row_measured_census.json",
+  "state": "met",
+  "fraction": "7/7",
+  "note": "measured there against pinned bytes; re-deriving it here would be a second opinion on a settled measurement, not evidence"
+ },
+ "registry_disposition_for_contrast": {
+  "source": "analysis/phase4_closure_debt.json",
+  "completion_state": "open",
+  "dimensions_met": 0,
+  "dimensions_remaining": 9,
+  "distinct_basis_strings": [
+   "no active child campaign"
+  ],
+  "note": "the registry carries ONE blanket basis across all nine dimensions and scores the row 0/9. That is a disposition, not a measurement -- and it understates the row: durable_evidence is measured met and seven other dimensions hold real, bounded evidence. The baseline row meanwhile declares MOVE ON / bounded-exhausted, which under the vocabulary is a stop decision and never reads as met either"
+ },
+ "secondary_lead_finding": {
+  "question": "the row declares `secondary_lead` among its four evidence classes. What does that make measurable?",
+  "class_legend": "evidence         \u2014 manual | pristine_observation | static_code | runtime_trace | asset_disc | secondary_lead  (classes present today)",
+  "only_definition_in_the_repo": {
+   "source": "analysis/phase4_spin_heading.json",
+   "role": "non-authoritative trigger lead only",
+   "authority_rule": "Only hash-verified pristine media and executable bytes establish the behavior."
+  },
+  "rows_declaring_it": [
+   "A07_spin",
+   "E11_dynamic_geometry",
+   "F04_cliffside_canyon",
+   "F05_riverbed_run",
+   "F06_birdnest",
+   "F07_city_entrance",
+   "F08_city_square",
+   "F13_anthill_two",
+   "F14_riverbed_flight",
+   "F15_canyon_showdown"
+  ],
+  "verdict": "a `secondary_lead` is a POINTER, not evidence: the only definition in the repo calls it 'non-authoritative trigger lead only' and binds authority to hash-verified media and executable bytes. It can raise a claim to be tested and can never satisfy any of the nine bars. The F-row census agrees by construction -- it derives only ['static_code', 'runtime_trace'] from this row's artifacts against the declared ['manual', 'secondary_lead', 'runtime_trace', 'static_code']. So this row's four declared classes are two measurable ones, one operator-testimony class, and one lead; and of the 3 artifacts this row owns, 0 cite an external source, so the declared class is not traceable to a specific lead at all. Treating it as a fourth evidence class inflates the row's apparent support"
+ },
+ "compiled_c_probe": {
+  "source": "tools/phase4_f04_static_probe.c",
+  "why": "the row's own reducer tools/phase4_f04_route_analyzer.c cannot run today: it opens the transient /tmp trace TSVs before its static checks, and those were deleted with the 2026-08-04 session. Its six 'exact sites' have therefore been unverifiable since the day they were written, and they were TEXT comparisons against ASM listings, not decodes. This probe decodes the shipped images.",
+  "build": "cc -std=c11 -O2 -Wall -Wextra -Werror -pedantic",
+  "images_decoded": 21,
+  "code_ranges": 1059,
+  "instructions_decoded": 122658,
+  "route_sites": {
+   "contact_stagger_store": "0x800A6592",
+   "scene_clear_store": "0x80082504",
+   "scene_restore_store": "0x80082504",
+   "dandelion_vy_store": "0x800A6530",
+   "dandelion_mode5_store": "0x800A6580",
+   "dandelion_latch11_store": "0x800A659E"
+  },
+  "route_sites_unresolved": 0,
+  "disclosed_limit": "constants flow only inside a basic block; facts are dropped at every branch target. The census therefore UNDER-reports (26056 of 33644 memops have an unresolved base) and is a lower bound on writers, never a total. The independent reconciliation against B03's own census makes the size of that under-report visible: 14/15 sites agree, B03-only [('0x80047a58', 'store')], probe-only [('0x800b3bc0', 'load')] (the probe-only site is overlay code B03's resident-corpus scan could not see)"
+ },
+ "fail_loud_verification": {
+  "cases": [
+   {
+    "case": "missing_artifact",
+    "detail": "analysis/phase4_f04_route_analysis.json removed from the farm",
+    "exit_code": 1,
+    "output_file_written": false,
+    "stderr_first_line": "STALE CITATION: analysis/phase4_f04_route_analysis.json does not exist under <FARM>",
+    "expected_nonzero_exit": true,
+    "passed": true
+   },
+   {
+    "case": "renamed_key",
+    "detail": "analysis/phase4_f04_route_analysis.json's 'runtime' key renamed",
+    "exit_code": 1,
+    "output_file_written": false,
+    "stderr_first_line": "STALE CITATION: analysis/phase4_f04_route_analysis.json no longer has runtime (failed at 'runtime')",
+    "expected_nonzero_exit": true,
+    "passed": true
+   },
+   {
+    "case": "control_unmodified_farm",
+    "detail": "the same farm with nothing wrong must still succeed",
+    "exit_code": 0,
+    "output_file_written": true,
+    "stderr_first_line": "",
+    "expected_nonzero_exit": false,
+    "passed": true
+   }
+  ],
+  "all_passed": true
+ },
+ "fact_provenance": {
+  "facts_total": 235,
+  "facts_derived_from_pinned_artifacts": 235,
+  "facts_hand_typed": 0,
+  "rule": "facts are recorded through fact(key, value, source); a value cannot be stored without naming a pinned artifact, every lookup is strict so a renamed or removed key aborts the run instead of silently defaulting, and a duplicate key aborts too. Verified, not asserted: see fail_loud_verification",
+  "by_fact": {
+   "census_durable_state": "analysis/phase4_f_row_measured_census.json",
+   "census_durable_fraction": "analysis/phase4_f_row_measured_census.json",
+   "census_durable_reason": "analysis/phase4_f_row_measured_census.json",
+   "census_row_status": "analysis/phase4_f_row_measured_census.json",
+   "census_declared_evidence_classes": "analysis/phase4_f_row_measured_census.json",
+   "census_derived_evidence_classes": "analysis/phase4_f_row_measured_census.json",
+   "census_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+   "census_vault_pages": "analysis/phase4_f_row_measured_census.json",
+   "census_source_files": "analysis/phase4_f_row_measured_census.json",
+   "census_segments_entries": "analysis/phase4_f_row_measured_census.json",
+   "census_triage": "analysis/phase4_f_row_measured_census.json",
+   "census_baseline_sha256": "analysis/phase4_f_row_measured_census.json",
+   "census_rows_assessed": "analysis/phase4_f_row_measured_census.json",
+   "census_durable_met_fraction": "analysis/phase4_f_row_measured_census.json",
+   "f_rows_by_declared_fixture_count": "analysis/phase4_f_row_measured_census.json",
+   "f04_fixture_rank_among_f_rows": "analysis/phase4_f_row_measured_census.json",
+   "registry_dimensions_met": "analysis/phase4_closure_debt.json",
+   "registry_dimensions_remaining": "analysis/phase4_closure_debt.json",
+   "registry_distinct_bases": "analysis/phase4_closure_debt.json",
+   "registry_completion_state": "analysis/phase4_closure_debt.json",
+   "registry_family": "analysis/phase4_closure_debt.json",
+   "registry_movie_count": "analysis/phase4_closure_debt.json",
+   "registry_capsule_count": "analysis/phase4_closure_debt.json",
+   "registry_prior_offline_analyses": "analysis/phase4_closure_debt.json",
+   "row_name": "analysis/mechanics_baseline.yaml",
+   "row_stages": "analysis/mechanics_baseline.yaml",
+   "row_status": "analysis/mechanics_baseline.yaml",
+   "row_evidence_classes": "analysis/mechanics_baseline.yaml",
+   "row_binding_claims": "analysis/mechanics_baseline.yaml",
+   "row_declared_fixtures": "analysis/mechanics_baseline.yaml",
+   "row_declared_missing": "analysis/mechanics_baseline.yaml",
+   "row_declared_fixture_need": "analysis/mechanics_baseline.yaml",
+   "row_declared_next": "analysis/mechanics_baseline.yaml",
+   "row_artifact_path_citations": "analysis/mechanics_baseline.yaml",
+   "row_synthesis_binding_count": "analysis/mechanics_baseline.yaml",
+   "baseline_evidence_class_legend": "analysis/mechanics_baseline.yaml",
+   "baseline_rows_declaring_secondary_lead": "analysis/mechanics_baseline.yaml",
+   "f04_artifacts_citing_an_external_url": [
+    "analysis/phase4_f04_cliffside_canyon.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f04_cliffside_canyon.md"
+   ],
+   "f04_artifacts_examined_for_a_secondary_source": [
+    "analysis/phase4_f04_cliffside_canyon.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f04_cliffside_canyon.md"
+   ],
+   "secondary_lead_role": "analysis/phase4_spin_heading.json",
+   "secondary_lead_authority_rule": "analysis/phase4_spin_heading.json",
+   "other_baseline_rows_naming_stage4": "analysis/mechanics_baseline.yaml",
+   "other_baseline_rows_naming_stage4_ids": "analysis/mechanics_baseline.yaml",
+   "baseline_rows_matching_only_the_ambiguous_level04_token": "analysis/mechanics_baseline.yaml",
+   "donor_b03_status": "analysis/mechanics_baseline.yaml",
+   "donor_b03_stages": "analysis/mechanics_baseline.yaml",
+   "donor_d17_status": "analysis/mechanics_baseline.yaml",
+   "donor_d17_stages": "analysis/mechanics_baseline.yaml",
+   "donor_d11_status": "analysis/mechanics_baseline.yaml",
+   "donor_d11_stages": "analysis/mechanics_baseline.yaml",
+   "donor_b03_declared_missing": "analysis/mechanics_baseline.yaml",
+   "route_static_all_sites_match": "analysis/phase4_f04_route_analysis.json",
+   "route_static_site_pcs": "analysis/phase4_f04_route_analysis.json",
+   "route_scene_load_movie_frame": "analysis/phase4_f04_route_analysis.json",
+   "route_dandelion_launch_movie_frame": "analysis/phase4_f04_route_analysis.json",
+   "route_dandelion_handler_hits": "analysis/phase4_f04_route_analysis.json",
+   "route_launch_hits": "analysis/phase4_f04_route_analysis.json",
+   "route_latch11_exec_hits": "analysis/phase4_f04_route_analysis.json",
+   "route_latch11_access_writes": "analysis/phase4_f04_route_analysis.json",
+   "route_latch_first_movie_frame": "analysis/phase4_f04_route_analysis.json",
+   "route_grounded_latch_clear_movie_frame": "analysis/phase4_f04_route_analysis.json",
+   "route_latch_residence_frames": "analysis/phase4_f04_route_analysis.json",
+   "route_first_scene6_exit_movie_frame": "analysis/phase4_f04_route_analysis.json",
+   "route_scene_exit_after_ground_frames": "analysis/phase4_f04_route_analysis.json",
+   "route_damage_branch_hits": "analysis/phase4_f04_route_analysis.json",
+   "route_life_decrements_after_launch": "analysis/phase4_f04_route_analysis.json",
+   "route_all_logs_untruncated": "analysis/phase4_f04_route_analysis.json",
+   "route_ordered_success_route": "analysis/phase4_f04_route_analysis.json",
+   "route_identity_movie_version": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_identity_movie_frames": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_identity_armed_while_paused": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_identity_reproducible": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_identity_game_serial": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_identity_execution_mode": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_identity_duckstation_revision": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_identity_hashes_present": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_method_disclaims_advance_to_frame": "analysis/phase4_f04_cliffside_canyon.json",
+   "route_method_armed_after_state_load": "analysis/phase4_f04_cliffside_canyon.json",
+   "row_bounded_exhaustion_status": "analysis/phase4_f04_cliffside_canyon.json",
+   "row_retained_residuals": "analysis/phase4_f04_cliffside_canyon.json",
+   "row_retained_residual_count": "analysis/phase4_f04_cliffside_canyon.json",
+   "kill_zone_not_closed_by_d17": "analysis/phase4_f04_cliffside_canyon.json",
+   "row_pass1_did_no_new_instrumentation": "analysis/phase4_f04_cliffside_canyon.json",
+   "experiment_residual_items": "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f04_cliffside_canyon.md",
+   "experiment_concedes_stage_flow_unaddressed": "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f04_cliffside_canyon.md",
+   "experiment_concedes_fixture_need_unsatisfied": "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f04_cliffside_canyon.md",
+   "scenario_phases": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "scenario_assertions": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "scenario_semantic_ids": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "scenario_addresses": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "scenario_requires_reproducible": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "scenario_movie": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "scenario_assertion_ids": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "scenario_id_named_in_analysis_artifacts": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "analysis_artifacts_recording_scenario_assertion_outcomes": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "row_test_module_tests": "tests/test_phase4_f04_cliffside_canyon.py",
+   "row_test_module_passed": "tests/test_phase4_f04_cliffside_canyon.py",
+   "row_test_module_failed": "tests/test_phase4_f04_cliffside_canyon.py",
+   "row_test_module_exit_code": "tests/test_phase4_f04_cliffside_canyon.py",
+   "row_test_module_failing_tests": "tests/test_phase4_f04_cliffside_canyon.py",
+   "row_test_module_failing_assertions": "tests/test_phase4_f04_cliffside_canyon.py",
+   "b03_static_corpus_files": "analysis/phase4_b03_dandelion_static.json",
+   "b03_static_corpus_instructions": "analysis/phase4_b03_dandelion_static.json",
+   "b03_latch_scope": "analysis/phase4_b03_dandelion_static.json",
+   "b03_latch_absolute_sites": "analysis/phase4_b03_dandelion_static.json",
+   "b03_latch_typed_player_relative_sites": "analysis/phase4_b03_dandelion_static.json",
+   "b03_latch_total": "analysis/phase4_b03_dandelion_static.json",
+   "b03_latch_reads": "analysis/phase4_b03_dandelion_static.json",
+   "b03_latch_writes": "analysis/phase4_b03_dandelion_static.json",
+   "b03_latch_all_writes_literal_0_11_or_12": "analysis/phase4_b03_dandelion_static.json",
+   "b03_lifecycle_clears": "analysis/phase4_b03_dandelion_static.json",
+   "b03_activation_contract": "analysis/phase4_b03_dandelion_static.json",
+   "b03_deferred_items": "analysis/phase4_b03_dandelion_static.json",
+   "b03_row_solved_flag": "analysis/phase4_b03_dandelion_static.json",
+   "b03_runtime_trace_events": "analysis/phase4_b03_dandelion_runtime.json",
+   "b03_runtime_truncated": "analysis/phase4_b03_dandelion_runtime.json",
+   "b03_runtime_control_cycle_neutral": "analysis/phase4_b03_dandelion_runtime.json",
+   "b03_glide_latch11_access_writes": "analysis/phase4_b03_dandelion_runtime.json",
+   "b03_glide_latch_active_player_updates": "analysis/phase4_b03_dandelion_runtime.json",
+   "b03_glide_first_latch_active_movie_frame": "analysis/phase4_b03_dandelion_runtime.json",
+   "b03_glide_last_latch_active_movie_frame": "analysis/phase4_b03_dandelion_runtime.json",
+   "b03_steering_changed_velocity_pairs": "analysis/phase4_b03_dandelion_runtime.json",
+   "b03_capsule_control_match": "analysis/phase4_b03_dandelion_capsule.json",
+   "b03_capsule_parse_exact": "analysis/phase4_b03_dandelion_capsule.json",
+   "b03_capsule_records": "analysis/phase4_b03_dandelion_capsule.json",
+   "b03_capsule_missing_domains": "analysis/phase4_b03_dandelion_capsule.json",
+   "b03_artifacts_recording_a_scene_id": [
+    "analysis/phase4_b03_dandelion_static.json",
+    "analysis/phase4_b03_dandelion_runtime.json",
+    "analysis/phase4_b03_dandelion_capsule.json"
+   ],
+   "b03_artifacts_examined_for_scene_id": [
+    "analysis/phase4_b03_dandelion_static.json",
+    "analysis/phase4_b03_dandelion_runtime.json",
+    "analysis/phase4_b03_dandelion_capsule.json"
+   ],
+   "d17_cliffside_subclaims": "analysis/phase4_d17_bird.json",
+   "d17_cliffside_fixture_frames": "analysis/phase4_d17_bird.json",
+   "d17_cliffside_contact_caller_residual": "analysis/phase4_d17_bird.json",
+   "d17_cliffside_radius_test_not_inside": "analysis/phase4_d17_bird.json",
+   "d17_bit10_search_scope": "analysis/phase4_d17_bird.json",
+   "d17_bit10_resident_store_sites_reported": "analysis/phase4_d17_bird.json",
+   "d17_bit10_hypothesis_is_overlay": "analysis/phase4_d17_bird.json",
+   "mite_level_set_source_claim": "analysis/phase4_d13_shell_bug_armor.json",
+   "d13_says_canyon_bug_savs_manipulated_actor": "analysis/phase4_d13_shell_bug_armor.json",
+   "row_fixture_reused_by_c15": "analysis/phase4_c15_respawn_anchor.json",
+   "c15_names_f04_as_donor_context": "analysis/phase4_c15_respawn_anchor.json",
+   "stage4_scene_id": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage4_container": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage4_save_anchor": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage4_authored_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage4_runtime_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage4_code_histogram": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage4_nonzero_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage4_disc_vs_runtime_mismatches": "analysis/phase4_e02_disc_region_code_census.json",
+   "e02_campaign_disagreements": "analysis/phase4_e02_disc_region_code_census.json",
+   "e02_authored_sectors_compared": "analysis/phase4_e02_disc_region_code_census.json",
+   "region_code2_branch": "analysis/phase4_e02_consumer_binding.json",
+   "region_code3_branch": "analysis/phase4_e02_consumer_binding.json",
+   "region_dispatch_gates": "analysis/phase4_e02_consumer_binding.json",
+   "code2_arm_effect": "analysis/phase4_f01_objective_lifecycle.json",
+   "code3_arm_effect": "analysis/phase4_f01_objective_lifecycle.json",
+   "e02_consumer_binding_calls_code3_identical_to_code2": "analysis/phase4_e02_consumer_binding.json",
+   "code3_differs_from_code2_only_by_commit_flag": "analysis/phase4_f01_objective_lifecycle.json",
+   "probe_target_power_word": "analysis/phase4_b06_b08_powerups.json",
+   "probe_target_latch_word": "analysis/phase4_b03_dandelion_static.json",
+   "probe_target_exit_latch": "analysis/phase4_e02_consumer_binding.json",
+   "probe_images_decoded": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_code_ranges": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_instructions_decoded": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_memops": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_memops_unresolved_base": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_sites_missing": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_sites_unresolved": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_site_effective_addresses": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_site_mnemonics": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "probe_site_addresses_in_scenario_assertion_set": [
+    "tools/phase4_f04_static_probe.c",
+    "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml"
+   ],
+   "probe_latch_site_hits_b03_latch_word": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "power_flags_stores_all_images": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "power_flags_stores_resident": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "power_flags_stores_overlays": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "power_flags_set_masks": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "power_flags_and_masks": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "power_flags_bit_0x10_writers": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "cliffside_overlay_power_flags_stores": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "cliffside_overlay_sets_bit_0x10": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "exit_latch_stores_all_images": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "exit_latch_overlay_store_values": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "cliffside_overlay_exit_latch_stores": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "level_overlays_storing_request_constant_2": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "level_overlays_storing_request_constant_1": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "level_overlays_with_unrecovered_request_value": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "resident_request2_store_pcs": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "dandelion_latch_stores": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "dandelion_latch_store_values": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "latch_census_b03_sites": "analysis/phase4_b03_dandelion_static.json",
+   "latch_census_probe_sites": [
+    "tools/phase4_f04_static_probe.c",
+    "analysis/phase4_static_frontier_index.json",
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_b06_b08_powerups.json",
+    "analysis/phase4_b03_dandelion_static.json"
+   ],
+   "latch_census_agreeing_sites": [
+    "analysis/phase4_b03_dandelion_static.json",
+    "tools/phase4_f04_static_probe.c"
+   ],
+   "latch_census_b03_only": [
+    "analysis/phase4_b03_dandelion_static.json",
+    "tools/phase4_f04_static_probe.c"
+   ],
+   "latch_census_probe_only": [
+    "analysis/phase4_b03_dandelion_static.json",
+    "tools/phase4_f04_static_probe.c"
+   ],
+   "cliffside_overlay_index_records": "analysis/phase4_static_frontier_index.json",
+   "cliffside_overlay_code_functions": "analysis/phase4_static_frontier_index.json",
+   "cliffside_overlay_function_names": "analysis/phase4_static_frontier_index.json",
+   "cliffside_overlay_memory_accesses": "analysis/phase4_static_frontier_index.json",
+   "cliffside_overlay_unresolved_boundaries": "analysis/phase4_static_frontier_index.json",
+   "cliffside_overlay_functions_with_source": "analysis/phase4_static_frontier_index.json",
+   "cliffside_overlay_image_for_scene6": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/phase4_static_frontier_index.json"
+   ],
+   "cliffside_candidate_pcs": [
+    "analysis/phase4_static_frontier_index.json",
+    "tools/phase4_f04_static_probe.c"
+   ],
+   "cliffside_candidate_owning_functions": [
+    "analysis/phase4_static_frontier_index.json",
+    "tools/phase4_f04_static_probe.c"
+   ],
+   "cliffside_candidate_is_one_function": [
+    "analysis/phase4_static_frontier_index.json",
+    "tools/phase4_f04_static_probe.c"
+   ],
+   "cliffside_overlay_decomp_totals": "analysis/overlay_decomp_progress.json",
+   "cliffside_overlay_matched_functions": "analysis/overlay_decomp_progress.json",
+   "all_overlays_matched_pct": "analysis/overlay_decomp_progress.json",
+   "resident_request2_store_build_units": [
+    "config/segments.yml",
+    "tools/phase4_f04_static_probe.c"
+   ],
+   "governing_addresses": [
+    "analysis/phase4_f04_route_analysis.json",
+    "analysis/phase4_e02_consumer_binding.json",
+    "tools/phase4_f04_static_probe.c"
+   ],
+   "governing_build_units": "config/segments.yml",
+   "governing_units_matching_c": "config/segments.yml",
+   "governing_units_hand_asm": "config/segments.yml",
+   "governing_addresses_without_build_unit": "config/segments.yml",
+   "governing_addresses_in_c": "config/segments.yml",
+   "governing_addresses_in_hand_asm": "config/segments.yml",
+   "stage4_movies_pinned": "analysis/phase2_fixture_audit.json",
+   "stage4_movies_pinned_paths": "analysis/phase2_fixture_audit.json",
+   "stage4_movies_declared_by_row": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "stage4_movies_pinned_but_undeclared": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "stage4_movie_frames": "analysis/phase2_fixture_audit.json",
+   "stage4_distinct_movies_replayed_by_row_artifacts": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "declared_fixture_generator_reference_counts": "analysis/phase0_2_external_fixture_set.json",
+   "declared_fixtures_referenced_by_an_f04_tool": "analysis/phase0_2_external_fixture_set.json",
+   "declared_fixtures_with_zero_generator_references": "analysis/phase0_2_external_fixture_set.json",
+   "stage4_movie_provenance": [
+    "movies/100% Runs/LEVEL04.movie.json",
+    "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+    "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json",
+    "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json",
+    "movies/Phase4/Interpreter/B03.movie.json",
+    "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json",
+    "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json",
+    "movies/go_to_end/LEVEL04.movie.json"
+   ],
+   "declared_movies_with_recording_provenance": [
+    "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json",
+    "movies/Phase4/Interpreter/B03.movie.json",
+    "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json"
+   ],
+   "undeclared_stage4_movies_with_recording_provenance": [
+    "movies/100% Runs/LEVEL04.movie.json",
+    "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+    "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json",
+    "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json",
+    "movies/go_to_end/LEVEL04.movie.json"
+   ],
+   "declared_movies_from_boot": [
+    "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json",
+    "movies/Phase4/Interpreter/B03.movie.json",
+    "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json"
+   ],
+   "stage4_retained_capsules": "analysis/phase4_trace_capsule_set.json",
+   "capsule_set_complete": "analysis/phase4_trace_capsule_set.json",
+   "capsule_set_movie_hash_matches_disk": "analysis/phase4_trace_capsule_set.json",
+   "capsule_set_size": "analysis/phase4_trace_capsule_set.json",
+   "stage4_capsule_cited_by_row": [
+    "analysis/phase4_f04_cliffside_canyon.json",
+    "analysis/phase4_trace_capsule_set.json"
+   ],
+   "sibling_row_compared": "analysis/phase4_f02_written_bar_assessment.json",
+   "sibling_counts": "analysis/phase4_f02_written_bar_assessment.json",
+   "dimensions_stronger_than_sibling": "analysis/phase4_f02_written_bar_assessment.json",
+   "dimensions_weaker_than_sibling": "analysis/phase4_f02_written_bar_assessment.json"
+  }
+ },
+ "facts": {
+  "census_durable_state": "met",
+  "census_durable_fraction": "7/7",
+  "census_durable_reason": "7/7 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+  "census_row_status": "partial",
+  "census_declared_evidence_classes": [
+   "manual",
+   "secondary_lead",
+   "runtime_trace",
+   "static_code"
+  ],
+  "census_derived_evidence_classes": [
+   "static_code",
+   "runtime_trace"
+  ],
+  "census_analysis_artifacts": [
+   "analysis/phase4_f04_cliffside_canyon.json",
+   "analysis/phase4_f04_route_analysis.json",
+   "analysis/phase4_f08_scene_binding.json"
+  ],
+  "census_vault_pages": [
+   "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f04_cliffside_canyon.md"
+  ],
+  "census_source_files": [],
+  "census_segments_entries": 0,
+  "census_triage": {
+   "original_oracle": "measurable: runtime evidence present in artifacts",
+   "complete_frontier": "measurable: static evidence present in artifacts",
+   "typed_state": "measurable: static evidence present in artifacts",
+   "lifecycle": "measurable: runtime evidence present in artifacts",
+   "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+   "original_interfaces": "measurable: static evidence present in artifacts",
+   "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+   "campaign_breadth": "measurable: static evidence present in artifacts"
+  },
+  "census_baseline_sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58",
+  "census_rows_assessed": 19,
+  "census_durable_met_fraction": "19/19",
+  "f_rows_by_declared_fixture_count": [
+   [
+    "F11_the_tree",
+    8
+   ],
+   [
+    "F04_cliffside_canyon",
+    7
+   ],
+   [
+    "F06_birdnest",
+    5
+   ],
+   [
+    "F08_city_square",
+    5
+   ]
+  ],
+  "f04_fixture_rank_among_f_rows": 2,
+  "registry_dimensions_met": 0,
+  "registry_dimensions_remaining": 9,
+  "registry_distinct_bases": [
+   "no active child campaign"
+  ],
+  "registry_completion_state": "open",
+  "registry_family": "bosses_special_objectives",
+  "registry_movie_count": 0,
+  "registry_capsule_count": 0,
+  "registry_prior_offline_analyses": 0,
+  "row_name": "Stage 4 Cliffside Canyon: dandelion flight + bird hazard",
+  "row_stages": "4",
+  "row_status": "partial",
+  "row_evidence_classes": [
+   "manual",
+   "secondary_lead",
+   "runtime_trace",
+   "static_code"
+  ],
+  "row_binding_claims": 6,
+  "row_declared_fixtures": [
+   "level04.sav",
+   "LEVEL04_ENDING.sav",
+   "canyon_bug.sav",
+   "canyon_bug_aggro.sav",
+   "movies/Phase4/Interpreter/B03.movie.json",
+   "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json"
+  ],
+  "row_declared_missing": "No blocker remains for F04's named flight-plus-bird requirement. Retained low-return residuals: the exact sub-branch/threshold inside FUNC_8004ABF4; the Cliffside-overlay writer of power bit 0x10; B03's repository-wide pointer/instance breadth; exhaustive non-mite enemy census; source closure; cross-system audio/HUD. These do not change the proven route composition or either mechanic and are explicitly outside the bounded-exhaustion frontier.",
+  "row_declared_fixture_need": "None for the named row. Request another Interpreter movie only if a future campaign chooses one of the retained low-return residuals.",
+  "row_declared_next": "MOVE ON -- substantiated partial, bounded-exhausted on 2026-08-04. Reopen only for a named residual with a concrete downstream consumer.",
+  "row_artifact_path_citations": 6,
+  "row_synthesis_binding_count": 3,
+  "baseline_evidence_class_legend": "evidence         \u2014 manual | pristine_observation | static_code | runtime_trace | asset_disc | secondary_lead  (classes present today)",
+  "baseline_rows_declaring_secondary_lead": [
+   "A07_spin",
+   "E11_dynamic_geometry",
+   "F04_cliffside_canyon",
+   "F05_riverbed_run",
+   "F06_birdnest",
+   "F07_city_entrance",
+   "F08_city_square",
+   "F13_anthill_two",
+   "F14_riverbed_flight",
+   "F15_canyon_showdown"
+  ],
+  "f04_artifacts_citing_an_external_url": [],
+  "f04_artifacts_examined_for_a_secondary_source": 3,
+  "secondary_lead_role": "non-authoritative trigger lead only",
+  "secondary_lead_authority_rule": "Only hash-verified pristine media and executable bytes establish the behavior.",
+  "other_baseline_rows_naming_stage4": 15,
+  "other_baseline_rows_naming_stage4_ids": [
+   "B03_dandelion_glide",
+   "B08_bubble_shield",
+   "C04_enemy_token",
+   "C05_three_tokens",
+   "C15_respawn_anchor",
+   "C17_movie_viewer",
+   "D11_mites_grubs",
+   "D17_bird",
+   "E04_camera_system",
+   "F06_birdnest",
+   "F07_city_entrance",
+   "F11_the_tree",
+   "F16_bonus1_spiders",
+   "F17_bonus2_mushrooms",
+   "F18_bonus3_grasshoppers"
+  ],
+  "baseline_rows_matching_only_the_ambiguous_level04_token": [
+   "A13_cycle_plant_output",
+   "C01_grain_pickup",
+   "D13_armored_beetles",
+   "D18_thud",
+   "D20_hopper",
+   "E01_terrain_visual",
+   "E02_collision",
+   "E08_props_movers_gates",
+   "E11_dynamic_geometry",
+   "F12_battle_arena",
+   "F13_anthill_two"
+  ],
+  "donor_b03_status": "partial",
+  "donor_b03_stages": "Cliffside Canyon (4) primary",
+  "donor_d17_status": "partial",
+  "donor_d17_stages": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+  "donor_d11_status": "partial",
+  "donor_d11_stages": "Cliffside Canyon (scene_id=6) + LEVEL01/08/10 for mite; LEVEL03 for grub",
+  "donor_b03_declared_missing": "HIGH-YIELD SCOPE EXHAUSTED, ROW STILL PARTIAL. Deferred rather than promoted: repository-wide indirect/overlay player-pointer alias closure, exhaustive stage/instance reachability, exact GPU/display ownership of the >2 and <=11 movie-frame post-clear tail, and a native dandelion-to-propeller combination replay. These do not justify standalone work without general pointer typing or a concrete MOD dependency.",
+  "route_static_all_sites_match": true,
+  "route_static_site_pcs": {
+   "dandelion_vy_store": "0x8005c848",
+   "dandelion_mode5_store": "0x8005c854",
+   "dandelion_latch11_store": "0x8005c8bc",
+   "scene_clear_store": "0x800503ac",
+   "scene_restore_store": "0x800503e0",
+   "contact_stagger_store": "0x8004a814"
+  },
+  "route_scene_load_movie_frame": 59,
+  "route_dandelion_launch_movie_frame": 819,
+  "route_dandelion_handler_hits": 162,
+  "route_launch_hits": 1,
+  "route_latch11_exec_hits": 19,
+  "route_latch11_access_writes": 19,
+  "route_latch_first_movie_frame": 831,
+  "route_grounded_latch_clear_movie_frame": 3215,
+  "route_latch_residence_frames": 2384,
+  "route_first_scene6_exit_movie_frame": 3258,
+  "route_scene_exit_after_ground_frames": 43,
+  "route_damage_branch_hits": 0,
+  "route_life_decrements_after_launch": 0,
+  "route_all_logs_untruncated": true,
+  "route_ordered_success_route": true,
+  "route_identity_movie_version": 4,
+  "route_identity_movie_frames": 3907,
+  "route_identity_armed_while_paused": true,
+  "route_identity_reproducible": true,
+  "route_identity_game_serial": "SCUS-94288",
+  "route_identity_execution_mode": "Interpreter",
+  "route_identity_duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+  "route_identity_hashes_present": [
+   "disc_sha256",
+   "duckstation_binary_sha256",
+   "movie_sha256",
+   "start_state_sha256"
+  ],
+  "route_method_disclaims_advance_to_frame": true,
+  "route_method_armed_after_state_load": true,
+  "row_bounded_exhaustion_status": "substantiated partial / bounded-exhausted",
+  "row_retained_residuals": [
+   "the exact sub-branch/threshold inside FUNC_8004ABF4",
+   "the Cliffside-overlay writer of power bit 0x10",
+   "B03's repository-wide pointer-alias and exhaustive instance breadth",
+   "exhaustive non-mite enemy census",
+   "source closure",
+   "cross-system audio/HUD",
+   "no dedicated Canon page. Reopen only for a named downstream consumer."
+  ],
+  "row_retained_residual_count": 7,
+  "kill_zone_not_closed_by_d17": "The exact branch/threshold inside FUNC_8004ABF4 (the well-evidenced but not fully decoded contact-caller) that actually fires the Cliffside contact; the undocumented power-flags bit 0x10 seen at the death branch (exhaustively checked against all known resident writers, not found among them -- very likely uncharted Cliffside-overlay code, not a resident writer being missed).",
+  "row_pass1_did_no_new_instrumentation": true,
+  "experiment_residual_items": 8,
+  "experiment_concedes_stage_flow_unaddressed": true,
+  "experiment_concedes_fixture_need_unsatisfied": false,
+  "scenario_phases": 4,
+  "scenario_assertions": 11,
+  "scenario_semantic_ids": [
+   "original.current_scene_id",
+   "original.player_grounded",
+   "original.player_health",
+   "original.player_lives",
+   "original.player_plant_latch"
+  ],
+  "scenario_addresses": [
+   "0x80082504",
+   "0x800A6582",
+   "0x800A6594",
+   "0x800A659E",
+   "0x800A65A0"
+  ],
+  "scenario_requires_reproducible": true,
+  "scenario_movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json",
+  "scenario_assertion_ids": [
+   "dandelion_latch_cleared",
+   "dandelion_latch_is_11",
+   "health_not_consumed",
+   "lives_still_unchanged",
+   "lives_unchanged_in_flight",
+   "no_life_lost_on_route",
+   "player_grounded_at_exit",
+   "scene6_exit_committed",
+   "scene_is_cliffside",
+   "scene_still_cliffside",
+   "still_in_cliffside"
+  ],
+  "scenario_id_named_in_analysis_artifacts": [
+   "analysis/phase4_c15_respawn_anchor.json",
+   "analysis/phase4_campaign_inventory.json",
+   "analysis/phase4_f04_cliffside_canyon.json",
+   "analysis/phase4_f04_written_bar_assessment.json",
+   "analysis/phase4_f_row_measured_census.json"
+  ],
+  "analysis_artifacts_recording_scenario_assertion_outcomes": [
+   "analysis/phase4_f04_written_bar_assessment.json"
+  ],
+  "row_test_module_tests": 10,
+  "row_test_module_passed": 9,
+  "row_test_module_failed": 1,
+  "row_test_module_exit_code": 1,
+  "row_test_module_failing_tests": [
+   "test_still_open_flags_stage_level_flow_as_unaddressed"
+  ],
+  "row_test_module_failing_assertions": [
+   "AssertionError: assert ('level design/flow' in 'low-return residuals retained without blocking row closure: the exact sub-branch/threshold inside func_8004abf4; the ... census; sou"
+  ],
+  "b03_static_corpus_files": 892,
+  "b03_static_corpus_instructions": 100425,
+  "b03_latch_scope": "direct absolute accesses plus typed player-relative $s1+0x9e accesses in retained hand-written ASM; other indirect and overlay aliases excluded",
+  "b03_latch_absolute_sites": 15,
+  "b03_latch_typed_player_relative_sites": 4,
+  "b03_latch_total": 19,
+  "b03_latch_reads": 10,
+  "b03_latch_writes": 9,
+  "b03_latch_all_writes_literal_0_11_or_12": true,
+  "b03_lifecycle_clears": {
+   "grounded_clear": "0x80048700",
+   "level_transition_clear": "0x8004a87c",
+   "harvester_activation_clear": "0x80051ea4",
+   "respawn_clear": "0x8005b314"
+  },
+  "b03_activation_contract": {
+   "selected_slot_gate": true,
+   "slot_extra_bit_0x02_gate": true,
+   "quantized_xyz_radius": 40,
+   "sphere_center_y_offset": -29696,
+   "harvester_flag_0x80_suppresses_latch": true,
+   "launch_sound_id": 15,
+   "guard_pass": true
+  },
+  "b03_deferred_items": [
+   "repository-wide indirect player-pointer and overlay alias proof",
+   "exhaustive per-stage placement and reachability sampling",
+   "exact GPU/display ownership of the short post-clear tail",
+   "native dandelion-to-propeller combination replay"
+  ],
+  "b03_row_solved_flag": false,
+  "b03_runtime_trace_events": 13694,
+  "b03_runtime_truncated": false,
+  "b03_runtime_control_cycle_neutral": true,
+  "b03_glide_latch11_access_writes": 50,
+  "b03_glide_latch_active_player_updates": 212,
+  "b03_glide_first_latch_active_movie_frame": 241,
+  "b03_glide_last_latch_active_movie_frame": 719,
+  "b03_steering_changed_velocity_pairs": 169,
+  "b03_capsule_control_match": true,
+  "b03_capsule_parse_exact": true,
+  "b03_capsule_records": 998,
+  "b03_capsule_missing_domains": [
+   "instruction-exact runtime attribution and plant-slot pointer at the trigger",
+   "steering and sustained altitude-loss law",
+   "release/drop and controlled landing behavior",
+   "propeller interaction breadth",
+   "cold-boot and cross-level controls"
+  ],
+  "b03_artifacts_recording_a_scene_id": 0,
+  "b03_artifacts_examined_for_scene_id": 3,
+  "d17_cliffside_subclaims": [
+   "POSITION_FIELD_CORRECTION_2026-08-02",
+   "bird_position_is_locked_to_flik",
+   "contact_caller_FUNC_8004ABF4",
+   "contact_death_branch",
+   "full_timeline",
+   "landing_trigger",
+   "level_identity",
+   "power_flags_bit_0x10_checked_not_found",
+   "provenance",
+   "recovery_then_respawn",
+   "same_actor_different_stats"
+  ],
+  "d17_cliffside_fixture_frames": 527,
+  "d17_cliffside_contact_caller_residual": "The caller that decides a Cliffside hit occurred (STILL_OPEN residual) is very likely FUNC_8004ABF4 (Canon: actor_player_contact_resolver / proximity_updater_8004abf4, span 0x8004ABF4-0x8004B6D8), which is confirmed to already be one of FUNC_8004A700's 6 statically-enumerated callers (via its 0x8004B4A0 call site, per FUNC_8004A700's own Canon page) and which -- per its OWN Canon doc -- iterates the live actor table at 0x80090748 doing per-actor proximity/contact dispatch against Flik. Live-confirmed this pass: id=30 occupies SLOT 0 of that table during the Cliffside encounter (0x80090748 itself, not an offset into it), which is exactly the single actor FUNC_8004ABF4's own partially-decoded entry math reads via G_TYPE6_ACTOR_PTR. However, that entry-math's specific radius/threshold check (dx^2+dy^2+dz^2 < r^2 using the +0x6a radius field and a -7360 Y-bias) evaluates to NOT-inside at every sampled frame including the closest approach (f327) -- so while the caller is now well-evidenced by actor-slot identity and call-graph membership, the EXACT branch/threshold inside this function's undecoded body that actually fires the contact is still not pinned. Not a full closure of that residual, but a substantial narrowing (from 'completely unknown' to 'this specific already-Canon function, exact branch TBD').",
+  "d17_cliffside_radius_test_not_inside": true,
+  "d17_bit10_search_scope": "Exhaustively checked this pass, still open. debugger.xrefsTo on 0x800A6590 (power-flags word) was run against BOTH the Birdnest (D17.movie.sav) and Cliffside (D17_Cliffside_Bird_Death.movie.sav) resident RAM images -- both return the SAME 8 static store sites (0x8001d5f8, 0x8004a7b0, 0x8004a8e0, 0x80051eb0, 0x80054e90, 0x8005b340, 0x8005d088, 0x800b3d3c), and every one was individually disassembled: none ORs in bit 0x10 (immediates found: 0x0001, 0x0002 x2, 0x0080, 0x0020 (andi), 0x0004 x2). A parallel grep of the entire hand-disassembled resident ASM corpus (asm/nonmatchings/resident/*.s, the 23 files that reference 0x6590) for an ori/andi immediate of 0x10 near a 0x6590 store also found nothing. The bit-0x10 writer is therefore almost certainly OVERLAY code specific to Cliffside (F04) that is not in the current disassembled corpus at all, or uses an addressing pattern (computed/indirect base) that a literal lui+offset static scan does not catch -- not a resident, already-documented writer being mis-attributed.",
+  "d17_bit10_resident_store_sites_reported": 8,
+  "d17_bit10_hypothesis_is_overlay": true,
+  "mite_level_set_source_claim": true,
+  "d13_says_canyon_bug_savs_manipulated_actor": true,
+  "row_fixture_reused_by_c15": true,
+  "c15_names_f04_as_donor_context": true,
+  "stage4_scene_id": 6,
+  "stage4_container": "LEVEL06/LEVEL.RAW",
+  "stage4_save_anchor": "level04.sav",
+  "stage4_authored_sectors": 132,
+  "stage4_runtime_sectors": 177,
+  "stage4_code_histogram": {
+   "0": 131,
+   "3": 1
+  },
+  "stage4_nonzero_sectors": [
+   {
+    "sector": 131,
+    "code": 3,
+    "runtime_code": 3,
+    "runtime_origin": [
+     -1719040,
+     39424,
+     -219488
+    ],
+    "stream_offset": 755500,
+    "chunk": 30,
+    "chunk_local_offset": "0x2b86c"
+   }
+  ],
+  "stage4_disc_vs_runtime_mismatches": 0,
+  "e02_campaign_disagreements": 0,
+  "e02_authored_sectors_compared": 3235,
+  "region_code2_branch": ".L_800496C4: [0x800823A0]=1, fade [0x80082470]=23, FUNC_80050994(58,0) -- the live-proven exit body",
+  "region_code3_branch": ".L_800496E8: IDENTICAL body to code 2 via the shared tail .L_80049700 -- a SECOND exit-code value",
+  "region_dispatch_gates": [
+   "query != 0",
+   "[0x800823A0] (exit latch, lh gp-rel 9120) still 0",
+   "flik+0x82 gate == 1 (inside the query)"
+  ],
+  "code2_arm_effect": "[0x800823a0]=1; [0x80082470]=23; sfx 58; commit flag sp+0x50=1",
+  "code3_arm_effect": "[0x800823a0]=1; [0x80082470]=23; sfx 58; NO commit flag",
+  "e02_consumer_binding_calls_code3_identical_to_code2": true,
+  "code3_differs_from_code2_only_by_commit_flag": true,
+  "probe_target_power_word": "0x800A6590",
+  "probe_target_latch_word": "0x800a659e",
+  "probe_target_exit_latch": "0x800823A0",
+  "probe_images_decoded": 21,
+  "probe_code_ranges": 1059,
+  "probe_instructions_decoded": 122658,
+  "probe_memops": 33644,
+  "probe_memops_unresolved_base": 26056,
+  "probe_sites_missing": 0,
+  "probe_sites_unresolved": 0,
+  "probe_site_effective_addresses": {
+   "contact_stagger_store": "0x800A6592",
+   "scene_clear_store": "0x80082504",
+   "scene_restore_store": "0x80082504",
+   "dandelion_vy_store": "0x800A6530",
+   "dandelion_mode5_store": "0x800A6580",
+   "dandelion_latch11_store": "0x800A659E"
+  },
+  "probe_site_mnemonics": {
+   "contact_stagger_store": "sh",
+   "scene_clear_store": "sw",
+   "scene_restore_store": "sw",
+   "dandelion_vy_store": "sw",
+   "dandelion_mode5_store": "sh",
+   "dandelion_latch11_store": "sh"
+  },
+  "probe_site_addresses_in_scenario_assertion_set": [
+   "0x80082504",
+   "0x800A659E"
+  ],
+  "probe_latch_site_hits_b03_latch_word": true,
+  "power_flags_stores_all_images": 19,
+  "power_flags_stores_resident": 15,
+  "power_flags_stores_overlays": 4,
+  "power_flags_set_masks": [
+   "0x1",
+   "0x2",
+   "0x4",
+   "0x8",
+   "0x20",
+   "0x80"
+  ],
+  "power_flags_and_masks": [
+   "0x20",
+   "0xFEFF",
+   "0xFF7E",
+   "0xFFF7",
+   "0xFFFB"
+  ],
+  "power_flags_bit_0x10_writers": [],
+  "cliffside_overlay_power_flags_stores": [
+   {
+    "pc": "0x800B3D3C",
+    "form": "rmw_or",
+    "mask": "0x4"
+   }
+  ],
+  "cliffside_overlay_sets_bit_0x10": false,
+  "exit_latch_stores_all_images": 28,
+  "exit_latch_overlay_store_values": [
+   [
+    "LEVEL01_LEVEL1",
+    "0x1"
+   ],
+   [
+    "LEVEL02_LEVEL",
+    "0x0"
+   ],
+   [
+    "LEVEL02_LEVEL1",
+    "0x1"
+   ],
+   [
+    "LEVEL03_LEVEL1",
+    "0x1"
+   ],
+   [
+    "LEVEL04_LEVEL",
+    "0x1"
+   ],
+   [
+    "LEVEL04_LEVEL1",
+    "0x1"
+   ],
+   [
+    "LEVEL05_LEVEL",
+    "0x1"
+   ],
+   [
+    "LEVEL05_LEVEL1",
+    "0x1"
+   ],
+   [
+    "LEVEL06_LEVEL",
+    "0x2"
+   ],
+   [
+    "LEVEL06_LEVEL1",
+    "0x1"
+   ],
+   [
+    "LEVEL07_LEVEL",
+    "0x1"
+   ],
+   [
+    "LEVEL09_LEVEL",
+    "0x1"
+   ]
+  ],
+  "cliffside_overlay_exit_latch_stores": [
+   {
+    "pc": "0x800B3EA4",
+    "form": "const",
+    "value": 2
+   }
+  ],
+  "level_overlays_storing_request_constant_2": [
+   "LEVEL06_LEVEL"
+  ],
+  "level_overlays_storing_request_constant_1": [
+   "LEVEL01_LEVEL1",
+   "LEVEL02_LEVEL1",
+   "LEVEL03_LEVEL1",
+   "LEVEL04_LEVEL",
+   "LEVEL04_LEVEL1",
+   "LEVEL05_LEVEL",
+   "LEVEL05_LEVEL1",
+   "LEVEL06_LEVEL1",
+   "LEVEL07_LEVEL",
+   "LEVEL09_LEVEL"
+  ],
+  "level_overlays_with_unrecovered_request_value": [
+   "LEVEL02_LEVEL"
+  ],
+  "resident_request2_store_pcs": [
+   "0x8004A8B4",
+   "0x8004A9F4"
+  ],
+  "dandelion_latch_stores": 7,
+  "dandelion_latch_store_values": [
+   0,
+   11
+  ],
+  "latch_census_b03_sites": 15,
+  "latch_census_probe_sites": 15,
+  "latch_census_agreeing_sites": 14,
+  "latch_census_b03_only": [
+   [
+    "0x80047a58",
+    "store"
+   ]
+  ],
+  "latch_census_probe_only": [
+   [
+    "0x800b3bc0",
+    "load"
+   ]
+  ],
+  "cliffside_overlay_index_records": 12,
+  "cliffside_overlay_code_functions": 10,
+  "cliffside_overlay_function_names": [
+   "clear_overlay_state",
+   "level06_select_grid_offset",
+   "level_overlay_init",
+   "level_spawn_handler",
+   "level_state_writer",
+   "level_state_writer_c98",
+   "level_transition_handler",
+   "transition_handler_arg_entry"
+  ],
+  "cliffside_overlay_memory_accesses": 224,
+  "cliffside_overlay_unresolved_boundaries": 126,
+  "cliffside_overlay_functions_with_source": 0,
+  "cliffside_overlay_image_for_scene6": "LEVEL06_LEVEL",
+  "cliffside_candidate_pcs": [
+   "LEVEL06_LEVEL:0x800B3CD4",
+   "LEVEL06_LEVEL:0x800B3D3C",
+   "LEVEL06_LEVEL:0x800B3EA4"
+  ],
+  "cliffside_candidate_owning_functions": [
+   [
+    "LEVEL06_LEVEL",
+    "0x800B3BC4",
+    "level_transition_handler"
+   ]
+  ],
+  "cliffside_candidate_is_one_function": true,
+  "cliffside_overlay_decomp_totals": {
+   "LEVEL06_LEVEL": 5,
+   "LEVEL06_LEVEL1": 5
+  },
+  "cliffside_overlay_matched_functions": 2,
+  "all_overlays_matched_pct": 9.49,
+  "resident_request2_store_build_units": [
+   "asm/hand_written/8004a700_resident_level_transition_initiator.s"
+  ],
+  "governing_addresses": 9,
+  "governing_build_units": [
+   "asm/hand_written/8004a700_resident_level_transition_initiator.s",
+   "asm/hand_written/8005c818_seed_plant_dandelion_handler.s",
+   "src/main/80038f38_sector_region_code_query.c",
+   "src/main/8005038c_scene_setup_and_load.c"
+  ],
+  "governing_units_matching_c": [
+   "src/main/80038f38_sector_region_code_query.c",
+   "src/main/8005038c_scene_setup_and_load.c"
+  ],
+  "governing_units_hand_asm": [
+   "asm/hand_written/8004a700_resident_level_transition_initiator.s",
+   "asm/hand_written/8005c818_seed_plant_dandelion_handler.s"
+  ],
+  "governing_addresses_without_build_unit": [
+   "cliffside_overlay_0x800B3D3C",
+   "cliffside_overlay_0x800B3EA4"
+  ],
+  "governing_addresses_in_c": 3,
+  "governing_addresses_in_hand_asm": 4,
+  "stage4_movies_pinned": 7,
+  "stage4_movies_pinned_paths": [
+   "movies/100% Runs/LEVEL04.movie.json",
+   "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+   "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json",
+   "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json",
+   "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json",
+   "movies/go_to_end/LEVEL04.movie.json"
+  ],
+  "stage4_movies_declared_by_row": 3,
+  "stage4_movies_pinned_but_undeclared": [
+   "movies/100% Runs/LEVEL04.movie.json",
+   "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+   "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json",
+   "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json",
+   "movies/go_to_end/LEVEL04.movie.json"
+  ],
+  "stage4_movie_frames": {
+   "movies/100% Runs/LEVEL04.movie.json": 18212,
+   "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json": 580,
+   "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json": 18262,
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json": 3907,
+   "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json": 527,
+   "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json": 537,
+   "movies/go_to_end/LEVEL04.movie.json": 12656
+  },
+  "stage4_distinct_movies_replayed_by_row_artifacts": 1,
+  "declared_fixture_generator_reference_counts": {
+   "level04.sav": 15,
+   "LEVEL04_ENDING.sav": 7,
+   "canyon_bug.sav": 1,
+   "canyon_bug_aggro.sav": 1,
+   "movies/Phase4/Interpreter/B03.movie.json": 1,
+   "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json": 1,
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json": 1
+  },
+  "declared_fixtures_referenced_by_an_f04_tool": 0,
+  "declared_fixtures_with_zero_generator_references": [],
+  "stage4_movie_provenance": {
+   "movies/Phase4/Interpreter/B03.movie.json": {
+    "version": 4,
+    "frames": 819,
+    "from_boot": false,
+    "armed_while_paused": false,
+    "sha256_origin": "backfill"
+   },
+   "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json": {
+    "version": 4,
+    "frames": 527,
+    "from_boot": false,
+    "armed_while_paused": false,
+    "sha256_origin": "backfill"
+   },
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json": {
+    "version": 4,
+    "frames": 3907,
+    "from_boot": false,
+    "armed_while_paused": true,
+    "sha256_origin": "backfill"
+   },
+   "movies/100% Runs/LEVEL04.movie.json": {
+    "version": 3,
+    "frames": 18212,
+    "from_boot": true,
+    "armed_while_paused": null,
+    "sha256_origin": "unstated"
+   },
+   "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json": {
+    "version": 3,
+    "frames": 580,
+    "from_boot": false,
+    "armed_while_paused": null,
+    "sha256_origin": "backfill"
+   },
+   "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json": {
+    "version": 4,
+    "frames": 18262,
+    "from_boot": false,
+    "armed_while_paused": true,
+    "sha256_origin": "recording"
+   },
+   "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json": {
+    "version": 4,
+    "frames": 537,
+    "from_boot": false,
+    "armed_while_paused": false,
+    "sha256_origin": "recording"
+   },
+   "movies/go_to_end/LEVEL04.movie.json": {
+    "version": 3,
+    "frames": 12656,
+    "from_boot": true,
+    "armed_while_paused": null,
+    "sha256_origin": "unstated"
+   }
+  },
+  "declared_movies_with_recording_provenance": [],
+  "undeclared_stage4_movies_with_recording_provenance": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json",
+   "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json"
+  ],
+  "declared_movies_from_boot": [],
+  "stage4_retained_capsules": [
+   {
+    "movie": "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+    "frames": 580,
+    "control_match": true
+   }
+  ],
+  "capsule_set_complete": true,
+  "capsule_set_movie_hash_matches_disk": 0,
+  "capsule_set_size": 50,
+  "stage4_capsule_cited_by_row": false,
+  "sibling_row_compared": "F02_tunnels",
+  "sibling_counts": {
+   "met": 1,
+   "partial": 6,
+   "not_met": 2
+  },
+  "dimensions_stronger_than_sibling": [
+   "source_closure"
+  ],
+  "dimensions_weaker_than_sibling": []
+ },
+ "evidence_pins": [
+  {
+   "path": "analysis/phase4_f_row_measured_census.json",
+   "sha256": "168b1e7a7a6501f0fb43a9d480f412bbb2621423bae264e34436027802b61a64"
+  },
+  {
+   "path": "analysis/phase4_closure_debt.json",
+   "sha256": "e0bbdbfce84e744da871502d80156f5b0fa64e05d51e8885a0fdf43f3b7dea8a"
+  },
+  {
+   "path": "analysis/mechanics_baseline.yaml",
+   "sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58"
+  },
+  {
+   "path": "analysis/phase4_f04_cliffside_canyon.json",
+   "sha256": "87bb0fd34dcd245059363805ff827e5120d9df3169d89c3958e2e986f2fddbd3"
+  },
+  {
+   "path": "analysis/phase4_f04_route_analysis.json",
+   "sha256": "f93edf98268b561e3e5cb4802941ae06c56eb71ebff505233c7c08e52b6e61a1"
+  },
+  {
+   "path": "ObsidianVault/Experiments/EXP_2026-08-03_phase4_f04_cliffside_canyon.md",
+   "sha256": "0f2d5244a4245751837d026fa72d35a6953b2df83a18c0b3bf76ee09db323a53"
+  },
+  {
+   "path": "analysis/phase4_spin_heading.json",
+   "sha256": "ce6a28f37ade07f8959d240bac48847b5fe7f49574bbeb63c1c8e7293a26e61a"
+  },
+  {
+   "path": "tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "sha256": "bd70a2a331ee53b95922403d0d7187318600ca2a378927b3553996aafcd88901"
+  },
+  {
+   "path": "tests/test_phase4_f04_cliffside_canyon.py",
+   "sha256": "b42d90a7a16defd6ae1440328f77472f69320344e44622e2d82ef125a921d039"
+  },
+  {
+   "path": "analysis/phase4_b03_dandelion_static.json",
+   "sha256": "09d7728928dcb3320c8a8450e3c41039ada8363aac03624e073e97ab536fefcf"
+  },
+  {
+   "path": "analysis/phase4_b03_dandelion_runtime.json",
+   "sha256": "3c35b6b07d3ea9615ca5bea1722032ad59f8e2a5634e4476d0a5a435a1869668"
+  },
+  {
+   "path": "analysis/phase4_b03_dandelion_capsule.json",
+   "sha256": "a3cbf7ebb0d92739d6a538996d958646278b71fe9bbca59b1b0c0a075cb980f1"
+  },
+  {
+   "path": "analysis/phase4_d17_bird.json",
+   "sha256": "7d08213ef7e6b18276d292e84cd012d64f12c545a9d0aa0e2d14c80f15ff974f"
+  },
+  {
+   "path": "analysis/phase4_d13_shell_bug_armor.json",
+   "sha256": "51ad51bb93c9843e88511fd52fc846e58dd4191e1a0734842db203333c81ce3c"
+  },
+  {
+   "path": "analysis/phase4_c15_respawn_anchor.json",
+   "sha256": "3bde4bf8b8cc08f93f3589f52bfcdf14348cf83800c3e7cee1efa782ced8873f"
+  },
+  {
+   "path": "analysis/phase4_e02_disc_region_code_census.json",
+   "sha256": "20e93eae19eca6feef8fb1d03e1903ca3de910db398f0d1e607798fe553a804e"
+  },
+  {
+   "path": "analysis/phase4_e02_consumer_binding.json",
+   "sha256": "be0a0bc57338df214979f2de977eb15c200fb6a4d33509d052b05b94d46d68fc"
+  },
+  {
+   "path": "analysis/phase4_f01_objective_lifecycle.json",
+   "sha256": "b4b250b4f8c24895d23a0cd827df28e718d4860b7f0056a999b4b05ae1331486"
+  },
+  {
+   "path": "analysis/phase4_static_frontier_index.json",
+   "sha256": "893775dcbebdfd008b629f58f74cbd8c50d3d6a0d5492c42dde8276084d7c328"
+  },
+  {
+   "path": "analysis/phase4_b06_b08_powerups.json",
+   "sha256": "c9ca8ee8a572145954fd0448d62f57dcc4613907ece2899f1c7657692eb49d56"
+  },
+  {
+   "path": "tools/phase4_f04_static_probe.c",
+   "sha256": "82a80dc8528633464562a04a11c3b8df1667e34675ef2a1289ee8802d935efbb"
+  },
+  {
+   "path": "analysis/overlay_decomp_progress.json",
+   "sha256": "94fda111d1c2451b6aee846f4d07ac5ba16d77a94716c0e20e62479714cf438e"
+  },
+  {
+   "path": "config/segments.yml",
+   "sha256": "81c4df81ea8b5b1c2d265bfdeb86c3a9be92983bfc09e721379ddc6546d05477"
+  },
+  {
+   "path": "analysis/phase2_fixture_audit.json",
+   "sha256": "48625b97ed1ec4f25eb9882cbf1b8b8e983c30a5dbd2a23230b1888bf24539f0"
+  },
+  {
+   "path": "analysis/phase0_2_external_fixture_set.json",
+   "sha256": "c2a3bed871f6ca04f1fa230197af2fd033675c152175a2c4c66727c8fc85c192"
+  },
+  {
+   "path": "movies/Phase4/Interpreter/B03.movie.json",
+   "sha256": "946fef94b9c0ca54e3eaa921808267f90e30eefd58889a36e8c3b7312ec948ca"
+  },
+  {
+   "path": "movies/Phase4/Interpreter/D17_Cliffside_Bird_Death.movie.json",
+   "sha256": "b42da3aa8f7967aad9442e7e9218f78ea6e01c591c5dab546e896257ad98222d"
+  },
+  {
+   "path": "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json",
+   "sha256": "695b0a827df83dcb6c3f1e3c812feca5f3f0e2da0501ab437a763c9815566bde"
+  },
+  {
+   "path": "movies/100% Runs/LEVEL04.movie.json",
+   "sha256": "3bd717bb87f78f2ae4a8ef396802139db111982b367e07d769a4cf49f561e912"
+  },
+  {
+   "path": "movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json",
+   "sha256": "db1280c50ac4153b811953c41f74143582bac15f157a7475731eb5b0024971da"
+  },
+  {
+   "path": "movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json",
+   "sha256": "9cb11df0f906ab5c21886f17cf15f1861e20449b36cc3bc1e0b693cbdd33407d"
+  },
+  {
+   "path": "movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json",
+   "sha256": "b88a2b007cdf4ab3290b23f07d181d5c3320999be4f9d6362938ef8ea21515ae"
+  },
+  {
+   "path": "movies/go_to_end/LEVEL04.movie.json",
+   "sha256": "b0bd400e4508d6792d653b6c33c5de7b5eaf8d63a02c18ee9bf1c37c903e1383"
+  },
+  {
+   "path": "analysis/phase4_trace_capsule_set.json",
+   "sha256": "569b3ebf073b2384c04edecbc54ca52d4f7a35a0387a02e9540e7a936509cc53"
+  },
+  {
+   "path": "analysis/phase4_f02_written_bar_assessment.json",
+   "sha256": "dae4f98f3355c790c66d2eebeeb49746af2c500dcbb8e48601be70be15f91998"
+  }
+ ],
+ "dimensions": {
+  "durable_evidence": {
+   "state": "met",
+   "written_bar": "evidence artifacts durable, pinned, regenerable",
+   "basis": "CARRIED FORWARD, not re-derived: 7/7 in analysis/phase4_f_row_measured_census.json -- 7/7 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked. That is the largest declared fixture set of any F row bar one (rank 2 of 19). This assessment fails loudly if that measurement ever moves off 'met'",
+   "gap": null
+  },
+  "original_oracle": {
+   "state": "partial",
+   "written_bar": "behavior asserted against the ORIGINAL game's own natural execution, not injected state",
+   "basis": "the route claim IS measured on natural execution of a pinned pristine-media movie (SCUS-94288, v4, 3907 frames, Interpreter, reproducible=True) driven at true 60 Hz, with the method explicitly disclaiming advanceToFrame (True) and arming only after the state load (True), no perturbation: scene 6 loaded at frame 59, one launch at 819, latch resident 2384 frames, exit at 3258, with 0 hits on the contact path and 0 life losses, all logs untruncated (True). A NEGATIVE control exists in the other direction (D17's premature-landing fixture, 527 frames). An executable assertion artifact is registered too: 11 assertions over 4 phases in tools/scenarios/duckstation/phase4_f04_cliffside_canyon.yaml",
+   "gap": "that scenario has never been shown to RUN: its id appears in 5 analysis artifacts and 1 of them record any of its 11 assertion outcomes, so 'the assertions pass' is UNMEASURED. The row's own registered test module is RED today (1 failed / 9 passed of 10 -- test_still_open_flags_stage_level_flow_as_unaddressed), and 0 of the 7 declared fixtures is from boot while 0 of the 3 declared movies carries recording-time start-state provenance -- the rest are BACKFILL, whose own note says it cannot establish that the state still matches what the movie was recorded against"
+  },
+  "complete_frontier": {
+   "state": "partial",
+   "written_bar": "item 2 AS WRITTEN: callers/callees/callbacks/indirect tables ENUMERATED, scoped to relevant -- not an empty unresolved set",
+   "basis": "for the FLIGHT half the frontier is genuinely enumerated and bounded by B03: 19 latch sites (15 absolute + 4 typed player-relative, 10 reads / 9 writes, every write a literal 0/11/12: True), with the scope limit written down verbatim ('direct absolute accesses plus typed player-relative $s1+0x9e accesses in retained hand-written ASM; other indirect and overlay aliases excluded'). This assessment re-derived that census INDEPENDENTLY with a compiled-C decode of the shipped images and the two implementations agree on 14 of 15 sites. The row also carries 7 explicitly named retained residuals",
+   "gap": "the HAZARD half's frontier is not enumerated, and measuring it here showed the residual was mis-shaped: D17's negative on power bit 0x10 was reached from a census of 8 addresses in ONE resident RAM image, and concluded the writer is 'almost certainly OVERLAY code specific to Cliffside' (True). A full static decode of all 21 shipped images finds 19 stores to the power word (15 resident + 4 overlay), sets ['0x1', '0x2', '0x4', '0x8', '0x20', '0x80'] and AND-masks ['0x20', '0xFEFF', '0xFF7E', '0xFFF7', '0xFFFB'] -- 0 of them write bit 0x10, and the Cliffside overlay's own single power-flags store is an OR of 0x4, not 0x10. The stated hypothesis is therefore NOT supported; the residual survives with a different shape (a computed/pointer-relative base -- 26056 of 33644 decoded memops have an unresolved base -- or code outside the 1059 indexed ranges). No frontier at all is enumerated for the bird actor, its spawn, or the stage's enemy roster"
+  },
+  "campaign_breadth": {
+   "state": "not_met",
+   "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle, and exceptional path -- which requires the applicable set itself to be enumerated",
+   "basis": "the row does name a breadth claim -- the mite (id 37) appears in this scene, cited from D13's static scan (True) -- and B03's own scope line names this stage as its primary (Cliffside Canyon (4) primary)",
+   "gap": "every runtime conclusion in this row rests on 1 route, replayed once. The pinned corpus already holds 7 movies of this stage under a LEVEL04/Cliffside name; 5 of them are undeclared by this row and untouched by any of its artifacts -- including a 18262-frame 100% Interpreter run and TWO E10 'hazard_ground_bird_LEVEL04' recordings of this row's own bird hazard, one of which has a validated retained trace capsule ([{'movie': 'movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json', 'frames': 580, 'control_match': True}]). 0 of the 7 declared fixtures is referenced by any F04 tool. The applicability universe is unenumerated in both directions: which other stages instantiate the dandelion/propeller mechanism (B03 defers exactly that: ['repository-wide indirect player-pointer and overlay alias proof', 'exhaustive per-stage placement and reachability sampling', 'exact GPU/display ownership of the short post-clear tail', 'native dandelion-to-propeller combination replay']), and which routes, variants and exceptional paths within Cliffside are in scope"
+  },
+  "typed_state": {
+   "state": "partial",
+   "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)",
+   "basis": "the flight latch is TYPED with a proved value domain: 7 static stores across every shipped image, values exactly [0, 11] (compiled-C decode, agreeing with B03's independent census), plus B03's four named clear sites ({'grounded_clear': '0x80048700', 'level_transition_clear': '0x8004a87c', 'harvester_activation_clear': '0x80051ea4', 'respawn_clear': '0x8005b314'}) and its activation contract ({'selected_slot_gate': True, 'slot_extra_bit_0x02_gate': True, 'quantized_xyz_radius': 40, 'sphere_center_y_offset': -29696, 'harvester_flag_0x80_suppresses_latch': True, 'launch_sound_id': 15, 'guard_pass': True}). The scenario types five more player fields by semantic id (['original.current_scene_id', 'original.player_grounded', 'original.player_health', 'original.player_lives', 'original.player_plant_latch'])",
+   "gap": "the bird side is untyped: the actor record's two position fields, hp, flags and radius are READ in D17 but no value domain is bounded for any of them, and the hp 101-vs-50 difference is a single-fixture reading, not a typed field with a domain. The power word is the sharpest case: its set masks are now enumerated (['0x1', '0x2', '0x4', '0x8', '0x20', '0x80']) yet the bit this row cares about has no writer in any of them, so the observed value is measured and its producer is not"
+  },
+  "lifecycle": {
+   "state": "partial",
+   "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced",
+   "basis": "one full in-stage arc is traced end to end on natural execution: scene load (frame 59) -> first use (one launch at 819, 1 hit) -> residence (2384 frames) -> intended clear (3215) -> scene exit (3258, 43 frames later), and B03 adds the retirement law (four distinct clear sites, one per exit condition). D17 supplies the death/respawn arc as a separate fixture",
+   "gap": "no cold boot anywhere in the evidence base (0 of the 3 declared movies is from_boot); REPEATED use is never exercised -- the traced route launches exactly once, so 'take the dandelion twice' is unmeasured; exhaustion has no meaning assigned for this stage; and no per-phase claim map is registered for this row the way F01 has one"
+  },
+  "cross_system_behavior": {
+   "state": "partial",
+   "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+   "basis": "the row's central claim IS a cross-system one and it is measured in both directions: flight x hazard x scene transition on the success side (0 contact hits, 0 life losses, ordered route True) and the same crossing on the failure side in D17's fixture. B03 additionally documents flight x carried-actor (contact detaches any carried actor) and flight x propeller sharing one state field",
+   "gap": "the dandelion-to-propeller combination is explicitly DEFERRED by the donor row itself (['repository-wide indirect player-pointer and overlay alias proof', 'exhaustive per-stage placement and reachability sampling', 'exact GPU/display ownership of the short post-clear tail', 'native dandelion-to-propeller combination replay']), so the one native combination inside this row's own mechanism family has never been run; the bird is never crossed with berries, the mite, or the exit trigger; and no combination matrix is registered. The row's own residual list still names cross-system audio/HUD"
+  },
+  "original_interfaces": {
+   "state": "partial",
+   "written_bar": "interfaces documented; unknowns enumerated with named obstructions",
+   "basis": "the interfaces that the SUCCESS path crosses are documented and now instruction-verified: all 6 route sites decode to resolved effective addresses (0 unresolved, 0 missing) and 2 of them land exactly on addresses this row's own scenario asserts against. The region-code interface is bound cross-row and its arms are decoded to the instruction: code 3 = '[0x800823a0]=1; [0x80082470]=23; sfx 58; NO commit flag' vs code 2 = '[0x800823a0]=1; [0x80082470]=23; sfx 58; commit flag sp+0x50=1', i.e. the two exit arms differ only by the position-commit flag (True), under gates ['query != 0', '[0x800823A0] (exit latch, lh gp-rel 9120) still 0', 'flik+0x82 gate == 1 (inside the query)']",
+   "gap": "the interface that actually FIRES the hazard is not documented -- D17 narrowed it to FUNC_8004ABF4 but its own decoded radius test evaluates not-inside at the closest approach (True), so the deciding branch is named as unknown with an obstruction rather than documented. The Cliffside overlay's own interface is undocumented in this row entirely, including a function that reads the grounded flag and the power word and then requests a scene transition"
+  },
+  "source_closure": {
+   "state": "partial",
+   "written_bar": "byte-matched C through the original toolchain for the row's governing functions",
+   "basis": "measured, not assumed: 9 governing addresses taken from this row's own artifacts and from the compiled-C decode resolve to 4 build units -- 3 address(es) in matching C (['src/main/80038f38_sector_region_code_query.c', 'src/main/8005038c_scene_setup_and_load.c']) and 4 in hand-written byte-exact ASM (2 units). The scene clear/restore stores this row's exit observation rests on ARE in C, which is more than F02 could say",
+   "gap": "the dandelion handler, the transition initiator, the player vertical update and the contact resolver are all hand-ASM, not C. The stage's own overlay is barely started: 2 of 10 Cliffside overlay functions are matched (campaign-wide overlay track: 9.49%), and 2 governing addresses have no resident build unit at all (['cliffside_overlay_0x800B3D3C', 'cliffside_overlay_0x800B3EA4']). The row lists source closure among its own retained residuals"
+  }
+ },
+ "counts": {
+  "met": 1,
+  "partial": 7,
+  "not_met": 1
+ },
+ "summary": "1 met, 0 met-candidate, 7 partial, 1 not met, 0 unmeasured -- against the WRITTEN bars. Against the one sibling already measured this way (F02_tunnels, {'met': 1, 'partial': 6, 'not_met': 2}), F04 is stronger on ['source_closure'] and weaker on [] -- one dimension of difference, because F04's single route replay is an ordered, untruncated, 60 Hz natural-execution observation with a complementary negative control, and because the stores its exit observation rests on are byte-matched C. It still reaches met nowhere except the dimension measured elsewhere, and the reason is uniform: this row was answered BY CITATION: 3 of 6 bindings are 'SYNTHESIZED FROM' another row, and the row's own artifact states that pass performed no new instrumentation (True), so what is evidenced is the two MECHANISMS plus their order on one route -- not the STAGE.",
+ "notable": [
+  "THE ROW'S OWN REGISTERED TEST MODULE IS RED. tests/test_phase4_f04_cliffside_canyon.py reports 1 failed / 9 passed of 10 (test_still_open_flags_stage_level_flow_as_unaddressed; [\"AssertionError: assert ('level design/flow' in 'low-return residuals retained without blocking row closure: the exact sub-branch/threshold inside func_8004abf4; the ... census; sou\"]). The test guards the claim that STILL_OPEN flags stage-level flow as unaddressed; the 2026-08-04 route-closure pass rewrote STILL_OPEN and the phrase went with it. The test was right to fire -- stage-level flow WAS the thing that pass addressed -- but nobody ran it, so the row has carried a failing guard for a week.",
+  "THE ROW'S OWN NAMED RESIDUAL IS MIS-SHAPED, and a compiled-C decode of all 21 shipped images shows it. D17's negative on power bit 0x10 came from 8 addresses in one resident RAM image and concluded the writer is 'almost certainly OVERLAY code specific to Cliffside'. The full static census finds 19 stores to that word (15 resident + 4 overlay), a superset of D17's list, setting masks ['0x1', '0x2', '0x4', '0x8', '0x20', '0x80'] and AND-masking ['0x20', '0xFEFF', '0xFF7E', '0xFFF7', '0xFFFB']. NONE writes bit 0x10, and the Cliffside overlay's single power-flags store is an OR of 0x4. The negative survives a much wider search -- which is good news -- but the hypothesis attached to it does not, so the residual should be re-stated as 'pointer-relative or unindexed writer', not 'uncharted Cliffside overlay'.",
+  "A CANDIDATE FOR THE STAGE'S PUNISHMENT PATH IS SITTING IN AN ARTIFACT THE ROW NEVER READ. The Cliffside overlay's own 10 indexed code functions (['clear_overlay_state', 'level06_select_grid_offset', 'level_overlay_init', 'level_spawn_handler', 'level_state_writer', 'level_state_writer_c98', 'level_transition_handler', 'transition_handler_arg_entry']) include ONE that owns every candidate PC below -- derived by containment, not asserted: [('LEVEL06_LEVEL', '0x800B3BC4', 'level_transition_handler')] owns all of ['LEVEL06_LEVEL:0x800B3CD4', 'LEVEL06_LEVEL:0x800B3D3C', 'LEVEL06_LEVEL:0x800B3EA4'] (single owner: True). That one function reads the player's grounded flag, read-modify-writes the power word, and stores the scene-transition request. Across the campaign, 10 level overlays store request constant 1 and exactly 1 stores constant 2 -- ['LEVEL06_LEVEL'] ([{'pc': '0x800B3EA4', 'form': 'const', 'value': 2}]); ['LEVEL02_LEVEL'] had an unrecovered value and are not counted either way. What is request 2? The resident writers of that constant are ['0x8004A8B4', '0x8004A9F4'], and they resolve to ['asm/hand_written/8004a700_resident_level_transition_initiator.s'] -- i.e. the player damage handler, the same function whose stagger store at 0x8004a814 is D17's observed Cliffside death path. That is a STATIC CANDIDATE ONLY -- no trace has ever put a PC in this overlay, F04's watches were all resident addresses, and nothing here proves this function runs in the bird encounter. But it is exactly the shape D17 described behaviourally (land -> freeze -> fade -> lives-1) and it is one exec watch away from being decided.",
+  "THE STAGE HAS 7 PINNED MOVIES UNDER A LEVEL04/CLIFFSIDE NAME AND THE ROW DECLARES 3 OF THEM. Unused and undeclared: ['movies/100% Runs/LEVEL04.movie.json', 'movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json', 'movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json', 'movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json', 'movies/go_to_end/LEVEL04.movie.json'] -- including TWO recordings named for this row's own hazard ('hazard_ground_bird_LEVEL04') and a 100% run. Worse for the row's stated fixture_need ('None for the named row. Request another Interpreter movie only if a future campaign chooses one of the retained low-return residuals.'): the two undeclared movies with the STRONGER start-state provenance are ['movies/Phase4/Interpreter/100% Runs/LEVEL04_Cliffside.movie.json', 'movies/Phase4/Interpreter/E10/hazard_ground_bird_LEVEL04.movie.json'] (recording-time hash), while all three DECLARED movies carry backfill provenance, whose own note says it cannot establish that the state still matches what was recorded against. One of the unused hazard movies also has a validated retained trace capsule ([{'movie': 'movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json', 'frames': 580, 'control_match': True}]), which AGENTS.md says to query BEFORE another live replay. \u26a0\ufe0f Separately measured and NOT an F04 problem: the capsule set's recorded movie hash matches the on-disk movie for 0 of 50 capsules, a repo-wide representation change, so the capsule cannot be bound to today's movie bytes by that hash.",
+  "EXIT IS BOUND; OBJECTIVE IS NOT. The disc-side census locates this stage's 132 authored sectors with histogram {'0': 131, '3': 1} -- exactly one nonzero code, sector 131 carrying code 3, with 0 disc/runtime mismatches here and 0 campaign-wide over 3235 sectors. Code 3's arm differs from code 2's only by the position-commit flag (True): '[0x800823a0]=1; [0x80082470]=23; sfx 58; NO commit flag'. This is EXIT evidence and it closes nothing about the row's objective -- the row's named subjects are a flight mechanic and a hazard, and neither is a sector code. The row does not record this census at all.",
+  "TWO PINNED ARTIFACTS DISAGREE ABOUT CODE 3, AND THE ROW INHERITS THE OLDER ONE. analysis/phase4_e02_consumer_binding.json still describes code 3 as an 'IDENTICAL body to code 2' (True), while the later instruction-level decode in analysis/phase4_f01_objective_lifecycle.json separates them: code 2 sets the position-commit flag and code 3 does not ('[0x800823a0]=1; [0x80082470]=23; sfx 58; commit flag sp+0x50=1' vs '[0x800823a0]=1; [0x80082470]=23; sfx 58; NO commit flag'). Cliffside's only nonzero sector is a code 3, so the row's exit path is on the arm that does NOT commit position -- a distinction the older artifact erases.",
+  "THE FLIGHT CITATION'S OWN RECORDING WAS NEVER SCENE-CHECKED. F04 cites B03 for 'special flight' and B03's row declares 'stages: Cliffside Canyon (4) primary', but of the 3 B03 artifacts, 0 record a scene id for the recording they analyse. What ties the dandelion to THIS stage is not B03 at all -- it is F04's own route replay, which observed the launch while scene_id was 6. That is the right evidence; the row should cite it for the binding instead of the donor's declaration. (Going the other way, this row's own bird fixture is already being consumed elsewhere: analysis/phase4_c15_respawn_anchor.json reuses it (True) and names F04 as its donor context (True).)",
+  "15 other baseline rows name this stage by an UNAMBIGUOUS token (Cliffside / scene_id=6 / LEVEL06): B03_dandelion_glide, B08_bubble_shield, C04_enemy_token, C05_three_tokens, C15_respawn_anchor, C17_movie_viewer, D11_mites_grubs, D17_bird, E04_camera_system, F06_birdnest, F07_city_entrance, F11_the_tree, F16_bonus1_spiders, F17_bonus2_mushrooms, F18_bonus3_grasshoppers. A further 11 match only the ambiguous 'LEVEL04' token (A13_cycle_plant_output, C01_grain_pickup, D13_armored_beetles, D18_thud, D20_hopper, E01_terrain_visual, E02_collision, E08_props_movers_gates, E11_dynamic_geometry, F12_battle_arena, F13_anthill_two) -- and that token is NOT reliable here: Cliffside is chronological level 4 but scene 6, loading from disc dir LEVEL06/LEVEL.RAW, while disc dir LEVEL04/ belongs to another stage. Movie filenames use the chronological number and disc paths use the directory, so any sweep for this row must say which it means. This row cites 6 artifact paths. A verifier scoping F04 should decide what belongs to the STAGE and what is already owned by the mechanism rows before re-measuring: on today's evidence base, deleting the three donor citations would leave the row with one route replay."
+ ]
+}

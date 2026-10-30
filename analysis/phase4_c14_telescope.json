@@ -1,0 +1,87 @@
+{
+  "row": "C14_telescope",
+  "date": "2026-08-04",
+  "status": "substantiated_partial",
+  "bounded_exhausted": true,
+  "move_on": true,
+  "method": "C-only pristine-ASM and LEVEL.DAT closure pass, extending the retained poll-only movie evidence without a new DuckStation replay",
+  "retained_live_evidence": {
+    "movie": "movies/Phase4/c14_telescope_full.movie.json",
+    "restriction": "CachedInterpreter/v3 fixture remains poll-only and was not instrumented",
+    "prior_result": "setpiece actor position and target matched LEVEL01 record 0x94C shifted by 5 exactly; follow-camera state stayed parked while the special-view producer moved"
+  },
+  "state_machine": {
+    "state": "0x800824DC",
+    "index": "0x800823CC",
+    "owner": "0x8004D698 setpiece_spawn_manager",
+    "direct_census": "24 direct accesses, 10 stores in pristine SCUS_942.88; no direct overlay access",
+    "lifecycle": "0 idle -> -1 trigger -> -2 transition wait -> 252..0 flight -> -120..-10 return -> 0 idle",
+    "external_clears": [
+      "0x8005B324 respawn tail",
+      "0x8005B9D0 scene initialization"
+    ]
+  },
+  "producer_correction": "The former two-producer/scripted-setpiece wording is superseded. The complete direct-address census has one direct -1 producer: the kind-0x30 contact action at 0x80054574. The so-called scripted bird/setpiece path is the consumer side of this same generic telescope/hint-view mechanism, not a second pinned trigger writer.",
+  "activation_and_reuse": {
+    "activation": "0x80054558 reads state and 0x80054560 accepts only state==0; 0x8005456C stores the one-based kind-0x30 ordinal and 0x80054574 stores -1",
+    "source_consumption": "0x80053CC4 calls the contact effect, then 0x80053CCC/0x80053CD0 write 0x80000000 to the source entry Y before the action dispatch",
+    "boundary": "The contacted telescope is one-shot until scene reload. Once the return phase reaches idle zero, another unconsumed telescope can activate; scene reload reconstructs source entries."
+  },
+  "transition_gate": {
+    "address": "0x80082388",
+    "meaning": "first current channel of the shared three-channel screen transition interpolator",
+    "producer": "0x80054AAC stores byte targets; 0x80054AD4 moves current channels toward those targets",
+    "telescope_use": "0x8004D748 waits for channel 0x80082388 to reach zero before changing -2 to the 252-tick flight",
+    "correction": "This is not a telescope-only gate."
+  },
+  "input_and_early_return": {
+    "address": "0x80082412",
+    "correction": "shared current pad word, not a sensor",
+    "window": "unsigned(state-15) < 205, equivalent to active states 15..219",
+    "trigger": "face-button mask 0xF000 at 0x8004D944",
+    "effect": "sets 14, then the same manager call decrements to 13 when the goal latch is clear; on the next call state 13 writes actor phase 4 at 0x80090BEC and countdown continues"
+  },
+  "waypoint_consumption": {
+    "formula": "phase=268-state; segment=phase>>4; fraction=phase&15",
+    "range": "states 252..29 interpolate waypoint pairs 1/2 through 14/15, traversing waypoint 1 through waypoint 15",
+    "waypoint_0": "fixed look target supplied at spawn",
+    "writes": "interpolated XYZ shifted by 5 are stored to setpiece actor mirror fields 0x80090BD8/BDC/BE0"
+  },
+  "renderer": {
+    "function": "0x80053638 draw_mirrored_fullscreen_quads",
+    "gate": "returns without drawing when 0x800824DC==0",
+    "body": "four calls to 0x80026A68 draw_textured_quad at 0x80053694, 0x800536C4, 0x800536F4, and 0x80053720",
+    "result": "the four mirrored tile-26 quadrants are the special-view mask/presentation layer previously left open"
+  },
+  "campaign_census": {
+    "total_kind_0x30": 25,
+    "total_path_records": 25,
+    "ordinal_mapping": "kind-0x30 ordinal is incremented before use, matching the path pointer table's one-based layout",
+    "levels": {
+      "LEVEL00": [],
+      "LEVEL01": ["0x94C", "0xA10", "0xAD4"],
+      "LEVEL02": [],
+      "LEVEL03": ["0x1508", "0x15CC"],
+      "LEVEL04": ["0x1AF0", "0x1BB4", "0x1C78"],
+      "LEVEL05": ["0x4A8", "0x56C", "0x630", "0x6F4"],
+      "LEVEL06": [],
+      "LEVEL07": ["0x7AC", "0x870", "0x934", "0x9F8", "0xABC", "0xB80"],
+      "LEVEL08": [],
+      "LEVEL09": ["0x698", "0x75C", "0x820"],
+      "LEVEL10": ["0x654", "0x718", "0x7DC", "0x8A0"]
+    }
+  },
+  "bounded_residuals": [
+    "The artistic source/VRAM provenance of tile 26 is not required to establish renderer ownership or telescope behavior.",
+    "A screenshot-level catalog describing what each of the 25 authored paths depicts would be content enumeration, not a missing engine edge.",
+    "Pointer-indirect aliases not recoverable by the direct/dataflow address census remain theoretically possible; no evidence requires one.",
+    "Kind 0x31 shares adjacent contact code but is outside the named kind-0x30 telescope row."
+  ],
+  "closure": "Substantiated Partial and bounded-exhausted. Trigger, ownership, transition gate, all states, early return, sustained flight, all waypoint consumption, mask renderer, one-shot/reload lifetime, and the full campaign data census are established. Remaining work is presentation provenance or content cataloging with minimal mechanism return.",
+  "interpreter_movie_required": false,
+  "tools": [
+    "tools/phase4_c14_telescope_static.c",
+    "tools/phase4_c14_telescope_target.c",
+    "tools/phase4_c14_telescope_closure.c"
+  ]
+}

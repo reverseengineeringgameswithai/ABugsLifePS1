@@ -1,0 +1,373 @@
+{
+  "_purpose": "Asset/render half of DoD item 5 for the two blue-seed CONTACT-OBJECT outputs: B06 invincibility (ctor 0x25) and B08 bubble (ctor 0x1F). Covers (1) what indexes contact metadata table A 0x80079E30 and what its rows mean, (2) the decode of fcn.800593E8, (3) the renderer that walks the 64 x 0x38 contact array at 0x800B0D18, (4) whether these two pickups carry any per-level asset dependency of their own.",
+  "_generated": "2026-08-01",
+  "_scope_note": "This file ADDS to, and does not restate, analysis/phase4_b06_b08_powerups.json 'production_chain'. Everything there is taken as given (contact_alloc = 0x80059E44, a3 = ctor, 0x10(sp) stack arg reloaded as 0x40(sp), metaB = 0x8007941C stride 0x14 by ctor, metaB+0x00 = action id, walker dispatch 0x8001B570[action-2]).",
+  "_evidence_base": {
+    "static": {
+      "exe": "SCUS_942.88 (pristine resident EXE)",
+      "exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "exe_t_addr": "0x80010000",
+      "exe_t_size": "0x72800",
+      "exe_end": "0x80082800 (anything at or above this is BSS, NOT in the image)",
+      "tool": "tools/dis_exe.py, plus an ad-hoc abstract-interpreter scan of every lui/ori/addiu-formed effective address in the text"
+    },
+    "live": {
+      "emulator": "~/duckstation fork rev fe0cca16b (working tree dirty), build-release/bin/duckstation-qt",
+      "instances": [
+        "config /tmp/duckstation-debugger-contactrender port 23472 (generic fork launcher)",
+        "config /tmp/dsrepro-contactrender port 23473 via tools/launch_repro_playback.sh --execution-mode Interpreter (settings.ini [CPU] ExecutionMode=Interpreter verified; the launcher's 'READY ... (CachedInterpreter, ...)' string is hardcoded and does NOT reflect the setting)"
+      ],
+      "disc": "Disney-Pixar A Bug's Life (v1.0).cue, serial SCUS-94288 (verified via debugger.status and emulator.getStateInfo)",
+      "save_states_used": [
+        "movies/B06_B08.movie.sav (LEVEL06, scene 11)",
+        "level01.sav (scene 1)",
+        "level04.sav (scene 6)",
+        "level_08.sav (scene 5)",
+        "level_13.sav (scene 9)"
+      ],
+      "movies_used": ["movies/B06_movie.json (727 frames, Interpreter-recorded, anchored to movies/B06_B08.movie.sav)"],
+      "cleanup": "both isolated instances stopped through launch_debugger_instance.sh stop --config-dir; breakpoints removed before shutdown"
+    },
+    "repo_head_at_time_of_writing": "40ff6c414b9e"
+  },
+
+  "correction_to_the_brief": {
+    "claim_in_brief": "these are CONTACT OBJECTS, so the 0x80096B98 kind->descriptor Canon does NOT apply to them",
+    "finding": "REFUTED. The contact renderer uses the SAME table 0x80096B98 and the SAME 0xC+ byte descriptor structs as type-0x3f pickups. The difference is only the INDEX: type-0x3f pickups index it by the record's kind byte; contact objects index it by contact-record +0x20, which is the metaB ACTION ID.",
+    "measured_at": "0x8001488C-0x80014894 forms 0x80096B98 into t7 (lui 0x8009 / ori 0x6b98); 0x8001496C lhu t2,0x20(t8); 0x80014978 sll t2,t2,2; 0x8001497C add t2,t2,t7; 0x80014980 lw t2,0(t2)",
+    "consequence": "rec+0x20 is a DOUBLE-DUTY index: it selects both the behaviour handler (0x8001B570[action-2]) and the sprite descriptor (0x80096B98[action]). Verified live for both of our rows (see live_confirmation).",
+    "actionable_warning": "The memory note 'pickup-render-kind-descriptor-table' lists 0x15-0x20, 0x25-0x28, 0x2E, 0x2F as 'have-descriptor-but-never-placed, safe to repurpose'. That is a type-0x3f-only statement. Descriptor indices 0x15, 0x19, 0x20 and 0x2E ARE consumed by contact objects (see descriptor_indices_consumed_by_contact_objects) and repurposing them would corrupt contact rendering. 0x25 is NOT among them, so the previously proven kind-0x25 mod is unaffected."
+  },
+
+  "task1_table_A_0x80079E30": {
+    "status": "SOLVED (MEASURED statically, then verified live 24/24)",
+    "index_expression": {
+      "measured": "s0 = 0x80079E30 + a3 * 0x14, where a3 is RELOADED from 0x40(sp) at 0x80059E50 -- i.e. the caller's 5th argument at 0x10(sp), NOT the ctor.",
+      "disassembly": [
+        "0x80059E50  lw     a3, 0x40(sp)        ; a3 := caller 0x10(sp) (the ctor originally in a3 was already saved to s3 at 0x80059E4C)",
+        "0x80059EE8  sll    s0, a3, 2",
+        "0x80059EEC  addu   s0, s0, a3          ; s0 = a3*5",
+        "0x80059EF0  sll    s0, s0, 2           ; s0 = a3*0x14",
+        "0x80059EF4  lui    v0, 0x8008",
+        "0x80059EF8  addiu  v0, v0, -25040      ; 0x80079E30",
+        "0x80059EFC  addu   s0, s0, v0"
+      ],
+      "so": "table A IS simply indexed by the stack arg, stride 0x14. The brief's doubt is resolved."
+    },
+    "why_row_3_is_all_zeros": {
+      "measured": "row 3 (0x80079E6C..0x80079E7F) is 20 zero bytes.",
+      "meaning": "NOT a contradiction and NOT an unused row. Word0 == 0 means all four selector nibbles are 0; selector 0 is the pass-through case in fcn.800593E8, which returns the row value unchanged. All four row values are 0, so record +0x0C/+0x10/+0x14/+0x18 are all set to 0 and NO random byte is consumed. Row 3 is the 'spawn perfectly still, zero scatter' profile -- exactly right for a stationary collectible token.",
+      "consistency_check": "The B08 handler at 0x8005C6F0-0x8005C728 passes 3, and the B08 token is the one that hovers in place; the B06 handler at 0x8005C7BC-0x8005C800 passes 6, whose row gives a wide XZ scatter and a strong upward Y impulse."
+    },
+    "row_layout": {
+      "stride": "0x14",
+      "+0x00": "u32 selector pack. Only the low 16 bits are used, as four nibbles: (w>>12)&0xF -> field0, (w>>8)&0xF -> field1, (w>>4)&0xF -> field2, w&0xF -> field3.",
+      "+0x04": "u32 value for field0 -> contact record +0x0C",
+      "+0x08": "u32 value for field1 -> contact record +0x10",
+      "+0x0C": "u32 value for field2 -> contact record +0x14",
+      "+0x10": "u32 value for field3 -> contact record +0x18",
+      "store_sites": ["0x80059F38 -> +0x0C", "0x80059F50 -> +0x10", "0x80059F68 -> +0x14", "0x80059F7C -> +0x18"]
+    },
+    "rows_relevant_to_this_campaign": {
+      "row_3_used_by_B08_bubble": {
+        "address": "0x80079E6C",
+        "bytes": "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+        "selectors": [0, 0, 0, 0],
+        "values": ["0x0", "0x0", "0x0", "0x0"],
+        "result": "+0x0C = +0x10 = +0x14 = +0x18 = 0; zero random bytes consumed"
+      },
+      "row_6_used_by_B06_invincibility": {
+        "address": "0x80079EA8",
+        "bytes": "10 15 00 00 ff 00 00 00 3f 14 00 00 ff 00 00 00 80 00 00 00",
+        "selectors": [1, 5, 1, 0],
+        "values": ["0xff", "0x143f", "0xff", "0x80"],
+        "result_formulas": {
+          "+0x0C": "((r0 & 0xFF) - 0x7F) << 3   -> [-1016 .. +1024] step 8 (symmetric scatter)",
+          "+0x10": "((r1 & 0x143F) - 0x140) << 3 -> r1 is a BYTE so r1 & 0x143F == r1 & 0x3F, giving [-2560 .. -2056] (large negative)",
+          "+0x14": "((r2 & 0xFF) - 0x7F) << 3   -> symmetric scatter",
+          "+0x18": "literal 0x80"
+        },
+        "random_bytes_consumed": 3
+      },
+      "neighbours_for_context": {
+        "row_4": "0x80079E80  10 10 00 00 3f 00 00 00 00 ff ff ff 3f 00 00 00 f0 ff ff ff",
+        "row_5": "0x80079E94  10 15 00 00 ff 00 00 00 ff 10 00 00 ff 00 00 00 40 00 00 00"
+      }
+    },
+    "row_count": "UNRESOLVED. Row index 24 was observed live, so >= 25 rows exist. The table starts at 0x80079E30; the next known named datum in the vault is the seed pair table at 0x8007A448, which would cap it at 78 rows. Not proven.",
+    "field_semantics_of_the_four_outputs": "INFERRED, NOT PROVEN. The pattern (two symmetric components + one biased component + one literal) is consistent with velocity X / velocity Y / velocity Z / a fourth scalar, and +Y is down in this engine so row 6's large negative field1 is an upward launch. This was NOT verified because the per-action walker handler mutates +0x0C..+0x18 every frame (a live B06 record 11 frames old already had +0x10 = -720, outside row 6's spawn range, and +0x1C had changed from -1 to 228)."
+  },
+
+  "task2_fcn_800593E8": {
+    "status": "SOLVED (MEASURED statically, verified live 24/24 exact matches)",
+    "name_in_census": "contact_scatter_component_decode",
+    "extent": "0x800593E8 .. 0x8005953B (jr ra at 0x80059534, delay slot 0x80059538 'addu v0, a1, zero')",
+    "signature": "u32 f(u32 selector_nibble, u32 value) -- returns in v0",
+    "control_flow": "a0 -= 1; if ((unsigned)a0 >= 6) fall through to the tail and RETURN value UNCHANGED. Otherwise jr [0x8001B778 + a0*4].",
+    "jump_table_0x8001B778": ["0x80059414", "0x80059444", "0x80059470", "0x800594A0", "0x800594D4", "0x80059508"],
+    "random_source": "Every one of the six cases does the identical 4-instruction sequence: v1 = *(u32*)0x800822F4; *(u32*)0x800822F4 = v1 + 1; r = *(u8*)v1. So 0x800822F4 is a BYTE-STREAM CURSOR into a table of pre-generated random bytes (live value observed: 0x80017F53, i.e. it points INTO THE EXE TEXT -- the game reuses its own code image as a noise table). Selector 0 / >=7 consumes NOTHING.",
+    "cases": {
+      "0_or_>=7": "return v",
+      "1": "((r & v) - (v >> 1)) << 3",
+      "2": "(r & v) << 3",
+      "3": "(-(r & v)) << 3",
+      "4": "((r & v) + ((v & 0xFFFFFF00) >> 4)) << 3",
+      "5": "((r & v) - ((v & 0xFFFFFF00) >> 4)) << 3",
+      "6": "((r & v) - (v >> 1)) << 4"
+    },
+    "note_on_shifts": "the >>1 and >>4 are ARITHMETIC (sra), so a negative row value biases negative.",
+    "what_it_writes": "Nothing. It is a pure value transform (apart from advancing the 0x800822F4 cursor). contact_alloc stores the four results into record +0x0C/+0x10/+0x14/+0x18.",
+    "live_verification": {
+      "method": "execute breakpoint at 0x80059F18 (after s0/s1/s2 are computed, before the four calls); read s0/s1/s2, the table-A row, and the next 4 bytes at *(0x800822F4); then debugger.runUntilAddress 0x80059F80 and read record +0x0C..+0x18; recompute the four values from the formulas above and compare.",
+      "result": "24 consecutive hits, 24/24 EXACT matches on all four u32 outputs. Table-A row address decoded to index 24 every time; ctor decoded to 0x71 every time (proving the two indices are genuinely independent). Selector pattern exercised: [1,0,1,0] (case 1 and the pass-through).",
+      "coverage_gap": "cases 2,3,4,5,6 were NOT exercised live; they are static-only."
+    }
+  },
+
+  "task3_renderer": {
+    "status": "SOLVED (MEASURED)",
+    "function": {
+      "address": "0x80014844",
+      "extent": "0x80014844 .. 0x80014AD0 (jr ra at 0x80014ACC)",
+      "census_name": "contact_record_billboard_render",
+      "sole_caller": "0x800225B0, inside the per-frame render sequence",
+      "arguments": "a0/a1/a2 = camera world X/Y/Z. At the call site a0 = *(s1) and a1/a2 come from scratchpad 0x1F800378 / 0x1F80037C."
+    },
+    "archived_candidate_0x80014A70": {
+      "verdict": "VERIFIED, with a clarification. 0x80014A70 (`sw v1, 4(s7)`) IS inside this function -- it is the store of the primitive's colour+code word into POLY_FT4 offset +0x04. The function containing it, 0x80014844, is the contact-object renderer. The archived note pointed at the right code; 0x80014A70 is not itself 'the emitter' but one store within the per-object primitive build."
+    },
+    "proof_it_is_this_array": [
+      "0x80014848  addi  t9, zero, 64          ; loop counter = 64 slots",
+      "0x80014878  lui   t8, 0x800b",
+      "0x8001487C  ori   t8, t8, 0x0d18        ; t8 = 0x800B0D18",
+      "0x80014A94  addi  t9, t9, -1",
+      "0x80014A98  bgtz  t9, 0x800148E0",
+      "0x80014A9C  addi  t8, t8, 56            ; stride 0x38"
+    ],
+    "sprite_not_mesh": {
+      "verdict": "SPRITES. Each drawn record emits exactly one 40-byte POLY_FT4 (textured 4-point polygon), screen-aligned.",
+      "evidence": [
+        "primitive cursor s7 = *(0x8008249C); advanced by 40 (0x28) per emitted object at 0x80014A8C and written back at 0x80014AA8. sizeof(POLY_FT4) == 40.",
+        "field offsets written are exactly the POLY_FT4 layout: tag +0x00, rgb/code +0x04, XY0 +0x08, UV0/CLUT +0x0C, XY1 +0x10, UV1/TPAGE +0x14, XY2 +0x18, UV2 +0x1C, XY3 +0x20, UV3 +0x24.",
+        "the four screen XYs are built from only TWO transformed corners: XY0 = SXY0, XY3 = SXY1, XY1 = (SXY1.x, SXY0.y), XY2 = (SXY0.x, SXY1.y) -- an axis-aligned rectangle in SCREEN space.",
+        "the GTE rotation matrix RT is loaded ONCE before the loop to a constant (ctc2 6553 -> $0, ctc2 4096 -> $2, ctc2 4096 -> $4 = diag(1.6, 1.0, 1.0)) and never reloaded, so the quad corners are never rotated by the camera; only the TRANSLATION (TRX/TRY/TRZ) is per-object.",
+        "the record's own tint word (+0x34..+0x36) and GPU code byte (+0x37 = 0x2C or 0x2E) are copied straight into the primitive."
+      ]
+    },
+    "per_object_pipeline_measured": {
+      "1_liveness": "lbu t0, 0x22(t8); if 0 -> skip. NOTE: this is a BYTE load of the LOW byte of the 16-bit lifetime at +0x22.",
+      "2_draw_flag": "lbu t1, 0x32(t8); t1 &= 0xFE; ... t1 += 1 only if the primitive is actually emitted; sb t1, 0x32(t8) at the end of every iteration. So record +0x32 bit0 == 'was drawn this frame'.",
+      "3_position": "(rec+0x00, +0x04, +0x08) - (a0,a1,a2) then >> 5 arithmetic -> IR1/IR2/IR3; MVMVA (cop2 0x04BE012: op 0x12, sf=1, mx=1 (light matrix used as the view rotation), v=3 (IR), cv=3 (none)) -> MAC1/2/3 -> ctc2 into TRX/TRY/TRZ.",
+      "4_quad": "VXY0 = (-(rec+0x28), -(rec+0x2A)), VXY1 = (+(rec+0x28), +(rec+0x2A)); VZ0/VZ1/VZ2 were zeroed before the loop; RTPT (cop2 0x0280030).",
+      "5_descriptor": "lhu t2, 0x20(t8); if 0 -> skip (an action id of 0 is never drawn). desc = *(u32*)(0x80096B98 + action*4).",
+      "6_depth_cull": "s4 = MAC3. skip if s4 < 40 (near) or s4 >= (*(u32*)0x80082394) << 2 (far).",
+      "7_screen_cull": "skip unless SXY0 or SXY1 is below 0x00F00000, and unless the low half of SXY0 or SXY1 is < 512.",
+      "8_ot_insert": "bucket = (*(u32*)0x80082230) + *(u16*)(0x800A3390 + (s4 & ~1)); classic addPrim: prim.tag = *bucket + 0x09000000 (9 words follow); *bucket = prim & 0x00FFFFFF.",
+      "9_texture": "u0v0 = *(u16*)(desc + 8 + (rec+0x31)*2); clut = *(u16*)(desc+6); u1 = u0 + desc[2]; v2 = v0 + desc[3]; tpage = *(u16*)(desc+4) + (rec[0x33] & 0x60).",
+      "10_colour": "prim+0x04 = *(u32*)(rec+0x34) = { R = rec+0x34, G = rec+0x35, B = rec+0x36, code = rec+0x37 }."
+    },
+    "descriptor_struct": {
+      "+0x00": "u8 atlas/type tag (0x1C, 0x1D, 0x1E for the EXE-resident ones; 0x1D is the type-0x3f 'sprite pickup' value already in Canon). NOT read by this renderer.",
+      "+0x01": "u8 pad (always 0 in the EXE)",
+      "+0x02": "u8 width-1 in texels (added to u to give u1/u3)",
+      "+0x03": "u8 height-1 in texels (added to v to give v2/v3)",
+      "+0x04": "u16 TPAGE -- ZERO IN THE EXE IMAGE, written at runtime",
+      "+0x06": "u16 CLUT id -- ZERO IN THE EXE IMAGE, written at runtime",
+      "+0x08 + 2*n": "u16 per-frame (u | v<<8); frame index comes from record +0x31"
+    },
+    "record_field_map_measured": {
+      "+0x00": "s32 world X (a0 of contact_alloc)",
+      "+0x04": "s32 world Y (a1)",
+      "+0x08": "s32 world Z (a2)",
+      "+0x0C": "s32 scatter field 0 (table A field0)",
+      "+0x10": "s32 scatter field 1",
+      "+0x14": "s32 scatter field 2",
+      "+0x18": "s32 scatter field 3",
+      "+0x1C": "s32 = -1 at spawn (walker overwrites it; purpose UNRESOLVED)",
+      "+0x20": "u16 ACTION ID = metaB+0x00. Indexes BOTH 0x8001B570[action-2] (behaviour) and 0x80096B98[action] (sprite descriptor).",
+      "+0x22": "s16 lifetime = metaB+0x02, or (rng&3) - (u16)metaB+0x04 scaled when metaB+0x04 is negative. Used as the slot-busy test in contact_alloc and (low byte only) as the renderer's liveness test.",
+      "+0x24": "s16 = metaB+0x04 when >= 0, else (rng&3) - (u16)metaB+0x04",
+      "+0x26": "s16 = copy of +0x24 at spawn",
+      "+0x28": "s16 billboard half-width = metaB+0x08",
+      "+0x2A": "s16 billboard half-height = metaB+0x0A",
+      "+0x2C": "s16 = metaB+0x0C (purpose UNRESOLVED)",
+      "+0x2E": "s8: metaB+0x0E == 0 -> 0; == 1 -> +ctor; else -> -ctor",
+      "+0x2F": "u8 = metaB+0x0F (purpose UNRESOLVED)",
+      "+0x30": "u8 = metaB+0x07 (also used as a multiplier for +0x22 in the randomized-lifetime branch)",
+      "+0x31": "u8 = metaB+0x06 at spawn; SPRITE FRAME INDEX read by the renderer, advanced by the action handler",
+      "+0x32": "u8 = 0x20 at spawn; renderer clears bit0 each frame and sets it if the primitive was emitted",
+      "+0x33": "u8 flags = metaB+0x10. bit7 = slot occupied (contact_alloc's reuse test). bits 5-6 are ADDED INTO THE TPAGE, i.e. they are the GPU semi-transparency (ABR) field.",
+      "+0x34": "u8 R = metaB+0x11",
+      "+0x35": "u8 G = metaB+0x12",
+      "+0x36": "u8 B = metaB+0x13",
+      "+0x37": "u8 GPU primitive code, set by contact_record_post_init 0x80024DDC: default 0x2C, changed to 0x2E unless (rec+0x33 & 0x60) == 0x60. 0x2C = opaque textured quad, 0x2E = SEMI-TRANSPARENT textured quad."
+    },
+    "slot_allocation_measured": {
+      "cursor": "0x8008234C (census name contact_alloc_cursor); pre-incremented, wrapped to 0 at 64",
+      "reuse_test": "a slot is skipped (cursor advances again) only if (rec+0x33 & 0x80) != 0 AND (s16)rec+0x22 != 0; otherwise it is overwritten",
+      "array_base": "0x800B0D18 (census name contact_record_array), 64 records of 0x38",
+      "second_allocator": "0x8005A0E0 is a longer-argument variant with the identical cursor/slot logic (t1..t3/t0 pulled from 0x30/0x34/0x38/0x3C(sp)); not used by the blue-plant path"
+    },
+    "our_two_objects": {
+      "B06_invincibility": {
+        "ctor": "0x25",
+        "metaB_row": "0x80079700 = 0c 00 c8 00 02 00 00 04 64 00 64 00 d7 ff 00 00 83 ff c0 00",
+        "action_id": "0x0C",
+        "behaviour_handler": "0x800588B0 (read from 0x8001B598 = 0x8001B570 + (0x0C-2)*4) -- matches the handler already recorded in phase4_b06_b08_powerups.json",
+        "descriptor_index": "0x80096B98[0x0C]",
+        "spawn_lifetime": 200,
+        "spawn_half_extent": "100 x 100",
+        "tint_RGB": "0xFF / 0xC0 / 0x00 (gold; 0x80 is the neutral level, so this is a strong warm modulation)",
+        "gpu_code": "0x2E (semi-transparent) because rec+0x33 = 0x83 and 0x83 & 0x60 != 0x60",
+        "table_A_row": 6,
+        "sprite": "32 x 32, 4 UV frames at (0x40,0x80) (0x60,0x80) (0x40,0xA0) (0x60,0xA0) -- an animated 4-frame twinkle"
+      },
+      "B08_bubble": {
+        "ctor": "0x1F",
+        "metaB_row": "0x80079688 = 2e 00 e6 00 f0 00 00 01 01 00 01 00 07 00 00 07 82 80 80 80",
+        "action_id": "0x2E",
+        "behaviour_handler": "0x80058998 (read from 0x8001B620) -- matches phase4_b06_b08_powerups.json",
+        "descriptor_index": "0x80096B98[0x2E]",
+        "spawn_lifetime": 230,
+        "spawn_half_extent": "1 x 1 (so the visible size at spawn is sub-pixel; the on-screen size must be grown by handler 0x80058998 -- INFERRED, not decoded)",
+        "tint_RGB": "0x80 / 0x80 / 0x80 (neutral, unmodulated)",
+        "gpu_code": "0x2E (semi-transparent) because rec+0x33 = 0x82 and 0x82 & 0x60 != 0x60",
+        "table_A_row": 3,
+        "sprite": "63 x 64, a SINGLE UV frame at (0x80,0x40)"
+      }
+    },
+    "live_confirmation": {
+      "how": "Replayed movies/B06_movie.json on the Interpreter instance (poll-only, no instrumentation) and scanned all 64 records each poll for an action id of 0x0C or 0x2E.",
+      "hit": "emulator frame 116753, slot 53",
+      "raw_record": "421b01002780ffff207a01000802000030fdffffe0ffffff80000000e40000000c00bd000200010064006400d7ff000004012183ffc0002e",
+      "decoded_and_matched": {
+        "+0x20 action": "0x000C  (= metaB[0x25]+0x00) MATCH",
+        "+0x22 life": "189 (spawned at 200 = metaB+0x02) MATCH",
+        "+0x24/+0x26": "2 / 1 (spawned 2 = metaB+0x04) MATCH",
+        "+0x28/+0x2A": "100 / 100 (= metaB+0x08/+0x0A) MATCH",
+        "+0x2C": "0xFFD7 = -41 (= metaB+0x0C) MATCH",
+        "+0x2E/+0x2F": "0 / 0 (metaB+0x0E == 0, metaB+0x0F == 0) MATCH",
+        "+0x30": "4 (= metaB+0x07) MATCH",
+        "+0x31": "1 (spawned 0 = metaB+0x06; advanced by the handler -> the 4-frame animation is real)",
+        "+0x32": "0x21 -- bit0 SET, i.e. the billboard renderer DREW this record on this frame",
+        "+0x33": "0x83 (= metaB+0x10) MATCH",
+        "+0x34..+0x36": "FF C0 00 (= metaB+0x11..+0x13) MATCH",
+        "+0x37": "0x2E MATCH with contact_record_post_init's rule"
+      },
+      "also_observed": "at the LEVEL06 fixture, all 64 slots were populated with action-4 records whose +0x37 was 0x2E and whose +0x32 was 0x21 -- independent corroboration that this exact loop runs over this exact array."
+    }
+  },
+
+  "task4_per_level_asset_dependency": {
+    "status": "SOLVED (MEASURED live across five level states)",
+    "short_answer": "YES, but only a VRAM/CLUT REBINDING, not a distinct per-level file. Neither pickup needs any asset of its own beyond (a) the plant body model already recorded in phase4_b06_b08_powerups.json and (b) a common sprite bank that every level already loads. The sprite bitmaps and palettes are byte-identical in every level tested; only the VRAM page and CLUT slot they are placed at change.",
+    "measurements": {
+      "descriptor_pointer_table_is_BSS": "0x80096B98 is above the EXE image end (0x80082800), so it does not exist in the file; it is built at load. An abstract-interpreter scan of every lui/ori/addiu-formed effective address in the whole resident text found TWENTY reads of 0x80096B98.. and ZERO writes, so the builder is either pointer-walking through a base the scan cannot fold, or lives in an overlay. See unresolved.",
+      "pointer_stability": {
+        "0x80096B98[0x0C]": "0x80081EF8 in LEVEL01, LEVEL04, LEVEL06, LEVEL08, LEVEL13",
+        "0x80096B98[0x2E]": "0x8008203C in LEVEL01, LEVEL04, LEVEL06, LEVEL08, LEVEL13",
+        "conclusion": "both descriptors are EXE-RESIDENT and their identity never changes per level"
+      },
+      "descriptor_body_static_vs_live": {
+        "0x80081EF8 in the EXE": "1d 00 1f 1f | 00 00 | 00 00 | 40 80 60 80 40 a0 60 a0",
+        "0x80081EF8 live (LEVEL06)": "1d 00 1f 1f | 09 00 | f9 36 | 40 80 60 80 40 a0 60 a0",
+        "0x8008203C in the EXE": "1e 00 3e 3f | 00 00 | 00 00 | 80 40 00 00",
+        "0x8008203C live (LEVEL06)": "1e 00 3e 3f | 0a 00 | 76 36 | 80 40 00 00",
+        "conclusion": "ONLY +0x04 (tpage) and +0x06 (clut) are runtime-written. Geometry (w/h) and all UVs come from the EXE."
+      },
+      "per_level_tpage_clut": [
+        {"state": "level01.sav (scene 1)",  "B06": {"tpage": "0x000A", "clut": "0x3679"}, "B08": {"tpage": "0x000B", "clut": "0x35F6"}},
+        {"state": "level04.sav (scene 6)",  "B06": {"tpage": "0x000A", "clut": "0x3679"}, "B08": {"tpage": "0x000B", "clut": "0x35F6"}},
+        {"state": "level_08.sav (scene 5)", "B06": {"tpage": "0x000A", "clut": "0x36F9"}, "B08": {"tpage": "0x000B", "clut": "0x3676"}},
+        {"state": "level_13.sav (scene 9)", "B06": {"tpage": "0x000A", "clut": "0x3679"}, "B08": {"tpage": "0x000B", "clut": "0x35F6"}},
+        {"state": "B06_B08.movie.sav (LEVEL06, scene 11)", "B06": {"tpage": "0x0009", "clut": "0x36F9"}, "B08": {"tpage": "0x000A", "clut": "0x3676"}}
+      ],
+      "vram_content_is_identical": {
+        "method": "gpu.readVramRect over each sprite's exact texel rectangle, computed from that state's own tpage, then sha256",
+        "B06 32x32 tile sha256[:16]": "3af6282a4f338784 in ALL FIVE states",
+        "B08 64x65 tile sha256[:16]": "3ca6e1f0c6028fb6 in ALL FIVE states",
+        "vram_addresses": "B06 at (656,128) in LEVEL01/04/08/13 and (592,128) in LEVEL06; B08 at (736,64) and (672,64) respectively"
+      },
+      "palettes_are_identical": {
+        "method": "gpu.readVramRect of the 16-entry CLUT row at the coordinates decoded from each state's clut field, then sha256",
+        "B06 palette sha256[:16]": "5068c97a4e0c8304 in LEVEL01, LEVEL08, LEVEL13, LEVEL06",
+        "B08 palette sha256[:16]": "e00991475d086313 in LEVEL01, LEVEL08, LEVEL13, LEVEL06"
+      },
+      "visual_check": "gpu.decodeTexture PNGs from LEVEL06 and LEVEL13 are the same image in both cases: B06 = a small round twinkle sprite (tinted gold at draw time by the FF/C0/00 modulation), B08 = a larger round bubble sprite drawn with the neutral 0x80 tint under semi-transparent blending. Written to /tmp only, not to the repo."
+    },
+    "practical_consequence": "For a mod, moving these plants into any level requires NO new asset beyond the plant body model that phase4_b06_b08_powerups.json already pins (PLANTS/PLANT07.ALL for B06, PLANT06.ALL for B08). The token sprite itself follows the common sprite bank and is rebound automatically. Conversely, editing descriptor 0x80081EF8 / 0x8008203C in the EXE changes the pickup in EVERY level at once."
+  },
+
+  "descriptor_indices_consumed_by_contact_objects": {
+    "method": "read the u16 at metaB+0x00 for ctor rows 0..128 in the pristine EXE and collect the distinct action ids; each such action id is a live index into 0x80096B98",
+    "distinct_action_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 14, 15, 20, 21, 25, 32, 33, 34, 35, 36, 46, 50, 51, 52, 118, 122, 123],
+    "collision_with_the_repurpose_list": {
+      "0x15": "used by ctor 0x33",
+      "0x19": "used by ctor 0x00",
+      "0x20": "used by ctor 0x47 and 0x48",
+      "0x2E": "used by ctor 0x1F -- this is OUR B08 bubble"
+    },
+    "caveat": "the row count 129 is INFERRED from table adjacency (0x8007941C .. 0x80079E30 is exactly 129 * 0x14). Live evidence only proves >= 114 rows are real (ctor 0x71 was observed). Action ids 0, 1, 122 and 123 fall outside the walker's bound (the dispatch tests (action-2) unsigned < 117), so those rows are either unused or handled elsewhere; action id 0 is also the renderer's explicit 'do not draw' value."
+  },
+
+  "unresolved": [
+    {
+      "question": "Which function writes descriptor +0x04 (tpage) and +0x06 (clut) at level load, and from what source?",
+      "what_was_tried": "static: an abstract-interpreter scan over the whole resident text found no store into 0x80096B98..0x80096C70 and no `sh +4 / sh +6` pair that targets a descriptor (the six such pairs found are all GTE/matrix code). live: armed a WRITE breakpoint on 0x80081EFC and replayed movies/B06_LevelTransition.movie.json (1162 frames) -- the breakpoint never fired and the descriptor was unchanged before and after. That is inconclusive, not negative: the movie is not documented as Interpreter-recorded, so it may have desynced, and its start and end levels may share the same binding.",
+      "exact_experiment_that_would_resolve_it": "On an Interpreter instance, arm `debugger.addBreakpoint {address: 0x80081EFC, type: 'write'}` AND `{address: 0x80082040, type: 'write'}` BEFORE a genuine level load, then drive a from-boot movie (e.g. movies/flik_to_level01_stall) through the load. Read the halting PC, then pc-4, and the base register; the base will be the 0x80096B98 entry and the source will identify the bank descriptor. A cheaper variant: `accessLog.addWatch` on the same 4 bytes across the same boot, since non-halting instrumentation is free on an Interpreter-recorded movie."
+    },
+    {
+      "question": "Which disc file supplies the common sprite bank that the two tokens live in?",
+      "status": "not attempted",
+      "exact_experiment_that_would_resolve_it": "arm `transferLog.start` across a level load and then `transferLog.resolve` on the staging RAM buffer that the VRAM upload DMAs from; alternatively breakpoint the LoadImage/DMA that targets VRAM page (576..704, 0)."
+    },
+    {
+      "question": "What do contact record +0x18, +0x1C, +0x24/+0x26, +0x2C, +0x2F, +0x30 actually mean?",
+      "status": "their SOURCES are fully measured (table A field3, literal -1, metaB+0x04, metaB+0x0C, metaB+0x0F, metaB+0x07) but their CONSUMERS were not decoded. They are not read by the renderer.",
+      "exact_experiment_that_would_resolve_it": "decode the two action handlers 0x800588B0 (action 0x0C) and 0x80058998 (action 0x2E), which are the only consumers for our two rows."
+    },
+    {
+      "question": "Does the B08 bubble token really grow from its 1x1 spawn half-extent, and does the B06 token really cycle its 4 sprite frames on a fixed cadence?",
+      "status": "the frame index advancing 0 -> 1 was MEASURED live; the growth is INFERRED from the 1x1 spawn value versus a plausible on-screen size and was NOT measured.",
+      "exact_experiment_that_would_resolve_it": "sample record +0x28/+0x2A and +0x31 every frame for one token's whole life via `readArray` polling during movies/B08_movie.json."
+    },
+    {
+      "question": "How many rows does table A 0x80079E30 have?",
+      "status": ">= 25 (index 24 observed live). Upper bound unproven.",
+      "exact_experiment_that_would_resolve_it": "enumerate every `sw <k>, 0x10(sp)` immediately preceding a `jal 0x80059E44` across the 76 call sites and take the max; that gives the true used range."
+    },
+    {
+      "question": "Renderer liveness test reads only the LOW BYTE of the 16-bit lifetime at +0x22 (lbu, not lhu). A record whose lifetime is exactly 0x100 / 0x200 / ... would be alive for contact_alloc but invisible for one frame.",
+      "status": "observed in the disassembly, not exercised. Neither of our two rows can hit it (spawn lifetimes 200 and 230, counting down), so it is noted only as a latent quirk."
+    },
+    {
+      "question": "The descriptor +0x00 tag correlates with the atlas page for the EXE-resident descriptors (0x1C -> tpage 8, 0x1D -> 9, 0x1E -> 10 in LEVEL06; each +1 in LEVEL01/04/08/13).",
+      "status": "the correlation is MEASURED across ~45 EXE descriptors, but the rule is REFUTED as general: the per-level overlay descriptor at 0x80096B98[0x32] (0x800B42F0 in LEVEL06) has tag 0x17 with tpage 0x0005. Do not treat tag -> tpage as a formula.",
+      "note": "0x80096B98[0x32] is itself level-dependent: NULL in LEVEL01/LEVEL04, 0x800B42F0 in LEVEL06, 0x800B410C in LEVEL08, 0x800B4CD0 in LEVEL13 -- i.e. the table CAN point into overlay memory. Not one of our two indices."
+    }
+  ],
+
+  "named_symbols_used": {
+    "0x80059E44": "contact_alloc / spawn_drop",
+    "0x80059E20": "thin wrapper that falls into contact_alloc (used by the tail-jump at 0x80059578)",
+    "0x8005A0E0": "contact_object_spawn_full -- longer-argument sibling allocator",
+    "0x800593E8": "contact_scatter_component_decode",
+    "0x8005953C": "pickup_effect_dispatch -- effect(obj): kind = (s16)obj+0x2C; kind < 0 -> contact_alloc(obj.xyz, ctor=-kind, tableA=3); else jr [0x8001B790 + (kind-1)*4], 24 entries",
+    "0x80024DDC": "contact_record_post_init -- sets rec+0x37 (GPU code) and is the last thing contact_alloc does",
+    "0x80014844": "contact_record_billboard_render -- THE RENDERER",
+    "0x800586B0": "contact_pickup_walker -- per-frame behaviour walk; dispatches jr [0x8001B570 + (rec+0x20 - 2)*4], bound 117",
+    "0x8005C6F0": "blue plant tier-6 branch: ctor = (extra>>12)+0x1F, table A arg 3, spawn Y = plant Y - 5120",
+    "0x8005C7BC": "blue plant tier-7 branch: ctor = (extra>>12)+0x23, table A arg 6, spawn Y = plant Y - 16384; a 1-in-4 random branch and a (0x800A6590 & 0x20) branch both divert to ctor 59 with table A arg 6",
+    "0x80079E30": "contact metadata table A (scatter profiles), stride 0x14, indexed by the 0x10(sp) stack arg",
+    "0x8007941C": "contact metadata table B, stride 0x14, indexed by ctor",
+    "0x80096B98": "sprite descriptor POINTER table (BSS, built at load), indexed by kind for type-0x3f and by action id for contact objects",
+    "0x80081D98": "start of the EXE-resident sprite descriptor blob (runs to about 0x80082060)",
+    "0x800822F4": "random byte-stream cursor consumed by contact_scatter_component_decode",
+    "0x8008234C": "contact_alloc_cursor (round-robin slot index, wraps at 64)",
+    "0x800B0D18": "contact_record_array, 64 x 0x38",
+    "0x8008249C": "GPU primitive buffer cursor (advanced 40 bytes per drawn contact object)",
+    "0x80082230": "ordering-table base pointer",
+    "0x800A3390": "depth -> OT-bucket offset lookup (u16 per 2 depth units)",
+    "0x80082394": "far-clip depth (used as value << 2)"
+  }
+}

@@ -1,0 +1,1220 @@
+schema_version: 1
+description: Curated semantic addresses shared by RE notes, MOD tooling, and debugger scenarios.
+
+namespaces:
+  original: Confirmed or bounded state/functions owned by the retail game.
+  mod_private: State/functions introduced and owned by a MOD module.
+  hypothesis: Unresolved candidates that must never be emitted as confirmed constants.
+
+entries:
+  - id: original.current_scene_id
+    namespace: original
+    kind: field
+    address: 0x80082504
+    width: u32
+    owner: original_game.scene_flow
+    writers:
+      - address: 0x8004FD0C
+        name: shell_scene_table_commit
+      - address: 0x8005222C
+        name: level_transition_orchestrator
+    invariants:
+      - kind: range
+        min: 0
+        max: 19
+        context: shell/loading/gameplay scene selector
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_EVENT_SYSTEM_GLOBALS_Event_System_Globals.md
+      - symbols/re_symbols.sym
+
+  - id: original.player_x
+    namespace: original
+    kind: field
+    address: 0x800A6500
+    width: s32
+    owner: original_game.player
+    writers:
+      - name: player_movement_integrator
+    invariants: []
+    domain: "unbounded: a world X coordinate (fixed-point, <<5 scale); no valid range beyond the level's own geometry"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md
+
+  - id: original.player_y
+    namespace: original
+    kind: field
+    address: 0x800A6504
+    width: s32
+    owner: original_game.player
+    writers:
+      - address: 0x80036CEC
+        name: collision_corrected_y_store
+    invariants: []
+    domain: "unbounded: a world Y coordinate (+Y = down); bounded only by the level floor/void, not a fixed range"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md
+
+  - id: original.player_z
+    namespace: original
+    kind: field
+    address: 0x800A6508
+    width: s32
+    owner: original_game.player
+    writers:
+      - name: player_movement_integrator
+    invariants: []
+    domain: "unbounded: a world Z coordinate; no fixed range"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md
+
+  - id: original.player_health_display
+    namespace: original
+    kind: field
+    address: 0x800A7E2A
+    width: s16
+    owner: original_game.player_health_hud
+    writers:
+      - name: unresolved_damage_and_hud_animation_writers
+    invariants:
+      - kind: range
+        min: 0
+        max: 7
+        context: at rest or SELECT panel; animated during active HUD updates
+    confidence: confirmed
+    evidence:
+      - src_re/player_health.c
+      - ObsidianVault/Canon/Systems/SYS_player.md
+
+  - id: original.player_lives
+    namespace: original
+    kind: field
+    address: 0x800A65A0
+    width: u8
+    owner: original_game.player_health
+    writers:
+      - name: death_and_game_over_flow
+    invariants:
+      - kind: range
+        min: 0
+        max: 99
+        context: live gameplay sanity bound
+    confidence: confirmed
+    evidence:
+      - src_re/player_health.c
+      - ObsidianVault/Canon/Systems/SYS_player.md
+
+  - id: original.player_equipped_berry
+    namespace: original
+    kind: field
+    address: 0x800A6597
+    width: u8
+    owner: original_game.berry_system
+    writers:
+      - name: native_berry_pickup_and_contact_paths
+    invariants:
+      - kind: range
+        min: 0
+        max: 4
+        context: five-column native actor table selector
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md
+      - src_re/berry_throw_80047170.c
+
+  - id: original.berry_throw
+    namespace: original
+    kind: function
+    address: 0x80047170
+    width: null
+    owner: original_game.berry_system
+    writers: []
+    invariants: []
+    domain: "N/A: this entry is a FUNCTION (the throw dispatch), not state — it has no value domain"
+    confidence: confirmed
+    evidence:
+      - src_re/berry_throw_80047170.c
+      - ObsidianVault/Canon/Functions/FUNC_80047170_berry_throw_refs.md
+
+  - id: original.training_step
+    namespace: original
+    kind: overlay_field
+    address: 0x800B4A3C
+    # Overlay VAs are shared: the key is (namespace, image, address), not the address.
+    # This image is the one the entry's own invariant already names, and containment
+    # confirms it -- LEVEL07/LEVEL1.BIN spans 0x800B39A0..0x800B4A90, so it holds this
+    # VA, while both LEVEL01 images end before it (0x800B4030 / 0x800B442C).
+    image: LEVEL07_LEVEL1
+    width: s32
+    owner: original_game.training_overlay
+    writers:
+      # ⚠️ CORRECTED 2026-08-11. The previously declared writer 0x800B477C is a `lui`
+      # (0x3C02800B -- address setup), not a store, in all 20 censused images. The real
+      # stores were measured from the overlay bytes and independently re-decoded:
+      # 0x800B3DA0 = 0xAC204A3C (sw zero) and 0x800B47E0 = 0xAC234A3C (sw v1), both
+      # targeting offset 0x4A3C. 1 declared vs 2 measured, and the declared one was not
+      # among them. analysis/phase3_xrefs.json had flagged it unverifiable ("Verifying it
+      # needs the overlay blob"); the blob check is now done.
+      - address: 0x800B3DA0
+        name: level_state_writer_zeroing_init
+      - address: 0x800B47E0
+        name: level_transition_handler_increment
+    invariants:
+      - kind: range
+        min: 0
+        max: 13
+        context: >-
+          Training overlay loaded (LEVEL07/LEVEL1.BIN @ 0x800B39A0). Range holds for THIS
+          overlay: observed 2 and 13 in the two pristine fixtures, and the field indexes a
+          14-arm dispatch table at 0x800B39A4 whose span equals the range span.
+          ⚠️ THE ADDRESS IS NOT UNIQUE. Overlay-local VAs are keyed globally here with no
+          image field, and 0x800B4A3C is also real written state in LEVEL02_LEVEL1.BIN
+          (3 refs, 2 stores), which routes via the progression table to F11_the_tree --
+          where it was measured at 0..320 over 1,896 writes, far outside this range. Three
+          rows have now collided on this entry (E07 / F00 / F11). The range is scoped to
+          the training overlay and must not be read as a property of the address.
+    confidence: confirmed
+    evidence:
+      - src_re/training_tutorial_progression.c
+      - ObsidianVault/Canon/Systems/Training_NPC_progression.md
+      - analysis/phase4_f00_written_bar_assessment.json
+
+  - id: original.bonus1_stomp_streak
+    namespace: original
+    kind: field
+    address: 0x8008223C
+    width: u32
+    owner: original_game.bonus_unlock
+    writers:
+      - address: 0x8004B3A8
+        name: bonus1_increment
+      - address: 0x8004B3D0
+        name: bonus1_success_reset
+    invariants:
+      - kind: range
+        min: 0
+        max: 4
+        context: Bonus 1 challenge active; fifth success immediately resets after latching transition 6
+    confidence: confirmed
+    evidence:
+      - src_re/bonus_unlock_challenges.c
+      - ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md
+
+  - id: original.bonus3_blue_grasshopper_streak
+    namespace: original
+    kind: field
+    address: 0x80082240
+    width: u32
+    owner: original_game.bonus_unlock
+    writers:
+      - address: 0x80058B34
+        name: non_blue_equipment_reset
+      - address: 0x800591C0
+        name: grasshopper_kill_increment
+      - address: 0x800591EC
+        name: bonus3_success_reset
+      - address: 0x80059A0C
+        name: contact_dispatch_case_13_reset
+    invariants:
+      - kind: range
+        min: 0
+        max: 4
+        context: blue-berry grasshopper challenge active; fifth success immediately resets after latching transition 6; case-13 miss semantics remain a static hypothesis
+    confidence: confirmed
+    evidence:
+      - src_re/bonus_unlock_challenges.c
+      - ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md
+
+  - id: original.bonus2_mushroom_slot_0
+    namespace: original
+    kind: field
+    address: 0x80082248
+    width: s8
+    owner: original_game.bonus_unlock
+    writers:
+      - address: 0x8005C54C
+        name: duplicate_restart
+      - address: 0x8005C580
+        name: distinct_mushroom_append
+    invariants:
+      - kind: range
+        min: -1
+        max: 19
+        context: first of five signed plant-slot identities; -1 means empty
+    confidence: confirmed
+    evidence:
+      - src_re/bonus_unlock_challenges.c
+      - ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md
+
+  - id: original.bonus_transition_latch
+    namespace: original
+    kind: field
+    address: 0x800823A0
+    width: s16
+    owner: original_game.scene_flow
+    writers:
+      - address: 0x8004B3C0
+        name: bonus1_success
+      - address: 0x8005C6B8
+        name: bonus2_success
+      - address: 0x800591DC
+        name: bonus3_success
+    invariants:
+      - kind: range
+        min: 0
+        max: 6
+        context: observed shared transition command range; value 6 selects bonus handoff
+    confidence: confirmed
+    evidence:
+      - src_re/bonus_unlock_challenges.c
+      - ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md
+
+  - id: original.bonus_progress_command
+    namespace: original
+    kind: field
+    address: 0x80082444
+    width: u32
+    owner: original_game.bonus_unlock_hud
+    writers:
+      - address: 0x8004B3A0
+        name: bonus1_progress
+      - address: 0x8005C660
+        name: bonus2_progress_base
+      - address: 0x8005C690
+        name: bonus2_progress_increment
+      - address: 0x800591B8
+        name: bonus3_progress
+    invariants:
+      - kind: range
+        min: 114
+        max: 118
+        context: immediately after a valid challenge increment; later cleared by shared HUD flow
+    confidence: confirmed
+    evidence:
+      - src_re/bonus_unlock_challenges.c
+      - ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md
+
+  - id: original.bonus_fade_timer
+    namespace: original
+    kind: field
+    address: 0x80082470
+    width: s16
+    owner: original_game.scene_flow
+    writers:
+      - address: 0x8004B3CC
+        name: bonus1_fade_30
+      - address: 0x8005C6CC
+        name: bonus2_fade_60
+      - address: 0x800591E8
+        name: bonus3_fade_30
+    invariants:
+      - kind: range
+        min: 0
+        max: 60
+        context: challenge completion fade countdown
+    confidence: confirmed
+    evidence:
+      - src_re/bonus_unlock_challenges.c
+      - ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md
+
+  - id: original.bonus_unlock_flags
+    namespace: original
+    kind: field
+    address: 0x8009B889
+    width: u8
+    owner: original_game.save
+    writers:
+      - address: 0x8004B3B4
+        name: bonus1_low_bit
+      - address: 0x8005C6E4
+        name: bonus2_low_bit
+      - address: 0x800591D0
+        name: bonus3_low_bit
+      - address: 0x8004FFC8
+        name: mirror_low_nibble_to_high
+    invariants:
+      - kind: range
+        min: 0
+        max: 119
+        context: low bits 0x01/0x02/0x04 are challenge unlocks; high bits 0x10/0x20/0x40 are earned guards
+    confidence: confirmed
+    evidence:
+      - src_re/bonus_unlock_challenges.c
+      - ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md
+
+  - id: mod_private.blackberry_spawn_fast_flag
+    namespace: mod_private
+    kind: field
+    address: 0x80081230
+    width: u8
+    owner: mod.blackberry
+    writers:
+      - name: blackberry_pickup_and_contact_caves
+    invariants:
+      - kind: range
+        min: 0
+        max: 1
+        context: one-shot flag
+    confidence: confirmed
+    evidence:
+      - mod/patch.asm
+      - ObsidianVault/Mods/Blackberry/MOD_blackberry_net_new_berry.md
+
+  - id: mod_private.blackberry_equipped
+    namespace: mod_private
+    kind: field
+    address: 0x80081231
+    width: u8
+    owner: mod.blackberry
+    writers:
+      - address: 0x8008134C
+        name: contact_equip_clear_cave
+      - address: 0x800813B0
+        name: equip_normalize_cave
+    invariants:
+      - kind: range
+        min: 0
+        max: 1
+        context: persistent private equipped state
+    confidence: confirmed
+    evidence:
+      - mod/patch.asm
+      - ObsidianVault/Mods/Blackberry/MOD_blackberry_net_new_berry.md
+
+  - id: mod_private.blackberry_effective_index
+    namespace: mod_private
+    kind: field
+    address: 0x80081232
+    width: u8
+    owner: mod.blackberry
+    writers:
+      - address: 0x8008134C
+        name: contact_equip_clear_cave
+      - address: 0x800813B0
+        name: equip_normalize_cave
+    invariants:
+      - kind: range
+        min: 0
+        max: 5
+        context: MOD-only mirror; never passed as the native five-column selector
+    confidence: confirmed
+    evidence:
+      - mod/patch.asm
+      - ObsidianVault/Mods/Blackberry/MOD_blackberry_net_new_berry.md
+
+  - id: hypothesis.player_contact_damage_writer
+    namespace: hypothesis
+    kind: unresolved_writer
+    address: null
+    width: null
+    owner: unresolved
+    writers: []
+    candidates: []
+    invariants:
+      - kind: expected_effect
+        value: -1
+        context: enemy contact; positional knockback writer is known to be separate
+    confidence: hypothesized
+    evidence:
+      - src_re/player_health.c
+
+  # --- Phase 3 WP2 expansion (2026-07-12): state PROVEN by the Phase-2 gate ---
+  # Every entry below carries behavioral positive/negative evidence from the
+  # committed Phase-2 artifacts (regenerable tools named in each evidence list).
+
+  - id: original.player_health_true
+    namespace: original
+    kind: field
+    address: 0x800A6594
+    width: s16
+    owner: original_game.player_health
+    writers:
+      - address: 0x8004A880
+        name: damage_applier_hp_decrement
+    invariants:
+      - kind: range
+        min: -1
+        max: 7
+        context: hp 0 = alive final hit; death only when the decrement result is <0; respawn re-arms hp:=4 (not 7)
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_death_matrix.json
+      - ObsidianVault/Playbooks/Game Solving Roadmap/Phase 2 - Build the Pristine Whole-Game Behavioral Oracle.md
+
+  - id: original.player_state_word
+    namespace: original
+    kind: field
+    address: 0x800A6580
+    width: u16
+    owner: original_game.player
+    writers:
+      - name: player_state_machine_writers_unenumerated
+    invariants:
+      - kind: range
+        min: 0
+        max: 6
+        context: "0 grounded, 1 air, 2 swing-release launch, 4 slam/dive (double-tap exclusive), 5 shared landing/skid AND swing-attached, 6 handstand dismount"
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_buttslide_oracle.json
+      - analysis/phase2_seed_action_controls.json
+
+  - id: original.player_grounded
+    namespace: original
+    kind: field
+    address: 0x800A6582
+    width: u16
+    owner: original_game.player
+    writers:
+      - name: player_integrator_ground_resolution
+    invariants:
+      - kind: range
+        min: 0
+        max: 257
+        context: 0 = airborne/mounted/attached; nonzero = grounded (byte-pair pattern 0x0101 observed)
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_seed_action_controls.json
+      - analysis/phase2_carry_handstand_oracle.json
+
+  - id: original.kick_timer
+    namespace: original
+    kind: field
+    address: 0x800A657A
+    width: s16
+    owner: original_game.player_actions
+    writers:
+      - address: 0x80048F4C
+        name: kick_branch_timer_arm
+    invariants:
+      - kind: range
+        min: -16
+        max: 0
+        context: ":= -16 on kick fire (L2|R2 held + Square FRESH press + grounded + player+0x5C==0), counts back to 0"
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_action_behavior.json
+
+  - id: original.player_berries_in_flight
+    namespace: original
+    kind: field
+    address: 0x800A6596
+    width: u8
+    owner: original_game.projectiles
+    writers:
+      - name: berry_throw_and_impact_writers
+    invariants:
+      - kind: range
+        min: 0
+        max: 8
+        context: live thrown-berry count; 0 under no input (negative control)
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_negative_controls.json
+      - analysis/phase2_pool_arc_oracle.json
+
+  - id: original.pad_held_word
+    namespace: original
+    kind: field
+    address: 0x80082488
+    width: u16
+    owner: original_game.input
+    writers:
+      - name: pad_poll_per_frame
+    invariants:
+      - kind: range
+        min: 0
+        max: 65535
+        context: "held buttons this frame (Square 0x8000, Cross 0x4000, L2|R2 0x0300, ...)"
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_action_behavior.json
+
+  - id: original.pad_prev_word
+    namespace: original
+    kind: field
+    address: 0x80082380
+    width: u16
+    owner: original_game.input
+    writers:
+      - name: pad_poll_per_frame
+    invariants:
+      - kind: range
+        min: 0
+        max: 65535
+        context: previous-frame pad word; fresh-press EDGE = held & ~prev (edge-gated actions never fire on a held button)
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_action_behavior.json
+
+  - id: original.contact_pool
+    namespace: original
+    kind: table
+    address: 0x800B0D18
+    owner: original_game.contact_pool
+    writers:
+      - address: 0x80059E44
+        name: contact_alloc
+    invariants:
+      - kind: range
+        min: 0
+        max: 63
+        context: "64 slots x 0x38; XYZ at +0x00; live gate active_type(+0x22)>0; allocator = round-robin FREE-SLOT search with NO full-array escape -> all-64-occupied HANGS (mod-safety: never hold all 64)"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800B0D18_Contact_array_800B0D18.md
+      - analysis/phase2_capacity_hang_proof.json
+      - src_re/contact_alloc_80059e44.c
+
+  - id: original.plant_slots
+    namespace: original
+    kind: table
+    address: 0x80090BF0
+    owner: original_game.plants
+    writers:
+      - address: 0x8005BDBC
+        name: plant_spawn
+    invariants:
+      - kind: range
+        min: 0
+        max: 19
+        context: "20 slots x 0x30; +0x00 u16 type (0 = free); +0x2E expiry byte (5 at player-uproot teardown); creation 20-120f after the crack input"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_8005BDBC_plant_spawn.md
+      - analysis/phase2_final_action_pairs.json
+
+  - id: original.plant_slot_cursor
+    namespace: original
+    kind: field
+    address: 0x800822B8
+    width: u32
+    owner: original_game.plants
+    writers:
+      - address: 0x8005BDBC
+        name: plant_spawn
+    invariants:
+      - kind: range
+        min: 0
+        max: 19
+        context: next-slot cursor; wraps at 0x14; skips occupied slots
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_8005BDBC_plant_spawn.md
+      - analysis/phase2_final_action_pairs.json
+
+  - id: original.carried_actor_offset
+    namespace: original
+    kind: field
+    address: 0x800A655C
+    width: u32
+    owner: original_game.player_seed_interaction
+    writers:
+      - address: 0x80047858
+        name: movable_seed_pickup_commit
+      - address: 0x80047CE8
+        name: movable_seed_manual_drop
+      - address: 0x80048394
+        name: player_action_cancel_carry
+      - address: 0x8005B258
+        name: respawn_clear_carry
+    invariants:
+      - kind: relation
+        context: "0 = none; positive movable-actor values are offsets from 0x8009FD80; LEVEL01 seed value 0xA50 selects 0x800A07D0"
+    confidence: confirmed
+    evidence:
+      - analysis/phase4_a09_static.json
+      - analysis/phase4_a09_capsule.json
+
+  - id: original.seed_carry_mode
+    namespace: original
+    kind: field
+    address: 0x800A65A3
+    width: u8
+    owner: original_game.player_seed_interaction
+    writers:
+      - address: 0x80047874
+        name: movable_seed_pickup_mode
+      - address: 0x8004BAFC
+        name: seed_lift_to_stable_mode12
+      - address: 0x80047D00
+        name: movable_seed_release_mode13
+      - address: 0x8005B31C
+        name: respawn_clear_carry_mode
+    invariants:
+      - kind: enum
+        context: "movable seed: 0 none, 8..11 pickup/lift, 12 stable attachment, 13 transient release; 14 is an alternate cross-row actor path"
+    confidence: confirmed
+    evidence:
+      - analysis/phase4_a09_static.json
+      - analysis/phase4_a09_capsule.json
+
+  - id: original.enemy_live_table
+    namespace: original
+    kind: table
+    address: 0x80090748
+    owner: original_game.enemies
+    writers:
+      - name: enemy_spawn_and_retirement_writers
+    invariants:
+      - kind: range
+        min: 0
+        max: 63
+        context: "live actor pointer slots (compacted on removal); includes carried objects; per-record +0x6C s16 knockback := -20 on seed hit, decays 0.5/frame"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800B0D18_Contact_array_800B0D18.md
+      - analysis/phase2_final_action_pairs.json
+
+  - id: original.chunk31_actor_records
+    namespace: original
+    kind: table
+    address: 0x8009FE04
+    owner: original_game.level_actors
+    writers:
+      - name: level_load_and_actor_update_writers
+    invariants:
+      - kind: range
+        min: 0
+        max: 39
+        context: "0x84-stride records (u32 id + s32 XYZ); id 11 = movable seed; CARRY LAW: record X/Z == player X/Z exactly + fixed Y offset while held; raised +20480 (640<<5) while planted"
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_final_action_pairs.json
+      - analysis/phase2_carry_handstand_oracle.json
+
+  - id: original.camera_struct
+    namespace: original
+    kind: table
+    address: 0x80095358
+    owner: original_game.camera
+    writers:
+      - address: 0x8004DF18
+        name: camera_follow_update
+    invariants: []
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_action_behavior.json
+      - ObsidianVault/Canon/Systems/Gameplay_-_Input_and_Movement.md
+
+  # --- Phase 3 lever 1 (2026-07-12): drain the ownership-graph unowned-state
+  # cites — every address below was already documented in Canon/registry
+  # bindings; this promotes that knowledge into owned entries.
+
+  - id: original.berry_throw_jump_table
+    namespace: original
+    kind: table
+    address: 0x8001B1C0
+    owner: original_game.dispatch
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 4
+        context: "per-equipped-berry throw handlers (red/blue/homing/gold/mega); NOT extendable in place"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_80047170_berry_throw_refs.md
+      - analysis/mechanics_baseline.yaml
+
+  - id: original.mover_vm_opcode_table
+    namespace: original
+    kind: table
+    address: 0x8001B2F4
+    owner: original_game.dispatch
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 25
+        context: "26 opcode handlers; interpreter FUNC_8004C13C: op = obj[+0x70] program byte, jr [0x8001B2F4 + op*4]"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_8004C13C_FUNC_8004C13C.md
+      - analysis/vm_programs.json
+
+  - id: original.spawn_coord_table
+    namespace: original
+    kind: table
+    address: 0x80077314
+    owner: original_game.scene_flow
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 19
+        context: "per-scene spawn/warp-landing coords, stride 12 (scene_id*12); consumer FUNC_80046B20 via FUNC_8005B714"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_80046B20_FUNC_80046B20.md
+      - analysis/mechanics_baseline.yaml
+
+  - id: original.mover_vm_program_bank
+    namespace: original
+    kind: table
+    address: 0x8007745C
+    owner: original_game.enemies
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 13
+        context: "resident mover-VM programs for 14 enemy families; actor IP at +0x70"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Systems/Enemy_AI_movement_programs.md
+      - analysis/vm_programs.json
+
+  - id: original.plant_type_table
+    namespace: original
+    kind: table
+    address: 0x8007A448
+    owner: original_game.plants
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 19
+        context: "[20] {u16 type, u16 extra}; index = color*4 + count - 1; type N <-> PLANTNN.ALL"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_8005BDBC_plant_spawn.md
+
+  - id: original.overlay_streaming_table
+    namespace: original
+    kind: table
+    address: 0x8007EFE8
+    owner: original_game.streaming
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 47
+        context: resident streaming/overlay descriptor table, stride 0x30
+    confidence: static_seen
+    evidence:
+      - ObsidianVault/Canon/Systems/Asset_-_LEVEL.BIN_and_overlays.md
+      - analysis/mechanics_baseline.yaml
+
+  - id: original.fmv_boot_buffer_start
+    namespace: original
+    kind: table
+    address: 0x800814BC
+    owner: original_game.fmv
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 0
+        context: FMV boot buffer window 0x800814BC..0x80081530
+    confidence: static_seen
+    evidence:
+      - ObsidianVault/Canon/Systems/Core_-_FMV_and_MDEC_Playback.md
+      - analysis/mechanics_baseline.yaml
+
+  - id: original.fmv_boot_buffer_end
+    namespace: original
+    kind: table
+    address: 0x80081530
+    owner: original_game.fmv
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 0
+        context: end marker of the FMV boot buffer window
+    confidence: static_seen
+    evidence:
+      - ObsidianVault/Canon/Systems/Core_-_FMV_and_MDEC_Playback.md
+      - analysis/mechanics_baseline.yaml
+
+  - id: original.contact_alloc_cursor
+    namespace: original
+    kind: field
+    address: 0x8008234C
+    width: u32
+    owner: original_game.contact_pool
+    writers:
+      - address: 0x80059E44
+        name: contact_alloc
+    invariants:
+      - kind: range
+        min: 0
+        max: 63
+        context: round-robin allocation cursor; wraps at 0x40; cursor wraps measure allocation churn (NOT overwrite-oldest)
+    confidence: confirmed
+    evidence:
+      - src_re/contact_alloc_80059e44.c
+      - ObsidianVault/Canon/Memory/MEM_800B0D18_Contact_array_800B0D18.md
+
+  - id: original.pass3_decor_visibility_bitmap
+    namespace: original
+    kind: field
+    address: 0x800902C7
+    width: u8
+    owner: original_game.scenery
+    writers:
+      - address: 0x80014360
+        name: pass3_backdrop_cull
+    invariants: []
+    domain: "per-decor visibility bits; the meaningful domain is per-bit (0/1), not a byte range"
+    confidence: confirmed
+    evidence:
+      - analysis/mechanics_baseline.yaml
+
+  - id: original.thumper_defeat_flag
+    namespace: original
+    kind: field
+    address: 0x80090BEE
+    width: u16
+    owner: original_game.bosses
+    writers:
+      - name: thumper_defeat_writer_via_damage_dispatch
+    invariants:
+      - kind: range
+        min: 0
+        max: 2
+        context: ":= 2 on Thumper defeat (HP +0x6E <= 20 after 15 hits)"
+    confidence: confirmed
+    evidence:
+      - analysis/mechanics_baseline.yaml
+
+  - id: original.enemy_spawn_source_table
+    namespace: original
+    kind: table
+    address: 0x80094A38
+    owner: original_game.enemies
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 63
+        context: load-time spawn source table fed from LEVEL.RAW chunk-31 (XYZ file<<5)
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Systems/Enemy_spawn_architecture.md
+
+  - id: original.worm_anchor
+    namespace: original
+    kind: table
+    address: 0x800A0C9C
+    owner: original_game.enemies
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 0
+        context: "stationary WORM pop-up anchor record (relocation lever; pill = 0x800A0144)"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Systems/Enemy_relocation_method.md
+
+  - id: original.player_prev_pos
+    namespace: original
+    kind: table
+    address: 0x800A6510
+    owner: original_game.player
+    writers:
+      - name: player_movement_integrator
+    invariants:
+      - kind: range
+        min: 0
+        max: 2
+        context: "prev-tick XYZ mirror (+0x10/14/18); platform mods must re-commit pos = prev + V through it"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md
+
+  - id: original.player_velocity_y
+    namespace: original
+    kind: field
+    address: 0x800A6530
+    width: s32
+    owner: original_game.player
+    writers:
+      - name: player_movement_integrator
+      - name: on_hit_knockback_writer
+    invariants:
+      - kind: range
+        min: -32768
+        max: 32767
+        context: "VERTICAL VELOCITY (corrected from 'knockback_velocity'): it exactly equals the per-tick Y position delta. The on-hit knockback writes -1024 here because knockback IS a vertical impulse. Companions: velocity_x 0x800A652C, velocity_z 0x800A6534."
+    confidence: confirmed
+    evidence:
+      - analysis/phase3_unknown_fields.json
+      - ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md
+
+  - id: original.player_velocity_x
+    namespace: original
+    kind: field
+    address: 0x800A652C
+    width: s32
+    owner: original_game.player
+    writers:
+      - name: player_movement_integrator
+    invariants: []
+    domain: "unbounded: a per-tick X displacement; magnitude depends on move/slam/knockback state, not a fixed range"
+    confidence: confirmed
+    evidence:
+      - analysis/phase3_unknown_fields.json
+
+  - id: original.player_velocity_z
+    namespace: original
+    kind: field
+    address: 0x800A6534
+    width: s32
+    owner: original_game.player
+    writers:
+      - name: player_movement_integrator
+    invariants: []
+    domain: "unbounded: a per-tick Z displacement; no fixed range"
+    confidence: confirmed
+    evidence:
+      - analysis/phase3_unknown_fields.json
+
+  - id: original.player_anim_frame_pair
+    namespace: original
+    kind: field
+    address: 0x800A6542
+    width: u16
+    owner: original_game.player
+    writers:
+      - name: player_animation_driver
+    invariants:
+      - kind: range
+        min: 0
+        max: 32
+        context: "action-anim pair 0x800A6542/46: walk=(6,7), slide=(11,12); the NEIGHBOR 0x800A6546 region cycles as a FRAME COUNTER — neither is a state id (state word is 0x800A6580)"
+    confidence: confirmed
+    evidence:
+      - analysis/phase2_buttslide_oracle.json
+      - ObsidianVault/Canon/Memory/MEM_800A6500_Player_state_800A6500.md
+
+  - id: original.player_floor_y
+    namespace: original
+    kind: field
+    address: 0x800A6548
+    width: s32
+    owner: original_game.player
+    writers:
+      - address: 0x80048138
+        name: player_vertical_update
+    invariants:
+      - kind: range
+        min: -2147483648
+        max: 2147483647
+        context: "resolved floor Y under the player (+0x48); kick gate uses |Y - floorY| < 1024"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_80048138_player_vertical_update.md
+
+  - id: original.enemy_permanence_quota
+    namespace: original
+    kind: field
+    address: 0x800A658E
+    width: u16
+    owner: original_game.enemies
+    writers:
+      - name: permanent_kill_decrementer
+    invariants:
+      - kind: range
+        min: 0
+        max: 255
+        context: decremented ONLY on permanent kills (mine, gold-berry classes) — not on respawning deaths
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Systems/Enemy_death_and_permanence.md
+
+  - id: original.player_powerup_flags
+    namespace: original
+    kind: field
+    address: 0x800A6590
+    width: u32
+    owner: original_game.player_powerups
+    writers:
+      - address: 0x8005CECC
+        name: blue_plant_powerup_setter
+      - address: 0x80051EB0
+        name: harvester_equip_bit_setter
+      - name: harvester_cross_disengage_clearer_8004a94c
+    invariants:
+      - kind: range
+        min: 0
+        max: 511
+        context: "bit 0x02 invincibility, 0x08 bubble shield, 0x20 super-jump (blue plant grants), 0x80 grain harvester, 0x100 other original mode; VM op25 also writes"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Systems/Blue_seed_plant_behaviors.md
+      - ObsidianVault/Canon/Systems/SYS_grain_harvester.md
+
+  - id: original.grain_count
+    namespace: original
+    kind: field
+    address: 0x800A65A1
+    width: u8
+    owner: original_game.objectives
+    writers:
+      - name: grain_pickup_incrementer
+    invariants:
+      - kind: range
+        min: 0
+        max: 80
+        context: "collected grain (per-level goal 0x32 = 50); HUD reads it in FUNC_800526F4; grain gates read it at 0x800B44BC"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_800526F4_HUD_draw.md
+      - ObsidianVault/Canon/Systems/SYS_native_grain_gates.md
+
+  - id: original.plant_behavior_jump_table
+    namespace: original
+    kind: table
+    address: 0x8001B848
+    owner: original_game.dispatch
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 12
+        context: "13 plant-behavior handlers, index = plant type - 2 (types 2..14); walker 0x8005BFBC..; decoded in analysis/phase3_dispatch_map.json"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Functions/FUNC_8005BDBC_plant_spawn.md
+      - analysis/phase3_dispatch_map.json
+
+  # --- Phase 3 WP7 (2026-07-12): scene -> asset -> overlay routing tables ---
+
+  - id: original.scene_asset_table
+    namespace: original
+    kind: table
+    address: 0x8001AD0C
+    owner: original_game.scene_flow
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 14
+        context: "15 x 0x10 ASCII 'levelNN\\levelXY' at 0x8001AD0C. ⚠️ CORRECTED 2026-08-11 -- the invariant this entry carried was FALSIFIED on 2026-08-01 and the correction never reached this registry. Superseded text: 'row index = scene_id - 1; disc DIR selects the overlay pair, asset PREFIX selects sub-level data ... Cross-verified against all 15 Phase-2 stage movies.' That law was never derived from code and is wrong for 11 of 15 scenes; the strings are VAB/SOUND-BANK prefixes, not level data. The real law (analysis/phase3_scene_asset_graph.json, decoded at 0x8003CF84/0x8003CF88 and 0x8003D204..0x8003D21C): the dispatcher validates 1 <= scene_id <= 17 and jumps through a PERMUTED jr table at 0x8001AFB0 indexed by scene_id-1, while LEVEL DATA is selected arithmetically -- dir = scene_id <= 10 ? scene_id : scene_id - 10, file = LEVEL.* for scene <= 10 else LEVEL1.*. Three distinct numbering spaces (level ordinal, scene id, disc dir) were being conflated. Row index is therefore NOT a scene-id offset into level data."
+    confidence: static_seen
+    evidence:
+      - analysis/phase3_scene_asset_graph.json
+      - analysis/phase2_completion_oracle.json
+
+  - id: original.gfx_loadscreen_table
+    namespace: original
+    kind: table
+    address: 0x8001AE98
+    owner: original_game.frontend
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 14
+        context: "15 x 0x10 ASCII 'gfx\\levelXY.raw' loading-screen backdrops, parallel to the scene asset table; consumer 0x8003F4B8 in switch_dispatch_struct_by_index (0x8003F3B4)"
+    confidence: confirmed
+    evidence:
+      - analysis/phase3_scene_asset_graph.json
+      - ObsidianVault/Canon/Systems/Asset_-_LEVEL.BIN_and_overlays.md
+
+  - id: original.level_bin_table
+    namespace: original
+    kind: table
+    address: 0x8001B174
+    owner: original_game.streaming
+    writers: []
+    invariants:
+      - kind: range
+        min: 0
+        max: 3
+        context: "'level1.bin'..'level3.bin' + 'level.bin' overlay images; consumer 0x80046718 in level_file_path_build (0x80046618)"
+    confidence: confirmed
+    evidence:
+      - analysis/phase3_scene_asset_graph.json
+      - ObsidianVault/Canon/Systems/Asset_-_LEVEL.BIN_and_overlays.md
+
+  # --- Phase-3 reopen (2026-07-13): own the campaign-used state addresses that
+  # had only a Canon note. A note documents; it does not OWN. (Audit fix.)
+
+  - id: original.object_pointer_list
+    namespace: original
+    kind: table
+    address: 0x80096B98
+    owner: original_game.render
+    writers:
+      - name: unresolved_scene_initialization_path
+        evidence_gap: "Post-load save-state snapshots do not attribute the pointer or descriptor-byte writes to an instruction."
+    invariants:
+      - kind: range
+        min: 0
+        max: 49
+        context: "kind (0..49) -> 0xC-byte render descriptor pointer. Across 42 centrally declared strict-pristine post-load anchors the pointers are stable, target bytes +04,+06,+07,+08,+0A are scene-dependent, and +00,+01,+02,+03,+05,+09,+0B are invariant. The four former changes at +00,+02,+03,+09 came only from an ALLMODS-origin save and are rejected. Writer attribution is unresolved."
+    confidence: runtime_seen
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_80096B98_object_pointer_list.md
+      - analysis/phase3_render_descriptors.json
+
+  - id: original.shared_mesh_vertex_buffer
+    namespace: original
+    kind: table
+    address: 0x8012C1D0
+    owner: original_game.render
+    writers:
+      - name: mesh_vertex_emitter
+    invariants: []
+    domain: "shared GTE-transformed vertex buffer (terrain + actors); live-editable lever, but chunk-35 structural disc edits wedge load (walls-are-chunk35)"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_8012C1D0_Shared_mesh_vertex_buffer_8012C1D0_(terrain_+_actors).md
+
+  - id: original.skeleton_bone_transform_bank
+    namespace: original
+    kind: table
+    address: 0x8008A1F8
+    owner: original_game.animation
+    writers:
+      - name: actor_skinned_update
+    invariants: []
+    domain: "per-actor skeleton bone transform matrices (84-byte stride); consumed by the skinned-actor renderer"
+    confidence: confirmed
+    evidence:
+      - ObsidianVault/Canon/Memory/MEM_8008A1F8_Skeleton_bone_transform_8008A1F8.md
+
+  # --- Phase-3 WP2 exhaustive campaign-scope closure: audio + save state ---
+
+  - id: original.music_id
+    namespace: original
+    kind: field
+    address: 0x8008245C
+    width: u32
+    owner: original_game.audio
+    writers:
+      - name: music_area_selector
+    invariants:
+      - kind: range
+        min: 0
+        max: 31
+        context: "packed native music selector consumed by music_start; the exact per-scene assignment remains bounded in the audio campaign"
+    confidence: confirmed
+    evidence:
+      - src_re/audio_music.h
+      - src_re/music_8004699c.c
+      - ObsidianVault/Canon/Systems/SYS_audio_music.md
+
+  - id: original.checkpoint_fp_save
+    namespace: original
+    kind: field
+    address: 0x800823CC
+    width: u32
+    owner: original_game.camera
+    writers:
+      - address: 0x80054554
+        name: telescope_activate
+    invariants: []
+    domain: "legacy ID retained for Phase-3 artifact compatibility; semantically the kind-0x30 telescope ordinal latched on first hint-view activation, not respawn state; exact ordinal-to-authored-camera-target mapping remains campaign-bounded"
+    confidence: confirmed
+    evidence:
+      - src_re/pickup_handlers_80054288_80054554.c
+      - ObsidianVault/Canon/Functions/FUNC_80054554_normalize_bob_halfword.md
+      - ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md

@@ -1,0 +1,692 @@
+[
+ {
+  "address": "0x80014504",
+  "name": "build_render_survivor_list",
+  "tier": "inferred",
+  "evidence": [
+   "GTE RTPS/MVMVA transform of stride-20 object array a0, terminator lh+14",
+   "writes visible record ptrs into render_survivor_list_a 0x80096ea8 after bounds tests; returns count"
+  ],
+  "rationale": "GTE-transforms an object array and appends visible ones to render_survivor_list (frustum/visibility cull)"
+ },
+ {
+  "address": "0x8001a1e0",
+  "name": "decompress_lz_bitstream",
+  "tier": "inferred",
+  "evidence": [
+   "4-byte BE header then MSB bit-reader over control stream; emits literals + window back-refs (len/dist bit-decoded)",
+   "saves/restores entire register file; matches LEVEL.RAW LZ codec role"
+  ],
+  "rationale": "Bit-controlled literal/back-reference LZ decompressor (src a0 -> dst a1)"
+ },
+ {
+  "address": "0x80030aac",
+  "name": "vec3_reject_normal_component",
+  "tier": "inferred",
+  "evidence": [
+   "dot(a0,a1) over 3 halfword lanes, sra 10; out[i]=a1[i]+a0[i]*(-dot)>>17 to a2 (3 halfwords)",
+   "no callees"
+  ],
+  "rationale": "Removes the a0-normal component from vector a1 (slide/project onto plane), output a2"
+ },
+ {
+  "address": "0x80039780",
+  "name": "vram_clear_framebuffers",
+  "tier": "inferred",
+  "evidence": [
+   "builds four RECTs (1023x511 full VRAM), ClearImage x4 r=g=b=0, then DrawSync(0)"
+  ],
+  "rationale": "Clears the display/back framebuffer quadrants to black then waits for GPU sync"
+ },
+ {
+  "address": "0x8004574c",
+  "name": "build_prefixed_filename",
+  "tier": "inferred",
+  "evidence": [
+   "writes 2 bytes from gp+1088/1089 to buffer 0x8009B668, strcat(a0), strcat(const 0x800821DC); returns buffer"
+  ],
+  "rationale": "Assembles a string = 2-char gp code + caller name + constant suffix (filename/path builder)"
+ },
+ {
+  "address": "0x80049ab8",
+  "name": "enemy_deathanim_set_anim3",
+  "tier": "inferred",
+  "evidence": [
+   "part of enemy_update_deathanim 0x800498ac: actor_set_anim_sequence(actor,3,25); j 0x80049b64 shared tail"
+  ],
+  "rationale": "Death-animation state case starting anim sequence 3 (param 25) before the shared finalize"
+ },
+ {
+  "address": "0x80049b60",
+  "name": "enemy_deathanim_finalize_remove_from_list",
+  "tier": "inferred",
+  "evidence": [
+   "shared tail 0x80049b64 of enemy_update_deathanim; sets actor+0x4a=-1, zeroes +0x6e/+0x5a",
+   "when s1&2 scans damageable_object_ptr_table 0x80090748, compacts list"
+  ],
+  "rationale": "Finalizes enemy death: clears state and removes actor from the damageable-object pointer table"
+ },
+ {
+  "address": "0x8004aa34",
+  "name": "actor_transform_anim_vertex_emit",
+  "tier": "inferred",
+  "evidence": [
+   "actor+68 frame idx + actor+116 vertex base -> 16-byte frame record; cos/sin table 0x80074970 by actor+20 yaw",
+   "rotates local vertex + actor pos -> world XYZ; clamps normal; passes to sub_8003f8f8"
+  ],
+  "rationale": "Yaw-rotates an animation-frame vertex+normal to world space and hands it to a draw/emit helper"
+ },
+ {
+  "address": "0x8004c634",
+  "name": "mover_vm_op_actor_flag_update",
+  "tier": "inferred",
+  "evidence": [
+   "opcode case in event_bytecode_interpreter 0x8004c13c, tail j 0x8004c818",
+   "calls sub_80057c74(actor): clears +0x5c bit 0x2, sets 0x80, writes (actor+8-0x4000)&~1 to +0x50"
+  ],
+  "rationale": "Mover-VM opcode: updates actor +0x5c flags and +0x50 field via sub_80057c74, resumes dispatch"
+ },
+ {
+  "address": "0x800580e0",
+  "name": "spawn_drop_burst_type2",
+  "tier": "inferred",
+  "evidence": [
+   "5-iter spawn_drop(actor xyz, type=2, a3=(s0&1)+9); then play_sound(5,actor)"
+  ],
+  "rationale": "Emits 5 type-2 drops then plays sound 5 (debris burst)"
+ },
+ {
+  "address": "0x80058620",
+  "name": "spawn_drop_burst_type4",
+  "tier": "inferred",
+  "evidence": [
+   "5-iter spawn_drop(actor xyz, type=4, a3=(s0&1)|6); sfx_proximity_priority_gate(...,16); play_sound(6,actor)",
+   "sibling of 0x800580e0"
+  ],
+  "rationale": "Emits 5 type-4 drops with proximity SFX then plays sound 6"
+ },
+ {
+  "address": "0x8005f7f8",
+  "name": "vsprintf_core",
+  "tier": "inferred",
+  "evidence": [
+   "scans format a1 for % and flags -/+/space/0/#; strlen/memmove/memchr place+pad fields into buffer a0",
+   "2128B printf-family conversion loop"
+  ],
+  "rationale": "Core printf/vsprintf-style format-and-output routine (buffer a0, format a1)"
+ },
+ {
+  "address": "0x80014724",
+  "name": "gte_mvmva_ir_transform",
+  "tier": "inferred",
+  "evidence": [
+   "LWC2 load 0/4/8(a0) into cop2 IR1/IR2/IR3; GTE cmd 0x4a4ba012 func 0x12 = MVMVA; SWC2 store MAC1-3 to a1"
+  ],
+  "rationale": "Loads a vector into GTE IR, runs MVMVA matrix-vector multiply, writes MAC1-3 to output (GTE transform helper)"
+ },
+ {
+  "address": "0x8001ca20",
+  "name": "mesh_draw_command_interpreter",
+  "tier": "inferred",
+  "evidence": [
+   "7-entry jump table 0x8001a900 (opcode = stream_halfword&0x1f); assembles GPU prims into buffer 0x8008249c",
+   "advances packet 52/40, vertex words +4/16/28/40 UV +12/24/36/48; texpage/CLUT tables 0x800a7dd8/0x800894e8"
+  ],
+  "rationale": "Display-list opcode interpreter emitting textured tri/quad GPU primitives from a pre-transformed vertex list"
+ },
+ {
+  "address": "0x80030b98",
+  "name": "vec3_project_point_onto_plane",
+  "tier": "inferred",
+  "evidence": [
+   "3 halfwords a0 (normal), 3 words a1 negated; s=(a0.-a1)>>11; a2[i]=a1[i]+(a0[i]*s)>>17"
+  ],
+  "rationale": "Computes b - n*(n.b): projects point a1 onto the plane through origin with normal a0"
+ },
+ {
+  "address": "0x8003cc1c",
+  "name": "level_texture_stage_reset",
+  "tier": "inferred",
+  "evidence": [
+   "memset 249 bytes descending from 0x8009fb40; then jal level_texture_stage 0x8003c8bc"
+  ],
+  "rationale": "Zeroes a 249-byte state buffer then invokes level_texture_stage (reset-then-stage initializer)"
+ },
+ {
+  "address": "0x80049ad0",
+  "name": "actor_anim1_state_handler",
+  "tier": "inferred",
+  "evidence": [
+   "actor_set_anim_sequence(s0,1,1); tail j 0x80049b64; no prologue, consumes preset s0"
+  ],
+  "rationale": "Jump-table state handler selecting animation sequence 1 for the actor, continues at 0x80049b64"
+ },
+ {
+  "address": "0x8004a02c",
+  "name": "actor_event_sound_trigger",
+  "tier": "inferred",
+  "evidence": [
+   "s0=a0[4]; branch on event a0[0] in {22,10} and state s0[0x44]",
+   "s0[0x44]==0 & match: play_sound(38,s0+4); s0[0x44]==1: play_sound(26,s0+4)"
+  ],
+  "rationale": "Actor event handler playing sound 38 or 26 at the actor position depending on event and +0x44 state"
+ },
+ {
+  "address": "0x8004c5d4",
+  "name": "vm_native_spawn_drop_burst",
+  "tier": "inferred",
+  "evidence": [
+   "jal spawn_drop_burst_effect 0x80057a94 (a0=s0); addiu s1,4; j mover_vm_dispatch_next 0x8004c818"
+  ],
+  "rationale": "Mover-VM opcode: invokes spawn_drop_burst_effect on the actor, advances IP, returns to dispatch"
+ },
+ {
+  "address": "0x8004c644",
+  "name": "vm_op_aimed_drop_spawn",
+  "tier": "inferred",
+  "evidence": [
+   "jal 0x80057b84 (a0=s0); addiu s1,4; j mover_vm_dispatch_next; sibling of 0x8004c5d4"
+  ],
+  "rationale": "Mover-VM opcode entry calling the aimed-drop-spawn native, advances IP, continues dispatch"
+ },
+ {
+  "address": "0x80057704",
+  "name": "spawn_drop_scatter_burst",
+  "tier": "inferred",
+  "evidence": [
+   "5-iter reads 3 bytes from cursor 0x800822f4 (post-incr) as <<4 offsets (-2048) added to base a0[0..2]",
+   "spawn_drop type alternating 19/20; then sfx_proximity_priority_gate a3=16480"
+  ],
+  "rationale": "Spawns a scatter burst of 5 drops (types 19/20) at stream-driven offsets, then a proximity-gated sound"
+ },
+ {
+  "address": "0x80058154",
+  "name": "spawn_drop_burst_type76",
+  "tier": "inferred",
+  "evidence": [
+   "5-iter spawn_drop(position s0[0..2], a3=76, stack=2); then play_sound(5,s0)"
+  ],
+  "rationale": "Emits 5 type-76 drops at the object position then plays sound 5"
+ },
+ {
+  "address": "0x80018cc4",
+  "name": "poly_interpolate_midpoint_prim",
+  "tier": "inferred",
+  "evidence": [
+   "averages coord pairs (add;sra 1 midpoints) + 4-way centroid (sra 2), GTE mtc2/mfc2 clamp",
+   "averages 8-bit color channels; writes 4 packed verts s3+4/16/28/40 stride 0xC; POLY tag lui 0xc00"
+  ],
+  "rationale": "Reads corner pos/color/UV, computes midpoints+centroid with GTE clamp, emits interpolated GPU polygon (subdivision helper)"
+ },
+ {
+  "address": "0x800252b8",
+  "name": "collision_candidates_build_from_records",
+  "tier": "inferred",
+  "evidence": [
+   "count from type_3f record ptr 0x80096e9c; per record XZ<<5, calls collision_candidate_builder 0x80037320",
+   "special-case byte+8==20 coord bias; /100 index into 0x80077ff4, sh to record+0x10"
+  ],
+  "rationale": "Iterates the type-0x3f record list feeding coords into collision_candidate_builder (builds the frame's collision candidate set)"
+ },
+ {
+  "address": "0x80030c78",
+  "name": "vector_remove_normal_component",
+  "tier": "inferred",
+  "evidence": [
+   "negated dot(A,B), scale sra 11, out[i]=B[i]+(A[i]*dot)>>17; 3-short vectors to a2"
+  ],
+  "rationale": "B - A*(A.B)*scale: subtracts B's component along normal A (wall-slide/velocity reject)"
+ },
+ {
+  "address": "0x80049ae8",
+  "name": "anim_state_set_seq_1_1",
+  "tier": "inferred",
+  "evidence": [
+   "calls actor_set_anim_sequence(s0,1,1); tail j 0x80049b64 with addiu v0,-24 cluster convention"
+  ],
+  "rationale": "Jump-table handler setting actor anim sequence (1,1), tail-continues neighbor"
+ },
+ {
+  "address": "0x8004a0a0",
+  "name": "object_play_sound_38_type_1_10",
+  "tier": "inferred",
+  "evidence": [
+   "a1=[a0+4], gate [a1+68]!=0 skip; check lh[a0]==1||==10; play_sound(38,a1+4)"
+  ],
+  "rationale": "Plays sound 38 for objects of type 1 or 10 when the linked sub-struct +0x44 flag is clear"
+ },
+ {
+  "address": "0x8004c5e4",
+  "name": "mover_vm_op_spawn_burst_ring",
+  "tier": "inferred",
+  "evidence": [
+   "calls spawn_object_burst_ring(s0); addiu s1,s1,4 (IP advance); tail j mover_vm_dispatch_next 0x8004c818"
+  ],
+  "rationale": "mover-VM opcode: spawn burst ring around actor, advance IP, return to dispatcher"
+ },
+ {
+  "address": "0x80050ea8",
+  "name": "pickup_target_reset_on_finalize",
+  "tier": "inferred",
+  "evidence": [
+   "early-out a0==0; nearest_pickup_finalize(a0+4); if 0 -> sh 0,[0x8008229c], sw 0,[0x80082370]"
+  ],
+  "rationale": "Resets the two pickup-target globals when nearest_pickup_finalize reports the target invalid"
+ },
+ {
+  "address": "0x800577e4",
+  "name": "contact_object_spawn_ring",
+  "tier": "inferred",
+  "evidence": [
+   "8-iter loop (sll<4096 step 512) contact_object_spawn_full using offset table 0x80074970 with 0xfff wrap",
+   "then sfx_proximity_priority_gate on obj+0x128"
+  ],
+  "rationale": "Spawns a ring of contact objects around a source using a wrapped offset table, then runs the proximity SFX gate"
+ },
+ {
+  "address": "0x800581c8",
+  "name": "spawn_drop_burst",
+  "tier": "inferred",
+  "evidence": [
+   "5-iter spawn_drop(x,y-0x1000,z,a3=75,stack=18); then spawn_drop(x,y,z,a3=77,type=3); play_sound(5,obj)"
+  ],
+  "rationale": "Emits five type-18 drops plus one type-3 drop and plays sound 5 (death/impact debris scatter)"
+ },
+ {
+  "address": "0x80061678",
+  "name": "text_stream_printf",
+  "tier": "inferred",
+  "evidence": [
+   "parses format string (s3), handles % and %%; writes into stream struct buf s1+0x24 cursor s1+0x28 cap s1+0x1c",
+   "/10 reciprocal 0xcccccccd for decimal; callee strlen"
+  ],
+  "rationale": "printf-family formatter appending formatted bytes into a bounded text-stream buffer struct"
+ },
+ {
+  "address": "0x80029030",
+  "name": "object_animate_rotation_matrix",
+  "tier": "inferred",
+  "evidence": [
+   "indexes table 0x80091210 by a0*16, rotation params (lh 4624/26/28) * a1/a2/a3 >>12",
+   "stores to struct+18/20/22, gte_rotation_matrix_setup(struct+12,s0), applies to 3x3 matrix"
+  ],
+  "rationale": "Per-object: scales stored rotation params by angle args, builds GTE rotation, transforms object 3x3 orientation"
+ },
+ {
+  "address": "0x80031efc",
+  "name": "point_edge_crossing_test",
+  "tier": "inferred",
+  "evidence": [
+   "three coord pairs (a0,a1),(a2,a3),(sp+16,sp+20); axis-aligned special cases; cross-products via mult + signed div",
+   "single boolean return 0/1"
+  ],
+  "rationale": "2D geometric predicate over a point and edge A-B (edge-crossing/side test), returns boolean"
+ },
+ {
+  "address": "0x80042c70",
+  "name": "record_slots_populate_free",
+  "tier": "inferred",
+  "evidence": [
+   "loops 8 (a1+=836), occupancy check lh[0x8009c8b0+a1], skip if occupied",
+   "only callee table_836byte_record_populate 0x8003f620 with stack descriptor + caller params"
+  ],
+  "rationale": "Walks an 8-entry 836-byte record table filling free slots via table_836byte_record_populate (actor/mover registration)"
+ },
+ {
+  "address": "0x8004a11c",
+  "name": "object_play_sound_125",
+  "tier": "inferred",
+  "evidence": [
+   "a1=[a0+4]+4; play_sound(a0=125, a1)"
+  ],
+  "rationale": "Wrapper that plays sound id 125 positioned via the object coordinate pointer"
+ },
+ {
+  "address": "0x8004db7c",
+  "name": "polar_to_xz_offset",
+  "tier": "inferred",
+  "evidence": [
+   "trig table 0x80074970: sine at (a0&0xfff)<<1, cosine at (a0+1024)&0xfff; * magnitude a1 >>9",
+   "adds sine to [0x80090bcc]->[0x80090bd8], subtracts cosine from [0x80090bf4]->[0x80090c00]"
+  ],
+  "rationale": "Polar-to-Cartesian: offsets a base X/Z by sin/cos of angle a0 * distance a1 into X/Z globals"
+ },
+ {
+  "address": "0x80053640",
+  "name": "draw_mirrored_fullscreen_quads",
+  "tier": "inferred",
+  "evidence": [
+   "four draw_textured_quad 0x80026a68 at (0,0),(512,0),(0,240),(512,240), color 0x70, mode 26",
+   "mirrors UV 13056/-13056 and 8192/-8192; queue_draw_prim"
+  ],
+  "rationale": "Draws a 2x2 grid of textured quads tiling the full screen with mirrored UVs (symmetric backdrop/overlay)"
+ },
+ {
+  "address": "0x80057dd4",
+  "name": "spawn_drop_burst_by_object_type",
+  "tier": "inferred",
+  "evidence": [
+   "16-iter spawn_drop(coords [s1+4],[s1+8]+[s1+102],[s1+12], type=base+parity)",
+   "base type from table 0x8007a0b8[objtype&0xf]; sfx_proximity_priority_gate a3 from 0x8007a0c8; play_sound(4,s1+4)"
+  ],
+  "rationale": "16-drop scatter burst whose type is selected from a per-object-type table, plus positional SFX and sound"
+ },
+ {
+  "address": "0x80058258",
+  "name": "spawn_drop_burst_type12",
+  "tier": "inferred",
+  "evidence": [
+   "16-iter spawn_drop(coords s1+0/4/8, type=0xc|parity); sfx_proximity_priority_gate(id=30,a3=0x80c0); play_sound(13,s1)"
+  ],
+  "rationale": "Fixed 16-drop burst of type 12/13 with positional SFX 30 and sound 13 (particle/gib burst)"
+ },
+ {
+  "address": "0x8005d51c",
+  "name": "advance_parse_cursor_past_record",
+  "tier": "inferred",
+  "evidence": [
+   "count=lhu[a0+8]; size=count*2+12; a0+=size; stores advanced ptr to gp+1180; leaf"
+  ],
+  "rationale": "Parser step: skips a variable-length record (12B header + count u16) and updates the shared cursor gp+1180"
+ },
+ {
+  "address": "0x80019ce8",
+  "name": "emit_subdivided_gouraud_prims",
+  "tier": "inferred",
+  "evidence": [
+   "midpoint interp of 3 verts/colors (add;sra1 XY; andi 0xff/srl8 RGB), GTE transform s7+148..",
+   "GP0 poly cmds lui 0xc00/0x900, OT-links each prim, advances s3 by 52/40/40"
+  ],
+  "rationale": "Subdivides a polygon by midpoint interpolation and emits multiple gouraud GPU primitives into the OT"
+ },
+ {
+  "address": "0x800292dc",
+  "name": "object_rotation_matrix_apply",
+  "tier": "inferred",
+  "evidence": [
+   "indexes object table gp+1440 by a0<<2, base angles from 0x80094000 region + a1/a2/a3",
+   "calls gte_rotation_matrix_setup 0x80017b98; applies matrix (mult;sra12) writing rotated components"
+  ],
+  "rationale": "Sets object orientation (base angle + deltas), builds rotation matrix, rotates its vector set"
+ },
+ {
+  "address": "0x8003e064",
+  "name": "draw_string_centered",
+  "tier": "inferred",
+  "evidence": [
+   "scans string counting chars (stop NUL/CR/%), width=count*gp+1032",
+   "X=160-width/2, tail-calls draw routine 0x8003e054(str,y,x)"
+  ],
+  "rationale": "Computes horizontal centering for a string and passes it to the text-draw primitive"
+ },
+ {
+  "address": "0x80043118",
+  "name": "sound_vab_close",
+  "tier": "inferred",
+  "evidence": [
+   "if a0>=0 calls SsVabClose 0x8006b0ac; then sh -1 to gp+1040 (VAB-id slot)"
+  ],
+  "rationale": "Closes a SPU VAB and invalidates its stored id"
+ },
+ {
+  "address": "0x80049a70",
+  "name": "actor_anim_seq21_trigger",
+  "tier": "inferred",
+  "evidence": [
+   "calls actor_set_anim_sequence(s0,1,21); tail j 0x80049b64 with v0=-33; jumptable"
+  ],
+  "rationale": "Jump-table/VM handler starting animation sequence 21 on the actor"
+ },
+ {
+  "address": "0x80049b18",
+  "name": "actor_anim_seq25_trigger",
+  "tier": "inferred",
+  "evidence": [
+   "calls actor_set_anim_sequence(s0,1,25); tail j 0x80049b64 v0=-25; sibling of 0x80049a70"
+  ],
+  "rationale": "Jump-table/VM handler starting animation sequence 25 on the actor"
+ },
+ {
+  "address": "0x8004a144",
+  "name": "actor_sound40_on_low_state",
+  "tier": "inferred",
+  "evidence": [
+   "obj=[a0+4], guard field+68<2 -> play_sound(40, obj+4)"
+  ],
+  "rationale": "Plays sound 40 for the object when its +68 state counter is below 2"
+ },
+ {
+  "address": "0x80053754",
+  "name": "seed_token_reskin_cycle",
+  "tier": "inferred",
+  "evidence": [
+   "incr per-object counter seed_counter_0[s0] 0x800a6598 mod 8, spacing v0*17",
+   "token_descriptor_reskin(cycled index-1); updates nibble table 0x800b0196"
+  ],
+  "rationale": "Advances a seed/token reskin index (mod 8) and applies it via token_descriptor_reskin"
+ },
+ {
+  "address": "0x80057eb4",
+  "name": "spawn_drop_burst_from_kind",
+  "tier": "inferred",
+  "evidence": [
+   "5-iter spawn_drop(xyz from s1) type=table[kind]+(i&1), kind=low nibble byte at v1, table 0x80079FB8",
+   "incr counter 0x800822F4, stack arg 2"
+  ],
+  "rationale": "Spawns 5 drops whose type is selected from a kind-indexed table"
+ },
+ {
+  "address": "0x80058484",
+  "name": "spawn_drop_burst_sound5",
+  "tier": "inferred",
+  "evidence": [
+   "5-iter spawn_drop(xyz from s1) type=(i&1)|0x2e stack arg 2; then play_sound(5,obj)"
+  ],
+  "rationale": "Spawns 5 drops of type 0x2e and plays sound 5"
+ },
+ {
+  "address": "0x80019f3c",
+  "name": "gpu_emit_subdivided_quad_prims",
+  "tier": "inferred",
+  "evidence": [
+   "midpoint interp of vertex coords (add;sra1 signed-round) + byte-wise color avg (andi 0xff/srl8/add/srl1)",
+   "builds two GPU packets tag 0x0c000000/0x09000000 into [t9], links 24-bit OT ptr; advances s3 52 then 40; GTE cop2 ops"
+  ],
+  "rationale": "Assembles two Gouraud GPU primitives from midpoint-subdivided verts/colors and links them into the OT (mesh subdivision emit)"
+ },
+ {
+  "address": "0x8002fc90",
+  "name": "gpu_gt_prim_list_advance",
+  "tier": "inferred",
+  "evidence": [
+   "reads code byte [a0+3] &0x7c; 0x34 POLY_GT3 -> +36, 0x3c POLY_GT4 -> +48; loops until code==0; returns a0+4 past terminator"
+  ],
+  "rationale": "Walks a chained GPU primitive packet buffer stepping by each primitive's decoded size, returns end-of-list pointer"
+ },
+ {
+  "address": "0x8003e0f4",
+  "name": "empty_function_stub_e0f4",
+  "tier": "inferred",
+  "evidence": [
+   "body addiu sp,-16/addiu sp,+16/jr ra/nop; no memory access, no callees"
+  ],
+  "rationale": "A compiler-emitted no-op function (does nothing observable)"
+ },
+ {
+  "address": "0x80043144",
+  "name": "find_free_slot_16entry",
+  "tier": "inferred",
+  "evidence": [
+   "loop v1 0..16, lh[0x8009165a + a0] (a0 +=12 stride), returns index when field==-1 else -1"
+  ],
+  "rationale": "Scans a 16-entry stride-12 table for the first record whose halfword is -1 (free-slot allocator lookup)"
+ },
+ {
+  "address": "0x8004a20c",
+  "name": "play_object_sound_42",
+  "tier": "inferred",
+  "evidence": [
+   "a1=[a0+4]+4; play_sound(a0=42, a1)"
+  ],
+  "rationale": "Wrapper firing sound id 42 using the object's referenced position/parameter block"
+ },
+ {
+  "address": "0x8004fc50",
+  "name": "scene_flow_set_substate_11",
+  "tier": "inferred",
+  "evidence": [
+   "sh 11 to 0x8008245c; tail j 0x8004fcc0; siblings 0x8004fc3c/64 write 1/2 to same global, share tail"
+  ],
+  "rationale": "Scene-flow jump-table handler setting the flow substate variable to 11, rejoins common continuation"
+ },
+ {
+  "address": "0x80055478",
+  "name": "serialize_savegame_buffer",
+  "tier": "inferred",
+  "evidence": [
+   "writes lives byte 0x800a65a0 to [a0+0], halfword 0x80082284 to [a0+1], 19 bytes from 0x8009b878, then 64 5-byte records from 0x80089938"
+  ],
+  "rationale": "Packs global game-state (lives + 19-byte header + 64 five-byte records) into a caller buffer (save/serialization)"
+ },
+ {
+  "address": "0x80057f4c",
+  "name": "spawn_drop_burst_8",
+  "tier": "inferred",
+  "evidence": [
+   "8-iter spawn_drop using object fields [+102],[+8],[+4],[+12]; type from table by object nibble",
+   "then player_x/y/z + trig, sfx_proximity_priority_gate, play_sound"
+  ],
+  "rationale": "Emits a burst of 8 drops from an object's position (type per object) plus a positional sound"
+ },
+ {
+  "address": "0x800584f8",
+  "name": "spawn_drop_burst_5_type79",
+  "tier": "inferred",
+  "evidence": [
+   "5-iter spawn_drop(a3=79) from object xyz; sfx_proximity_priority_gate(a3=0xffffffff,30); play_sound(5,object)"
+  ],
+  "rationale": "Spawns 5 type-79 drops with a white positional effect and sound 5 (fixed spawn burst)"
+ },
+ {
+  "address": "0x8005de60",
+  "name": "load_character_models",
+  "tier": "inferred",
+  "evidence": [
+   "jump-table cases set a0=path string, a3=incrementing id (13,14,15..) then common tail 0x8005e274",
+   "strings = 'chars\\wasp','chars2\\dot','chars2\\grassh','chars2\\thumper'... from 0x8001b94c; tail loops 64 stride-132 records, calls level_chunk_loader"
+  ],
+  "rationale": "Dispatcher that registers/loads up to 64 character models by (path,id) and drives the level chunk loader"
+ },
+ {
+  "address": "0x80062a54",
+  "name": "link_prim_packet_chain",
+  "tier": "inferred",
+  "evidence": [
+   "loops records: sb 0,3(s0) clears code byte, writes 24-bit next-ptr preserving high byte, advances one word; final -> 0x8007fc44"
+  ],
+  "rationale": "Initializes/links a GPU primitive-packet buffer into a forward-linked chain (ClearOTag-style)"
+ },
+ {
+  "address": "0x8001a0e4",
+  "name": "gpu_build_poly_g4_gouraud",
+  "tier": "inferred",
+  "evidence": [
+   "OT tag lui t8,0xc00 + mask + OR len 0x0c = POLY_G4 12-word packet",
+   "COP2/GTE transform of source verts",
+   "averages adjacent colors/coords (midpoint) for shaded quad corners"
+  ],
+  "rationale": "Emits a 12-word POLY_G4 Gouraud primitive into an OT node, GTE-transforming verts and interpolating corners"
+ },
+ {
+  "address": "0x800309cc",
+  "name": "vector_project_onto_plane",
+  "tier": "inferred",
+  "evidence": [
+   "reads 3-short N at a0, 3-word P at a1",
+   "negated dot(N,P)>>10, then P + N*(that)>>17 stored to a2"
+  ],
+  "rationale": "Removes the N-direction component of P (projects P onto plane perpendicular to N)"
+ },
+ {
+  "address": "0x80045704",
+  "name": "string_to_upper",
+  "tier": "inferred",
+  "evidence": [
+   "loops NUL-terminated string at a0; per byte range 'a'..'z' -> subtract 32, store back"
+  ],
+  "rationale": "In-place strupr: lowercase->uppercase, other bytes unchanged"
+ },
+ {
+  "address": "0x80049aa0",
+  "name": "actor_enter_anim_state_3",
+  "tier": "inferred",
+  "evidence": [
+   "calls actor_set_anim_sequence(s0,3,1); tail j 0x80049b64; v0=-24 cluster convention"
+  ],
+  "rationale": "Jump-table state-entry handler: puts actor into anim sequence 3"
+ },
+ {
+  "address": "0x80049b48",
+  "name": "actor_enter_anim_state_2",
+  "tier": "inferred",
+  "evidence": [
+   "calls actor_set_anim_sequence(s0,2,1); same shape as 0x80049aa0 seq 2"
+  ],
+  "rationale": "Jump-table state-entry handler: puts actor into anim sequence 2"
+ },
+ {
+  "address": "0x8004a234",
+  "name": "actor_turn_toward_player",
+  "tier": "inferred",
+  "evidence": [
+   "loads player_x 0x800a6500/player_z 0x800a6508, dx/dz vs actor +4/+12, atan2_heading(dx,dz)",
+   "delta wrapped \u00b12048 in 0xfff space, steps by delta>>4, writes +20"
+  ],
+  "rationale": "Rotates actor facing (+20) 1/16 toward the player each call"
+ },
+ {
+  "address": "0x8004c624",
+  "name": "mover_vm_op_call_advance",
+  "tier": "inferred",
+  "evidence": [
+   "jal overlay 0x800b3dc8(a0=actor); addiu s1,s1,4 (advance IP); tail j 0x8004c818 mover_vm_dispatch_next"
+  ],
+  "rationale": "mover-VM opcode handler: invoke overlay routine, step bytecode ptr, chain to dispatcher"
+ },
+ {
+  "address": "0x80055d4c",
+  "name": "load_numbered_asset_file",
+  "tier": "inferred",
+  "evidence": [
+   "formats a1 as two decimal ASCII digits into a filename template; a1=0x80095398 buf; jal universal_file_loader"
+  ],
+  "rationale": "Formats a two-digit index into a filename and loads the asset"
+ },
+ {
+  "address": "0x8005806c",
+  "name": "spawn_drop_burst_five",
+  "tier": "inferred",
+  "evidence": [
+   "loop 0..4 spawn_drop(xyz from s1+0/4/8, alternating a3); then play_sound(5,s1)"
+  ],
+  "rationale": "Spawns 5 drops at the source position then triggers sound 5"
+ },
+ {
+  "address": "0x80058584",
+  "name": "spawn_drops_from_offset_table",
+  "tier": "inferred",
+  "evidence": [
+   "loop 3x reading global byte-stream 0x800822f4 (2 bytes/iter), pair<<3 added to base x/z, spawn_drop"
+  ],
+  "rationale": "Spawns 3 drops offset from a base by dx/dz pairs from a global offset-table pointer"
+ },
+ {
+  "address": "0x8005ec1c",
+  "name": "angle_delta_wrap",
+  "tier": "inferred",
+  "evidence": [
+   "v1=[a1]-[a0]; mod 4096; clamp to (-2048,2048]; sign-extend"
+  ],
+  "rationale": "Shortest signed angular difference in a 4096-unit circle, wrapped to \u00b1half-turn"
+ }
+]

@@ -1,0 +1,60 @@
+{
+ "row": "E13_hud_results",
+ "date": "2026-08-04",
+ "status": "partial, BOUNDED EXHAUSTED 2026-08-04 -- every question this row named is now answered: the in-game HUD renderer (identified + C-pinned), the results half (synthesis from C05, including save consequences), the panel-mode selector, the HUD animation phase counters, the boss-difference question (statically, exhaustively: there is none), and the tile-55 variant ('level total', confirmed visually). Residuals are outside the row's own scope.",
+ "trigger": "Operator: 'find the next unfinished row' -> E13 picked (1 binding, no artifact, nothing in flight), then 'go for that E13 steps 1-3'.",
+ "STEP1_INGAME_HUD_RENDERER_2026-08-04": {
+  "census_name_is_wrong_twice": "analysis/functions.json names 0x800526FC 'results_screen_render'. (a) 0x800526FC is not a function ENTRY -- the real entry is 0x800526F4, an 8-byte head that reads the transition timer 0x80082470 and falls through, exactly the shape of C05's marker stage 0x80051938 -> 0x80051940. (b) It is not the results screen: that is FUNC_800B7DA0 in the BITS/MEMORY.BIN overlay (C05 2026-08-04), which reads the unlock array 0x8009B878 -- an address 0x800526F4 never touches. This is the THIRD census name this session that pointed at the right area with the wrong label (effect_render_stage, popcount8, now this).",
+  "what_it_is": "The per-frame IN-GAME HUD render stage. Called from the gameplay state machine 0x8004ECD4 (jal at 0x8004F3E4) -- the same driver that calls C05's reward-token marker stage. Reads exactly the on-screen counter set: grain 0x800A65A1, FLIK letter mask 0x800A65A2, enemy quota 0x800A658E, enemy total 0x80082258, lives 0x800A65A0, goal latch 0x800823A0. Draws through hud_draw_sprite_tile 0x80025F54.",
+  "flik_letters": "Four near-identical blocks, one per mask bit of 0x800A65A2, evenly spaced 24px apart with consecutive tiles: bit 0x01 -> x=0x70; bit 0x02 -> x=0x88 tile 0x11; bit 0x04 -> x=0xA0 tile 0x12; bit 0x08 -> x=0xB8 tile 0x13. This matches the already-committed 'FLIK letters are glyphs, sprite tiles 0x10-0x13' finding, reached independently, and matches the live gameplay capture taken during C05 (F L I K across the top of the screen).",
+  "naming_discipline": "Caller checked (0x8004ECD4 via the jal at 0x8004F3E4) and the body read before naming, per the rule this session's C05 corrections produced. Proposed name: ingame_hud_render_stage.",
+  "evidence": "tools/phase4_e13_ingame_hud.c -- 22/22 pins, first build, offline against the pristine EXE."
+ },
+ "STEP2_RESULTS_HALF_BY_SYNTHESIS_2026-08-04": {
+  "note": "No new work: E13's results half is already closed by C05, banked the same day. Cited here rather than redone, and cross-linked so E13 does not re-investigate it.",
+  "results_screen": "FUNC_800B7DA0..0x800B8788 in BITS/MEMORY.BIN (loads verbatim at 0x800B5788). Evaluates the three completion axes, SETS the unlock bits, and draws the screen.",
+  "counters": "One per-frame loop, countdown s3 seeded 800. Three numerators tick at 30 Hz (increment when below target and fp==0). Targets: grain [0x800A65A1], FLIK popcount_table[0x800BE444+mask], enemies [0x80082258]-[0x800A658E] (total-remaining=defeated). Digits via hud_draw_sprite_tile with tile 56 and glyph 10 = '/'. The grain denominator is two LITERAL glyphs, so 50 on every level.",
+  "tokens": "Locked tile 52 (the red '?') until the row's animated counter reaches its total; then solid via hud_draw_sprite_tile when newly earned, or TRANSLUCENT via 0x80026858 with (128,128,128) when earned on a previous visit (confirmed live: 42,185 px changed, token column only, row 3 unchanged as a negative control).",
+  "save_consequences_ANSWERED": "E13's own 'missing' list names 'save consequences'. ANSWERED: the results screen sets 0x800823E4 when any axis is earned for the FIRST time, and that flag is the SAVE TRIGGER -- read once at 0x800B8AD0, gating serialize 0x80055478(0x8009EC68) -> card write 0x800BB6F4 -> deserialize 0x80055538, then cleared. A pure replay sets no bits, so no save happens."
+ },
+ "STEP3_PANEL_MODE_SELECTOR_2026-08-04": {
+  "finding": "The goal latch 0x800823A0 selects completion-vs-not in BOTH renderers, which is the code-side answer to E13's 'boss/special-level differences' question and does not require collecting per-mode saves. In the in-game HUD stage: when the transition timer 0x80082470 is running AND the latch is still CLEAR (a NON-completion transition), it writes 0x400 into 0x800B0188/0x800B018C/0x800B0190. In the results screen: latch == 1 selects header tile 54, otherwise tile 55.",
+  "what_is_NOT_established": "What the tile-55 variant actually looks like on screen, and whether boss stages differ beyond this latch. Only the SELECTOR is pinned, not the two presentations. Flagged rather than asserted -- the fixtures level01_end_of_stage.sav and LEVEL02_ENDING.sav exist and would settle it, but were not run this pass."
+ },
+ "STILL_OPEN": "Per-panel breadth beyond this screen (other frontend panels/modes were never in scope of steps 1-5); the natural path that reaches the results screen with the goal latch CLEAR was not exercised -- 'level total' was produced by forcing the latch; and 0x8004F478, bounded out of E13's HUD scope by its reads (only 0x800822B0, 0x800823A0, 0x80082470 -- no player or HUD stats) but not decoded.",
+ "evidence": {
+  "tool": "tools/phase4_e13_ingame_hud.c (22/22)",
+  "c05_cross_reference": "analysis/phase4_c05_three_tokens.json; ObsidianVault/Experiments/EXP_2026-08-03_phase4_c05_three_tokens.md",
+  "retail_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+  "fixtures_not_needed_this_pass": "level01_end_of_stage.sav, LEVEL02_ENDING.sav (row's own fixture_have; untouched)"
+ },
+ "STEP4_HUD_ANIMATION_PHASES_2026-08-04": {
+  "closes": "The STILL_OPEN item 'the meaning of 0x800B0188/18C/190 (the three halfwords the non-completion path writes 0x400 into)'.",
+  "what_they_are": "PER-HUD-ELEMENT ANIMATION PHASE COUNTERS. Each runs a 0..0x1000 cycle advanced once per frame by the HUD stage's own argument (s3), with 0x400 as the significant point.",
+  "per_element": {
+   "0x800B0188": "LIVES. At phase == exactly 0x400 it latches the live value of 0x800A65A0 into the display slot; the phase then advances by s3 and resets to 0 once it passes the 0x1000 bound.",
+   "0x800B018C": "GRAIN. Identical shape, latching 0x800A65A1, whose tens/units digits are split with the 0xCCCCCCCD divide-by-10 reciprocal -- the same trick the results screen uses for its counters.",
+   "0x800B0190": "NOT a latch: it drives a piecewise RAMP. phase >= 0xC01 subtracts 0x800 (falling limb); else phase >= 0x401 clamps to 0x400 (plateau); the result is then doubled. So it rises, holds, and falls -- an animation MAGNITUDE."
+  },
+  "why_the_transition_write_makes_sense": "Forcing all three to 0x400 puts each element at its commit / peak point, which is what a non-completion transition wants: freeze the HUD showing current values rather than mid-animation.",
+  "fourth_instance_of_the_head_idiom": "These halfwords are also written and read by 0x80054EB4 -- the body behind the already-Canon 8-byte head grain_pickup_handler 0x80054EAC. That is a FOURTH instance of this codebase's 8-byte-head-then-fall-through idiom, after 0x800526F4 (this row), 0x8004F478, and C05's 0x80051938. Worth treating as a recognised pattern when reading any census entry: check whether the 'function' is really a body.",
+  "evidence": "tools/phase4_e13_hud_anim_phases.c -- 19/19 pins, first build, offline against the pristine EXE."
+ },
+ "STEP5_PRESENTATION_CLOSED_2026-08-04": {
+  "closes": "The last two STILL_OPEN items: what the tile-55 / non-completion variant looks like, and whether boss stages differ beyond the goal latch.",
+  "boss_question_answered_statically": {
+   "method": "Enumerated the COMPLETE global input/output set of FUNC_800B7DA0..0x800B8788 by walking every lui/load/store pair in the overlay image -- so the answer is exhaustive for that function, not a sample.",
+   "reads": "0x80082258 (enemy total), 0x800822E4 + 0x80082412 (the pad edge pair), 0x800823A0 (goal latch), 0x8008245C (level index -- used SOLELY to index the unlock array), 0x8009B878 (unlock array), 0x800A658E (quota), 0x800A65A1 (grain), 0x800A65A2 (FLIK mask), 0x800BE444 (popcount table).",
+   "writes": "0x800823E4 (newly-earned flag), 0x8009B878 (the bit set), 0x800A658E (the >=0 clamp).",
+   "result": "THERE IS NO BOSS-SPECIFIC INPUT. No scene id beyond the array index, no boss globals (0x80090BEE Thumper, 0x800B4BA8 Hopper), no per-level table other than the unlock array and the popcount table. Boss stages therefore get the SAME results screen; the only per-level variation is that level's unlock byte and its enemy total 0x80082258. E13's 'boss/special-level differences' is answered from code and needed no fixtures.",
+   "caveat": "A bare 0x800A0000 also appears in the scan; that is an addressing artifact of lui+addu indexed forms (e.g. 0x800A0000-0x4788 = the unlock array), not a distinct global."
+  },
+  "tile55_variant_identified_live": {
+   "method": "The header tile is re-read every frame INSIDE the results loop (0x800B7FC0), so a poke flips it on the same screen -- a far cleaner A/B than the C05 marker case. Isolated Interpreter instance /tmp/dsrepro-e13-header-20260804 port 23660, replaying the existing LEVEL06 100% movie to the results screen, then writing 0 to the goal latch 0x800823A0.",
+   "result": "CONFIRMED VISUALLY. Latch == 1 -> tile 54 -> the banner reads 'level complete'. Latch == 0 -> tile 55 -> the banner reads 'LEVEL TOTAL'. Same screen, same counters and tokens; only the banner text changes.",
+   "interpretation": "'level total' is the non-completion summary variant of the very same screen -- not a separate screen. Consistent with the HUD stage's own use of the latch, where a running transition with the latch clear parks the HUD animation phases at their commit point.",
+   "honest_limit": "The pixel diff across the two captures is dominated by three frames of counter animation, so the diff number is not the evidence -- the cropped header images are. What produced 'level total' here was a forced latch value, not a naturally-reached non-completion; the natural path that leaves the latch clear was not exercised."
+  },
+  "evidence": "Screenshots e13_hdr_crop_A_latch1.png ('level complete') and e13_hdr_crop_B_latch0.png ('level total'); the exhaustive global-set scan of the results routine."
+ }
+}

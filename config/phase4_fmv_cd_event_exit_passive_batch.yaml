@@ -1,0 +1,104 @@
+schema: abl-phase4-duckstation-batch/1
+campaign_id: fmv_playback
+row_ids: [E15_fmv]
+escalation_ids: [P4-ITER107-E15-CD-EVENT-EXIT-CONTROL]
+expected_media: &pristine_media
+  path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  serial: SCUS-94288
+  title: Disney-Pixar A Bug's Life
+  sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  tracks:
+    - path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin
+      sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+expected_debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty: true
+  dirty_state_hash: 9beb0a7c2df2a77202685fea702a0c443a2d005e
+continue_on_error: false
+
+jobs:
+  - &passive_job
+    id: cd_event_exit_passive_baseline
+    recipe: loadStateAndRun
+    state_path: ~/Downloads/ABL/movies/Phase4/E15_fmv_skip.movie.sav
+    auto_select_disc: false
+    expected_media: *pristine_media
+    movie:
+      path: ~/Downloads/ABL/movies/Phase4/E15_fmv_skip.movie.json
+      start_frame: 0
+    staged_prelude: &passive_stage
+      kind: movie_advance
+      target_frame: 249
+      max_frames: 249
+    instrumentation: []
+    run: {movie_frame: 340}
+    capture: &passive_capture
+      trigger: e15_cd_event_exit_passive_endpoint
+      include_registers: true
+      trace_limit: 64
+      memory_dumps:
+        - {label: event_exit_field, address: 0x80082484, length: 0x4}
+        - {label: player_event_consumer, address: 0x800B741C, length: 0x58}
+        - {label: fmv_running_latch, address: 0x80082250, length: 0x4}
+        - {label: completion_request, address: 0x800CAC10, length: 0x4}
+        - {label: scene, address: 0x80082504, length: 0x4}
+  - <<: *passive_job
+    id: cd_event_exit_passive_repeat
+    staged_prelude: *passive_stage
+    capture: *passive_capture
+
+control_pairs:
+  - positive_job: cd_event_exit_passive_baseline
+    negative_job: cd_event_exit_passive_repeat
+    assertion: >-
+      Two unperturbed replays from the identical centrally pinned E15 movie
+      start state advance input and guest execution contiguously from movie
+      index zero through frame 340. They must retain equal frame, cycle,
+      registers, RAM, movie status, exact FMV.BIN consumer bytes and lifecycle
+      fields without truncation.
+
+v2_receipt:
+  id: e15-cd-event-exit-passive-prelude
+  missing_fact_id: E15/cd-event-exit-interface
+  precise: false
+  anchor:
+    kind: movie_start_state
+    media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+    movie_sha256: ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba
+    state_sha256: 851e8ebffa8b8417abb30ff0791ca4c1872a43cf06101247ee1ff97e4cdac417
+    start: {clock: movie_frame, value: 0}
+  execution:
+    bound: {clock: movie_frame, start: 0, stop: 340, stop_inclusive: false}
+    capture_window: {clock: movie_frame, start: 249, stop: 340, stop_inclusive: false}
+  domain: native_control
+  observer_plan:
+    schema: abl-phase4-observer-plan/1
+    operations:
+      - {sequence: 0, method: debugger.getRegisters, args: {}}
+    result_limits: {max_records: 2, max_bytes: 2097152, max_pages: 1}
+  perturbation_plan:
+    schema: abl-phase4-perturbation-plan/1
+    kind: none
+    operations: []
+  control_role: baseline
+  assertion_plan:
+    kind: same_anchor_cd_event_exit_passive_replay
+    expected_movie_frame_count: 541
+    staged_boundary: 249
+    required_original_word: 0x8C422484
+    require_equal_endpoints: [frame, cycle, registers, ram, movie]
+    require_truncated: false
+  settings_snapshot:
+    schema: abl-duckstation-settings-snapshot/1
+    profile: fresh-isolated-defaults-v1
+    binary_sha256: a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1
+    cpu_execution_mode: default_cached_interpreter
+    cpu_overclock_percent: 100
+    cdrom_read_speedup: 1
+    cdrom_seek_speedup: 1
+    region: auto
+    rewind: false
+    runahead_frames: 0

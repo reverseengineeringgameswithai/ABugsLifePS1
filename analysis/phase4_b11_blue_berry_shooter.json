@@ -1,0 +1,179 @@
+{
+  "schema": "abl-phase4-row-analysis-v1",
+  "row": "B11_blue_berry_shooter",
+  "date": "2026-08-03",
+  "status": "substantiated_partial",
+  "disposition": "bounded_exhausted_move_on",
+  "scope": "Yellow tier-1 type-14 shooter plant, its target/volley scheduler, spawner type 66 projectile, damage ownership, retirement, and plant-instance lifetime",
+  "identity": {
+    "game_serial": "SCUS-94288",
+    "pristine_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  "capsules": [
+    {
+      "name": "B11_blue_shooter_enemy",
+      "manifest_sha256": "c67118a60d2ce90d93609b87c1f9eecea4613d63f3bcedaa85cdfa3d2aabb2fa",
+      "movie_sha256": "7ae34afff0afa72e1eb313e76f6346fe132754c57bd117d6e970495260f5eb69",
+      "state_sha256": "22a8f9adb7c6f76731ce33025e8853d5e2b3aff032459d98aa6bd709109e82aa",
+      "frames": 632,
+      "blocks": 21973648,
+      "instructions": 155263193,
+      "complete": true,
+      "truncated": false,
+      "error": "",
+      "control_mismatches": {},
+      "accepted": true
+    },
+    {
+      "name": "A13__yellow_seed_levels",
+      "manifest_sha256": "03b5872a5bb7ecbdd21c32ffe14c20675ebbef2ff5c98600a4940b473dd89afc",
+      "movie_sha256": "a694c08034893a52f1cbf924cab06f4fb57417cc5e4aff8f8377761e6272c087",
+      "state_sha256": "1f00b97137698fe37d7c0a8af31de9eca88574c284769de407d6bad11234e9ce",
+      "frames": 3424,
+      "blocks": 110475927,
+      "instructions": 847185107,
+      "complete": true,
+      "truncated": false,
+      "error": "",
+      "control_mismatches": {},
+      "accepted": true
+    }
+  ],
+  "binding": {
+    "yellow_tier": 1,
+    "pair_address": "0x8007A488",
+    "plant_type": 14,
+    "extra": "0x0000",
+    "handler_table": "0x8001B848 indexed by plant_type - 2",
+    "handler_entry": "0x8001B878",
+    "handler": "0x8005CA7C"
+  },
+  "targeting": {
+    "admission": "s16 plant+0x02 == 2",
+    "helper": "0x80046D24",
+    "helper_parameter": 512,
+    "law": "The shared ballistic helper selects the nearest eligible enemy inside the muzzle heading cone, requires enemy state bit 0x1, excludes state bits 0xA0, and applies bounded lead prediction. No valid target preserves the authored heading and uses vertical velocity -2048.",
+    "midflight_homing": false,
+    "gravity": 128,
+    "muzzles": [
+      {
+        "plant_phase": "0x00010000",
+        "origin": "plant X - 0x22A4, Y - 0x5400, Z - 0x1400",
+        "authored_heading": "0x0AAA"
+      },
+      {
+        "plant_phase": "0x00030000",
+        "origin": "plant X + 0x22A4, Y - 0x5400, Z - 0x1400",
+        "authored_heading": "0x0555"
+      },
+      {
+        "plant_phase": "0x00050000",
+        "origin": "plant X, Y - 0x5400, Z + 0x2800",
+        "authored_heading": "0x0000"
+      }
+    ]
+  },
+  "cadence": {
+    "plant_allocation_frame": 113039,
+    "first_fire_frame": 113229,
+    "first_fire_delay_video_frames": 190,
+    "shots_per_volley": 3,
+    "shot_spacing_video_frames": 8,
+    "shot_spacing_logic_ticks": 4,
+    "volley_start_spacing_video_frames": 96,
+    "volley_start_spacing_logic_ticks": 48,
+    "observed_shot_frames": [
+      113229,
+      113237,
+      113245,
+      113325,
+      113333,
+      113341,
+      113421,
+      113429,
+      113437,
+      113517,
+      113525,
+      113533,
+      113613,
+      113621
+    ],
+    "capture_boundary": "The third shot of the fifth volley would fall at 113629, one frame beyond the capsule.",
+    "rng": "none",
+    "post_spawn_event": 36
+  },
+  "projectile": {
+    "spawner_type": 66,
+    "spawner": "0x8005A0E0",
+    "record_class": 2,
+    "spawn_timer_logic_ticks": 100,
+    "model": 110,
+    "radius_fields": [50, 50],
+    "subtype": 13,
+    "flags": "0xE5",
+    "homing_flag_set": false,
+    "permanence_byte_0x27": 0,
+    "ownership": "Allocated from the shared 64-slot contact pool; the shooter path does not increment u8 0x800A6596, so shots do not consume Flik's four-projectile allowance."
+  },
+  "damage_control": {
+    "impact_frame": 113395,
+    "projectile_slot": 48,
+    "enemy_id": 37,
+    "enemy_pointer": "0x8009FD80",
+    "hp_table": "0x80089938 + enemy_id * 5 + equip_column",
+    "equip_column": 0,
+    "hp_transition": "98 -> 96",
+    "damage_delta": -2,
+    "actor_local_0x6e": "2 -> 999",
+    "actor_state": "0x00004011 -> 0x00004891",
+    "permanent_quota_0x800A658E": "9 -> 9",
+    "player_owned_0x800A6596": "0 throughout",
+    "equipped_berry_0x800A6597": "0 throughout",
+    "conclusion": "A friendly weak/class-2, non-permanent hit. Model 110 is presentation and does not make the projectile blue/super damage class 5."
+  },
+  "retirement": {
+    "impact": "Subtype-13 slot 48 is live at frame 113394 and absent at the frame-113395 damage event.",
+    "floor": "A missed subtype-13 shot spawned at 113229 counts down normally to 60, then the floor-intersection path forces timer 0 at frame 113311, long before natural timer expiry.",
+    "shared_static_causes": [
+      "timer expiry",
+      "floor intersection",
+      "far-distance cull",
+      "missing required active/render flags",
+      "enemy impact"
+    ]
+  },
+  "plant_lifecycle": {
+    "capsule": "A13__yellow_seed_levels",
+    "slot": 3,
+    "allocation_frame": 262518,
+    "clear_frame": 263188,
+    "lifetime_video_frames": 670,
+    "lifetime_logic_ticks": 335,
+    "clear_transition": "plant type 14 -> 0"
+  },
+  "closure": {
+    "resolved": [
+      "tier/type/handler binding",
+      "target acquisition and no-target fallback",
+      "all three muzzle origins and headings",
+      "first-fire, intravolley, and repeat cadence",
+      "spawner type versus record damage class",
+      "friendly ownership and player-count independence",
+      "natural damage and non-permanence control",
+      "impact and floor retirement",
+      "exact natural plant-instance lifetime"
+    ],
+    "strict_full_gaps": [
+      "campaign-wide authored type-14 instance and visible-model census",
+      "live no-target control and resistant-enemy family breadth",
+      "all collision/cull retirement causes exercised naturally",
+      "exact GPU and audio presentation ownership"
+    ],
+    "rationale": "The B11-specific mechanism is instruction-exact and the retained capsules provide cadence, damage, retirement, and plant-lifetime controls. Remaining items are campaign/species/presentation breadth with minimal row-specific return."
+  },
+  "live_escalation": {
+    "required": false,
+    "interpreter_movie_required": false,
+    "reason": "Both relevant capsules are accepted and contain the missing behavioral controls; pristine C/ASM analysis supplies exact branch and constructor attribution."
+  }
+}

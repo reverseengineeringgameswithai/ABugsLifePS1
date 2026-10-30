@@ -1,0 +1,151 @@
+{
+  "bounded_conclusion": "At the inspected pristine LEV1A save anchor, no input reaches the same player common-exit StClearRing and callback_teardown call sites as Start-skip, 634 emulator frames later. This receipt proves common-exit reachability only; it does not identify which completion, stop, or failure writer caused the converging exit. Natural callback_teardown returns normally; the Start trace retains its synthetic-unwind observer event.",
+  "campaign_id": "fmv_playback",
+  "errors": [],
+  "escalation_id": "P4-ITER81-E15-NATURAL-LEVELA-COMPLETION-CONTROL",
+  "external_receipts": [
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-natural-levela-v1-20260724/result.json",
+      "bytes": 51177,
+      "media_class": "external game-derived evidence; never commit",
+      "preservation_required": true,
+      "role": "atomic_batch_result",
+      "sha256": "0f695036639692142307c5a9a212874e7677faa5d1d50e4060ec8566209c0cee"
+    },
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-natural-levela-v1-20260724/cleanup.json",
+      "bytes": 531,
+      "media_class": "external non-game cleanup evidence; never commit",
+      "preservation_required": true,
+      "role": "owned_pid_cleanup",
+      "sha256": "cab677355e1ab3d141bc260cda4be05d5109c2560f3e7dfd5312ef0d17c747b3"
+    }
+  ],
+  "fixtures": {
+    "movie": {
+      "bytes": 370143,
+      "media_class": "pristine_serial",
+      "path": "movies/Phase4/E15_fmv_skip.movie.json",
+      "sha256": "ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba"
+    },
+    "state": {
+      "bytes": 1193583,
+      "media_class": "pristine",
+      "path": "movies/Phase4/E15_fmv_skip.movie.sav",
+      "sha256": "851e8ebffa8b8417abb30ff0791ca4c1872a43cf06101247ee1ff97e4cdac417"
+    }
+  },
+  "generated": "2026-07-24",
+  "observations": {
+    "common_interface": {
+      "natural_after_prior_boundary_frames": 529,
+      "natural_after_start_frames": 634,
+      "natural_exit_frame": 5305,
+      "natural_teardown_synthetic_unwind": false,
+      "same_static_callers_and_returns": true,
+      "start_exit_frame": 4671,
+      "start_teardown_synthetic_unwind": true
+    },
+    "endpoint": {
+      "both_fmv_bin_retired": true,
+      "cycle": 3246597378,
+      "emulator_frame": 5735,
+      "frames_advanced": 1500,
+      "region_b_typed_fields_valid": false
+    },
+    "natural_completion": {
+      "common_exit": {
+        "callback_teardown": {
+          "address": "0x800709ac",
+          "caller": "0x800b74a4",
+          "entry_cycle": 3003380414,
+          "exit_cycle": 3003384397,
+          "exit_is_synthetic_unwind": false,
+          "return_address": "0x800b74ac"
+        },
+        "entry_gap_after_st_clear_ring_exit_cycles": 14,
+        "frame": 5305,
+        "st_clear_ring": {
+          "address": "0x8007094c",
+          "caller": "0x800b749c",
+          "entry_cycle": 3003377970,
+          "exit_cycle": 3003380400,
+          "return_address": "0x800b74a4"
+        },
+        "trace_ring_limit": 16,
+        "trace_ring_saturated": false
+      },
+      "endpoint_fmv_bin_resident": false,
+      "endpoint_fmv_head_sha256": "e63f3b3fa1a5f185ed9da114b876917a263971a2306753420d9ee361d36a71cd",
+      "function_event_count": 6,
+      "mmio_pointer_words_hex": "0018801f0118801f0218801f0318801f"
+    },
+    "shared_initialization": {
+      "address": "0x8007094c",
+      "entry_cycle": 2515397349,
+      "exit_cycle": 2515399779,
+      "frame": 4443,
+      "function": "StClearRing",
+      "present_in_both_controls": true
+    },
+    "start_skip": {
+      "common_exit": {
+        "callback_teardown": {
+          "address": "0x800709ac",
+          "caller": "0x800b74a4",
+          "entry_cycle": 2644274321,
+          "exit_cycle": 2644284120,
+          "exit_is_synthetic_unwind": true,
+          "return_address": "0x800b74ac"
+        },
+        "entry_gap_after_st_clear_ring_exit_cycles": 14,
+        "frame": 4671,
+        "st_clear_ring": {
+          "address": "0x8007094c",
+          "caller": "0x800b749c",
+          "entry_cycle": 2644271877,
+          "exit_cycle": 2644274307,
+          "return_address": "0x800b74a4"
+        },
+        "trace_ring_limit": 16,
+        "trace_ring_saturated": false
+      },
+      "endpoint_fmv_bin_resident": false,
+      "endpoint_fmv_head_sha256": "6245e366d6fa7f9a4ca2bcfef1a47da70a4f50cb15e50ded0f0f2ffedee3a1b8",
+      "function_event_count": 6,
+      "mmio_pointer_words_hex": "0018801f0118801f0218801f0318801f"
+    }
+  },
+  "prior_no_input_boundary": {
+    "artifact": "analysis/phase4_fmv_callback_lifecycle.json",
+    "emulator_frame": 4776,
+    "fmv_bin_resident": true,
+    "frames_advanced": 541,
+    "selected_frame_limit": 386,
+    "sha256": "d6f049488927a476a59ad36c58b0ea7cab682ed533b8a193516e7beaf3f43f85",
+    "str_backloc": 162
+  },
+  "profiles": [
+    {
+      "config_dir": "/var/tmp/abl-p4-e15-natural.xssVOl",
+      "owned_pid": 488855,
+      "owned_pid_stopped": true,
+      "port": 24682
+    }
+  ],
+  "raw_external_bytes_committed": false,
+  "record_counts": {
+    "atomic_batches": 1,
+    "function_events": 12,
+    "jobs": 2
+  },
+  "residuals": [
+    "This receipt proves one level-A no-input common-exit reachability fact, not its cause; event-aligned completion, backloc, selected-limit and stop-latch provenance is required.",
+    "Pause, stop, repeated playback, scene unload/reload, decode timeout, CD failure and malformed-stream outcomes remain open.",
+    "E12 audio, C17 viewer selection/unlocks, E14 persistence and E16 generic overlay loading retain separate interfaces.",
+    "Endpoint Region-B memory is untyped after FMV.BIN retirement; only its failed identity guard is asserted."
+  ],
+  "row_id": "E15_fmv",
+  "schema": "abl-phase4-fmv-natural-completion/1",
+  "valid": true
+}

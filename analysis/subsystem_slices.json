@@ -1,0 +1,63 @@
+{
+ "generated_by": "manual evidence closure",
+ "schema_version": 1,
+ "slices": {
+  "audio_xa_start": {
+   "status": "closed",
+   "scope": "packed music id through XA filter, seek, volume, and streamed-read start",
+   "functions": [
+    "0x8004699c"
+   ],
+   "evidence": [
+    "src/main/8004699c_music_start.c",
+    "analysis/compiler_attempts.json",
+    "ObsidianVault/Canon/Functions/FUNC_8004699C_music_start.md"
+   ],
+   "residual": "sequencer linked-dead (closed by exclusion); SPU voice scheduling reconstructed (src_re/sfx_voice_manager.c); id->VAG map solved (analysis/sfx_id_vag_map.json). Remaining at understanding-depth only: the positional-voice cluster 0x80043184-0x80044350 (named, not yet decompiled to src_re)."
+  },
+  "fmv_str_stream_start": {
+   "status": "closed",
+   "scope": "FMV overlay CD stream startup and frame-limit completion signal",
+   "functions": [
+    "0x8006d8e8",
+    "0x80070898",
+    "0x80070a30",
+    "0x80070ac0"
+   ],
+   "evidence": [
+    "analysis/subsystems/fmv_stream_start.json",
+    "src_re/fmv_player_streaming.c",
+    "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md"
+   ],
+   "residual": "closed by identification: FMV.BIN is stock PsyQ libpress STR-player orchestration with 0 hardware-register accesses (EXP_2026-07-09_fmv_engine_bounded_close); MDEC/DMA decode runs in resident libpress, not game code."
+  },
+  "anm_crossfade": {
+   "status": "closed",
+   "scope": "dense ANM lane mapping and two-animation bone-transform interpolation",
+   "functions": [
+    "0x8005ec94",
+    "0x8005f110"
+   ],
+   "evidence": [
+    "analysis/naming/u5_anm_crossfade.json",
+    "ObsidianVault/Canon/Functions/FUNC_8005F110_ANM_crossfade_sampler.md",
+    "tools/parse_all_anm.py"
+   ],
+   "residual": "artistic meaning of the optional lanes 12/14/16 and ALL skin-tail rebinding"
+  },
+  "collision_contact_scatter": {
+   "status": "closed",
+   "scope": "contact metadata table-A selectors through four decoded scatter components",
+   "functions": [
+    "0x800593e8",
+    "0x80059e44"
+   ],
+   "evidence": [
+    "analysis/naming/u5_collision_semantics.json",
+    "src/wip/800593e8_contact_scatter_component.c",
+    "ObsidianVault/Canon/Tables/TABLE_80079E30_contact_metadata_A.md"
+   ],
+   "residual": "gameplay meaning of each table-A row and byte-exact C register allocation for contact_alloc"
+  }
+ }
+}

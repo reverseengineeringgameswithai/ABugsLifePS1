@@ -1,0 +1,556 @@
+{
+  "_comment": "Bounded non-copyrighted static/offline assertions. External index, movie, save, asset and executable bytes remain outside this artifact.",
+  "campaign": {
+    "dimension_promoted": false,
+    "family": "collectibles_equipment_rewards",
+    "first_unmet_dimension": "original_oracle",
+    "id": "grain_collection_harvester",
+    "next_lane": "static",
+    "rows": [
+      "C01_grain_pickup",
+      "C02_fifty_grain_reward",
+      "C13_grain_harvester"
+    ]
+  },
+  "claim": "The pristine resident image assigns actor ID 35 and the CHARS3/FLIKHARV asset to the grain harvester, sets player power-up bit 0x80 at the equipment pickup, follows Flik from fixed actor slot 63, and lets bit 0x80 make kind 0x14 source rows construct ctor 0x51/action-20 grain contacts inside squared distance 0x15F8F. Those contacts use the common 0x8005A308 convergence law before the existing action-20 grain handler. At exactly 50 grain, the resident code reaches health=4 but its fixed-address comparison makes the progress/life increment branch unreachable.",
+  "closure_boundary": {
+    "dimension_promoted": false,
+    "missing": [
+      "cold-boot original-game oracle for acquisition and 49-to-50 reward",
+      "same-anchor bit-0x80 denial and attraction-radius controls",
+      "denial, capacity, reset, death/respawn, unload/reload and persistence breadth"
+    ],
+    "reason": "All three selected recordings are save-start anchors. They localize and reconstruct ownership but cannot satisfy the cold-boot original-oracle predicate, and no same-anchor bit/radius denial control was executed."
+  },
+  "errors": [],
+  "falsifier": "Reject the frontier if any pinned fixture/input hash drifts; actor ID 35 does not resolve through jump-table case 0x8005E17C to chars3\\flikharv; the C13 capsule does not uniquely join the stage01 authored slot-63 actor, bit 0x80 and the observed (0,192,0) follow delta; ctor 0x51 metadata differs; any guarded source/convergence/reward instruction differs; or the presumed grain-50 progress branch compares equal resident addresses.",
+  "generated": "2026-07-30",
+  "inputs": {
+    "anchors": [
+      {
+        "from_boot": false,
+        "movie": {
+          "path": "movies/Phase4/C01_grain_pickup.movie.json",
+          "sha256": "385bb743192200bad070919cd048a1a6315523057f104f1c5555e9d1e057d076"
+        },
+        "row_id": "C01_grain_pickup",
+        "start_state": {
+          "path": "movies/Phase4/C01_grain_pickup.movie.sav",
+          "sha256": "2421ce34a50d65765b605df87aac789b9de942d86891ade12820da8f5f9f1986"
+        }
+      },
+      {
+        "from_boot": false,
+        "movie": {
+          "path": "movies/Phase4/C02_grain_49_to_50.movie.json",
+          "sha256": "cff9196b7b8b9d9c8391a57c85907a0271b4ff563ec8475ea676fac82012e90c"
+        },
+        "row_id": "C02_fifty_grain_reward",
+        "start_state": {
+          "path": "movies/Phase4/C02_grain_49_to_50.movie.sav",
+          "sha256": "a6291970431030b5aefd8455b73c68583f10417c73e97ac820be249ee4859ebb"
+        }
+      },
+      {
+        "from_boot": false,
+        "movie": {
+          "path": "movies/Phase4/c13_GRAIN_HARVESTER.movie.json",
+          "sha256": "849ad9a4092502dcbac280f3bf92f61612d72bdb3718b0f0ad84b4c4dfc005ac"
+        },
+        "row_id": "C13_grain_harvester",
+        "start_state": {
+          "path": "movies/Phase4/c13_GRAIN_HARVESTER.movie.sav",
+          "sha256": "abb7eb74ce316d437f5ee6c168d1e9f876d0fe11ec30ffa2273bfaeec31666ce"
+        }
+      }
+    ],
+    "executable": {
+      "path": "REBUILD/files/SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+    },
+    "external_index": {
+      "bytes": 38561548,
+      "media_class": "derived_pristine_evidence",
+      "path": "~/Downloads/ABL-external-evidence/derived/Phase4/collectibles-v1/index.json",
+      "preservation_required": true,
+      "schema": "abl-phase4-external-collectibles-index/1",
+      "sha256": "e848f907fc5ac72da22f456fd838275b28da8df0c2b892071e8b0c5f2cf89d74"
+    },
+    "source_dependencies": {
+      "actor_census": {
+        "path": "analysis/phase1_kind_actor_census.json",
+        "sha256": "1c8ad255eb96d08c4b08b6d688374bc189e78672d1449533cc5f9d4e2cf20284"
+      },
+      "contact_alloc_80059e44": {
+        "path": "src_re/contact_alloc_80059e44.c",
+        "sha256": "f766215bf43f155d2f188a5dd927c9ef1c2f44318d255181816dba118b322531"
+      },
+      "frontier_contract": {
+        "path": "config/phase4_collectibles_frontier.yaml",
+        "sha256": "4dd5acb26c484023e7526ce69d953554a9b9975d4d5a80d0db38523fa511d76b"
+      },
+      "grain_contact_convergence_8005a308": {
+        "path": "src_re/grain_contact_convergence_8005a308.c",
+        "sha256": "1d7d725ab1be2d6185e3459158d109c4f8270676d159d85ae03c1a1300a65838"
+      },
+      "grain_harvester_equipment_80051db4": {
+        "path": "src_re/grain_harvester_equipment_80051db4.c",
+        "sha256": "616e0707d11315725c35407b588c6857e5e2bb2ca5140e017084343a65cd8f56"
+      },
+      "offline_summary": {
+        "path": "analysis/phase4_offline_collectibles_batch.json",
+        "sha256": "d7a919d464ae28c4927c59c51faf69ace09b0bb2cb0682d0d56aa05a76c33835"
+      },
+      "pickup_handlers_80054288_80054554": {
+        "path": "src_re/pickup_handlers_80054288_80054554.c",
+        "sha256": "ecb19a49c30ffb578fdd9622caa14f9c8eb306725efa6b9197b3f0288443217d"
+      },
+      "semantic_state": {
+        "path": "config/semantic_state.yaml",
+        "sha256": "6294786afaae775d9bcd8d874b6e4cac8985b5342b71613aced6632156334313"
+      },
+      "source3f_dispatch_80053814": {
+        "path": "src_re/source3f_dispatch_80053814.c",
+        "sha256": "06a86fa4ffaf2ace19758b71dbf5e52191e39a8179d74206b36a5221dbc8f3d3"
+      }
+    }
+  },
+  "named_residuals": [
+    {
+      "boundary": "original oracle",
+      "intersects_dimension": true,
+      "reason": "All selected movies are pristine save-start anchors, not cold-boot reproductions."
+    },
+    {
+      "boundary": "causal controls",
+      "intersects_dimension": true,
+      "reason": "No same-anchor bit-0x80 denial or source-radius control was executed in this static iteration."
+    },
+    {
+      "boundary": "lifecycle and breadth",
+      "intersects_dimension": true,
+      "reason": "Denial, capacity, reset, death/respawn, unload/reload and persistence paths remain open."
+    }
+  ],
+  "offline_localization": {
+    "C01_grain_pickup": {
+      "effect_signature_per_event": [
+        {
+          "action_ids": [
+            4
+          ],
+          "movie_frame": 196,
+          "radius_adds": [
+            100
+          ],
+          "records": 5
+        },
+        {
+          "action_ids": [
+            4
+          ],
+          "movie_frame": 540,
+          "radius_adds": [
+            100
+          ],
+          "records": 5
+        }
+      ],
+      "grain_event_frames": [
+        196,
+        540
+      ],
+      "grain_transition": [
+        10,
+        12
+      ]
+    },
+    "C02_fifty_grain_reward": {
+      "grain_event_frames": [
+        160
+      ],
+      "grain_transition": [
+        49,
+        50
+      ],
+      "health_display_boundary": {
+        "after": 2,
+        "before": 1,
+        "movie_frame": 160
+      },
+      "same_frame_spu_ram_changed": false,
+      "true_health_transition": [
+        4,
+        4
+      ]
+    },
+    "C13_grain_harvester": {
+      "action20_transition_count": 9,
+      "actor_ids_observed": [
+        9,
+        10,
+        11,
+        13,
+        14,
+        35,
+        39,
+        40
+      ],
+      "attached_suffix": {
+        "distinct_actor_player_deltas": [
+          [
+            0,
+            192,
+            0
+          ]
+        ],
+        "first_movie_frame": 83,
+        "last_movie_frame": 617,
+        "powerup_bit_persistent": true,
+        "records": 535
+      },
+      "frame_0": {
+        "actor": {
+          "address": "0x800a1dfc",
+          "id": 35,
+          "slot": 63,
+          "source": "0x8009511c",
+          "vm_ip": "0x8007798c",
+          "x": 97920,
+          "y": -10531,
+          "z": 778208
+        },
+        "player_powerup_flags": 8,
+        "player_xyz": [
+          102562,
+          -9651,
+          789414
+        ]
+      },
+      "grain_event_frames": [
+        211,
+        227,
+        247,
+        281,
+        339,
+        485,
+        507,
+        535,
+        561
+      ],
+      "grain_transition": [
+        0,
+        9
+      ],
+      "movie": "movies/Phase4/c13_GRAIN_HARVESTER.movie.json",
+      "pickup_boundary": {
+        "actor_player_delta": [
+          0,
+          192,
+          0
+        ],
+        "actor_xyz": [
+          94989,
+          -11621,
+          775598
+        ],
+        "movie_frame": 83,
+        "player_xyz": [
+          94989,
+          -11813,
+          775598
+        ],
+        "powerup_flags_after": 128,
+        "powerup_flags_before": 8
+      },
+      "records": 618,
+      "unique_level_signature_matches": [
+        "stage01_anthill"
+      ]
+    }
+  },
+  "schema": "abl-phase4-collectibles-frontier/1",
+  "static_frontier": {
+    "actor_asset_ownership": {
+      "actor_id": 35,
+      "actor_jump_table_entry": "0x8001BC64",
+      "animation_sha256": "5442b76ff7b0911fed6f79b40390b3f7e83a04b2bcb1d5730fad86d581557f48",
+      "asset_string": "chars3\\flikharv",
+      "asset_string_va": "0x8001BA90",
+      "authored_levels": [
+        {
+          "address": "0x800a1dfc",
+          "level": "stage01_anthill",
+          "save": "level01.sav",
+          "save_sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+          "slot": 63,
+          "source": "0x8009511c",
+          "vm_ip": "0x80077980",
+          "xyz": [
+            97920,
+            -11296,
+            778208
+          ]
+        },
+        {
+          "address": "0x800a1dfc",
+          "level": "stage02_tunnels",
+          "save": "level02.sav",
+          "save_sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+          "slot": 63,
+          "source": "0x8009511c",
+          "vm_ip": "0x80077980",
+          "xyz": [
+            231040,
+            32832,
+            109856
+          ]
+        },
+        {
+          "address": "0x800a1dfc",
+          "level": "stage05_riverbed_run",
+          "save": "level05.sav",
+          "save_sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+          "slot": 63,
+          "source": "0x8009511c",
+          "vm_ip": "0x80077980",
+          "xyz": [
+            314176,
+            4192,
+            1199648
+          ]
+        },
+        {
+          "address": "0x800a1dfc",
+          "level": "stage08_city_square",
+          "save": "level_08.sav",
+          "save_sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+          "slot": 63,
+          "source": "0x8009511c",
+          "vm_ip": "0x80077980",
+          "xyz": [
+            182944,
+            -32064,
+            -127552
+          ]
+        },
+        {
+          "address": "0x800a1dfc",
+          "level": "stage10_clover_forest",
+          "save": "level_10.sav",
+          "save_sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+          "slot": 63,
+          "source": "0x8009511c",
+          "vm_ip": "0x80077980",
+          "xyz": [
+            202720,
+            -144256,
+            681056
+          ]
+        },
+        {
+          "address": "0x800a1dfc",
+          "level": "stage11_the_tree",
+          "save": "level_11.sav",
+          "save_sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+          "slot": 63,
+          "source": "0x8009511c",
+          "vm_ip": "0x80077980",
+          "xyz": [
+            -207296,
+            -38560,
+            -296000
+          ]
+        }
+      ],
+      "case_target": "0x8005E17C",
+      "model_sha256": "26300d0b5d0b9d93d031876f82d97566e3e2c533ff9116a95a302259e9393554"
+    },
+    "equip_and_follow": {
+      "actor_id_gate": 35,
+      "fixed_actor_slot": 63,
+      "follow_stores": [
+        "0x80051F94",
+        "0x80051F9C",
+        "0x80051FA4",
+        "0x80051FAC",
+        "0x80051FB4",
+        "0x80051FBC",
+        "0x80051FC4",
+        "0x80051FCC",
+        "0x80051FD4",
+        "0x80051FDC"
+      ],
+      "function": "0x80051DB4..0x80052090",
+      "gameplay_update_order": [
+        "harvester_equipment_0x80051DB4",
+        "actor_update_0x8004D224",
+        "contact_update_0x8005A308",
+        "source_dispatch_0x8005CD2C",
+        "contact_walker_0x8005BFBC"
+      ],
+      "powerup_flag": {
+        "address": "0x800A6590",
+        "bit": "0x0080",
+        "writer": "0x80051EB0"
+      },
+      "proximity_radius_argument": 40,
+      "sole_gameplay_caller": "0x8004EFF8"
+    },
+    "executable_slices": [
+      {
+        "bytes": 40,
+        "end": "0x8004F020",
+        "sha256": "27da4c4b44abd51d252f7cf9969eb1d19811f93e24c056e579561d666c1170d9",
+        "start": "0x8004EFF8"
+      },
+      {
+        "bytes": 732,
+        "end": "0x80052090",
+        "sha256": "993c0230b65ec7dbfab7b812b2ce600a890ab2fb0ae3a1aa489657fbfb43fc9b",
+        "start": "0x80051DB4"
+      },
+      {
+        "bytes": 116,
+        "end": "0x80053C5C",
+        "sha256": "253f10180f9615149601dcc00ef52b7bdc7373b3b3c6c2a58402d0ac1f904ca8",
+        "start": "0x80053BE8"
+      },
+      {
+        "bytes": 492,
+        "end": "0x80055174",
+        "sha256": "9aa7067c84571ef62bb357dddda394e309de9be8212a35653cc736387dab88e6",
+        "start": "0x80054F88"
+      },
+      {
+        "bytes": 3620,
+        "end": "0x8005B12C",
+        "sha256": "a95bb0c5dbdd8b97df049879436427329d63ee51ed8e6ef2a523525a65933577",
+        "start": "0x8005A308"
+      },
+      {
+        "bytes": 36,
+        "end": "0x8005E1A0",
+        "sha256": "0bbbea3c83df572b9f0024584ab66380fe66f71329b0cfe6dfa0244dc78fb955",
+        "start": "0x8005E17C"
+      }
+    ],
+    "fifty_grain_reward": {
+      "grain_increment_writer": "0x80054F9C",
+      "progress_branch": {
+        "comparison_pc": "0x80055078",
+        "left_address": "0x80090B80",
+        "reachable": false,
+        "right_address": "0x800B3988"
+      },
+      "reachable_health_store": {
+        "address": "0x800A6594",
+        "pc": "0x80055124",
+        "value": 4
+      },
+      "reward_event_call": "0x80055060",
+      "target_compare": {
+        "pc": "0x8005500C",
+        "value": 50
+      }
+    },
+    "grain_attraction_source": {
+      "constructor": "contact_alloc_0x80059E44",
+      "constructor_stack_arg": 3,
+      "constructor_type": 81,
+      "kind": 20,
+      "metadata": {
+        "action_id": 20,
+        "active_gate": 200,
+        "field_2a": 100,
+        "flags": 234,
+        "phase": 210,
+        "radius_add": 100,
+        "row_hex": "1400c800d20000016400640016000000ea808080",
+        "selector": 0,
+        "state": 22
+      },
+      "post_constructor_target_store": {
+        "pc": "0x80053C58",
+        "value": -1
+      },
+      "powerup_bit_gate": "0x0080",
+      "squared_distance_max": 89999
+    },
+    "grain_convergence": {
+      "function": "0x8005A308..0x8005B12C",
+      "heading_law": "delta=(atan2(playerX-recordX, playerZ-recordZ)-heading)&0xFFF; add delta>>2 when delta<0x800, otherwise add (0x800-delta)>>2",
+      "horizontal_target": "player X/Z",
+      "horizontal_velocity": "sin(heading)>>3 and sin(heading+0x400)>>3, then integrate X/Z",
+      "pickup_walker_radius": {
+        "base": 300,
+        "radius_add": 100,
+        "total": 400
+      },
+      "precondition": "flags bit 0x08, active_gate > 0 and target +0x10 == -1",
+      "record_count": 64,
+      "source_squared_distance_max": 89999,
+      "vertical_law": "recordY -= clamp((recordY + 0x2000 - playerY) >> 3, -0x400, +0x400)"
+    },
+    "instruction_words": {
+      "0x8004EFF8": "0x0C01476D",
+      "0x8004F000": "0x0C013489",
+      "0x8004F008": "0x0C0168C2",
+      "0x8004F010": "0x0C01734B",
+      "0x8004F018": "0x0C016FEF",
+      "0x80051DEC": "0x24020023",
+      "0x80051DF8": "0x8E230000",
+      "0x80051E2C": "0x30420080",
+      "0x80051E40": "0x0C014942",
+      "0x80051EA8": "0x34630080",
+      "0x80051EB0": "0xA4236590",
+      "0x80051EEC": "0x30420080",
+      "0x80051F94": "0xACE20000",
+      "0x80051F9C": "0xAC231E04",
+      "0x80051FA4": "0xAC241E08",
+      "0x80051FDC": "0xAC251E10",
+      "0x80053BEC": "0x94426590",
+      "0x80053BF4": "0x30420080",
+      "0x80053C00": "0x92430008",
+      "0x80053C10": "0x3C020001",
+      "0x80053C14": "0x34425F8F",
+      "0x80053C18": "0x0050102A",
+      "0x80053C20": "0x24070051",
+      "0x80053C40": "0x0C016791",
+      "0x80053C4C": "0xAE430000",
+      "0x80053C58": "0xAC430010",
+      "0x80054F9C": "0xA0430000",
+      "0x80055008": "0x24020032",
+      "0x8005500C": "0x14620059",
+      "0x80055060": "0x0C014113",
+      "0x80055068": "0x3C038009",
+      "0x80055070": "0x3C02800B",
+      "0x80055078": "0x14620025",
+      "0x8005507C": "0x24020004",
+      "0x80055124": "0xA4226594",
+      "0x8005A358": "0x30420008",
+      "0x8005A370": "0x8E03FFEE",
+      "0x8005A39C": "0x0C0182B9",
+      "0x8005A3B0": "0x30460FFF",
+      "0x8005A3C0": "0x24422000",
+      "0x8005A3CC": "0x000228C3",
+      "0x8005A45C": "0x00061883",
+      "0x8005A46C": "0x00021083",
+      "0x8005A478": "0xAE03FFF6",
+      "0x8005A484": "0x00431021",
+      "0x8005A498": "0xAE02FFF6",
+      "0x8005A49C": "0x28A20401",
+      "0x8005A4A8": "0x24050400",
+      "0x8005A4B8": "0x2405FC00",
+      "0x8005A4C4": "0x00451023",
+      "0x8005A4DC": "0x94430000",
+      "0x8005A4FC": "0xAE03FFEA",
+      "0x8005A548": "0xAE620000",
+      "0x8005A56C": "0xAE03FFE6",
+      "0x8005E17C": "0x3C048002",
+      "0x8005E180": "0x2484BA90",
+      "0x8005E18C": "0x24070023"
+    }
+  },
+  "valid": true
+}

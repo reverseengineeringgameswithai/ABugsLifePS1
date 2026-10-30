@@ -1,0 +1,21 @@
+schema: abl-phase4-movie-minimizer-policy/1
+emulator: DuckStation
+required_execution_mode: Interpreter
+required_replay_roles: [assertion, control]
+buttons: [up, down, left, right, triangle, circle, cross, square,
+          select, start, l1, l2, r1, r2, l3, r3]
+axes: [lx, ly, rx, ry]
+axis_neutral: 128
+default_max_evaluations: 256
+minimum_frames: 1
+allow_source_overwrite: false
+allow_repository_output: false
+preserve_anchor_class: true
+require_media_identity: true
+require_recreated_isolated_config: true
+require_control_for_every_candidate: true
+notes:
+  - Every movie replay and every emulator instance must use Interpreter.
+  - A reduction is retained only when separate assertion and control replays pass.
+  - Cold-boot and save-state anchors are never interchanged by the minimizer.
+  - Candidate movies, scenarios, receipts, and journals remain external.

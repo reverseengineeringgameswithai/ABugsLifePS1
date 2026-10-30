@@ -1,0 +1,43 @@
+schema_version: 1
+id: pristine_thud_action20_grain_control
+description: >-
+  Replay the centrally pinned pristine-serial Thud recording to its existing
+  action-20 slot-17 object, enlarge only that record's signed contact radius,
+  and assert the next native player-proximity pickup boundary without assigning
+  a visual, sound, damage, natural-hit frequency, or campaign completion effect.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: thud_action20_pre_radius_control
+    trigger: {type: movie_frame, target: 971, max_frames: 985, timeout_seconds: 180}
+    assertions:
+      - {id: thud_action20_control_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: thud_action20_control_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: thud_action20_control_grain, type: memory, address: 0x800A65A1, width: u8, op: eq, expected: 0}
+      - {id: thud_action20_control_action, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 20}
+      - {id: thud_action20_control_active_gate, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 200}
+      - {id: thud_action20_control_radius_add, type: memory, address: 0x800B10F8, width: s16, op: eq, expected: 100}
+      - {id: thud_action20_control_state, type: memory, address: 0x800B10FC, width: s16, op: eq, expected: 24}
+      - {id: thud_action20_control_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: enlarge_only_thud_action20_radius
+        method: debugger.writeU16
+        params: {address: 0x800B10F8, value: 6000}
+  - id: thud_action20_native_grain_pickup
+    trigger: {type: movie_frame, target: 972, max_frames: 2, timeout_seconds: 60}
+    assertions:
+      - {id: thud_action20_effect_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: thud_action20_effect_health_unchanged, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: thud_action20_effect_grain_incremented, type: memory, address: 0x800A65A1, width: u8, op: eq, expected: 1}
+      - {id: thud_action20_effect_action_retained, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 20}
+      - {id: thud_action20_effect_active_gate, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 1}
+      - {id: thud_action20_effect_radius_add, type: memory, address: 0x800B10F8, width: s16, op: eq, expected: 6000}
+      - {id: thud_action20_effect_state, type: memory, address: 0x800B10FC, width: s16, op: eq, expected: 16}
+      - {id: thud_action20_effect_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

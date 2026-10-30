@@ -1,0 +1,71 @@
+schema_version: 1
+generated: 2026-07-30
+source_tool: PCSX-Redux Memory Observer
+address_translation: "KSEG0 virtual address = 0x80000000 + physical main-RAM offset"
+entries:
+  - row: A10_handstand
+    level: LEVEL01
+    status: inconclusive_no_action_edge
+    files:
+      - path: analysis/operator_evidence/phase4/A10_LEVEL01/handstand.csv
+        sha256: f8aa0faf18b25f7c7b163168f226de53f318e1b2febbdca64bbd1e01e8a1ba90
+        bytes: 692
+    rediscovered_record:
+      address: 0x800A08D8
+      table: actor_record
+      index: 21
+      actor_id: 11
+      changed_fields: [pos_x, pos_y, pos_z]
+      source_record_pointer: 0x80094CA0
+      prior_authority: analysis/phase1_kind_actor_census.json
+    rejected_candidates:
+      - {address: 0x800A0936, width: u8, reason: "unchanged record offset +0x5E"}
+      - {address: 0x800A0937, width: u8, reason: "unchanged record offset +0x5F"}
+    conclusion: "No handstand field or support-object identity promoted."
+    evidence_note: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-30_phase4_a10_level01_handstand_address_narrowing.md
+
+  - row: A09_seed_pickup_drop
+    level: LEVEL01
+    status: runtime_corroboration_existing_fields
+    files:
+      - path: analysis/operator_evidence/phase4/A09_LEVEL01/before_throw.csv
+        sha256: 97fca0a155091f9a7b374ad4ab07673d25281d8ce4106dca47700e664ff9b1d1
+        bytes: 542
+      - path: analysis/operator_evidence/phase4/A09_LEVEL01/most_likely_candidates.csv
+        sha256: b8c9c4dc0832abe2d2a932eef5363c2fa958541b5cabfd7b33ad9a845bdd4f69
+        bytes: 117
+    corroborated_virtual_addresses:
+      - {address: 0x800A655C, width: u32, carried_value: 0x00000A50, released_value: 0x00000000}
+      - {address: 0x800A65A3, width: u8, carried_value: 0x0C, released_value: 0x00}
+    prior_authority: src/main/80046cac_resident_level_t_seed_plant_dan_glue.c
+    inferred_selected_record: 0x800A07D0
+    evidence_note: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-30_phase4_a09_level01_carry_address_narrowing.md
+
+  - row: A12_seed_color_change
+    level: LEVEL01
+    status: invalidated_no_action_edge
+    files:
+      - path: analysis/operator_evidence/phase4/A12_LEVEL01/seed_changing.csv
+        sha256: 8016c7ad1c28b081f83363334057a930e1ff52a671e7ba46ef4fccfb728cf278
+        bytes: 92
+    rejected_candidates:
+      - {address: 0x800822A4, width: u16, reason: "unchanged renderer cache at gp+0x50C"}
+      - {address: 0x80094C76, width: u8, reason: "known chunk-31 record #20 +0x0E color field, but unchanged in retained CSV"}
+    conclusion: "No A12 address or action edge promoted."
+    evidence_note: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-30_phase4_a12_level01_seed_color_address_narrowing.md
+
+  - row: A13_cycle_plant_output
+    level: LEVEL01
+    status: packed_selector_behavior_decoded
+    files:
+      - path: analysis/operator_evidence/phase4/A13_LEVEL01/brown_seed_changing_LEVEL01.csv
+        sha256: 887627049f69a475203041ae4c456ce9f5cf18cf48ec5bfbd8341f627efbdeba
+        bytes: 317
+    candidate_virtual_addresses:
+      - {address: 0x800A6598, width: u8}
+    encoding:
+      high_nibble: selected_brown_output
+      low_nibble: highest_brown_output_available
+      selected_domain: {minimum: 1, maximum: 4}
+      available_domain: {minimum: 1, maximum: 4}
+    evidence_note: ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-30_phase4_a13_level01_brown_selector_packing.md

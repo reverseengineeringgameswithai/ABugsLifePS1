@@ -1,0 +1,735 @@
+{
+ "_comment": "Phase-3 SFX interface contract: sfx_dispatch 0x80050994 called directly for each candidate id on a fresh pristine anchor, with the SPU as the observable (a voice keying on = the sound really played; its sample start address identifies WHICH sound). v0 is NOT a success flag \u2014 0x4 appears both when a sound plays and when nothing happens \u2014 so 'it returned 4, so it worked' is the wrong inference; only the SPU distinguishes a valid id. Regenerate: tools/phase3_sfx_interface.py",
+ "generated": "2026-07-14",
+ "run_provenance": {
+  "command": "/usr/bin/python3 tools/phase3_sfx_interface.py --port 25781 --token '<redacted-token>' --config-dir /tmp/duckstation-phase3-i6b-sfx-JXwrAK --instance-state recreated --lo -24 --hi 48",
+  "generator_sha256": "aa0ae1a4d5090a765eec0d29b5b6fcb5ece498e9dba14140c50207950239363f",
+  "provenance_helper_sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678",
+  "launcher_helper_sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821",
+  "repository_head": "67c1b6db21fb728fd65fe6697a193b4a097faf1d",
+  "recorded_utc": "2026-07-14T21:55:13.904759+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "status": "M EXTERNAL_DEBUGGER_CONTROL.md\n M docs/external-debugger-determinism.md\n M docs/external-debugger-experiment-runner.md\n M docs/external-debugger-movie.md\n M docs/external-debugger.md\n M scripts/debugger-client/README.md\n M scripts/debugger-client/duckstation_debug_client.py\n M scripts/debugger-client/mcp_bridge.py\n M src/CMakeLists.txt\n M src/core/CMakeLists.txt\n M src/core/achievements.cpp\n M src/core/analog_controller.cpp\n M src/core/analog_controller.h\n M src/core/analog_joystick.cpp\n M src/core/analog_joystick.h\n M src/core/cdrom.cpp\n M src/core/cdrom.h\n M src/core/controller.cpp\n M src/core/controller.h\n M src/core/core.vcxproj\n M src/core/core.vcxproj.filters\n M src/core/cpu_core.cpp\n M src/core/cpu_core.h\n M src/core/debugger_control_service.cpp\n M src/core/debugger_control_service.h\n M src/core/dma.cpp\n M src/core/fullscreenui_settings.cpp\n M src/core/gpu.cpp\n M src/core/gpu.h\n M src/core/gpu_backend.cpp\n M src/core/gpu_backend.h\n M src/core/imgui_overlays.cpp\n M src/core/input_movie.cpp\n M src/core/input_movie.h\n M src/core/negcon.cpp\n M src/core/negcon.h\n M src/core/negcon_rumble.cpp\n M src/core/negcon_rumble.h\n M src/core/settings.cpp\n M src/core/settings.h\n M src/core/spu.cpp\n M src/core/spu.h\n M src/core/system.cpp\n M src/core/system.h\n M src/core/system_private.h\n M src/duckstation-qt/debuggerrpc.cpp\n M src/duckstation-qt/debuggerrpc.h\n M src/duckstation-qt/debuggerserver.cpp\n M src/duckstation-qt/debuggerserver.h\n M src/duckstation-qt/input_movie_file.cpp\n M src/duckstation-qt/input_movie_file.h\n M src/duckstation-qt/interfacesettingswidget.cpp\n M src/duckstation-qt/interfacesettingswidget.ui\n M src/duckstation-qt/logwindow.cpp\n M src/duckstation-qt/mainwindow.cpp\n M src/duckstation-qt/mainwindow.h\n M src/duckstation-qt/mainwindow.ui\n M src/duckstation-qt/osdsettingswidget.cpp\n M src/duckstation-qt/osdsettingswidget.ui\n M src/duckstation-qt/qthost.cpp\n M src/duckstation-qt/qtutils.cpp\n M src/duckstation-qt/qtutils.h\n M src/duckstation-regtest/regtest_host.cpp\n M src/scmversion/gen_scmversion.bat\n M src/scmversion/gen_scmversion.sh\n M src/scmversion/scmversion.h\n?? api-hardening-artifacts-20260714/\n?? docs/external-debugger-scenarios.md\n?? scripts/debugger-client/launch_debugger_instance.sh\n?? scripts/debugger-client/test_code_patch_invalidation.py\n?? scripts/debugger-client/test_framebuffer_capture.py\n?? scripts/debugger-client/test_function_bounds.py\n?? scripts/debugger-client/test_gp0trace_dma.py\n?? src/core-tests/\n?? src/core/cd_provenance.cpp\n?? src/core/cd_provenance.h\n?? src/core/code_analysis.cpp\n?? src/core/code_analysis.h\n?? src/core/frame_diff.cpp\n?? src/core/frame_diff.h\n?? src/core/gpu_object_picker.cpp\n?? src/core/gpu_object_picker.h\n?? src/core/gte_camera.cpp\n?? src/core/gte_camera.h\n?? src/core/movie_edit.cpp\n?? src/core/movie_edit.h\n?? src/core/write_index.cpp\n?? src/core/write_index.h",
+   "binary_path": "~/duckstation/build-release/bin/duckstation-qt",
+   "binary_sha256": "27d064bcbdfefadf91fd9401d158a2756dc6bbf6d52a0bb2d3a3dfad7129cb54"
+  },
+  "rpc_manifest": {
+   "path": "analysis/phase3_duckstation_rpc_manifest.json",
+   "semantic_sha256": "e2597de77dc56ff2dc4c4b9d2ff72b9abccb76b203a6d7d2c180aeba29fdd80b",
+   "source": {
+    "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "status_sha256": "1c1a325041c78e0545816a605a2dbc7c41a08549642d4f4b8289d9df87baf130",
+    "dispatcher_sha256": "b1be4d512eae5c67608453adcbabb32e03612c3ead51856c41ab9c0d140f47be",
+    "method_count": 203
+   },
+   "binary": {
+    "path": "~/duckstation/build-release/bin/duckstation-qt",
+    "sha256": "27d064bcbdfefadf91fd9401d158a2756dc6bbf6d52a0bb2d3a3dfad7129cb54",
+    "size": 37860600
+   }
+  },
+  "debugger": {
+   "config_dir": "/tmp/duckstation-phase3-i6b-sfx-JXwrAK",
+   "port": 25781,
+   "transport": "ws",
+   "token_sha256": "c9e04ed55aba7b24545eb2f3a5d8d6e4832bb1fb1105f437f351ef41c867d694",
+   "recreated": true,
+   "owned_pid": 1869433
+  },
+  "anchor": {
+   "save": "level01.sav",
+   "fixture_sha256": {
+    "level01.sav": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2"
+   },
+   "state_inspections": [
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level01.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1939333,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level01.sav",
+      "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+      "size": 1939333,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    }
+   ],
+   "media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   }
+  },
+  "timing": {
+   "id_range": [
+    -24,
+    48
+   ],
+   "settle_frames_per_id": 4,
+   "fresh_state_per_id": true
+  },
+  "cleanup": {
+   "owned_pid_stopped": true,
+   "launcher_returncode": 0,
+   "launcher_output": "Stopped isolated instance (pid 1869433).\nowned cleanup: pid=1869433 stopped=true final_state=None waited_ms=0",
+   "process_final_state": null
+  }
+ },
+ "media": {
+  "serial": "SCUS-94288"
+ },
+ "media_identity_after_connect": {
+  "game_serial": "SCUS-94288",
+  "game_title": "Disney-Pixar A Bug's Life",
+  "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+  "rpc_before_hash": {
+   "cd_overlays_removed": 0,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_media": true,
+   "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "subimage_count": 0,
+   "subimage_index": 0
+  },
+  "rpc_after_hash": {
+   "cd_overlays_removed": 0,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_media": true,
+   "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "subimage_count": 0,
+   "subimage_index": 0
+  },
+  "hash_verification": {
+   "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "pin_source": "tools/build_baselines.json",
+   "pristine_verified": true,
+   "files": {
+    "Disney-Pixar A Bug's Life (v1.0).cue": {
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "matches_pin": true
+    },
+    "Disney-Pixar A Bug's Life (v1.0).bin": {
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+     "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "matches_pin": true
+    }
+   }
+  }
+ },
+ "fixture_sha256": {
+  "level01.sav": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2"
+ },
+ "function": {
+  "address": "0x80050994",
+  "name": "sfx_dispatch",
+  "abi": "a0 = sfx id (signed; the seed-impact arms pass -4). a1..a3 unused in this probe. v0 is NOT a success flag: 0x4 for every id that plays AND for 36 ids that stay silent; a few invalid ids return junk. Only the SPU tells you whether a sound actually started.",
+  "v0_values_observed": [
+   "0x00000004",
+   "0x00000005",
+   "0x0000009d",
+   "0x00008004",
+   "0xc0050539",
+   "0xc0053285"
+  ]
+ },
+ "scanned_range": [
+  -24,
+  48
+ ],
+ "ids_that_play": [
+  -4,
+  -3,
+  -1,
+  16,
+  17,
+  20,
+  21,
+  22,
+  24,
+  26,
+  27,
+  28,
+  30,
+  31,
+  32,
+  33,
+  34,
+  36,
+  37,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48
+ ],
+ "ids_that_play_count": 27,
+ "distinct_sounds": 27,
+ "aliases": {},
+ "results": {
+  "-24": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-23": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-22": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-21": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-20": {
+   "v0": "0x00000005",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-19": {
+   "v0": "0xc0050539",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-18": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-17": {
+   "v0": "0xc0053285",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-16": {
+   "v0": "0x00008004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-15": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-14": {
+   "v0": "0x00008004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-13": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-12": {
+   "v0": "0x00008004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-11": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-10": {
+   "v0": "0x00008004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-9": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-8": {
+   "v0": "0x00008004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-7": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-6": {
+   "v0": "0x00008004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-5": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-4": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0001f340"
+   ],
+   "plays": true
+  },
+  "-3": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0003c8b0"
+   ],
+   "plays": true
+  },
+  "-2": {
+   "v0": "0x0000009d",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "-1": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00049460"
+   ],
+   "plays": true
+  },
+  "0": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "1": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "2": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "3": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "4": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "5": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "6": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "7": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "8": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "9": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "10": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "11": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "12": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "13": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "14": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "15": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "16": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00001010"
+   ],
+   "plays": true
+  },
+  "17": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00002420"
+   ],
+   "plays": true
+  },
+  "18": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "19": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "20": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x000033c0"
+   ],
+   "plays": true
+  },
+  "21": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x000035a0"
+   ],
+   "plays": true
+  },
+  "22": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x000039a0"
+   ],
+   "plays": true
+  },
+  "23": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "24": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00004a90"
+   ],
+   "plays": true
+  },
+  "25": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "26": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x000053e0"
+   ],
+   "plays": true
+  },
+  "27": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00006500"
+   ],
+   "plays": true
+  },
+  "28": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00007f60"
+   ],
+   "plays": true
+  },
+  "29": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "30": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00009e10"
+   ],
+   "plays": true
+  },
+  "31": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0000a390"
+   ],
+   "plays": true
+  },
+  "32": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0000abf0"
+   ],
+   "plays": true
+  },
+  "33": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0000b610"
+   ],
+   "plays": true
+  },
+  "34": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0000cb70"
+   ],
+   "plays": true
+  },
+  "35": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "36": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0000d600"
+   ],
+   "plays": true
+  },
+  "37": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0000dff0"
+   ],
+   "plays": true
+  },
+  "38": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "39": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "40": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 0,
+   "sample_starts": [],
+   "plays": false
+  },
+  "41": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0000eb50"
+   ],
+   "plays": true
+  },
+  "42": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x0000f9c0"
+   ],
+   "plays": true
+  },
+  "43": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00010940"
+   ],
+   "plays": true
+  },
+  "44": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x000118a0"
+   ],
+   "plays": true
+  },
+  "45": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00012490"
+   ],
+   "plays": true
+  },
+  "46": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00012cf0"
+   ],
+   "plays": true
+  },
+  "47": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00012d80"
+   ],
+   "plays": true
+  },
+  "48": {
+   "v0": "0x00000004",
+   "voices_keyed_on": 1,
+   "sample_starts": [
+    "0x00014950"
+   ],
+   "plays": true
+  }
+ }
+}

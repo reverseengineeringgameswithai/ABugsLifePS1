@@ -1,0 +1,50 @@
+schema_version: 1
+id: phase4_f01_anthill_completion
+description: >-
+  Pristine state-anchored Anthill completion oracle: the unique code-2 exit
+  commits the resident latch/timer, scene flow tears down after countdown,
+  and the MEMORY results overlay enters and exits through its finalizer.
+target:
+  disc: "Disney-Pixar A Bug's Life (v1.0).cue"
+  expected_serial: SCUS-94288
+  expected_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+launch: {profile: repro, execution_mode: Interpreter}
+playback:
+  movie: "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill.movie.json"
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: immediately_before_goal
+    trigger: {type: movie_frame, target: 1932, max_frames: 2000, timeout_seconds: 240}
+    assertions:
+      - {id: f01_scene_is_anthill_before_goal, type: memory, address: 0x80082504, width: u32, op: eq, expected: 1, semantic_id: original.current_scene_id}
+      - {id: f01_latch_clear_before_goal, type: memory, address: 0x800823A0, width: s16, op: eq, expected: 0, semantic_id: original.level_transition_latch}
+      - {id: f01_timer_clear_before_goal, type: memory, address: 0x80082470, width: s16, op: eq, expected: 0, semantic_id: original.level_transition_timer}
+    after:
+      - {type: exec_trace_start, id: f01_latch_store, pc: 0x800496D8, capture: [pc, v0, v1, a0, a1, s1], max_events: 4}
+      - {type: exec_trace_start, id: f01_timer_store, pc: 0x80049704, capture: [pc, v0, v1, a0, a1, s1], max_events: 4}
+      - {type: exec_trace_start, id: f01_resident_finalizer, pc: 0x80045A60, capture: [pc, ra], max_events: 4}
+      - {type: exec_trace_start, id: f01_results_entry, pc: 0x800B7DA0, capture: [pc, ra], max_events: 4}
+      - {type: exec_trace_start, id: f01_results_finalizer_call, pc: 0x800B8750, capture: [pc, ra], max_events: 4}
+  - id: code2_goal_committed
+    trigger: {type: movie_frame_realtime, target: 1940, max_frames: 12, timeout_seconds: 30, poll_interval_seconds: 0.002}
+    assertions:
+      - {id: f01_latch_store_executed_once, type: exec_hit_count, watch: f01_latch_store, op: eq, expected: 1}
+      - {id: f01_timer_store_executed_once, type: exec_hit_count, watch: f01_timer_store, op: eq, expected: 1}
+      - {id: f01_latch_committed, type: memory, address: 0x800823A0, width: s16, op: eq, expected: 1, semantic_id: original.level_transition_latch}
+      - {id: f01_timer_counting_down, type: memory, address: 0x80082470, width: s16, op: between, expected: [12, 23], semantic_id: original.level_transition_timer}
+  - id: resident_teardown
+    trigger: {type: movie_frame_realtime, target: 1982, max_frames: 48, timeout_seconds: 30, poll_interval_seconds: 0.002}
+    assertions:
+      - {id: f01_timer_reaches_zero, type: memory, address: 0x80082470, width: s16, op: eq, expected: 0, semantic_id: original.level_transition_timer}
+      - {id: f01_resident_finalizer_runs_once, type: exec_hit_count, watch: f01_resident_finalizer, op: eq, expected: 1}
+      - {id: f01_scene_cleared_after_teardown, type: memory, address: 0x80082504, width: u32, op: eq, expected: 0, semantic_id: original.current_scene_id}
+  - id: results_overlay_entered
+    trigger: {type: movie_frame_realtime, target: 2190, max_frames: 214, timeout_seconds: 30, poll_interval_seconds: 0.002}
+    assertions:
+      - {id: f01_results_function_runs_once, type: exec_hit_count, watch: f01_results_entry, op: eq, expected: 1}
+  - id: results_overlay_exited
+    trigger: {type: movie_frame_realtime, target: 2992, max_frames: 812, timeout_seconds: 60, poll_interval_seconds: 0.002}
+    assertions:
+      - {id: f01_results_finalizer_call_runs_once, type: exec_hit_count, watch: f01_results_finalizer_call, op: eq, expected: 1}
+      - {id: f01_total_finalizer_entries_are_two, type: exec_hit_count, watch: f01_resident_finalizer, op: eq, expected: 2}

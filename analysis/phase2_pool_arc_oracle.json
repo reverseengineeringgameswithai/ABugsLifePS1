@@ -1,0 +1,4427 @@
+{
+ "_comment": "Phase-2 final gate items: berry-arc sentinel (projectile pool slot trajectory + gravity fit), contact-pool census/digest per anchor (direct missing-pickup sentinel), pool-capacity stress, remaining native-action attempts. Regenerate: tools/phase2_pool_arc_oracle.py.",
+ "generated": "2026-07-14",
+ "media": {
+  "serial": "SCUS-94288"
+ },
+ "repro_profile": {
+  "config_dir": "/tmp/dsrepro-phase3-i5-pool-final-FTufKl",
+  "settings": "/tmp/dsrepro-phase3-i5-pool-final-FTufKl/duckstation/settings.ini",
+  "card_seed": "~/.cache/abl/abl_card_seed.mcd",
+  "card_seed_sha256": "63c08f0143e7b714309de900905f22944ae07f1da881ce9aa3a0237a5dacf517"
+ },
+ "pool_layout": {
+  "base": "0x800B0D18",
+  "slots": 64,
+  "stride": "0x38",
+  "canon": "MEM_800B0D18 (contact/pickup array); XYZ +0x00. WALKER GATE (disassembled at FUNC_800586B0+0x80..0x9C): active_type(+0x22)>0 AND flags(+0x33)&0x02; bit 2 toggles dynamically so a paused anchor may show typed slots with bit 2 clear. Census reports BOTH counts. Alloc cursor 0x8008234C (pre-increment, wraps 0x40); filled by FUNC_80059E44, walked by FUNC_800586B0."
+ },
+ "allocator_cursor": {
+  "cursor_address": "0x8008234C",
+  "wrap_modulus": 64,
+  "semantics": "round-robin free-slot search; skips occupied (flags&0x80 && active_type!=0); NO full-array escape \u2014 allocator SPINS if all 64 slots occupied (capacity hang risk; src_re/contact_alloc_80059e44.c)",
+  "movie": "movies/go_to_end/LEVEL03.movie.json",
+  "series": [
+   {
+    "frame": 200,
+    "cursor": 32383,
+    "valid": false
+   },
+   {
+    "frame": 400,
+    "cursor": 32383,
+    "valid": false
+   },
+   {
+    "frame": 600,
+    "cursor": 32383,
+    "valid": false
+   },
+   {
+    "frame": 800,
+    "cursor": 32383,
+    "valid": false
+   },
+   {
+    "frame": 1000,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 1200,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 1400,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 1600,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 1800,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 2000,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 2200,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 2400,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 2600,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 2800,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 3000,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 3200,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 3400,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 3600,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 3800,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 4000,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 4200,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 4400,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 4600,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 4800,
+    "cursor": 0,
+    "valid": true
+   },
+   {
+    "frame": 5000,
+    "cursor": 54,
+    "valid": true
+   },
+   {
+    "frame": 5200,
+    "cursor": 44,
+    "valid": true
+   },
+   {
+    "frame": 5400,
+    "cursor": 62,
+    "valid": true
+   },
+   {
+    "frame": 5600,
+    "cursor": 57,
+    "valid": true
+   },
+   {
+    "frame": 5800,
+    "cursor": 10,
+    "valid": true
+   },
+   {
+    "frame": 6000,
+    "cursor": 3,
+    "valid": true
+   },
+   {
+    "frame": 6200,
+    "cursor": 9,
+    "valid": true
+   },
+   {
+    "frame": 6400,
+    "cursor": 12,
+    "valid": true
+   },
+   {
+    "frame": 6600,
+    "cursor": 18,
+    "valid": true
+   },
+   {
+    "frame": 6800,
+    "cursor": 2,
+    "valid": true
+   },
+   {
+    "frame": 7000,
+    "cursor": 44,
+    "valid": true
+   },
+   {
+    "frame": 7200,
+    "cursor": 59,
+    "valid": true
+   },
+   {
+    "frame": 7400,
+    "cursor": 59,
+    "valid": true
+   },
+   {
+    "frame": 7600,
+    "cursor": 59,
+    "valid": true
+   },
+   {
+    "frame": 7769,
+    "cursor": 59,
+    "valid": true
+   }
+  ],
+  "valid_wraps_observed": 5,
+  "evidence": "wraps prove >64 allocations over the run (churn + reuse), NOT saturation, NOT overwrite-oldest"
+ },
+ "arc_sentinel": {
+  "save": "red_berry_thrown.sav",
+  "projectile_slot": 52,
+  "projectile_xyz_addr": "0x800B1878",
+  "trajectory": [
+   [
+    317519,
+    -168965,
+    327871
+   ],
+   [
+    320501,
+    -170117,
+    328603
+   ],
+   [
+    320501,
+    -170117,
+    328603
+   ],
+   [
+    323483,
+    -171141,
+    329335
+   ],
+   [
+    323483,
+    -171141,
+    329335
+   ],
+   [
+    326465,
+    -172037,
+    330067
+   ],
+   [
+    326465,
+    -172037,
+    330067
+   ],
+   [
+    329447,
+    -172805,
+    330799
+   ],
+   [
+    329447,
+    -172805,
+    330799
+   ],
+   [
+    332429,
+    -173445,
+    331531
+   ],
+   [
+    332429,
+    -173445,
+    331531
+   ],
+   [
+    335411,
+    -173957,
+    332263
+   ],
+   [
+    335411,
+    -173957,
+    332263
+   ],
+   [
+    338393,
+    -174341,
+    332995
+   ],
+   [
+    338393,
+    -174341,
+    332995
+   ],
+   [
+    341375,
+    -174597,
+    333727
+   ],
+   [
+    341375,
+    -174597,
+    333727
+   ],
+   [
+    344357,
+    -174725,
+    334459
+   ],
+   [
+    344357,
+    -174725,
+    334459
+   ],
+   [
+    347339,
+    -174725,
+    335191
+   ]
+  ],
+  "deterministic_across_reloads": true,
+  "per_frame_dy": [
+   -1152,
+   0,
+   -1024,
+   0,
+   -896,
+   0,
+   -768,
+   0,
+   -640,
+   0,
+   -512,
+   0,
+   -384,
+   0,
+   -256,
+   0,
+   -128,
+   0,
+   0
+  ],
+  "gravity_per_frame": [
+   1152,
+   -1024,
+   1024,
+   -896,
+   896,
+   -768,
+   768,
+   -640,
+   640,
+   -512,
+   512,
+   -384,
+   384,
+   -256,
+   256,
+   -128,
+   128,
+   0
+  ],
+  "gravity_constant_estimate": 128,
+  "flight_frame_hashes": {
+   "2": "346b262249a8cab6d9ab67afb6916c6cdba882e8024187682ef365fc0c0efd6d",
+   "8": "dc023eede6a14b438cb16182f42479b3cf02f7863327fefa84e0284b578d6344",
+   "14": "dbcac30f4c9f04a600359bf8205650c11ec0b18888cc2ec0ccae9142c0bf9546"
+  }
+ },
+ "pool_census": {
+  "training": {
+   "save": "phase3_pristine_training_gameplay_i5.sav",
+   "typed_slots": 5,
+   "walker_enabled_slots": 0,
+   "active_slots": 5,
+   "slots": [
+    {
+     "slot": 50,
+     "xyz": [
+      -9520,
+      9182,
+      -81025
+     ],
+     "action_id": 1,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 51,
+     "xyz": [
+      5533,
+      9511,
+      -80767
+     ],
+     "action_id": 1,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 52,
+     "xyz": [
+      104080,
+      -56928,
+      -143352
+     ],
+     "action_id": 4,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 53,
+     "xyz": [
+      103440,
+      -58448,
+      -144568
+     ],
+     "action_id": 4,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 54,
+     "xyz": [
+      20406,
+      9806,
+      -84199
+     ],
+     "action_id": 1,
+     "active_type": 23,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "9aa15aba599a8e1196e33c9dccbce29c4e2e83ec5a41cced3f939070d289ce24"
+  },
+  "stage01_anthill": {
+   "save": "level01.sav",
+   "typed_slots": 12,
+   "walker_enabled_slots": 0,
+   "active_slots": 12,
+   "slots": [
+    {
+     "slot": 0,
+     "xyz": [
+      242296,
+      -73600,
+      537344
+     ],
+     "action_id": 4,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 1,
+     "xyz": [
+      145021,
+      -47264,
+      527383
+     ],
+     "action_id": 4,
+     "active_type": 19,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 2,
+     "xyz": [
+      243624,
+      -74624,
+      534640
+     ],
+     "action_id": 4,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 3,
+     "xyz": [
+      152379,
+      -46048,
+      529523
+     ],
+     "action_id": 4,
+     "active_type": 23,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 4,
+     "xyz": [
+      244608,
+      -78896,
+      534208
+     ],
+     "action_id": 4,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 5,
+     "xyz": [
+      154130,
+      -47744,
+      530695
+     ],
+     "action_id": 4,
+     "active_type": 27,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 6,
+     "xyz": [
+      245768,
+      -79600,
+      536064
+     ],
+     "action_id": 4,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 7,
+     "xyz": [
+      157234,
+      -49104,
+      528513
+     ],
+     "action_id": 4,
+     "active_type": 31,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 46,
+     "xyz": [
+      141144,
+      -54912,
+      535466
+     ],
+     "action_id": 4,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 52,
+     "xyz": [
+      134858,
+      -50976,
+      532335
+     ],
+     "action_id": 4,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 58,
+     "xyz": [
+      135498,
+      -49264,
+      532456
+     ],
+     "action_id": 4,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 63,
+     "xyz": [
+      136589,
+      -48896,
+      528649
+     ],
+     "action_id": 4,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "444adc5445e7a591fd8593eb5fc30e875fe9d23275493f366313f87b7d22869d"
+  },
+  "stage02_tunnels": {
+   "save": "level02.sav",
+   "typed_slots": 0,
+   "walker_enabled_slots": 0,
+   "active_slots": 0,
+   "slots": [],
+   "pool_sha256": "cdfa9164519dd3e4efe5802b3653eda32105da5e9c3cbd5c863399501406199e"
+  },
+  "stage03_council_chamber": {
+   "save": "level03.sav",
+   "typed_slots": 8,
+   "walker_enabled_slots": 0,
+   "active_slots": 8,
+   "slots": [
+    {
+     "slot": 29,
+     "xyz": [
+      18848,
+      36000,
+      -101784
+     ],
+     "action_id": 4,
+     "active_type": 1,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 30,
+     "xyz": [
+      -32128,
+      17472,
+      -106144
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 31,
+     "xyz": [
+      18968,
+      32352,
+      -103840
+     ],
+     "action_id": 4,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 32,
+     "xyz": [
+      -28640,
+      16032,
+      -101712
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 33,
+     "xyz": [
+      20952,
+      30112,
+      -103536
+     ],
+     "action_id": 4,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 34,
+     "xyz": [
+      -28640,
+      15136,
+      -104688
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 35,
+     "xyz": [
+      20264,
+      29456,
+      -105056
+     ],
+     "action_id": 4,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 36,
+     "xyz": [
+      -31152,
+      15088,
+      -104464
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "2190958557ded6fd63a98a45f6a921d2d47018319b392435760986a72f0f3bf3"
+  },
+  "stage04_cliffside_canyon": {
+   "save": "level04.sav",
+   "typed_slots": 16,
+   "walker_enabled_slots": 0,
+   "active_slots": 16,
+   "slots": [
+    {
+     "slot": 0,
+     "xyz": [
+      48896,
+      -137152,
+      -91120
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 1,
+     "xyz": [
+      43824,
+      -151936,
+      -191216
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 2,
+     "xyz": [
+      26256,
+      -120000,
+      -121984
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 3,
+     "xyz": [
+      44784,
+      -126240,
+      -188560
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 4,
+     "xyz": [
+      48144,
+      -138912,
+      -89536
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 5,
+     "xyz": [
+      44176,
+      -152720,
+      -187856
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 6,
+     "xyz": [
+      23152,
+      -124112,
+      -121232
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 7,
+     "xyz": [
+      43360,
+      -129520,
+      -191488
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 8,
+     "xyz": [
+      48048,
+      -139680,
+      -88576
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 9,
+     "xyz": [
+      44256,
+      -157152,
+      -190416
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 10,
+     "xyz": [
+      25664,
+      -124240,
+      -121824
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 11,
+     "xyz": [
+      44000,
+      -130016,
+      -190208
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 12,
+     "xyz": [
+      45040,
+      -139200,
+      -87904
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 13,
+     "xyz": [
+      45424,
+      -155792,
+      -187472
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 62,
+     "xyz": [
+      26160,
+      -116144,
+      -122784
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 63,
+     "xyz": [
+      42352,
+      -124224,
+      -189296
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "5efc20b000fdcbd58a5876e23eca3f9c81ad45032145ac1cfcfb72e916c61915"
+  },
+  "stage05_riverbed_run": {
+   "save": "level05.sav",
+   "typed_slots": 12,
+   "walker_enabled_slots": 0,
+   "active_slots": 12,
+   "slots": [
+    {
+     "slot": 32,
+     "xyz": [
+      -74240,
+      -67376,
+      -261168
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 33,
+     "xyz": [
+      6304,
+      -23808,
+      -183488
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 34,
+     "xyz": [
+      89136,
+      -55016,
+      -238256
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 35,
+     "xyz": [
+      -74688,
+      -69952,
+      -262336
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 36,
+     "xyz": [
+      2880,
+      -23352,
+      -193088
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 37,
+     "xyz": [
+      80560,
+      -60872,
+      -235472
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 38,
+     "xyz": [
+      -75104,
+      -71456,
+      -262880
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 39,
+     "xyz": [
+      784,
+      -24720,
+      -190384
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 40,
+     "xyz": [
+      85712,
+      -59256,
+      -235472
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 41,
+     "xyz": [
+      -77040,
+      -74576,
+      -265424
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 42,
+     "xyz": [
+      1296,
+      -21752,
+      -189920
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 43,
+     "xyz": [
+      84224,
+      -55912,
+      -237056
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "b845bf0e09417b255f923941a6ad2d3761fafdc61fea68510bf3786f612ea3dd"
+  },
+  "stage06_birdnest": {
+   "save": "level_06.sav",
+   "typed_slots": 20,
+   "walker_enabled_slots": 0,
+   "active_slots": 20,
+   "slots": [
+    {
+     "slot": 3,
+     "xyz": [
+      154536,
+      -42112,
+      117600
+     ],
+     "action_id": 4,
+     "active_type": 1,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 4,
+     "xyz": [
+      86208,
+      -63680,
+      173392
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 5,
+     "xyz": [
+      106592,
+      -72464,
+      43424
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 6,
+     "xyz": [
+      43064,
+      -17296,
+      79248
+     ],
+     "action_id": 4,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 7,
+     "xyz": [
+      10272,
+      -74048,
+      122416
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 8,
+     "xyz": [
+      156728,
+      -44816,
+      116920
+     ],
+     "action_id": 4,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 9,
+     "xyz": [
+      84208,
+      -66304,
+      177520
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 10,
+     "xyz": [
+      107936,
+      -76128,
+      39696
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 11,
+     "xyz": [
+      44576,
+      -22096,
+      78248
+     ],
+     "action_id": 4,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 12,
+     "xyz": [
+      8992,
+      -78912,
+      123232
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 13,
+     "xyz": [
+      155664,
+      -45296,
+      117000
+     ],
+     "action_id": 4,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 14,
+     "xyz": [
+      87520,
+      -66704,
+      173200
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 15,
+     "xyz": [
+      104320,
+      -80704,
+      41152
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 16,
+     "xyz": [
+      47000,
+      -24448,
+      79424
+     ],
+     "action_id": 4,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 17,
+     "xyz": [
+      8912,
+      -79264,
+      123312
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 18,
+     "xyz": [
+      156504,
+      -47760,
+      116464
+     ],
+     "action_id": 4,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 19,
+     "xyz": [
+      88512,
+      -67776,
+      173584
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 20,
+     "xyz": [
+      105872,
+      -78960,
+      41328
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 21,
+     "xyz": [
+      45752,
+      -24640,
+      76856
+     ],
+     "action_id": 4,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 22,
+     "xyz": [
+      10048,
+      -79616,
+      122096
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "7cf1fbf6d56774209e7ec1995d4532837b693550731363246e3cc53fc19f96b4"
+  },
+  "stage07_city_entrance": {
+   "save": "level_07.sav",
+   "typed_slots": 2,
+   "walker_enabled_slots": 1,
+   "active_slots": 2,
+   "slots": [
+    {
+     "slot": 56,
+     "xyz": [
+      -291291,
+      -9568,
+      369407
+     ],
+     "action_id": 118,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 57,
+     "xyz": [
+      -365220,
+      -17877,
+      290566
+     ],
+     "action_id": 118,
+     "active_type": 43,
+     "flags": 163,
+     "enabled": true,
+     "alloc_occupied": true
+    }
+   ],
+   "pool_sha256": "3267d1938fadcfec25ab6a9dc1c40c44df6f2cddae471d82b1b9155396322c5d"
+  },
+  "stage08_city_square": {
+   "save": "level_08.sav",
+   "typed_slots": 4,
+   "walker_enabled_slots": 0,
+   "active_slots": 4,
+   "slots": [
+    {
+     "slot": 8,
+     "xyz": [
+      726112,
+      -34000,
+      122544
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 9,
+     "xyz": [
+      728000,
+      -38192,
+      121952
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 10,
+     "xyz": [
+      725632,
+      -38368,
+      118928
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 11,
+     "xyz": [
+      727728,
+      -42064,
+      121936
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "8c316899944d56be3d3b149b6712da7add98f6848b6279aae0e495435aed53cd"
+  },
+  "stage09_bug_bar": {
+   "save": "level_09.sav",
+   "typed_slots": 15,
+   "walker_enabled_slots": 0,
+   "active_slots": 15,
+   "slots": [
+    {
+     "slot": 10,
+     "xyz": [
+      -81128,
+      3577,
+      1015
+     ],
+     "action_id": 1,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 12,
+     "xyz": [
+      -78664,
+      -42816,
+      -3064
+     ],
+     "action_id": 4,
+     "active_type": 1,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 13,
+     "xyz": [
+      -197472,
+      -45664,
+      -3680
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 14,
+     "xyz": [
+      -198080,
+      -45472,
+      3024
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 15,
+     "xyz": [
+      -78768,
+      -45664,
+      1528
+     ],
+     "action_id": 4,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 16,
+     "xyz": [
+      -194480,
+      -46752,
+      -5904
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 17,
+     "xyz": [
+      -81128,
+      3577,
+      -1033
+     ],
+     "action_id": 1,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 18,
+     "xyz": [
+      -196160,
+      -49360,
+      5376
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 19,
+     "xyz": [
+      -80088,
+      -47776,
+      16
+     ],
+     "action_id": 4,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 20,
+     "xyz": [
+      -195760,
+      -49168,
+      -4864
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 21,
+     "xyz": [
+      -197440,
+      -49728,
+      4832
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 22,
+     "xyz": [
+      -79768,
+      -50048,
+      2096
+     ],
+     "action_id": 4,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 23,
+     "xyz": [
+      -195776,
+      -49392,
+      -4720
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 24,
+     "xyz": [
+      -81128,
+      3577,
+      1015
+     ],
+     "action_id": 1,
+     "active_type": 22,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 25,
+     "xyz": [
+      -195616,
+      -49728,
+      6432
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "e0530035e41310e009f202e3c47e7a17dbace0c79f0621a28c3d4c58daec577d"
+  },
+  "stage10_clover_forest": {
+   "save": "level_10.sav",
+   "typed_slots": 19,
+   "walker_enabled_slots": 0,
+   "active_slots": 19,
+   "slots": [
+    {
+     "slot": 0,
+     "xyz": [
+      104128,
+      -127520,
+      61280
+     ],
+     "action_id": 4,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 1,
+     "xyz": [
+      22354,
+      -34988,
+      -7535
+     ],
+     "action_id": 1,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 2,
+     "xyz": [
+      23174,
+      -35873,
+      -9572
+     ],
+     "action_id": 1,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 3,
+     "xyz": [
+      105880,
+      -127616,
+      57848
+     ],
+     "action_id": 4,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 4,
+     "xyz": [
+      24500,
+      -36537,
+      -10216
+     ],
+     "action_id": 1,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 5,
+     "xyz": [
+      24445,
+      -36159,
+      -11116
+     ],
+     "action_id": 1,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 31,
+     "xyz": [
+      -8928,
+      14192,
+      -45160
+     ],
+     "action_id": 5,
+     "active_type": 8,
+     "flags": 96,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 34,
+     "xyz": [
+      -10056,
+      -4984,
+      11240
+     ],
+     "action_id": 5,
+     "active_type": 8,
+     "flags": 96,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 44,
+     "xyz": [
+      103824,
+      -121424,
+      59744
+     ],
+     "action_id": 4,
+     "active_type": 1,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 54,
+     "xyz": [
+      107712,
+      -126320,
+      58792
+     ],
+     "action_id": 4,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 55,
+     "xyz": [
+      -2496,
+      -9680,
+      27768
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 56,
+     "xyz": [
+      -1384,
+      -9680,
+      27760
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 57,
+     "xyz": [
+      -4984,
+      -9680,
+      28912
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 58,
+     "xyz": [
+      -28600,
+      -26320,
+      31128
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 59,
+     "xyz": [
+      -28576,
+      -26320,
+      30576
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 60,
+     "xyz": [
+      -27664,
+      -26320,
+      29520
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 61,
+     "xyz": [
+      14240,
+      -19920,
+      -40504
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 62,
+     "xyz": [
+      16168,
+      -19920,
+      -43384
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 63,
+     "xyz": [
+      18368,
+      -19920,
+      -42264
+     ],
+     "action_id": 1,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "1827d7a44ceb6dedaaeff4b3bbf9b10e2568ba953f042e3bbcc8031fa24d77f5"
+  },
+  "stage11_the_tree": {
+   "save": "level_11.sav",
+   "typed_slots": 0,
+   "walker_enabled_slots": 0,
+   "active_slots": 0,
+   "slots": [],
+   "pool_sha256": "f7093f26f85ede5c7603ac1288818f5c0246f66c74020afa381f0bd8dd138168"
+  },
+  "stage12_battle_arena": {
+   "save": "level_12.sav",
+   "typed_slots": 12,
+   "walker_enabled_slots": 0,
+   "active_slots": 12,
+   "slots": [
+    {
+     "slot": 10,
+     "xyz": [
+      41184,
+      -164192,
+      -152944
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 11,
+     "xyz": [
+      62368,
+      -165024,
+      -279024
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 12,
+     "xyz": [
+      39088,
+      -169744,
+      -150800
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 13,
+     "xyz": [
+      64528,
+      -168256,
+      -280752
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 14,
+     "xyz": [
+      40928,
+      -168640,
+      -147936
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 15,
+     "xyz": [
+      62176,
+      -166400,
+      -281904
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 16,
+     "xyz": [
+      83656,
+      -118146,
+      -200808
+     ],
+     "action_id": 1,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 17,
+     "xyz": [
+      84035,
+      -117921,
+      -200084
+     ],
+     "action_id": 1,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 18,
+     "xyz": [
+      40352,
+      -169648,
+      -149232
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 19,
+     "xyz": [
+      84582,
+      -117714,
+      -198822
+     ],
+     "action_id": 1,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 20,
+     "xyz": [
+      85478,
+      -117530,
+      -197974
+     ],
+     "action_id": 1,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 21,
+     "xyz": [
+      66320,
+      -170032,
+      -279600
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "5f440192c742267b19db7c9f47658a4a9a72b286e1ee475dd960bde1422b5ca0"
+  },
+  "stage13_anthill_two": {
+   "save": "level_13.sav",
+   "typed_slots": 4,
+   "walker_enabled_slots": 0,
+   "active_slots": 4,
+   "slots": [
+    {
+     "slot": 38,
+     "xyz": [
+      142640,
+      -233376,
+      -112512
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 39,
+     "xyz": [
+      143184,
+      -235696,
+      -114032
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 40,
+     "xyz": [
+      141904,
+      -239456,
+      -116816
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 41,
+     "xyz": [
+      143904,
+      -237488,
+      -115088
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "dc5c6314bfcffd6367a0e89f4e1a61add4943877d47b861cc4e5ad278549f90b"
+  },
+  "stage14_riverbed_flight": {
+   "save": "level_14.sav",
+   "typed_slots": 51,
+   "walker_enabled_slots": 0,
+   "active_slots": 51,
+   "slots": [
+    {
+     "slot": 0,
+     "xyz": [
+      -130453,
+      -28671,
+      44040
+     ],
+     "action_id": 52,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 2,
+     "xyz": [
+      -93335,
+      -36535,
+      14599
+     ],
+     "action_id": 52,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 3,
+     "xyz": [
+      -70010,
+      -57144,
+      79930
+     ],
+     "action_id": 50,
+     "active_type": 42,
+     "flags": 161,
+     "enabled": false,
+     "alloc_occupied": true
+    },
+    {
+     "slot": 4,
+     "xyz": [
+      -182138,
+      -44344,
+      -16326
+     ],
+     "action_id": 52,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 5,
+     "xyz": [
+      -148034,
+      -7129,
+      54652
+     ],
+     "action_id": 3,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 6,
+     "xyz": [
+      -141388,
+      -6625,
+      50815
+     ],
+     "action_id": 3,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 7,
+     "xyz": [
+      -141382,
+      -6828,
+      43139
+     ],
+     "action_id": 3,
+     "active_type": 17,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 8,
+     "xyz": [
+      -148015,
+      -6499,
+      39292
+     ],
+     "action_id": 3,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 9,
+     "xyz": [
+      -154674,
+      -7346,
+      43103
+     ],
+     "action_id": 3,
+     "active_type": 17,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 10,
+     "xyz": [
+      -154707,
+      -6205,
+      50772
+     ],
+     "action_id": 3,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 11,
+     "xyz": [
+      -148088,
+      -6926,
+      54652
+     ],
+     "action_id": 3,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 12,
+     "xyz": [
+      -148034,
+      2764,
+      46972
+     ],
+     "action_id": 51,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 13,
+     "xyz": [
+      -163901,
+      -52152,
+      -26207
+     ],
+     "action_id": 52,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 14,
+     "xyz": [
+      -169185,
+      -60008,
+      52541
+     ],
+     "action_id": 52,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 15,
+     "xyz": [
+      -61797,
+      -67954,
+      96014
+     ],
+     "action_id": 52,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 16,
+     "xyz": [
+      -76234,
+      -83451,
+      83220
+     ],
+     "action_id": 50,
+     "active_type": 46,
+     "flags": 161,
+     "enabled": false,
+     "alloc_occupied": true
+    },
+    {
+     "slot": 17,
+     "xyz": [
+      -136650,
+      -76027,
+      72468
+     ],
+     "action_id": 52,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 18,
+     "xyz": [
+      -172340,
+      -6356,
+      13636
+     ],
+     "action_id": 3,
+     "active_type": 21,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 19,
+     "xyz": [
+      -167466,
+      -6653,
+      10823
+     ],
+     "action_id": 3,
+     "active_type": 27,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 20,
+     "xyz": [
+      -167460,
+      -6317,
+      5195
+     ],
+     "action_id": 3,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 21,
+     "xyz": [
+      -172325,
+      -6173,
+      2372
+     ],
+     "action_id": 3,
+     "active_type": 27,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 22,
+     "xyz": [
+      -177208,
+      -6125,
+      5167
+     ],
+     "action_id": 3,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 23,
+     "xyz": [
+      -177233,
+      -6194,
+      10792
+     ],
+     "action_id": 3,
+     "active_type": 21,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 24,
+     "xyz": [
+      -172378,
+      -6323,
+      13636
+     ],
+     "action_id": 3,
+     "active_type": 27,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 25,
+     "xyz": [
+      -172340,
+      2052,
+      8004
+     ],
+     "action_id": 51,
+     "active_type": 17,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 26,
+     "xyz": [
+      -138767,
+      -84259,
+      99150
+     ],
+     "action_id": 52,
+     "active_type": 17,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 27,
+     "xyz": [
+      -136244,
+      -92678,
+      37821
+     ],
+     "action_id": 52,
+     "active_type": 18,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 28,
+     "xyz": [
+      -141881,
+      -101213,
+      52322
+     ],
+     "action_id": 52,
+     "active_type": 19,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 29,
+     "xyz": [
+      -79909,
+      -109801,
+      110385
+     ],
+     "action_id": 50,
+     "active_type": 50,
+     "flags": 161,
+     "enabled": false,
+     "alloc_occupied": true
+    },
+    {
+     "slot": 30,
+     "xyz": [
+      -82469,
+      -109801,
+      105777
+     ],
+     "action_id": 52,
+     "active_type": 20,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 36,
+     "xyz": [
+      -82210,
+      47060,
+      67083
+     ],
+     "action_id": 52,
+     "active_type": 1,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 38,
+     "xyz": [
+      -177460,
+      38610,
+      9540
+     ],
+     "action_id": 52,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 39,
+     "xyz": [
+      -137513,
+      30048,
+      87213
+     ],
+     "action_id": 52,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 40,
+     "xyz": [
+      -142566,
+      -640,
+      24844
+     ],
+     "action_id": 3,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 42,
+     "xyz": [
+      -131927,
+      944,
+      6419
+     ],
+     "action_id": 3,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 43,
+     "xyz": [
+      -142538,
+      -1256,
+      268
+     ],
+     "action_id": 3,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 44,
+     "xyz": [
+      -153193,
+      1640,
+      6365
+     ],
+     "action_id": 3,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 46,
+     "xyz": [
+      -142656,
+      1872,
+      24844
+     ],
+     "action_id": 3,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 47,
+     "xyz": [
+      -142566,
+      4800,
+      12556
+     ],
+     "action_id": 51,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 48,
+     "xyz": [
+      -194817,
+      21437,
+      -1977
+     ],
+     "action_id": 52,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 49,
+     "xyz": [
+      -117435,
+      12830,
+      87571
+     ],
+     "action_id": 52,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 51,
+     "xyz": [
+      -70743,
+      4275,
+      70673
+     ],
+     "action_id": 52,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 52,
+     "xyz": [
+      -143829,
+      -20827,
+      60994
+     ],
+     "action_id": 50,
+     "active_type": 37,
+     "flags": 161,
+     "enabled": false,
+     "alloc_occupied": true
+    },
+    {
+     "slot": 53,
+     "xyz": [
+      -70101,
+      -4187,
+      13890
+     ],
+     "action_id": 52,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 54,
+     "xyz": [
+      -166361,
+      -7356,
+      41510
+     ],
+     "action_id": 3,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 55,
+     "xyz": [
+      -157500,
+      -4368,
+      36393
+     ],
+     "action_id": 3,
+     "active_type": 18,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 56,
+     "xyz": [
+      -157494,
+      -4116,
+      26157
+     ],
+     "action_id": 3,
+     "active_type": 18,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 58,
+     "xyz": [
+      -175216,
+      -8046,
+      26111
+     ],
+     "action_id": 3,
+     "active_type": 18,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 61,
+     "xyz": [
+      -166361,
+      1040,
+      31270
+     ],
+     "action_id": 51,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 62,
+     "xyz": [
+      -131380,
+      -12519,
+      82086
+     ],
+     "action_id": 52,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 63,
+     "xyz": [
+      -186996,
+      -20690,
+      41789
+     ],
+     "action_id": 52,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "ea73fa07868de363cd18230d7db9d8ac707140a20d250432638eb89aef0d60bb"
+  },
+  "stage15_canyon_showdown": {
+   "save": "level_15.sav",
+   "typed_slots": 55,
+   "walker_enabled_slots": 0,
+   "active_slots": 55,
+   "slots": [
+    {
+     "slot": 0,
+     "xyz": [
+      225898,
+      -6288,
+      74402
+     ],
+     "action_id": 3,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 1,
+     "xyz": [
+      215729,
+      -4578,
+      68507
+     ],
+     "action_id": 3,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 4,
+     "xyz": [
+      215616,
+      -3963,
+      92059
+     ],
+     "action_id": 3,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 5,
+     "xyz": [
+      215702,
+      -1012,
+      80283
+     ],
+     "action_id": 51,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 6,
+     "xyz": [
+      127126,
+      11659,
+      78235
+     ],
+     "action_id": 52,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 7,
+     "xyz": [
+      143008,
+      -46096,
+      188544
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 8,
+     "xyz": [
+      179862,
+      3466,
+      62875
+     ],
+     "action_id": 52,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 9,
+     "xyz": [
+      213560,
+      -60784,
+      59824
+     ],
+     "action_id": 4,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 10,
+     "xyz": [
+      154774,
+      -4727,
+      144795
+     ],
+     "action_id": 52,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 11,
+     "xyz": [
+      97952,
+      -26624,
+      194176
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 12,
+     "xyz": [
+      180374,
+      -29048,
+      55195
+     ],
+     "action_id": 50,
+     "active_type": 38,
+     "flags": 161,
+     "enabled": false,
+     "alloc_occupied": true
+    },
+    {
+     "slot": 13,
+     "xyz": [
+      181910,
+      -12920,
+      146843
+     ],
+     "action_id": 52,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 14,
+     "xyz": [
+      152214,
+      -21113,
+      157595
+     ],
+     "action_id": 52,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 15,
+     "xyz": [
+      145248,
+      -45504,
+      190560
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 16,
+     "xyz": [
+      173206,
+      -29306,
+      126875
+     ],
+     "action_id": 52,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 17,
+     "xyz": [
+      226454,
+      -11309,
+      120219
+     ],
+     "action_id": 3,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 18,
+     "xyz": [
+      233986,
+      -8645,
+      115870
+     ],
+     "action_id": 3,
+     "active_type": 21,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 19,
+     "xyz": [
+      233992,
+      -10319,
+      107170
+     ],
+     "action_id": 3,
+     "active_type": 21,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 20,
+     "xyz": [
+      226475,
+      -10688,
+      102811
+     ],
+     "action_id": 3,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 21,
+     "xyz": [
+      218928,
+      -9113,
+      107130
+     ],
+     "action_id": 3,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 22,
+     "xyz": [
+      218891,
+      -8546,
+      115821
+     ],
+     "action_id": 3,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 23,
+     "xyz": [
+      226392,
+      -9563,
+      120219
+     ],
+     "action_id": 3,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 24,
+     "xyz": [
+      226454,
+      -1020,
+      111515
+     ],
+     "action_id": 51,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 25,
+     "xyz": [
+      211488,
+      -63680,
+      62488
+     ],
+     "action_id": 4,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 26,
+     "xyz": [
+      181398,
+      -37498,
+      113563
+     ],
+     "action_id": 52,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 27,
+     "xyz": [
+      98704,
+      -29960,
+      198224
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 28,
+     "xyz": [
+      217238,
+      -45690,
+      75675
+     ],
+     "action_id": 52,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 29,
+     "xyz": [
+      136342,
+      -53882,
+      81819
+     ],
+     "action_id": 52,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 30,
+     "xyz": [
+      142144,
+      -49216,
+      191984
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 31,
+     "xyz": [
+      211094,
+      -72442,
+      143771
+     ],
+     "action_id": 50,
+     "active_type": 44,
+     "flags": 161,
+     "enabled": false,
+     "alloc_occupied": true
+    },
+    {
+     "slot": 32,
+     "xyz": [
+      195734,
+      -62074,
+      162203
+     ],
+     "action_id": 52,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 33,
+     "xyz": [
+      209480,
+      -67376,
+      62552
+     ],
+     "action_id": 4,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 34,
+     "xyz": [
+      198806,
+      -70266,
+      95131
+     ],
+     "action_id": 52,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 35,
+     "xyz": [
+      98208,
+      -29744,
+      193792
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 36,
+     "xyz": [
+      155798,
+      -78458,
+      77211
+     ],
+     "action_id": 52,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 37,
+     "xyz": [
+      211094,
+      -9739,
+      120219
+     ],
+     "action_id": 3,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 38,
+     "xyz": [
+      215968,
+      -9148,
+      117406
+     ],
+     "action_id": 3,
+     "active_type": 27,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 39,
+     "xyz": [
+      215974,
+      -9238,
+      111778
+     ],
+     "action_id": 3,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 40,
+     "xyz": [
+      211109,
+      -9544,
+      108955
+     ],
+     "action_id": 3,
+     "active_type": 27,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 41,
+     "xyz": [
+      206226,
+      -9349,
+      111750
+     ],
+     "action_id": 3,
+     "active_type": 27,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 42,
+     "xyz": [
+      206201,
+      -9238,
+      117375
+     ],
+     "action_id": 3,
+     "active_type": 21,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 43,
+     "xyz": [
+      211056,
+      -9487,
+      120219
+     ],
+     "action_id": 3,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 44,
+     "xyz": [
+      211094,
+      -1016,
+      114587
+     ],
+     "action_id": 51,
+     "active_type": 17,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 45,
+     "xyz": [
+      212630,
+      -86650,
+      72603
+     ],
+     "action_id": 52,
+     "active_type": 17,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 46,
+     "xyz": [
+      145040,
+      -52064,
+      190448
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 47,
+     "xyz": [
+      166038,
+      -94842,
+      148891
+     ],
+     "action_id": 52,
+     "active_type": 18,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 48,
+     "xyz": [
+      211608,
+      -66048,
+      62232
+     ],
+     "action_id": 4,
+     "active_type": 15,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 49,
+     "xyz": [
+      182422,
+      -103034,
+      65947
+     ],
+     "action_id": 52,
+     "active_type": 19,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 50,
+     "xyz": [
+      101184,
+      -26304,
+      195088
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 51,
+     "xyz": [
+      107670,
+      -111226,
+      162715
+     ],
+     "action_id": 50,
+     "active_type": 50,
+     "flags": 161,
+     "enabled": false,
+     "alloc_occupied": true
+    },
+    {
+     "slot": 52,
+     "xyz": [
+      125078,
+      -111226,
+      97691
+     ],
+     "action_id": 52,
+     "active_type": 20,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 57,
+     "xyz": [
+      217238,
+      36238,
+      105371
+     ],
+     "action_id": 52,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 59,
+     "xyz": [
+      176790,
+      28045,
+      125851
+     ],
+     "action_id": 52,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 61,
+     "xyz": [
+      224918,
+      19852,
+      158107
+     ],
+     "action_id": 52,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 63,
+     "xyz": [
+      225892,
+      -6213,
+      86174
+     ],
+     "action_id": 3,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "e1a96756185ee22e55055cdb8d52786486601b95d27a44efb87af8bce1fa4da8"
+  },
+  "bonus1_spiders": {
+   "save": "movies/Bonus_Level_01.movie.sav",
+   "typed_slots": 3,
+   "walker_enabled_slots": 0,
+   "active_slots": 3,
+   "slots": [
+    {
+     "slot": 15,
+     "xyz": [
+      -82739,
+      10923,
+      48063
+     ],
+     "action_id": 1,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 16,
+     "xyz": [
+      -83399,
+      10918,
+      48659
+     ],
+     "action_id": 1,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 17,
+     "xyz": [
+      -84739,
+      10904,
+      48025
+     ],
+     "action_id": 1,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "5cff8e47e045d162a89c69e9e3234c505cf4cefd4e02bc8f0615ac8e0b5f4545"
+  },
+  "bonus2_mushrooms": {
+   "save": "movies/Bonus_Level_02.movie.sav",
+   "typed_slots": 16,
+   "walker_enabled_slots": 0,
+   "active_slots": 16,
+   "slots": [
+    {
+     "slot": 0,
+     "xyz": [
+      247424,
+      -121872,
+      115232
+     ],
+     "action_id": 4,
+     "active_type": 12,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 1,
+     "xyz": [
+      132448,
+      -126656,
+      56320
+     ],
+     "action_id": 4,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 2,
+     "xyz": [
+      155724,
+      -159968,
+      100751
+     ],
+     "action_id": 4,
+     "active_type": 30,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 3,
+     "xyz": [
+      246720,
+      -120752,
+      116880
+     ],
+     "action_id": 4,
+     "active_type": 16,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 45,
+     "xyz": [
+      176537,
+      -167984,
+      84068
+     ],
+     "action_id": 4,
+     "active_type": 2,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 48,
+     "xyz": [
+      179297,
+      -164928,
+      92134
+     ],
+     "action_id": 4,
+     "active_type": 6,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 51,
+     "xyz": [
+      174255,
+      -162512,
+      94011
+     ],
+     "action_id": 4,
+     "active_type": 10,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 54,
+     "xyz": [
+      167397,
+      -162976,
+      90387
+     ],
+     "action_id": 4,
+     "active_type": 14,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 56,
+     "xyz": [
+      130872,
+      -118080,
+      58336
+     ],
+     "action_id": 4,
+     "active_type": 1,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 57,
+     "xyz": [
+      165615,
+      -160256,
+      97935
+     ],
+     "action_id": 4,
+     "active_type": 18,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 58,
+     "xyz": [
+      248720,
+      -115728,
+      112544
+     ],
+     "action_id": 4,
+     "active_type": 4,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 59,
+     "xyz": [
+      128896,
+      -120176,
+      57520
+     ],
+     "action_id": 4,
+     "active_type": 5,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 60,
+     "xyz": [
+      161253,
+      -159744,
+      100427
+     ],
+     "action_id": 4,
+     "active_type": 22,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 61,
+     "xyz": [
+      248928,
+      -121664,
+      116320
+     ],
+     "action_id": 4,
+     "active_type": 8,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 62,
+     "xyz": [
+      132368,
+      -123408,
+      59464
+     ],
+     "action_id": 4,
+     "active_type": 9,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 63,
+     "xyz": [
+      158281,
+      -161040,
+      102400
+     ],
+     "action_id": 4,
+     "active_type": 26,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "149cb90ef13f182fa1b311718e4802f365adfdd4b6d8bcda729e09c8d1759723"
+  },
+  "bonus3_grasshoppers": {
+   "save": "movies/Bonus_Level_03.movie.sav",
+   "typed_slots": 14,
+   "walker_enabled_slots": 0,
+   "active_slots": 14,
+   "slots": [
+    {
+     "slot": 2,
+     "xyz": [
+      1478680,
+      32296,
+      1394328
+     ],
+     "action_id": 1,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 6,
+     "xyz": [
+      1479392,
+      39072,
+      1397568
+     ],
+     "action_id": 1,
+     "active_type": 17,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 9,
+     "xyz": [
+      1482208,
+      39760,
+      1407520
+     ],
+     "action_id": 1,
+     "active_type": 7,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 10,
+     "xyz": [
+      1490376,
+      43928,
+      1415240
+     ],
+     "action_id": 1,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 11,
+     "xyz": [
+      1500016,
+      45168,
+      1421352
+     ],
+     "action_id": 1,
+     "active_type": 11,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 12,
+     "xyz": [
+      1475912,
+      49816,
+      1394048
+     ],
+     "action_id": 1,
+     "active_type": 21,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 13,
+     "xyz": [
+      1479472,
+      50992,
+      1396128
+     ],
+     "action_id": 1,
+     "active_type": 19,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 14,
+     "xyz": [
+      1482744,
+      53952,
+      1407152
+     ],
+     "action_id": 1,
+     "active_type": 21,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 15,
+     "xyz": [
+      1490072,
+      56944,
+      1415248
+     ],
+     "action_id": 1,
+     "active_type": 23,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 32,
+     "xyz": [
+      1490608,
+      20080,
+      1417064
+     ],
+     "action_id": 1,
+     "active_type": 1,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 36,
+     "xyz": [
+      1497264,
+      24864,
+      1419480
+     ],
+     "action_id": 1,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 51,
+     "xyz": [
+      1485568,
+      31408,
+      1406736
+     ],
+     "action_id": 1,
+     "active_type": 1,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 56,
+     "xyz": [
+      1492632,
+      35424,
+      1415664
+     ],
+     "action_id": 1,
+     "active_type": 3,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    },
+    {
+     "slot": 61,
+     "xyz": [
+      1502016,
+      36384,
+      1421112
+     ],
+     "action_id": 1,
+     "active_type": 13,
+     "flags": 32,
+     "enabled": false,
+     "alloc_occupied": false
+    }
+   ],
+   "pool_sha256": "5ea3abe6e7132043a78abde4810a43cd8f0c0d71afdd4dfa956f395a10d4d6a3"
+  }
+ },
+ "capacity_stress": {
+  "save": "red_berry_thrown.sav",
+  "throw_attempts": 40,
+  "max_in_flight_observed": 2,
+  "samples": [
+   {
+    "after_throws": 5,
+    "in_flight": 1,
+    "active_slots": 26
+   },
+   {
+    "after_throws": 10,
+    "in_flight": 2,
+    "active_slots": 36
+   },
+   {
+    "after_throws": 15,
+    "in_flight": 1,
+    "active_slots": 25
+   },
+   {
+    "after_throws": 20,
+    "in_flight": 2,
+    "active_slots": 29
+   },
+   {
+    "after_throws": 25,
+    "in_flight": 1,
+    "active_slots": 33
+   },
+   {
+    "after_throws": 30,
+    "in_flight": 2,
+    "active_slots": 25
+   },
+   {
+    "after_throws": 35,
+    "in_flight": 1,
+    "active_slots": 25
+   },
+   {
+    "after_throws": 40,
+    "in_flight": 2,
+    "active_slots": 25
+   }
+  ],
+  "post_stress": {
+   "scene": 1,
+   "guest_valid": true
+  },
+  "stable": true,
+  "note": "repeated-use stress; TRUE capacity behavior is the ring allocator observation below (cursor wraps at 0x40 in native gameplay)"
+ },
+ "action_attempts": {
+  "training_seed_square": [
+   {
+    "record": {
+     "index": 0,
+     "id": 11,
+     "xyz": [
+      -45952,
+      29668,
+      -7424
+     ]
+    },
+    "before": {
+     "xyz": [
+      -33292,
+      58318,
+      6021
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400e1ff040000001100000000000000"
+    },
+    "during_square": {
+     "xyz": [
+      -9383,
+      9839,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040001002100040000001100000000000000"
+    },
+    "after_release": {
+     "xyz": [
+      -9383,
+      9840,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040000002100040000001100000000000000"
+    },
+    "state_block_changed": true
+   },
+   {
+    "record": {
+     "index": 1,
+     "id": 11,
+     "xyz": [
+      -69440,
+      28664,
+      -7424
+     ]
+    },
+    "before": {
+     "xyz": [
+      -56780,
+      57314,
+      6021
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400e1ff040000001100000000000000"
+    },
+    "during_square": {
+     "xyz": [
+      -9383,
+      9839,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040001002100040000001100000000000000"
+    },
+    "after_release": {
+     "xyz": [
+      -9383,
+      9840,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040000002100040000001100000000000000"
+    },
+    "state_block_changed": true
+   },
+   {
+    "record": {
+     "index": 2,
+     "id": 11,
+     "xyz": [
+      -116928,
+      24192,
+      -17472
+     ]
+    },
+    "before": {
+     "xyz": [
+      -104268,
+      52842,
+      -4027
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400dcff040000001100000000000000"
+    },
+    "during_square": {
+     "xyz": [
+      -102107,
+      93664,
+      -353
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400e6ff040000001100000000000000"
+    },
+    "after_release": {
+     "xyz": [
+      -9383,
+      9840,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040000002100040000001100000000000000"
+    },
+    "state_block_changed": true
+   },
+   {
+    "record": {
+     "index": 3,
+     "id": 11,
+     "xyz": [
+      -118464,
+      23288,
+      1536
+     ]
+    },
+    "before": {
+     "xyz": [
+      -105804,
+      51938,
+      14981
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400dbff040000001100000000000000"
+    },
+    "during_square": {
+     "xyz": [
+      -103643,
+      92760,
+      18655
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400e5ff040000001100000000000000"
+    },
+    "after_release": {
+     "xyz": [
+      -9383,
+      9840,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040000002100040000001100000000000000"
+    },
+    "state_block_changed": true
+   },
+   {
+    "record": {
+     "index": 4,
+     "id": 9,
+     "xyz": [
+      -55872,
+      23328,
+      45888
+     ]
+    },
+    "before": {
+     "xyz": [
+      -43212,
+      51978,
+      59333
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400dbff040000001100000000000000"
+    },
+    "during_square": {
+     "xyz": [
+      -41051,
+      92800,
+      63007
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400e5ff040000001100000000000000"
+    },
+    "after_release": {
+     "xyz": [
+      -9383,
+      9840,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040000002100040000001100000000000000"
+    },
+    "state_block_changed": true
+   },
+   {
+    "record": {
+     "index": 5,
+     "id": 9,
+     "xyz": [
+      41024,
+      20512,
+      71296
+     ]
+    },
+    "before": {
+     "xyz": [
+      53684,
+      49162,
+      84741
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400daff040000001100000000000000"
+    },
+    "during_square": {
+     "xyz": [
+      55845,
+      89984,
+      88415
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400e4ff040000001100000000000000"
+    },
+    "after_release": {
+     "xyz": [
+      -9383,
+      9840,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040000002100040000001100000000000000"
+    },
+    "state_block_changed": true
+   },
+   {
+    "record": {
+     "index": 6,
+     "id": 9,
+     "xyz": [
+      85952,
+      17792,
+      4416
+     ]
+    },
+    "before": {
+     "xyz": [
+      98612,
+      46442,
+      17861
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400d8ff040000001100000000000000"
+    },
+    "during_square": {
+     "xyz": [
+      100773,
+      87264,
+      21535
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400e2ff040000001100000000000000"
+    },
+    "after_release": {
+     "xyz": [
+      -9383,
+      9840,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040000002100040000001100000000000000"
+    },
+    "state_block_changed": true
+   },
+   {
+    "record": {
+     "index": 7,
+     "id": 9,
+     "xyz": [
+      23168,
+      26080,
+      -72896
+     ]
+    },
+    "before": {
+     "xyz": [
+      35828,
+      54730,
+      -59451
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400ddff040000001100000000000000"
+    },
+    "during_square": {
+     "xyz": [
+      37989,
+      95552,
+      -55777
+     ],
+     "grounded": 0,
+     "state_block": "00000000000000000f000f00000004000400e7ff040000001100000000000000"
+    },
+    "after_release": {
+     "xyz": [
+      -9383,
+      9840,
+      -79941
+     ],
+     "grounded": 1,
+     "state_block": "0000010100000000160016000000040000002100040000001100000000000000"
+    },
+    "state_block_changed": true
+   }
+  ],
+  "canyon_slide_attempt": {
+   "anchor": "level04.sav",
+   "input": "run 40f, double-tap X (4f cadence), hold 40f",
+   "before": {
+    "xyz": [
+     77664,
+     -84263,
+     -134967
+    ],
+    "grounded": 1,
+    "state_block": "00000101000000000000000000000c0000000000040000001100000000000000"
+   },
+   "after": {
+    "xyz": [
+     29170,
+     -103566,
+     -135827
+    ],
+    "grounded": 0,
+    "state_block": "01000000000000000300030000000c0000000000040000001100000000000000"
+   },
+   "state_block_changed": true,
+   "note": "recognizer-level attempt; slope location not verified \u2014 a null result bounds the fixture need, it does not prove absence"
+  }
+ }
+}

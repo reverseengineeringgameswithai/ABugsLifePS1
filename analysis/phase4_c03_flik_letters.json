@@ -1,0 +1,127 @@
+{
+  "row_id": "C03_flik_letters",
+  "date": "2026-08-04",
+  "classification": "confirmed",
+  "static_boundary": "exhausted",
+  "runtime_boundary": "exhausted",
+  "capsule": {
+    "available": false,
+    "reason": "No retained Phase 4 C03/FLIK-letter capsule was present."
+  },
+  "legacy_fixtures": [
+    {
+      "path": "collecting_FLIK_LEVEL01.movie.json",
+      "sha256": "04874b8f214a8a3adc12afbbbd49a7961017fb323f5f5e297ae23fab14884fd4",
+      "classification": "poll_only_no_execution_mode_provenance"
+    },
+    {
+      "path": "collecting_FLIK_LEVELTRAINING.movie.json",
+      "sha256": "ad2bd05c18521ad885fe82c3bf448270390bbca2b426c8ce7f0565a14ac16df9",
+      "classification": "poll_only_no_execution_mode_provenance"
+    }
+  ],
+  "trace_fixture": {
+    "path": "movies/Phase4/Interpreter/100% Runs/LEVEL06.movie.json",
+    "sha256": "b2a3ebcae0c82aa65ea6f5052561f72cc2e7bc291655b5500aae70031188e127",
+    "state_path": "movies/Phase4/Interpreter/100% Runs/LEVEL06.movie.sav",
+    "state_sha256": "93691960e8ddf2d981732994b591c855db19c7a453bae416e09399ac242509c4",
+    "movie_version": 4,
+    "frame_count": 12917,
+    "initial_emulator_frame": 121865,
+    "execution_mode": "Interpreter",
+    "reproducible": true,
+    "truncated": false,
+    "media_bin_sha1": "0bc1a29748d4bd608d076495d085e825574880d1f",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899"
+  },
+  "closure_fixture": {
+    "path": "movies/Phase4/Interpreter/C03_flik_letters_lifecycle.movie.json",
+    "sha256": "248e25975c8ec910710ef47803b53634674095dd2bb63865c5cecbf6091c701a",
+    "state_path": "movies/Phase4/Interpreter/C03_flik_letters_lifecycle.movie.sav",
+    "state_sha256": "c0f6eaf10d12e1102787e476e7e6a2c5a2effaa59e05a2fada562b78fd8cbfe0",
+    "movie_version": 4,
+    "frame_count": 8594,
+    "initial_emulator_frame": 5307,
+    "execution_mode": "Interpreter",
+    "reproducible": true,
+    "truncated": false,
+    "initial_lives": 5,
+    "final_lives": 6,
+    "initial_mask": 0,
+    "final_mask": 0,
+    "media_bin_sha1": "0bc1a29748d4bd608d076495d085e825574880d1f",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899"
+  },
+  "claims": [
+    {
+      "claim": "Every extracted pristine gameplay LEVEL.DAT from LEVEL01 through LEVEL10 contains exactly one F, L, I, and K source.",
+      "status": "confirmed",
+      "evidence": "C LEVEL.DAT census; 40 total gameplay sources"
+    },
+    {
+      "claim": "Type 0x3F subtypes 0x10..0x13 dispatch to F/L/I/K and OR bits 1/2/4/8 into 0x800A65A2.",
+      "status": "confirmed",
+      "evidence": "Pristine dispatch table and four handler bodies; native 0/1/3/7/0x0F runtime progression"
+    },
+    {
+      "claim": "An exact 0x0F mask awards one life when lives are below 9.",
+      "status": "confirmed_static_runtime_corroborated",
+      "evidence": "Four pristine completion bodies; prior gate runtime evidence"
+    },
+    {
+      "claim": "The SELECT HUD and results overlay read the same mask.",
+      "status": "confirmed",
+      "evidence": "HUD ASM/source reconstruction and native results observation"
+    },
+    {
+      "claim": "Lives are serialized; the FLIK mask is not directly serialized.",
+      "status": "confirmed_static",
+      "evidence": "0x80055478 serializer and 0x80055538 deserializer"
+    },
+    {
+      "claim": "Gameplay initialization clears the mask while preserving lives.",
+      "status": "confirmed_static_runtime",
+      "evidence": "At movie frame 644, fcn.80046b20 saves +0xA0 lives, calls the zero-fill at 0x80046B68 over player base 0x800A6500 length 0xA8, and restores lives at 0x80046C00; BIOS PC 0xBFC02BB0 performs the observed 0x03->0x00 mask write."
+    },
+    {
+      "claim": "The natural 100% route executes all four pickup stores and the life-cap branch.",
+      "status": "confirmed_runtime",
+      "evidence": "Mask sequence 0x00->0x04->0x0C->0x0E->0x0F at movie frames 3196/3868/5354/5744; lives start and remain 9, 0x80053DDC..0x80053DEC executes, and increment store 0x80053DF8 does not."
+    },
+    {
+      "claim": "The complete mask survives results, the post-level cutscene, and the Journey hub.",
+      "status": "confirmed_runtime",
+      "evidence": "No mask writes after movie frame 5744 through the 12917-frame tail; final mask is 0x0F."
+    },
+    {
+      "claim": "A natural below-cap four-letter completion awards exactly one life.",
+      "status": "confirmed_runtime",
+      "evidence": "Closure movie frame 5069 completes mask 0x0B->0x0F through I writer 0x80053FCC; 483 cycles later pristine store 0x800540B0 increments lives 5->6 exactly once."
+    },
+    {
+      "claim": "The continuous next-gameplay initialization clears the completed mask while preserving the awarded life.",
+      "status": "confirmed_static_runtime",
+      "evidence": "Closure movie frame 8360 calls the same 0x80046B68 player-state zero-fill: mask 0x0F->0x00, lives 6->0, then 0x80046C00 restores lives 0->6; final mask/lives are 0/6."
+    }
+  ],
+  "remaining": [],
+  "movie_required": {
+    "required_for_bounded_exhaustion": false,
+    "required_for_full_closure": false,
+    "path": "movies/phase4/interpreter/C03_flik_letters_lifecycle.movie.json",
+    "mode": "Interpreter",
+    "behavior": "Satisfied by the retained closure fixture: lives below cap, natural FLIK completion, level completion, and next gameplay initialization."
+  },
+  "trace_reducer": {
+    "path": "tools/phase4_c03_trace_reduce.c",
+    "sha256": "25e42f365cfb36ee330848d395fd7b3b2564b2fac0458d6b4b3142565e265abd",
+    "output": "/tmp/phase4_c03_trace_reduce.txt",
+    "output_sha256": "407ad8f76876b4070faec9b266010c3a6546b78f98deee12e73876ec16183582"
+  },
+  "closure_reducer": {
+    "path": "tools/phase4_c03_closure_reduce.c",
+    "sha256": "5f6e1025f743aafc30d1101b2f2776391c133d62de1d0fc5456149c0258847b3",
+    "output": "/tmp/phase4_c03_closure_reduce.txt",
+    "output_sha256": "5bc6b53e1a9e0fc4fe0b9a3bc465a94b3bb98014a84cbee442de8aee2cd678ba"
+  }
+}

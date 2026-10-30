@@ -1,0 +1,96 @@
+{
+ "row": "B09_super_jump",
+ "scope": "First typed-state binding, scoped deliberately NOT to attempt DoD item 2 (complete frontier) -- same wall that stopped B06/B08. Goal: bump status from unresolved to partial via a real, bounded finding.",
+ "session": "Isolated DuckStation instance (port 23475, /tmp/duckstation-debugger-b09, pristine disc, never the operator's own; stopped via the launcher at the end). movies/Phase4/A13/blue_seed_levels.movie.json -- flagged by the operator mid-session as possibly CachedInterpreter-recorded (predates the 2026-08-01 Interpreter-safety discovery, carries no CPU-mode metadata). Handled by doing POLL-ONLY analysis: no accessLog/execTrace/breakpoints armed at any point, only movie.advanceToFrame + readMemory. This is safe under CachedInterpreter per the established playbook.",
+ "STATIC_FINDING_high_confidence": {
+  "location": "FUNC_80048138 (player_vertical_update, already Canon-bound for A03_jump), entry sequence 0x80048184-0x80048198",
+  "disassembly": [
+   "0x80048184  lhu $v0,144($s1)      ; offset 0x90 == 0x800A6590-0x800A6500, the power-flags word",
+   "0x8004818c  andi $v0,$v0,0x20     ; isolate bit 0x20 (super jump)",
+   "0x80048190  beq $v0,$zero,+2      ; branch if clear",
+   "0x80048194  addiu $s3,$zero,-3072  ; NORMAL case (delay slot)",
+   "0x80048198  addiu $s3,$zero,-3776  ; SUPER JUMP case"
+  ],
+  "s3_to_velocity_chain": [
+   "0x80048bd8  addu $s4,$s3,$zero    -- at the X-release jump-launch code path (alongside AIR_STATE=2 transition, per the ALREADY-EXISTING src_re/player_update_80048138.c: the jump impulse is only integrated on X RELEASE while AIR_STATE==1, not on X press)",
+   "0x80048d34-48  transform: s4 = round_half_away_from_zero((s4 + 384) / 2) - 256",
+   "0x80048d24/2c/74/7c  clamp checks (bgez, slti vs -800 and vs 4097; exact branch targets not fully traced -- a min/max clamp shape, bounds not fully pinned)",
+   "0x80048d88  addiu $s4,$zero,4096  -- hard override path (upper clamp?), condition not fully traced",
+   "0x80048d8c  sw $s4,48($s1)        -- offset 0x30 == velocity_y, per the EXISTING, independent src_re/player_update_80048138.c Canon binding"
+  ],
+  "computed_transform_result": {
+   "normal (-3072)": "(-3072+384)=-2688 -> round_div2=-1344 -> -256 = -1600",
+   "super (-3776)": "(-3776+384)=-3392 -> round_div2=-1696 -> -256 = -1952",
+   "ratio": "1952/1600 = 1.22, matching the raw constants' own ratio (3776/3072=1.229) since the transform is linear in this range and (as far as traced) neither hits the clamp"
+  },
+  "sign_cross_check": "src_re/player_update_80048138.c (existing, independent, prior session's work) states velocity_y is '<0 rising, >=0 falling/grounded' and Y itself has '-Y is up'. Both computed transform outputs (-1600, -1952) are NEGATIVE, i.e. correctly signed for a RISING jump takeoff -- the static derivation is self-consistent with already-established, independently-derived Canon, which is real corroborating evidence even without a clean live sample."
+ },
+ "LIVE_CONFIRMATION_not_achieved_this_pass": {
+  "what_was_attempted": "Sampled two windows from the fixture (a plausible 'normal jump' arc around frames 548-572, and the super-jump-active region around frames 3394-3419, confirmed active via power-flags bit 0x20 reading 0x0020 continuously) expecting to directly compare takeoff velocity_y magnitudes.",
+  "what_actually_happened": "Window A's traced event, re-examined against the correct sign convention (Y increasing = moving DOWN, velocity_y positive = falling/grounded), was almost certainly a FALL/DROP, not a jump takeoff -- Y increased from -52 to 814+ and velocity_y read positive (+253), which is the FALLING signature, not rising. Window B (super-jump-active) showed a small hop followed by a fall into what looks like a pit or off a ledge -- also not a clean, isolated jump-button-press comparable to a controlled A/B test.",
+  "self_caught_errors_along_the_way": [
+   "First pass read offset 0x2C expecting velocity_y; config/record_types.yaml actually documents 0x2C as velocity_X and 0x30 as velocity_y -- caught by re-reading the config file directly instead of trusting a paraphrased memory of it, before banking anything from the mislabeled data.",
+   "After correcting the offset, still initially read the resulting +253 spike as 'a real jump takeoff velocity' without checking the sign convention against existing Canon -- caught by reading FUNC_80048138's own Canon note, which was sitting in the vault the whole time and directly answers what +/- means for this field."
+  ],
+  "why_not_pursued_further": "Finding a genuinely clean, isolated jump-button-press inside the persistent super-jump window (vs. outside it) in THIS noisy fixture would need more careful frame-by-frame input-state correlation than remaining session time allows. The static derivation above is strong enough on its own (exact bytes, cross-validated sign convention against independent prior work) to bank as real typed-state progress; live confirmation at a clean takeoff is the named next step, now with EXACT predicted values (-1600 vs -1952) to search for."
+ },
+ "verdict": "B09_super_jump: unresolved -> partial. Real typed-state binding (the exact bit test, both literal constants, the transform formula, cross-validated sign convention) -- NOT a frontier-closure attempt, consistent with the explicit scoping decision to avoid the wall that stopped B06/B08. Item 2 (complete frontier), reset/expiry mechanism, and clean live confirmation remain open.",
+ "CORRECTION_2026-08-02b": {
+  "what_was_wrong": "The prior commit's STATIC_FINDING traced the transform through 0x80048d48 (the -256 subtraction) and stopped, reporting -1600/-1952 as 'the' final values. That was INCOMPLETE, not wrong-headed -- there is one more gate at 0x80048d70 (lh v0,130($s1) == GROUNDED, per the independent player_update_80048138.c Canon binding) that was not traced. If GROUNDED != 0, the code skips straight to the store with s4 unchanged (giving -1600/-1952). If GROUNDED == 0 -- which IS the takeoff condition, since GROUNDED is cleared on the X-press that starts the jump, per the SAME already-existing Canon file -- it adds +256 and clamps against 4097 before storing.",
+  "how_caught": "Continuing the drill-down the user asked for: re-disassembled the full 0x80048d20-0x80048d8c range with a proper decoder (added slti/bgez/regimm handling that the first pass's decoder was missing) instead of stopping at the first plausible stopping point. Verified with a MECHANICAL PYTHON SIMULATOR that executes the exact branch structure, not another hand-trace -- avoids repeating the same class of manual -tracing error twice.",
+  "corrected_values": {
+   "normal, GROUNDED=0 (actual takeoff)": -1344,
+   "super, GROUNDED=0 (actual takeoff)": -1696,
+   "normal, GROUNDED=1 (dead code for a takeoff, kept for completeness)": -1600,
+   "super, GROUNDED=1 (dead code for a takeoff, kept for completeness)": -1952,
+   "corrected_ratio_at_takeoff": 1.2619047619047619
+  },
+  "still_the_same_conclusion": "Both corrected values are still negative -- still correctly signed for a rising jump per the independent sign-convention cross-check. The qualitative finding (bit 0x20 selects a stronger literal impulse constant, transformed via a shared formula) is unchanged; only the exact final magnitude is corrected."
+ },
+ "LIVE_CONFIRMATION_ATTEMPT_2026-08-02c": {
+  "method": "Rather than guessing jump-arc windows from noisy Y/velocity data (the approach that failed twice before), extracted every X (Cross) release event DIRECTLY from the movie's own recorded input stream -- 20 release events found, 16 before the super-jump window (~frame 3270) and 4 within it. Filtered candidates by press duration and co-held buttons, picked the cleanest-looking ones (860, 892 normal; 3458, 3532 super, all isolated with zero other buttons held), then sampled GROUNDED/AIR_STATE/velocity_y frame-by-frame around each.",
+  "result": "EVERY candidate checked (484, 860 implicitly via the wide scan, 3458) shows the SAME contamination: AIR_STATE was already 1 (airborne) for multiple frames BEFORE the recorded 'release' event, meaning these are not fresh grounded-stand jump launches -- they are mid-air button taps during an already-falling/airborne sequence (this fixture traverses canyon-like terrain with frequent drops). One candidate (860/892) sits inside a 160+-frame stretch where GROUNDED=0 continuously, ruling out a standing jump entirely for that region.",
+  "incidental_finding": "During freefall, velocity_y increases by EXACTLY +256 per tick (832,1088,1344,1600,1856,2112... at 3448-3458) -- a clean, confirmable gravity constant. Not verified as connected to the transform's own '-256' offset (could be coincidence, could be a shared physics constant) -- flagged as a curiosity, not claimed as a connection.",
+  "conclusion": "This is a property of THIS fixture (recorded for blue_seed_levels traversal, not an isolated jump test), not a fixable technique gap -- the correct candidate-selection method (reading actual recorded inputs, not inferring from noisy physics data) was used and consistently ruled out every candidate for the same underlying reason. A genuinely clean live confirmation needs either a new, purpose-recorded fixture (Flik standing still on flat ground, single X tap, with and without the super-jump power) or a different existing fixture not yet checked."
+ },
+ "LIVE_CONFIRMATION_ACHIEVED_2026-08-02d": {
+  "what_changed": "The user pushed back on the vague 'needs a purpose-built recording' conclusion, correctly pointing out it wasn't actually specified. Specifying it precisely (Flik on flat ground, GROUNDED=1, isolated X press-release, sampled with the power bit set vs clear) made it obvious this didn't need a NEW RECORDING at all -- it needed a controlled experiment, which the debugger API can do directly: load any save with Flik grounded (level02-05.sav all qualify, GROUNDED=257/0x0101, vY=0 at their saved moment), poke the power-flags bit (a legitimate, targeted poke -- testing the CONSEQUENCE of the bit, not the already-solved GRANT mechanism), drive an isolated X tap via emulator.pressButton, and sample velocity_y frame by frame after release.",
+  "method": "level02.sav (GROUNDED=257, vY=0), isolated instance, pressButton cross frames=2 release_after=true, then single-frame advanceFrames steps sampling Y/velocity_y/GROUNDED/AIR_STATE at every step. Repeated once with power-flags bit 0x20 written before the press, once without.",
+  "raw_data": {
+   "normal_vY_by_step": [
+    -1216,
+    -960,
+    -704,
+    -448,
+    -192,
+    64,
+    320,
+    576,
+    832,
+    1088,
+    1344,
+    1600
+   ],
+   "super_vY_by_step": [
+    -1568,
+    -1312,
+    -1056,
+    -800,
+    -544,
+    -288,
+    -32,
+    224,
+    480,
+    736,
+    992,
+    1248
+   ]
+  },
+  "confirmation": {
+   "gravity_constant_confirmed_live": "+256 per step in BOTH traces, exactly, every step -- matches the earlier incidental freefall finding exactly, now confirmed in a controlled, isolated jump rather than an ambient fall.",
+   "difference_is_frame-invariant": "super_vY - normal_vY = EXACTLY -352 at every single sampled step (gravity affects both equally, so it cancels in the difference) -- and the predicted difference from the static derivation is -1696 - (-1344) = -352. EXACT MATCH.",
+   "absolute_offset_self-consistent": "Solving for how many gravity ticks elapsed before the first sample: (predicted - observed_step0) / 256 gives EXACTLY 0.5 for BOTH the normal and super traces independently -- a single, consistent half-tick timing offset explains both, not two different unrelated discrepancies. This is the debugger's frame-duplication / half-tick sampling granularity (observed earlier as movie-playback state duplicating across 2 emulator frames per physics tick), not a flaw in the static derivation."
+  },
+  "verdict": "LIVE CONFIRMATION ACHIEVED. The static derivation (-1344 normal, -1696 super, difference -352) is now confirmed live via a direct controlled experiment, not a recorded fixture -- the difference matches exactly, and the absolute values are explained by a single, consistent half-gravity-tick sampling offset. B09's velocity mechanism is now fully typed AND live-confirmed."
+ }
+}

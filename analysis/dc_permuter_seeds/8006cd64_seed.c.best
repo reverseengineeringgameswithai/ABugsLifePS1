@@ -1,0 +1,19 @@
+extern unsigned char g_80081060;
+extern unsigned int g_800814e0;
+void SpuSetTransferMode(char mode)
+{
+  void *_t232 = mode == 1;
+  unsigned int flag;
+  unsigned char _t862 = !_t232;
+  void *_t549 = !_t862;
+  if (!(mode == 0))
+    if (_t549)
+    flag = 1;
+  else
+    flag = 0;
+  else
+    flag = 0;
+  g_80081060 = mode;
+  g_800814e0 = flag;
+}
+

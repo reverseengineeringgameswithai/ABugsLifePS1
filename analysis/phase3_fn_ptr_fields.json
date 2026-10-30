@@ -1,0 +1,2726 @@
+{
+ "_comment": "Phase-3: FUNCTION-POINTER FIELDS of the typed records, found empirically \u2014 a field that holds the ENTRY POINT of a censused function in live instance after live instance, across levels. Cross-referenced with the offsets the jalr sites actually call through, which upgrades 'there is a pointer here' to 'and the game calls it'. Regenerate: tools/phase3_fn_ptr_fields.py",
+ "generated": "2026-07-14",
+ "run_provenance": {
+  "command": "/usr/bin/python3 tools/phase3_fn_ptr_fields.py --port 25777 --token '<redacted-token>' --config-dir /tmp/duckstation-phase3-i6b-fnptr-4Gd6WC --instance-state recreated",
+  "generator_sha256": "ec225046082190ff678779c41c486286ca553f1385398489d03bad4f75cedd49",
+  "provenance_helper_sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678",
+  "launcher_helper_sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821",
+  "repository_head": "67c1b6db21fb728fd65fe6697a193b4a097faf1d",
+  "recorded_utc": "2026-07-14T21:54:39.390440+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "status": "M EXTERNAL_DEBUGGER_CONTROL.md\n M docs/external-debugger-determinism.md\n M docs/external-debugger-experiment-runner.md\n M docs/external-debugger-movie.md\n M docs/external-debugger.md\n M scripts/debugger-client/README.md\n M scripts/debugger-client/duckstation_debug_client.py\n M scripts/debugger-client/mcp_bridge.py\n M src/CMakeLists.txt\n M src/core/CMakeLists.txt\n M src/core/achievements.cpp\n M src/core/analog_controller.cpp\n M src/core/analog_controller.h\n M src/core/analog_joystick.cpp\n M src/core/analog_joystick.h\n M src/core/cdrom.cpp\n M src/core/cdrom.h\n M src/core/controller.cpp\n M src/core/controller.h\n M src/core/core.vcxproj\n M src/core/core.vcxproj.filters\n M src/core/cpu_core.cpp\n M src/core/cpu_core.h\n M src/core/debugger_control_service.cpp\n M src/core/debugger_control_service.h\n M src/core/dma.cpp\n M src/core/fullscreenui_settings.cpp\n M src/core/gpu.cpp\n M src/core/gpu.h\n M src/core/gpu_backend.cpp\n M src/core/gpu_backend.h\n M src/core/imgui_overlays.cpp\n M src/core/input_movie.cpp\n M src/core/input_movie.h\n M src/core/negcon.cpp\n M src/core/negcon.h\n M src/core/negcon_rumble.cpp\n M src/core/negcon_rumble.h\n M src/core/settings.cpp\n M src/core/settings.h\n M src/core/spu.cpp\n M src/core/spu.h\n M src/core/system.cpp\n M src/core/system.h\n M src/core/system_private.h\n M src/duckstation-qt/debuggerrpc.cpp\n M src/duckstation-qt/debuggerrpc.h\n M src/duckstation-qt/debuggerserver.cpp\n M src/duckstation-qt/debuggerserver.h\n M src/duckstation-qt/input_movie_file.cpp\n M src/duckstation-qt/input_movie_file.h\n M src/duckstation-qt/interfacesettingswidget.cpp\n M src/duckstation-qt/interfacesettingswidget.ui\n M src/duckstation-qt/logwindow.cpp\n M src/duckstation-qt/mainwindow.cpp\n M src/duckstation-qt/mainwindow.h\n M src/duckstation-qt/mainwindow.ui\n M src/duckstation-qt/osdsettingswidget.cpp\n M src/duckstation-qt/osdsettingswidget.ui\n M src/duckstation-qt/qthost.cpp\n M src/duckstation-qt/qtutils.cpp\n M src/duckstation-qt/qtutils.h\n M src/duckstation-regtest/regtest_host.cpp\n M src/scmversion/gen_scmversion.bat\n M src/scmversion/gen_scmversion.sh\n M src/scmversion/scmversion.h\n?? api-hardening-artifacts-20260714/\n?? docs/external-debugger-scenarios.md\n?? scripts/debugger-client/launch_debugger_instance.sh\n?? scripts/debugger-client/test_code_patch_invalidation.py\n?? scripts/debugger-client/test_framebuffer_capture.py\n?? scripts/debugger-client/test_function_bounds.py\n?? scripts/debugger-client/test_gp0trace_dma.py\n?? src/core-tests/\n?? src/core/cd_provenance.cpp\n?? src/core/cd_provenance.h\n?? src/core/code_analysis.cpp\n?? src/core/code_analysis.h\n?? src/core/frame_diff.cpp\n?? src/core/frame_diff.h\n?? src/core/gpu_object_picker.cpp\n?? src/core/gpu_object_picker.h\n?? src/core/gte_camera.cpp\n?? src/core/gte_camera.h\n?? src/core/movie_edit.cpp\n?? src/core/movie_edit.h\n?? src/core/write_index.cpp\n?? src/core/write_index.h",
+   "binary_path": "~/duckstation/build/bin/duckstation-qt",
+   "binary_sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9"
+  },
+  "rpc_manifest": {
+   "path": "analysis/phase3_duckstation_rpc_manifest.json",
+   "semantic_sha256": "e2597de77dc56ff2dc4c4b9d2ff72b9abccb76b203a6d7d2c180aeba29fdd80b",
+   "source": {
+    "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "status_sha256": "1c1a325041c78e0545816a605a2dbc7c41a08549642d4f4b8289d9df87baf130",
+    "dispatcher_sha256": "b1be4d512eae5c67608453adcbabb32e03612c3ead51856c41ab9c0d140f47be",
+    "method_count": 203
+   },
+   "binary": {
+    "path": "~/duckstation/build/bin/duckstation-qt",
+    "sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9",
+    "size": 52450688
+   }
+  },
+  "debugger": {
+   "config_dir": "/tmp/duckstation-phase3-i6b-fnptr-4Gd6WC",
+   "port": 25777,
+   "transport": "ws",
+   "token_sha256": "72c048e46ff3498c6a1b480d785eaf91742ba0c63eb218ba654873d8c7bd9a9d",
+   "recreated": true,
+   "owned_pid": 1868874
+  },
+  "anchor": {
+   "saves": [
+    "phase3_pristine_training_gameplay_i5.sav",
+    "level01.sav",
+    "level02.sav",
+    "level03.sav",
+    "level04.sav",
+    "level05.sav",
+    "level_06.sav",
+    "level_07.sav",
+    "level_08.sav",
+    "level_09.sav",
+    "level_10.sav",
+    "level_11.sav",
+    "level_12.sav",
+    "level_13.sav",
+    "level_14.sav",
+    "level_15.sav",
+    "movies/Bonus_Level_01.movie.sav",
+    "movies/Bonus_Level_02.movie.sav",
+    "movies/Bonus_Level_03.movie.sav",
+    "training_all_stuff_collected_ending.sav",
+    "level01_end_of_stage.sav",
+    "LEVEL02_ENDING.sav",
+    "LEVEL04_ENDING.sav",
+    "LEVEL05_ENDING.sav",
+    "LEVEL07_ENDING.sav",
+    "LEVEL12_ENDING.sav",
+    "LEVEL14_ENDING.sav",
+    "LEVEL08_DIM.sav",
+    "LEVEL08_MANNY.sav",
+    "LEVEL08_ROSIE.sav",
+    "LEVEL08_TUCKROLL.sav",
+    "LEVEL10_1.sav",
+    "LEVEL10_2.sav",
+    "LEVEL10_3.sav",
+    "LEVEL10_4.sav",
+    "LEVEL10_5.sav",
+    "LEVEL11_1.sav",
+    "LEVEL11_2.sav",
+    "LEVEL11_3.sav",
+    "LEVEL11_4.sav",
+    "LEVEL11_5.sav",
+    "LEVEL11_DOT.sav"
+   ],
+   "fixture_sha256": {
+    "phase3_pristine_training_gameplay_i5.sav": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+    "level01.sav": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+    "level02.sav": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+    "level03.sav": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+    "level04.sav": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+    "level05.sav": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+    "level_06.sav": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+    "level_07.sav": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+    "level_08.sav": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+    "level_09.sav": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+    "level_10.sav": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+    "level_11.sav": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+    "level_12.sav": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+    "level_13.sav": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+    "level_14.sav": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+    "level_15.sav": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+    "movies/Bonus_Level_01.movie.sav": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+    "movies/Bonus_Level_02.movie.sav": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+    "movies/Bonus_Level_03.movie.sav": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+    "training_all_stuff_collected_ending.sav": "fb0690dcd07a18368ae4468726c7c3658cee9fc4dbdd4b6117f09cc9e94e0a02",
+    "level01_end_of_stage.sav": "42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f",
+    "LEVEL02_ENDING.sav": "f212d375a78fe44e94dfaf2c85b05579ba03a91e7201fac9d33014b5a7e60a48",
+    "LEVEL04_ENDING.sav": "bbd3464133939c9eb5fe2fe2325da93f41ea209a2f84d585f709b081949a17fe",
+    "LEVEL05_ENDING.sav": "91060017e12caf961385ff6f6d5b618623a8befcdd288eb20e09e47b3c854f24",
+    "LEVEL07_ENDING.sav": "124d1a39336729db0894cebbf07df8261946a939b10c4e8a80509062a9865ba3",
+    "LEVEL12_ENDING.sav": "bde7040871dce7994bfa2187f1167cd3c0f8f070f36a63c6b7bb26db5d407848",
+    "LEVEL14_ENDING.sav": "a46727ea32dd33e177c2210c77116e0189a57deef9173dfc8aa3e6b49215e25c",
+    "LEVEL08_DIM.sav": "7443263879ad964a387f7aa8d1c31ec6475b54aa569a247c0672b9294c662c7c",
+    "LEVEL08_MANNY.sav": "a82e59a88e4f662e67f59933ccd40d7ee064a2ce4ae2043aed67309a7061873b",
+    "LEVEL08_ROSIE.sav": "9df7695a9722cfe1a03b1c8e9d34a976ff9fb03af0f1cea455115d4d8597674f",
+    "LEVEL08_TUCKROLL.sav": "546e49486de3f6038e5fdffe60a50cd90e9c5a77ef323c7d08080c8d1749c37c",
+    "LEVEL10_1.sav": "817e167ed7aa5440362952ff8506ef4d0eea0aef76c407c61b1c3bc5f15b1f73",
+    "LEVEL10_2.sav": "e8596933232cb3571fba7d8a73878ed54555af2140da265524f88dc791ddfd1f",
+    "LEVEL10_3.sav": "05cfc08ef1b14e3b878e192bd8d7a3bd5c81f2f1bdc5dd1036559417ed551ad1",
+    "LEVEL10_4.sav": "74465745c5726134df5ef8200d5bcd2cce0ad9a7b38d438e5979c58c15ab072d",
+    "LEVEL10_5.sav": "7254a3f664d590bad270d14bb1d173a45ac9dac9111b5e496b93b4ee60a588cb",
+    "LEVEL11_1.sav": "c0830fd1bb639bf02cdf89809723ba08ffbe4b0ed2e4376c9c2566f03a50a742",
+    "LEVEL11_2.sav": "f66cff741730804db560c3ec7eece3ed33a7e857f104c0ff0e366380032d484f",
+    "LEVEL11_3.sav": "d1dc63455fa32f13b329113c10a0bab6100ac068282a083f8a2495b5f97336b1",
+    "LEVEL11_4.sav": "4ac201a7f4363c1526346e87618bee179b2fdb9d5ac386959ff425a9b0f04d30",
+    "LEVEL11_5.sav": "d9d7bf3c9b329a7e8fbef37e50283dc8fe19223d0159f9f31025c1e0d6d69f9d",
+    "LEVEL11_DOT.sav": "9b2c7c6f7941a837465798f4036e7d8df1b76a9e39f7d801614048b3a8b90e3e"
+   },
+   "selection": {
+    "source": "analysis/phase2_stage_baseline.json",
+    "required_media_class": "pristine",
+    "anchors_requested": 42,
+    "anchors_accepted": 42,
+    "anchors_rejected": 0,
+    "accepted": [
+     {
+      "label": "training",
+      "save": "phase3_pristine_training_gameplay_i5.sav",
+      "path": "phase3_pristine_training_gameplay_i5.sav",
+      "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+      "size": 2152414,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage01_anthill",
+      "save": "level01.sav",
+      "path": "level01.sav",
+      "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+      "size": 1939333,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage02_tunnels",
+      "save": "level02.sav",
+      "path": "level02.sav",
+      "sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+      "size": 1899430,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage03_council_chamber",
+      "save": "level03.sav",
+      "path": "level03.sav",
+      "sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+      "size": 2039960,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage04_cliffside_canyon",
+      "save": "level04.sav",
+      "path": "level04.sav",
+      "sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+      "size": 2025832,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage05_riverbed_run",
+      "save": "level05.sav",
+      "path": "level05.sav",
+      "sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+      "size": 1981001,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage06_birdnest",
+      "save": "level_06.sav",
+      "path": "level_06.sav",
+      "sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+      "size": 2068949,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage07_city_entrance",
+      "save": "level_07.sav",
+      "path": "level_07.sav",
+      "sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+      "size": 1808141,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage08_city_square",
+      "save": "level_08.sav",
+      "path": "level_08.sav",
+      "sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+      "size": 1901433,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage09_bug_bar",
+      "save": "level_09.sav",
+      "path": "level_09.sav",
+      "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+      "size": 1880412,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage10_clover_forest",
+      "save": "level_10.sav",
+      "path": "level_10.sav",
+      "sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+      "size": 2028184,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage11_the_tree",
+      "save": "level_11.sav",
+      "path": "level_11.sav",
+      "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+      "size": 1941710,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage12_battle_arena",
+      "save": "level_12.sav",
+      "path": "level_12.sav",
+      "sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+      "size": 2004114,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage13_anthill_two",
+      "save": "level_13.sav",
+      "path": "level_13.sav",
+      "sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+      "size": 1970828,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage14_riverbed_flight",
+      "save": "level_14.sav",
+      "path": "level_14.sav",
+      "sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+      "size": 2069312,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage15_canyon_showdown",
+      "save": "level_15.sav",
+      "path": "level_15.sav",
+      "sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+      "size": 1999903,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "bonus1_spiders",
+      "save": "movies/Bonus_Level_01.movie.sav",
+      "path": "movies/Bonus_Level_01.movie.sav",
+      "sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+      "size": 2101239,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "bonus2_mushrooms",
+      "save": "movies/Bonus_Level_02.movie.sav",
+      "path": "movies/Bonus_Level_02.movie.sav",
+      "sha256": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+      "size": 1981197,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "bonus3_grasshoppers",
+      "save": "movies/Bonus_Level_03.movie.sav",
+      "path": "movies/Bonus_Level_03.movie.sav",
+      "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+      "size": 1941083,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "training_completion",
+      "save": "training_all_stuff_collected_ending.sav",
+      "path": "training_all_stuff_collected_ending.sav",
+      "sha256": "fb0690dcd07a18368ae4468726c7c3658cee9fc4dbdd4b6117f09cc9e94e0a02",
+      "size": 2103577,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage01_completion",
+      "save": "level01_end_of_stage.sav",
+      "path": "level01_end_of_stage.sav",
+      "sha256": "42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f",
+      "size": 2033862,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage02_completion",
+      "save": "LEVEL02_ENDING.sav",
+      "path": "LEVEL02_ENDING.sav",
+      "sha256": "f212d375a78fe44e94dfaf2c85b05579ba03a91e7201fac9d33014b5a7e60a48",
+      "size": 1872373,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage04_completion",
+      "save": "LEVEL04_ENDING.sav",
+      "path": "LEVEL04_ENDING.sav",
+      "sha256": "bbd3464133939c9eb5fe2fe2325da93f41ea209a2f84d585f709b081949a17fe",
+      "size": 2011262,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage05_completion",
+      "save": "LEVEL05_ENDING.sav",
+      "path": "LEVEL05_ENDING.sav",
+      "sha256": "91060017e12caf961385ff6f6d5b618623a8befcdd288eb20e09e47b3c854f24",
+      "size": 1990025,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage07_completion",
+      "save": "LEVEL07_ENDING.sav",
+      "path": "LEVEL07_ENDING.sav",
+      "sha256": "124d1a39336729db0894cebbf07df8261946a939b10c4e8a80509062a9865ba3",
+      "size": 1953310,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage12_completion",
+      "save": "LEVEL12_ENDING.sav",
+      "path": "LEVEL12_ENDING.sav",
+      "sha256": "bde7040871dce7994bfa2187f1167cd3c0f8f070f36a63c6b7bb26db5d407848",
+      "size": 2068930,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage14_completion",
+      "save": "LEVEL14_ENDING.sav",
+      "path": "LEVEL14_ENDING.sav",
+      "sha256": "a46727ea32dd33e177c2210c77116e0189a57deef9173dfc8aa3e6b49215e25c",
+      "size": 1979317,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage08_progress_dim",
+      "save": "LEVEL08_DIM.sav",
+      "path": "LEVEL08_DIM.sav",
+      "sha256": "7443263879ad964a387f7aa8d1c31ec6475b54aa569a247c0672b9294c662c7c",
+      "size": 1906747,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage08_progress_manny",
+      "save": "LEVEL08_MANNY.sav",
+      "path": "LEVEL08_MANNY.sav",
+      "sha256": "a82e59a88e4f662e67f59933ccd40d7ee064a2ce4ae2043aed67309a7061873b",
+      "size": 1861971,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage08_progress_rosie",
+      "save": "LEVEL08_ROSIE.sav",
+      "path": "LEVEL08_ROSIE.sav",
+      "sha256": "9df7695a9722cfe1a03b1c8e9d34a976ff9fb03af0f1cea455115d4d8597674f",
+      "size": 1931353,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage08_progress_tuckroll",
+      "save": "LEVEL08_TUCKROLL.sav",
+      "path": "LEVEL08_TUCKROLL.sav",
+      "sha256": "546e49486de3f6038e5fdffe60a50cd90e9c5a77ef323c7d08080c8d1749c37c",
+      "size": 1844293,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage10_progress_1",
+      "save": "LEVEL10_1.sav",
+      "path": "LEVEL10_1.sav",
+      "sha256": "817e167ed7aa5440362952ff8506ef4d0eea0aef76c407c61b1c3bc5f15b1f73",
+      "size": 1998999,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage10_progress_2",
+      "save": "LEVEL10_2.sav",
+      "path": "LEVEL10_2.sav",
+      "sha256": "e8596933232cb3571fba7d8a73878ed54555af2140da265524f88dc791ddfd1f",
+      "size": 1955774,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage10_progress_3",
+      "save": "LEVEL10_3.sav",
+      "path": "LEVEL10_3.sav",
+      "sha256": "05cfc08ef1b14e3b878e192bd8d7a3bd5c81f2f1bdc5dd1036559417ed551ad1",
+      "size": 2050299,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage10_progress_4",
+      "save": "LEVEL10_4.sav",
+      "path": "LEVEL10_4.sav",
+      "sha256": "74465745c5726134df5ef8200d5bcd2cce0ad9a7b38d438e5979c58c15ab072d",
+      "size": 1992174,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage10_progress_5",
+      "save": "LEVEL10_5.sav",
+      "path": "LEVEL10_5.sav",
+      "sha256": "7254a3f664d590bad270d14bb1d173a45ac9dac9111b5e496b93b4ee60a588cb",
+      "size": 1977771,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage11_progress_1",
+      "save": "LEVEL11_1.sav",
+      "path": "LEVEL11_1.sav",
+      "sha256": "c0830fd1bb639bf02cdf89809723ba08ffbe4b0ed2e4376c9c2566f03a50a742",
+      "size": 1884343,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage11_progress_2",
+      "save": "LEVEL11_2.sav",
+      "path": "LEVEL11_2.sav",
+      "sha256": "f66cff741730804db560c3ec7eece3ed33a7e857f104c0ff0e366380032d484f",
+      "size": 1841722,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage11_progress_3",
+      "save": "LEVEL11_3.sav",
+      "path": "LEVEL11_3.sav",
+      "sha256": "d1dc63455fa32f13b329113c10a0bab6100ac068282a083f8a2495b5f97336b1",
+      "size": 1844309,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage11_progress_4",
+      "save": "LEVEL11_4.sav",
+      "path": "LEVEL11_4.sav",
+      "sha256": "4ac201a7f4363c1526346e87618bee179b2fdb9d5ac386959ff425a9b0f04d30",
+      "size": 1835648,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage11_progress_5",
+      "save": "LEVEL11_5.sav",
+      "path": "LEVEL11_5.sav",
+      "sha256": "d9d7bf3c9b329a7e8fbef37e50283dc8fe19223d0159f9f31025c1e0d6d69f9d",
+      "size": 1844472,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     {
+      "label": "stage11_progress_dot",
+      "save": "LEVEL11_DOT.sav",
+      "path": "LEVEL11_DOT.sav",
+      "sha256": "9b2c7c6f7941a837465798f4036e7d8df1b76a9e39f7d801614048b3a8b90e3e",
+      "size": 2017901,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     }
+    ],
+    "rejected": []
+   },
+   "state_inspections": [
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/phase3_pristine_training_gameplay_i5.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2152414,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "phase3_pristine_training_gameplay_i5.sav",
+      "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+      "size": 2152414,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level01.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1939333,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level01.sav",
+      "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+      "size": 1939333,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level02.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1899430,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level02.sav",
+      "sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+      "size": 1899430,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level03.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2039960,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level03.sav",
+      "sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+      "size": 2039960,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level04.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2025832,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level04.sav",
+      "sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+      "size": 2025832,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level05.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1981001,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level05.sav",
+      "sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+      "size": 1981001,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_06.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2068949,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_06.sav",
+      "sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+      "size": 2068949,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_07.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1808141,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_07.sav",
+      "sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+      "size": 1808141,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_08.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1901433,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_08.sav",
+      "sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+      "size": 1901433,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_09.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1880412,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_09.sav",
+      "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+      "size": 1880412,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_10.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2028184,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_10.sav",
+      "sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+      "size": 2028184,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_11.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1941710,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_11.sav",
+      "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+      "size": 1941710,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_12.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2004114,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_12.sav",
+      "sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+      "size": 2004114,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_13.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1970828,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_13.sav",
+      "sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+      "size": 1970828,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_14.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2069312,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_14.sav",
+      "sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+      "size": 2069312,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level_15.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1999903,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level_15.sav",
+      "sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+      "size": 1999903,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/movies/Bonus_Level_01.movie.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2101239,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "movies/Bonus_Level_01.movie.sav",
+      "sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+      "size": 2101239,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/movies/Bonus_Level_02.movie.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1981197,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "movies/Bonus_Level_02.movie.sav",
+      "sha256": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+      "size": 1981197,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/movies/Bonus_Level_03.movie.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1941083,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "movies/Bonus_Level_03.movie.sav",
+      "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+      "size": 1941083,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/training_all_stuff_collected_ending.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2103577,
+     "timestamp": 1784042963,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "training_all_stuff_collected_ending.sav",
+      "sha256": "fb0690dcd07a18368ae4468726c7c3658cee9fc4dbdd4b6117f09cc9e94e0a02",
+      "size": 2103577,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level01_end_of_stage.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2033862,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level01_end_of_stage.sav",
+      "sha256": "42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f",
+      "size": 2033862,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL02_ENDING.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1872373,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL02_ENDING.sav",
+      "sha256": "f212d375a78fe44e94dfaf2c85b05579ba03a91e7201fac9d33014b5a7e60a48",
+      "size": 1872373,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL04_ENDING.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2011262,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL04_ENDING.sav",
+      "sha256": "bbd3464133939c9eb5fe2fe2325da93f41ea209a2f84d585f709b081949a17fe",
+      "size": 2011262,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL05_ENDING.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1990025,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL05_ENDING.sav",
+      "sha256": "91060017e12caf961385ff6f6d5b618623a8befcdd288eb20e09e47b3c854f24",
+      "size": 1990025,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL07_ENDING.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1953310,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL07_ENDING.sav",
+      "sha256": "124d1a39336729db0894cebbf07df8261946a939b10c4e8a80509062a9865ba3",
+      "size": 1953310,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL12_ENDING.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2068930,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL12_ENDING.sav",
+      "sha256": "bde7040871dce7994bfa2187f1167cd3c0f8f070f36a63c6b7bb26db5d407848",
+      "size": 2068930,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL14_ENDING.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1979317,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL14_ENDING.sav",
+      "sha256": "a46727ea32dd33e177c2210c77116e0189a57deef9173dfc8aa3e6b49215e25c",
+      "size": 1979317,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL08_DIM.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1906747,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL08_DIM.sav",
+      "sha256": "7443263879ad964a387f7aa8d1c31ec6475b54aa569a247c0672b9294c662c7c",
+      "size": 1906747,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL08_MANNY.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1861971,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL08_MANNY.sav",
+      "sha256": "a82e59a88e4f662e67f59933ccd40d7ee064a2ce4ae2043aed67309a7061873b",
+      "size": 1861971,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL08_ROSIE.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1931353,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL08_ROSIE.sav",
+      "sha256": "9df7695a9722cfe1a03b1c8e9d34a976ff9fb03af0f1cea455115d4d8597674f",
+      "size": 1931353,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL08_TUCKROLL.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1844293,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL08_TUCKROLL.sav",
+      "sha256": "546e49486de3f6038e5fdffe60a50cd90e9c5a77ef323c7d08080c8d1749c37c",
+      "size": 1844293,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL10_1.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1998999,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL10_1.sav",
+      "sha256": "817e167ed7aa5440362952ff8506ef4d0eea0aef76c407c61b1c3bc5f15b1f73",
+      "size": 1998999,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL10_2.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1955774,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL10_2.sav",
+      "sha256": "e8596933232cb3571fba7d8a73878ed54555af2140da265524f88dc791ddfd1f",
+      "size": 1955774,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL10_3.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2050299,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL10_3.sav",
+      "sha256": "05cfc08ef1b14e3b878e192bd8d7a3bd5c81f2f1bdc5dd1036559417ed551ad1",
+      "size": 2050299,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL10_4.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1992174,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL10_4.sav",
+      "sha256": "74465745c5726134df5ef8200d5bcd2cce0ad9a7b38d438e5979c58c15ab072d",
+      "size": 1992174,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL10_5.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1977771,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL10_5.sav",
+      "sha256": "7254a3f664d590bad270d14bb1d173a45ac9dac9111b5e496b93b4ee60a588cb",
+      "size": 1977771,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL11_1.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1884343,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL11_1.sav",
+      "sha256": "c0830fd1bb639bf02cdf89809723ba08ffbe4b0ed2e4376c9c2566f03a50a742",
+      "size": 1884343,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL11_2.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1841722,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL11_2.sav",
+      "sha256": "f66cff741730804db560c3ec7eece3ed33a7e857f104c0ff0e366380032d484f",
+      "size": 1841722,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL11_3.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1844309,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL11_3.sav",
+      "sha256": "d1dc63455fa32f13b329113c10a0bab6100ac068282a083f8a2495b5f97336b1",
+      "size": 1844309,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL11_4.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1835648,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL11_4.sav",
+      "sha256": "4ac201a7f4363c1526346e87618bee179b2fdb9d5ac386959ff425a9b0f04d30",
+      "size": 1835648,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL11_5.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1844472,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL11_5.sav",
+      "sha256": "d9d7bf3c9b329a7e8fbef37e50283dc8fe19223d0159f9f31025c1e0d6d69f9d",
+      "size": 1844472,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    },
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/LEVEL11_DOT.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 2017901,
+     "timestamp": 1784042961,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "LEVEL11_DOT.sav",
+      "sha256": "9b2c7c6f7941a837465798f4036e7d8df1b76a9e39f7d801614048b3a8b90e3e",
+      "size": 2017901,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    }
+   ],
+   "media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   }
+  },
+  "timing": {
+   "anchors_loaded": 42,
+   "sampling": "one paused snapshot per anchor"
+  },
+  "cleanup": {
+   "owned_pid_stopped": true,
+   "launcher_returncode": 0,
+   "launcher_output": "Stopped isolated instance (pid 1868874).\nowned cleanup: pid=1868874 stopped=true final_state=None waited_ms=0",
+   "process_final_state": null
+  }
+ },
+ "media": {
+  "serial": "SCUS-94288"
+ },
+ "media_identity_after_connect": {
+  "game_serial": "SCUS-94288",
+  "game_title": "Disney-Pixar A Bug's Life",
+  "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+  "rpc_before_hash": {
+   "cd_overlays_removed": 0,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_media": true,
+   "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "subimage_count": 0,
+   "subimage_index": 0
+  },
+  "rpc_after_hash": {
+   "cd_overlays_removed": 0,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "has_media": true,
+   "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "subimage_count": 0,
+   "subimage_index": 0
+  },
+  "hash_verification": {
+   "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+   "pin_source": "tools/build_baselines.json",
+   "pristine_verified": true,
+   "files": {
+    "Disney-Pixar A Bug's Life (v1.0).cue": {
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "matches_pin": true
+    },
+    "Disney-Pixar A Bug's Life (v1.0).bin": {
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+     "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "matches_pin": true
+    }
+   }
+  }
+ },
+ "anchor_selection": {
+  "source": "analysis/phase2_stage_baseline.json",
+  "required_media_class": "pristine",
+  "anchors_requested": 42,
+  "anchors_accepted": 42,
+  "anchors_rejected": 0,
+  "accepted": [
+   {
+    "label": "training",
+    "save": "phase3_pristine_training_gameplay_i5.sav",
+    "path": "phase3_pristine_training_gameplay_i5.sav",
+    "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+    "size": 2152414,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage01_anthill",
+    "save": "level01.sav",
+    "path": "level01.sav",
+    "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+    "size": 1939333,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage02_tunnels",
+    "save": "level02.sav",
+    "path": "level02.sav",
+    "sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+    "size": 1899430,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage03_council_chamber",
+    "save": "level03.sav",
+    "path": "level03.sav",
+    "sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+    "size": 2039960,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage04_cliffside_canyon",
+    "save": "level04.sav",
+    "path": "level04.sav",
+    "sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+    "size": 2025832,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage05_riverbed_run",
+    "save": "level05.sav",
+    "path": "level05.sav",
+    "sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+    "size": 1981001,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage06_birdnest",
+    "save": "level_06.sav",
+    "path": "level_06.sav",
+    "sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+    "size": 2068949,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage07_city_entrance",
+    "save": "level_07.sav",
+    "path": "level_07.sav",
+    "sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+    "size": 1808141,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage08_city_square",
+    "save": "level_08.sav",
+    "path": "level_08.sav",
+    "sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+    "size": 1901433,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage09_bug_bar",
+    "save": "level_09.sav",
+    "path": "level_09.sav",
+    "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+    "size": 1880412,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage10_clover_forest",
+    "save": "level_10.sav",
+    "path": "level_10.sav",
+    "sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+    "size": 2028184,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage11_the_tree",
+    "save": "level_11.sav",
+    "path": "level_11.sav",
+    "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+    "size": 1941710,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage12_battle_arena",
+    "save": "level_12.sav",
+    "path": "level_12.sav",
+    "sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+    "size": 2004114,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage13_anthill_two",
+    "save": "level_13.sav",
+    "path": "level_13.sav",
+    "sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+    "size": 1970828,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage14_riverbed_flight",
+    "save": "level_14.sav",
+    "path": "level_14.sav",
+    "sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+    "size": 2069312,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage15_canyon_showdown",
+    "save": "level_15.sav",
+    "path": "level_15.sav",
+    "sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+    "size": 1999903,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "bonus1_spiders",
+    "save": "movies/Bonus_Level_01.movie.sav",
+    "path": "movies/Bonus_Level_01.movie.sav",
+    "sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+    "size": 2101239,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "bonus2_mushrooms",
+    "save": "movies/Bonus_Level_02.movie.sav",
+    "path": "movies/Bonus_Level_02.movie.sav",
+    "sha256": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+    "size": 1981197,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "bonus3_grasshoppers",
+    "save": "movies/Bonus_Level_03.movie.sav",
+    "path": "movies/Bonus_Level_03.movie.sav",
+    "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+    "size": 1941083,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "training_completion",
+    "save": "training_all_stuff_collected_ending.sav",
+    "path": "training_all_stuff_collected_ending.sav",
+    "sha256": "fb0690dcd07a18368ae4468726c7c3658cee9fc4dbdd4b6117f09cc9e94e0a02",
+    "size": 2103577,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage01_completion",
+    "save": "level01_end_of_stage.sav",
+    "path": "level01_end_of_stage.sav",
+    "sha256": "42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f",
+    "size": 2033862,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage02_completion",
+    "save": "LEVEL02_ENDING.sav",
+    "path": "LEVEL02_ENDING.sav",
+    "sha256": "f212d375a78fe44e94dfaf2c85b05579ba03a91e7201fac9d33014b5a7e60a48",
+    "size": 1872373,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage04_completion",
+    "save": "LEVEL04_ENDING.sav",
+    "path": "LEVEL04_ENDING.sav",
+    "sha256": "bbd3464133939c9eb5fe2fe2325da93f41ea209a2f84d585f709b081949a17fe",
+    "size": 2011262,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage05_completion",
+    "save": "LEVEL05_ENDING.sav",
+    "path": "LEVEL05_ENDING.sav",
+    "sha256": "91060017e12caf961385ff6f6d5b618623a8befcdd288eb20e09e47b3c854f24",
+    "size": 1990025,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage07_completion",
+    "save": "LEVEL07_ENDING.sav",
+    "path": "LEVEL07_ENDING.sav",
+    "sha256": "124d1a39336729db0894cebbf07df8261946a939b10c4e8a80509062a9865ba3",
+    "size": 1953310,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage12_completion",
+    "save": "LEVEL12_ENDING.sav",
+    "path": "LEVEL12_ENDING.sav",
+    "sha256": "bde7040871dce7994bfa2187f1167cd3c0f8f070f36a63c6b7bb26db5d407848",
+    "size": 2068930,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage14_completion",
+    "save": "LEVEL14_ENDING.sav",
+    "path": "LEVEL14_ENDING.sav",
+    "sha256": "a46727ea32dd33e177c2210c77116e0189a57deef9173dfc8aa3e6b49215e25c",
+    "size": 1979317,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage08_progress_dim",
+    "save": "LEVEL08_DIM.sav",
+    "path": "LEVEL08_DIM.sav",
+    "sha256": "7443263879ad964a387f7aa8d1c31ec6475b54aa569a247c0672b9294c662c7c",
+    "size": 1906747,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage08_progress_manny",
+    "save": "LEVEL08_MANNY.sav",
+    "path": "LEVEL08_MANNY.sav",
+    "sha256": "a82e59a88e4f662e67f59933ccd40d7ee064a2ce4ae2043aed67309a7061873b",
+    "size": 1861971,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage08_progress_rosie",
+    "save": "LEVEL08_ROSIE.sav",
+    "path": "LEVEL08_ROSIE.sav",
+    "sha256": "9df7695a9722cfe1a03b1c8e9d34a976ff9fb03af0f1cea455115d4d8597674f",
+    "size": 1931353,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage08_progress_tuckroll",
+    "save": "LEVEL08_TUCKROLL.sav",
+    "path": "LEVEL08_TUCKROLL.sav",
+    "sha256": "546e49486de3f6038e5fdffe60a50cd90e9c5a77ef323c7d08080c8d1749c37c",
+    "size": 1844293,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage10_progress_1",
+    "save": "LEVEL10_1.sav",
+    "path": "LEVEL10_1.sav",
+    "sha256": "817e167ed7aa5440362952ff8506ef4d0eea0aef76c407c61b1c3bc5f15b1f73",
+    "size": 1998999,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage10_progress_2",
+    "save": "LEVEL10_2.sav",
+    "path": "LEVEL10_2.sav",
+    "sha256": "e8596933232cb3571fba7d8a73878ed54555af2140da265524f88dc791ddfd1f",
+    "size": 1955774,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage10_progress_3",
+    "save": "LEVEL10_3.sav",
+    "path": "LEVEL10_3.sav",
+    "sha256": "05cfc08ef1b14e3b878e192bd8d7a3bd5c81f2f1bdc5dd1036559417ed551ad1",
+    "size": 2050299,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage10_progress_4",
+    "save": "LEVEL10_4.sav",
+    "path": "LEVEL10_4.sav",
+    "sha256": "74465745c5726134df5ef8200d5bcd2cce0ad9a7b38d438e5979c58c15ab072d",
+    "size": 1992174,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage10_progress_5",
+    "save": "LEVEL10_5.sav",
+    "path": "LEVEL10_5.sav",
+    "sha256": "7254a3f664d590bad270d14bb1d173a45ac9dac9111b5e496b93b4ee60a588cb",
+    "size": 1977771,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage11_progress_1",
+    "save": "LEVEL11_1.sav",
+    "path": "LEVEL11_1.sav",
+    "sha256": "c0830fd1bb639bf02cdf89809723ba08ffbe4b0ed2e4376c9c2566f03a50a742",
+    "size": 1884343,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage11_progress_2",
+    "save": "LEVEL11_2.sav",
+    "path": "LEVEL11_2.sav",
+    "sha256": "f66cff741730804db560c3ec7eece3ed33a7e857f104c0ff0e366380032d484f",
+    "size": 1841722,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage11_progress_3",
+    "save": "LEVEL11_3.sav",
+    "path": "LEVEL11_3.sav",
+    "sha256": "d1dc63455fa32f13b329113c10a0bab6100ac068282a083f8a2495b5f97336b1",
+    "size": 1844309,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage11_progress_4",
+    "save": "LEVEL11_4.sav",
+    "path": "LEVEL11_4.sav",
+    "sha256": "4ac201a7f4363c1526346e87618bee179b2fdb9d5ac386959ff425a9b0f04d30",
+    "size": 1835648,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage11_progress_5",
+    "save": "LEVEL11_5.sav",
+    "path": "LEVEL11_5.sav",
+    "sha256": "d9d7bf3c9b329a7e8fbef37e50283dc8fe19223d0159f9f31025c1e0d6d69f9d",
+    "size": 1844472,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   },
+   {
+    "label": "stage11_progress_dot",
+    "save": "LEVEL11_DOT.sav",
+    "path": "LEVEL11_DOT.sav",
+    "sha256": "9b2c7c6f7941a837465798f4036e7d8df1b76a9e39f7d801614048b3a8b90e3e",
+    "size": 2017901,
+    "media_class": "pristine",
+    "manifest": "analysis/phase0_2_external_fixture_set.json"
+   }
+  ],
+  "rejected": []
+ },
+ "fixture_sha256": {
+  "phase3_pristine_training_gameplay_i5.sav": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+  "level01.sav": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+  "level02.sav": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+  "level03.sav": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+  "level04.sav": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+  "level05.sav": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+  "level_06.sav": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+  "level_07.sav": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+  "level_08.sav": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+  "level_09.sav": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+  "level_10.sav": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+  "level_11.sav": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+  "level_12.sav": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+  "level_13.sav": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+  "level_14.sav": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+  "level_15.sav": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+  "movies/Bonus_Level_01.movie.sav": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+  "movies/Bonus_Level_02.movie.sav": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+  "movies/Bonus_Level_03.movie.sav": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+  "training_all_stuff_collected_ending.sav": "fb0690dcd07a18368ae4468726c7c3658cee9fc4dbdd4b6117f09cc9e94e0a02",
+  "level01_end_of_stage.sav": "42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f",
+  "LEVEL02_ENDING.sav": "f212d375a78fe44e94dfaf2c85b05579ba03a91e7201fac9d33014b5a7e60a48",
+  "LEVEL04_ENDING.sav": "bbd3464133939c9eb5fe2fe2325da93f41ea209a2f84d585f709b081949a17fe",
+  "LEVEL05_ENDING.sav": "91060017e12caf961385ff6f6d5b618623a8befcdd288eb20e09e47b3c854f24",
+  "LEVEL07_ENDING.sav": "124d1a39336729db0894cebbf07df8261946a939b10c4e8a80509062a9865ba3",
+  "LEVEL12_ENDING.sav": "bde7040871dce7994bfa2187f1167cd3c0f8f070f36a63c6b7bb26db5d407848",
+  "LEVEL14_ENDING.sav": "a46727ea32dd33e177c2210c77116e0189a57deef9173dfc8aa3e6b49215e25c",
+  "LEVEL08_DIM.sav": "7443263879ad964a387f7aa8d1c31ec6475b54aa569a247c0672b9294c662c7c",
+  "LEVEL08_MANNY.sav": "a82e59a88e4f662e67f59933ccd40d7ee064a2ce4ae2043aed67309a7061873b",
+  "LEVEL08_ROSIE.sav": "9df7695a9722cfe1a03b1c8e9d34a976ff9fb03af0f1cea455115d4d8597674f",
+  "LEVEL08_TUCKROLL.sav": "546e49486de3f6038e5fdffe60a50cd90e9c5a77ef323c7d08080c8d1749c37c",
+  "LEVEL10_1.sav": "817e167ed7aa5440362952ff8506ef4d0eea0aef76c407c61b1c3bc5f15b1f73",
+  "LEVEL10_2.sav": "e8596933232cb3571fba7d8a73878ed54555af2140da265524f88dc791ddfd1f",
+  "LEVEL10_3.sav": "05cfc08ef1b14e3b878e192bd8d7a3bd5c81f2f1bdc5dd1036559417ed551ad1",
+  "LEVEL10_4.sav": "74465745c5726134df5ef8200d5bcd2cce0ad9a7b38d438e5979c58c15ab072d",
+  "LEVEL10_5.sav": "7254a3f664d590bad270d14bb1d173a45ac9dac9111b5e496b93b4ee60a588cb",
+  "LEVEL11_1.sav": "c0830fd1bb639bf02cdf89809723ba08ffbe4b0ed2e4376c9c2566f03a50a742",
+  "LEVEL11_2.sav": "f66cff741730804db560c3ec7eece3ed33a7e857f104c0ff0e366380032d484f",
+  "LEVEL11_3.sav": "d1dc63455fa32f13b329113c10a0bab6100ac068282a083f8a2495b5f97336b1",
+  "LEVEL11_4.sav": "4ac201a7f4363c1526346e87618bee179b2fdb9d5ac386959ff425a9b0f04d30",
+  "LEVEL11_5.sav": "d9d7bf3c9b329a7e8fbef37e50283dc8fe19223d0159f9f31025c1e0d6d69f9d",
+  "LEVEL11_DOT.sav": "9b2c7c6f7941a837465798f4036e7d8df1b76a9e39f7d801614048b3a8b90e3e"
+ },
+ "anchors_used": 42,
+ "thresholds": {
+  "min_hits": 8,
+  "min_hit_rate": 0.5
+ },
+ "jalr_called_offsets": [
+  "+0x0",
+  "+0x10",
+  "+0x14",
+  "+0x18",
+  "+0x28",
+  "+0x2C",
+  "+0x34",
+  "+0x38",
+  "+0x3C",
+  "+0x4",
+  "+0x7C",
+  "+0x8",
+  "+0xC"
+ ],
+ "records": {
+  "actor_record": {
+   "+0x7C": {
+    "hit_rate": 0.608,
+    "instances_seen": 1286,
+    "distinct_handlers": 9,
+    "handlers": {
+     "enemy_strike_contact_effect": 246,
+     "actor_sound40_on_low_state": 186,
+     "mosquito_species_callback": 167,
+     "aimed_object_spawn_sfx": 68,
+     "play_object_sound_42": 52,
+     "actor_event_sound_trigger": 30
+    },
+    "called_by_a_jalr_at_this_offset": true
+   }
+  }
+ }
+}

@@ -1,0 +1,982 @@
+[
+ {
+  "address": "0x8002b428",
+  "name": "bone_matrix_array_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:RotTransPers",
+   "calls:SetRotMatrix",
+   "calls:SetTransMatrix",
+   "refs:G_DAT_BASE_PTR,bone_matrix_array_84stride,G_GPU_OT_OUTPUT_BUFFER_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['RotTransPers', 'SetRotMatrix', 'SetTransMatrix']; globals ['G_DAT_BASE_PTR', 'bone_matrix_array_84stride']"
+ },
+ {
+  "address": "0x8001eacc",
+  "name": "mesh_payload_emit_orchestrator",
+  "tier": "inferred",
+  "evidence": [
+   "calls:MulMatrix0",
+   "calls:SetRotMatrix",
+   "calls:SetTransMatrix",
+   "calls:gte_rotation_matrix_setup",
+   "refs:matrix_lut"
+  ],
+  "rationale": "u2: gte_math fingerprint ['MulMatrix0', 'SetRotMatrix', 'SetTransMatrix']; globals ['matrix_lut']"
+ },
+ {
+  "address": "0x80027cbc",
+  "name": "matrix_lut_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:MulMatrix0",
+   "calls:RotMatrix",
+   "caller:gameplay_state_machine",
+   "refs:matrix_lut,G_DAT_ENTRY_COUNTER,G_TRAIL_BLOCK_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['MulMatrix0', 'RotMatrix']; globals ['matrix_lut', 'G_DAT_ENTRY_COUNTER']"
+ },
+ {
+  "address": "0x800409f8",
+  "name": "vec_normalize_len",
+  "tier": "inferred",
+  "evidence": [
+   "calls:SquareRoot0",
+   "calls:VectorNormal",
+   "refs:visual_sprite_object_pool",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['SquareRoot0', 'VectorNormal']; globals ['visual_sprite_object_pool']"
+ },
+ {
+  "address": "0x800749a8",
+  "name": "vab_bank_stage",
+  "tier": "inferred",
+  "evidence": [
+   "calls:vab_load"
+  ],
+  "rationale": "u2: audio fingerprint ['vab_load']; globals []"
+ },
+ {
+  "address": "0x800207f0",
+  "name": "matrix_lut_mesh_transform_07f0",
+  "tier": "inferred",
+  "evidence": [
+   "calls:MulMatrix0",
+   "calls:SetRotMatrix",
+   "calls:grass_mound_mesh_builder",
+   "calls:gte_rotation_matrix_setup",
+   "refs:matrix_lut"
+  ],
+  "rationale": "u2: gte_math fingerprint ['MulMatrix0', 'SetRotMatrix', 'grass_mound_mesh_builder']; globals ['matrix_lut']"
+ },
+ {
+  "address": "0x800212fc",
+  "name": "setpiece_actor_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:gte_rotation_matrix_setup",
+   "calls:skin_transform_bone",
+   "caller:scene_render_driver",
+   "refs:setpiece_actor,collision_sector_table,G_BOSS_DEFEAT_FSM",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['gte_rotation_matrix_setup', 'skin_transform_bone']; globals ['setpiece_actor', 'collision_sector_table']"
+ },
+ {
+  "address": "0x80041ac4",
+  "name": "vec_normalize_len_1ac4",
+  "tier": "inferred",
+  "evidence": [
+   "calls:SquareRoot0",
+   "calls:VectorNormal",
+   "calls:gte_rotation_matrix_setup",
+   "caller:player_vertical_update",
+   "refs:visual_sprite_object_pool,player_velocity_delta,G_SETPIECE_RECORD_IDX",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['SquareRoot0', 'VectorNormal', 'gte_rotation_matrix_setup']; globals ['visual_sprite_object_pool', 'player_velocity_delta']"
+ },
+ {
+  "address": "0x80021d84",
+  "name": "boss_defeat_fsm_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:MulMatrix0",
+   "calls:SetRotMatrix",
+   "calls:SetTransMatrix",
+   "calls:call_8002b424_wrapper",
+   "refs:G_BOSS_DEFEAT_FSM,setpiece_actor"
+  ],
+  "rationale": "u2: gte_math fingerprint ['MulMatrix0', 'SetRotMatrix', 'SetTransMatrix']; globals ['G_BOSS_DEFEAT_FSM', 'setpiece_actor']"
+ },
+ {
+  "address": "0x800769a8",
+  "name": "vab_bank_stage_69a8",
+  "tier": "inferred",
+  "evidence": [
+   "calls:vab_load"
+  ],
+  "rationale": "u2: audio fingerprint ['vab_load']; globals []"
+ },
+ {
+  "address": "0x80022978",
+  "name": "textured_mesh_emit",
+  "tier": "inferred",
+  "evidence": [
+   "calls:GetTPage",
+   "calls:RotAverageNclip4",
+   "calls:SetTransMatrix",
+   "caller:scene_render_driver",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['GetTPage', 'RotAverageNclip4', 'SetTransMatrix']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x80042494",
+  "name": "visual_sprite_object_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:gte_rotation_matrix_setup",
+   "refs:visual_sprite_object_pool,G_SETPIECE_RECORD_IDX,main_shell_substate"
+  ],
+  "rationale": "u2: gte_math fingerprint ['gte_rotation_matrix_setup']; globals ['visual_sprite_object_pool', 'G_SETPIECE_RECORD_IDX']"
+ },
+ {
+  "address": "0x80043dac",
+  "name": "voice_keyon_vol",
+  "tier": "inferred",
+  "evidence": [
+   "calls:SsUtKeyOn",
+   "calls:SsUtSetDetVVol",
+   "caller:play_sound",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['SsUtKeyOn', 'SsUtSetDetVVol']; globals []"
+ },
+ {
+  "address": "0x80023544",
+  "name": "rot_average_project",
+  "tier": "inferred",
+  "evidence": [
+   "calls:RotAverage4",
+   "calls:SetRotMatrix",
+   "calls:SetTransMatrix"
+  ],
+  "rationale": "u2: gte_math fingerprint ['RotAverage4', 'SetRotMatrix', 'SetTransMatrix']; globals []"
+ },
+ {
+  "address": "0x8003c388",
+  "name": "vram_upload_wait",
+  "tier": "inferred",
+  "evidence": [
+   "calls:DrawSync",
+   "calls:GetTPage",
+   "calls:LoadImage",
+   "calls:level_texture_upload",
+   "refs:sky_clear_b,sky_clear_r,sky_clear_g",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['DrawSync', 'GetTPage', 'LoadImage']; globals ['sky_clear_b', 'sky_clear_r']"
+ },
+ {
+  "address": "0x80030440",
+  "name": "ot_buffer_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:RotAverage4",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['RotAverage4']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x80055f8c",
+  "name": "vram_upload_wait_5f8c",
+  "tier": "inferred",
+  "evidence": [
+   "calls:DrawSync",
+   "calls:LoadImage",
+   "calls:SquareRoot0",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['DrawSync', 'LoadImage', 'SquareRoot0']; globals []"
+ },
+ {
+  "address": "0x80023d54",
+  "name": "ot_buffer_mesh_transform_3d54",
+  "tier": "inferred",
+  "evidence": [
+   "calls:RotAverage4",
+   "calls:SetTransMatrix",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['RotAverage4', 'SetTransMatrix']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x8002418c",
+  "name": "ot_buffer_mesh_transform_418c",
+  "tier": "inferred",
+  "evidence": [
+   "calls:RotAverage4",
+   "calls:SetTransMatrix",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR"
+  ],
+  "rationale": "u2: gte_math fingerprint ['RotAverage4', 'SetTransMatrix']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x8003001c",
+  "name": "ot_buffer_mesh_transform_001c",
+  "tier": "inferred",
+  "evidence": [
+   "calls:RotAverage4",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['RotAverage4']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x800245c4",
+  "name": "ot_buffer_mesh_transform_45c4",
+  "tier": "inferred",
+  "evidence": [
+   "calls:RotAverage4",
+   "calls:SetTransMatrix",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['RotAverage4', 'SetTransMatrix']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x800249d0",
+  "name": "ot_buffer_mesh_transform_49d0",
+  "tier": "inferred",
+  "evidence": [
+   "calls:RotAverage4",
+   "calls:SetTransMatrix",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR"
+  ],
+  "rationale": "u2: gte_math fingerprint ['RotAverage4', 'SetTransMatrix']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x800514a4",
+  "name": "setpiece_spawn_state_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:SquareRoot0",
+   "refs:G_SETPIECE_SPAWN_STATE,player_velocity_delta,current_scene_id",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['SquareRoot0']; globals ['G_SETPIECE_SPAWN_STATE', 'player_velocity_delta']"
+ },
+ {
+  "address": "0x8003c8bc",
+  "name": "level_texture_stage",
+  "tier": "inferred",
+  "evidence": [
+   "calls:LoadImage",
+   "calls:level_texture_upload",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['LoadImage', 'level_texture_upload']; globals []"
+ },
+ {
+  "address": "0x8004d6a8",
+  "name": "setpiece_sfx_cue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:setpiece_spawn_init",
+   "calls:sfx_dispatch",
+   "refs:G_SETPIECE_SPAWN_STATE,setpiece_actor,player_velocity_delta",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['setpiece_spawn_init', 'sfx_dispatch']; globals ['G_SETPIECE_SPAWN_STATE', 'setpiece_actor']"
+ },
+ {
+  "address": "0x8003d7b8",
+  "name": "prim_queue_emit",
+  "tier": "inferred",
+  "evidence": [
+   "calls:AddPrim",
+   "calls:RotMatrix",
+   "calls:SetTile",
+   "refs:cb_read,sky_clear_b,G_TRAIL_BLOCK_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['AddPrim', 'RotMatrix', 'SetTile']; globals ['cb_read', 'sky_clear_b']"
+ },
+ {
+  "address": "0x800649a0",
+  "name": "dma_intr_install",
+  "tier": "inferred",
+  "evidence": [
+   "calls:DMACallback",
+   "calls:SetIntrMask",
+   "refs:seed_counter_0",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['DMACallback', 'SetIntrMask']; globals ['seed_counter_0']"
+ },
+ {
+  "address": "0x80054eb4",
+  "name": "sfx_nearest_pickup_f_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:nearest_pickup_finalize",
+   "calls:play_sound",
+   "calls:sfx_voice_manager",
+   "refs:player_x,G_DAT_ENTRY_COUNTER,grain_count_hud_mirror",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['nearest_pickup_finalize', 'play_sound', 'sfx_voice_manager']; globals ['player_x', 'G_DAT_ENTRY_COUNTER']"
+ },
+ {
+  "address": "0x80051dbc",
+  "name": "sfx_play_sound_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:play_sound",
+   "calls:sfx_dispatch",
+   "refs:player_z,player_velocity_delta,contact_alloc_cursor",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['play_sound', 'sfx_dispatch']; globals ['player_z', 'player_velocity_delta']"
+ },
+ {
+  "address": "0x80028d74",
+  "name": "prim_queue_emit_8d74",
+  "tier": "inferred",
+  "evidence": [
+   "calls:AddPrim",
+   "calls:GetTPage",
+   "calls:SetDrawMode",
+   "calls:SetTile",
+   "caller:frame_present",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['AddPrim', 'GetTPage', 'SetDrawMode']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x8003e124",
+  "name": "prim_queue_emit_e124",
+  "tier": "inferred",
+  "evidence": [
+   "calls:AddPrim",
+   "refs:contact_alloc_cursor,main_shell_substate",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['AddPrim']; globals ['contact_alloc_cursor', 'main_shell_substate']"
+ },
+ {
+  "address": "0x8006f6a0",
+  "name": "cd_media_dir_cache",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CD_cachefile",
+   "calls:CD_newmedia",
+   "calls:CD_searchdir",
+   "calls:_cmp",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: cd fingerprint ['CD_cachefile', 'CD_newmedia', 'CD_searchdir']; globals []"
+ },
+ {
+  "address": "0x800435f8",
+  "name": "voice_keyon_vol_35f8",
+  "tier": "inferred",
+  "evidence": [
+   "calls:SsUtKeyOn",
+   "caller:play_sound",
+   "caller:sfx_menu_blip",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['SsUtKeyOn']; globals []"
+ },
+ {
+  "address": "0x8006fd0c",
+  "name": "cd_sector_read_seek",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdIntToPos",
+   "calls:cd_read",
+   "calls:memcpy",
+   "calls:printf",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: cd fingerprint ['CdIntToPos', 'cd_read', 'memcpy']; globals []"
+ },
+ {
+  "address": "0x80024e04",
+  "name": "damageable_object_ptr_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:gte_rotation_matrix_setup",
+   "caller:mover_updater",
+   "refs:damageable_object_ptr_table,G_TRAIL_BLOCK_PTR",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['gte_rotation_matrix_setup']; globals ['damageable_object_ptr_table', 'G_TRAIL_BLOCK_PTR']"
+ },
+ {
+  "address": "0x80043284",
+  "name": "voice_keyon_vol_3284",
+  "tier": "inferred",
+  "evidence": [
+   "calls:SpuGetAllKeysStatus",
+   "calls:SsSeqCalledTbyT",
+   "calls:SsUtKeyOn",
+   "calls:SsUtKeyOnV",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['SpuGetAllKeysStatus', 'SsSeqCalledTbyT', 'SsUtKeyOn']; globals []"
+ },
+ {
+  "address": "0x80047ebc",
+  "name": "contact_alloc_cursor_mesh_transform",
+  "tier": "inferred",
+  "evidence": [
+   "calls:SquareRoot0",
+   "calls:atan2_heading",
+   "caller:player_vertical_update",
+   "refs:contact_alloc_cursor,player_z,G_DAT_ENTRY_COUNTER",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['SquareRoot0', 'atan2_heading']; globals ['contact_alloc_cursor', 'player_z']"
+ },
+ {
+  "address": "0x8003e4e8",
+  "name": "tpage_prim_setup",
+  "tier": "inferred",
+  "evidence": [
+   "calls:GetTPage",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['GetTPage']; globals []"
+ },
+ {
+  "address": "0x8004b6dc",
+  "name": "damageable_object_ptr_mesh_transform_b6dc",
+  "tier": "inferred",
+  "evidence": [
+   "calls:VectorNormal",
+   "caller:gameplay_state_machine",
+   "refs:damageable_object_ptr_table",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gte_math fingerprint ['VectorNormal']; globals ['damageable_object_ptr_table']"
+ },
+ {
+  "address": "0x80026858",
+  "name": "prim_queue_emit_6858",
+  "tier": "inferred",
+  "evidence": [
+   "calls:AddPrim",
+   "calls:SetDrawMode",
+   "calls:SetSemiTrans",
+   "calls:SetShadeTex",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR,object_pointer_list",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['AddPrim', 'SetDrawMode', 'SetSemiTrans']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x80050ee8",
+  "name": "sfx_nearest_pickup_f_glue_0ee8",
+  "tier": "inferred",
+  "evidence": [
+   "calls:nearest_pickup_finalize",
+   "calls:sfx_voice_manager",
+   "refs:player_x",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['nearest_pickup_finalize', 'sfx_voice_manager']; globals ['player_x']"
+ },
+ {
+  "address": "0x80026390",
+  "name": "prim_queue_emit_6390",
+  "tier": "inferred",
+  "evidence": [
+   "calls:AddPrim",
+   "calls:SetDrawMode",
+   "calls:SetSemiTrans",
+   "calls:SetShadeTex",
+   "caller:gameplay_frame_render",
+   "refs:G_DAT_BASE_PTR,G_GPU_OT_OUTPUT_BUFFER_PTR,object_pointer_list",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['AddPrim', 'SetDrawMode', 'SetSemiTrans']; globals ['G_DAT_BASE_PTR', 'G_GPU_OT_OUTPUT_BUFFER_PTR']"
+ },
+ {
+  "address": "0x80045b04",
+  "name": "cd_audio_mix_control",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdControl",
+   "calls:CdControlB",
+   "calls:CdMix",
+   "calls:CdReady",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: cd fingerprint ['CdControl', 'CdControlB', 'CdMix']; globals []"
+ },
+ {
+  "address": "0x800510f4",
+  "name": "sfx_nearest_pickup_f_glue_10f4",
+  "tier": "inferred",
+  "evidence": [
+   "calls:nearest_pickup_finalize",
+   "calls:sfx_voice_manager",
+   "refs:G_DAT_ENTRY_COUNTER,master_game_state",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['nearest_pickup_finalize', 'sfx_voice_manager']; globals ['G_DAT_ENTRY_COUNTER', 'master_game_state']"
+ },
+ {
+  "address": "0x8004682c",
+  "name": "cd_audio_mix_control_682c",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdControl",
+   "calls:CdControlF",
+   "calls:CdGetSector",
+   "calls:CdIntToPos",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: cd fingerprint ['CdControl', 'CdControlF', 'CdGetSector']; globals []"
+ },
+ {
+  "address": "0x8005921c",
+  "name": "sfx_all_enemies_defe_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:all_enemies_defeated_event",
+   "calls:enemy_update_deathanim",
+   "calls:sfx_dispatch",
+   "calls:spawn_drop",
+   "refs:G_DAT_ENTRY_COUNTER,enemy_hit_program_ptr,G_ENEMIES_REMAINING"
+  ],
+  "rationale": "u2: audio fingerprint ['all_enemies_defeated_event', 'enemy_update_deathanim', 'sfx_dispatch']; globals ['G_DAT_ENTRY_COUNTER', 'enemy_hit_program_ptr']"
+ },
+ {
+  "address": "0x800461e0",
+  "name": "ot_frame_flush",
+  "tier": "inferred",
+  "evidence": [
+   "calls:ClearOTag",
+   "calls:DrawOTag",
+   "calls:DrawSync",
+   "calls:PutDispEnv"
+  ],
+  "rationale": "u2: gpu fingerprint ['ClearOTag', 'DrawOTag', 'DrawSync']; globals []"
+ },
+ {
+  "address": "0x80050870",
+  "name": "sfx_voice_trigger_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:sound_voice_trigger",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['sound_voice_trigger']; globals []"
+ },
+ {
+  "address": "0x80043184",
+  "name": "voice_keyon_vol_3184",
+  "tier": "inferred",
+  "evidence": [
+   "calls:SsUtKeyOn",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['SsUtKeyOn']; globals []"
+ },
+ {
+  "address": "0x800460e4",
+  "name": "ot_frame_flush_60e4",
+  "tier": "inferred",
+  "evidence": [
+   "calls:ClearOTag",
+   "calls:DrawOTag",
+   "calls:DrawSync",
+   "calls:PutDispEnv"
+  ],
+  "rationale": "u2: gpu fingerprint ['ClearOTag', 'DrawOTag', 'DrawSync']; globals []"
+ },
+ {
+  "address": "0x80045978",
+  "name": "cd_audio_mix_control_5978",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdControl",
+   "calls:CdControlB",
+   "calls:CdGetToc",
+   "calls:CdIntToPos"
+  ],
+  "rationale": "u2: cd fingerprint ['CdControl', 'CdControlB', 'CdGetToc']; globals []"
+ },
+ {
+  "address": "0x800457e4",
+  "name": "cd_file_locate",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdSearchFile",
+   "calls:strcat"
+  ],
+  "rationale": "u2: cd fingerprint ['CdSearchFile', 'strcat']; globals []"
+ },
+ {
+  "address": "0x80062440",
+  "name": "dma_callback_stub",
+  "tier": "inferred",
+  "evidence": [
+   "calls:DMACallback"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['DMACallback']; globals []"
+ },
+ {
+  "address": "0x8006cda0",
+  "name": "event_poll_wait",
+  "tier": "inferred",
+  "evidence": [
+   "calls:TestEvent",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['TestEvent']; globals []"
+ },
+ {
+  "address": "0x80070354",
+  "name": "cd_ready_poll_control",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdControlF",
+   "calls:CdDataCallback",
+   "calls:CdReadyCallback",
+   "calls:CdSyncCallback"
+  ],
+  "rationale": "u2: cd fingerprint ['CdControlF', 'CdDataCallback', 'CdReadyCallback']; globals []"
+ },
+ {
+  "address": "0x800664c8",
+  "name": "pad_subsystem_init",
+  "tier": "inferred",
+  "evidence": [
+   "calls:ChangeClearPAD",
+   "calls:PAD_init2"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['ChangeClearPAD', 'PAD_init2']; globals []"
+ },
+ {
+  "address": "0x80066558",
+  "name": "pad_subsystem_init_6558",
+  "tier": "inferred",
+  "evidence": [
+   "calls:ChangeClearPAD",
+   "calls:InitPAD2"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['ChangeClearPAD', 'InitPAD2']; globals []"
+ },
+ {
+  "address": "0x80045cd0",
+  "name": "cd_audio_mix_control_5cd0",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdControl",
+   "calls:CdMix",
+   "calls:VSync"
+  ],
+  "rationale": "u2: cd fingerprint ['CdControl', 'CdMix', 'VSync']; globals []"
+ },
+ {
+  "address": "0x8003e83c",
+  "name": "vsync_wait_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:VSync",
+   "caller:boot_video_audio_init",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['VSync']; globals []"
+ },
+ {
+  "address": "0x800709ac",
+  "name": "cd_ready_poll_control_09ac",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdDataCallback",
+   "calls:CdReadyCallback",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: cd fingerprint ['CdDataCallback', 'CdReadyCallback']; globals []"
+ },
+ {
+  "address": "0x80050d98",
+  "name": "sfx_voice_manager_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:sfx_voice_manager",
+   "refs:player_x",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['sfx_voice_manager']; globals ['player_x']"
+ },
+ {
+  "address": "0x80050d1c",
+  "name": "sfx_voice_manager_glue_0d1c",
+  "tier": "inferred",
+  "evidence": [
+   "calls:sfx_voice_manager",
+   "refs:player_x",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['sfx_voice_manager']; globals ['player_x']"
+ },
+ {
+  "address": "0x80046764",
+  "name": "cd_controlf_shim",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdControlF",
+   "calls:CdIntToPos",
+   "calls:SsSetSerialVol"
+  ],
+  "rationale": "u2: cd fingerprint ['CdControlF', 'CdIntToPos', 'SsSetSerialVol']; globals []"
+ },
+ {
+  "address": "0x8006b7a4",
+  "name": "event_open_enable",
+  "tier": "inferred",
+  "evidence": [
+   "calls:EnableEvent",
+   "calls:OpenEvent",
+   "calls:_SpuDataCallback",
+   "refs:_spu_FiDMA",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['EnableEvent', 'OpenEvent', '_SpuDataCallback']; globals ['_spu_FiDMA']"
+ },
+ {
+  "address": "0x80066834",
+  "name": "icache_flush_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:FlushCache"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['FlushCache']; globals []"
+ },
+ {
+  "address": "0x800668ac",
+  "name": "icache_flush_glue_68ac",
+  "tier": "inferred",
+  "evidence": [
+   "calls:FlushCache"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['FlushCache']; globals []"
+ },
+ {
+  "address": "0x8003e8c4",
+  "name": "vsync_wait_glue_e8c4",
+  "tier": "inferred",
+  "evidence": [
+   "calls:VSync",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['VSync']; globals []"
+ },
+ {
+  "address": "0x80070ac8",
+  "name": "cd_inttopos_shim",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdIntToPos",
+   "calls:CdPosToInt"
+  ],
+  "rationale": "u2: cd fingerprint ['CdIntToPos', 'CdPosToInt']; globals []"
+ },
+ {
+  "address": "0x80045aac",
+  "name": "cd_audio_mix_control_5aac",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdControl",
+   "calls:CdControlF",
+   "calls:CdMix",
+   "caller:gameplay_frame_render"
+  ],
+  "rationale": "u2: cd fingerprint ['CdControl', 'CdControlF', 'CdMix']; globals []"
+ },
+ {
+  "address": "0x80050e18",
+  "name": "sfx_voice_manager_glue_0e18",
+  "tier": "inferred",
+  "evidence": [
+   "calls:sfx_voice_manager",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['sfx_voice_manager']; globals []"
+ },
+ {
+  "address": "0x80043018",
+  "name": "display_env_apply",
+  "tier": "inferred",
+  "evidence": [
+   "calls:DrawSync",
+   "calls:SetDispMask",
+   "calls:VSync",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: gpu fingerprint ['DrawSync', 'SetDispMask', 'VSync']; globals []"
+ },
+ {
+  "address": "0x800467dc",
+  "name": "cd_controlb_shim",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdControlB",
+   "calls:CdControlF"
+  ],
+  "rationale": "u2: cd fingerprint ['CdControlB', 'CdControlF']; globals []"
+ },
+ {
+  "address": "0x80044ce8",
+  "name": "cd_mix_shim",
+  "tier": "inferred",
+  "evidence": [
+   "calls:CdMix",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: cd fingerprint ['CdMix']; globals []"
+ },
+ {
+  "address": "0x80050e6c",
+  "name": "sfx_dispatch_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:sfx_dispatch",
+   "refs:contact_alloc_cursor",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['sfx_dispatch']; globals ['contact_alloc_cursor']"
+ },
+ {
+  "address": "0x800665e8",
+  "name": "pad_subsystem_init_65e8",
+  "tier": "inferred",
+  "evidence": [
+   "calls:ChangeClearPAD",
+   "calls:StartPAD2"
+  ],
+  "rationale": "u2: sys_kernel fingerprint ['ChangeClearPAD', 'StartPAD2']; globals []"
+ },
+ {
+  "address": "0x8006b684",
+  "name": "spu__spu_init_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:_SpuInit",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: audio fingerprint ['_SpuInit']; globals []"
+ },
+ {
+  "address": "0x80055654",
+  "name": "contact_object_s_spawn_drop_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:contact_object_spawn_full",
+   "calls:play_sound",
+   "calls:spawn_drop",
+   "refs:player_z,player_y,player_velocity_delta",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: contact_pickup fingerprint ['contact_object_spawn_full', 'play_sound', 'spawn_drop']; globals ['player_z', 'player_y']"
+ },
+ {
+  "address": "0x80035f24",
+  "name": "player_movement__collision_poin_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:collision_point_in_poly",
+   "caller:player_movement_collision_integrator",
+   "refs:collision_sector_table",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: collision fingerprint ['collision_point_in_poly']; globals ['collision_sector_table']"
+ },
+ {
+  "address": "0x8003d404",
+  "name": "collision_grid_level_load_chu_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:collision_grid_builder",
+   "calls:dat_parser_relocator",
+   "calls:level_load_chunks",
+   "calls:universal_file_loader",
+   "refs:G_DAT_BASE_PTR"
+  ],
+  "rationale": "u2: level_scene fingerprint ['collision_grid_builder', 'dat_parser_relocator', 'level_load_chunks']; globals ['G_DAT_BASE_PTR']"
+ },
+ {
+  "address": "0x80057c9c",
+  "name": "contact_object_s_spawn_drop_glue_7c9c",
+  "tier": "inferred",
+  "evidence": [
+   "calls:contact_object_spawn_full",
+   "calls:play_sound",
+   "calls:spawn_drop",
+   "caller:pickup_effect_dispatch",
+   "refs:G_DAT_ENTRY_COUNTER",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: contact_pickup fingerprint ['contact_object_spawn_full', 'play_sound', 'spawn_drop']; globals ['G_DAT_ENTRY_COUNTER']"
+ },
+ {
+  "address": "0x800582e8",
+  "name": "enemy_update_dea_spawn_drop_glue",
+  "tier": "inferred",
+  "evidence": [
+   "calls:play_sound",
+   "calls:spawn_drop",
+   "caller:enemy_update_deathanim",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: actor_spawn_ai fingerprint ['play_sound', 'spawn_drop']; globals []"
+ },
+ {
+  "address": "0x80046cac",
+  "name": "resident_level_t_seed_plant_dan_glue",
+  "tier": "inferred",
+  "evidence": [
+   "caller:resident_level_transition_initiator",
+   "caller:seed_plant_dandelion_handler",
+   "refs:player_velocity_delta,berry_flik_marker",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: seed_berry fingerprint []; globals ['player_velocity_delta', 'berry_flik_marker']"
+ },
+ {
+  "address": "0x80052508",
+  "name": "seed_plant_dande_seed_plant_min_glue",
+  "tier": "inferred",
+  "evidence": [
+   "caller:seed_plant_dandelion_handler",
+   "caller:seed_plant_mine_handler",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: seed_berry fingerprint []; globals []"
+ },
+ {
+  "address": "0x80060594",
+  "name": "effect_mesh_tran_render_mesh_tr_glue",
+  "tier": "inferred",
+  "evidence": [
+   "caller:effect_mesh_transform",
+   "caller:pickup_projector",
+   "dynamic:level_coverage"
+  ],
+  "rationale": "u2: render fingerprint []; globals []"
+ }
+]

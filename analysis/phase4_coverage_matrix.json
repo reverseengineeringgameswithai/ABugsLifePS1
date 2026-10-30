@@ -1,0 +1,1401 @@
+{
+ "_comment": "Phase-4 twelve-family scorecard recomputed from child-campaign evidence assertions and reviewed pristine-absence proofs. No campaign passes/complete/gate flag is trusted. Regenerate: python3 tools/phase4_coverage.py",
+ "generated": "2026-07-30",
+ "inputs": {
+  "mechanics_sha256": "5cd925e5681952d565a2c3606fb06a57bbf4587c7957f020edf891916892169c",
+  "registry_sha256": "5c63e8dba345c8649855494431d4e1db583ad864d23fe89c740788b5406659be",
+  "findings_sha256": "4072850a9a54496ac5b239a60341f752fc5b594e65f69d8349b562a89a92865a"
+ },
+ "registry_gaps": [],
+ "campaign_audits": {
+  "grain_collection_harvester": {
+   "family": "collectibles_equipment_rewards",
+   "declared_status": "active",
+   "gaps": [
+    "grain_collection_harvester: status is not completed"
+   ],
+   "completed_from_low_level_evidence": false
+  },
+  "pause_shell": {
+   "family": "hud_frontend_persistence",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "contact_object_pool": {
+   "family": "objects_events_hazards",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "event_vm": {
+   "family": "objects_events_hazards",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "props_movers_gates": {
+   "family": "objects_events_hazards",
+   "declared_status": "active",
+   "gaps": [
+    "props_movers_gates: status is not completed"
+   ],
+   "completed_from_low_level_evidence": false
+  },
+  "grain_gates": {
+   "family": "objects_events_hazards",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "berry_throw": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "slow_walk_modifier": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "run_locomotion": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "jump_controller": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "abdomen_bounce": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "downhill_slide": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "kick_attack": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "manual_camera_controls": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "swing_attachment": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "directional_spin_heading": {
+   "family": "input_player_actions",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "collision_floor_planes": {
+   "family": "movement_world_physics",
+   "declared_status": "completed",
+   "gaps": [],
+   "completed_from_low_level_evidence": true
+  },
+  "safe_respawn_anchor": {
+   "family": "player_lifecycle",
+   "declared_status": "active",
+   "gaps": [
+    "safe_respawn_anchor: status is not completed"
+   ],
+   "completed_from_low_level_evidence": false
+  },
+  "lives_gameover_continue": {
+   "family": "player_lifecycle",
+   "declared_status": "active",
+   "gaps": [
+    "lives_gameover_continue: status is not completed"
+   ],
+   "completed_from_low_level_evidence": false
+  },
+  "thud_bug_bar": {
+   "family": "bosses_special_objectives",
+   "declared_status": "active",
+   "gaps": [
+    "thud_bug_bar: status is not completed"
+   ],
+   "completed_from_low_level_evidence": false
+  },
+  "fmv_playback": {
+   "family": "audio_cinematics",
+   "declared_status": "active",
+   "gaps": [
+    "fmv_playback: status is not completed"
+   ],
+   "completed_from_low_level_evidence": false
+  }
+ },
+ "absence_audits": {
+  "A20_circle_noop": {
+   "gaps": [],
+   "reviewed_from_low_level_evidence": true
+  }
+ },
+ "duplicate_completed_owners": {},
+ "rows": {
+  "A01_move_run": {
+   "family": "input_player_actions",
+   "name": "Analog/D-pad movement and running",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "run_locomotion"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A02_slow_walk": {
+   "family": "input_player_actions",
+   "name": "Slow walking (L2/R2 + movement)",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "slow_walk_modifier"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A03_jump": {
+   "family": "input_player_actions",
+   "name": "Jump (X); also grows/activates seeds",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "jump_controller"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A04_kick": {
+   "family": "input_player_actions",
+   "name": "Kick (L2/R2 + Square)",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "kick_attack"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A05_abdomen_bounce": {
+   "family": "input_player_actions",
+   "name": "Abdomen bounce (double-tap X)",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "abdomen_bounce"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A06_downhill_slide": {
+   "family": "input_player_actions",
+   "name": "Downhill abdomen slide (double-tap+hold X on slope)",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "downhill_slide"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A07_spin": {
+   "family": "input_player_actions",
+   "name": "Spin / secret directional move",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "directional_spin_heading"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A08_berry_throw": {
+   "family": "input_player_actions",
+   "name": "Berry throw (Square)",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "berry_throw"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A09_seed_pickup_drop": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Pick up / drop movable seed (Square)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "A10_handstand": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Handstand on fixed seed (Square)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "A11_seed_as_weapon": {
+   "family": "enemies_combat",
+   "name": "Drop carried seed on enemy",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "A12_seed_color_change": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Change seed color (Triangle)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "A13_cycle_plant_output": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Cycle plant output (X while carrying)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "A14_plant_seed": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Plant/crack seed by jumping on it",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "A15_uproot_plant": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Uproot/discard plant",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "A16_swinging": {
+   "family": "input_player_actions",
+   "name": "Vine/web swinging",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "swing_attachment"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A17_camera_controls": {
+   "family": "input_player_actions",
+   "name": "Manual camera reset/look (L1) and lock (R1)",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "manual_camera_controls"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A18_pause": {
+   "family": "hud_frontend_persistence",
+   "name": "Pause (Start)",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "pause_shell"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "A19_status_display": {
+   "family": "hud_frontend_persistence",
+   "name": "Status display (Select)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "A20_circle_noop": {
+   "family": "input_player_actions",
+   "name": "Circle default behavior (default profile assigns no gameplay action)",
+   "baseline_status": "not_applicable",
+   "completed_campaigns": [],
+   "reviewed_absence": true,
+   "state": "reviewed_absent"
+  },
+  "B01_mushroom_trampoline": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Mushroom trampoline (brown default)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B02_propeller_plant": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Propeller plant lift",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B03_dandelion_glide": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Dandelion glide (+ propeller updrafts)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B04_cannon_plant": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Cannon plant launch",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B05_green_leaf_platforms": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Green leaf platforms (1-4 tokens)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B06_invincibility": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Temporary invincibility (blue tier 1)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B07_health_power": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Health restoration (blue tier 2)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B08_bubble_shield": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Bubble shield (blue tier 3)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B09_super_jump": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Super jump (blue tier 4)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B10_purple_berry_plants": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Purple berry plants (4 tiers -> berry grants)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B11_blue_berry_shooter": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Blue berry shooter (yellow tier 1)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B12_homing_shooter": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Purple homing shooter (yellow tier 2)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B13_mine_plant": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Mine plant (yellow tier 3, permanent kill)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "B14_hostile_plant_projectiles": {
+   "family": "seeds_plants_traversal_powers",
+   "name": "Harmful plant projectiles (blue plants emit spikes)",
+   "baseline_status": "external_lead",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C01_grain_pickup": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Grain pickup and attraction",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C02_fifty_grain_reward": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Fifty-grain reward (heal + token)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C03_flik_letters": {
+   "family": "collectibles_equipment_rewards",
+   "name": "F-L-I-K letters (extra life + token)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C04_enemy_token": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Enemy success token (permanent elimination quota)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C05_three_tokens": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Three success tokens -> bonus movie clip",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C06_red_berry": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Red berry (default, weak)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C07_blue_berry": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Blue/Super berry",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C08_green_homing_berry": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Green/Homing berry",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C09_mega_homing_berry": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Purple/Mega Homing berry",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C10_gold_berry": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Gold berry (strongest, permanent kill)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C11_seed_tokens": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Seed tokens (unlock plant tiers per color)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C12_health_leaves": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Health leaves (drops restore health)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C13_grain_harvester": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Grain harvester equipment",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C14_telescope": {
+   "family": "collectibles_equipment_rewards",
+   "name": "Dewdrop telescope preview",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C15_respawn_anchor": {
+   "family": "player_lifecycle",
+   "name": "Checkpoints / respawn position",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C16_lives_gameover": {
+   "family": "player_lifecycle",
+   "name": "Lives, game over, continue",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C17_movie_viewer": {
+   "family": "hud_frontend_persistence",
+   "name": "Movie viewer / FMV unlocks",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "C18_bonus_entry": {
+   "family": "bosses_special_objectives",
+   "name": "Bonus challenge entry triggers (3 hidden chains)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D01_enemy_spawn_update": {
+   "family": "enemies_combat",
+   "name": "General enemy spawn and update",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D02_mover_vm": {
+   "family": "enemies_combat",
+   "name": "Chaser and mover-VM behavior",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D03_contact_damage": {
+   "family": "enemies_combat",
+   "name": "Enemy contact damage",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D04_berry_immunity_matrix": {
+   "family": "enemies_combat",
+   "name": "Enemy berry immunity/resistance matrix",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D05_death_respawn": {
+   "family": "enemies_combat",
+   "name": "Enemy death/despawn/respawn",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D06_grasshoppers": {
+   "family": "enemies_combat",
+   "name": "Grasshoppers (family)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D07_mosquitoes": {
+   "family": "enemies_combat",
+   "name": "Mosquitoes (family)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D08_flies": {
+   "family": "enemies_combat",
+   "name": "Flies (family)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D09_cockroaches": {
+   "family": "enemies_combat",
+   "name": "Cockroaches (family)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D10_spiders": {
+   "family": "enemies_combat",
+   "name": "Spiders (family)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D11_mites_grubs": {
+   "family": "enemies_combat",
+   "name": "Mites and grubs (families)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D12_centipedes_earthworms": {
+   "family": "enemies_combat",
+   "name": "Centipedes and earthworms (families)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D13_armored_beetles": {
+   "family": "enemies_combat",
+   "name": "Armor-plated beetles (family)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D14_wasps_dragonflies": {
+   "family": "enemies_combat",
+   "name": "Wasps and dragonflies (families)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D15_daddy_long_legs": {
+   "family": "enemies_combat",
+   "name": "Daddy-long-legs (family)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D16_thumper": {
+   "family": "bosses_special_objectives",
+   "name": "Thumper boss (Council Chamber)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D17_bird": {
+   "family": "bosses_special_objectives",
+   "name": "Bird boss/hazard (Birdnest + Cliffside reuse)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D18_thud": {
+   "family": "bosses_special_objectives",
+   "name": "Thud horsefly boss (Bug Bar)",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D19_molt": {
+   "family": "bosses_special_objectives",
+   "name": "Molt boss (Battle Arena)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "D20_hopper": {
+   "family": "bosses_special_objectives",
+   "name": "Hopper boss/chase (stages 13-15)",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E01_terrain_visual": {
+   "family": "rendering_camera_animation",
+   "name": "Terrain visual geometry",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E02_collision": {
+   "family": "movement_world_physics",
+   "name": "Collision and floor planes",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "collision_floor_planes"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "E03_render_pipeline": {
+   "family": "rendering_camera_animation",
+   "name": "Render ordering and packets",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E04_camera_system": {
+   "family": "rendering_camera_animation",
+   "name": "Camera follow and regions",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E05_actor_models_anim": {
+   "family": "rendering_camera_animation",
+   "name": "Actor models and animation",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E06_contact_object_pool": {
+   "family": "objects_events_hazards",
+   "name": "Contact object pool (pickups/drops)",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "contact_object_pool"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "E07_event_vm": {
+   "family": "objects_events_hazards",
+   "name": "Event VM and scripted objects",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "event_vm"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "E08_props_movers_gates": {
+   "family": "objects_events_hazards",
+   "name": "Props, movers, switches, gates",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E09_grain_gates": {
+   "family": "objects_events_hazards",
+   "name": "Grain-count gates",
+   "baseline_status": "solved",
+   "completed_campaigns": [
+    "grain_gates"
+   ],
+   "reviewed_absence": false,
+   "state": "campaign_complete"
+  },
+  "E10_hazards": {
+   "family": "objects_events_hazards",
+   "name": "Environmental hazards",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E11_dynamic_geometry": {
+   "family": "objects_events_hazards",
+   "name": "Dynamic level geometry",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E12_audio": {
+   "family": "audio_cinematics",
+   "name": "Audio: SFX, XA music, voice",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E13_hud_results": {
+   "family": "hud_frontend_persistence",
+   "name": "HUD and results screens",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E14_frontend_save": {
+   "family": "hud_frontend_persistence",
+   "name": "Frontend, options, save/load",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E15_fmv": {
+   "family": "audio_cinematics",
+   "name": "FMV/movie playback",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "E16_streaming_overlays": {
+   "family": "loading_overlays_resources",
+   "name": "Streaming, loaders, overlays",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F00_training": {
+   "family": "bosses_special_objectives",
+   "name": "Training: Mr. Soil tutorial",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F01_anthill": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 1 Anthill: reach the entrance",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F02_tunnels": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 2 Tunnels: gates + falling debris",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F03_council_chamber": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 3 Council Chamber: defeat Thumper",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F04_cliffside_canyon": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 4 Cliffside Canyon: dandelion flight + bird hazard",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F05_riverbed_run": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 5 Riverbed Run: maze + spike hazards",
+   "baseline_status": "external_lead",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F06_birdnest": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 6 Birdnest: bird encounter",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F07_city_entrance": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 7 City Entrance: traffic, goo, circus objective",
+   "baseline_status": "external_lead",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F08_city_square": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 8 City Square: find performers via markers",
+   "baseline_status": "external_lead",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F09_bug_bar": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 9 Bug Bar: defeat Thud in rolling arena",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F10_clover_forest": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 10 Clover Forest: five mechanical-bird pieces",
+   "baseline_status": "external_lead",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F11_the_tree": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 11 The Tree: scouts/Dot, climbing, acorns, swinging",
+   "baseline_status": "external_lead",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F12_battle_arena": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 12 Battle Arena: defeat Molt with crowd berries",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F13_anthill_two": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 13 Anthill Part Two: rescue Atta / berry-shooter solution",
+   "baseline_status": "external_lead",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F14_riverbed_flight": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 14 Riverbed Flight: Atta/Flik flight chase",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F15_canyon_showdown": {
+   "family": "bosses_special_objectives",
+   "name": "Stage 15 Canyon Showdown: drive Hopper to finale",
+   "baseline_status": "unresolved",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F16_bonus1_spiders": {
+   "family": "bosses_special_objectives",
+   "name": "Bonus 1: consecutive spider bounces",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F17_bonus2_mushrooms": {
+   "family": "bosses_special_objectives",
+   "name": "Bonus 2: mushroom-bounce chain",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  },
+  "F18_bonus3_grasshoppers": {
+   "family": "bosses_special_objectives",
+   "name": "Bonus 3: consecutive grasshopper kills, no missed blue berry",
+   "baseline_status": "partial",
+   "completed_campaigns": [],
+   "reviewed_absence": false,
+   "state": "open"
+  }
+ },
+ "families": {
+  "input_player_actions": {
+   "number": 1,
+   "title": "Input and player actions",
+   "primary_rows": 11,
+   "completed_rows": 11,
+   "open_rows": [],
+   "active_child_campaigns": [
+    "abdomen_bounce",
+    "berry_throw",
+    "directional_spin_heading",
+    "downhill_slide",
+    "jump_controller",
+    "kick_attack",
+    "manual_camera_controls",
+    "run_locomotion",
+    "slow_walk_modifier",
+    "swing_attachment"
+   ],
+   "derived_status": "complete"
+  },
+  "player_lifecycle": {
+   "number": 2,
+   "title": "Player lifecycle",
+   "primary_rows": 2,
+   "completed_rows": 0,
+   "open_rows": [
+    "C15_respawn_anchor",
+    "C16_lives_gameover"
+   ],
+   "active_child_campaigns": [
+    "lives_gameover_continue",
+    "safe_respawn_anchor"
+   ],
+   "derived_status": "active"
+  },
+  "movement_world_physics": {
+   "number": 3,
+   "title": "Movement and world physics",
+   "primary_rows": 1,
+   "completed_rows": 1,
+   "open_rows": [],
+   "active_child_campaigns": [
+    "collision_floor_planes"
+   ],
+   "derived_status": "complete"
+  },
+  "rendering_camera_animation": {
+   "number": 4,
+   "title": "Rendering, camera, and animation",
+   "primary_rows": 4,
+   "completed_rows": 0,
+   "open_rows": [
+    "E01_terrain_visual",
+    "E03_render_pipeline",
+    "E04_camera_system",
+    "E05_actor_models_anim"
+   ],
+   "active_child_campaigns": [],
+   "derived_status": "pending"
+  },
+  "seeds_plants_traversal_powers": {
+   "number": 5,
+   "title": "Seeds, plants, and traversal powers",
+   "primary_rows": 20,
+   "completed_rows": 0,
+   "open_rows": [
+    "A09_seed_pickup_drop",
+    "A10_handstand",
+    "A12_seed_color_change",
+    "A13_cycle_plant_output",
+    "A14_plant_seed",
+    "A15_uproot_plant",
+    "B01_mushroom_trampoline",
+    "B02_propeller_plant",
+    "B03_dandelion_glide",
+    "B04_cannon_plant",
+    "B05_green_leaf_platforms",
+    "B06_invincibility",
+    "B07_health_power",
+    "B08_bubble_shield",
+    "B09_super_jump",
+    "B10_purple_berry_plants",
+    "B11_blue_berry_shooter",
+    "B12_homing_shooter",
+    "B13_mine_plant",
+    "B14_hostile_plant_projectiles"
+   ],
+   "active_child_campaigns": [],
+   "derived_status": "pending"
+  },
+  "collectibles_equipment_rewards": {
+   "number": 6,
+   "title": "Collectibles, equipment, and rewards",
+   "primary_rows": 14,
+   "completed_rows": 0,
+   "open_rows": [
+    "C01_grain_pickup",
+    "C02_fifty_grain_reward",
+    "C03_flik_letters",
+    "C04_enemy_token",
+    "C05_three_tokens",
+    "C06_red_berry",
+    "C07_blue_berry",
+    "C08_green_homing_berry",
+    "C09_mega_homing_berry",
+    "C10_gold_berry",
+    "C11_seed_tokens",
+    "C12_health_leaves",
+    "C13_grain_harvester",
+    "C14_telescope"
+   ],
+   "active_child_campaigns": [
+    "grain_collection_harvester"
+   ],
+   "derived_status": "active"
+  },
+  "objects_events_hazards": {
+   "number": 7,
+   "title": "Objects, events, and hazards",
+   "primary_rows": 6,
+   "completed_rows": 3,
+   "open_rows": [
+    "E08_props_movers_gates",
+    "E10_hazards",
+    "E11_dynamic_geometry"
+   ],
+   "active_child_campaigns": [
+    "contact_object_pool",
+    "event_vm",
+    "grain_gates",
+    "props_movers_gates"
+   ],
+   "derived_status": "active"
+  },
+  "enemies_combat": {
+   "number": 8,
+   "title": "Enemies and combat",
+   "primary_rows": 16,
+   "completed_rows": 0,
+   "open_rows": [
+    "A11_seed_as_weapon",
+    "D01_enemy_spawn_update",
+    "D02_mover_vm",
+    "D03_contact_damage",
+    "D04_berry_immunity_matrix",
+    "D05_death_respawn",
+    "D06_grasshoppers",
+    "D07_mosquitoes",
+    "D08_flies",
+    "D09_cockroaches",
+    "D10_spiders",
+    "D11_mites_grubs",
+    "D12_centipedes_earthworms",
+    "D13_armored_beetles",
+    "D14_wasps_dragonflies",
+    "D15_daddy_long_legs"
+   ],
+   "active_child_campaigns": [],
+   "derived_status": "pending"
+  },
+  "bosses_special_objectives": {
+   "number": 9,
+   "title": "Bosses and special objectives",
+   "primary_rows": 25,
+   "completed_rows": 0,
+   "open_rows": [
+    "C18_bonus_entry",
+    "D16_thumper",
+    "D17_bird",
+    "D18_thud",
+    "D19_molt",
+    "D20_hopper",
+    "F00_training",
+    "F01_anthill",
+    "F02_tunnels",
+    "F03_council_chamber",
+    "F04_cliffside_canyon",
+    "F05_riverbed_run",
+    "F06_birdnest",
+    "F07_city_entrance",
+    "F08_city_square",
+    "F09_bug_bar",
+    "F10_clover_forest",
+    "F11_the_tree",
+    "F12_battle_arena",
+    "F13_anthill_two",
+    "F14_riverbed_flight",
+    "F15_canyon_showdown",
+    "F16_bonus1_spiders",
+    "F17_bonus2_mushrooms",
+    "F18_bonus3_grasshoppers"
+   ],
+   "active_child_campaigns": [
+    "thud_bug_bar"
+   ],
+   "derived_status": "active"
+  },
+  "hud_frontend_persistence": {
+   "number": 10,
+   "title": "HUD, frontend, and persistence",
+   "primary_rows": 5,
+   "completed_rows": 1,
+   "open_rows": [
+    "A19_status_display",
+    "C17_movie_viewer",
+    "E13_hud_results",
+    "E14_frontend_save"
+   ],
+   "active_child_campaigns": [
+    "pause_shell"
+   ],
+   "derived_status": "active"
+  },
+  "audio_cinematics": {
+   "number": 11,
+   "title": "Audio and cinematics",
+   "primary_rows": 2,
+   "completed_rows": 0,
+   "open_rows": [
+    "E12_audio",
+    "E15_fmv"
+   ],
+   "active_child_campaigns": [
+    "fmv_playback"
+   ],
+   "derived_status": "active"
+  },
+  "loading_overlays_resources": {
+   "number": 12,
+   "title": "Loading, overlays, and resources",
+   "primary_rows": 1,
+   "completed_rows": 0,
+   "open_rows": [
+    "E16_streaming_overlays"
+   ],
+   "active_child_campaigns": [],
+   "derived_status": "pending"
+  }
+ },
+ "counts": {
+  "baseline_rows": 107,
+  "campaign_complete": 15,
+  "reviewed_absent": 1,
+  "complete_total": 16,
+  "open": 91
+ },
+ "work_packages": {
+  "WP1": {
+   "description": "Dependency-centrality and pristine-gap priority",
+   "met": true,
+   "priority_order": [
+    "input_player_actions",
+    "player_lifecycle",
+    "objects_events_hazards",
+    "audio_cinematics",
+    "loading_overlays_resources",
+    "movement_world_physics",
+    "rendering_camera_animation",
+    "enemies_combat",
+    "collectibles_equipment_rewards",
+    "seeds_plants_traversal_powers",
+    "hud_frontend_persistence",
+    "bosses_special_objectives"
+   ],
+   "low_level_checks": {
+    "registry_valid": true,
+    "all_twelve_ranked": true,
+    "core_substrates_are_tier_one": true,
+    "priority_uses_shared_surface": true,
+    "priority_uses_baseline_gaps": true,
+    "active_mod_demand_not_a_priority_input": true
+   }
+  },
+  "WP2": {
+   "description": "Core player/input/lifecycle and shared object/render/audio substrates first",
+   "met": false,
+   "core_family_status": {
+    "audio_cinematics": "active",
+    "input_player_actions": "complete",
+    "loading_overlays_resources": "pending",
+    "movement_world_physics": "complete",
+    "objects_events_hazards": "active",
+    "player_lifecycle": "active",
+    "rendering_camera_animation": "pending"
+   }
+  },
+  "WP3": {
+   "description": "Collectible, plant, enemy, and objective breadth across applicable levels",
+   "met": false,
+   "family_status": {
+    "bosses_special_objectives": "active",
+    "collectibles_equipment_rewards": "active",
+    "enemies_combat": "pending",
+    "seeds_plants_traversal_powers": "pending"
+   }
+  },
+  "WP4": {
+   "description": "Every regular enemy family and boss completed individually",
+   "met": false,
+   "required_subjects": [
+    "grasshopper",
+    "mosquito",
+    "flies",
+    "cockroaches",
+    "spiders",
+    "mites",
+    "grubs",
+    "centipedes",
+    "earthworms",
+    "armored_beetles",
+    "wasps",
+    "dragonflies",
+    "daddy_long_legs",
+    "thumper",
+    "bird",
+    "thud",
+    "molt",
+    "hopper"
+   ],
+   "missing_subjects": [
+    "armored_beetles",
+    "bird",
+    "centipedes",
+    "cockroaches",
+    "daddy_long_legs",
+    "dragonflies",
+    "earthworms",
+    "flies",
+    "grasshopper",
+    "grubs",
+    "hopper",
+    "mites",
+    "molt",
+    "mosquito",
+    "spiders",
+    "thud",
+    "thumper",
+    "wasps"
+   ]
+  },
+  "WP5": {
+   "description": "Special-stage mechanics and exceptional overlay paths",
+   "met": false,
+   "family_status": {
+    "bosses_special_objectives": "active",
+    "loading_overlays_resources": "pending"
+   }
+  },
+  "WP6": {
+   "description": "Baseline changes are derived from completed evidence",
+   "met": true,
+   "gaps": []
+  }
+ },
+ "overall_met": false
+}

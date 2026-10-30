@@ -1,0 +1,4934 @@
+{
+ "_comment": "Phase-3 WP4: jump tables recovered by BACKWARD-SLICING each resident `jr` dispatch site (sltiu bound / sll / lui+addu base / lw / jr). A slice that does not close, or that decodes an entry outside censused code, is reported as FAILED with its reason \u2014 never silently dropped, and never reported as a table we are unsure of. Regenerate: tools/phase3_jr_tables.py",
+ "generated": "2026-07-14",
+ "fixture_sha256": {
+  "REBUILD/files/SCUS_942.88": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+ },
+ "jr_sites": 95,
+ "decoded_sites": 36,
+ "computed_code_jump_sites": 45,
+ "unresolved_sites": 14,
+ "classification": {
+  "_comment": "A `jr` is not automatically a table dispatch. Two thirds of them here jump INTO CODE (base + index<<k \u2014 unrolled loops / jump islands, heavy in the GTE paths). Those have NO table to decode, and reporting them as 'undecoded tables' would have been a lie about the size of the frontier.",
+  "table_dispatch": 36,
+  "computed_code_jump": 45,
+  "unresolved": 14
+ },
+ "computed_code_jumps": {
+  "0x8005F750": {
+   "function": "strcat",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F760": {
+   "function": "strncmp",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F770": {
+   "function": "strcpy",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F780": {
+   "function": "strlen",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F790": {
+   "function": "toupper",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F7A0": {
+   "function": "memcpy",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F7B0": {
+   "function": "memset",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F7C0": {
+   "function": "rand",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F7D0": {
+   "function": "free",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8005F7E0": {
+   "function": "printf",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8006004C": {
+   "function": "memchr",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x800653C0": {
+   "function": "std_out_puts",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065AE8": {
+   "function": "setjmp",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065EF0": {
+   "function": "InitHeap",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F00": {
+   "function": "FlushCache",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F10": {
+   "function": "GPU_cw",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F28": {
+   "function": "CdRemove",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F40": {
+   "function": "OpenEvent",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F50": {
+   "function": "CloseEvent",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F60": {
+   "function": "WaitEvent",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F70": {
+   "function": "TestEvent",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F80": {
+   "function": "EnableEvent",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065F90": {
+   "function": "ReturnFromException",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065FA0": {
+   "function": "ResetEntryInt",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065FB0": {
+   "function": "HookEntryInt",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065FE0": {
+   "function": "card_open",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80065FF0": {
+   "function": "card_read",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066000": {
+   "function": "card_write",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066010": {
+   "function": "card_close",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066020": {
+   "function": "format",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066030": {
+   "function": "nextfile",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066040": {
+   "function": "erase",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066050": {
+   "function": "Krom2RawAdd",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066060": {
+   "function": "ChangeClearPAD",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066070": {
+   "function": "ChangeClearRCnt",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066490": {
+   "function": "strcmp",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x800664A0": {
+   "function": "firstfile",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x800667B0": {
+   "function": "InitPAD2",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x800667C0": {
+   "function": "StartPAD2",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x800667D0": {
+   "function": "StopPAD2",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x800667E0": {
+   "function": "PAD_init2",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x800667F0": {
+   "function": "SysEnqIntRP",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x80066800": {
+   "function": "SysDeqIntRP",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x8006C3B0": {
+   "function": "DeliverEvent",
+   "reason": "jr to a constant address materialised in-function"
+  },
+  "0x800743E4": {
+   "function": "bzero",
+   "reason": "jr to a constant address materialised in-function"
+  }
+ },
+ "distinct_tables": 36,
+ "total_entries_decoded": 869,
+ "decoded": {
+  "0x8001CAC4": {
+   "function": "mesh_draw_command_interpreter",
+   "table": "0x8001A900",
+   "entries": 7,
+   "distinct_targets": 3,
+   "named_targets": 7,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8001CACC",
+     "name": "mesh_draw_command_interpreter"
+    },
+    {
+     "index": 1,
+     "target": "0x8001CC4C",
+     "name": "mesh_draw_command_interpreter"
+    },
+    {
+     "index": 2,
+     "target": "0x8001CACC",
+     "name": "mesh_draw_command_interpreter"
+    },
+    {
+     "index": 3,
+     "target": "0x8001CC4C",
+     "name": "mesh_draw_command_interpreter"
+    },
+    {
+     "index": 4,
+     "target": "0x8001CACC",
+     "name": "mesh_draw_command_interpreter"
+    },
+    {
+     "index": 5,
+     "target": "0x8001CDA0",
+     "name": "mesh_draw_command_interpreter"
+    },
+    {
+     "index": 6,
+     "target": "0x8001CACC",
+     "name": "mesh_draw_command_interpreter"
+    }
+   ]
+  },
+  "0x8001DB14": {
+   "function": "dirt_object_dispatch",
+   "table": "0x8001A920",
+   "entries": 10,
+   "distinct_targets": 6,
+   "named_targets": 10,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8001DB1C",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 1,
+     "target": "0x8001DF50",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 2,
+     "target": "0x8001DF78",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 3,
+     "target": "0x8001DF78",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 4,
+     "target": "0x8001DCCC",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 5,
+     "target": "0x8001DF78",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 6,
+     "target": "0x8001DF78",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 7,
+     "target": "0x8001DF78",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 8,
+     "target": "0x8001DD3C",
+     "name": "dirt_object_dispatch"
+    },
+    {
+     "index": 9,
+     "target": "0x8001DF3C",
+     "name": "dirt_object_dispatch"
+    }
+   ]
+  },
+  "0x8001E70C": {
+   "function": "scene_geometry_draw_dispatcher",
+   "table": "0x8001A948",
+   "entries": 10,
+   "distinct_targets": 7,
+   "named_targets": 10,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8001E714",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 1,
+     "target": "0x8001E7B0",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 2,
+     "target": "0x8001E7FC",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 3,
+     "target": "0x8001E9C4",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 4,
+     "target": "0x8001E8C0",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 5,
+     "target": "0x8001E9C4",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 6,
+     "target": "0x8001E9C4",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 7,
+     "target": "0x8001E9C4",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 8,
+     "target": "0x8001E95C",
+     "name": "scene_geometry_draw_dispatcher"
+    },
+    {
+     "index": 9,
+     "target": "0x8001E7EC",
+     "name": "scene_geometry_draw_dispatcher"
+    }
+   ]
+  },
+  "0x8001EB34": {
+   "function": "mesh_payload_emit_orchestrator",
+   "table": "0x8001A970",
+   "entries": 109,
+   "distinct_targets": 12,
+   "named_targets": 109,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 1,
+     "target": "0x8001EB3C",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 2,
+     "target": "0x8001F69C",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 3,
+     "target": "0x8001F4CC",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 4,
+     "target": "0x8001F000",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 5,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 6,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 7,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 8,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 9,
+     "target": "0x8001EC44",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 10,
+     "target": "0x8001F858",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 11,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 12,
+     "target": "0x8001F1B4",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 13,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 14,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 15,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 16,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 17,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 18,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 19,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 20,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 21,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 22,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 23,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 24,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 25,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 26,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 27,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 28,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 29,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 30,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 31,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 32,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 33,
+     "target": "0x8001FA34",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 34,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 35,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 36,
+     "target": "0x8002010C",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 37,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 38,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 39,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 40,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 41,
+     "target": "0x8001FD2C",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 42,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 43,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 44,
+     "target": "0x80020338",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 45,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 46,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 47,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 48,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 49,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 50,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 51,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 52,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 53,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 54,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 55,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 56,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 57,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 58,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 59,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 60,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 61,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 62,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 63,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 64,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 65,
+     "target": "0x8001EB3C",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 66,
+     "target": "0x8001F69C",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 67,
+     "target": "0x8001F4CC",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 68,
+     "target": "0x8001F000",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 69,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 70,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 71,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 72,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 73,
+     "target": "0x8001EC44",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 74,
+     "target": "0x8001F858",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 75,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 76,
+     "target": "0x8001F1B4",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 77,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 78,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 79,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 80,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 81,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 82,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 83,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 84,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 85,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 86,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 87,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 88,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 89,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 90,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 91,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 92,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 93,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 94,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 95,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 96,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 97,
+     "target": "0x8001FA34",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 98,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 99,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 100,
+     "target": "0x8002010C",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 101,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 102,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 103,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 104,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 105,
+     "target": "0x8001FD2C",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 106,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 107,
+     "target": "0x800206A0",
+     "name": "mesh_payload_emit_orchestrator"
+    },
+    {
+     "index": 108,
+     "target": "0x80020338",
+     "name": "mesh_payload_emit_orchestrator"
+    }
+   ]
+  },
+  "0x800207A4": {
+   "function": "survivor_list_primitive_builder_2",
+   "table": "0x8001AB28",
+   "entries": 75,
+   "distinct_targets": 6,
+   "named_targets": 75,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 1,
+     "target": "0x800207AC",
+     "name": "survivor_list_primitive_builder_2"
+    },
+    {
+     "index": 2,
+     "target": "0x80020F74",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 3,
+     "target": "0x80020DA0",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 4,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 5,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 6,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 7,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 8,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 9,
+     "target": "0x800208A8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 10,
+     "target": "0x80021104",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 11,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 12,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 13,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 14,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 15,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 16,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 17,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 18,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 19,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 20,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 21,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 22,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 23,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 24,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 25,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 26,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 27,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 28,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 29,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 30,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 31,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 32,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 33,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 34,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 35,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 36,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 37,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 38,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 39,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 40,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 41,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 42,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 43,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 44,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 45,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 46,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 47,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 48,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 49,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 50,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 51,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 52,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 53,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 54,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 55,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 56,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 57,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 58,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 59,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 60,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 61,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 62,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 63,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 64,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 65,
+     "target": "0x800207AC",
+     "name": "survivor_list_primitive_builder_2"
+    },
+    {
+     "index": 66,
+     "target": "0x80020F74",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 67,
+     "target": "0x80020DA0",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 68,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 69,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 70,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 71,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 72,
+     "target": "0x800212B8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 73,
+     "target": "0x800208A8",
+     "name": "matrix_lut_mesh_transform_07f0"
+    },
+    {
+     "index": 74,
+     "target": "0x80021104",
+     "name": "matrix_lut_mesh_transform_07f0"
+    }
+   ]
+  },
+  "0x80021CEC": {
+   "function": "setpiece_actor_mesh_transform",
+   "table": "0x8001AC58",
+   "entries": 9,
+   "distinct_targets": 6,
+   "named_targets": 9,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80021CF4",
+     "name": "setpiece_actor_mesh_transform"
+    },
+    {
+     "index": 1,
+     "target": "0x80021EBC",
+     "name": "boss_defeat_fsm_mesh_transform"
+    },
+    {
+     "index": 2,
+     "target": "0x80021F0C",
+     "name": "boss_defeat_fsm_mesh_transform"
+    },
+    {
+     "index": 3,
+     "target": "0x8002245C",
+     "name": "boss_defeat_fsm_mesh_transform"
+    },
+    {
+     "index": 4,
+     "target": "0x8002210C",
+     "name": "boss_defeat_fsm_mesh_transform"
+    },
+    {
+     "index": 5,
+     "target": "0x8002245C",
+     "name": "boss_defeat_fsm_mesh_transform"
+    },
+    {
+     "index": 6,
+     "target": "0x8002245C",
+     "name": "boss_defeat_fsm_mesh_transform"
+    },
+    {
+     "index": 7,
+     "target": "0x8002245C",
+     "name": "boss_defeat_fsm_mesh_transform"
+    },
+    {
+     "index": 8,
+     "target": "0x800222D8",
+     "name": "boss_defeat_fsm_mesh_transform"
+    }
+   ]
+  },
+  "0x8002729C": {
+   "function": "ot_depth_fade_postprocess",
+   "table": "0x8001AC80",
+   "entries": 27,
+   "distinct_targets": 8,
+   "named_targets": 27,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8002798C",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 1,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 2,
+     "target": "0x80027AC4",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 3,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 4,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 5,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 6,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 7,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 8,
+     "target": "0x80027720",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 9,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 10,
+     "target": "0x80027840",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 11,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 12,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 13,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 14,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 15,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 16,
+     "target": "0x80027468",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 17,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 18,
+     "target": "0x800275A0",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 19,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 20,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 21,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 22,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 23,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 24,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 25,
+     "target": "0x80027C20",
+     "name": "ot_depth_fade_postprocess"
+    },
+    {
+     "index": 26,
+     "target": "0x800272A4",
+     "name": "ot_depth_fade_postprocess"
+    }
+   ]
+  },
+  "0x8003CFBC": {
+   "function": "resource_id_dat_load_dispatcher",
+   "table": "0x8001AFB0",
+   "entries": 17,
+   "distinct_targets": 15,
+   "named_targets": 17,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8003CFC4",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 1,
+     "target": "0x8003D00C",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 2,
+     "target": "0x8003CFE8",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 3,
+     "target": "0x8003D09C",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 4,
+     "target": "0x8003D0C0",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 5,
+     "target": "0x8003D030",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 6,
+     "target": "0x8003D108",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 7,
+     "target": "0x8003D198",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 8,
+     "target": "0x8003D174",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 9,
+     "target": "0x8003D054",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 10,
+     "target": "0x8003D078",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 11,
+     "target": "0x8003D12C",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 12,
+     "target": "0x8003D150",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 13,
+     "target": "0x8003D0E4",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 14,
+     "target": "0x8003D1BC",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 15,
+     "target": "0x8003CFC4",
+     "name": "resource_id_dat_load_dispatcher"
+    },
+    {
+     "index": 16,
+     "target": "0x8003CFC4",
+     "name": "resource_id_dat_load_dispatcher"
+    }
+   ]
+  },
+  "0x8003D65C": {
+   "function": "collision_grid_l_level_overlay__glue",
+   "table": "0x8001AFF8",
+   "entries": 20,
+   "distinct_targets": 20,
+   "named_targets": 20,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8003D664",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 1,
+     "target": "0x8003D674",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 2,
+     "target": "0x8003D684",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 3,
+     "target": "0x8003D694",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 4,
+     "target": "0x8003D6A4",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 5,
+     "target": "0x8003D6B4",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 6,
+     "target": "0x8003D6C4",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 7,
+     "target": "0x8003D6D4",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 8,
+     "target": "0x8003D6E4",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 9,
+     "target": "0x8003D6F4",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 10,
+     "target": "0x8003D704",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 11,
+     "target": "0x8003D714",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 12,
+     "target": "0x8003D724",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 13,
+     "target": "0x8003D734",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 14,
+     "target": "0x8003D744",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 15,
+     "target": "0x8003D754",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 16,
+     "target": "0x8003D764",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 17,
+     "target": "0x8003D774",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 18,
+     "target": "0x8003D784",
+     "name": "collision_grid_l_level_overlay__glue"
+    },
+    {
+     "index": 19,
+     "target": "0x8003D794",
+     "name": "collision_grid_l_level_overlay__glue"
+    }
+   ]
+  },
+  "0x8003F38C": {
+   "function": "seed_cursor_state_jump_dispatch",
+   "table": "0x8001B048",
+   "entries": 19,
+   "distinct_targets": 19,
+   "named_targets": 19,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8003F394",
+     "name": "seed_cursor_state_jump_dispatch"
+    },
+    {
+     "index": 1,
+     "target": "0x8003F3A4",
+     "name": "seed_cursor_state_jump_dispatch"
+    },
+    {
+     "index": 2,
+     "target": "0x8003F4B4",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 3,
+     "target": "0x8003F3C4",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 4,
+     "target": "0x8003F3B4",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 5,
+     "target": "0x8003F404",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 6,
+     "target": "0x8003F414",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 7,
+     "target": "0x8003F3D4",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 8,
+     "target": "0x8003F434",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 9,
+     "target": "0x8003F474",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 10,
+     "target": "0x8003F464",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 11,
+     "target": "0x8003F3E4",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 12,
+     "target": "0x8003F3F4",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 13,
+     "target": "0x8003F444",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 14,
+     "target": "0x8003F454",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 15,
+     "target": "0x8003F424",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 16,
+     "target": "0x8003F484",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 17,
+     "target": "0x8003F494",
+     "name": "switch_dispatch_struct_by_index"
+    },
+    {
+     "index": 18,
+     "target": "0x8003F4A4",
+     "name": "switch_dispatch_struct_by_index"
+    }
+   ]
+  },
+  "0x80047194": {
+   "function": "berry_throw_dispatch",
+   "table": "0x8001B1C0",
+   "entries": 5,
+   "distinct_targets": 5,
+   "named_targets": 5,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8004719C",
+     "name": "berry_throw_dispatch"
+    },
+    {
+     "index": 1,
+     "target": "0x800471A8",
+     "name": "berry_throw_dispatch"
+    },
+    {
+     "index": 2,
+     "target": "0x800471B4",
+     "name": "berry_throw_dispatch"
+    },
+    {
+     "index": 3,
+     "target": "0x800471BC",
+     "name": "berry_throw_dispatch"
+    },
+    {
+     "index": 4,
+     "target": "0x800471C8",
+     "name": "berry_throw_dispatch"
+    }
+   ]
+  },
+  "0x80049A50": {
+   "function": "enemy_update_deathanim",
+   "table": "0x8001B1D4",
+   "entries": 36,
+   "distinct_targets": 12,
+   "named_targets": 36,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80049A58",
+     "name": "actor_anim_seq1_param1"
+    },
+    {
+     "index": 1,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 2,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 3,
+     "target": "0x80049A70",
+     "name": "actor_anim_seq21_trigger"
+    },
+    {
+     "index": 4,
+     "target": "0x80049A88",
+     "name": "actor_anim_seq1_param2_49a88"
+    },
+    {
+     "index": 5,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 6,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 7,
+     "target": "0x80049AA0",
+     "name": "actor_enter_anim_state_3"
+    },
+    {
+     "index": 8,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 9,
+     "target": "0x80049AB8",
+     "name": "enemy_deathanim_set_anim3"
+    },
+    {
+     "index": 10,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 11,
+     "target": "0x80049AD0",
+     "name": "actor_anim1_state_handler"
+    },
+    {
+     "index": 12,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 13,
+     "target": "0x80049AE8",
+     "name": "anim_state_set_seq_1_1"
+    },
+    {
+     "index": 14,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 15,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 16,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 17,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 18,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 19,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 20,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 21,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 22,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 23,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 24,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 25,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 26,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 27,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 28,
+     "target": "0x80049B00",
+     "name": "actor_anim_seq13_param0"
+    },
+    {
+     "index": 29,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 30,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 31,
+     "target": "0x80049B18",
+     "name": "actor_anim_seq25_trigger"
+    },
+    {
+     "index": 32,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 33,
+     "target": "0x80049B30",
+     "name": "actor_anim_seq1_param2_49b30"
+    },
+    {
+     "index": 34,
+     "target": "0x80049B60",
+     "name": "enemy_deathanim_finalize_remove_from_list"
+    },
+    {
+     "index": 35,
+     "target": "0x80049B48",
+     "name": "actor_enter_anim_state_2"
+    }
+   ]
+  },
+  "0x8004A528": {
+   "function": "object_slot_type_init",
+   "table": "0x8001B264",
+   "entries": 36,
+   "distinct_targets": 16,
+   "named_targets": 36,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8004A530",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 1,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 2,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 3,
+     "target": "0x8004A5F4",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 4,
+     "target": "0x8004A540",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 5,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 6,
+     "target": "0x8004A550",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 7,
+     "target": "0x8004A55C",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 8,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 9,
+     "target": "0x8004A574",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 10,
+     "target": "0x8004A5EC",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 11,
+     "target": "0x8004A58C",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 12,
+     "target": "0x8004A5A4",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 13,
+     "target": "0x8004A5B0",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 14,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 15,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 16,
+     "target": "0x8004A5EC",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 17,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 18,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 19,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 20,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 21,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 22,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 23,
+     "target": "0x8004A5BC",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 24,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 25,
+     "target": "0x8004A5CC",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 26,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 27,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 28,
+     "target": "0x8004A5DC",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 29,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 30,
+     "target": "0x8004A5EC",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 31,
+     "target": "0x8004A5F4",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 32,
+     "target": "0x8004A620",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 33,
+     "target": "0x8004A608",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 34,
+     "target": "0x8004A61C",
+     "name": "object_slot_type_init"
+    },
+    {
+     "index": 35,
+     "target": "0x8004A61C",
+     "name": "object_slot_type_init"
+    }
+   ]
+  },
+  "0x8004C220": {
+   "function": "event_bytecode_interpreter",
+   "table": "0x8001B2F4",
+   "entries": 26,
+   "distinct_targets": 19,
+   "named_targets": 26,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8004C808",
+     "name": "mover_vm_op0_jump_back"
+    },
+    {
+     "index": 1,
+     "target": "0x8004C818",
+     "name": "mover_vm_dispatch_next"
+    },
+    {
+     "index": 2,
+     "target": "0x8004C228",
+     "name": "mover_vm_op2_wait"
+    },
+    {
+     "index": 3,
+     "target": "0x8004C238",
+     "name": "mover_vm_op3_wait_random"
+    },
+    {
+     "index": 4,
+     "target": "0x8004C278",
+     "name": "mover_vm_op4_random_dir_step"
+    },
+    {
+     "index": 5,
+     "target": "0x8004C32C",
+     "name": "mover_vm_op5_path_next_waypoint"
+    },
+    {
+     "index": 6,
+     "target": "0x8004C818",
+     "name": "mover_vm_dispatch_next"
+    },
+    {
+     "index": 7,
+     "target": "0x8004C818",
+     "name": "mover_vm_dispatch_next"
+    },
+    {
+     "index": 8,
+     "target": "0x8004C818",
+     "name": "mover_vm_dispatch_next"
+    },
+    {
+     "index": 9,
+     "target": "0x8004C46C",
+     "name": "mover_vm_op9_branch_if_s3"
+    },
+    {
+     "index": 10,
+     "target": "0x8004C818",
+     "name": "mover_vm_dispatch_next"
+    },
+    {
+     "index": 11,
+     "target": "0x8004C47C",
+     "name": "mover_vm_op11_seek_path_endpoint"
+    },
+    {
+     "index": 12,
+     "target": "0x8004C59C",
+     "name": "mover_vm_op12_call_native"
+    },
+    {
+     "index": 13,
+     "target": "0x8004C664",
+     "name": "mover_vm_op13_flags_mask"
+    },
+    {
+     "index": 14,
+     "target": "0x8004C68C",
+     "name": "mover_vm_op14_anim_clip_load"
+    },
+    {
+     "index": 15,
+     "target": "0x8004C6CC",
+     "name": "mover_vm_op15_cond_noise_mask"
+    },
+    {
+     "index": 16,
+     "target": "0x8004C6FC",
+     "name": "mover_vm_op16_chase_radius_scratch"
+    },
+    {
+     "index": 17,
+     "target": "0x8004C710",
+     "name": "mover_vm_op17_player_proximity"
+    },
+    {
+     "index": 18,
+     "target": "0x8004C818",
+     "name": "mover_vm_dispatch_next"
+    },
+    {
+     "index": 19,
+     "target": "0x8004C818",
+     "name": "mover_vm_dispatch_next"
+    },
+    {
+     "index": 20,
+     "target": "0x8004C76C",
+     "name": "mover_vm_op20_branch_fwd_if_s3"
+    },
+    {
+     "index": 21,
+     "target": "0x8004C818",
+     "name": "mover_vm_dispatch_next"
+    },
+    {
+     "index": 22,
+     "target": "0x8004C790",
+     "name": "mover_vm_op22_done_disable"
+    },
+    {
+     "index": 23,
+     "target": "0x8004C7A0",
+     "name": "mover_vm_op23_set_byte_params"
+    },
+    {
+     "index": 24,
+     "target": "0x8004C7BC",
+     "name": "mover_vm_op24_call_play_sound"
+    },
+    {
+     "index": 25,
+     "target": "0x8004C7D4",
+     "name": "mover_vm_op25_cond_powerup_flag"
+    }
+   ]
+  },
+  "0x8004C5CC": {
+   "function": "mover_vm_op12_call_native",
+   "table": "0x8001B35C",
+   "entries": 9,
+   "distinct_targets": 9,
+   "named_targets": 9,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8004C5D4",
+     "name": "vm_native_spawn_drop_burst"
+    },
+    {
+     "index": 1,
+     "target": "0x8004C5E4",
+     "name": "mover_vm_op_spawn_burst_ring"
+    },
+    {
+     "index": 2,
+     "target": "0x8004C5F4",
+     "name": "mover_vm_op_dispatch_next"
+    },
+    {
+     "index": 3,
+     "target": "0x8004C604",
+     "name": "mover_vm_op_overlay_hook_b3b70"
+    },
+    {
+     "index": 4,
+     "target": "0x8004C614",
+     "name": "mover_vm_op_call_b3bd4"
+    },
+    {
+     "index": 5,
+     "target": "0x8004C624",
+     "name": "mover_vm_op_call_advance"
+    },
+    {
+     "index": 6,
+     "target": "0x8004C634",
+     "name": "mover_vm_op_actor_flag_update"
+    },
+    {
+     "index": 7,
+     "target": "0x8004C644",
+     "name": "vm_op_aimed_drop_spawn"
+    },
+    {
+     "index": 8,
+     "target": "0x8004C654",
+     "name": "mover_vm_op_call_b3f00"
+    }
+   ]
+  },
+  "0x8004FC34": {
+   "function": "main_shell_state_machine",
+   "table": "0x8001B3C4",
+   "entries": 6,
+   "distinct_targets": 6,
+   "named_targets": 6,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8004FC3C",
+     "name": "scene_flow_set_substate_1"
+    },
+    {
+     "index": 1,
+     "target": "0x8004FC50",
+     "name": "scene_flow_set_substate_11"
+    },
+    {
+     "index": 2,
+     "target": "0x8004FC64",
+     "name": "scene_flow_set_substate_2"
+    },
+    {
+     "index": 3,
+     "target": "0x8004FC78",
+     "name": "scene_flow_set_substate_7"
+    },
+    {
+     "index": 4,
+     "target": "0x8004FC8C",
+     "name": "scene_flow_set_substate_12"
+    },
+    {
+     "index": 5,
+     "target": "0x8004FCA0",
+     "name": "scene_flow_dispatcher"
+    }
+   ]
+  },
+  "0x8005348C": {
+   "function": "results_screen_render",
+   "table": "0x8001B3F4",
+   "entries": 14,
+   "distinct_targets": 6,
+   "named_targets": 14,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80053494",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 1,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 2,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 3,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 4,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 5,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 6,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 7,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 8,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 9,
+     "target": "0x800534A4",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 10,
+     "target": "0x80053504",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 11,
+     "target": "0x800534B4",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 12,
+     "target": "0x800534C4",
+     "name": "results_screen_render"
+    },
+    {
+     "index": 13,
+     "target": "0x800534EC",
+     "name": "results_screen_render"
+    }
+   ]
+  },
+  "0x80053CFC": {
+   "function": "type_0x3f_construct_contact_action_dispatch",
+   "table": "0x8001B42C",
+   "entries": 34,
+   "distinct_targets": 18,
+   "named_targets": 34,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80053D04",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 1,
+     "target": "0x80053E64",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 2,
+     "target": "0x80053FC0",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 3,
+     "target": "0x8005411C",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 4,
+     "target": "0x80054278",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 5,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 6,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 7,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 8,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 9,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 10,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 11,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 12,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 13,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 14,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 15,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 16,
+     "target": "0x80054288",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 17,
+     "target": "0x80054298",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 18,
+     "target": "0x800542AC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 19,
+     "target": "0x800542C0",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 20,
+     "target": "0x800542D4",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 21,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 22,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 23,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 24,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 25,
+     "target": "0x800542F4",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 26,
+     "target": "0x8005433C",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 27,
+     "target": "0x800543B8",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 28,
+     "target": "0x80054434",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 29,
+     "target": "0x800544D0",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 30,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 31,
+     "target": "0x800545CC",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 32,
+     "target": "0x80054554",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    },
+    {
+     "index": 33,
+     "target": "0x800545A0",
+     "name": "type_0x3f_construct_contact_action_dispatch"
+    }
+   ]
+  },
+  "0x80054834": {
+   "function": "scene_verb_dispatch",
+   "table": "0x8001B4B4",
+   "entries": 18,
+   "distinct_targets": 18,
+   "named_targets": 18,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8005483C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 1,
+     "target": "0x8005484C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 2,
+     "target": "0x8005485C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 3,
+     "target": "0x8005486C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 4,
+     "target": "0x8005487C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 5,
+     "target": "0x8005488C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 6,
+     "target": "0x8005489C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 7,
+     "target": "0x800548AC",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 8,
+     "target": "0x800548BC",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 9,
+     "target": "0x800548CC",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 10,
+     "target": "0x800548DC",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 11,
+     "target": "0x800548EC",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 12,
+     "target": "0x800548FC",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 13,
+     "target": "0x8005490C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 14,
+     "target": "0x8005491C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 15,
+     "target": "0x8005492C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 16,
+     "target": "0x8005493C",
+     "name": "scene_verb_dispatch"
+    },
+    {
+     "index": 17,
+     "target": "0x8005494C",
+     "name": "scene_verb_dispatch"
+    }
+   ]
+  },
+  "0x8005498C": {
+   "function": "scene_verb_dispatcher",
+   "table": "0x8001B4FC",
+   "entries": 17,
+   "distinct_targets": 17,
+   "named_targets": 17,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80054994",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 1,
+     "target": "0x800549A4",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 2,
+     "target": "0x800549B4",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 3,
+     "target": "0x800549C4",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 4,
+     "target": "0x800549D4",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 5,
+     "target": "0x800549E4",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 6,
+     "target": "0x800549F4",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 7,
+     "target": "0x80054A04",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 8,
+     "target": "0x80054A14",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 9,
+     "target": "0x80054A24",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 10,
+     "target": "0x80054A34",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 11,
+     "target": "0x80054A44",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 12,
+     "target": "0x80054A54",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 13,
+     "target": "0x80054A64",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 14,
+     "target": "0x80054A74",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 15,
+     "target": "0x80054A84",
+     "name": "scene_verb_dispatcher"
+    },
+    {
+     "index": 16,
+     "target": "0x80054A94",
+     "name": "scene_verb_dispatcher"
+    }
+   ]
+  },
+  "0x80056590": {
+   "function": "actor_skinned_update",
+   "table": "0x8001B540",
+   "entries": 12,
+   "distinct_targets": 3,
+   "named_targets": 12,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80056598",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 1,
+     "target": "0x80056598",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 2,
+     "target": "0x800565D4",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 3,
+     "target": "0x80056610",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 4,
+     "target": "0x80056610",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 5,
+     "target": "0x80056610",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 6,
+     "target": "0x800565D4",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 7,
+     "target": "0x800565D4",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 8,
+     "target": "0x80056610",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 9,
+     "target": "0x80056610",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 10,
+     "target": "0x80056610",
+     "name": "actor_skinned_update"
+    },
+    {
+     "index": 11,
+     "target": "0x800565D4",
+     "name": "actor_skinned_update"
+    }
+   ]
+  },
+  "0x8005882C": {
+   "function": "contact_pickup_walker",
+   "table": "0x8001B570",
+   "entries": 117,
+   "distinct_targets": 15,
+   "named_targets": 117,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80058834",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 1,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 2,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 3,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 4,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 5,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 6,
+     "target": "0x80058854",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 7,
+     "target": "0x80058864",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 8,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 9,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 10,
+     "target": "0x800588B0",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 11,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 12,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 13,
+     "target": "0x800588D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 14,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 15,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 16,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 17,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 18,
+     "target": "0x800589B8",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 19,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 20,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 21,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 22,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 23,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 24,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 25,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 26,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 27,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 28,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 29,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 30,
+     "target": "0x800588FC",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 31,
+     "target": "0x80058940",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 32,
+     "target": "0x80058954",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 33,
+     "target": "0x80058968",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 34,
+     "target": "0x80058978",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 35,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 36,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 37,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 38,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 39,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 40,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 41,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 42,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 43,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 44,
+     "target": "0x80058998",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 45,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 46,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 47,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 48,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 49,
+     "target": "0x8005889C",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 50,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 51,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 52,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 53,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 54,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 55,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 56,
+     "target": "0x800589C8",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 57,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 58,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 59,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 60,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 61,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 62,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 63,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 64,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 65,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 66,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 67,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 68,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 69,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 70,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 71,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 72,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 73,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 74,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 75,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 76,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 77,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 78,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 79,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 80,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 81,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 82,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 83,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 84,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 85,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 86,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 87,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 88,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 89,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 90,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 91,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 92,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 93,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 94,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 95,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 96,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 97,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 98,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 99,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 100,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 101,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 102,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 103,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 104,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 105,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 106,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 107,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 108,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 109,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 110,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 111,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 112,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 113,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 114,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 115,
+     "target": "0x800589D4",
+     "name": "contact_pickup_walker"
+    },
+    {
+     "index": 116,
+     "target": "0x800589C8",
+     "name": "contact_pickup_walker"
+    }
+   ]
+  },
+  "0x80058E78": {
+   "function": "contact_vs_actor_handler",
+   "table": "0x8001B748",
+   "entries": 12,
+   "distinct_targets": 6,
+   "named_targets": 12,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80058E80",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 1,
+     "target": "0x80058EA8",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 2,
+     "target": "0x80058E88",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 3,
+     "target": "0x80058E90",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 4,
+     "target": "0x80058EA8",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 5,
+     "target": "0x80058EA8",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 6,
+     "target": "0x80058EA8",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 7,
+     "target": "0x80058E98",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 8,
+     "target": "0x80058EA8",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 9,
+     "target": "0x80058EA8",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 10,
+     "target": "0x80058EA8",
+     "name": "contact_vs_actor_handler"
+    },
+    {
+     "index": 11,
+     "target": "0x80058EA0",
+     "name": "contact_vs_actor_handler"
+    }
+   ]
+  },
+  "0x8005940C": {
+   "function": "contact_scatter_component_decode",
+   "table": "0x8001B778",
+   "entries": 6,
+   "distinct_targets": 6,
+   "named_targets": 6,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80059414",
+     "name": "contact_scatter_component_decode"
+    },
+    {
+     "index": 1,
+     "target": "0x80059444",
+     "name": "contact_scatter_component_decode"
+    },
+    {
+     "index": 2,
+     "target": "0x80059470",
+     "name": "contact_scatter_component_decode"
+    },
+    {
+     "index": 3,
+     "target": "0x800594A0",
+     "name": "contact_scatter_component_decode"
+    },
+    {
+     "index": 4,
+     "target": "0x800594D4",
+     "name": "contact_scatter_component_decode"
+    },
+    {
+     "index": 5,
+     "target": "0x80059508",
+     "name": "contact_scatter_component_decode"
+    }
+   ]
+  },
+  "0x800595A8": {
+   "function": "pickup_effect_dispatch",
+   "table": "0x8001B790",
+   "entries": 24,
+   "distinct_targets": 24,
+   "named_targets": 24,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x800595B0",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 1,
+     "target": "0x80059600",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 2,
+     "target": "0x80059650",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 3,
+     "target": "0x800596A0",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 4,
+     "target": "0x8005972C",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 5,
+     "target": "0x80059740",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 6,
+     "target": "0x800597B0",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 7,
+     "target": "0x80059848",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 8,
+     "target": "0x80059898",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 9,
+     "target": "0x800598AC",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 10,
+     "target": "0x80059918",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 11,
+     "target": "0x80059984",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 12,
+     "target": "0x80059994",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 13,
+     "target": "0x80059A18",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 14,
+     "target": "0x80059A2C",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 15,
+     "target": "0x80059A68",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 16,
+     "target": "0x80059B4C",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 17,
+     "target": "0x80059B74",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 18,
+     "target": "0x80059BCC",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 19,
+     "target": "0x80059C04",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 20,
+     "target": "0x80059C5C",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 21,
+     "target": "0x80059CB4",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 22,
+     "target": "0x80059D78",
+     "name": "pickup_effect_dispatch"
+    },
+    {
+     "index": 23,
+     "target": "0x80059E08",
+     "name": "pickup_effect_dispatch"
+    }
+   ]
+  },
+  "0x8005A910": {
+   "function": "berry_projectile_update",
+   "table": "0x8001B7F0",
+   "entries": 14,
+   "distinct_targets": 11,
+   "named_targets": 14,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8005A918",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 1,
+     "target": "0x8005A978",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 2,
+     "target": "0x8005B098",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 3,
+     "target": "0x8005B098",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 4,
+     "target": "0x8005B098",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 5,
+     "target": "0x8005B098",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 6,
+     "target": "0x8005A9F4",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 7,
+     "target": "0x8005AAF8",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 8,
+     "target": "0x8005AB54",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 9,
+     "target": "0x8005AB80",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 10,
+     "target": "0x8005ABC8",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 11,
+     "target": "0x8005ABE4",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 12,
+     "target": "0x8005AE1C",
+     "name": "berry_projectile_update"
+    },
+    {
+     "index": 13,
+     "target": "0x8005B070",
+     "name": "berry_projectile_update"
+    }
+   ]
+  },
+  "0x8005B16C": {
+   "function": "respawn_transition_state_handler",
+   "table": "0x8001B828",
+   "entries": 8,
+   "distinct_targets": 6,
+   "named_targets": 8,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8005B174",
+     "name": "respawn_transition_state_handler"
+    },
+    {
+     "index": 1,
+     "target": "0x8005B184",
+     "name": "respawn_transition_state_handler"
+    },
+    {
+     "index": 2,
+     "target": "0x8005B1BC",
+     "name": "respawn_transition_state_handler"
+    },
+    {
+     "index": 3,
+     "target": "0x8005B194",
+     "name": "respawn_transition_state_handler"
+    },
+    {
+     "index": 4,
+     "target": "0x8005B1BC",
+     "name": "respawn_transition_state_handler"
+    },
+    {
+     "index": 5,
+     "target": "0x8005B1A4",
+     "name": "respawn_transition_state_handler"
+    },
+    {
+     "index": 6,
+     "target": "0x8005B1BC",
+     "name": "respawn_transition_state_handler"
+    },
+    {
+     "index": 7,
+     "target": "0x8005B1B4",
+     "name": "respawn_transition_state_handler"
+    }
+   ]
+  },
+  "0x8005C108": {
+   "function": "plant_behavior_walker",
+   "table": "0x8001B848",
+   "entries": 13,
+   "distinct_targets": 10,
+   "named_targets": 13,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8005C110",
+     "name": "seed_plant_cannon_handler"
+    },
+    {
+     "index": 1,
+     "target": "0x8005C258",
+     "name": "seed_plant_propeller_handler"
+    },
+    {
+     "index": 2,
+     "target": "0x8005CCE8",
+     "name": "seed_plant_passive_handler"
+    },
+    {
+     "index": 3,
+     "target": "0x8005C58C",
+     "name": "seed_plant_trampoline_handler"
+    },
+    {
+     "index": 4,
+     "target": "0x8005C6F0",
+     "name": "seed_plant_type6_handler"
+    },
+    {
+     "index": 5,
+     "target": "0x8005C744",
+     "name": "seed_plant_type7_handler"
+    },
+    {
+     "index": 6,
+     "target": "0x8005C818",
+     "name": "seed_plant_dandelion_handler"
+    },
+    {
+     "index": 7,
+     "target": "0x8005CCE8",
+     "name": "seed_plant_passive_handler"
+    },
+    {
+     "index": 8,
+     "target": "0x8005CCE8",
+     "name": "seed_plant_passive_handler"
+    },
+    {
+     "index": 9,
+     "target": "0x8005C918",
+     "name": "seed_plant_mine_handler"
+    },
+    {
+     "index": 10,
+     "target": "0x8005CCE8",
+     "name": "seed_plant_passive_handler"
+    },
+    {
+     "index": 11,
+     "target": "0x8005CA24",
+     "name": "seed_plant_purple_shooter_handler"
+    },
+    {
+     "index": 12,
+     "target": "0x8005CA7C",
+     "name": "seed_plant_blue_shooter_handler"
+    }
+   ]
+  },
+  "0x8005DCA0": {
+   "function": "level_load_chunks",
+   "table": "0x8001BBDC",
+   "entries": 41,
+   "distinct_targets": 41,
+   "named_targets": 41,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8005DCA8",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 1,
+     "target": "0x8005DCCC",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 2,
+     "target": "0x8005DCF0",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 3,
+     "target": "0x8005DD14",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 4,
+     "target": "0x8005DD38",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 5,
+     "target": "0x8005DD5C",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 6,
+     "target": "0x8005DD80",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 7,
+     "target": "0x8005DDA4",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 8,
+     "target": "0x8005DDC8",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 9,
+     "target": "0x8005DDEC",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 10,
+     "target": "0x8005DE10",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 11,
+     "target": "0x8005DE40",
+     "name": "level_load_chunks"
+    },
+    {
+     "index": 12,
+     "target": "0x8005DE64",
+     "name": "load_character_models"
+    },
+    {
+     "index": 13,
+     "target": "0x8005DE88",
+     "name": "load_character_models"
+    },
+    {
+     "index": 14,
+     "target": "0x8005DEAC",
+     "name": "load_character_models"
+    },
+    {
+     "index": 15,
+     "target": "0x8005DED0",
+     "name": "load_character_models"
+    },
+    {
+     "index": 16,
+     "target": "0x8005DEF4",
+     "name": "load_character_models"
+    },
+    {
+     "index": 17,
+     "target": "0x8005DF18",
+     "name": "load_character_models"
+    },
+    {
+     "index": 18,
+     "target": "0x8005DF3C",
+     "name": "load_character_models"
+    },
+    {
+     "index": 19,
+     "target": "0x8005DF60",
+     "name": "load_character_models"
+    },
+    {
+     "index": 20,
+     "target": "0x8005DF84",
+     "name": "load_character_models"
+    },
+    {
+     "index": 21,
+     "target": "0x8005DFA8",
+     "name": "load_character_models"
+    },
+    {
+     "index": 22,
+     "target": "0x8005DFCC",
+     "name": "load_character_models"
+    },
+    {
+     "index": 23,
+     "target": "0x8005DFF0",
+     "name": "load_character_models"
+    },
+    {
+     "index": 24,
+     "target": "0x8005E014",
+     "name": "load_character_models"
+    },
+    {
+     "index": 25,
+     "target": "0x8005E038",
+     "name": "load_character_models"
+    },
+    {
+     "index": 26,
+     "target": "0x8005E05C",
+     "name": "load_character_models"
+    },
+    {
+     "index": 27,
+     "target": "0x8005E080",
+     "name": "load_character_models"
+    },
+    {
+     "index": 28,
+     "target": "0x8005E0A4",
+     "name": "load_character_models"
+    },
+    {
+     "index": 29,
+     "target": "0x8005E0C8",
+     "name": "load_character_models"
+    },
+    {
+     "index": 30,
+     "target": "0x8005E0EC",
+     "name": "load_character_models"
+    },
+    {
+     "index": 31,
+     "target": "0x8005E110",
+     "name": "load_character_models"
+    },
+    {
+     "index": 32,
+     "target": "0x8005E134",
+     "name": "load_character_models"
+    },
+    {
+     "index": 33,
+     "target": "0x8005E158",
+     "name": "load_character_models"
+    },
+    {
+     "index": 34,
+     "target": "0x8005E17C",
+     "name": "load_character_models"
+    },
+    {
+     "index": 35,
+     "target": "0x8005E1A0",
+     "name": "load_character_models"
+    },
+    {
+     "index": 36,
+     "target": "0x8005E1C4",
+     "name": "load_character_models"
+    },
+    {
+     "index": 37,
+     "target": "0x8005E1E8",
+     "name": "load_character_models"
+    },
+    {
+     "index": 38,
+     "target": "0x8005E20C",
+     "name": "load_character_models"
+    },
+    {
+     "index": 39,
+     "target": "0x8005E230",
+     "name": "load_character_models"
+    },
+    {
+     "index": 40,
+     "target": "0x8005E254",
+     "name": "load_character_models"
+    }
+   ]
+  },
+  "0x8005E2D8": {
+   "function": "load_character_models",
+   "table": "0x8001BC84",
+   "entries": 14,
+   "distinct_targets": 14,
+   "named_targets": 14,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8005E2E0",
+     "name": "load_character_models"
+    },
+    {
+     "index": 1,
+     "target": "0x8005E370",
+     "name": "load_character_models"
+    },
+    {
+     "index": 2,
+     "target": "0x8005E400",
+     "name": "load_character_models"
+    },
+    {
+     "index": 3,
+     "target": "0x8005E490",
+     "name": "load_character_models"
+    },
+    {
+     "index": 4,
+     "target": "0x8005E520",
+     "name": "load_character_models"
+    },
+    {
+     "index": 5,
+     "target": "0x8005E5B0",
+     "name": "load_character_models"
+    },
+    {
+     "index": 6,
+     "target": "0x8005E640",
+     "name": "load_character_models"
+    },
+    {
+     "index": 7,
+     "target": "0x8005E6D0",
+     "name": "load_character_models"
+    },
+    {
+     "index": 8,
+     "target": "0x8005E760",
+     "name": "load_character_models"
+    },
+    {
+     "index": 9,
+     "target": "0x8005E7F0",
+     "name": "load_character_models"
+    },
+    {
+     "index": 10,
+     "target": "0x8005E880",
+     "name": "load_character_models"
+    },
+    {
+     "index": 11,
+     "target": "0x8005E910",
+     "name": "load_character_models"
+    },
+    {
+     "index": 12,
+     "target": "0x8005E9A0",
+     "name": "load_character_models"
+    },
+    {
+     "index": 13,
+     "target": "0x8005EA30",
+     "name": "load_character_models"
+    }
+   ]
+  },
+  "0x8005FAAC": {
+   "function": "vsprintf_core",
+   "table": "0x8001BCE4",
+   "entries": 45,
+   "distinct_targets": 13,
+   "named_targets": 45,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8005FACC",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 1,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 2,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 3,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 4,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 5,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 6,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 7,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 8,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 9,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 10,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 11,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 12,
+     "target": "0x8005FD64",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 13,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 14,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 15,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 16,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 17,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 18,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 19,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 20,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 21,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 22,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 23,
+     "target": "0x8005FE6C",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 24,
+     "target": "0x8005FAF8",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 25,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 26,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 27,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 28,
+     "target": "0x8005FAB4",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 29,
+     "target": "0x8005FAF8",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 30,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 31,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 32,
+     "target": "0x8005FAC0",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 33,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 34,
+     "target": "0x8005FF10",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 35,
+     "target": "0x8005FC60",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 36,
+     "target": "0x8005FD50",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 37,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 38,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 39,
+     "target": "0x8005FE8C",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 40,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 41,
+     "target": "0x8005FB48",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 42,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 43,
+     "target": "0x8005FF44",
+     "name": "vsprintf_core"
+    },
+    {
+     "index": 44,
+     "target": "0x8005FD74",
+     "name": "vsprintf_core"
+    }
+   ]
+  },
+  "0x80061814": {
+   "function": "text_stream_printf",
+   "table": "0x8001BDB0",
+   "entries": 33,
+   "distinct_targets": 5,
+   "named_targets": 33,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8006189C",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 1,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 2,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 3,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 4,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 5,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 6,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 7,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 8,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 9,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 10,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 11,
+     "target": "0x80061914",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 12,
+     "target": "0x8006181C",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 13,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 14,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 15,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 16,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 17,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 18,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 19,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 20,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 21,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 22,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 23,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 24,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 25,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 26,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 27,
+     "target": "0x80061934",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 28,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 29,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 30,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 31,
+     "target": "0x80061954",
+     "name": "text_stream_printf"
+    },
+    {
+     "index": 32,
+     "target": "0x8006189C",
+     "name": "text_stream_printf"
+    }
+   ]
+  },
+  "0x8006CED8": {
+   "function": "SpuSetCommonAttr",
+   "table": "0x8001C240",
+   "entries": 8,
+   "distinct_targets": 8,
+   "named_targets": 8,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8006CF18",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 1,
+     "target": "0x8006CEE0",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 2,
+     "target": "0x8006CEE8",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 3,
+     "target": "0x8006CEF0",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 4,
+     "target": "0x8006CEF8",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 5,
+     "target": "0x8006CF00",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 6,
+     "target": "0x8006CF08",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 7,
+     "target": "0x8006CF10",
+     "name": "SpuSetCommonAttr"
+    }
+   ]
+  },
+  "0x8006CFA0": {
+   "function": "SpuSetCommonAttr",
+   "table": "0x8001C260",
+   "entries": 8,
+   "distinct_targets": 8,
+   "named_targets": 8,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8006CFE0",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 1,
+     "target": "0x8006CFA8",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 2,
+     "target": "0x8006CFB0",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 3,
+     "target": "0x8006CFB8",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 4,
+     "target": "0x8006CFC0",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 5,
+     "target": "0x8006CFC8",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 6,
+     "target": "0x8006CFD0",
+     "name": "SpuSetCommonAttr"
+    },
+    {
+     "index": 7,
+     "target": "0x8006CFD8",
+     "name": "SpuSetCommonAttr"
+    }
+   ]
+  },
+  "0x8006E11C": {
+   "function": "getintr",
+   "table": "0x8001C490",
+   "entries": 5,
+   "distinct_targets": 5,
+   "named_targets": 5,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x8006E270",
+     "name": "getintr"
+    },
+    {
+     "index": 1,
+     "target": "0x8006E224",
+     "name": "getintr"
+    },
+    {
+     "index": 2,
+     "target": "0x8006E124",
+     "name": "getintr"
+    },
+    {
+     "index": 3,
+     "target": "0x8006E2F4",
+     "name": "getintr"
+    },
+    {
+     "index": 4,
+     "target": "0x8006E378",
+     "name": "getintr"
+    }
+   ]
+  },
+  "0x80071BC8": {
+   "function": "PadInfoAct",
+   "table": "0x8001C778",
+   "entries": 5,
+   "distinct_targets": 5,
+   "named_targets": 5,
+   "targets": [
+    {
+     "index": 0,
+     "target": "0x80071BD0",
+     "name": "PadInfoAct"
+    },
+    {
+     "index": 1,
+     "target": "0x80071BDC",
+     "name": "PadInfoAct"
+    },
+    {
+     "index": 2,
+     "target": "0x80071BE8",
+     "name": "PadInfoAct"
+    },
+    {
+     "index": 3,
+     "target": "0x80071BF4",
+     "name": "PadInfoAct"
+    },
+    {
+     "index": 4,
+     "target": "0x80071C00",
+     "name": "PadInfoAct"
+    }
+   ]
+  }
+ },
+ "failed": {
+  "0x80013280": {
+   "function": "grass_mound_mesh_builder",
+   "reason": "jr register defined by opcode 0x00"
+  },
+  "0x80014AFC": {
+   "function": "gte_vec_length_sqrt_helper",
+   "reason": "jr register defined by opcode 0x0d"
+  },
+  "0x80018A4C": {
+   "function": "gte_quad_near_clip_dispatch",
+   "reason": "jr register defined by opcode 0x0d"
+  },
+  "0x80018B1C": {
+   "function": "gte_quad_near_clip_dispatch",
+   "reason": "jr register defined by opcode 0x0d"
+  },
+  "0x80018BEC": {
+   "function": "gte_quad_near_clip_dispatch",
+   "reason": "jr register defined by opcode 0x0d"
+  },
+  "0x80018CBC": {
+   "function": "gte_quad_near_clip_dispatch",
+   "reason": "jr register defined by opcode 0x0d"
+  },
+  "0x80019C28": {
+   "function": "bulk_ground_sub_emitter",
+   "reason": "jr register defined by opcode 0x0d"
+  },
+  "0x80019C84": {
+   "function": "bulk_ground_sub_emitter",
+   "reason": "jr register defined by opcode 0x0d"
+  },
+  "0x80019CE0": {
+   "function": "bulk_ground_sub_emitter",
+   "reason": "jr register defined by opcode 0x0d"
+  },
+  "0x8004C868": {
+   "function": "mover_vm_dispatch_next",
+   "table": "0x8001B384",
+   "reason": "a decoded entry does not land in censused code \u2014 the slice is probably wrong, so it is NOT reported as a table"
+  },
+  "0x800521B0": {
+   "function": "collect_object_short_list",
+   "reason": "table base not formed by a lui (gp-relative or passed in)"
+  },
+  "0x80066818": {
+   "function": "call_via_ptr_80086aa8",
+   "table": "0x80086AA8",
+   "reason": "no plausible sltiu bound (got None)"
+  },
+  "0x8006682C": {
+   "function": "pad_stop_driver_thunk",
+   "table": "0x80086AAC",
+   "reason": "no plausible sltiu bound (got None)"
+  },
+  "0x80068304": {
+   "function": "SsSetTickMode",
+   "table": "0x8001C1E0",
+   "reason": "a decoded entry does not land in censused code \u2014 the slice is probably wrong, so it is NOT reported as a table"
+  }
+ }
+}

@@ -1,0 +1,97 @@
+{
+  "row": "E01",
+  "date": "2026-08-04",
+  "status": "partial",
+  "phase4_disposition": "substantiated_partial_bounded_exhausted",
+  "scope": "terrain and visual-system provenance, including LEVEL.RAW animated texture strips and correction of the LEVEL.DAT node-marker interpretation",
+  "method": {
+    "order": [
+      "relevant retained trace capsules checked first; none contained the LEVEL01 tile descriptor/data tables or the node source record",
+      "offline C analysis of pristine retail ASM listings and campaign LEVEL.RAW, LEVEL.DAT, and LEVEL.BIN files",
+      "one isolated pristine-media DuckStation save-state run for the named missing runtime descriptor/GPU attribution domain"
+    ],
+    "movie_used": false,
+    "cold_boot_used": false,
+    "cold_boot_reason": "No code, disc, or asset was changed. The live question was a narrow runtime pointer-to-GPU attribution against a hash-pinned pristine save state."
+  },
+  "animated_texture_pipeline": {
+    "resource_subtype": "0x22",
+    "loader": "0x8003B830 stores chunk+8 in 0x80089638[tile] and clears 0x80095138[tile]",
+    "uploader": "0x80026DF4 selects the tile data and descriptor, derives VRAM destination/size, selects frame * width * height / 2 bytes, and calls 0x800628C0",
+    "level01_ambient_driver": "0x80056F68, called from the gameplay update at 0x8004F13C, drives tiles 124 and 125",
+    "tile125": {
+      "raw_chunk_base": "0x800c0920",
+      "data_pointer": "0x800c0928",
+      "descriptor_pointer": "0x8008209c",
+      "descriptor_bytes": "100028130400703a0c260000",
+      "destination": {"x": 259, "y": 38, "width_words": 10, "height": 19},
+      "trace_event": {"frame": 12519, "cycle": 7088121283, "a0_tile": 125, "a1_buffer": 0, "a2_frame": 5, "ra": "0x800571d0"},
+      "gpu_event": {"frame": 12519, "cycle": 7088212268, "command": "GP0 A0 CPU-to-VRAM", "raw_header_words": ["0xa0000000", "0x00260103", "0x0013000a"]},
+      "causal_conclusion": "The tile-125 uploader invocation and matching GPU transfer occur in the same frame and target the previously observed coarse VRAM cell at (256,32). This confirms the LEVEL01 scenery animation source rather than merely correlating hashes."
+    },
+    "recurrence": {
+      "gate": "0x80045678(player) returns the per-slot byte bit 2 after matching the player pointer in 0x80089860; no broader semantic name is assigned",
+      "frame_byte": "0x800a65a6",
+      "countdown_byte": "0x800a65a7",
+      "gate_false": "reset and upload frame 0",
+      "gate_true": "when the countdown expires, script/RNG bytes choose delay (byte & 7)+3 and frame (next_byte & 3)+2, hence frames 2..5 at 3..10 driver ticks"
+    },
+    "campaign_census": {
+      "subtype_0x22_strips": 228,
+      "raw_files_with_strips": 18,
+      "decode_errors": 0,
+      "level01_strips": 13,
+      "overlay_bins_scanned": 20,
+      "direct_overlay_uploader_calls": 6,
+      "direct_wrapper_calls": 0,
+      "exceptional_direct_calls": [
+        "LEVEL03/LEVEL1.BIN 0x800b3c44 tile 51",
+        "LEVEL04/LEVEL.BIN 0x800b42c0 tile 50",
+        "LEVEL07/LEVEL1.BIN 0x800b3ba0 tile 50",
+        "LEVEL07/LEVEL1.BIN 0x800b3c00 dynamic tile",
+        "LEVEL07/LEVEL1.BIN 0x800b3c58 tile 50",
+        "LEVEL08/LEVEL1.BIN 0x800b41dc dynamic tile"
+      ]
+    }
+  },
+  "node_field_correction": {
+    "old_label_superseded": "The repeated word at source-record +0x10 is not a record-class marker.",
+    "standard_record": "s32 vec[3] at +0x00; s16 angle[3] at +0x0c; s16 unk12 at +0x12; relocated payload pointer at +0x14; size 0x18",
+    "word_layout": "u32(+0x10) packs angle[2] in the low half and unk12 in the high half. LEVEL01 0xc0080000 therefore means angle[2]=0 and unk12=-16376.",
+    "parser_use": "0x8001CDC0 passes only angle[0..2] to 0x80017B98. It does not read unk12 on the non-bit3 path.",
+    "campaign_correlation": "The C payload probe rejected vertex-count, payload-size, and texture-page interpretations. Explicit/effective mesh stream pages do not track the 4/6/7/8/9 high-half family.",
+    "runtime_negative_control": "A read watch on LEVEL01 runtime address 0x80164df8 recorded zero reads over frames 12528..12591. This bounds the word away from the steady-state render loop but does not claim it is never consumed elsewhere.",
+    "remaining_unknown": "The downstream semantic role, if any, of non-bit3 unk12 is unresolved. Resolving it now requires load/build provenance or mutation across representative records and has low return for E01 behavior closure."
+  },
+  "bounded_open_items": [
+    "semantic naming of non-bit3 source-record +0x12",
+    "visual naming of every campaign payload/material",
+    "secondary-DAT short-run false-positive classification",
+    "primary-versus-secondary DAT floor/decor labeling beyond cases needed by an editor or a named visual question"
+  ],
+  "closure_reason": "The original visual behavior, source format, loader, uploader, recurrence, exact LEVEL01 runtime transfer, and campaign static breadth are now evidenced. The remaining items are catalog expansion or an unused/late-consumed scalar, not missing control-flow needed to reproduce or explain the row.",
+  "inputs": {
+    "disc_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "save_state": "~/Downloads/ABL/level01.sav",
+    "save_state_sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+    "level01_raw_sha256": "c07452bafcf3799b55574d1622a37189358f5debcbd1127e167fd0fe0181700e",
+    "scus_942_88_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  "transient_evidence": [
+    {"path": "/tmp/e01_tile125_exec_trace.json", "sha256": "8a7891612f52266028fef935541ffaa924b1f43dae1b6d9312fe8a53b50662a3"},
+    {"path": "/tmp/e01_tile125_vram_writes.json", "sha256": "de9b8b4bd9c8033f834f6ba0686bf2de8ba5b10b74db71253cbc19565cbed6e4"},
+    {"path": "/tmp/e01_runtime_scatter.json", "sha256": "f6139371f30ee14af3d6c215334d3c44d88bce3532323afb523ca1a39675ea5f"},
+    {"path": "/tmp/e01_marker_access.json", "sha256": "b7d0753acefd1f16a4a446d0eddb9e5e447967273fea2fb5d4b0b7a2dfa39d7c"}
+  ],
+  "c_probe_hashes": {
+    "animation_source": "9422b1f4bb4b4853cde9b7fe4ca0d6254ca67252be0d581ccc2df7f29efcccdf",
+    "animation_binary": "05e0a04b34bc2f2480b07449e1ce5984d47185ec88606e49dda8c1663bb66dc5",
+    "animation_output": "fdb3e6e09755b6ad4e23757e9700eb715ed3e56bb1f682739dd63388c88130ec",
+    "overlay_source": "728a7bdba1f23b5d31b2cd567ea807b32599f3bd06cdb068bf17778a6d19a0d1",
+    "overlay_binary": "3a82258cdeeb07623f6594917b63d8f5ba7d17051812e4cc0fde3214650e85b8",
+    "overlay_output": "43ee7d415ca7dcece3ee6a982463e93c460de64f5e6ad7fa1f2f2400e0080547",
+    "marker_census_source": "c24024d7daf7a6307a3ee1786a20b16e1ab815989fa4a6c3a13383d5330285f4",
+    "marker_payload_source": "8db191fb432d9b96048880ebb267aa55eb2d0d0f378c60bc41488124faa8f64c",
+    "datbase_xrefs_source": "60dcba20176d4fa65a4307f2eb2f87268798bec14ecab6f8d6692567456c3d3d"
+  }
+}

@@ -1,0 +1,608 @@
+{
+  "_comment": "Generated from a closed derived-pristine atomic-anchor query, hash-verified pristine executable bytes and hash-pinned semantic/external ASM sources. No captured or copyrighted payload is retained.",
+  "campaign": "fmv_playback",
+  "claim_boundary": {
+    "closed_sub_boundary": "completed_level_b_transition_relocalized_before_frame_15816",
+    "dimension_promoted": false,
+    "lifecycle_promoted": false,
+    "next_action": "Preserve the frame-15816 post-submit anchor and the complete two-call predecessor set. Implement and mutation-guard a typed first-hit boundary that stops at either 0x8004FD74 or 0x8005029C before any new live escalation. Do not reuse the frame-15816 0x80046078 stop or infer a DMA event from the retired Region-B head.\n",
+    "next_lane": "static",
+    "not_claimed": [
+      "which of the two scene-setup callsites is selected in every lifecycle",
+      "any exact frame or cycle for either earlier callsite",
+      "any DMA event, CD sector sequence, transfer direction or success",
+      "fresh campaign-verifier acceptance of the three prior live receipts",
+      "lifecycle or any other nine-dimension promotion"
+    ]
+  },
+  "common_resource_chain": [
+    {
+      "operation": "skip resource initialization only when a1 == -1",
+      "pc": "0x800503B0",
+      "selected_transition_values": [
+        0,
+        128
+      ],
+      "selected_values_skip": false
+    },
+    {
+      "instruction": {
+        "mnemonic": "jal 0x8003cf2c",
+        "pc": "0x800503CC",
+        "word": "0x0C00F3CB"
+      },
+      "operation": "resource_id_dat_load_dispatcher(0)",
+      "pc": "0x800503CC",
+      "selector_delay": {
+        "mnemonic": "addu a0,zero,zero",
+        "pc": "0x800503D0",
+        "word": "0x00002021"
+      }
+    },
+    {
+      "destination_materialization": [
+        {
+          "mnemonic": "lui a1,0x800b",
+          "pc": "0x8003D308",
+          "word": "0x3C05800B"
+        },
+        {
+          "mnemonic": "addiu a1,a1,22408",
+          "pc": "0x8003D30C",
+          "word": "0x24A55788"
+        }
+      ],
+      "instruction": {
+        "mnemonic": "jal 0x80046330",
+        "pc": "0x8003D310",
+        "word": "0x0C0118CC"
+      },
+      "operation": "universal_file_loader(bits\\memory.bin, 0x800B5788)",
+      "path_materialization": [
+        {
+          "mnemonic": "lui a0,0x8002",
+          "pc": "0x8003D300",
+          "word": "0x3C048002"
+        },
+        {
+          "mnemonic": "addiu a0,a0,-20996",
+          "pc": "0x8003D304",
+          "word": "0x2484ADFC"
+        }
+      ],
+      "pc": "0x8003D310"
+    },
+    {
+      "operation": "retired later CdRead submission boundary",
+      "pc": "0x80046078",
+      "source_artifact": "analysis/phase4_fmv_levelb_region_b_dma_subwindow.json"
+    }
+  ],
+  "dimension": "lifecycle",
+  "earlier_transition_boundaries": [
+    {
+      "a0": 3,
+      "a1": 0,
+      "call": {
+        "mnemonic": "jal 0x8005038c",
+        "pc": "0x8004FD74",
+        "word": "0x0C0140E3"
+      },
+      "pc": "0x8004FD74",
+      "pre_instruction": true,
+      "resource_skip_sentinel_excluded": true,
+      "selection": "negative_pending_request",
+      "target": "0x8005038C"
+    },
+    {
+      "a0": 6,
+      "a1": 128,
+      "call": {
+        "mnemonic": "jal 0x8005038c",
+        "pc": "0x8005029C",
+        "word": "0x0C0140E3"
+      },
+      "pc": "0x8005029C",
+      "pre_instruction": true,
+      "resource_skip_sentinel_excluded": true,
+      "selection": "nonnegative_pending_request",
+      "target": "0x8005038C"
+    }
+  ],
+  "evidence_boundary": {
+    "causal_confirmation": null,
+    "inference": "The frame-15816 start was too late for a pre-submit exact-PC stop. The exact natural branch and its frame remain unclaimed.",
+    "observation": "Frame 15816 / cycle 8954497636 is paused at 0x8004FEA4; Region-B head SHA-256 is not the FMV.BIN head.",
+    "static_confirmation": "The complete completed-Level-B replacement predecessor set is 0x8004FD74 and 0x8005029C; both call scene_setup_and_load with a non--1 transition and therefore reach selector-zero resource loading before 0x80046078."
+  },
+  "external_dependencies": {
+    "run:iteration-1-receipts/offline-e15-levelb-frame-15816-anchor.receipt.json": "aedb9bb4905be6750f4fbde8c60bf5c0a5833e686411038bde7fde5ea4f4faa7",
+    "run:iteration-1-receipts/outputs/e15-levelb-frame-15816-anchor-projection.json": "bb2893a11cab61cf35aa2088353531b697fd6c01d183bfb2ef19d7f5af0767d0",
+    "run:iteration-1-receipts/work-packet.json": "f724339bbeb4f7163dc6cf3a6d0eeb623ca93057bf158d5ac3abe7ae702130fc"
+  },
+  "falsifier": {
+    "checks": {
+      "anchor_frame_cycle_pc_exact": true,
+      "anchor_pristine_media_exact": true,
+      "anchor_region_b_payload_not_retained": true,
+      "completed_boundary_set_exactly_two": true,
+      "dimension_promotion_absent": true,
+      "external_scene_flow_asm_pin_exact": true,
+      "negative_boundary_arguments_exact": true,
+      "new_live_escalation_absent": true,
+      "nonnegative_boundary_arguments_exact": true,
+      "nonnegative_predecessor_edges_complete": true,
+      "offline_receipt_closed_and_replayable": true,
+      "resource_skip_sentinel_excluded": true,
+      "retained_exact_pc_falsifier_preserved": true,
+      "retired_fmv_head_absent": true,
+      "scene_flow_function_identity_exact": true,
+      "scene_setup_target_exact": true,
+      "selector_zero_path_and_destination_exact": true,
+      "unclassified_predecessors_zero": true,
+      "work_packet_identity_exact": true
+    },
+    "outcome": "survived"
+  },
+  "generated": "2026-07-29",
+  "negative_boundary_predecessor": {
+    "a0_delay": {
+      "mnemonic": "addiu a0,zero,3",
+      "pc": "0x8004FD70",
+      "word": "0x24040003"
+    },
+    "a1_delay": {
+      "mnemonic": "addu a1,zero,zero",
+      "pc": "0x8004FD78",
+      "word": "0x00002821"
+    },
+    "call": {
+      "mnemonic": "jal 0x8005038c",
+      "pc": "0x8004FD74",
+      "word": "0x0C0140E3"
+    },
+    "condition": {
+      "mnemonic": "bgez v0,0x8004fda0",
+      "pc": "0x8004FD6C",
+      "word": "0x0441000C"
+    }
+  },
+  "nonnegative_boundary_predecessors": [
+    {
+      "a0": 6,
+      "delay_instruction": "addiu a0,zero,6",
+      "delay_pc": "0x8004FDFC",
+      "delay_word": "0x24040006",
+      "instruction": "bne v0,zero,0x8005029c",
+      "pc": "0x8004FDF8",
+      "target": "0x8005029C",
+      "word": "0x14400128"
+    },
+    {
+      "a0": 6,
+      "delay_instruction": "addiu a0,zero,6",
+      "delay_pc": "0x80050128",
+      "delay_word": "0x24040006",
+      "instruction": "bgez v0,0x8005029c",
+      "pc": "0x80050124",
+      "target": "0x8005029C",
+      "word": "0x0441005D"
+    },
+    {
+      "a0": 6,
+      "delay_instruction": "addiu a0,zero,6",
+      "delay_pc": "0x8005024C",
+      "delay_word": "0x24040006",
+      "instruction": "bgez v0,0x8005029c",
+      "pc": "0x80050248",
+      "target": "0x8005029C",
+      "word": "0x04410014"
+    }
+  ],
+  "observed_anchor": {
+    "cycle": 8954497636,
+    "frame": 15816,
+    "non_claim": "The anchor projection does not identify a DMA event, transfer cycle, sector sequence or the selected earlier callsite.",
+    "observation": "The paused frame-15816 anchor is in the resident scene-flow wait block at 0x8004FEA4 and Region B no longer has the retired FMV.BIN head identity.",
+    "pc": "0x8004FEA4",
+    "region_b_head_sha256": "6245e366d6fa7f9a4ca2bcfef1a47da70a4f50cb15e50ded0f0f2ffedee3a1b8",
+    "retired_fmv_head_absent": true,
+    "retired_fmv_head_sha256": "ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db",
+    "selected_registers": {
+      "pc": "0x8004fea4",
+      "ra": "0x8004fe98",
+      "s0": "0x8009ec68",
+      "v0": "0x00000001",
+      "v1": "0x00000001"
+    },
+    "sp": "0x801fffd0"
+  },
+  "offline_localization": {
+    "input_sha256": "5afa281a79ce3520360127cca4a303d408b19a455d8a1cfbc391a4cff8e36625",
+    "new_query_completed": true,
+    "output_sha256": "bb2893a11cab61cf35aa2088353531b697fd6c01d183bfb2ef19d7f5af0767d0",
+    "payload_retained_in_repo": false,
+    "reader_sha256": "f3a08a18a71be5188dc7140fde28c8d3fa98adc73a87f2d15147a0559a14a8f7",
+    "receipt_sha256": "aedb9bb4905be6750f4fbde8c60bf5c0a5833e686411038bde7fde5ea4f4faa7",
+    "retained_input_bytes": 215084
+  },
+  "relocalization": {
+    "earlier_first_hit_set": [
+      "0x8004FD74",
+      "0x8005029C"
+    ],
+    "first_hit_set_complete": true,
+    "new_live_escalation_authorized": false,
+    "next_observer_method": "A future typed adapter must stop at the first hit of either 0x8004FD74 or 0x8005029C from an earlier anchor, inspect the call arguments, and only then derive a narrower successor.",
+    "old_anchor": {
+      "frame": 15816,
+      "outcome": "falsified_repeated",
+      "retired": true,
+      "start_pc": "0x80046078"
+    },
+    "reason": "The retained anchor is already paused in the scene-flow wait block with the FMV head retired. Static control flow places both branch-specific scene-setup calls before the common resource selector and CdRead boundary."
+  },
+  "row": "E15_fmv",
+  "schema": "abl-phase4-fmv-levelb-transition-relocalization/1",
+  "source_dependencies": {
+    "analysis/phase4_fmv_levelb_region_b_dma_exact_pc_result.json": "a59f8fa90e235ed733c50cfc7552c22e81f45446c7c11073649307e6c3eb6b55",
+    "analysis/phase4_fmv_levelb_region_b_dma_subwindow.json": "c7d3696ea7fbd0276b57f64f0790b57351932bb10a84e68cf6e80985d5120f07",
+    "analysis/phase4_fmv_region_b_replacement_ownership.json": "03b5a8d9a518f5c00624f81248b721e98a513b987d8e1456e142c682cc1087a4",
+    "asm/hand_written/8004fca0_scene_flow_dispatcher.s": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+    "config/phase4_fmv_levelb_transition_relocalization.yaml": "7167ae01182f7f956d64c796e9579a6d8f560dc86b134e0fde23dc15295a65e8",
+    "src/main/8005038c_scene_setup_and_load.c": "c48cb85d1e1770dfd50eaa4cb7f133bc839a2189e43a24a0064cd65dd8ee2304",
+    "src_re/fmv_levelb_transition_relocalization.c": "6bc47b74c8a606e3cca921301d342be94816a3d02a4e49397a66da1cd664c040",
+    "src_re/fmv_lifecycle_continuations.c": "8e417d21f497bf56ceace3f2faba6165757ffdd5a53b44c047a7379e38149728",
+    "tools/phase4_atomic_anchor_projection.py": "f3a08a18a71be5188dc7140fde28c8d3fa98adc73a87f2d15147a0559a14a8f7"
+  },
+  "static_functions": {
+    "resource_selector_zero_path": {
+      "bytes": 32,
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x80046330",
+          "pc": "0x8003D310",
+          "target": "0x80046330",
+          "word": "0x0C0118CC"
+        }
+      ],
+      "end": "0x8003D318",
+      "sha256": "d23c1e881ffe8d666969334095c15d26fee7a772d60f1a492d8c873104d9b9fc",
+      "start": "0x8003D2F8"
+    },
+    "scene_flow_dispatcher": {
+      "bytes": 1572,
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8005222c",
+          "pc": "0x8004FCA8",
+          "target": "0x8005222C",
+          "word": "0x0C01488B"
+        },
+        {
+          "mnemonic": "jal 0x80055d38",
+          "pc": "0x8004FD10",
+          "target": "0x80055D38",
+          "word": "0x0C01574E"
+        },
+        {
+          "mnemonic": "jal 0x80055414",
+          "pc": "0x8004FD34",
+          "target": "0x80055414",
+          "word": "0x0C015505"
+        },
+        {
+          "mnemonic": "jal 0x80055538",
+          "pc": "0x8004FD3C",
+          "target": "0x80055538",
+          "word": "0x0C01554E"
+        },
+        {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x8004FD74",
+          "target": "0x8005038C",
+          "word": "0x0C0140E3"
+        },
+        {
+          "mnemonic": "jal 0x8003f504",
+          "pc": "0x8004FD90",
+          "target": "0x8003F504",
+          "word": "0x0C00FD41"
+        },
+        {
+          "mnemonic": "jal 0x8005b70c",
+          "pc": "0x8004FDF0",
+          "target": "0x8005B70C",
+          "word": "0x0C016DC3"
+        },
+        {
+          "mnemonic": "jal 0x80054aac",
+          "pc": "0x8004FE50",
+          "target": "0x80054AAC",
+          "word": "0x0C0152AB"
+        },
+        {
+          "mnemonic": "jal 0x80065fcc",
+          "pc": "0x8004FE60",
+          "target": "0x80065FCC",
+          "word": "0x0C0197F3"
+        },
+        {
+          "mnemonic": "jal 0x80065fbc",
+          "pc": "0x8004FE68",
+          "target": "0x80065FBC",
+          "word": "0x0C0197EF"
+        },
+        {
+          "mnemonic": "jal 0x80065fcc",
+          "pc": "0x8004FE90",
+          "target": "0x80065FCC",
+          "word": "0x0C0197F3"
+        },
+        {
+          "mnemonic": "jal 0x8004ecd4",
+          "pc": "0x8004FECC",
+          "target": "0x8004ECD4",
+          "word": "0x0C013B35"
+        },
+        {
+          "mnemonic": "jal 0x8004f478",
+          "pc": "0x8004FEDC",
+          "target": "0x8004F478",
+          "word": "0x0C013D1E"
+        },
+        {
+          "mnemonic": "jal 0x8003e104",
+          "pc": "0x8004FEE4",
+          "target": "0x8003E104",
+          "word": "0x0C00F841"
+        },
+        {
+          "mnemonic": "jal 0x80039bd8",
+          "pc": "0x8004FF14",
+          "target": "0x80039BD8",
+          "word": "0x0C00E6F6"
+        },
+        {
+          "mnemonic": "jal 0x80043500",
+          "pc": "0x8004FF1C",
+          "target": "0x80043500",
+          "word": "0x0C010D40"
+        },
+        {
+          "mnemonic": "jal 0x80045a60",
+          "pc": "0x8004FF48",
+          "target": "0x80045A60",
+          "word": "0x0C011698"
+        },
+        {
+          "mnemonic": "jal 0x800507f8",
+          "pc": "0x8004FF74",
+          "target": "0x800507F8",
+          "word": "0x0C0141FE"
+        },
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x8004FFD4",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        },
+        {
+          "mnemonic": "jal 0x80045a60",
+          "pc": "0x800500CC",
+          "target": "0x80045A60",
+          "word": "0x0C011698"
+        },
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x800500D8",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        },
+        {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x800500E4",
+          "target": "0x8005038C",
+          "word": "0x0C0140E3"
+        },
+        {
+          "mnemonic": "jal 0x8005b12c",
+          "pc": "0x800500F4",
+          "target": "0x8005B12C",
+          "word": "0x0C016C4B"
+        },
+        {
+          "mnemonic": "jal 0x800502c4",
+          "pc": "0x8005013C",
+          "target": "0x800502C4",
+          "word": "0x0C0140B1"
+        },
+        {
+          "mnemonic": "jal 0x800502c4",
+          "pc": "0x80050214",
+          "target": "0x800502C4",
+          "word": "0x0C0140B1"
+        },
+        {
+          "mnemonic": "jal 0x8003e7c0",
+          "pc": "0x80050284",
+          "target": "0x8003E7C0",
+          "word": "0x0C00F9F0"
+        },
+        {
+          "mnemonic": "jal 0x8005222c",
+          "pc": "0x8005028C",
+          "target": "0x8005222C",
+          "word": "0x0C01488B"
+        },
+        {
+          "mnemonic": "jal 0x8005038c",
+          "pc": "0x8005029C",
+          "target": "0x8005038C",
+          "word": "0x0C0140E3"
+        },
+        {
+          "mnemonic": "jal 0x80039a20",
+          "pc": "0x800502A4",
+          "target": "0x80039A20",
+          "word": "0x0C00E688"
+        }
+      ],
+      "end": "0x800502C4",
+      "sha256": "02fc946a4c8757792f646d23e5cabdac5e0cf4755211b733cc75aa15b2f0592f",
+      "start": "0x8004FCA0"
+    },
+    "scene_setup_and_load": {
+      "bytes": 112,
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x80039478",
+          "pc": "0x800503C4",
+          "target": "0x80039478",
+          "word": "0x0C00E51E"
+        },
+        {
+          "mnemonic": "jal 0x8003cf2c",
+          "pc": "0x800503CC",
+          "target": "0x8003CF2C",
+          "word": "0x0C00F3CB"
+        },
+        {
+          "mnemonic": "jal 0x800b96e4",
+          "pc": "0x800503D4",
+          "target": "0x800B96E4",
+          "word": "0x0C02E5B9"
+        }
+      ],
+      "end": "0x800503FC",
+      "sha256": "6c12e5e6c9416b4e7aa2223c3ead0d3478ad65faa97c82098b223e494e61fddb",
+      "start": "0x8005038C"
+    }
+  },
+  "static_instructions": {
+    "0x8003D2F8": {
+      "mnemonic": "bne s4,zero,0x8003d330",
+      "pc": "0x8003D2F8",
+      "word": "0x1680000D"
+    },
+    "0x8003D300": {
+      "mnemonic": "lui a0,0x8002",
+      "pc": "0x8003D300",
+      "word": "0x3C048002"
+    },
+    "0x8003D304": {
+      "mnemonic": "addiu a0,a0,-20996",
+      "pc": "0x8003D304",
+      "word": "0x2484ADFC"
+    },
+    "0x8003D308": {
+      "mnemonic": "lui a1,0x800b",
+      "pc": "0x8003D308",
+      "word": "0x3C05800B"
+    },
+    "0x8003D30C": {
+      "mnemonic": "addiu a1,a1,22408",
+      "pc": "0x8003D30C",
+      "word": "0x24A55788"
+    },
+    "0x8003D310": {
+      "mnemonic": "jal 0x80046330",
+      "pc": "0x8003D310",
+      "word": "0x0C0118CC"
+    },
+    "0x8004FD6C": {
+      "mnemonic": "bgez v0,0x8004fda0",
+      "pc": "0x8004FD6C",
+      "word": "0x0441000C"
+    },
+    "0x8004FD70": {
+      "mnemonic": "addiu a0,zero,3",
+      "pc": "0x8004FD70",
+      "word": "0x24040003"
+    },
+    "0x8004FD74": {
+      "mnemonic": "jal 0x8005038c",
+      "pc": "0x8004FD74",
+      "word": "0x0C0140E3"
+    },
+    "0x8004FD78": {
+      "mnemonic": "addu a1,zero,zero",
+      "pc": "0x8004FD78",
+      "word": "0x00002821"
+    },
+    "0x8004FDF8": {
+      "mnemonic": "bne v0,zero,0x8005029c",
+      "pc": "0x8004FDF8",
+      "word": "0x14400128"
+    },
+    "0x8004FDFC": {
+      "mnemonic": "addiu a0,zero,6",
+      "pc": "0x8004FDFC",
+      "word": "0x24040006"
+    },
+    "0x8004FEA4": {
+      "mnemonic": "lui v0,0x8008",
+      "pc": "0x8004FEA4",
+      "word": "0x3C028008"
+    },
+    "0x80050124": {
+      "mnemonic": "bgez v0,0x8005029c",
+      "pc": "0x80050124",
+      "word": "0x0441005D"
+    },
+    "0x80050128": {
+      "mnemonic": "addiu a0,zero,6",
+      "pc": "0x80050128",
+      "word": "0x24040006"
+    },
+    "0x80050248": {
+      "mnemonic": "bgez v0,0x8005029c",
+      "pc": "0x80050248",
+      "word": "0x04410014"
+    },
+    "0x8005024C": {
+      "mnemonic": "addiu a0,zero,6",
+      "pc": "0x8005024C",
+      "word": "0x24040006"
+    },
+    "0x8005029C": {
+      "mnemonic": "jal 0x8005038c",
+      "pc": "0x8005029C",
+      "word": "0x0C0140E3"
+    },
+    "0x800502A0": {
+      "mnemonic": "addiu a1,zero,128",
+      "pc": "0x800502A0",
+      "word": "0x24050080"
+    },
+    "0x800503B0": {
+      "mnemonic": "beq a1,v0,0x800503d4",
+      "pc": "0x800503B0",
+      "word": "0x10A20008"
+    },
+    "0x800503CC": {
+      "mnemonic": "jal 0x8003cf2c",
+      "pc": "0x800503CC",
+      "word": "0x0C00F3CB"
+    },
+    "0x800503D0": {
+      "mnemonic": "addu a0,zero,zero",
+      "pc": "0x800503D0",
+      "word": "0x00002021"
+    }
+  },
+  "summary": {
+    "dimension_promoted": false,
+    "earlier_boundary_count": 2,
+    "external_input_bytes_reused": 215084,
+    "new_live_receipts": 0,
+    "new_offline_queries": 1,
+    "unclassified_predecessors": 0
+  },
+  "work_packet": {
+    "evidence_domain": "static_pristine_executable_control_flow",
+    "exact_claim": "For the retained natural completed-Level-B return, the complete branch-specific set of earlier resident instruction boundaries that can initiate the post-FMV Region-B replacement is exactly 0x8004FD74 and 0x8005029C. Each is a pre-instruction scene_setup_and_load call selected by the pending-request sign, each passes a non--1 transition, and each must reach the common resource_id_dat_load_dispatcher(0) and selector-zero bits\\memory.bin request before the later 0x80046078 CdRead submission.",
+    "explicit_falsifier": "Reject the claim if the pristine scene-flow owner has another post-completion transition call or an indirect/bypass edge; either candidate does not call scene_setup_and_load with the claimed arguments; either transition can skip resource_id_dat_load_dispatcher(0); a Region-B materialization or CdRead can occur earlier on the selected chain; any predecessor or continuation is unclassified; the cited matching/semantic source or external ASM identity drifts; or the retained exact-PC falsifier is rewritten into a positive observation.",
+    "sha256": "f724339bbeb4f7163dc6cf3a6d0eeb623ca93057bf158d5ac3abe7ae702130fc"
+  }
+}

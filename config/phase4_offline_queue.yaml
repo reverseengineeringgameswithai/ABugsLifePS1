@@ -1,0 +1,69 @@
+schema: abl-phase4-offline-queue-policy/1
+description: >
+  Declarative aliases and common frame-domain ranges for the generated Phase-4
+  offline opportunity scheduler. Completion and classification are derived by
+  tools/phase4_offline_queue.py from low-level campaign evidence; this file is
+  never a pass/complete authority.
+
+explicit_movie_rows:
+  movies/Phase4/kick.movie.json: [A04_kick]
+  movies/Phase4/swing.movie.json: [A16_swinging]
+  # C16's natural game-over path plays selector 46 (LOSE.STR), then retires
+  # through the shared player. Keep the row's filename-derived C16 ownership
+  # and additionally expose that cross-system lifecycle evidence to E15.
+  movies/Phase4/C16_gameover_continue.movie.json: [E15_fmv]
+
+offline_analysis_artifacts:
+  - path: analysis/phase4_offline_contact_batch.json
+    schema: abl-phase4-offline-contact-batch/1
+  - path: analysis/phase4_offline_collectibles_batch.json
+    schema: abl-phase4-offline-collectibles-batch/1
+  - path: analysis/phase4_offline_plant_power_batch.json
+    schema: abl-phase4-offline-plant-power-batch/1
+  - path: analysis/phase4_offline_plant_weapon_batch.json
+    schema: abl-phase4-offline-plant-weapon-batch/1
+  - path: analysis/phase4_offline_seed_lifecycle_batch.json
+    schema: abl-phase4-offline-seed-lifecycle-batch/1
+  - path: analysis/phase4_offline_traversal_plants_batch.json
+    schema: abl-phase4-offline-traversal-plants-batch/1
+  - path: analysis/phase4_offline_seed_actions_batch.json
+    schema: abl-phase4-offline-seed-actions-batch/1
+  - path: analysis/phase4_offline_bonus_objectives_batch.json
+    schema: abl-phase4-offline-bonus-objectives-batch/1
+  - path: analysis/phase4_offline_e08_batch.json
+    schema: abl-phase4-offline-e08-batch/1
+  - path: analysis/phase4_offline_fmv_batch.json
+    schema: abl-phase4-offline-fmv-batch/1
+
+common_ranges:
+  - id: player_block
+    domain: ram
+    offset: 0x0A6500
+    length: 0xB0
+    purpose: Player position, action, power, health, lives, grain and seed fields.
+  - id: actor_pool
+    domain: ram
+    offset: 0x09FD80
+    length: 0x2100
+    purpose: All 64 fixed actor records at stride 0x84.
+  - id: contact_pool
+    domain: ram
+    offset: 0x0B0D18
+    length: 0xE00
+    purpose: All 64 contact/projectile records at stride 0x38.
+  - id: full_vram
+    domain: vram
+    offset: 0x0
+    length: 0x100000
+    purpose: Frame-boundary VRAM change points only; not GPU command attribution.
+  - id: full_spu_ram
+    domain: spu
+    offset: 0x0
+    length: 0x80000
+    purpose: Frame-boundary SPU-RAM change points only; not voice/event attribution.
+
+classification_policy:
+  offline_ready: Open row with at least one valid retained capsule and no active child campaign.
+  offline_partial: Row with a valid capsule whose campaign is active, whose row is complete/reviewed, or whose current offline batch is already retained and revalidated.
+  live_required: Open row with a centrally pinned pristine movie lead but no retained capsule.
+  no_capsule: Row with neither a retained capsule nor a centrally pinned relevant movie lead.

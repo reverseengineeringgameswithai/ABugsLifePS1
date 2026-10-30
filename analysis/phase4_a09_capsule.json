@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "row": "A09",
+  "date": "2026-08-03",
+  "capsule": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v3/A09_seed_blocked_drop_LEVEL01",
+    "manifest_sha256": "382287246d1cfeaf4ef045e4b16d70e70018a59699b9518ca3ff9bd7dba53faf",
+    "movie": "movies/Phase4/A09_seed_blocked_drop_LEVEL01.movie.json",
+    "movie_sha256": "803729cd6279facb5710b9c61173b431db9481ead83fe642da0f5cd7bfdc53f9",
+    "state": "movies/Phase4/A09_seed_blocked_drop_LEVEL01.movie.sav",
+    "state_sha256": "f7580c58022b3b7edcfab499bf44381f7513d1bb7bfd623f5aebcb43000ea4e9",
+    "serial": "SCUS-94288",
+    "movie_version": 3,
+    "frame_boundaries": 870,
+    "movie_frame_range": [0, 869],
+    "emulator_frame_range": [160378, 161247],
+    "instructions": 216188255,
+    "basic_blocks": 28110804,
+    "chunks": 15,
+    "checkpoints": 3,
+    "forced_cached_interpreter": true,
+    "complete": true,
+    "truncated": false,
+    "control_mismatches": {},
+    "control_domains": ["cycle", "frame", "registers", "RAM", "VRAM", "SPU RAM", "full machine state"]
+  },
+  "c_reduction": {
+    "tool": "tools/phase4_a09_capsule.c",
+    "tool_sha256": "380db6c2e44240d7ab801ecb4ce698e9b33c51f96aa28c249e8041474c54a959",
+    "output_sha256": "9e34effd241a2207fbebafec40f3967c2b86f6a107c3faa098aeec3e4c6d95c7",
+    "boundaries_reconstructed": 870,
+    "domain_hashes_verified": 2610,
+    "all_hashes_ok": true
+  },
+  "square_edges": [111, 171, 245, 556, 644, 696],
+  "pickup_edges": [111, 245, 644],
+  "pickup_commit_frames": [114, 248, 646],
+  "drop_edges": [171, 556, 696],
+  "drop_commit_frames": [174, 558, 698],
+  "input_to_commit_delay_boundaries": 3,
+  "carry_epochs": [
+    {"frames": [114, 173], "boundaries": 60, "stable_exact_xz_boundaries": 28, "dy_range": [-19200, -6791]},
+    {"frames": [248, 557], "boundaries": 310, "stable_exact_xz_boundaries": 278, "dy_range": [-19200, -6129]},
+    {"frames": [646, 697], "boundaries": 52, "stable_exact_xz_boundaries": 18, "dy_range": [-19200, -2658]}
+  ],
+  "release_trajectories": [
+    {"drop_frame": 174, "first_zero_motion_frame": 206, "flight_boundaries": 32, "settled_delta_xyz": [1353, 12456, -8954]},
+    {"drop_frame": 558, "first_zero_motion_frame": 608, "flight_boundaries": 50, "settled_delta_xyz": [133, 20630, 17347]},
+    {"drop_frame": 698, "first_zero_motion_frame": 748, "flight_boundaries": 50, "settled_delta_xyz": [3238, 21413, 18917]}
+  ],
+  "decisive_passive_blocks": {
+    "pickup_scan_entry_0x80047764": 3,
+    "pickup_success_0x80047784": 3,
+    "pickup_commit_0x80047874": 3,
+    "drop_poll_0x80047C1C": 211,
+    "square_down_0x80047C34": 9,
+    "drop_success_0x80047C4C": 3,
+    "ordinary_drop_tail_0x80047CD4": 3,
+    "negative_plant_offset_release_0x80047D0C": 0,
+    "generic_detach_helper_0x80046CAC": 0
+  },
+  "controls": [
+    "Frames 280..555 retain the selected offset and stable attachment with no fresh Square edge, disproving automatic timeout release.",
+    "Frames 0..110 retain the uncarried seed with no Square edge, disproving proximity-only pickup.",
+    "The Training carry_handstand oracle independently reproduces X/Z identity and Y=-19200 under pristine SCUS-94288."
+  ],
+  "scope_warning": "This is a legacy CachedInterpreter capsule and is used only for its control-exact retained frame state and passive flow. No new execTrace claim is made from it."
+}

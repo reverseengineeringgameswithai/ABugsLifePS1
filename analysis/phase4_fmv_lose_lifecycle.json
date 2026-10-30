@@ -1,0 +1,220 @@
+{
+  "_comment": "Natural C16 game-over LOSE interface evidence. The invalid frame-zero positive is retained as observer-desync provenance.",
+  "campaign_id": "fmv_playback",
+  "claims": {
+    "causal_confirmation": "Exact entry/return stops and instruction-attributed writes bind the runtime caller, arguments, limit, completion and teardown sequence. The same-save no-input job reaches none of those events.",
+    "inference": "The static direct-call census and LOSE.STR manifest case identify this as the natural game-over LOSE stream.",
+    "observation": "A cycle-neutral cached prelude reaches fmv_bin_load from 0x800500D8 with selector 46/mode 0. The player selects limit 281, publishes completion, executes initialization and common exit StClearRing calls, then callback teardown and returns."
+  },
+  "errors": [],
+  "escalation_id": "P4-ITER83-E15-LOSE-GAMEOVER-LIFECYCLE-CONTROL",
+  "external_receipts": [
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-lose-gameover-v1-20260724/result.json",
+      "bytes": 69996,
+      "role": "frame_zero_atomic_attempt",
+      "sha256": "e0d5d0d3476bb20b5a18f59c41efe243e307faa458e2a7e703c8686aafed42c1"
+    },
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-lose-gameover-v1-20260724/cleanup.json",
+      "bytes": 528,
+      "role": "frame_zero_owned_pid_cleanup",
+      "sha256": "d2bbb8ebc2be15565d8d27889572455776f809378997dc2f711a0fc12205b4be"
+    },
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-lose-gameover-v1-20260724/staged-result.json",
+      "bytes": 166754,
+      "role": "staged_positive",
+      "sha256": "392d1055a8942cb26b43d89e703b0bf171af8340d9c193623fd3bdf627b712a0"
+    },
+    {
+      "absolute_path": "~/Downloads/ABL-external-evidence/live/Phase4/e15-lose-gameover-v1-20260724/staged-cleanup.json",
+      "bytes": 535,
+      "role": "staged_owned_pid_cleanup",
+      "sha256": "168404d59b055516dfb60dd4b4e12c66ba20fe0946728c4303157012d73709c4"
+    }
+  ],
+  "fixtures": {
+    "movie": {
+      "bytes": 2739616,
+      "media_class": "pristine_serial",
+      "path": "movies/Phase4/C16_gameover_continue.movie.json",
+      "sha256": "39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf"
+    },
+    "state": {
+      "bytes": 2052577,
+      "media_class": "pristine",
+      "path": "movies/Phase4/C16_gameover_continue.movie.sav",
+      "sha256": "e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592"
+    }
+  },
+  "generated": "2026-07-24",
+  "observations": {
+    "frame_zero_attempt": {
+      "gameover_movie_positive": {
+        "access_ring_truncated": false,
+        "completion_hits": 0,
+        "cycle": 151068814191,
+        "frame": 266811,
+        "function_events": 0,
+        "movie_playback_index": 1600,
+        "movie_reproducible": false,
+        "scene": 9,
+        "selected_limit_hits": 0
+      },
+      "gameover_no_input_control": {
+        "access_ring_truncated": false,
+        "completion_hits": 0,
+        "cycle": 151068814191,
+        "frame": 266811,
+        "function_events": 0,
+        "movie_playback_index": 0,
+        "movie_reproducible": true,
+        "scene": 9,
+        "selected_limit_hits": 0
+      }
+    },
+    "natural_lose": {
+      "access_events": [
+        {
+          "cycle": 150511501353,
+          "frame": 265826,
+          "instruction_pc": "0x800b6dc0",
+          "label": "selected_frame_limit",
+          "new_value": 281,
+          "old_value": 0
+        },
+        {
+          "cycle": 150511501381,
+          "frame": 265826,
+          "instruction_pc": "0x800b6dd0",
+          "label": "completion_request",
+          "new_value": 0,
+          "old_value": 0
+        },
+        {
+          "cycle": 150888266123,
+          "frame": 266492,
+          "instruction_pc": "0x800b6b48",
+          "label": "completion_request",
+          "new_value": 1,
+          "old_value": 0
+        }
+      ],
+      "cached_stage": {
+        "comparison": {
+          "cycle_neutral": true,
+          "same_cycle": true,
+          "same_frame": true,
+          "same_ram": true,
+          "same_registers": true
+        },
+        "domain_hashes": {
+          "ram": "000686ae4c3fc76f1e5c9e645fcf379a1ee4b2f56958544fcb8d4120bc26699c",
+          "spu_ram": "c551369f7a8f1c28c4b93a0948d631e5f5071a15c34ffbc123b031c0fc7a8cfb",
+          "vram": "6893db8f75f1f177111ef4e833148af89bf6c70574b40db8d32d4abe60400035"
+        },
+        "emulator_frame": 265511,
+        "movie_frame": 300
+      },
+      "callback_teardown": {
+        "caller": "0x800b74a4",
+        "entry_cycle": 150918438824,
+        "exit_cycle": 150918442807,
+        "frame": 266545,
+        "return_address": "0x800b74ac"
+      },
+      "endpoint": {
+        "completion_request": 1,
+        "cycle": 150919978691,
+        "fmv_bin_head_sha256": "ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db",
+        "fmv_running_latch": 0,
+        "frame": 266548,
+        "movie_frame": 1337,
+        "movie_reproducible": true,
+        "scene": 9,
+        "selected_frame_limit": 281
+      },
+      "loader": {
+        "entry": {
+          "address": "0x8003e7c0",
+          "arguments": [
+            "0x0000002e",
+            "0x00000000",
+            "0x00000000",
+            "0x00000000"
+          ],
+          "caller": "0x800500d8",
+          "cycle": 150414500700,
+          "frame": 265655,
+          "return_address": "0x800500e0"
+        },
+        "return": {
+          "address": "0x800500e0",
+          "arguments": [
+            "0x03000000",
+            "0x800390f0",
+            "0x00000000",
+            "0x0000000a"
+          ],
+          "caller": "0x800500d8",
+          "cycle": 150919978691,
+          "frame": 266548,
+          "label": "fmv_bin_load return",
+          "pc": "0x800500e0",
+          "ra": "0x800500e0",
+          "sp": "0x801fffd0",
+          "v0": "0x00000003",
+          "v1": "0x00000000"
+        }
+      },
+      "ring_calls": [
+        {
+          "caller": "0x8006d3bc",
+          "entry_cycle": 150532002470,
+          "exit_cycle": 150532004900,
+          "frame": 265862,
+          "return_address": "0x8006d3c4"
+        },
+        {
+          "caller": "0x800b749c",
+          "entry_cycle": 150918436380,
+          "exit_cycle": 150918438810,
+          "frame": 266545,
+          "return_address": "0x800b74a4"
+        }
+      ]
+    }
+  },
+  "profiles": [
+    {
+      "config_dir": "/var/tmp/abl-p4-e15-lose.C77azk",
+      "owned_pid": 924215,
+      "owned_pid_stopped": true,
+      "port": 24684
+    },
+    {
+      "config_dir": "/var/tmp/abl-p4-e15-lose-staged.pAiGIf",
+      "owned_pid": 932871,
+      "owned_pid_stopped": true,
+      "port": 24685
+    }
+  ],
+  "raw_external_bytes_committed": false,
+  "record_counts": {
+    "atomic_batches": 1,
+    "cached_control_pairs": 1,
+    "failed_positive_function_events": 0,
+    "jobs": 2,
+    "staged_access_events": 3,
+    "staged_exact_stops": 8
+  },
+  "residuals": [
+    "The frame-zero movie-positive precise observer changed input reproducibility; only the staged positive is behavioral evidence, while the failed attempt remains provenance.",
+    "One C16 game-over anchor does not establish alternate continue/quit choices, repeat, pause, viewer, CD/decode failure or malformed-stream behavior.",
+    "This adds a distinct natural LOSE lifecycle and cross-system join but does not promote lifecycle, campaign breadth, cross-system behavior or original interfaces."
+  ],
+  "row_id": "E15_fmv",
+  "schema": "abl-phase4-fmv-lose-lifecycle/1",
+  "valid": true
+}

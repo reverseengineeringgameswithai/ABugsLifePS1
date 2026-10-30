@@ -1,0 +1,96 @@
+schema: abl-phase4-abdomen-bounce/1
+description: >
+  Authoritative pristine-game contract for ordinary A05 abdomen slam/bounce.
+  It binds the second-Cross recognizer, exact floor-distance state split,
+  high-slam timer, resident contact geometry and target response, expired-impact
+  rebound, Bonus-1 consecutive-stomp chain, lifecycle, and Riverbed Flight
+  exception. Enemy-family death/respawn and slope-slide motion remain separate.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_abdomen_bounce.json
+  generator: tools/phase4_abdomen_bounce.py
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+  contact_movie: movies/Bonus_Level_01.movie.json
+
+decoded_input:
+  action_word: {address: '0x80082488', type: u16}
+  cross_mask: '0x4000'
+  trigger: a new decoded Cross while shared action state is 2 after the first Cross has been released
+  owner: resident player vertical update 0x80048138..0x800498AB
+
+ordinary_controller:
+  state_split:
+    distance: signed floor_y minus y
+    near_floor: distance <= 8192 selects shared state 3
+    high_slam: distance >= 8193 selects shared state 4
+  high_slam:
+    slam_aux: {address: '0x800A6584', type: s16, arm: 10}
+    countdown: values above 1 decrement once per resident player update
+    dive: value 1 keeps the impact window active and proposes velocity_y 4096
+    animation: velocity_y >= 257 selects 7; otherwise selects 2
+  near_floor:
+    state: 3
+    timer: not armed by this branch
+    note: collision/animation consumers finish the short dive; their internal geometry remains E02/E05-owned
+
+resident_contact:
+  owner: resident proximity updater 0x8004ABF4..0x8004B6AB
+  geometry: >
+    Two strict squared-distance gates use actor center offsets and the current
+    16-byte animation-frame bounds at actor+0x74+16*(actor+0x44), rotated by the
+    actor's 12-bit heading lookup, with a 250-unit margin.
+  impact_window: unsigned slam_aux must be 0 or 1
+  target_response:
+    state: -20
+    fields_0x54_0x58: [4096, 4096]
+    player_health_on_timer_1_spider_stomp: unchanged
+  timer_1:
+    outcome: accepted stomp; no rebound writer; increment eligible Bonus-1 streak
+  timer_0:
+    outcome: expired impact; velocity writer -1536, shared state 5, grounded clear, streak reset
+    observed_post_update_velocity: -1024 after the same native update advances gravity
+    observed_player_health: paired Bonus-1 counterfactual changed 4 to 3
+
+bonus1_chain:
+  streak: {address: '0x8008223C', type: u32, domain: '0..4'}
+  target_count: 5
+  eligible_context: bonus earned guard 0x20 clear and current scene not 0x10
+  progress: each accepted timer-1 target response increments the streak
+  success: fifth response sets unlock bit 0x02, latch 6, fade 30, then resets streak to 0 and enters scene 0x10
+  miss_reset: expired timer-0 target response clears the streak
+
+lifecycle:
+  initialization: scene/action initialization clears the reused player field before input consumption
+  allocation_reuse: no A05-private allocation exists; player, actor, and bonus fields are resident shared state
+  reset: landing/action reset, native respawn, plant paths, and expired impacts clear or retire the high-slam window
+  pause: pause freezes position, state, slam_aux, and animation; resume restarts countdown
+  death_respawn: same-scene native respawn changed a marked slam_aux 7 to 0 and accepted a fresh double Cross without reloading
+  unload_transition: resident code persists while scene initialization replaces transient world/player fields
+  persistence: action state, slam_aux, target response, and streak are transient gameplay state, not saved progression
+  capacity: one player action field, one compact resident actor table, and one Bonus-1 u32 streak
+  residency: ordinary input, player update, proximity contact, and Bonus-1 fields are resident
+  exceptional_path: Riverbed Flight remained state 0, animation 4, slam_aux 0 under the native double-Cross sequence
+
+mod_contract:
+  owner: Preserve resident input, player-update, proximity-contact, bonus, and collision ordering and explicitly name every new hook.
+  readers: Enumerate decoded input, player, actor geometry/flags, collision, animation, health, bonus, render, audio, camera, pause, respawn, enemy-family, slide, boss, and flight consumers.
+  writers: Do not add unordered writes to decoded input, shared state, grounded, slam_aux, velocity, animation, actor response, health, streak, latch, or unlock flags.
+  valid_domains: Actions/state/grounded are u16, slam_aux is context-dependent s16, positions and velocity are signed s32, actor response is s16, and streak is u32 0..4.
+  initialization: Initialize MOD-private action/combo state before the first resident player/contact update; never infer readiness from a stale reused slam_aux value.
+  reset: Clear private action/combo state on landing, miss, pause-shell reset, damage/death/reload, plant takeover, and every scene transition.
+  retirement: Retire injected Cross and overlay-scoped hooks before their input, actor, bonus, slide, boss, or flight owners unload.
+  consumers: Input, player update, collision, animation geometry, proximity/contact, health, bonus progression, render, camera, audio, pause, respawn, enemies, bosses, slide, and Flight.
+  capacity: Declare every hook/cave/table/combo expansion bound and never treat compact actor-table index as stable identity.
+  residency: Keep resident action/combo state outside overlay-owned memory and scope every special-contact hook to its actual lifetime.
+  unsafe_assumptions:
+    - Timer cadence is per resident player update, not emulator frame.
+    - The first retained sample is 9 because the native writer arms 10 before countdown.
+    - slam_aux is reused outside high-slam state; values outside 0..10 do not extend the A05 timer domain.
+    - Shared states 3, 4, and 5 are context-sensitive and do not identify A05 without input/timer/owner context.
+    - Target response -20 and impulses do not by themselves prove family-specific HP, death, respawn, permanence, or quota behavior.
+    - A05 expired contact can damage the player; it is not an accepted bounce.
+    - A06 slope-slide continuation, D-family AI/lifecycle, boss contacts, and F14 Flight remain separate owners.
+    - Save-state breadth supplements but does not replace the retained cold-boot counterfactual.

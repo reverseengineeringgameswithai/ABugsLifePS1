@@ -1,0 +1,62 @@
+{
+ "_comment": "Union the STATIC frontier with every writer actually observed across the fixtures.",
+ "fixtures": [
+  {
+   "fixture": "b06_cold_boot",
+   "movie": "movies/Phase4/b06_invincibility_hits_from_boot.movie.json",
+   "frames": 6522,
+   "slot_writes": 403,
+   "writer_pcs": {
+    "0xbfc02bb0": 2,
+    "0x800588d0": 1,
+    "0x80048654": 400
+   }
+  },
+  {
+   "fixture": "b08_cold_boot",
+   "movie": "movies/Phase4/B08_bubble_repeated_hits_from_boot.movie.json",
+   "frames": 6959,
+   "slot_writes": 6,
+   "writer_pcs": {
+    "0xbfc02bb0": 2,
+    "0x800589a8": 1,
+    "0x8004a808": 3
+   }
+  },
+  {
+   "fixture": "level_transition",
+   "movie": "movies/B06_LevelTransition_tagged.movie.json",
+   "frames": 1162,
+   "slot_writes": 401,
+   "writer_pcs": {
+    "0x800588d0": 1,
+    "0x80048654": 398,
+    "0xbfc02bb0": 2
+   }
+  }
+ ],
+ "observed_writers": {
+  "0x80048654": {
+   "hits": 798,
+   "known_as": "tick (player_vertical_update)"
+  },
+  "0x8004a808": {
+   "hits": 3,
+   "known_as": "absorb (damage handler)"
+  },
+  "0x800588d0": {
+   "hits": 2,
+   "known_as": "B06 grant := 400"
+  },
+  "0x800589a8": {
+   "hits": 1,
+   "known_as": "B08 grant := -3"
+  },
+  "0xbfc02bb0": {
+   "hits": 6,
+   "known_as": "BIOS memset, called by 0x80046B68 spawn (callee write)"
+  }
+ },
+ "outside_the_enumerated_set": {},
+ "verdict": "no writer outside the enumerated set"
+}

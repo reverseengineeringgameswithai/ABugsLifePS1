@@ -1,0 +1,16 @@
+{
+ "_comment": "CAPACITY HANG PROOF via debugger.callFunction on contact_alloc (FUNC_80059E44). Allocator is a round-robin free-slot search with NO full-array escape (src_re/contact_alloc_80059e44.c): with free slots the call returns a record pointer; with all 64 slots occupied it never returns. MOD-SAFETY: never let a mod hold all 64 contact slots occupied. Regenerate: tools/phase2_proofs.py --hang (isolated instance; destructive writes are undone by the next loadState).",
+ "generated": "2026-07-12",
+ "anchor": "red_berry_thrown.sav",
+ "slots_occupied": 64,
+ "free_slots_call": {
+  "ok": true,
+  "v0": "0x800b1920"
+ },
+ "all_occupied_call": {
+  "ok": false,
+  "error": "RpcError: [-32005] Timed out waiting for the guest function to return to the trap address."
+ },
+ "hang_confirmed": true,
+ "verdict": "HANG CONFIRMED: allocation returns with free slots; with all 64 occupied the search loop never returns"
+}

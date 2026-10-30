@@ -1,0 +1,7997 @@
+{
+ "_comment": "Mandatory caller-domain pilot. The exact site list was committed before outcomes in de8b10512c69. A NO-GO is a reviewed negative and forbids the full Stage-A/B/C pass in this increment.",
+ "authority": {
+  "banks_f01_status": false,
+  "changes_campaign_registry": false,
+  "closes_item_2": false,
+  "fresh_detached_verifier_required_for_any_status_change": true,
+  "promotes_dimension": false
+ },
+ "capsule_crosscheck": {
+  "all_observed_values_within_domains": true,
+  "capsule_universe": 50,
+  "clean_for_go": false,
+  "decided_site_ids": [],
+  "reason": "no proved/decided pilot domain exists to compare",
+  "site_time_observations": 0,
+  "soundness_violation": false,
+  "status": "NOT_APPLICABLE_NO_DECIDED_DOMAINS"
+ },
+ "configuration": {
+  "depth_cap": 3,
+  "full_corpus_pass_performed": false,
+  "runtime_replay_performed": false,
+  "widening_cap": 32,
+  "widening_cap_hit": false
+ },
+ "decision": {
+  "decided_site_count": 0,
+  "decided_site_ids": [],
+  "full_pass_authorized": false,
+  "go_threshold_decided_sites": 3,
+  "next_increment_if_banked": "prove_indirect_table_and_address-taken universes",
+  "open_poison_comparison": "strictly_greater_than_10",
+  "open_poison_site_count": 10,
+  "open_poison_site_ids": [
+   "LEVEL02_LEVEL1:0x800B3F14:sp",
+   "LEVEL02_LEVEL1:0x800B43AC:sp",
+   "LEVEL05_LEVEL:0x800B4040:sp",
+   "LEVEL05_LEVEL:0x800B4048:sp",
+   "LEVEL08_LEVEL1:0x800B416C:sp",
+   "SCUS_942_88:0x8005C5B4:s2",
+   "SCUS_942_88:0x8005C5C0:s2",
+   "SCUS_942_88:0x8005C5C8:s2",
+   "SCUS_942_88:0x8005C5D4:s2",
+   "SCUS_942_88:0x8005C5E8:s2"
+  ],
+  "open_poison_threshold": 10,
+  "reasons": [
+   "decided_site_count_below_3"
+  ],
+  "verdict": "NO-GO"
+ },
+ "independent_crosscheck": {
+  "all_20_agree": true,
+  "disagreements": [],
+  "implementation": "tools/phase4_caller_domain_crosscheck.c",
+  "independent_selftest": {
+   "failed": 0,
+   "passed": 3,
+   "schema": "abl-phase4-caller-domain-crosscheck-selftest/1",
+   "verdict": true
+  },
+  "primary_selftest": {
+   "failed": 0,
+   "passed": 4,
+   "schema": "abl-phase4-caller-domain-c-selftest/1",
+   "verdict": true
+  },
+  "sample_site_ids": [
+   "LEVEL02_LEVEL1:0x800B3F14:sp",
+   "LEVEL02_LEVEL1:0x800B43AC:sp",
+   "LEVEL05_LEVEL:0x800B4040:sp",
+   "LEVEL05_LEVEL:0x800B4048:sp",
+   "LEVEL08_LEVEL1:0x800B416C:sp",
+   "LEVEL03_LEVEL1:0x800B41AC:v1",
+   "LEVEL05_LEVEL1:0x800B494C:s0",
+   "LEVEL07_LEVEL:0x800B4774:a3",
+   "LEVEL08_LEVEL:0x800B4284:s0",
+   "LEVEL09_LEVEL:0x800B4640:s0",
+   "LEVEL02_LEVEL:0x800B4788:a0",
+   "LEVEL04_LEVEL1:0x800B4AA8:v1",
+   "MEMORY:0x800B7EA4:at",
+   "MEMORY:0x800B7F04:at",
+   "MEMORY:0x800B7F64:at",
+   "SCUS_942_88:0x8005C5B4:s2",
+   "SCUS_942_88:0x8005C5C0:s2",
+   "SCUS_942_88:0x8005C5C8:s2",
+   "SCUS_942_88:0x8005C5D4:s2",
+   "SCUS_942_88:0x8005C5E8:s2"
+  ]
+ },
+ "inputs": {
+  "c_manifest_sha256": "7515fe82793664129ed328e3d0f1a13086da13be3f3ce3cf0b88f83be673aa90",
+  "campaign": "analysis/phase4_f01_local_base_recovery.json",
+  "campaign_sha256": "e5d79263398a927a518db682ce3c9920dccd2a48004b9e0cb251522307b15320",
+  "capsule_set": "analysis/phase4_trace_capsule_set.json",
+  "capsule_set_sha256": "569b3ebf073b2384c04edecbc54ca52d4f7a35a0387a02e9540e7a936509cc53",
+  "derived_input_snapshot_commit": "de8b10512c69",
+  "driver": "tools/phase4_caller_domain.py",
+  "driver_sha256": "8b120db3e726f48fd757d2197552c328978b36fcc7a88b8f7b8ed71864400ffc",
+  "f01_result": "analysis/phase4_f01_frontier_result.json",
+  "f01_result_sha256": "e24b2efbecb24ad1d6bdb857d8dd1ad79c1e3dfadc63642671694ca64d77f817",
+  "gate": "analysis/phase3_gate_audit.json",
+  "gate_sha256": "69be2b779805b238df1531673dc01d8434402cdf2853fe93ff29dd378fa6c938",
+  "historical_index_source_object": "92e249a8807b:analysis/phase4_f01_local_base_recovery.json",
+  "historical_index_source_sha256": "b3b101b5ac45017b2c6effc4d68f66600d29400029987f1c494a61a4810a1a55",
+  "independent_binary_sha256": "573c7a6ea4f0445738fce6723296c231cb93cae89db9090617348965fa313942",
+  "independent_c": "tools/phase4_caller_domain_crosscheck.c",
+  "independent_c_sha256": "79710ede71c2ba642634cce32f839050d22f75ef256ef5816b170523d1331dae",
+  "issued_baseline_commit": "fc2a708754320a38877c59f47f6997a0a42f25ce",
+  "jr_tables": "analysis/phase3_jr_tables.json",
+  "jr_tables_sha256": "ed26a2496359a7c953011d3bb35b0a3f46e93314af9167cc00bb4e95dec0ceb5",
+  "pre_outcome_freeze_commit": "de8b10512c69",
+  "pre_outcome_freeze_note_sha256": "6a599bd4dab1a6ee44af754214583d98365e6bdcbea0a32a226fc2af61e1406b",
+  "primary_binary_sha256": "8233d6e3c7a74f8726a38fa79b795ef92c1bfbc6540e7b0916cc2e2fe7a5ff8e",
+  "primary_c": "tools/phase4_caller_domain_probe.c",
+  "primary_c_sha256": "b727a311defeacec4269de06db6d71024ca1eb650b5c5c4b44b336dd0780e01b",
+  "static_index": "analysis/phase4_static_frontier_index.json",
+  "static_index_sha256": "893775dcbebdfd008b629f58f74cbd8c50d3d6a0d5492c42dde8276084d7c328",
+  "work_order": "engineering-specs/phase4-caller-domain-work-order.md",
+  "work_order_sha256": "b2817e8126a3080529a61f367d35fafd3e62f593be871ed91d02a6608227d7c5"
+ },
+ "pilot_universe": {
+  "definition": "the exact 20 IDs committed in the experiment log before any caller-closure/domain outcome",
+  "sample_is_not_corpus_universe": true,
+  "site_count": 20,
+  "site_ids": [
+   "LEVEL02_LEVEL1:0x800B3F14:sp",
+   "LEVEL02_LEVEL1:0x800B43AC:sp",
+   "LEVEL05_LEVEL:0x800B4040:sp",
+   "LEVEL05_LEVEL:0x800B4048:sp",
+   "LEVEL08_LEVEL1:0x800B416C:sp",
+   "LEVEL03_LEVEL1:0x800B41AC:v1",
+   "LEVEL05_LEVEL1:0x800B494C:s0",
+   "LEVEL07_LEVEL:0x800B4774:a3",
+   "LEVEL08_LEVEL:0x800B4284:s0",
+   "LEVEL09_LEVEL:0x800B4640:s0",
+   "LEVEL02_LEVEL:0x800B4788:a0",
+   "LEVEL04_LEVEL1:0x800B4AA8:v1",
+   "MEMORY:0x800B7EA4:at",
+   "MEMORY:0x800B7F04:at",
+   "MEMORY:0x800B7F64:at",
+   "SCUS_942_88:0x8005C5B4:s2",
+   "SCUS_942_88:0x8005C5C0:s2",
+   "SCUS_942_88:0x8005C5C8:s2",
+   "SCUS_942_88:0x8005C5D4:s2",
+   "SCUS_942_88:0x8005C5E8:s2"
+  ],
+  "strata": {
+   "argument_carrier_blocked_index_interval_unproved_instruction": [
+    "LEVEL02_LEVEL:0x800B4788:a0",
+    "LEVEL04_LEVEL1:0x800B4AA8:v1",
+    "MEMORY:0x800B7EA4:at",
+    "MEMORY:0x800B7F04:at",
+    "MEMORY:0x800B7F64:at",
+    "SCUS_942_88:0x8005C5B4:s2",
+    "SCUS_942_88:0x8005C5C0:s2",
+    "SCUS_942_88:0x8005C5C8:s2",
+    "SCUS_942_88:0x8005C5D4:s2",
+    "SCUS_942_88:0x8005C5E8:s2"
+   ],
+   "blocked_return_domain_unrecovered": [
+    "LEVEL03_LEVEL1:0x800B41AC:v1",
+    "LEVEL05_LEVEL1:0x800B494C:s0",
+    "LEVEL07_LEVEL:0x800B4774:a3",
+    "LEVEL08_LEVEL:0x800B4284:s0",
+    "LEVEL09_LEVEL:0x800B4640:s0"
+   ],
+   "blocked_stack_entry_value_caller_dependent": [
+    "LEVEL02_LEVEL1:0x800B3F14:sp",
+    "LEVEL02_LEVEL1:0x800B43AC:sp",
+    "LEVEL05_LEVEL:0x800B4040:sp",
+    "LEVEL05_LEVEL:0x800B4048:sp",
+    "LEVEL08_LEVEL1:0x800B416C:sp"
+   ]
+  }
+ },
+ "protected_state": {
+  "dimension_promoted": false,
+  "f01_status": "partial",
+  "item2_ready_for_review": false,
+  "item_2": "not_met",
+  "mechanics_baseline_modified": false,
+  "movie_or_fixture_modified": false,
+  "review_blockers": [
+   "IMAGE_CENSUS_INCOMPLETE",
+   "MECHANICALLY_INCOMPLETE"
+  ]
+ },
+ "schema": "abl-phase4-caller-domain-pilot/1",
+ "sites": [
+  {
+   "closure_root": "LEVEL02_LEVEL1:0x800b3f08",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL02_LEVEL1:0x800B3F14:sp",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "MEMORY",
+     "pc": "0x800b970c"
+    }
+   },
+   "mode": "caller",
+   "stratum": "stack_entry",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "closure_root": "LEVEL02_LEVEL1:0x800b3f08",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL02_LEVEL1:0x800B43AC:sp",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "MEMORY",
+     "pc": "0x800b970c"
+    }
+   },
+   "mode": "caller",
+   "stratum": "stack_entry",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "closure_root": "LEVEL05_LEVEL:0x800b3d80",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL05_LEVEL:0x800B4040:sp",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "LEVEL05_LEVEL",
+     "pc": "0x800b4228"
+    }
+   },
+   "mode": "caller",
+   "stratum": "stack_entry",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "closure_root": "LEVEL05_LEVEL:0x800b3d80",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL05_LEVEL:0x800B4048:sp",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "LEVEL05_LEVEL",
+     "pc": "0x800b4228"
+    }
+   },
+   "mode": "caller",
+   "stratum": "stack_entry",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "closure_root": "LEVEL08_LEVEL1:0x800b4084",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL08_LEVEL1:0x800B416C:sp",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "MEMORY",
+     "pc": "0x800b970c"
+    }
+   },
+   "mode": "caller",
+   "stratum": "stack_entry",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x800b41a8",
+    "word": "0x0c013043"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL03_LEVEL1:0x800B41AC:v1",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x800b41a8",
+     "word": "0x0c013043"
+    },
+    "decided": false,
+    "wall": "delay_slot_pre_call_value_not_return_domain"
+   },
+   "mode": "return",
+   "stratum": "return_domain",
+   "wall": "delay_slot_pre_call_value_not_return_domain"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x8005a2f0",
+    "word": "0x02001021"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL05_LEVEL1:0x800B494C:s0",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x8005a2f0",
+     "word": "0x02001021"
+    },
+    "decided": false,
+    "wall": "return_value_depends_on_unproved_s0_after_fallthrough_entry"
+   },
+   "mode": "return",
+   "stratum": "return_domain",
+   "wall": "return_value_depends_on_unproved_s0_after_fallthrough_entry"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x800b4770",
+    "word": "0x0c013043"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL07_LEVEL:0x800B4774:a3",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x800b4770",
+     "word": "0x0c013043"
+    },
+    "decided": false,
+    "wall": "delay_slot_pre_call_value_not_return_domain"
+   },
+   "mode": "return",
+   "stratum": "return_domain",
+   "wall": "delay_slot_pre_call_value_not_return_domain"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x8005a2f0",
+    "word": "0x02001021"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL08_LEVEL:0x800B4284:s0",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x8005a2f0",
+     "word": "0x02001021"
+    },
+    "decided": false,
+    "wall": "return_value_depends_on_unproved_s0_after_fallthrough_entry"
+   },
+   "mode": "return",
+   "stratum": "return_domain",
+   "wall": "return_value_depends_on_unproved_s0_after_fallthrough_entry"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x8005a2f0",
+    "word": "0x02001021"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL09_LEVEL:0x800B4640:s0",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x8005a2f0",
+     "word": "0x02001021"
+    },
+    "decided": false,
+    "wall": "return_value_depends_on_unproved_s0_after_fallthrough_entry"
+   },
+   "mode": "return",
+   "stratum": "return_domain",
+   "wall": "return_value_depends_on_unproved_s0_after_fallthrough_entry"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x800b4734",
+    "word": "0x00042080"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL02_LEVEL:0x800B4788:a0",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x800b4734",
+     "word": "0x00042080"
+    },
+    "decided": false,
+    "wall": "local_definition_replaces_argument_register"
+   },
+   "mode": "local",
+   "stratum": "argument_index",
+   "wall": "local_definition_replaces_argument_register"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x800b4a8c",
+    "word": "0x8fa90060"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "LEVEL04_LEVEL1:0x800B4AA8:v1",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x800b4a8c",
+     "word": "0x8fa90060"
+    },
+    "decided": false,
+    "wall": "local_frame_slot_not_stack_argument"
+   },
+   "mode": "local",
+   "stratum": "argument_index",
+   "supporting_instruction": {
+    "pc": "0x800b3c78",
+    "word": "0x27bdff70"
+   },
+   "wall": "local_frame_slot_not_stack_argument"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x800b7e68",
+    "word": "0x8484245c"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "MEMORY:0x800B7EA4:at",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x800b7e68",
+     "word": "0x8484245c"
+    },
+    "decided": false,
+    "wall": "local_signed_load_not_caller_argument"
+   },
+   "mode": "local",
+   "stratum": "argument_index",
+   "wall": "local_signed_load_not_caller_argument"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x800b7ec8",
+    "word": "0x8484245c"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "MEMORY:0x800B7F04:at",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x800b7ec8",
+     "word": "0x8484245c"
+    },
+    "decided": false,
+    "wall": "local_signed_load_not_caller_argument"
+   },
+   "mode": "local",
+   "stratum": "argument_index",
+   "wall": "local_signed_load_not_caller_argument"
+  },
+  {
+   "breaking_instruction": {
+    "pc": "0x800b7f28",
+    "word": "0x8484245c"
+   },
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "MEMORY:0x800B7F64:at",
+   "independent_crosscheck": {
+    "agrees": true,
+    "breaker": {
+     "pc": "0x800b7f28",
+     "word": "0x8484245c"
+    },
+    "decided": false,
+    "wall": "local_signed_load_not_caller_argument"
+   },
+   "mode": "local",
+   "stratum": "argument_index",
+   "wall": "local_signed_load_not_caller_argument"
+  },
+  {
+   "closure_root": "SCUS_942_88:0x8005c58c",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "SCUS_942_88:0x8005C5B4:s2",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "LEVEL03_LEVEL",
+     "pc": "0x800b4b38"
+    }
+   },
+   "mode": "caller",
+   "stratum": "argument_index",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "closure_root": "SCUS_942_88:0x8005c58c",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "SCUS_942_88:0x8005C5C0:s2",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "LEVEL03_LEVEL",
+     "pc": "0x800b4b38"
+    }
+   },
+   "mode": "caller",
+   "stratum": "argument_index",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "closure_root": "SCUS_942_88:0x8005c58c",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "SCUS_942_88:0x8005C5C8:s2",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "LEVEL03_LEVEL",
+     "pc": "0x800b4b38"
+    }
+   },
+   "mode": "caller",
+   "stratum": "argument_index",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "closure_root": "SCUS_942_88:0x8005c58c",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "SCUS_942_88:0x8005C5D4:s2",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "LEVEL03_LEVEL",
+     "pc": "0x800b4b38"
+    }
+   },
+   "mode": "caller",
+   "stratum": "argument_index",
+   "wall": "open_caller_set_poison"
+  },
+  {
+   "closure_root": "SCUS_942_88:0x8005c58c",
+   "decided": false,
+   "domain_status": "ABSENT",
+   "id": "SCUS_942_88:0x8005C5E8:s2",
+   "independent_crosscheck": {
+    "agrees": true,
+    "decided": false,
+    "wall": "open_caller_set_poison",
+    "witness": {
+     "image": "LEVEL03_LEVEL",
+     "pc": "0x800b4b38"
+    }
+   },
+   "mode": "caller",
+   "stratum": "argument_index",
+   "wall": "open_caller_set_poison"
+  }
+ ],
+ "stage_a_sample_caller_closure": {
+  "closed_root_keys": [],
+  "closure_roots": [
+   {
+    "address_taken_outside_proved_tables": [],
+    "classification": "OPEN",
+    "counts": {
+     "address_taken": 0,
+     "direct": 0,
+     "proved_indirect": 0,
+     "unproved_indirect": 255
+    },
+    "direct_callers": [],
+    "end": "0x800b48f4",
+    "entry": "0x800b3f08",
+    "image": "LEVEL02_LEVEL1",
+    "key": "LEVEL02_LEVEL1:0x800b3f08",
+    "name": "level_completion_handler_f08",
+    "proved_indirect_callers": [],
+    "relevant_unproved_indirect_edges": [
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "frontend_state_dispatch",
+      "pc": "0x800b970c",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BAAD4",
+      "pc": "0x800bab20",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "memcard_load_dispatch",
+      "pc": "0x800bb8bc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6A8",
+      "pc": "0x800bd6ac",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6B8",
+      "pc": "0x800bd6bc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6C8",
+      "pc": "0x800bd6cc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD710",
+      "pc": "0x800bd714",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD720",
+      "pc": "0x800bd724",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD7E8",
+      "pc": "0x800bd7ec",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD7F8",
+      "pc": "0x800bd7fc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD808",
+      "pc": "0x800bd80c",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jalr",
+      "owner": "overlay_flush_cache",
+      "pc": "0x800bd82c",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "overlay_flush_cache",
+      "pc": "0x800bd878",
+      "register": "ra"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800bdf40",
+      "register": "zero"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be3fc",
+      "register": "zero"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be4fc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be518",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be524",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "per_object_mesh_draw_payload_emitter",
+      "pc": "0x80011128",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "scene_geometry_normal_pass",
+      "pc": "0x800163d8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_mesh_vertex_normal_transform",
+      "pc": "0x800172d4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x80017DB4",
+      "pc": "0x800186e4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x8001897c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018a4c",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018b1c",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018bec",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018cbc",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "poly_interpolate_midpoint_prim",
+      "pc": "0x80018f44",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_clip_emit_variant_a",
+      "pc": "0x8001923c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_clip_emit_variant_b",
+      "pc": "0x80019614",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019b3c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019c28",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019c84",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019ce0",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "emit_subdivided_gouraud_prims",
+      "pc": "0x80019f34",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gpu_emit_subdivided_quad_prims",
+      "pc": "0x8001a0dc",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gpu_build_poly_g4_gouraud",
+      "pc": "0x8001a1d4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_motion_apply_chase",
+      "pc": "0x8004d1e8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "InitGeom",
+      "pc": "0x80060144",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "VectorNormal",
+      "pc": "0x800602a8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_svector_store_wrapper",
+      "pc": "0x800602d8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "MatrixNormal",
+      "pc": "0x80060478",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_patch_gte",
+      "pc": "0x80060c78",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "_patch_gte",
+      "pc": "0x80060cc4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpTPage",
+      "pc": "0x80061ae4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpClut",
+      "pc": "0x80061b24",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061fac",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061fcc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061ff4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80062010",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x8006202c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80062074",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x800620c0",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x800620e8",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x80062104",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x80062120",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetGraph",
+      "pc": "0x80062284",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetGraph",
+      "pc": "0x800622a0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062308",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062324",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062364",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x800623ac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetGraphDebug",
+      "pc": "0x80062418",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_callback_stub",
+      "pc": "0x80062480",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_callback_stub",
+      "pc": "0x800624ac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "handler_register_8007fbd4",
+      "pc": "0x80062534",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetDispMask",
+      "pc": "0x800625a0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetDispMask",
+      "pc": "0x800625dc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawSync",
+      "pc": "0x80062630",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawSync",
+      "pc": "0x8006264c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "checkRECT",
+      "pc": "0x8006274c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "checkRECT",
+      "pc": "0x80062774",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearImage",
+      "pc": "0x800627fc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearImage2",
+      "pc": "0x80062898",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "LoadImage",
+      "pc": "0x80062904",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StoreImage",
+      "pc": "0x80062968",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "MoveImage",
+      "pc": "0x80062a28",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "link_prim_packet_chain",
+      "pc": "0x80062a88",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearOTagR",
+      "pc": "0x80062b44",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearOTagR",
+      "pc": "0x80062b60",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawPrim",
+      "pc": "0x80062bc0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawPrim",
+      "pc": "0x80062bdc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTag",
+      "pc": "0x80062c30",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTag",
+      "pc": "0x80062c54",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_render_driver",
+      "pc": "0x80062cb4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_render_driver",
+      "pc": "0x80062cfc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTagEnv",
+      "pc": "0x80062dc4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTagEnv",
+      "pc": "0x80062e18",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80062f0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80062f88",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80063198",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x800631c4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80063330",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "call_vptr56_sign",
+      "pc": "0x800633c0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "gpu_present_drawotag_vsync",
+      "pc": "0x800647c4",
+      "register": "s3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_intr_install",
+      "pc": "0x80064aec",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_intr_install",
+      "pc": "0x80064c4c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetCallback_dispatch_tail",
+      "pc": "0x800653ec",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "InterruptCallback_dispatch_tail",
+      "pc": "0x8006541c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "exec_queue_kick",
+      "pc": "0x8006544c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "VSyncCallback",
+      "pc": "0x80065480",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "VSyncCallbacks_dispatch_tail",
+      "pc": "0x800654b0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StopCallback_dispatch_tail",
+      "pc": "0x800654e0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "RestartCallback_dispatch_tail",
+      "pc": "0x80065510",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trapIntr",
+      "pc": "0x80065728",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trapIntrVSync",
+      "pc": "0x80065b94",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trap_exception_report",
+      "pc": "0x80065d0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "file_dev_dir_hook_trampoline",
+      "pc": "0x8006645c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "call_via_ptr_80086aa8",
+      "pc": "0x80066818",
+      "register": "t1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "pad_stop_driver_thunk",
+      "pc": "0x8006682c",
+      "register": "t1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "icache_flush_glue",
+      "pc": "0x8006684c",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "icache_flush_glue",
+      "pc": "0x8006689c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "icache_flush_glue_68ac",
+      "pc": "0x800668c4",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "icache_flush_glue_68ac",
+      "pc": "0x8006690c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x80067814",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x80067878",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x800678d0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsTrapIntrVSync",
+      "pc": "0x80067f34",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsTrapIntrVSync",
+      "pc": "0x80067f48",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ss_seq_tick_every_other_dispatch",
+      "pc": "0x80067f98",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsVmFlush",
+      "pc": "0x800697dc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsVmFlush",
+      "pc": "0x80069808",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "spu_fidma_body",
+      "pc": "0x8006bd0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_sync",
+      "pc": "0x8006e5d8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_sync",
+      "pc": "0x8006e60c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_ready",
+      "pc": "0x8006e860",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_ready",
+      "pc": "0x8006e894",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_cw",
+      "pc": "0x8006ecd0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_cw",
+      "pc": "0x8006ed04",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_interrupt_callback_body",
+      "pc": "0x8006f61c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_interrupt_callback_body",
+      "pc": "0x8006f650",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cb_read",
+      "pc": "0x800702d0",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_ready_poll_control",
+      "pc": "0x800703d0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "str_data_ready_callback",
+      "pc": "0x80070aa0",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StCdInterrupt",
+      "pc": "0x800712dc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StCdInterrupt",
+      "pc": "0x80071388",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadGetState",
+      "pc": "0x8007199c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoMode",
+      "pc": "0x80071a74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoAct",
+      "pc": "0x80071b6c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoComb",
+      "pc": "0x80071c40",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetActAlign",
+      "pc": "0x80071ce0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetMainMode",
+      "pc": "0x80071d20",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetAct",
+      "pc": "0x80071d68",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadEnableCom",
+      "pc": "0x80071e20",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadEnableCom",
+      "pc": "0x80071e78",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_irq_callback",
+      "pc": "0x80071f30",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_vsync_handler",
+      "pc": "0x80072054",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padStartCom",
+      "pc": "0x8007216c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padStartCom",
+      "pc": "0x80072188",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x800722dc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x80072340",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x80072354",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x80072568",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x800725d4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x8007260c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padRecvAtLoadInfo",
+      "pc": "0x80072e04",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padLoadActInfo",
+      "pc": "0x80072ef0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padSetActAlign",
+      "pc": "0x80073448",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padSetMainMode",
+      "pc": "0x800735a4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x80073664",
+      "pc": "0x800736a8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_begin",
+      "pc": "0x80073784",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x800737fc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x80073810",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x8007383c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x80073854",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_length",
+      "pc": "0x800738bc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_length",
+      "pc": "0x800738d4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_transfer",
+      "pc": "0x80073980",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x800739f0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073a74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073a8c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073b54",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bb0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bdc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bf0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073c10",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073ca0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073d48",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_send_auto",
+      "pc": "0x80074488",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_send_auto",
+      "pc": "0x80074508",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x8007458c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x80074678",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x800746e0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x80074760",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_dirFailAuto",
+      "pc": "0x80074828",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x80074970",
+      "pc": "0x80074980",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x800749A8",
+      "pc": "0x800749b8",
+      "register": "sp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007564C",
+      "pc": "0x80075928",
+      "register": "k1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x800769A8",
+      "pc": "0x800769b8",
+      "register": "sp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "sky_clear_b",
+      "pc": "0x800771c8",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "sky_clear_b",
+      "pc": "0x800771f4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800774c0",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800774c4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077518",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x8007751c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077524",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077540",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077544",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x8007754c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800775fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077710",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800778e0",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a0c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a1c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a74",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a84",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077eac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077ed4",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077ee4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077fd4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077fd8",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x800788e4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x800788f4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80078b38",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80078b4c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x80078B54",
+      "pc": "0x80078b74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079514",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079528",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079578",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x8007958c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079714",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079764",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079820",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800798b8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800798cc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800799f8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079a50",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b2c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b68",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b7c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b90",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079ba4",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bb8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bcc",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079be0",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bf4",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079c08",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079c1c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079d98",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a0fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a108",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a450",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a470",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b56c",
+      "register": "fp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b634",
+      "register": "s4"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b638",
+      "register": "s4"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d880",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d884",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d888",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d88c",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d890",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D8B4",
+      "pc": "0x8007d9c8",
+      "register": "s7"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D8B4",
+      "pc": "0x8007d9cc",
+      "register": "s7"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007E7DC",
+      "pc": "0x8007e7fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007E7DC",
+      "pc": "0x8007e800",
+      "register": "zero"
+     }
+    ],
+    "transitive_depth_reached": 0,
+    "transitive_expansion": "stopped_at_open_root"
+   },
+   {
+    "address_taken_outside_proved_tables": [],
+    "classification": "OPEN",
+    "counts": {
+     "address_taken": 0,
+     "direct": 0,
+     "proved_indirect": 0,
+     "unproved_indirect": 258
+    },
+    "direct_callers": [],
+    "end": "0x800b410c",
+    "entry": "0x800b3d80",
+    "image": "LEVEL05_LEVEL",
+    "key": "LEVEL05_LEVEL:0x800b3d80",
+    "name": "level_completion_handler",
+    "proved_indirect_callers": [],
+    "relevant_unproved_indirect_edges": [
+     {
+      "image": "LEVEL05_LEVEL",
+      "kind": "jr",
+      "owner": "anon_0x800B410C",
+      "pc": "0x800b4228",
+      "register": "v1"
+     },
+     {
+      "image": "LEVEL05_LEVEL",
+      "kind": "jr",
+      "owner": "anon_0x800B410C",
+      "pc": "0x800b4230",
+      "register": "v1"
+     },
+     {
+      "image": "LEVEL05_LEVEL",
+      "kind": "jr",
+      "owner": "anon_0x800B410C",
+      "pc": "0x800b423c",
+      "register": "v1"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "frontend_state_dispatch",
+      "pc": "0x800b970c",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BAAD4",
+      "pc": "0x800bab20",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "memcard_load_dispatch",
+      "pc": "0x800bb8bc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6A8",
+      "pc": "0x800bd6ac",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6B8",
+      "pc": "0x800bd6bc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6C8",
+      "pc": "0x800bd6cc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD710",
+      "pc": "0x800bd714",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD720",
+      "pc": "0x800bd724",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD7E8",
+      "pc": "0x800bd7ec",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD7F8",
+      "pc": "0x800bd7fc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD808",
+      "pc": "0x800bd80c",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jalr",
+      "owner": "overlay_flush_cache",
+      "pc": "0x800bd82c",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "overlay_flush_cache",
+      "pc": "0x800bd878",
+      "register": "ra"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800bdf40",
+      "register": "zero"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be3fc",
+      "register": "zero"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be4fc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be518",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be524",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "per_object_mesh_draw_payload_emitter",
+      "pc": "0x80011128",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "scene_geometry_normal_pass",
+      "pc": "0x800163d8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_mesh_vertex_normal_transform",
+      "pc": "0x800172d4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x80017DB4",
+      "pc": "0x800186e4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x8001897c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018a4c",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018b1c",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018bec",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018cbc",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "poly_interpolate_midpoint_prim",
+      "pc": "0x80018f44",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_clip_emit_variant_a",
+      "pc": "0x8001923c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_clip_emit_variant_b",
+      "pc": "0x80019614",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019b3c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019c28",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019c84",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019ce0",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "emit_subdivided_gouraud_prims",
+      "pc": "0x80019f34",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gpu_emit_subdivided_quad_prims",
+      "pc": "0x8001a0dc",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gpu_build_poly_g4_gouraud",
+      "pc": "0x8001a1d4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_motion_apply_chase",
+      "pc": "0x8004d1e8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "InitGeom",
+      "pc": "0x80060144",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "VectorNormal",
+      "pc": "0x800602a8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_svector_store_wrapper",
+      "pc": "0x800602d8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "MatrixNormal",
+      "pc": "0x80060478",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_patch_gte",
+      "pc": "0x80060c78",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "_patch_gte",
+      "pc": "0x80060cc4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpTPage",
+      "pc": "0x80061ae4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpClut",
+      "pc": "0x80061b24",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061fac",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061fcc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061ff4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80062010",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x8006202c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80062074",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x800620c0",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x800620e8",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x80062104",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x80062120",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetGraph",
+      "pc": "0x80062284",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetGraph",
+      "pc": "0x800622a0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062308",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062324",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062364",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x800623ac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetGraphDebug",
+      "pc": "0x80062418",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_callback_stub",
+      "pc": "0x80062480",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_callback_stub",
+      "pc": "0x800624ac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "handler_register_8007fbd4",
+      "pc": "0x80062534",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetDispMask",
+      "pc": "0x800625a0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetDispMask",
+      "pc": "0x800625dc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawSync",
+      "pc": "0x80062630",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawSync",
+      "pc": "0x8006264c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "checkRECT",
+      "pc": "0x8006274c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "checkRECT",
+      "pc": "0x80062774",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearImage",
+      "pc": "0x800627fc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearImage2",
+      "pc": "0x80062898",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "LoadImage",
+      "pc": "0x80062904",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StoreImage",
+      "pc": "0x80062968",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "MoveImage",
+      "pc": "0x80062a28",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "link_prim_packet_chain",
+      "pc": "0x80062a88",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearOTagR",
+      "pc": "0x80062b44",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearOTagR",
+      "pc": "0x80062b60",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawPrim",
+      "pc": "0x80062bc0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawPrim",
+      "pc": "0x80062bdc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTag",
+      "pc": "0x80062c30",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTag",
+      "pc": "0x80062c54",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_render_driver",
+      "pc": "0x80062cb4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_render_driver",
+      "pc": "0x80062cfc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTagEnv",
+      "pc": "0x80062dc4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTagEnv",
+      "pc": "0x80062e18",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80062f0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80062f88",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80063198",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x800631c4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80063330",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "call_vptr56_sign",
+      "pc": "0x800633c0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "gpu_present_drawotag_vsync",
+      "pc": "0x800647c4",
+      "register": "s3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_intr_install",
+      "pc": "0x80064aec",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_intr_install",
+      "pc": "0x80064c4c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetCallback_dispatch_tail",
+      "pc": "0x800653ec",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "InterruptCallback_dispatch_tail",
+      "pc": "0x8006541c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "exec_queue_kick",
+      "pc": "0x8006544c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "VSyncCallback",
+      "pc": "0x80065480",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "VSyncCallbacks_dispatch_tail",
+      "pc": "0x800654b0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StopCallback_dispatch_tail",
+      "pc": "0x800654e0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "RestartCallback_dispatch_tail",
+      "pc": "0x80065510",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trapIntr",
+      "pc": "0x80065728",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trapIntrVSync",
+      "pc": "0x80065b94",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trap_exception_report",
+      "pc": "0x80065d0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "file_dev_dir_hook_trampoline",
+      "pc": "0x8006645c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "call_via_ptr_80086aa8",
+      "pc": "0x80066818",
+      "register": "t1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "pad_stop_driver_thunk",
+      "pc": "0x8006682c",
+      "register": "t1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "icache_flush_glue",
+      "pc": "0x8006684c",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "icache_flush_glue",
+      "pc": "0x8006689c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "icache_flush_glue_68ac",
+      "pc": "0x800668c4",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "icache_flush_glue_68ac",
+      "pc": "0x8006690c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x80067814",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x80067878",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x800678d0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsTrapIntrVSync",
+      "pc": "0x80067f34",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsTrapIntrVSync",
+      "pc": "0x80067f48",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ss_seq_tick_every_other_dispatch",
+      "pc": "0x80067f98",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsVmFlush",
+      "pc": "0x800697dc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsVmFlush",
+      "pc": "0x80069808",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "spu_fidma_body",
+      "pc": "0x8006bd0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_sync",
+      "pc": "0x8006e5d8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_sync",
+      "pc": "0x8006e60c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_ready",
+      "pc": "0x8006e860",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_ready",
+      "pc": "0x8006e894",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_cw",
+      "pc": "0x8006ecd0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_cw",
+      "pc": "0x8006ed04",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_interrupt_callback_body",
+      "pc": "0x8006f61c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_interrupt_callback_body",
+      "pc": "0x8006f650",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cb_read",
+      "pc": "0x800702d0",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_ready_poll_control",
+      "pc": "0x800703d0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "str_data_ready_callback",
+      "pc": "0x80070aa0",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StCdInterrupt",
+      "pc": "0x800712dc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StCdInterrupt",
+      "pc": "0x80071388",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadGetState",
+      "pc": "0x8007199c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoMode",
+      "pc": "0x80071a74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoAct",
+      "pc": "0x80071b6c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoComb",
+      "pc": "0x80071c40",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetActAlign",
+      "pc": "0x80071ce0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetMainMode",
+      "pc": "0x80071d20",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetAct",
+      "pc": "0x80071d68",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadEnableCom",
+      "pc": "0x80071e20",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadEnableCom",
+      "pc": "0x80071e78",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_irq_callback",
+      "pc": "0x80071f30",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_vsync_handler",
+      "pc": "0x80072054",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padStartCom",
+      "pc": "0x8007216c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padStartCom",
+      "pc": "0x80072188",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x800722dc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x80072340",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x80072354",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x80072568",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x800725d4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x8007260c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padRecvAtLoadInfo",
+      "pc": "0x80072e04",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padLoadActInfo",
+      "pc": "0x80072ef0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padSetActAlign",
+      "pc": "0x80073448",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padSetMainMode",
+      "pc": "0x800735a4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x80073664",
+      "pc": "0x800736a8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_begin",
+      "pc": "0x80073784",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x800737fc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x80073810",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x8007383c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x80073854",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_length",
+      "pc": "0x800738bc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_length",
+      "pc": "0x800738d4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_transfer",
+      "pc": "0x80073980",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x800739f0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073a74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073a8c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073b54",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bb0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bdc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bf0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073c10",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073ca0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073d48",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_send_auto",
+      "pc": "0x80074488",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_send_auto",
+      "pc": "0x80074508",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x8007458c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x80074678",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x800746e0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x80074760",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_dirFailAuto",
+      "pc": "0x80074828",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x80074970",
+      "pc": "0x80074980",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x800749A8",
+      "pc": "0x800749b8",
+      "register": "sp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007564C",
+      "pc": "0x80075928",
+      "register": "k1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x800769A8",
+      "pc": "0x800769b8",
+      "register": "sp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "sky_clear_b",
+      "pc": "0x800771c8",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "sky_clear_b",
+      "pc": "0x800771f4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800774c0",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800774c4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077518",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x8007751c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077524",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077540",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077544",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x8007754c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800775fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077710",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800778e0",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a0c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a1c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a74",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a84",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077eac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077ed4",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077ee4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077fd4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077fd8",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x800788e4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x800788f4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80078b38",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80078b4c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x80078B54",
+      "pc": "0x80078b74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079514",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079528",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079578",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x8007958c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079714",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079764",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079820",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800798b8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800798cc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800799f8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079a50",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b2c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b68",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b7c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b90",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079ba4",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bb8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bcc",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079be0",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bf4",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079c08",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079c1c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079d98",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a0fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a108",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a450",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a470",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b56c",
+      "register": "fp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b634",
+      "register": "s4"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b638",
+      "register": "s4"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d880",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d884",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d888",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d88c",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d890",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D8B4",
+      "pc": "0x8007d9c8",
+      "register": "s7"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D8B4",
+      "pc": "0x8007d9cc",
+      "register": "s7"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007E7DC",
+      "pc": "0x8007e7fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007E7DC",
+      "pc": "0x8007e800",
+      "register": "zero"
+     }
+    ],
+    "transitive_depth_reached": 0,
+    "transitive_expansion": "stopped_at_open_root"
+   },
+   {
+    "address_taken_outside_proved_tables": [],
+    "classification": "OPEN",
+    "counts": {
+     "address_taken": 0,
+     "direct": 1,
+     "proved_indirect": 0,
+     "unproved_indirect": 255
+    },
+    "direct_callers": [
+     {
+      "image": "SCUS_942_88",
+      "kind": "jal",
+      "owner": "scene_load_init",
+      "pc": "0x8003f54c"
+     }
+    ],
+    "end": "0x800b47c0",
+    "entry": "0x800b4084",
+    "image": "LEVEL08_LEVEL1",
+    "key": "LEVEL08_LEVEL1:0x800b4084",
+    "name": "level_render_hud_handler",
+    "proved_indirect_callers": [],
+    "relevant_unproved_indirect_edges": [
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "frontend_state_dispatch",
+      "pc": "0x800b970c",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BAAD4",
+      "pc": "0x800bab20",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "memcard_load_dispatch",
+      "pc": "0x800bb8bc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6A8",
+      "pc": "0x800bd6ac",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6B8",
+      "pc": "0x800bd6bc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6C8",
+      "pc": "0x800bd6cc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD710",
+      "pc": "0x800bd714",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD720",
+      "pc": "0x800bd724",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD7E8",
+      "pc": "0x800bd7ec",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD7F8",
+      "pc": "0x800bd7fc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD808",
+      "pc": "0x800bd80c",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jalr",
+      "owner": "overlay_flush_cache",
+      "pc": "0x800bd82c",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "overlay_flush_cache",
+      "pc": "0x800bd878",
+      "register": "ra"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800bdf40",
+      "register": "zero"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be3fc",
+      "register": "zero"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be4fc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be518",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be524",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "per_object_mesh_draw_payload_emitter",
+      "pc": "0x80011128",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "scene_geometry_normal_pass",
+      "pc": "0x800163d8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_mesh_vertex_normal_transform",
+      "pc": "0x800172d4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x80017DB4",
+      "pc": "0x800186e4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x8001897c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018a4c",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018b1c",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018bec",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018cbc",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "poly_interpolate_midpoint_prim",
+      "pc": "0x80018f44",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_clip_emit_variant_a",
+      "pc": "0x8001923c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_clip_emit_variant_b",
+      "pc": "0x80019614",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019b3c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019c28",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019c84",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019ce0",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "emit_subdivided_gouraud_prims",
+      "pc": "0x80019f34",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gpu_emit_subdivided_quad_prims",
+      "pc": "0x8001a0dc",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gpu_build_poly_g4_gouraud",
+      "pc": "0x8001a1d4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_motion_apply_chase",
+      "pc": "0x8004d1e8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "InitGeom",
+      "pc": "0x80060144",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "VectorNormal",
+      "pc": "0x800602a8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_svector_store_wrapper",
+      "pc": "0x800602d8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "MatrixNormal",
+      "pc": "0x80060478",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_patch_gte",
+      "pc": "0x80060c78",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "_patch_gte",
+      "pc": "0x80060cc4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpTPage",
+      "pc": "0x80061ae4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpClut",
+      "pc": "0x80061b24",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061fac",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061fcc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061ff4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80062010",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x8006202c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80062074",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x800620c0",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x800620e8",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x80062104",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x80062120",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetGraph",
+      "pc": "0x80062284",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetGraph",
+      "pc": "0x800622a0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062308",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062324",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062364",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x800623ac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetGraphDebug",
+      "pc": "0x80062418",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_callback_stub",
+      "pc": "0x80062480",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_callback_stub",
+      "pc": "0x800624ac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "handler_register_8007fbd4",
+      "pc": "0x80062534",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetDispMask",
+      "pc": "0x800625a0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetDispMask",
+      "pc": "0x800625dc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawSync",
+      "pc": "0x80062630",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawSync",
+      "pc": "0x8006264c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "checkRECT",
+      "pc": "0x8006274c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "checkRECT",
+      "pc": "0x80062774",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearImage",
+      "pc": "0x800627fc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearImage2",
+      "pc": "0x80062898",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "LoadImage",
+      "pc": "0x80062904",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StoreImage",
+      "pc": "0x80062968",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "MoveImage",
+      "pc": "0x80062a28",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "link_prim_packet_chain",
+      "pc": "0x80062a88",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearOTagR",
+      "pc": "0x80062b44",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearOTagR",
+      "pc": "0x80062b60",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawPrim",
+      "pc": "0x80062bc0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawPrim",
+      "pc": "0x80062bdc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTag",
+      "pc": "0x80062c30",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTag",
+      "pc": "0x80062c54",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_render_driver",
+      "pc": "0x80062cb4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_render_driver",
+      "pc": "0x80062cfc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTagEnv",
+      "pc": "0x80062dc4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTagEnv",
+      "pc": "0x80062e18",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80062f0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80062f88",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80063198",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x800631c4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80063330",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "call_vptr56_sign",
+      "pc": "0x800633c0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "gpu_present_drawotag_vsync",
+      "pc": "0x800647c4",
+      "register": "s3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_intr_install",
+      "pc": "0x80064aec",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_intr_install",
+      "pc": "0x80064c4c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetCallback_dispatch_tail",
+      "pc": "0x800653ec",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "InterruptCallback_dispatch_tail",
+      "pc": "0x8006541c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "exec_queue_kick",
+      "pc": "0x8006544c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "VSyncCallback",
+      "pc": "0x80065480",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "VSyncCallbacks_dispatch_tail",
+      "pc": "0x800654b0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StopCallback_dispatch_tail",
+      "pc": "0x800654e0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "RestartCallback_dispatch_tail",
+      "pc": "0x80065510",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trapIntr",
+      "pc": "0x80065728",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trapIntrVSync",
+      "pc": "0x80065b94",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trap_exception_report",
+      "pc": "0x80065d0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "file_dev_dir_hook_trampoline",
+      "pc": "0x8006645c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "call_via_ptr_80086aa8",
+      "pc": "0x80066818",
+      "register": "t1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "pad_stop_driver_thunk",
+      "pc": "0x8006682c",
+      "register": "t1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "icache_flush_glue",
+      "pc": "0x8006684c",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "icache_flush_glue",
+      "pc": "0x8006689c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "icache_flush_glue_68ac",
+      "pc": "0x800668c4",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "icache_flush_glue_68ac",
+      "pc": "0x8006690c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x80067814",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x80067878",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x800678d0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsTrapIntrVSync",
+      "pc": "0x80067f34",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsTrapIntrVSync",
+      "pc": "0x80067f48",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ss_seq_tick_every_other_dispatch",
+      "pc": "0x80067f98",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsVmFlush",
+      "pc": "0x800697dc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsVmFlush",
+      "pc": "0x80069808",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "spu_fidma_body",
+      "pc": "0x8006bd0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_sync",
+      "pc": "0x8006e5d8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_sync",
+      "pc": "0x8006e60c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_ready",
+      "pc": "0x8006e860",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_ready",
+      "pc": "0x8006e894",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_cw",
+      "pc": "0x8006ecd0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_cw",
+      "pc": "0x8006ed04",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_interrupt_callback_body",
+      "pc": "0x8006f61c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_interrupt_callback_body",
+      "pc": "0x8006f650",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cb_read",
+      "pc": "0x800702d0",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_ready_poll_control",
+      "pc": "0x800703d0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "str_data_ready_callback",
+      "pc": "0x80070aa0",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StCdInterrupt",
+      "pc": "0x800712dc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StCdInterrupt",
+      "pc": "0x80071388",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadGetState",
+      "pc": "0x8007199c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoMode",
+      "pc": "0x80071a74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoAct",
+      "pc": "0x80071b6c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoComb",
+      "pc": "0x80071c40",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetActAlign",
+      "pc": "0x80071ce0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetMainMode",
+      "pc": "0x80071d20",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetAct",
+      "pc": "0x80071d68",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadEnableCom",
+      "pc": "0x80071e20",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadEnableCom",
+      "pc": "0x80071e78",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_irq_callback",
+      "pc": "0x80071f30",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_vsync_handler",
+      "pc": "0x80072054",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padStartCom",
+      "pc": "0x8007216c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padStartCom",
+      "pc": "0x80072188",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x800722dc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x80072340",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x80072354",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x80072568",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x800725d4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x8007260c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padRecvAtLoadInfo",
+      "pc": "0x80072e04",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padLoadActInfo",
+      "pc": "0x80072ef0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padSetActAlign",
+      "pc": "0x80073448",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padSetMainMode",
+      "pc": "0x800735a4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x80073664",
+      "pc": "0x800736a8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_begin",
+      "pc": "0x80073784",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x800737fc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x80073810",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x8007383c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x80073854",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_length",
+      "pc": "0x800738bc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_length",
+      "pc": "0x800738d4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_transfer",
+      "pc": "0x80073980",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x800739f0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073a74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073a8c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073b54",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bb0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bdc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bf0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073c10",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073ca0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073d48",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_send_auto",
+      "pc": "0x80074488",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_send_auto",
+      "pc": "0x80074508",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x8007458c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x80074678",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x800746e0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x80074760",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_dirFailAuto",
+      "pc": "0x80074828",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x80074970",
+      "pc": "0x80074980",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x800749A8",
+      "pc": "0x800749b8",
+      "register": "sp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007564C",
+      "pc": "0x80075928",
+      "register": "k1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x800769A8",
+      "pc": "0x800769b8",
+      "register": "sp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "sky_clear_b",
+      "pc": "0x800771c8",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "sky_clear_b",
+      "pc": "0x800771f4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800774c0",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800774c4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077518",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x8007751c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077524",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077540",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077544",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x8007754c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800775fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077710",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800778e0",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a0c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a1c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a74",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a84",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077eac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077ed4",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077ee4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077fd4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077fd8",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x800788e4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x800788f4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80078b38",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80078b4c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x80078B54",
+      "pc": "0x80078b74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079514",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079528",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079578",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x8007958c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079714",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079764",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079820",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800798b8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800798cc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800799f8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079a50",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b2c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b68",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b7c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b90",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079ba4",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bb8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bcc",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079be0",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bf4",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079c08",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079c1c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079d98",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a0fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a108",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a450",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a470",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b56c",
+      "register": "fp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b634",
+      "register": "s4"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b638",
+      "register": "s4"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d880",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d884",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d888",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d88c",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d890",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D8B4",
+      "pc": "0x8007d9c8",
+      "register": "s7"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D8B4",
+      "pc": "0x8007d9cc",
+      "register": "s7"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007E7DC",
+      "pc": "0x8007e7fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007E7DC",
+      "pc": "0x8007e800",
+      "register": "zero"
+     }
+    ],
+    "transitive_depth_reached": 0,
+    "transitive_expansion": "stopped_at_open_root"
+   },
+   {
+    "address_taken_outside_proved_tables": [],
+    "classification": "OPEN",
+    "counts": {
+     "address_taken": 0,
+     "direct": 0,
+     "proved_indirect": 1,
+     "unproved_indirect": 261
+    },
+    "direct_callers": [],
+    "end": "0x8005c6f0",
+    "entry": "0x8005c58c",
+    "image": "SCUS_942_88",
+    "key": "SCUS_942_88:0x8005c58c",
+    "name": "seed_plant_trampoline_handler",
+    "proved_indirect_callers": [
+     {
+      "image": "SCUS_942_88",
+      "pc": "0x8005c108",
+      "target": "0x8005c58c"
+     }
+    ],
+    "relevant_unproved_indirect_edges": [
+     {
+      "image": "LEVEL03_LEVEL",
+      "kind": "jalr",
+      "owner": "anon_0x800B4A0C",
+      "pc": "0x800b4b38",
+      "register": "zero"
+     },
+     {
+      "image": "LEVEL03_LEVEL",
+      "kind": "jr",
+      "owner": "anon_0x800B4A0C",
+      "pc": "0x800b4bb8",
+      "register": "zero"
+     },
+     {
+      "image": "LEVEL05_LEVEL",
+      "kind": "jr",
+      "owner": "anon_0x800B410C",
+      "pc": "0x800b4228",
+      "register": "v1"
+     },
+     {
+      "image": "LEVEL05_LEVEL",
+      "kind": "jr",
+      "owner": "anon_0x800B410C",
+      "pc": "0x800b4230",
+      "register": "v1"
+     },
+     {
+      "image": "LEVEL05_LEVEL",
+      "kind": "jr",
+      "owner": "anon_0x800B410C",
+      "pc": "0x800b423c",
+      "register": "v1"
+     },
+     {
+      "image": "LEVEL07_LEVEL1",
+      "kind": "jr",
+      "owner": "level_transition_handler",
+      "pc": "0x800b3fcc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "frontend_state_dispatch",
+      "pc": "0x800b970c",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BAAD4",
+      "pc": "0x800bab20",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "memcard_load_dispatch",
+      "pc": "0x800bb8bc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6A8",
+      "pc": "0x800bd6ac",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6B8",
+      "pc": "0x800bd6bc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD6C8",
+      "pc": "0x800bd6cc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD710",
+      "pc": "0x800bd714",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD720",
+      "pc": "0x800bd724",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD7E8",
+      "pc": "0x800bd7ec",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD7F8",
+      "pc": "0x800bd7fc",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD808",
+      "pc": "0x800bd80c",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jalr",
+      "owner": "overlay_flush_cache",
+      "pc": "0x800bd82c",
+      "register": "t2"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "overlay_flush_cache",
+      "pc": "0x800bd878",
+      "register": "ra"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800bdf40",
+      "register": "zero"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be3fc",
+      "register": "zero"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be4fc",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be518",
+      "register": "v0"
+     },
+     {
+      "image": "MEMORY",
+      "kind": "jr",
+      "owner": "anon_0x800BD898",
+      "pc": "0x800be524",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "per_object_mesh_draw_payload_emitter",
+      "pc": "0x80011128",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "scene_geometry_normal_pass",
+      "pc": "0x800163d8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_mesh_vertex_normal_transform",
+      "pc": "0x800172d4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x80017DB4",
+      "pc": "0x800186e4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x8001897c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018a4c",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018b1c",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018bec",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_near_clip_dispatch",
+      "pc": "0x80018cbc",
+      "register": "s6"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "poly_interpolate_midpoint_prim",
+      "pc": "0x80018f44",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_clip_emit_variant_a",
+      "pc": "0x8001923c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_quad_clip_emit_variant_b",
+      "pc": "0x80019614",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019b3c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019c28",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019c84",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "bulk_ground_sub_emitter",
+      "pc": "0x80019ce0",
+      "register": "at"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "emit_subdivided_gouraud_prims",
+      "pc": "0x80019f34",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gpu_emit_subdivided_quad_prims",
+      "pc": "0x8001a0dc",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gpu_build_poly_g4_gouraud",
+      "pc": "0x8001a1d4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_motion_apply_chase",
+      "pc": "0x8004d1e8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "InitGeom",
+      "pc": "0x80060144",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "VectorNormal",
+      "pc": "0x800602a8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "gte_svector_store_wrapper",
+      "pc": "0x800602d8",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "MatrixNormal",
+      "pc": "0x80060478",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_patch_gte",
+      "pc": "0x80060c78",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "_patch_gte",
+      "pc": "0x80060cc4",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpTPage",
+      "pc": "0x80061ae4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpClut",
+      "pc": "0x80061b24",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061fac",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061fcc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80061ff4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80062010",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x8006202c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDrawEnv",
+      "pc": "0x80062074",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x800620c0",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x800620e8",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x80062104",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DumpDispEnv",
+      "pc": "0x80062120",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetGraph",
+      "pc": "0x80062284",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetGraph",
+      "pc": "0x800622a0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062308",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062324",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x80062364",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "libgpu_graph_mode_dispatch",
+      "pc": "0x800623ac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetGraphDebug",
+      "pc": "0x80062418",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_callback_stub",
+      "pc": "0x80062480",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_callback_stub",
+      "pc": "0x800624ac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "handler_register_8007fbd4",
+      "pc": "0x80062534",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetDispMask",
+      "pc": "0x800625a0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "SetDispMask",
+      "pc": "0x800625dc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawSync",
+      "pc": "0x80062630",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawSync",
+      "pc": "0x8006264c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "checkRECT",
+      "pc": "0x8006274c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "checkRECT",
+      "pc": "0x80062774",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearImage",
+      "pc": "0x800627fc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearImage2",
+      "pc": "0x80062898",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "LoadImage",
+      "pc": "0x80062904",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StoreImage",
+      "pc": "0x80062968",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "MoveImage",
+      "pc": "0x80062a28",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "link_prim_packet_chain",
+      "pc": "0x80062a88",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearOTagR",
+      "pc": "0x80062b44",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ClearOTagR",
+      "pc": "0x80062b60",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawPrim",
+      "pc": "0x80062bc0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawPrim",
+      "pc": "0x80062bdc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTag",
+      "pc": "0x80062c30",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTag",
+      "pc": "0x80062c54",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_render_driver",
+      "pc": "0x80062cb4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_render_driver",
+      "pc": "0x80062cfc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTagEnv",
+      "pc": "0x80062dc4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "DrawOTagEnv",
+      "pc": "0x80062e18",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80062f0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80062f88",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80063198",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x800631c4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "frame_present_copy_worker",
+      "pc": "0x80063330",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "call_vptr56_sign",
+      "pc": "0x800633c0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "gpu_present_drawotag_vsync",
+      "pc": "0x800647c4",
+      "register": "s3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_intr_install",
+      "pc": "0x80064aec",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "dma_intr_install",
+      "pc": "0x80064c4c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ResetCallback_dispatch_tail",
+      "pc": "0x800653ec",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "InterruptCallback_dispatch_tail",
+      "pc": "0x8006541c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "exec_queue_kick",
+      "pc": "0x8006544c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "VSyncCallback",
+      "pc": "0x80065480",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "VSyncCallbacks_dispatch_tail",
+      "pc": "0x800654b0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StopCallback_dispatch_tail",
+      "pc": "0x800654e0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "RestartCallback_dispatch_tail",
+      "pc": "0x80065510",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trapIntr",
+      "pc": "0x80065728",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trapIntrVSync",
+      "pc": "0x80065b94",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "trap_exception_report",
+      "pc": "0x80065d0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "file_dev_dir_hook_trampoline",
+      "pc": "0x8006645c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "call_via_ptr_80086aa8",
+      "pc": "0x80066818",
+      "register": "t1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "pad_stop_driver_thunk",
+      "pc": "0x8006682c",
+      "register": "t1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "icache_flush_glue",
+      "pc": "0x8006684c",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "icache_flush_glue",
+      "pc": "0x8006689c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "icache_flush_glue_68ac",
+      "pc": "0x800668c4",
+      "register": "t2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "icache_flush_glue_68ac",
+      "pc": "0x8006690c",
+      "register": "ra"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x80067814",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x80067878",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsGetSeqData",
+      "pc": "0x800678d0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsTrapIntrVSync",
+      "pc": "0x80067f34",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsTrapIntrVSync",
+      "pc": "0x80067f48",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "ss_seq_tick_every_other_dispatch",
+      "pc": "0x80067f98",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsVmFlush",
+      "pc": "0x800697dc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_SsVmFlush",
+      "pc": "0x80069808",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "spu_fidma_body",
+      "pc": "0x8006bd0c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_sync",
+      "pc": "0x8006e5d8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_sync",
+      "pc": "0x8006e60c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_ready",
+      "pc": "0x8006e860",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_ready",
+      "pc": "0x8006e894",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_cw",
+      "pc": "0x8006ecd0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "CD_cw",
+      "pc": "0x8006ed04",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_interrupt_callback_body",
+      "pc": "0x8006f61c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_interrupt_callback_body",
+      "pc": "0x8006f650",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cb_read",
+      "pc": "0x800702d0",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "cd_ready_poll_control",
+      "pc": "0x800703d0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "str_data_ready_callback",
+      "pc": "0x80070aa0",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StCdInterrupt",
+      "pc": "0x800712dc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "StCdInterrupt",
+      "pc": "0x80071388",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadGetState",
+      "pc": "0x8007199c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoMode",
+      "pc": "0x80071a74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoAct",
+      "pc": "0x80071b6c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadInfoComb",
+      "pc": "0x80071c40",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetActAlign",
+      "pc": "0x80071ce0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetMainMode",
+      "pc": "0x80071d20",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadSetAct",
+      "pc": "0x80071d68",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadEnableCom",
+      "pc": "0x80071e20",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "PadEnableCom",
+      "pc": "0x80071e78",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_irq_callback",
+      "pc": "0x80071f30",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_vsync_handler",
+      "pc": "0x80072054",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padStartCom",
+      "pc": "0x8007216c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padStartCom",
+      "pc": "0x80072188",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x800722dc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x80072340",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padInitSioMode",
+      "pc": "0x80072354",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x80072568",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x800725d4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_advance_stage",
+      "pc": "0x8007260c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padRecvAtLoadInfo",
+      "pc": "0x80072e04",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padLoadActInfo",
+      "pc": "0x80072ef0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padSetActAlign",
+      "pc": "0x80073448",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_padSetMainMode",
+      "pc": "0x800735a4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x80073664",
+      "pc": "0x800736a8",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_begin",
+      "pc": "0x80073784",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x800737fc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x80073810",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x8007383c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_command",
+      "pc": "0x80073854",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_length",
+      "pc": "0x800738bc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_length",
+      "pc": "0x800738d4",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_transfer",
+      "pc": "0x80073980",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x800739f0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073a74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073a8c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073b54",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bb0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bdc",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073bf0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073c10",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073ca0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_sio_stage_finish",
+      "pc": "0x80073d48",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_send_auto",
+      "pc": "0x80074488",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_send_auto",
+      "pc": "0x80074508",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x8007458c",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x80074678",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x800746e0",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "pad_direct_recv_auto",
+      "pc": "0x80074760",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "_dirFailAuto",
+      "pc": "0x80074828",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x80074970",
+      "pc": "0x80074980",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x800749A8",
+      "pc": "0x800749b8",
+      "register": "sp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007564C",
+      "pc": "0x80075928",
+      "register": "k1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x800769A8",
+      "pc": "0x800769b8",
+      "register": "sp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "sky_clear_b",
+      "pc": "0x800771c8",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "sky_clear_b",
+      "pc": "0x800771f4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800774c0",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800774c4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077518",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x8007751c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077524",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077540",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077544",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x8007754c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800775fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077710",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x800778e0",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a0c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a1c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a74",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "vm_ai_program_region",
+      "pc": "0x80077a84",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077eac",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077ed4",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077ee4",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077fd4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80077fd8",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x800788e4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x800788f4",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80078b38",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "enemy_hit_program_ptr",
+      "pc": "0x80078b4c",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x80078B54",
+      "pc": "0x80078b74",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079514",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079528",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079578",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x8007958c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079714",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079764",
+      "register": "v0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079820",
+      "register": "a0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800798b8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800798cc",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x800799f8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079a50",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b2c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b68",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b7c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079b90",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079ba4",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bb8",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bcc",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079be0",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079bf4",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079c08",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079c1c",
+      "register": "a2"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_b",
+      "pc": "0x80079d98",
+      "register": "v1"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a0fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a108",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a450",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007a470",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b56c",
+      "register": "fp"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b634",
+      "register": "s4"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "contact_metadata_table_a",
+      "pc": "0x8007b638",
+      "register": "s4"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d880",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d884",
+      "register": "a3"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d888",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d88c",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D5C0",
+      "pc": "0x8007d890",
+      "register": "t0"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007D8B4",
+      "pc": "0x8007d9c8",
+      "register": "s7"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007D8B4",
+      "pc": "0x8007d9cc",
+      "register": "s7"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jr",
+      "owner": "anon_0x8007E7DC",
+      "pc": "0x8007e7fc",
+      "register": "zero"
+     },
+     {
+      "image": "SCUS_942_88",
+      "kind": "jalr",
+      "owner": "anon_0x8007E7DC",
+      "pc": "0x8007e800",
+      "register": "zero"
+     }
+    ],
+    "transitive_depth_reached": 0,
+    "transitive_expansion": "stopped_at_open_root"
+   }
+  ],
+  "full_census_artifact_emitted": false,
+  "open_root_keys": [
+   "LEVEL02_LEVEL1:0x800b3f08",
+   "LEVEL05_LEVEL:0x800b3d80",
+   "LEVEL08_LEVEL1:0x800b4084",
+   "SCUS_942_88:0x8005c58c"
+  ],
+  "primary_universe": {
+   "functions": 1191,
+   "images": 21,
+   "pilot_sites": 20,
+   "proved_indirect_edges": 492,
+   "proved_table_ranges": 36,
+   "unproved_indirect_edges": 261
+  },
+  "scope": "pilot roots and their coexisting-image incoming-edge universe only",
+  "why_no_full_census": "pilot NO-GO forbids the full Stage-A pass"
+ },
+ "stage_b_sample_domains": {
+  "absent_site_count": 20,
+  "absent_site_ids": [
+   "LEVEL02_LEVEL1:0x800B3F14:sp",
+   "LEVEL02_LEVEL1:0x800B43AC:sp",
+   "LEVEL02_LEVEL:0x800B4788:a0",
+   "LEVEL03_LEVEL1:0x800B41AC:v1",
+   "LEVEL04_LEVEL1:0x800B4AA8:v1",
+   "LEVEL05_LEVEL1:0x800B494C:s0",
+   "LEVEL05_LEVEL:0x800B4040:sp",
+   "LEVEL05_LEVEL:0x800B4048:sp",
+   "LEVEL07_LEVEL:0x800B4774:a3",
+   "LEVEL08_LEVEL1:0x800B416C:sp",
+   "LEVEL08_LEVEL:0x800B4284:s0",
+   "LEVEL09_LEVEL:0x800B4640:s0",
+   "MEMORY:0x800B7EA4:at",
+   "MEMORY:0x800B7F04:at",
+   "MEMORY:0x800B7F64:at",
+   "SCUS_942_88:0x8005C5B4:s2",
+   "SCUS_942_88:0x8005C5C0:s2",
+   "SCUS_942_88:0x8005C5C8:s2",
+   "SCUS_942_88:0x8005C5D4:s2",
+   "SCUS_942_88:0x8005C5E8:s2"
+  ],
+  "fixpoint_rounds": 0,
+  "note": "OPEN roots poison entry-dependent domains before propagation; local-clobber and delay-slot/fallthrough-return breakers remain separate and are not inflated into the OPEN count",
+  "proved_site_count": 0,
+  "proved_site_ids": [],
+  "wall_site_sets": {
+   "delay_slot_pre_call_value_not_return_domain": [
+    "LEVEL03_LEVEL1:0x800B41AC:v1",
+    "LEVEL07_LEVEL:0x800B4774:a3"
+   ],
+   "local_definition_replaces_argument_register": [
+    "LEVEL02_LEVEL:0x800B4788:a0"
+   ],
+   "local_frame_slot_not_stack_argument": [
+    "LEVEL04_LEVEL1:0x800B4AA8:v1"
+   ],
+   "local_signed_load_not_caller_argument": [
+    "MEMORY:0x800B7EA4:at",
+    "MEMORY:0x800B7F04:at",
+    "MEMORY:0x800B7F64:at"
+   ],
+   "open_caller_set_poison": [
+    "LEVEL02_LEVEL1:0x800B3F14:sp",
+    "LEVEL02_LEVEL1:0x800B43AC:sp",
+    "LEVEL05_LEVEL:0x800B4040:sp",
+    "LEVEL05_LEVEL:0x800B4048:sp",
+    "LEVEL08_LEVEL1:0x800B416C:sp",
+    "SCUS_942_88:0x8005C5B4:s2",
+    "SCUS_942_88:0x8005C5C0:s2",
+    "SCUS_942_88:0x8005C5C8:s2",
+    "SCUS_942_88:0x8005C5D4:s2",
+    "SCUS_942_88:0x8005C5E8:s2"
+   ],
+   "return_value_depends_on_unproved_s0_after_fallthrough_entry": [
+    "LEVEL05_LEVEL1:0x800B494C:s0",
+    "LEVEL08_LEVEL:0x800B4284:s0",
+    "LEVEL09_LEVEL:0x800B4640:s0"
+   ]
+  }
+ },
+ "stage_c_not_run": {
+  "campaign_row_movement": {
+   "gained_ids": [],
+   "lost_ids": []
+  },
+  "current_campaign_tally_unchanged": {
+   "blocked_external_interior_entry": 1,
+   "blocked_index_interval_unproved_instruction": 52,
+   "blocked_no_recovery_method": 8,
+   "blocked_progression_delta_not_uniform_positive": 1,
+   "blocked_return_domain_unrecovered": 9,
+   "blocked_stack_entry_value_caller_dependent": 5,
+   "blocked_writer_universe_exhaustiveness": 26
+  },
+  "fixture_store_movement": {
+   "gained_ids": [],
+   "lost_ids": []
+  },
+  "ledger_movement": {
+   "gained_ids": [],
+   "lost_ids": []
+  },
+  "old_pins_replaced": [],
+  "reason": "mandatory pilot returned NO-GO"
+ }
+}

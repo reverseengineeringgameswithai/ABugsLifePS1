@@ -1,0 +1,81 @@
+schema: abl-phase4-event-vm/1
+row: E07_event_vm
+owner: objects_events_hazards
+
+resident_vm:
+  interpreter: 0x8004C13C
+  selector_initializer: 0x80049C30
+  opcode_table: {address: 0x8001B2F4, entries: 26, index: signed_stream_halfword + 1}
+  call_table: {address: 0x8001B35C, entries: 9, selector_domain: 1..9}
+  motion_table: {address: 0x8001B384, entries: 16}
+  program_region: {start: 0x8007745C, end_exclusive: 0x80077AF8}
+  program_selector_table:
+    address: 0x80077AF8
+    source_field: source_record + 0x0D u8
+    valid_domain: 0..39
+    slots: 40
+    unique_program_starts: 40
+    last_valid_entry: 0x80077AC0
+    first_out_of_domain_word: 0x03020100
+    retail_bounds_check: false
+
+actor_interface:
+  table: {address: 0x8009FD80, stride: 0x84, capacity: 64}
+  fields:
+    flags: {offset: 0x5C, type: u16}
+    wait_counter: {offset: 0x60, type: s16}
+    instruction_pointer: {offset: 0x70, type: u32}
+    optional_callback: {offset: 0x7C, type: u32}
+    source_record_pointer: {offset: 0x80, type: u32}
+
+call_slots:
+  - {slot: 1, target: 0x80057A94, residency: resident}
+  - {slot: 2, target: 0x80057920, residency: resident}
+  - {slot: 3, target: 0x800B3D78, residency: region_a_overlay}
+  - {slot: 4, target: 0x800B3B70, residency: region_a_overlay}
+  - {slot: 5, target: 0x800B3BD4, residency: region_a_overlay, returns_predicate_to_s3: true}
+  - {slot: 6, target: 0x800B3DC8, residency: region_a_overlay}
+  - {slot: 7, target: 0x80057C74, residency: resident}
+  - {slot: 8, target: 0x80057B84, residency: resident}
+  - {slot: 9, target: 0x800B3F00, residency: region_a_overlay}
+
+overlay_contract:
+  region_a_base: 0x800B39A0
+  pinned_images: 20
+  non_stub_images: 19
+  exact_call_target_function_bindings: 9
+  rule: >-
+    Slots 3, 4, 5, 6 and 9 name shared virtual addresses, not universal
+    verbs. Resolve them only against the exact scene-qualified Region-A image;
+    retire every overlay callback/reference before that image unloads.
+
+ownership_boundaries:
+  owned: >-
+    Resident bytecode selection/fetch/dispatch, all 26 handler semantics, all
+    40 program signatures, nine CALL slots, motion handoff, scene-qualified
+    overlay CALL frontier, actor/source interface, pause/respawn/reload behavior.
+  not_owned:
+    actor_family_damage_and_death: D-family rows
+    prop_and_gate_object_policy: E08 through E11
+    rendering_and_animation_assets: E03 and E05
+    audio_outcomes: E12
+    persistence_and_results: E13 and E14
+    stage_objective_outcomes: F rows
+
+mod_contract:
+  owner: Preserve selector initialization, interpreter, motion handoff, callback and lifecycle order; explicitly name every hook.
+  readers: Enumerate source selectors, actor IP/wait/flags/source/callback, opcode/CALL/motion tables, Region-A identity, collision, animation, audio, objectives, pause, respawn and transitions.
+  writers: Do not add unordered writes to source selector, actor IP/wait/flags/targets/callback/source pointer, branch operands, table entries or overlay-owned state.
+  valid_domains: Selector is u8 but MOD-authored values must be 0..39; op index is 0..25; CALL slot is 1..9; branch operands are signed s16.
+  initialization: Verify pristine inputs; initialize source records and MOD-private state before the selector initializer or interpreter can read them.
+  reset: Freeze with pause; rebuild or clear private actor/script state on death/respawn/reload, takeover and every scene transition.
+  retirement: Retire callback, source, target and overlay references exactly once before their actor or Region-A owner unloads.
+  consumers: Actors, enemies, scripted objects, props, movers, gates, animation, collision, audio, objectives, pause, respawn, stages and bonuses.
+  capacity: Preserve the fixed 64 actor records and declare bounds for added tables, programs, operands, hooks and caves; source selectors independently retain their 40-entry valid domain.
+  residency: Program/opcode/CALL/motion tables are resident; source records and Region-A meanings are scene-owned and cannot survive unload.
+  unsafe_assumptions: >-
+    The pointer table is not 13 or 17 entries; retail does not bounds-check the
+    selector; branch operands are not unsigned; a bare 0x800Bxxxx target has no
+    fixed verb; an idle short trace does not prove VM absence; actor slot is not
+    stable identity across scene rebuild; the 40-entry selector domain is not the
+    actor-pool capacity and the actor pool does not begin at slot 1.

@@ -1,0 +1,45 @@
+schema_version: 1
+id: pristine_pause_exit
+description: >-
+  From the hash-pinned pristine Tunnels anchor, enter and resume pause in place,
+  then choose Exit Level -> Yes and assert the native transition handoff.
+target:
+  disc: Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: repro}
+anchor:
+  type: save_state
+  path: level02.sav
+  sha256: 9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152
+phases:
+  - id: pause_entry
+    before:
+      - {type: rpc, id: press_start_to_pause, method: emulator.pressButton, params: {button: Start, frames: 3, port: 0, release_after: true}}
+    trigger: {type: memory, address: 0x8008224E, width: u16, op: eq, value: 1, max_frames: 30}
+    assertions:
+      - {id: pause_flag_set, type: memory, address: 0x8008224E, width: u16, op: eq, expected: 1}
+      - {id: pause_keeps_tunnels_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 3}
+  - id: ordinary_resume
+    before:
+      - {type: rpc, id: pause_debounce, method: emulator.advanceFrames, params: {frames: 9}}
+      - {type: rpc, id: press_start_to_resume, method: emulator.pressButton, params: {button: Start, frames: 3, port: 0, release_after: true}}
+    trigger: {type: memory, address: 0x8008224E, width: u16, op: eq, value: 0, max_frames: 30}
+    assertions:
+      - {id: resume_flag_clear, type: memory, address: 0x8008224E, width: u16, op: eq, expected: 0}
+      - {id: resume_keeps_tunnels_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 3}
+  - id: confirmed_exit
+    before:
+      - {type: rpc, id: reopen_pause, method: emulator.pressButton, params: {button: Start, frames: 3, port: 0, release_after: true}}
+      - {type: rpc, id: pause_menu_settle, method: emulator.advanceFrames, params: {frames: 9}}
+      - {type: rpc, id: choose_exit_level, method: emulator.pressButton, params: {button: Down, frames: 3, port: 0, release_after: true}}
+      - {type: rpc, id: exit_item_settle, method: emulator.advanceFrames, params: {frames: 6}}
+      - {type: rpc, id: open_confirmation, method: emulator.pressButton, params: {button: Cross, frames: 3, port: 0, release_after: true}}
+      - {type: rpc, id: confirmation_settle, method: emulator.advanceFrames, params: {frames: 6}}
+      - {type: rpc, id: select_yes, method: emulator.pressButton, params: {button: Left, frames: 3, port: 0, release_after: true}}
+      - {type: rpc, id: yes_settle, method: emulator.advanceFrames, params: {frames: 6}}
+      - {type: rpc, id: confirm_yes, method: emulator.pressButton, params: {button: Cross, frames: 6, port: 0, release_after: true}}
+    trigger: {type: memory, address: 0x800823A0, width: u32, op: eq, value: 5, max_frames: 30}
+    assertions:
+      - {id: exit_clears_pause, type: memory, address: 0x8008224E, width: u16, op: eq, expected: 0}
+      - {id: exit_publishes_transition_five, type: memory, address: 0x800823A0, width: u32, op: eq, expected: 5}
+      - {id: exit_starts_fade, type: memory, address: 0x80082470, width: u16, op: gt, expected: 0}

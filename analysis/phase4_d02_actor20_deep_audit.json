@@ -1,0 +1,91 @@
+{
+  "format": "phase4_d02_actor20_deep_audit_v1",
+  "row": "D02",
+  "scope": "enemy actor pool +0x20 semantic closure audit",
+  "result": "confirmed_velocity_y",
+  "runtime_accounting": {
+    "events": 1991,
+    "reads": {
+      "total": 1178,
+      "classified": 1178,
+      "unclassified": 0,
+      "sites": 15
+    },
+    "writes": {
+      "total": 813,
+      "classified": 813,
+      "unclassified": 0,
+      "sites": [
+        {"pc": "0x80035E3C", "count": 1, "kind": "generic_vector_y_transform"},
+        {"pc": "0x80035FDC", "count": 2, "kind": "generic_vector_y_transform"},
+        {"pc": "0x80049D90", "count": 1, "kind": "record_init_zero"},
+        {"pc": "0x80049E0C", "count": 1, "kind": "airborne_impulse"},
+        {"pc": "0x8004BF20", "count": 19, "kind": "gravity_integrator_a"},
+        {"pc": "0x8004C04C", "count": 1, "kind": "near_zero_settle_clear"},
+        {"pc": "0x8004CF40", "count": 402, "kind": "gravity_integrator_b"},
+        {"pc": "0x8004D02C", "count": 386, "kind": "path_clear_in_branch_delay_slot"}
+      ]
+    },
+    "trace_truncated": false
+  },
+  "semantic_guards": {
+    "gravity_integrator_a": true,
+    "gravity_integrator_b": true,
+    "position_y_integration_a": true,
+    "position_y_integration_b": true,
+    "signed_airborne_impulses": true,
+    "near_zero_settle_clear": true,
+    "branch_delay_slot_clear": true,
+    "all_runtime_writers_classified": true,
+    "all_runtime_readers_classified": true
+  },
+  "delay_slot_correction": {
+    "branch_pc": "0x8004D028",
+    "store_pc": "0x8004D02C",
+    "correction": "The store is the MIPS branch delay slot. It executes for either branch outcome once control reaches this path; it must not be described as conditional on the branch result."
+  },
+  "gravity_truth_table": [
+    {"before": -3328, "after": -3072},
+    {"before": -2912, "after": -2656},
+    {"before": -1536, "after": -1280},
+    {"before": -256, "after": 0},
+    {"before": 0, "after": 256},
+    {"before": 256, "after": 512},
+    {"before": 3840, "after": 4096},
+    {"before": 4096, "after": 4096},
+    {"before": 4352, "after": 4096}
+  ],
+  "alternative_hypotheses": {
+    "padding": "rejected_by_1991_runtime_accesses",
+    "target_or_extent": "rejected_by_signed_impulse_gravity_and_direct_y_integration",
+    "direct_frame_boundary_delta_y": "rejected_by_six_capsule_control",
+    "generic_accumulator_without_velocity_meaning": "rejected_as_less_specific_than_the_observed_xyz_vector_gravity_impulse_and_position_integration_contract",
+    "signed_velocity_y": "confirmed"
+  },
+  "residual_unknowns": [
+    {
+      "item": "exact fixed-point/world-unit scale",
+      "phase4_impact": "none_on_field_identity"
+    },
+    {
+      "item": "per-species update cadence outside the two observed handlers",
+      "phase4_impact": "none_on_field_identity"
+    },
+    {
+      "item": "other category-wide unclassified D02 actor/object kinds",
+      "phase4_impact": "keeps_broad_row_partial_but_is_low_return_enumeration"
+    }
+  ],
+  "closure": {
+    "actor20_field": "exhausted",
+    "broad_d02_row": "substantiated_partial_move_on",
+    "additional_movie_required": false,
+    "recommended_action": "move_to_another_unfinished_row"
+  },
+  "artifacts": {
+    "semantic_guard_source": "tools/phase4_d02_actor20_semantic_guard.c",
+    "semantic_guard_source_sha256": "8632411fa54a914c72d52516f45a57c7b0badf3ca2e4d9f15120d9570028a809",
+    "semantic_guard_binary_sha256": "466a9e10841a2a6eab4a229cd821a5f8fb6c0368409eef2aea2c922ca624c08b",
+    "semantic_guard_output_sha256": "5d91f09adfcb986ff543a7317270f38b19de60d0b76ff6a7a77b73bd98d511a6"
+  }
+}

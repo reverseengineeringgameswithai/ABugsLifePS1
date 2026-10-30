@@ -1,0 +1,30 @@
+[
+  {
+    "address": "0x8003f938",
+    "name": "render_mesh_transform",
+    "tier": "proven",
+    "evidence": ["dynamic:LEVEL01 (execTrace live)", "byte_matched:asm", "caller:scene_render_driver", "callees:SetRotMatrix,SetTransMatrix,RotTransPers4", "args:a0/a1 in scratchpad 0x1f8003xx"],
+    "rationale": "Render-pass 3D geometry transform: loads rotation+translation matrices and perspective-projects a mesh's vertices (RotTransPers4 = 4-vertex batch) using the scratchpad vertex buffer; driven by scene_render_driver."
+  },
+  {
+    "address": "0x8004b940",
+    "name": "mover_actor_update",
+    "tier": "proven",
+    "evidence": ["dynamic:LEVEL01 (execTrace live)", "byte_matched:asm", "caller:mover_updater", "callees:player_movement_collision_integrator,sector_region_code_query,spawn_drop,atan2_heading", "args:a0 in actor region 0x800a09e0"],
+    "rationale": "Per-frame update of a mover actor: integrates movement + collision, computes a heading (atan2_heading), queries its collision sector, and can spawn drops; called by mover_updater."
+  },
+  {
+    "address": "0x8005cd2c",
+    "name": "gameplay_effect_spawner",
+    "tier": "proven",
+    "evidence": ["dynamic:LEVEL01 (execTrace live)", "byte_matched:asm", "caller:gameplay_state_machine", "callees:spawn_fx_object,play_sound,contact_object_spawn_full,VectorNormal", "structure:11-iteration loop (fp=11)"],
+    "rationale": "Gameplay-driven effect burst: loops (up to 11) spawning FX objects + contact objects and playing sounds; invoked from gameplay_state_machine."
+  },
+  {
+    "address": "0x8007403c",
+    "name": "consume_flag_37",
+    "tier": "proven",
+    "evidence": ["dynamic:LEVEL01 (execTrace live)", "byte_matched:c", "disasm:lbu +0x37; sb zero +0x37; sb old +0x38"],
+    "rationale": "Reads the byte at obj+0x37, clears it to 0, and stores its previous value to obj+0x38 (a read-and-clear latch / one-shot flag consume)."
+  }
+]

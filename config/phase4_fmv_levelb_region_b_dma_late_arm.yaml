@@ -1,0 +1,66 @@
+schema: abl-phase4-fmv-levelb-region-b-dma-late-arm-source/1
+description: >
+  Machine-owned preflight for the changed E15 late DMA experiment family.
+  It banks the typed cold-boot emulator-frame prelude, provisioned movie,
+  finite passive/precise windows and planned escalation without claiming that
+  either live branch executed or that a lifecycle dimension closed.
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: live
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-160544-213677-r2
+work_packet:
+  relative_path: iteration-2-work-packet.json
+  sha256: 5e0a396385844188a47183b800a20b06b98bab6fd63759d0bb42c62834085de0
+  bytes: 2850
+escalation_id: P4-R6-ITER3-E15-LEVELB-REGIONB-LATE-DMA-PROVENANCE
+missing_fact_id: E15/completed-level-b-region-b-first-late-dma-write
+prior_evidence:
+  dma_attempt:
+    path: analysis/phase4_fmv_levelb_region_b_dma_attempt.json
+    sha256: a69ad6ad0681317384141c4d66f4ab69997ca038887009b585fb8ff6bb1fe15d
+  replacement_ownership:
+    path: analysis/phase4_fmv_region_b_replacement_ownership.json
+    sha256: 03b5a8d9a518f5c00624f81248b721e98a513b987d8e1456e142c682cc1087a4
+  offline_receipt:
+    relative_path: iteration-1-receipts/offline-fmv-levelb-region-b-dma-index.receipt.json
+    sha256: ecfd091f44f49943e5e8431ba92e823d55c155f6317a7e6242fcc841934d9126
+    bytes: 1760
+  offline_output:
+    relative_path: iteration-1-receipts/outputs/fmv-levelb-region-b-dma-index-search.json
+    sha256: dba41729dc61fa7bfe6d4c5a52d06d6c022fe2a51fdedce0067b924b7022a399
+    bytes: 2094
+  external_index_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+debugger:
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+  dispatcher_sha256: 6ff2640dad39f85eacba9e8bbbfdb65d4e3707cb6d8f72cc74bf404579ae8a3e
+  scenarios_doc_sha256: 0c0337aedf11dd86befb4b885da20cd3c9b09bb41abbcf153998bc955076ec31
+  release_binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+plans:
+  passive:
+    path: config/phase4_fmv_levelb_region_b_dma_staged_passive_batch.yaml
+    sha256: 520fe5c318cb206a09fe3cc004483938b28b350e326138c1b3c1bc4869a0f628
+    receipt_id: e15-levelb-region-b-dma-late-passive-prelude
+    prelude_target: 15720
+    capture_stop: 16120
+    run_frames: 400
+  precise:
+    path: config/phase4_fmv_levelb_region_b_dma_late_transfer_batch.yaml
+    sha256: a3e050c550470555df4c7220167eca951a486a150f887a55c53394e6a4c6e12f
+    receipt_id: e15-levelb-region-b-dma-late-provenance
+    prelude_target: 15740
+    capture_stop: 16080
+    run_frames: 340
+claim_boundary:
+  method_preflight_complete: true
+  live_executed: false
+  first_region_b_dma_identified: false
+  lifecycle_promoted: false
+  dimension_promoted: false
+  next_lane: live
+  next_action: >
+    In an iteration whose immutable before-ledger contains the new escalation,
+    execute and close the passive staged-prelude receipt first. Execute the
+    linked precise transfer receipt only if the passive replay and all typed
+    counters validate. Do not launch from this iteration's older before-ledger.

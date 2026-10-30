@@ -1,0 +1,30 @@
+# Third-party Python dependencies for tracked ABL tools and the safe test suite.
+# Versions were confirmed from the development host / package index on 2026-06-20.
+# The DuckStation external-debugger client is shipped with the external fork and
+# is pure stdlib; it is intentionally not a pip dependency.
+# Pillow — PNG/image I/O for the frame-capture & VRAM-diff image tooling.
+# (The committed tools are stdlib-only + PyYAML; Pillow is pinned for the
+#  image-analysis workflow that the live debugger/editor scripts rely on.)
+Pillow==12.2.0
+# pytest — the safe test suite (tools/run_safe_tests.py) + pyproject config.
+pytest==9.1.1
+# Findings-store parsing + integrity guard (tools/check_findings_store.py + tests) — GAP-0002.
+PyYAML==6.0.3
+# Bounded Phase-4 MIPS32LE micro-execution oracle. Device/timing/GTE work is
+# intentionally rejected by the tool rather than modeled in Unicorn.
+unicorn==2.1.4
+# Offline trace warehouse. Parquet support ships in DuckDB itself, so the
+# warehouse does not need PyArrow or an auto-downloaded extension.
+duckdb==1.5.5
+# Exact bounded bit-vector queries emitted by the semantic-frontier engine.
+# The engine treats timeout/unknown as an open residual and never as proof.
+z3-solver==4.16.0.0
+# Existing training-board tooling and its safe-suite tests import NumPy. Pin
+# the accepted acceleration-branch version for clean provisioning.
+numpy==2.5.1
+
+# Resolved pytest runtime dependencies, pinned to the versions installed during M2 verification.
+iniconfig==2.3.0
+packaging==26.2
+pluggy==1.6.0
+Pygments==2.20.0

@@ -1,0 +1,26 @@
+{
+  "row": "A02_slow_walk",
+  "date": "2026-08-03",
+  "status": "partial, bounded via A01_move_run synthesis -- zero new live instrumentation, pure citation from an already-comprehensive donor row",
+  "trigger": "Operator: 'go for a02.' Before starting fresh live work, checked for a matching donor row (per this session's own established lesson from F04/F06/F15) and found A01_move_run had ~11h-old uncommitted work (analysis/phase4_a01_move_run.json, src_re/move_run_80048138.c, tools/phase4_a01_static.c, ObsidianVault/Experiments/EXP_2026-08-03_phase4_a01_move_run.md) that traces the EXACT same function (FUNC_80048138) and the EXACT same pad word (0x80082488) this row's own pre-existing binding already cited.",
+
+  "SYNTHESIZED_FROM_A01_2026-08-03": {
+    "walk_gate": "FUNC_80048138 reads pad word 0x80082488 via 'andi v0,a0,0x300' at 0x80048494 to select input_cap 0x300 (L2/R2 slow) vs 0x700 (run), then scales the cap by the Q14 movement magnitude at 0x80049150..0x80049158. This is the exact address+mask A02's own pre-existing binding already named, now traced to instruction level and cross-verified by tools/phase4_a01_static.c (40 pinned instruction words checked against the pristine ASM listing, 0 missing).",
+    "animation_gate": "FUNC_800563D4 reads the SAME halfword (lhu v1,0x2488(v1) at 0x80056474) independently of the speed-cap consumer, selecting animation 29 (slow walk) vs 0 (run) vs 22 (idle).",
+    "live_counterfactual": "Same-save Up+R2 held 8 API frames produced XYZ/velocity/forward-component identical to plain Up (378 units) -- the projected forward component had not yet reached the 0x300 slow cap in that short window -- but the animation switched to 29 immediately. This directly demonstrates the SPEED cap and the ANIMATION selection are two independent consumers of the same pad bit, not a single combined 'walk mode' flag with one shared effect.",
+    "turn_law": "Heading convergence uses the identical shared modulo-4096 shortest-turn law (0x80049240..0x800492A8, capped at 0x400, shift 2) regardless of the walk/run bit -- there is no separate slow-walk turning law.",
+    "lifecycle": "Decay-toward-zero (0x100 lateral / 0x40 forward), acceleration (+0x50+0x40 while active), clamping, and release-to-idle are all shared code paths, not walk-specific branches. A02's own row never had a dedicated lifecycle to trace separately from A01's.",
+    "not_re_derived": "A01's own live counterfactual only ran 8 API frames -- short enough that the slow cap was never actually reached, so it demonstrates the ANIMATION gate fires immediately but does NOT re-derive an exact walk/run displacement ratio from fresh runtime data. The existing 0.605x figure in this row's own original binding remains sourced from the older phase2_action_oracle synthetic probe, not superseded by new live measurement."
+  },
+
+  "STILL_OPEN": "An exact, longer-window (60+ frame) live-measured walk/run displacement ratio to independently confirm or refine the existing 0.605x synthetic-probe figure; whether slow-walk has any edge-case interaction with turning-in-place, slopes, or other action/special states beyond ordinary grounded movement (A01's own controls tested plain Up extensively but Up+R2 only for the short 8-frame animation-gate check); campaign-wide use of the walk modifier outside LEVEL01 (not itself in doubt, since the mechanism is resident/shared code, but never directly observed elsewhere).",
+
+  "evidence": {
+    "donor_row": "A01_move_run",
+    "donor_artifact": "analysis/phase4_a01_move_run.json",
+    "donor_experiment": "ObsidianVault/Experiments/EXP_2026-08-03_phase4_a01_move_run.md",
+    "donor_source": "src_re/move_run_80048138.c",
+    "donor_static_tool": "tools/phase4_a01_static.c",
+    "canon": "ObsidianVault/Canon/Systems/Gameplay_-_Input_and_Movement.md"
+  }
+}

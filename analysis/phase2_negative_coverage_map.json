@@ -1,0 +1,239 @@
+{
+ "_comment": "DERIVED coverage map: rows enumerated from the registry, verdicts computed by INSPECTING the evidence artifacts (file+path+predicate per check \u2014 see tools/phase2_coverage_map.py CHECKS). Gaps are computed, never authored. Regenerate: tools/phase2_coverage_map.py.",
+ "generated": "2026-08-10",
+ "registry_rows": 20,
+ "covered": 19,
+ "rows": {
+  "A01_move_run": {
+   "name": "Analog/D-pad movement and running",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "position/state under input vs idle",
+   "evidence_checks": [
+    "phase2_action_oracle.json:synthetic_probes.slow_walk.run_60f nonempty None -> OK",
+    "phase2_negative_controls.json:controls.no_input_idle.s80_values contains 0 -> OK",
+    "phase2_negative_controls.json:controls.no_input_idle.grounded_always eq True -> OK"
+   ]
+  },
+  "A02_slow_walk": {
+   "name": "Slow walking (L2/R2 + movement)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "displacement ratio walk/run (0.605x)",
+   "evidence_checks": [
+    "phase2_action_oracle.json:synthetic_probes.slow_walk.displacement_ratio_x min 0.4 -> OK",
+    "phase2_action_oracle.json:synthetic_probes.slow_walk.displacement_ratio_x max 0.8 -> OK"
+   ]
+  },
+  "A03_jump": {
+   "name": "Jump (X); also grows/activates seeds",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "state word 0x800A6580 (air state 1)",
+   "evidence_checks": [
+    "phase2_negative_controls.json:controls.single_jump_no_slide_states.s80_values_seen contains 1 -> OK",
+    "phase2_negative_controls.json:controls.single_jump_no_slide_states.s80_values_seen not_contains 4 -> OK"
+   ]
+  },
+  "A04_kick": {
+   "name": "Kick (L2/R2 + Square)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "kick timer 0x800A657A := -16",
+   "evidence_checks": [
+    "phase2_action_behavior.json:controls.kick.l2_kick_fires eq True -> OK",
+    "phase2_action_behavior.json:controls.kick.r2_kick_fires eq True -> OK",
+    "phase2_action_behavior.json:controls.kick.square_alone_no_kick eq True -> OK",
+    "phase2_action_behavior.json:controls.kick.no_input_no_kick eq True -> OK"
+   ]
+  },
+  "A05_abdomen_bounce": {
+   "name": "Abdomen bounce (double-tap X)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "double-tap slam state 4 (double-tap exclusive)",
+   "evidence_checks": [
+    "phase2_buttslide_oracle.json:signature.state80_sequence contains 4 -> OK",
+    "phase2_buttslide_oracle.json:deterministic_across_replays eq True -> OK"
+   ]
+  },
+  "A06_downhill_slide": {
+   "name": "Downhill abdomen slide (double-tap+hold X on slope)",
+   "registry_status": "complete",
+   "covered": true,
+   "observable": "slide states 0->1->4->5; single jump never 4",
+   "evidence_checks": [
+    "phase2_buttslide_oracle.json:signature.ground_slide_state80 eq 5 -> OK",
+    "phase2_buttslide_oracle.json:deterministic_across_replays eq True -> OK",
+    "phase2_negative_controls.json:controls.single_jump_no_slide_states.s80_values_seen not_contains 4 -> OK"
+   ]
+  },
+  "A07_spin": {
+   "name": "Spin / secret directional move",
+   "registry_status": "partial",
+   "covered": false,
+   "observable": "documented external lead; bounded static negative only",
+   "evidence_checks": [
+    "NO EVIDENCE MAPPED"
+   ]
+  },
+  "A08_berry_throw": {
+   "name": "Berry throw (Square)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "projectile arc + in-flight counter 0x800A6596",
+   "evidence_checks": [
+    "phase2_pool_arc_oracle.json:arc_sentinel.deterministic_across_reloads eq True -> OK",
+    "phase2_negative_controls.json:controls.no_input_idle.inflight_always_zero eq True -> OK"
+   ]
+  },
+  "A09_seed_pickup_drop": {
+   "name": "Pick up / drop movable seed (Square)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "seed record vs player XYZ (attachment law)",
+   "evidence_checks": [
+    "phase2_carry_handstand_oracle.json:laws.carry_attached_at_f660 eq True -> OK",
+    "phase2_negative_controls.json:controls.walk_no_square_no_carry.attachment_samples eq 0 -> OK",
+    "phase2_negative_controls.json:controls.walk_no_square_no_carry.player_displacement min 1 -> OK"
+   ]
+  },
+  "A10_handstand": {
+   "name": "Handstand on fixed seed (Square)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "grounded 0x800A6582 + position freeze",
+   "evidence_checks": [
+    "phase2_carry_handstand_oracle.json:laws.handstand_frozen eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A10_handstand_negative.not_mounted eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A10_handstand_negative.beside_seed_no_square.after.grounded eq 1 -> OK"
+   ]
+  },
+  "A11_seed_as_weapon": {
+   "name": "Drop carried seed on enemy",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "carry break -> ballistic hit -> enemy+0x6C := -20 -> kill; no press -> nothing",
+   "evidence_checks": [
+    "phase2_final_action_pairs.json:controls.A11_seed_as_weapon.causal.positive.carry_broken eq True -> OK",
+    "phase2_final_action_pairs.json:controls.A11_seed_as_weapon.causal.positive.knockback_write eq -20 -> OK",
+    "phase2_final_action_pairs.json:controls.A11_seed_as_weapon.causal.positive.seed_lands_on_hit_frame eq True -> OK",
+    "phase2_final_action_pairs.json:controls.A11_seed_as_weapon.causal.positive.measured_decay_per_frame min 0.3 -> OK",
+    "phase2_final_action_pairs.json:controls.A11_seed_as_weapon.causal.positive.measured_decay_per_frame max 0.7 -> OK",
+    "phase2_final_action_pairs.json:controls.A11_seed_as_weapon.causal.positive.enemy_removed_from_live_table eq True -> OK",
+    "phase2_final_action_pairs.json:controls.A11_seed_as_weapon.causal.negative_no_press.carry_broken eq False -> OK",
+    "phase2_final_action_pairs.json:controls.A11_seed_as_weapon.causal.negative_no_press.hit_frame eq None -> OK"
+   ]
+  },
+  "A12_seed_color_change": {
+   "name": "Change seed color (Triangle)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "Triangle while genuinely carrying vs control",
+   "evidence_checks": [
+    "phase2_seed_action_controls.json:controls.A12_seed_color_change.positive.carry_attached eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A12_seed_color_change.negative.carry_attached eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A12_seed_color_change.distinct_outcome eq True -> OK"
+   ]
+  },
+  "A13_cycle_plant_output": {
+   "name": "Cycle plant output (X while carrying)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "X while carrying vs control",
+   "evidence_checks": [
+    "phase2_seed_action_controls.json:controls.A13_cycle_plant_output.positive.carry_attached eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A13_cycle_plant_output.negative.carry_attached eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A13_cycle_plant_output.distinct_outcome eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A13_cycle_plant_output.distinct_from_triangle eq True -> OK"
+   ]
+  },
+  "A14_plant_seed": {
+   "name": "Plant/crack seed by jumping on it",
+   "registry_status": "full",
+   "covered": true,
+   "observable": "plant slot creations follow cross presses (4/4)",
+   "evidence_checks": [
+    "phase2_final_action_pairs.json:controls.A14_plant_seed.creations min_len 4 -> OK",
+    "phase2_final_action_pairs.json:controls.A14_plant_seed.creation_types contains 6 -> OK",
+    "phase2_final_action_pairs.json:controls.A14_plant_seed.all_creations_follow_cross_press eq True -> OK"
+   ]
+  },
+  "A15_uproot_plant": {
+   "name": "Uproot/discard plant",
+   "registry_status": "full",
+   "covered": true,
+   "observable": "plant teardowns follow square presses; seed descends to ground at pinned X/Z (4/4)",
+   "evidence_checks": [
+    "phase2_final_action_pairs.json:controls.A15_uproot_plant.teardowns min_len 4 -> OK",
+    "phase2_final_action_pairs.json:controls.A15_uproot_plant.all_teardowns_follow_square_press eq True -> OK",
+    "phase2_final_action_pairs.json:controls.A15_uproot_plant.seed_return_law eq True -> OK"
+   ]
+  },
+  "A16_swinging": {
+   "name": "Vine/web swinging",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "same-anchor grab (up+cross -> sustained state 5) and release (cross -> leaves 5, lands)",
+   "evidence_checks": [
+    "phase2_seed_action_controls.json:controls.A16_swinging.grab.positive.sustained_attach eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A16_swinging.grab.negative_no_input.sustained_attach eq False -> OK",
+    "phase2_seed_action_controls.json:controls.A16_swinging.release.positive.left_state5 eq True -> OK",
+    "phase2_seed_action_controls.json:controls.A16_swinging.release.negative_idle.left_state5 eq False -> OK"
+   ]
+  },
+  "A17_camera_controls": {
+   "name": "Manual camera reset/look (L1) and lock (R1)",
+   "registry_status": "full",
+   "covered": true,
+   "observable": "camera struct 0x80095358 moves under L1 only",
+   "evidence_checks": [
+    "phase2_action_behavior.json:controls.camera.l1_changes_camera eq True -> OK",
+    "phase2_action_behavior.json:controls.camera.negative_control_camera_static eq True -> OK"
+   ]
+  },
+  "A18_pause": {
+   "name": "Pause (Start)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "position freeze/resume",
+   "evidence_checks": [
+    "phase2_lifecycle_oracle.json:experiments.pause_freeze.resume_restores_motion eq True -> OK",
+    "phase2_negative_controls.json:controls.no_start_no_pause.displacement min 1 -> OK"
+   ]
+  },
+  "A19_status_display": {
+   "name": "Status display (Select)",
+   "registry_status": "partial",
+   "covered": true,
+   "observable": "Select panel frame vs identical no-Select window",
+   "evidence_checks": [
+    "phase2_action_behavior.json:controls.status.select_produces_different_frame eq True -> OK"
+   ]
+  },
+  "A20_circle_noop": {
+   "name": "Circle default behavior (manual assigns none)",
+   "registry_status": "not_applicable",
+   "covered": true,
+   "observable": "null delta on all non-display fields",
+   "evidence_checks": [
+    "phase2_action_oracle.json:synthetic_probes.circle_negative.null_delta_fields nonempty None -> OK"
+   ]
+  }
+ },
+ "gaps": [
+  {
+   "row": "A07_spin",
+   "reason": "no evidence mapped",
+   "next": "Move on. Reopen only for a named carried-seed presentation, enemy-contact, animation-asset, or strict whole-phase escalation-contract question; no further A07 Interpreter movie is currently required."
+  }
+ ],
+ "gate_bullet_3_met": false,
+ "systems": {
+  "audio_spu": "phase2_spu_pitch_mutation (same-scene pitch fires spu_voices only)",
+  "presentation": "phase2_presentation_baseline + ALLMODS mutation test",
+  "contact_pool": "phase2_pool_arc_oracle + capacity hang proof",
+  "death_lifecycle": "phase2_death_matrix (14/16 stages) + phase2_lifecycle_oracle",
+  "results_screens": "phase2_results_baseline (23 anchors, compared by the runner)"
+ }
+}

@@ -1,0 +1,984 @@
+# Decomp substrate v0 — segment map for SCUS_942.88 (docs/SUBSTRATE.md).
+#
+# Byte-splat model: everything NOT listed under `attempted` is copied
+# byte-for-byte from the owner's original EXE at build time (never stored in
+# the repo), so the rebuilt image is exact by construction and each new
+# `attempted` entry proves only itself. tools/build_psx_exe.py consumes this;
+# tools/validate_build.py asserts the rebuilt image is SHA-1-identical.
+image: SCUS_942.88
+sha1: af43de22474f15664d0e17498fbd27faeb7ed111
+header_bytes: 0x800      # PS-X EXE header — always copied from the original
+load_va: 0x80010000
+text_size: 0x72800
+gp: 0x80081d98           # runtime $gp; substrate v2 defines _gp so `small_data: true`
+                         # entries resolve gp-relative (%gprel/R_MIPS_GPREL16) globals
+
+# C-path toolchain (docs/SUBSTRATE.md C path; binaries pinned in
+# tools/toolchain_manifest.json). The winning (compiler, cc1 flags, maspsx args)
+# proven by tools/compiler_proof.py -> analysis/compiler_attempts.json. A .c
+# entry under `attempted` is built via cpp/cc1 -> maspsx -> gnu as.
+c_toolchain:
+  compiler: gcc2.7.2-psx
+  cc1_flags: ["-O2", "-G0", "-mcpu=3000"]
+  maspsx_args: ["--dont-expand-li", "--expand-div"]
+
+# Functions reconstructed from source. .s -> asm path (asm/hand_written/,
+# untracked derived works); .c -> C path (src/main/, COMMITTED authored
+# reimplementations). Built bytes must equal the original's.
+#   start/end must match the census record (analysis/functions.json).
+attempted:
+  - {start: 0x80065eec, end: 0x80065ef8, source: asm/hand_written/80065eec_InitHeap.s}
+  - {start: 0x8005f74c, end: 0x8005f758, source: asm/hand_written/8005f74c_strcat.s}
+  - {start: 0x8005f76c, end: 0x8005f778, source: asm/hand_written/8005f76c_strcpy.s}
+  - {start: 0x8005f77c, end: 0x8005f788, source: asm/hand_written/8005f77c_strlen.s}
+  - {start: 0x8005f79c, end: 0x8005f7a8, source: asm/hand_written/8005f79c_memcpy.s}
+  - {start: 0x8005f7bc, end: 0x8005f7c8, source: asm/hand_written/8005f7bc_rand.s}
+  - {start: 0x8005f688, end: 0x8005f690, source: src/main/8005f688___main.c}
+  - {start: 0x80061a84, end: 0x80061a9c, source: src/main/80061a84_GetClut.c}
+  - {start: 0x80061c10, end: 0x80061c28, source: src/main/80061c10_TermPrim.c}
+  - {start: 0x80061a48, end: 0x80061a84, source: src/main/80061a48_GetTPage.c}
+  # Campaign v3 — GTE matrix loaders (COP2 ctc2 leaves, dynamic-confirmed):
+  - {start: 0x800605c4, end: 0x800605f4, source: asm/hand_written/800605c4_SetRotMatrix.s}
+  - {start: 0x800605f4, end: 0x80060614, source: asm/hand_written/800605f4_SetTransMatrix.s}
+  - {start: 0x80061b74, end: 0x80061bb0, source: asm/hand_written/80061b74_AddPrim.s}
+  - {start: 0x800146e0, end: 0x80014724, source: asm/hand_written/800146e0_gte_camera_matrix_load.s}
+  - {start: 0x80060644, end: 0x80060670, source: asm/hand_written/80060644_RotTransPers.s}
+  - {start: 0x8006c2ec, end: 0x8006c318, source: asm/hand_written/8006c2ec__spu_FsetDelayW.s}
+  - {start: 0x80064664, end: 0x80064694, source: src/main/80064664__param.c}
+  - {start: 0x80060f78, end: 0x80060fb4, source: asm/hand_written/80060f78_SetDefDispEnv.s}
+  # Campaign v3 batch 2 — GPU/SPU control-word leaves (branchy, local labels):
+  - {start: 0x80064618, end: 0x80064664, source: asm/hand_written/80064618__cwc.s}
+  - {start: 0x80063bf8, end: 0x80063c3c, source: asm/hand_written/80063bf8_get_ofs.s}
+  - {start: 0x80063a08, end: 0x80063a60, source: asm/hand_written/80063a08_get_mode.s}
+  - {start: 0x8006c164, end: 0x8006c1ac, source: asm/hand_written/8006c164__spu_FsetRXX.s}
+  - {start: 0x8006c3e0, end: 0x8006c434, source: src/main/8006c3e0_SpuInitMalloc.c}
+  # Campaign v3 batch 3 — libgpu prim + libspu reverb leaves:
+  - {start: 0x80061bec, end: 0x80061c10, source: src/main/80061bec_CatPrim.c}
+  - {start: 0x80061e4c, end: 0x80061e78, source: asm/hand_written/80061e4c_SetDrawTPage.s}
+  - {start: 0x800634dc, end: 0x80063508, source: src/main/800634dc_SetPriority.c}
+  - {start: 0x80061f44, end: 0x80061f7c, source: src/main/80061f44_MargePrim.c}
+  - {start: 0x80061bb0, end: 0x80061bec, source: asm/hand_written/80061bb0_AddPrims.s}
+  - {start: 0x8006c318, end: 0x8006c344, source: asm/hand_written/8006c318__spu_FsetDelayR.s}
+  - {start: 0x8006c250, end: 0x8006c28c, source: src/main/8006c250__spu_FgetRXXa.c}
+  # Campaign v3 batch 4 — libc/libgte loop+GTE functions:
+  - {start: 0x80060058, end: 0x800600c4, source: asm/hand_written/80060058_memmove.s}
+  - {start: 0x80060154, end: 0x800601dc, source: asm/hand_written/80060154_SquareRoot0.s}
+  # Campaign v3 (6C) — REAL game-class functions (not the r2-split seed fragments):
+  - {start: 0x8003e760, end: 0x8003e7c0, source: src/main/8003e760_token_descriptor_reskin.c}
+  - {start: 0x800503fc, end: 0x8005044c, source: src/main/800503fc_spawn_fx_object.c}
+  - {start: 0x80045678, end: 0x80045704, source: asm/hand_written/80045678_nearest_pickup_finalize.s}
+  - {start: 0x8003e7c0, end: 0x8003e83c, source: src/main/8003e7c0_fmv_bin_load.c}
+  - {start: 0x8004d9e8, end: 0x8004da94, source: src/main/8004d9e8_setpiece_spawn_init.c}
+  - {start: 0x8004a180, end: 0x8004a20c, source: asm/hand_written/8004a180_mosquito_species_callback.s}
+  - {start: 0x80057620, end: 0x80057704, source: asm/hand_written/80057620_checkpoint_construct.s}
+  - {start: 0x8004da94, end: 0x8004db7c, source: asm/hand_written/8004da94_level_complete_finale.s}
+  - {start: 0x8005182c, end: 0x80051938, source: asm/hand_written/8005182c_all_enemies_defeated_event.s}
+  - {start: 0x80039854, end: 0x80039970, source: src/main/80039854_boot_subsystem_init.c}
+  - {start: 0x8004dd98, end: 0x8004df18, source: asm/hand_written/8004dd98_setpiece_actor_update.s}
+  - {start: 0x80052574, end: 0x800526f4, source: asm/hand_written/80052574_hud_anim_driver.s}
+  - {start: 0x8005743c, end: 0x80057620, source: asm/hand_written/8005743c_berry_homing_target_acquire.s}
+  - {start: 0x8005bdbc, end: 0x8005bfbc, source: asm/hand_written/8005bdbc_plant_spawn.s}
+  - {start: 0x80017b98, end: 0x80017cdc, source: asm/hand_written/80017b98_gte_rotation_matrix_setup.s}
+  - {start: 0x80014360, end: 0x80014504, source: asm/hand_written/80014360_pass3_backdrop_cull.s}
+  # Substrate v3.1 — large-but-linear proof (first >0x200 match; no new machinery):
+  - {start: 0x80054c90, end: 0x80054eac, source: asm/hand_written/80054c90_checkpoint_save.s}
+  # Substrate v3.3 — jr-table dispatcher proof (18-case switch; absolute-addressed table
+  # @0x8001b4b4 in the copied rodata pool; extent fixed via analysis/extent_overrides.json):
+  - {start: 0x80054810, end: 0x80054964, source: asm/hand_written/80054810_scene_verb_dispatch.s}
+  - {start: 0x80054964, end: 0x80054aac, source: asm/hand_written/80054964_scene_verb_dispatcher.s}
+  # Campaign v3 batch 5 — libgte/libspu/libc leaves:
+  - {start: 0x80060284, end: 0x800602b0, source: asm/hand_written/80060284_VectorNormal.s}
+  - {start: 0x8006cd64, end: 0x8006cd98, source: src/main/8006cd64_SpuSetTransferMode.c}
+  - {start: 0x800651a4, end: 0x800651d0, source: src/main/800651a4_memset_2.c}
+  - {start: 0x80064f28, end: 0x80064f5c, source: src/main/80064f28_set_alarm.c}
+  - {start: 0x8006a35c, end: 0x8006a3a0, source: src/main/8006a35c_vmNoiseOff.c}
+  # Campaign v3 batch 6 — libapi/libcd/libgte (VSyncCallback, CdPosToInt, InitGeom):
+  - {start: 0x80065464, end: 0x80065498, source: src/main/80065464_VSyncCallback.c}
+  - {start: 0x8006de38, end: 0x8006deb8, source: asm/hand_written/8006de38_CdPosToInt.s}
+  - {start: 0x800600cc, end: 0x8006014c, source: asm/hand_written/800600cc_InitGeom.s}
+  # Campaign v3 batch 7 — libspu delay + GTE patch + libgpu LoadImage:
+  - {start: 0x8006c344, end: 0x8006c3ac, source: src/main/8006c344__spu_Fw1ts.c}
+  # Campaign v3 batch 9 — libgte RotAverage4 + libspu SpuGetAllKeysStatus:
+  - {start: 0x80060724, end: 0x800607a0, source: asm/hand_written/80060724_RotAverage4.s}
+  - {start: 0x8006d2e8, end: 0x8006d370, source: asm/hand_written/8006d2e8_SpuGetAllKeysStatus.s}
+  - {start: 0x80060c64, end: 0x80060ccc, source: asm/hand_written/80060c64__patch_gte.s}
+  - {start: 0x800628c0, end: 0x80062924, source: src/main/800628c0_LoadImage.c}
+  # Campaign v3 batch 8 — libc word-clear leaves (identical bodies):
+  - {start: 0x80065ab8, end: 0x80065ae4, source: src/main/80065ab8_memclr.c}
+  - {start: 0x80065bf0, end: 0x80065c1c, source: src/main/80065bf0_memclr_2.c}
+  - {start: 0x80065e98, end: 0x80065ec4, source: src/main/80065e98_memclr_3.c}
+  # C path (src/main/, committed). Stage-1 SDK pipeline proof:
+  - {start: 0x80061d04, end: 0x80061d18, source: src/main/80061d04_SetPolyGT4.c}
+  # Stage-2 GAME-code proof (Traveller's Tales), absolute-global via externs:
+  - {start: 0x80038f20, end: 0x80038f38, source: src/main/80038f20_flag_ge_threshold.c,
+     externs: {g_80082402: 0x80082402}}
+  # Campaign v1 class proofs: 1-callee (auto-defsym) + branch/delay-slot leaf +
+  # saved-reg/stack-local/loop (pins -O2; callee CdSearchFile auto-resolved):
+  - {start: 0x8002d64c, end: 0x8002d674, source: src/main/8002d64c_call_8002b424_wrapper.c}
+  - {start: 0x80024ddc, end: 0x80024e04, source: src/main/80024ddc_contact_record_post_init.c}
+  - {start: 0x800457a0, end: 0x800457dc, source: src/main/800457a0_find_file_size.c}
+  # Campaign v1 breadth batch (game/unknown; absolute globals auto-resolved via g_<addr>):
+  - {start: 0x80072b70, end: 0x80072b7c, source: src/main/80072b70_store_word_and_byte.c}
+  - {start: 0x80072b7c, end: 0x80072b8c, source: src/main/80072b7c_store_three_fields.c}
+  - {start: 0x80065edc, end: 0x80065eec, source: src/main/80065edc_load_global_80080e44.c}
+  - {start: 0x800664b8, end: 0x800664c8, source: src/main/800664b8_load_global_80080e68.c}
+  - {start: 0x80065ec4, end: 0x80065edc, source: src/main/80065ec4_swap_global_80080e44.c}
+  - {start: 0x80069604, end: 0x80069614, source: src/main/80069604_clear_global_short_80091610.c}
+  - {start: 0x8007403c, end: 0x8007404c, source: src/main/8007403c_move_byte_37_to_38.c}
+  - {start: 0x800736e4, end: 0x800736f8, source: src/main/800736e4_init_fields_45.c}
+  - {start: 0x80073758, end: 0x8007376c, source: src/main/80073758_init_fields_4b.c}
+  - {start: 0x80054aac, end: 0x80054ad4, source: src/main/80054aac_store4_bytes.c}
+  - {start: 0x8006ce6c, end: 0x8006ce84, source: src/main/8006ce6c_global_814f8_ne_1.c}
+  # Understood named game function (Thumper boss driver callback):
+  - {start: 0x8004a0f4, end: 0x8004a11c, source: src/main/8004a0f4_thumper_driver_cb.c}
+  # Campaign v2 batch 1 — SDK leaves (twins of matched swap/load/SetPoly classes):
+  - {start: 0x8006d8d0, end: 0x8006d8e8, source: src/main/8006d8d0_CdReadyCallback.c}
+  - {start: 0x8006d8b8, end: 0x8006d8d0, source: src/main/8006d8b8_CdSyncCallback.c}
+  - {start: 0x80065528, end: 0x80065538, source: src/main/80065528_CheckCallback.c}
+  - {start: 0x8006d72c, end: 0x8006d73c, source: src/main/8006d72c_CdStatus.c}
+  - {start: 0x80061cdc, end: 0x80061cf0, source: src/main/80061cdc_SetPolyFT4.c}
+  - {start: 0x80061d90, end: 0x80061da4, source: src/main/80061d90_SetTile.c}
+  - {start: 0x8006d73c, end: 0x8006d74c, source: src/main/8006d73c_CdMode.c}
+  - {start: 0x8006d7f8, end: 0x8006d810, source: src/main/8006d7f8_CdSetDebug.c}
+  - {start: 0x80061d18, end: 0x80061d2c, source: src/main/80061d18_SetSprt8.c}
+  - {start: 0x8006d75c, end: 0x8006d76c, source: src/main/8006d75c_CdLastPos.c}
+  - {start: 0x80065550, end: 0x8006556c, source: src/main/80065550_SetIntrMask.c}
+  # Campaign v2 batch 1b — libgpu primitive-init family (twins of SetPolyGT4):
+  - {start: 0x80061c78, end: 0x80061c8c, source: src/main/80061c78_SetPolyF3.c}
+  - {start: 0x80061c8c, end: 0x80061ca0, source: src/main/80061c8c_SetPolyFT3.c}
+  - {start: 0x80061ca0, end: 0x80061cb4, source: src/main/80061ca0_SetPolyG3.c}
+  - {start: 0x80061cb4, end: 0x80061cc8, source: src/main/80061cb4_SetPolyGT3.c}
+  - {start: 0x80061cc8, end: 0x80061cdc, source: src/main/80061cc8_SetPolyF4.c}
+  - {start: 0x80061cf0, end: 0x80061d04, source: src/main/80061cf0_SetPolyG4.c}
+  - {start: 0x80061d2c, end: 0x80061d40, source: src/main/80061d2c_SetSprt16.c}
+  - {start: 0x80061d40, end: 0x80061d54, source: src/main/80061d40_SetSprt.c}
+  - {start: 0x80061d54, end: 0x80061d68, source: src/main/80061d54_SetTile1.c}
+  - {start: 0x80061d68, end: 0x80061d7c, source: src/main/80061d68_SetTile8.c}
+  - {start: 0x80061d7c, end: 0x80061d90, source: src/main/80061d7c_SetTile16.c}
+  - {start: 0x80061da4, end: 0x80061db8, source: src/main/80061da4_SetLineF2.c}
+  - {start: 0x80061db8, end: 0x80061dcc, source: src/main/80061db8_SetLineG2.c}
+  # Campaign v2 batch 1c — SDK getters/setters/swaps/derefs:
+  - {start: 0x800624e4, end: 0x800624f4, source: src/main/800624e4_GetGraphType.c}
+  - {start: 0x800624f4, end: 0x80062504, source: src/main/800624f4_GetGraphDebug.c}
+  - {start: 0x8006d74c, end: 0x8006d75c, source: src/main/8006d74c_CdLastCom.c}
+  - {start: 0x80070868, end: 0x80070880, source: src/main/80070868_CdReadCallback.c}
+  - {start: 0x8006f59c, end: 0x8006f5ac, source: src/main/8006f59c_CD_set_test_parmnum.c}
+  - {start: 0x80065538, end: 0x80065550, source: src/main/80065538_GetIntrMask.c}
+  - {start: 0x80063d70, end: 0x80063d88, source: src/main/80063d70__status.c}
+  # Campaign v2 batch 1d — SDK prim-list ops + libspu getter:
+  - {start: 0x80061b3c, end: 0x80061b58, source: src/main/80061b3c_NextPrim.c}
+  - {start: 0x80061b58, end: 0x80061b74, source: src/main/80061b58_IsEndPrim.c}
+  - {start: 0x800645b4, end: 0x800645c8, source: src/main/800645b4__getctl.c}
+  # Campaign v2 batch 2 — SetLine terminator prims, 1-callee Cd wrappers, _ctl:
+  - {start: 0x80061dcc, end: 0x80061dec, source: src/main/80061dcc_SetLineF3.c}
+  - {start: 0x80061dec, end: 0x80061e0c, source: src/main/80061dec_SetLineG3.c}
+  - {start: 0x80061e0c, end: 0x80061e2c, source: src/main/80061e0c_SetLineF4.c}
+  - {start: 0x80061e2c, end: 0x80061e4c, source: src/main/80061e2c_SetLineG4.c}
+  - {start: 0x8006dc90, end: 0x8006dcb0, source: src/main/8006dc90_CdMix.c}
+  - {start: 0x8006dcb0, end: 0x8006dcd0, source: src/main/8006dcb0_CdGetSector.c}
+  - {start: 0x8006dd14, end: 0x8006dd34, source: src/main/8006dd14_CdDataSync.c}
+  - {start: 0x8006d898, end: 0x8006d8b8, source: src/main/8006d898_CdReady.c}
+  - {start: 0x8006458c, end: 0x800645b4, source: src/main/8006458c__ctl.c}
+  # Campaign v2 batch 3 — la-swap (volatile) + arg-setup 1-callee wrappers:
+  - {start: 0x80070880, end: 0x80070898, source: src/main/80070880_CdReadMode.c}
+  - {start: 0x8006dcf0, end: 0x8006dd14, source: src/main/8006dcf0_CdDataCallback.c}
+  - {start: 0x8006d3d4, end: 0x8006d3f8, source: src/main/8006d3d4_CdGetToc.c}
+  - {start: 0x8006ca80, end: 0x8006caa4, source: src/main/8006ca80_SpuSetNoiseVoice.c}
+  # Campaign v2 batch 4 — conditional array store (setIntrVSync):
+  - {start: 0x80065bc4, end: 0x80065bf0, source: src/main/80065bc4_setIntrVSync.c}
+  # Campaign v2 batch 5 (Phase 2) — src_re-documented game functions:
+  - {start: 0x80038f38, end: 0x80038f84, source: src/main/80038f38_sector_region_code_query.c}
+  - {start: 0x8005721c, end: 0x80057258, source: src/main/8005721c_pickup_sfx_trigger_7d.c}
+  - {start: 0x800571e0, end: 0x8005721c, source: src/main/800571e0_pickup_sfx_trigger_7c.c}
+  - {start: 0x80050838, end: 0x80050870, source: src/main/80050838_sfx_menu_blip.c}
+  - {start: 0x8006b130, end: 0x8006b160, source: src/main/8006b130_SsVabOpenHead.c}
+  # Campaign v2 batch 6 (Phase 3) — INTERNAL-`j` class, unlocked by substrate v2 --section-start:
+  - {start: 0x80061c28, end: 0x80061c50, source: src/main/80061c28_SetSemiTrans.c}
+  - {start: 0x80061c50, end: 0x80061c78, source: src/main/80061c50_SetShadeTex.c}
+  - {start: 0x8006d810, end: 0x8006d844, source: src/main/8006d810_CdComstr.c}
+  - {start: 0x8006d844, end: 0x8006d878, source: src/main/8006d844_CdIntstr.c}
+  # Campaign v2 batch 7 (Phase 3) — GP-RELATIVE class proof (small_data: true + _gp):
+  - {start: 0x80046b14, end: 0x80046b20, source: src/main/80046b14_gp_flag_test.c, small_data: true}
+  - {start: 0x80045d5c, end: 0x80045d6c, source: src/main/80045d5c_gp_set_one.c, small_data: true}
+  # Substrate v3.2 — gp path scaling (small_data getters -> setters):
+  - {start: 0x800252a0, end: 0x800252b0, source: src/main/800252a0_reset_pickup_state.c, small_data: true}
+  - {start: 0x8005d50c, end: 0x8005d51c, source: src/main/8005d50c_set_gp_ptr_plus_c.c, small_data: true}
+  # Campaign v4.1 — committable-C capability proof (148 B, 5x the prior avg C size;
+  # branch-vs-branchless codegen matched by writing the if/else explicitly):
+  - {start: 0x80070898, end: 0x8007092c, source: src/main/80070898_CdRead2.c}
+  # Campaign v4.2 — dense game functions as hand-asm (byte-exact; C WIP in src/wip/):
+  - {start: 0x80059e44, end: 0x8005a0e0, source: asm/hand_written/80059e44_contact_alloc.s}
+  # Campaign v4.4 — jr-table dispatchers (inline-case switches; extent-override merged):
+  - {start: 0x800470ac, end: 0x80047284, source: asm/hand_written/800470ac_berry_throw_dispatch.s}
+  - {start: 0x800586b0, end: 0x80058af8, source: asm/hand_written/800586b0_contact_walker.s}
+  - {start: 0x80053814, end: 0x80054810, source: asm/hand_written/80053814_source3f_dispatch.s}
+  # Campaign v4.5b — safe jr-table dispatchers (self-contained; extent-override merged):
+  - {start: 0x8001d3cc, end: 0x8001dfe4, source: asm/hand_written/8001d3cc_dirt_object_dispatch.s}
+  - {start: 0x8001dfe4, end: 0x8001ea6c, source: asm/hand_written/8001dfe4_scene_geometry_draw_dispatcher.s}
+  - {start: 0x8005953c, end: 0x80059e44, source: asm/hand_written/8005953c_sub_8005953c.s}
+  - {start: 0x8006deb8, end: 0x8006e440, source: asm/hand_written/8006deb8_getintr.s}
+  - {start: 0x8005b134, end: 0x8005b440, source: asm/hand_written/8005b134_respawn_transition_state_handler.s}
+  - {start: 0x8004a42c, end: 0x8004a700, source: asm/hand_written/8004a42c_sub_8004a42c.s}
+  - {start: 0x80052090, end: 0x8005222c, source: asm/hand_written/80052090_sub_80052090.s}
+  # Campaign v4.5 — byte-% volume: clean large-linear unknowns (1 prologue/1 jr ra, no interior
+  # symbols/jal-targets/prologues; over-merge 0x8002b428 excluded per memory flag):
+  - {start: 0x8003f938, end: 0x800409f8, source: asm/hand_written/8003f938_sub_8003f938.s}
+  - {start: 0x800409f8, end: 0x80041a74, source: asm/hand_written/800409f8_sub_800409f8.s}
+  - {start: 0x80070d80, end: 0x800716f0, source: asm/hand_written/80070d80_StCdInterrupt.s}
+  - {start: 0x80041ac4, end: 0x80042428, source: asm/hand_written/80041ac4_sub_80041ac4.s}
+  - {start: 0x8005cd2c, end: 0x8005d50c, source: asm/hand_written/8005cd2c_sub_8005cd2c.s}
+  - {start: 0x8004b940, end: 0x8004c10c, source: asm/hand_written/8004b940_sub_8004b940.s}
+  - {start: 0x8005b714, end: 0x8005bc64, source: asm/hand_written/8005b714_gameplay_state_reset_cursor_seed.s}
+  - {start: 0x8006a920, end: 0x8006ae58, source: asm/hand_written/8006a920__SsVmSetSeqVol.s}
+  - {start: 0x80062ed0, end: 0x80063370, source: asm/hand_written/80062ed0_sub_80062ed0.s}
+  - {start: 0x80030440, end: 0x800308cc, source: asm/hand_written/80030440_sub_80030440.s}
+  - {start: 0x8004d224, end: 0x8004d698, source: asm/hand_written/8004d224_mover_updater.s}
+  - {start: 0x80055f8c, end: 0x800563d4, source: asm/hand_written/80055f8c_sub_80055f8c.s}
+  - {start: 0x8003001c, end: 0x8003043c, source: asm/hand_written/8003001c_sub_8003001c.s}
+  - {start: 0x80035f24, end: 0x8003633c, source: asm/hand_written/80035f24_sub_80035f24.s}
+  - {start: 0x8005f110, end: 0x8005f4ec, source: asm/hand_written/8005f110_sub_8005f110.s}
+  - {start: 0x8006b1c0, end: 0x8006b59c, source: asm/hand_written/8006b1c0_SsVabOpenHeadWithMode.s}
+  - {start: 0x80069614, end: 0x800699c8, source: asm/hand_written/80069614__SsVmFlush.s}
+  - {start: 0x800739c8, end: 0x80073d78, source: asm/hand_written/800739c8_sub_800739c8.s}
+  - {start: 0x8006755c, end: 0x80067904, source: asm/hand_written/8006755c__SsGetSeqData.s}
+  - {start: 0x80068634, end: 0x800689d0, source: asm/hand_written/80068634_SsUtKeyOn.s}
+  - {start: 0x80068b24, end: 0x80068eb8, source: asm/hand_written/80068b24_SsUtKeyOnV.s}
+  - {start: 0x80046d24, end: 0x800470ac, source: asm/hand_written/80046d24_sub_80046d24.s}
+  - {start: 0x8004d6a8, end: 0x8004d9e8, source: asm/hand_written/8004d6a8_sub_8004d6a8.s}
+  - {start: 0x80072200, end: 0x80072534, source: asm/hand_written/80072200_sub_80072200.s}
+  - {start: 0x80061350, end: 0x80061668, source: asm/hand_written/80061350_FntFlush.s}
+  - {start: 0x800699c8, end: 0x80069cd8, source: asm/hand_written/800699c8__SsVmInit.s}
+  - {start: 0x80066b90, end: 0x80066e8c, source: asm/hand_written/80066b90__SsSndCrescendo.s}
+  - {start: 0x800649a0, end: 0x80064c84, source: asm/hand_written/800649a0_sub_800649a0.s}
+  - {start: 0x800646b8, end: 0x80064998, source: asm/hand_written/800646b8_gpu_present_drawotag_vsync.s}
+  - {start: 0x8006f97c, end: 0x8006fc5c, source: asm/hand_written/8006f97c_CD_newmedia.s}
+  - {start: 0x8003f620, end: 0x8003f8f8, source: asm/hand_written/8003f620_sub_8003f620.s}
+  - {start: 0x8003cc58, end: 0x8003cf2c, source: asm/hand_written/8003cc58_sub_8003cc58.s}
+  - {start: 0x80051dbc, end: 0x80052090, source: asm/hand_written/80051dbc_sub_80051dbc.s}
+  - {start: 0x8007001c, end: 0x800702ec, source: asm/hand_written/8007001c_cb_read.s}
+  - {start: 0x8006e6c0, end: 0x8006e98c, source: asm/hand_written/8006e6c0_CD_ready.s}
+  - {start: 0x8002fce8, end: 0x8002ffa8, source: asm/hand_written/8002fce8_sub_8002fce8.s}
+  - {start: 0x8006c43c, end: 0x8006c6fc, source: asm/hand_written/8006c43c_sub_8006c43c.s}
+  - {start: 0x80066e8c, end: 0x80067148, source: asm/hand_written/80066e8c__SsSndDecrescendo.s}
+  - {start: 0x8006f6a0, end: 0x8006f95c, source: asm/hand_written/8006f6a0_sub_8006f6a0.s}
+  - {start: 0x8006fd0c, end: 0x8006ffb0, source: asm/hand_written/8006fd0c_sub_8006fd0c.s}
+  - {start: 0x8006b818, end: 0x8006baac, source: asm/hand_written/8006b818__spu_init.s}
+  - {start: 0x8005222c, end: 0x800524b8, source: asm/hand_written/8005222c_level_transition_orchestrator.s}
+  - {start: 0x80069164, end: 0x800693f0, source: asm/hand_written/80069164__SsVmAlloc.s}
+  - {start: 0x8005d654, end: 0x8005d8d8, source: asm/hand_written/8005d654_sub_8005d654.s}
+  - {start: 0x80064308, end: 0x8006458c, source: asm/hand_written/80064308__drs.s}
+  - {start: 0x80024e04, end: 0x80025084, source: asm/hand_written/80024e04_sub_80024e04.s}
+  - {start: 0x8006bdf4, end: 0x8006c074, source: asm/hand_written/8006bdf4_sub_8006bdf4.s}
+  - {start: 0x8006e440, end: 0x8006e6c0, source: asm/hand_written/8006e440_CD_sync.s}
+  - {start: 0x80047ebc, end: 0x80048138, source: asm/hand_written/80047ebc_sub_80047ebc.s}
+  - {start: 0x80074108, end: 0x80074384, source: asm/hand_written/80074108_sub_80074108.s}
+  - {start: 0x8003e4e8, end: 0x8003e760, source: asm/hand_written/8003e4e8_sub_8003e4e8.s}
+  - {start: 0x80056f68, end: 0x800571e0, source: asm/hand_written/80056f68_sub_80056f68.s}
+  - {start: 0x80072834, end: 0x80072aac, source: asm/hand_written/80072834_sub_80072834.s}
+  - {start: 0x8006691c, end: 0x80066b90, source: asm/hand_written/8006691c_SsSeqCalledTbyT.s}
+  - {start: 0x80072c10, end: 0x80072e80, source: asm/hand_written/80072c10_sub_80072c10.s}
+  - {start: 0x80067c78, end: 0x80067ee0, source: asm/hand_written/80067c78__SsStart.s}
+  - {start: 0x8004b6dc, end: 0x8004b940, source: asm/hand_written/8004b6dc_sub_8004b6dc.s}
+  - {start: 0x80074534, end: 0x80074798, source: asm/hand_written/80074534_sub_80074534.s}
+  - {start: 0x80063e70, end: 0x800640cc, source: asm/hand_written/80063e70__clr.s}
+  - {start: 0x8004ea8c, end: 0x8004ecd4, source: asm/hand_written/8004ea8c_enemy_ai_dispatcher.s}
+  - {start: 0x80051940, end: 0x80051b84, source: asm/hand_written/80051940_sub_80051940.s}
+  - {start: 0x80067318, end: 0x8006755c, source: asm/hand_written/80067318__SsSeqGetEof.s}
+  - {start: 0x800640cc, end: 0x80064308, source: asm/hand_written/800640cc__dws.s}
+  - {start: 0x80051b84, end: 0x80051db4, source: asm/hand_written/80051b84_sub_80051b84.s}
+  - {start: 0x8006d3f8, end: 0x8006d61c, source: asm/hand_written/8006d3f8_CdGetToc2.s}
+  - {start: 0x8005b4ec, end: 0x8005b70c, source: asm/hand_written/8005b4ec_sub_8005b4ec.s}
+  - {start: 0x80063560, end: 0x80063778, source: asm/hand_written/80063560_SetDrawEnv.s}
+  - {start: 0x800693f0, end: 0x80069604, source: asm/hand_written/800693f0__SsVmDoAllocate.s}
+  - {start: 0x800703e8, end: 0x800705fc, source: asm/hand_written/800703e8_cd_read_retry.s}
+  - {start: 0x80026df4, end: 0x80027004, source: asm/hand_written/80026df4_result_upload_anim_frame.s}
+  - {start: 0x80072624, end: 0x80072834, source: asm/hand_written/80072624_sub_80072624.s}
+  # Campaign v4.3 — giant game functions (hand-asm; C impractical at this size):
+  - {start: 0x80044d28, end: 0x80045678, source: asm/hand_written/80044d28_sfx_voice_manager.s}
+  - {start: 0x8004abf4, end: 0x8004b6dc, source: asm/hand_written/8004abf4_proximity_updater.s}
+  - {start: 0x800313a8, end: 0x80031efc, source: asm/hand_written/800313a8_collision_grid_builder.s}
+  - {start: 0x800253e8, end: 0x80025f54, source: asm/hand_written/800253e8_pickup_projector.s}
+  - {start: 0x800345cc, end: 0x80035280, source: asm/hand_written/800345cc_collision_resolver_accumulate.s}
+  - {start: 0x80048138, end: 0x800498ac, source: asm/hand_written/80048138_player_vertical_update.s}
+  - {start: 0x8003a318, end: 0x8003c388, source: asm/hand_written/8003a318_high_heap_loader.s}
+  - {start: 0x8004699c, end: 0x80046ac0, source: src/main/8004699c_music_start.c, small_data: true, declaration_profile: cleanroom_prototyped}
+  - {start: 0x80046330, end: 0x80046538, source: asm/hand_written/80046330_universal_file_loader.s}
+  - {start: 0x80050994, end: 0x80050c40, source: asm/hand_written/80050994_sfx_dispatch.s}
+  - {start: 0x8005044c, end: 0x800507f8, source: asm/hand_written/8005044c_play_sound.s}
+  - {start: 0x8003e928, end: 0x8003eec8, source: asm/hand_written/8003e928_backdrop_tile_builder.s}
+  - {start: 0x8001cdc0, end: 0x8001d3cc, source: asm/hand_written/8001cdc0_dat_parser_relocator.s}
+  - {start: 0x80032610, end: 0x800345cc, source: asm/hand_written/80032610_collision_point_in_poly.s}
+  - {start: 0x8002958c, end: 0x8002b424, source: asm/hand_written/8002958c_chunk_mesh_weld_converter.s}
+  - {start: 0x80038090, end: 0x80038e48, source: asm/hand_written/80038090_point_in_polygon_region_test.s}
+  # decomp v5 d2 batch
+  - {start: 0x800526fc, end: 0x80053638, source: asm/hand_written/800526fc_results_screen_render.s}
+  - {start: 0x8004c8ac, end: 0x8004d224, source: asm/hand_written/8004c8ac_vm_motion_apply_chase.s}
+  - {start: 0x80044350, end: 0x80044c5c, source: asm/hand_written/80044350_sound_positional_voice.s}
+  - {start: 0x800172dc, end: 0x80017b98, source: asm/hand_written/800172dc_shared_all_mesh_renderer.s}
+  - {start: 0x8004fca0, end: 0x800502c4, source: asm/hand_written/8004fca0_scene_flow_dispatcher.s}
+  - {start: 0x8004f480, end: 0x8004fa40, source: asm/hand_written/8004f480_gameplay_frame_render.s}
+  - {start: 0x80022fe0, end: 0x80023544, source: asm/hand_written/80022fe0_effect_mesh_transform.s}
+  - {start: 0x800438a8, end: 0x80043dac, source: asm/hand_written/800438a8_sound_voice_trigger.s}
+  - {start: 0x800224ec, end: 0x80022978, source: asm/hand_written/800224ec_scene_render_driver.s}
+  - {start: 0x8005ec94, end: 0x8005f110, source: asm/hand_written/8005ec94_anm_animation_player_keyframe_core.s}
+  - {start: 0x80014b04, end: 0x80014ee0, source: asm/hand_written/80014b04_dirt_mesh_builder.s}
+  - {start: 0x800376a0, end: 0x80037a38, source: asm/hand_written/800376a0_camera_region_query.s}
+  - {start: 0x8005a308, end: 0x8005b12c, source: asm/hand_written/8005a308_berry_projectile_update.s}
+  - {start: 0x80030f60, end: 0x800313a8, source: asm/hand_written/80030f60_collision_sector_table_builder.s}
+  - {start: 0x8005dad0, end: 0x8005de60, source: asm/hand_written/8005dad0_level_load_chunks.s}
+  # decomp v5 d2 batch
+  - {start: 0x80037320, end: 0x800376a0, source: asm/hand_written/80037320_collision_candidate_builder.s}
+  - {start: 0x8003912c, end: 0x80039478, source: asm/hand_written/8003912c_display_env_setup.s}
+  - {start: 0x8005c258, end: 0x8005c58c, source: asm/hand_written/8005c258_seed_plant_propeller_handler.s}
+  - {start: 0x80026a68, end: 0x80026d78, source: asm/hand_written/80026a68_draw_textured_quad.s}
+  - {start: 0x80039478, end: 0x80039780, source: asm/hand_written/80039478_display_buffers_init.s}
+  - {start: 0x80026588, end: 0x80026858, source: asm/hand_written/80026588_result_draw_glyph_dim.s}
+  - {start: 0x800140a0, end: 0x80014360, source: asm/hand_written/800140a0_gte_trail_cull_transform.s}
+  - {start: 0x800260f8, end: 0x80026390, source: asm/hand_written/800260f8_hud_draw_glyph.s}
+  - {start: 0x8005ca7c, end: 0x8005cce8, source: asm/hand_written/8005ca7c_seed_plant_blue_shooter_handler.s}
+  - {start: 0x8005a0f0, end: 0x8005a308, source: asm/hand_written/8005a0f0_contact_object_spawn.s}
+  - {start: 0x80019934, end: 0x80019ce8, source: asm/hand_written/80019934_bulk_ground_sub_emitter.s}
+  - {start: 0x8005905c, end: 0x8005921c, source: asm/hand_written/8005905c_berry_tough_damage_dispatch.s}
+  - {start: 0x8004dc0c, end: 0x8004dd98, source: asm/hand_written/8004dc0c_respawn_collision_reset.s}
+  - {start: 0x80036cec, end: 0x80036e70, source: asm/hand_written/80036cec_player_y_commit_store.s}
+  - {start: 0x80039a70, end: 0x80039bd8, source: asm/hand_written/80039a70_frame_present.s}
+  - {start: 0x8005c58c, end: 0x8005c6f0, source: asm/hand_written/8005c58c_seed_plant_trampoline_handler.s}
+  - {start: 0x8005c110, end: 0x8005c258, source: asm/hand_written/8005c110_seed_plant_cannon_handler.s}
+  - {start: 0x80045fc4, end: 0x800460e4, source: asm/hand_written/80045fc4_file_lookup_cdsearchfile.s}
+  - {start: 0x8005c918, end: 0x8005ca24, source: asm/hand_written/8005c918_seed_plant_mine_handler.s}
+  # decomp v5 d2 batch
+  - {start: 0x800206e8, end: 0x800207f0, source: asm/hand_written/800206e8_survivor_list_primitive_builder_2.s}
+  - {start: 0x80042e94, end: 0x80042fa0, source: asm/hand_written/80042e94_vab_bank_loader.s}
+  - {start: 0x8005c818, end: 0x8005c918, source: asm/hand_written/8005c818_seed_plant_dandelion_handler.s}
+  - {start: 0x80043500, end: 0x800435f8, source: asm/hand_written/80043500_spu_voice_key_onoff.s}
+  - {start: 0x8004c13c, end: 0x8004c228, source: asm/hand_written/8004c13c_event_bytecode_interpreter.s}
+  - {start: 0x8004589c, end: 0x80045978, source: asm/hand_written/8004589c_cd_find_file_by_name.s}
+  - {start: 0x8005c744, end: 0x8005c818, source: asm/hand_written/8005c744_seed_plant_type7_handler.s}
+  - {start: 0x800720f0, end: 0x800721bc, source: asm/hand_written/800720f0_rcnt_interrupt_install.s}
+  - {start: 0x800602e0, end: 0x8006039c, source: asm/hand_written/800602e0_MSC02_OBJ_FC.s}
+  - {start: 0x8003f504, end: 0x8003f5b8, source: asm/hand_written/8003f504_scene_load_init.s}
+  - {start: 0x80043068, end: 0x80043114, source: asm/hand_written/80043068_loadscreen_image_setup.s}
+  - {start: 0x8003df14, end: 0x8003df98, source: asm/hand_written/8003df14_scroll_background_modulo_offset.s}
+  - {start: 0x80042fa0, end: 0x80043018, source: asm/hand_written/80042fa0_vab_load.s}
+  - {start: 0x80059384, end: 0x800593e8, source: asm/hand_written/80059384_enemy_contact_damage_store.s}
+  - {start: 0x80045a60, end: 0x80045aac, source: src/main/80045a60_transition_finalizer_subsystem_reset.c, small_data: true}
+  - {start: 0x800721bc, end: 0x80072200, source: src/main/800721bc_rcnt_interrupt_remove.c}
+  - {start: 0x800639cc, end: 0x80063a08, source: asm/hand_written/800639cc_drawenv_background_fill_builder.s}
+  - {start: 0x80046ae8, end: 0x80046b14, source: src/main/80046ae8_music_play_looping.c, small_data: true}
+  - {start: 0x8005ec84, end: 0x8005ec94, source: asm/hand_written/8005ec84_skin_transform_bone.s}
+  - {start: 0x8004c46c, end: 0x8004c47c, source: asm/hand_written/8004c46c_mover_vm_op9_set_target.s}
+  - {start: 0x80046828, end: 0x8004682c, source: asm/hand_written/80046828_music_loop_poll.s}
+  - {start: 0x8001a1dc, end: 0x8001a1e0, source: asm/hand_written/8001a1dc_level_raw_lzss_decompressor.s}
+  - {start: 0x8002d674, end: 0x8002fc90, source: asm/hand_written/8002d674_object_mesh_draw.s}
+  - {start: 0x80035280, end: 0x80035f24, source: asm/hand_written/80035280_collision_resolve_pass.s}
+  - {start: 0x80047284, end: 0x80047ebc, source: asm/hand_written/80047284_player_contact_response.s}
+  - {start: 0x8004df18, end: 0x8004ea8c, source: asm/hand_written/8004df18_camera_follow_update.s}
+  - {start: 0x800563d4, end: 0x80056f68, source: asm/hand_written/800563d4_actor_skinned_update.s}
+  - {start: 0x8003633c, end: 0x80036cec, source: asm/hand_written/8003633c_player_movement_collision_integrator.s}
+  - {start: 0x8004ecd4, end: 0x8004f478, source: asm/hand_written/8004ecd4_gameplay_state_machine.s}
+  - {start: 0x80058af8, end: 0x8005905c, source: asm/hand_written/80058af8_contact_vs_actor_handler.s}
+  - {start: 0x8003cf2c, end: 0x8003d404, source: asm/hand_written/8003cf2c_resource_id_dat_load_dispatcher.s}
+  - {start: 0x80037a38, end: 0x80037dac, source: asm/hand_written/80037a38_ground_height_query.s}
+  - {start: 0x8004a700, end: 0x8004aa34, source: asm/hand_written/8004a700_resident_level_transition_initiator.s}
+  - {start: 0x80010000, end: 0x800102d4, source: asm/hand_written/80010000_per_object_mesh_draw_payload_emitter.s}
+  - {start: 0x80045d6c, end: 0x80045fc4, source: asm/hand_written/80045d6c_cd_subsystem_init.s}
+  - {start: 0x80025084, end: 0x800252a0, source: asm/hand_written/80025084_oriented_containment_range_test.s}
+  - {start: 0x800498ac, end: 0x80049a58, source: asm/hand_written/800498ac_enemy_update_deathanim.s}
+  - {start: 0x80025f54, end: 0x800260f8, source: asm/hand_written/80025f54_hud_draw_sprite_tile.s}
+  - {start: 0x80046b20, end: 0x80046cac, source: asm/hand_written/80046b20_level_load_player_spawn_writer.s}
+  - {start: 0x8005bfbc, end: 0x8005c110, source: asm/hand_written/8005bfbc_plant_behavior_walker.s}
+  - {start: 0x80050c40, end: 0x80050d1c, source: asm/hand_written/80050c40_contact_pickup_sfx.s}
+  - {start: 0x80039970, end: 0x80039a20, source: asm/hand_written/80039970_boot_video_audio_init.s}
+  - {start: 0x80044c5c, end: 0x80044ce8, source: asm/hand_written/80044c5c_sound_system_init.s}
+  - {start: 0x80026d78, end: 0x80026df4, source: src/main/80026d78_queue_draw_prim.c}
+  - {start: 0x8002ffa8, end: 0x80030010, source: src/main/8002ffa8_load_named_file.c}
+  - {start: 0x8001ea6c, end: 0x8001eacc, source: asm/hand_written/8001ea6c_survivor_list_primitive_builder_1.s}
+  - {start: 0x8005ca24, end: 0x8005ca7c, source: asm/hand_written/8005ca24_seed_plant_purple_shooter_handler.s}
+  - {start: 0x8005c6f0, end: 0x8005c744, source: asm/hand_written/8005c6f0_seed_plant_type6_handler.s}
+  - {start: 0x8005cce8, end: 0x8005cd2c, source: asm/hand_written/8005cce8_seed_plant_passive_handler.s}
+  - {start: 0x80046ac0, end: 0x80046ae8, source: src/main/80046ac0_music_play_once.c, small_data: true}
+  - {start: 0x8005a0e0, end: 0x8005a0f0, source: asm/hand_written/8005a0e0_contact_object_spawn_full.s}
+  - {start: 0x8004d698, end: 0x8004d6a8, source: asm/hand_written/8004d698_setpiece_spawn_manager.s}
+  - {start: 0x80054eac, end: 0x80054eb4, source: asm/hand_written/80054eac_grain_pickup_handler.s}
+  - {start: 0x800526f4, end: 0x800526fc, source: asm/hand_written/800526f4_hud_draw.s}
+  - {start: 0x8002b428, end: 0x8002d64c, source: asm/hand_written/8002b428_sub_8002b428.s}
+  - {start: 0x8001eacc, end: 0x800206e8, source: asm/hand_written/8001eacc_sub_8001eacc.s}
+  - {start: 0x80027cbc, end: 0x80028d74, source: asm/hand_written/80027cbc_sub_80027cbc.s}
+  - {start: 0x800153d0, end: 0x800163e0, source: asm/hand_written/800153d0_sub_800153d0.s}
+  - {start: 0x800163e0, end: 0x800172dc, source: asm/hand_written/800163e0_sub_800163e0.s}
+  - {start: 0x8005de60, end: 0x8005ec1c, source: asm/hand_written/8005de60_sub_8005de60.s}
+  - {start: 0x800207f0, end: 0x800212fc, source: asm/hand_written/800207f0_sub_800207f0.s}
+  - {start: 0x800212fc, end: 0x80021d84, source: asm/hand_written/800212fc_sub_800212fc.s}
+  - {start: 0x8005f7f8, end: 0x80060048, source: asm/hand_written/8005f7f8_sub_8005f7f8.s}
+  - {start: 0x80021d84, end: 0x800224ec, source: asm/hand_written/80021d84_sub_80021d84.s}
+  - {start: 0x8001a1e0, end: 0x8001a900, source: asm/hand_written/8001a1e0_sub_8001a1e0.s}
+  - {start: 0x80022978, end: 0x80022fe0, source: asm/hand_written/80022978_sub_80022978.s}
+  - {start: 0x80043dac, end: 0x80044350, source: asm/hand_written/80043dac_sub_80043dac.s}
+  - {start: 0x80023544, end: 0x80023abc, source: asm/hand_written/80023544_sub_80023544.s}
+  - {start: 0x8003c388, end: 0x8003c8bc, source: asm/hand_written/8003c388_sub_8003c388.s}
+  - {start: 0x80014ee0, end: 0x800153d0, source: asm/hand_written/80014ee0_sub_80014ee0.s}
+  - {start: 0x80069e98, end: 0x8006a35c, source: asm/hand_written/80069e98_vmNoiseOn.s}
+  - {start: 0x8006a470, end: 0x8006a920, source: asm/hand_written/8006a470__SsVmKeyOnNow.s}
+  - {start: 0x80018850, end: 0x80018cc4, source: asm/hand_written/80018850_sub_80018850.s}
+  - {start: 0x8002418c, end: 0x800245c4, source: asm/hand_written/8002418c_sub_8002418c.s}
+  - {start: 0x80023d54, end: 0x8002418c, source: asm/hand_written/80023d54_sub_80023d54.s}
+  - {start: 0x8003daf0, end: 0x8003df14, source: asm/hand_written/8003daf0_sub_8003daf0.s}
+  - {start: 0x8006e98c, end: 0x8006eda8, source: asm/hand_written/8006e98c_CD_cw.s}
+  - {start: 0x800249d0, end: 0x80024ddc, source: asm/hand_written/800249d0_sub_800249d0.s}
+  - {start: 0x800245c4, end: 0x800249d0, source: asm/hand_written/800245c4_sub_800245c4.s}
+  - {start: 0x80073034, end: 0x8007342c, source: asm/hand_written/80073034_sub_80073034.s}
+  - {start: 0x80019244, end: 0x8001961c, source: asm/hand_written/80019244_sub_80019244.s}
+  - {start: 0x80061678, end: 0x80061a48, source: asm/hand_written/80061678_sub_80061678.s}
+  - {start: 0x8001ca20, end: 0x8001cdc0, source: asm/hand_written/8001ca20_sub_8001ca20.s}
+  - {start: 0x800322a0, end: 0x80032610, source: asm/hand_written/800322a0_sub_800322a0.s}
+  - {start: 0x8003c8bc, end: 0x8003cc1c, source: asm/hand_written/8003c8bc_sub_8003c8bc.s}
+  - {start: 0x8003efc8, end: 0x8003f2f0, source: asm/hand_written/8003efc8_sub_8003efc8.s}
+  - {start: 0x8006ce84, end: 0x8006d1a8, source: asm/hand_written/8006ce84_SpuSetCommonAttr.s}
+  - {start: 0x8001961c, end: 0x80019934, source: asm/hand_written/8001961c_sub_8001961c.s}
+  - {start: 0x8006c6fc, end: 0x8006ca04, source: asm/hand_written/8006c6fc__spu_gcSPU.s}
+  - {start: 0x80018f4c, end: 0x80019244, source: asm/hand_written/80018f4c_sub_80018f4c.s}
+  - {start: 0x80037dac, end: 0x80038090, source: asm/hand_written/80037dac_sub_80037dac.s}
+  - {start: 0x80054eb4, end: 0x8005518c, source: asm/hand_written/80054eb4_sub_80054eb4.s}
+  - {start: 0x80028d74, end: 0x80029030, source: asm/hand_written/80028d74_sub_80028d74.s}
+  - {start: 0x80061098, end: 0x80061350, source: asm/hand_written/80061098_FntOpen.s}
+  - {start: 0x800435f8, end: 0x800438a8, source: asm/hand_written/800435f8_sub_800435f8.s}
+  - {start: 0x80029030, end: 0x800292dc, source: asm/hand_written/80029030_sub_80029030.s}
+  - {start: 0x80023abc, end: 0x80023d54, source: asm/hand_written/80023abc_sub_80023abc.s}
+  - {start: 0x80014844, end: 0x80014ad4, source: asm/hand_written/80014844_sub_80014844.s}
+  - {start: 0x80060854, end: 0x80060ae0, source: asm/hand_written/80060854_RotMatrix.s}
+  - {start: 0x8005518c, end: 0x80055414, source: asm/hand_written/8005518c_sub_8005518c.s}
+  - {start: 0x80018cc4, end: 0x80018f4c, source: asm/hand_written/80018cc4_sub_80018cc4.s}
+  - {start: 0x80043284, end: 0x80043500, source: asm/hand_written/80043284_sub_80043284.s}
+  - {start: 0x80049c30, end: 0x80049e88, source: asm/hand_written/80049c30_sub_80049c30.s}
+  - {start: 0x800370c8, end: 0x80037320, source: asm/hand_written/800370c8_sub_800370c8.s}
+  - {start: 0x80036e70, end: 0x800370c8, source: asm/hand_written/80036e70_sub_80036e70.s}
+  - {start: 0x80063778, end: 0x800639cc, source: asm/hand_written/80063778_SetDrawEnv2.s}
+  - {start: 0x80019ce8, end: 0x80019f3c, source: asm/hand_written/80019ce8_sub_80019ce8.s}
+  - {start: 0x800292dc, end: 0x80029508, source: asm/hand_written/800292dc_sub_800292dc.s}
+  - {start: 0x80068414, end: 0x80068634, source: asm/hand_written/80068414__SsSndTempo.s}
+  - {start: 0x8003d404, end: 0x8003d620, source: asm/hand_written/8003d404_sub_8003d404.s}
+  - {start: 0x80026858, end: 0x80026a68, source: asm/hand_written/80026858_sub_80026858.s}
+  - {start: 0x8006caa4, end: 0x8006ccac, source: asm/hand_written/8006caa4__SpuSetAnyVoice.s}
+  - {start: 0x80050ee8, end: 0x800510f0, source: asm/hand_written/80050ee8_sub_80050ee8.s}
+  - {start: 0x8004fa40, end: 0x8004fc3c, source: asm/hand_written/8004fa40_main_shell_state_machine.s}
+  - {start: 0x80030d64, end: 0x80030f60, source: asm/hand_written/80030d64_sub_80030d64.s}
+  - {start: 0x80026390, end: 0x80026588, source: asm/hand_written/80026390_sub_80026390.s}
+  - {start: 0x8006f054, end: 0x8006f240, source: asm/hand_written/8006f054_CD_init.s}
+  - {start: 0x80065648, end: 0x80065830, source: asm/hand_written/80065648_trapIntr.s}
+  - {start: 0x800320bc, end: 0x800322a0, source: asm/hand_written/800320bc_sub_800320bc.s}
+  - {start: 0x80055db0, end: 0x80055f8c, source: src/main/80055db0_sub_80055db0.c}
+  - {start: 0x80014504, end: 0x800146e0, source: asm/hand_written/80014504_sub_80014504.s}
+  - {start: 0x8004aa34, end: 0x8004abf4, source: asm/hand_written/8004aa34_sub_8004aa34.s}
+  - {start: 0x80031efc, end: 0x800320bc, source: asm/hand_written/80031efc_sub_80031efc.s}
+  - {start: 0x80071724, end: 0x800718e0, source: asm/hand_written/80071724_dma_execute.s}
+  - {start: 0x8006babc, end: 0x8006bc78, source: asm/hand_written/8006babc_sub_8006babc.s}
+  - {start: 0x80054ad4, end: 0x80054c90, source: asm/hand_written/80054ad4_sub_80054ad4.s}
+  - {start: 0x8005d924, end: 0x8005dad0, source: asm/hand_written/8005d924_sub_8005d924.s}
+  - {start: 0x80057258, end: 0x80057404, source: asm/hand_written/80057258_sub_80057258.s}
+  - {start: 0x80019f3c, end: 0x8001a0e4, source: asm/hand_written/80019f3c_sub_80019f3c.s}
+  - {start: 0x80049e88, end: 0x8004a02c, source: asm/hand_written/80049e88_sub_80049e88.s}
+  - {start: 0x800661ec, end: 0x80066388, source: asm/hand_written/800661ec_sub_800661ec.s}
+  - {start: 0x80067fb0, end: 0x80068134, source: asm/hand_written/80067fb0_sub_80067fb0.s}
+  - {start: 0x8006213c, end: 0x800622c0, source: asm/hand_written/8006213c_ResetGraph.s}
+  - {start: 0x80060ae4, end: 0x80060c64, source: asm/hand_written/80060ae4_atan2_heading.s}
+  - {start: 0x80065c74, end: 0x80065df0, source: asm/hand_written/80065c74_sub_80065c74.s}
+  - {start: 0x8004a2b0, end: 0x8004a42c, source: asm/hand_written/8004a2b0_sub_8004a2b0.s}
+  - {start: 0x8004682c, end: 0x8004699c, source: asm/hand_written/8004682c_sub_8004682c.s}
+  - {start: 0x8006f240, end: 0x8006f3ac, source: asm/hand_written/8006f240_CD_datasync.s}
+  - {start: 0x80064f5c, end: 0x800650c8, source: asm/hand_written/80064f5c_get_alarm.s}
+  - {start: 0x8005921c, end: 0x80059384, source: asm/hand_written/8005921c_sub_8005921c.s}
+  - {start: 0x80073d80, end: 0x80073ee0, source: asm/hand_written/80073d80_sub_80073d80.s}
+  - {start: 0x80064c84, end: 0x80064de0, source: asm/hand_written/80064c84__reset.s}
+  - {start: 0x80042c70, end: 0x80042dcc, source: asm/hand_written/80042c70_sub_80042c70.s}
+  - {start: 0x8005bc64, end: 0x8005bdbc, source: asm/hand_written/8005bc64_sub_8005bc64.s}
+  - {start: 0x800689d0, end: 0x80068b24, source: asm/hand_written/800689d0_SsUtKeyOff.s}
+  - {start: 0x80065830, end: 0x80065984, source: asm/hand_written/80065830_setIntr.s}
+  - {start: 0x800461e0, end: 0x80046330, source: asm/hand_written/800461e0_sub_800461e0.s}
+  - {start: 0x80046618, end: 0x80046764, source: asm/hand_written/80046618_sub_80046618.s}
+  - {start: 0x80064de0, end: 0x80064f28, source: asm/hand_written/80064de0__sync.s}
+  - {start: 0x8006db4c, end: 0x8006dc90, source: asm/hand_written/8006db4c_CdControlB.s}
+  - {start: 0x80051358, end: 0x8005149c, source: asm/hand_written/80051358_sub_80051358.s}
+  - {start: 0x8004c32c, end: 0x8004c46c, source: asm/hand_written/8004c32c_sub_8004c32c.s}
+  - {start: 0x800577e4, end: 0x80057920, source: asm/hand_written/800577e4_sub_800577e4.s}
+  - {start: 0x8006d8e8, end: 0x8006da20, source: asm/hand_written/8006d8e8_CdControl.s}
+  - {start: 0x800651e0, end: 0x80065318, source: asm/hand_written/800651e0_sub_800651e0.s}
+  - {start: 0x80057c9c, end: 0x80057dcc, source: asm/hand_written/80057c9c_sub_80057c9c.s}
+  - {start: 0x800252b8, end: 0x800253e8, source: asm/hand_written/800252b8_sub_800252b8.s}
+  - {start: 0x8006da20, end: 0x8006db4c, source: asm/hand_written/8006da20_CdControlF.s}
+  - {start: 0x80038fc4, end: 0x800390f0, source: asm/hand_written/80038fc4_sub_80038fc4.s}
+  - {start: 0x80062668, end: 0x80062790, source: asm/hand_written/80062668_checkRECT.s}
+  - {start: 0x80050870, end: 0x80050994, source: asm/hand_written/80050870_sub_80050870.s}
+  - {start: 0x80057f4c, end: 0x8005806c, source: asm/hand_written/80057f4c_sub_80057f4c.s}
+  - {start: 0x8004c47c, end: 0x8004c59c, source: asm/hand_written/8004c47c_sub_8004c47c.s}
+  - {start: 0x8003f3b4, end: 0x8003f4d4, source: asm/hand_written/8003f3b4_sub_8003f3b4.s}
+  - {start: 0x80062d74, end: 0x80062e90, source: asm/hand_written/80062d74_DrawOTagEnv.s}
+  - {start: 0x8005d53c, end: 0x8005d654, source: asm/hand_written/8005d53c_sub_8005d53c.s}
+  - {start: 0x80061f7c, end: 0x80062090, source: asm/hand_written/80061f7c_DumpDrawEnv.s}
+  - {start: 0x80053640, end: 0x80053754, source: asm/hand_written/80053640_sub_80053640.s}
+  - {start: 0x80074424, end: 0x80074534, source: asm/hand_written/80074424_sub_80074424.s}
+  - {start: 0x800622c8, end: 0x800623d4, source: asm/hand_written/800622c8_sub_800622c8.s}
+  - {start: 0x80060484, end: 0x80060590, source: asm/hand_written/80060484_MulMatrix0.s}
+  - {start: 0x80055538, end: 0x80055644, source: src/main/80055538_scene_config_apply.c}
+  - {start: 0x80067210, end: 0x80067318, source: asm/hand_written/80067210__SsSeqPlay.s}
+  - {start: 0x80070698, end: 0x8007079c, source: asm/hand_written/80070698_CdRead.s}
+  - {start: 0x8006dd34, end: 0x8006de38, source: asm/hand_written/8006dd34_CdIntToPos.s}
+  - {start: 0x80062c70, end: 0x80062d74, source: asm/hand_written/80062c70_frame_render_driver.s}
+  - {start: 0x8006f3ac, end: 0x8006f4ac, source: asm/hand_written/8006f3ac_CD_getsector.s}
+  - {start: 0x80066388, end: 0x80066488, source: asm/hand_written/80066388_sub_80066388.s}
+  - {start: 0x80043184, end: 0x80043284, source: asm/hand_written/80043184_sub_80043184.s}
+  - {start: 0x8003eec8, end: 0x8003efc8, source: asm/hand_written/8003eec8_sub_8003eec8.s}
+  - {start: 0x8003e3e0, end: 0x8003e4e0, source: asm/hand_written/8003e3e0_sub_8003e3e0.s}
+  - {start: 0x800308cc, end: 0x800309cc, source: asm/hand_written/800308cc_sub_800308cc.s}
+  - {start: 0x80069d9c, end: 0x80069e98, source: asm/hand_written/80069d9c_note2pitch2.s}
+  - {start: 0x80068188, end: 0x80068284, source: asm/hand_written/80068188_SsSetSerialVol.s}
+  - {start: 0x800679b4, end: 0x80067ab0, source: asm/hand_written/800679b4__SsSndNextSep.s}
+  - {start: 0x800460e4, end: 0x800461e0, source: asm/hand_written/800460e4_sub_800460e4.s}
+  - {start: 0x8006b6a4, end: 0x8006b79c, source: asm/hand_written/8006b6a4__SpuInit.s}
+  - {start: 0x8001a0e4, end: 0x8001a1dc, source: asm/hand_written/8001a0e4_sub_8001a0e4.s}
+  - {start: 0x80073f48, end: 0x8007403c, source: asm/hand_written/80073f48_sub_80073f48.s}
+  - {start: 0x8006ef10, end: 0x8006f004, source: asm/hand_written/8006ef10_CD_initvol.s}
+  - {start: 0x80072534, end: 0x80072624, source: asm/hand_written/80072534_sub_80072534.s}
+  - {start: 0x8006f4ac, end: 0x8006f59c, source: asm/hand_written/8006f4ac_CD_getsector2.s}
+  - {start: 0x80057b84, end: 0x80057c74, source: src/main/80057b84_vm_native_aimed_drop_spawn.c}
+  - {start: 0x80057a94, end: 0x80057b84, source: src/main/80057a94_spawn_drop_burst_effect.c}
+  - {start: 0x80060d04, end: 0x80060df0, source: asm/hand_written/80060d04_LoadTPage.s}
+  - {start: 0x80030c78, end: 0x80030d64, source: src/main/80030c78_vector_remove_normal_component.c}
+  - {start: 0x80030aac, end: 0x80030b98, source: src/main/80030aac_vec3_reject_normal_component.c}
+  - {start: 0x80067b10, end: 0x80067bf8, source: src/main/80067b10__SsInit.c}
+  - {start: 0x80063d88, end: 0x80063e70, source: src/main/80063d88__otc.c}
+  - {start: 0x80069080, end: 0x80069164, source: asm/hand_written/80069080_SsUtSetVVol.s}
+  - {start: 0x8006039c, end: 0x80060480, source: asm/hand_written/8006039c_MatrixNormal.s}
+  - {start: 0x80074798, end: 0x80074878, source: asm/hand_written/80074798_sub_80074798.s}
+  - {start: 0x8006ee30, end: 0x8006ef10, source: asm/hand_written/8006ee30_CD_flush.s}
+  - {start: 0x80046538, end: 0x80046618, source: asm/hand_written/80046538_sub_80046538.s}
+  - {start: 0x80030b98, end: 0x80030c78, source: src/main/80030b98_vec3_project_point_onto_plane.c}
+  - {start: 0x800309cc, end: 0x80030aac, source: src/main/800309cc_vector_project_onto_plane.c}
+  - {start: 0x8006f5b4, end: 0x8006f690, source: asm/hand_written/8006f5b4_sub_8006f5b4.s}
+  - {start: 0x8006556c, end: 0x80065648, source: asm/hand_written/8006556c_startIntr.s}
+  - {start: 0x800650c8, end: 0x800651a4, source: asm/hand_written/800650c8__version.s}
+  - {start: 0x80057dd4, end: 0x80057eac, source: asm/hand_written/80057dd4_sub_80057dd4.s}
+  - {start: 0x80057704, end: 0x800577dc, source: asm/hand_written/80057704_sub_80057704.s}
+  - {start: 0x80072eb8, end: 0x80072f8c, source: asm/hand_written/80072eb8_sub_80072eb8.s}
+  - {start: 0x80039780, end: 0x80039854, source: src/main/80039780_vram_clear_framebuffers.c}
+  - {start: 0x8006d218, end: 0x8006d2e8, source: asm/hand_written/8006d218_SpuRGetAllKeysStatus.s}
+  - {start: 0x8006a3a0, end: 0x8006a470, source: asm/hand_written/8006a3a0__SsVmKeyOffNow.s}
+  - {start: 0x8005f5b8, end: 0x8005f688, source: asm/hand_written/8005f5b8_sub_8005f5b8.s}
+  - {start: 0x80049b60, end: 0x80049c30, source: asm/hand_written/80049b60_sub_80049b60.s}
+  - {start: 0x8007079c, end: 0x80070868, source: asm/hand_written/8007079c_CdReadSync.s}
+  - {start: 0x80063b2c, end: 0x80063bf8, source: asm/hand_written/80063b2c_get_ce.s}
+  - {start: 0x80063a60, end: 0x80063b2c, source: asm/hand_written/80063a60_get_cs.s}
+  - {start: 0x8005f4ec, end: 0x8005f5b8, source: asm/hand_written/8005f4ec_sub_8005f4ec.s}
+  - {start: 0x800734b0, end: 0x80073578, source: asm/hand_written/800734b0_sub_800734b0.s}
+  - {start: 0x800502c4, end: 0x8005038c, source: asm/hand_written/800502c4_sub_800502c4.s}
+  - {start: 0x80045978, end: 0x80045a40, source: asm/hand_written/80045978_sub_80045978.s}
+  - {start: 0x80042dcc, end: 0x80042e94, source: src/main/80042dcc_get_current_actor_xyz.c}
+  - {start: 0x80070c9c, end: 0x80070d60, source: asm/hand_written/80070c9c_StGetNext.s}
+  - {start: 0x8006afe8, end: 0x8006b0ac, source: asm/hand_written/8006afe8__SsVmVSetUp.s}
+  - {start: 0x80069cd8, end: 0x80069d9c, source: asm/hand_written/80069cd8_note2pitch.s}
+  - {start: 0x80062988, end: 0x80062a4c, source: asm/hand_written/80062988_MoveImage.s}
+  - {start: 0x80051294, end: 0x80051358, source: asm/hand_written/80051294_sub_80051294.s}
+  - {start: 0x8006b59c, end: 0x8006b65c, source: asm/hand_written/8006b59c_SsVabTransBody.s}
+  - {start: 0x80057920, end: 0x800579e0, source: asm/hand_written/80057920_sub_80057920.s}
+  - {start: 0x80055478, end: 0x80055538, source: src/main/80055478_serialize_savegame_buffer.c}
+  - {start: 0x80053754, end: 0x80053814, source: asm/hand_written/80053754_sub_80053754.s}
+  - {start: 0x8007404c, end: 0x80074108, source: asm/hand_written/8007404c_sub_8007404c.s}
+  - {start: 0x80070ba8, end: 0x80070c60, source: asm/hand_written/80070ba8_StFreeRing.s}
+  - {start: 0x8006bc80, end: 0x8006bd38, source: asm/hand_written/8006bc80_sub_8006bc80.s}
+  - {start: 0x80068284, end: 0x8006833c, source: asm/hand_written/80068284_SsSetTickMode.s}
+  - {start: 0x80060ec0, end: 0x80060f78, source: src/main/80060ec0_SetDefDrawEnv.c}
+  - {start: 0x800457e4, end: 0x8004589c, source: asm/hand_written/800457e4_sub_800457e4.s}
+  - {start: 0x8001478c, end: 0x80014844, source: asm/hand_written/8001478c_sub_8001478c.s}
+  - {start: 0x800579e0, end: 0x80057a94, source: src/main/800579e0_spawn_objects_radial_ring.c}
+  - {start: 0x8004c278, end: 0x8004c32c, source: asm/hand_written/8004c278_sub_8004c278.s}
+  - {start: 0x80067904, end: 0x800679b4, source: asm/hand_written/80067904__SsReadDeltaValue.s}
+  - {start: 0x80063cc0, end: 0x80063d70, source: asm/hand_written/80063cc0_get_dx.s}
+  - {start: 0x80062a54, end: 0x80062b04, source: asm/hand_written/80062a54_sub_80062a54.s}
+  - {start: 0x800607a4, end: 0x80060854, source: asm/hand_written/800607a4_RotAverageNclip4.s}
+  - {start: 0x80065984, end: 0x80065a30, source: asm/hand_written/80065984_stopIntr.s}
+  - {start: 0x80062090, end: 0x8006213c, source: asm/hand_written/80062090_DumpDispEnv.s}
+  - {start: 0x80072f8c, end: 0x80073034, source: src/main/80072f8c_sub_80072f8c.c}
+  - {start: 0x8006fc5c, end: 0x8006fd04, source: asm/hand_written/8006fc5c_CD_searchdir.s}
+  - {start: 0x80065df0, end: 0x80065e98, source: asm/hand_written/80065df0_setIntrDMA.s}
+  - {start: 0x8006c1ac, end: 0x8006c250, source: asm/hand_written/8006c1ac__spu_FsetRXXa.s}
+  - {start: 0x8006bd40, end: 0x8006bde4, source: asm/hand_written/8006bd40_sub_8006bd40.s}
+  - {start: 0x80062440, end: 0x800624e4, source: asm/hand_written/80062440_sub_80062440.s}
+  - {start: 0x80060ff4, end: 0x80061098, source: src/main/80060ff4_FntLoad.c}
+  - {start: 0x8005b440, end: 0x8005b4e4, source: asm/hand_written/8005b440_sub_8005b440.s}
+  - {start: 0x800748d0, end: 0x80074970, source: asm/hand_written/800748d0_sub_800748d0.s}
+  - {start: 0x8006cda0, end: 0x8006ce40, source: asm/hand_written/8006cda0_sub_8006cda0.s}
+  - {start: 0x800705fc, end: 0x80070698, source: src/main/800705fc_CdReadBreak.c}
+  - {start: 0x80067148, end: 0x800671e4, source: src/main/80067148__SsSndPause.c}
+  - {start: 0x8006607c, end: 0x80066118, source: asm/hand_written/8006607c_sub_8006607c.s}
+  - {start: 0x80065318, end: 0x800653b4, source: asm/hand_written/80065318_v_wait.s}
+  - {start: 0x80062824, end: 0x800628c0, source: src/main/80062824_ClearImage2.c}
+  - {start: 0x80062560, end: 0x800625fc, source: asm/hand_written/80062560_SetDispMask.s}
+  - {start: 0x80058584, end: 0x80058620, source: asm/hand_written/80058584_sub_80058584.s}
+  - {start: 0x80073578, end: 0x80073610, source: asm/hand_written/80073578_sub_80073578.s}
+  - {start: 0x8006d61c, end: 0x8006d6b4, source: src/main/8006d61c_CdInit.c}
+  - {start: 0x80070354, end: 0x800703e8, source: asm/hand_written/80070354_sub_80070354.s}
+  - {start: 0x8006af54, end: 0x8006afe8, source: asm/hand_written/8006af54_sub_8006af54.s}
+  - {start: 0x80062790, end: 0x80062824, source: src/main/80062790_ClearImage.c}
+  - {start: 0x80072aac, end: 0x80072b3c, source: asm/hand_written/80072aac_sub_80072aac.s}
+  - {start: 0x80066558, end: 0x800665e8, source: asm/hand_written/80066558_sub_80066558.s}
+  - {start: 0x800664c8, end: 0x80066558, source: asm/hand_written/800664c8_sub_800664c8.s}
+  - {start: 0x80058620, end: 0x800586b0, source: src/main/80058620_spawn_drop_burst_type4.c}
+  - {start: 0x800583f4, end: 0x80058484, source: src/main/800583f4_mine_detonation_effect.c}
+  - {start: 0x800582e8, end: 0x80058378, source: src/main/800582e8_enemy_update_dea_spawn_drop_glue.c}
+  - {start: 0x80058258, end: 0x800582e8, source: src/main/80058258_spawn_drop_burst_type12.c}
+  - {start: 0x800581c8, end: 0x80058258, source: src/main/800581c8_spawn_drop_burst.c}
+  - {start: 0x80057eb4, end: 0x80057f44, source: asm/hand_written/80057eb4_sub_80057eb4.s}
+  - {start: 0x8004db7c, end: 0x8004dc0c, source: asm/hand_written/8004db7c_sub_8004db7c.s}
+  - {start: 0x8003e064, end: 0x8003e0f4, source: asm/hand_written/8003e064_sub_8003e064.s}
+  - {start: 0x8007393c, end: 0x800739c8, source: asm/hand_written/8007393c_sub_8007393c.s}
+  - {start: 0x80068ff4, end: 0x80069080, source: asm/hand_written/80068ff4_SsUtGetVVol.s}
+  - {start: 0x800601e4, end: 0x80060270, source: asm/hand_written/800601e4_InvSquareRoot.s}
+  - {start: 0x800584f8, end: 0x80058584, source: src/main/800584f8_spawn_drop_burst_5_type79.c}
+  - {start: 0x80045cd0, end: 0x80045d5c, source: asm/hand_written/80045cd0_sub_80045cd0.s}
+  - {start: 0x80070b20, end: 0x80070ba8, source: src/main/80070b20_StSetStream.c}
+  - {start: 0x8006eda8, end: 0x8006ee30, source: src/main/8006eda8_CD_vol.c}
+  - {start: 0x80065a30, end: 0x80065ab8, source: asm/hand_written/80065a30_restartIntr.s}
+  - {start: 0x8003e83c, end: 0x8003e8c4, source: src/main/8003e83c_vsync_wait_glue.c, small_data: true}
+  - {start: 0x8003df98, end: 0x8003e020, source: src/main/8003df98_gpu_timing_marker_append.c, small_data: true}
+  - {start: 0x80072b8c, end: 0x80072c10, source: src/main/80072b8c__padSendAtLoadInfo.c}
+  - {start: 0x800709ac, end: 0x80070a30, source: src/main/800709ac_sub_800709ac.c}
+  - {start: 0x8006b0ac, end: 0x8006b130, source: src/main/8006b0ac_SsVabClose.c}
+  - {start: 0x80063c3c, end: 0x80063cc0, source: asm/hand_written/80063c3c_get_tw.s}
+  - {start: 0x80063414, end: 0x80063498, source: src/main/80063414_SetDrawArea.c}
+  - {start: 0x8006c07c, end: 0x8006c0fc, source: asm/hand_written/8006c07c_sub_8006c07c.s}
+  - {start: 0x80050d98, end: 0x80050e18, source: src/main/80050d98_sfx_voice_manager_glue.c, small_data: true}
+  - {start: 0x8004c818, end: 0x8004c898, source: asm/hand_written/8004c818_sub_8004c818.s}
+  - {start: 0x8006ca04, end: 0x8006ca80, source: asm/hand_written/8006ca04_SpuFree.s}
+  - {start: 0x8005f6b4, end: 0x8005f730, source: asm/hand_written/8005f6b4_stup1.s}
+  - {start: 0x80058378, end: 0x800583f4, source: src/main/80058378_spawn_drop_burst_16.c}
+  - {start: 0x80050d1c, end: 0x80050d98, source: src/main/80050d1c_sfx_voice_manager_glue_0d1c.c, small_data: true}
+  - {start: 0x8004a234, end: 0x8004a2b0, source: src/main/8004a234_actor_turn_toward_player.c}
+  - {start: 0x80068eb8, end: 0x80068f30, source: src/main/80068eb8_SsUtKeyOffV.c}
+  - {start: 0x80066650, end: 0x800666c8, source: asm/hand_written/80066650_sub_80066650.s}
+  - {start: 0x800606a4, end: 0x8006071c, source: asm/hand_written/800606a4_RotTransPers4.s}
+  - {start: 0x80046cac, end: 0x80046d24, source: src/main/80046cac_resident_level_t_seed_plant_dan_glue.c}
+  - {start: 0x80046764, end: 0x800467dc, source: src/main/80046764_cd_controlf_shim.c, small_data: true}
+  - {start: 0x8006b7a4, end: 0x8006b818, source: src/main/8006b7a4_event_open_enable.c}
+  - {start: 0x80058484, end: 0x800584f8, source: src/main/80058484_spawn_drop_burst_sound5.c}
+  - {start: 0x80058154, end: 0x800581c8, source: src/main/80058154_spawn_drop_burst_type76.c}
+  - {start: 0x800580e0, end: 0x80058154, source: src/main/800580e0_spawn_drop_burst_type2.c}
+  - {start: 0x8005806c, end: 0x800580e0, source: src/main/8005806c_spawn_drop_burst_five.c}
+  - {start: 0x8004a02c, end: 0x8004a0a0, source: src/main/8004a02c_actor_event_sound_trigger.c}
+  - {start: 0x80066834, end: 0x800668a4, source: asm/hand_written/80066834_sub_80066834.s}
+  - {start: 0x8005038c, end: 0x800503fc, source: src/main/8005038c_scene_setup_and_load.c}
+  - {start: 0x80029508, end: 0x80029578, source: src/main/80029508_pass2_object_transform_update.c, small_data: true}
+  - {start: 0x8006ffb0, end: 0x8007001c, source: src/main/8006ffb0_cd_read.c}
+  - {start: 0x8006d76c, end: 0x8006d7d8, source: asm/hand_written/8006d76c_CdReset.s}
+  - {start: 0x80068f88, end: 0x80068ff4, source: src/main/80068f88_SsUtSetDetVVol.c}
+  - {start: 0x80061ed8, end: 0x80061f44, source: src/main/80061ed8_SetDrawLoad.c}
+  - {start: 0x80052508, end: 0x80052574, source: src/main/80052508_seed_plant_dande_seed_plant_min_glue.c}
+  - {start: 0x80073ee0, end: 0x80073f48, source: asm/hand_written/80073ee0_sub_80073ee0.s}
+  - {start: 0x8007342c, end: 0x80073494, source: asm/hand_written/8007342c_sub_8007342c.s}
+  - {start: 0x800702ec, end: 0x80070354, source: asm/hand_written/800702ec_cb_data.s}
+  - {start: 0x8006c0fc, end: 0x8006c164, source: asm/hand_written/8006c0fc__spu_Fr.s}
+  - {start: 0x800668ac, end: 0x80066914, source: asm/hand_written/800668ac_sub_800668ac.s}
+  - {start: 0x80066700, end: 0x80066768, source: src/main/80066700_pad_reset_wait_delay.c}
+  - {start: 0x80060e58, end: 0x80060ec0, source: src/main/80060e58_LoadClut2.c}
+  - {start: 0x80060df0, end: 0x80060e58, source: src/main/80060df0_LoadClut.c}
+  - {start: 0x8005ec1c, end: 0x8005ec84, source: src/main/8005ec1c_angle_delta_wrap.c}
+  - {start: 0x8003f2f0, end: 0x8003f358, source: asm/hand_written/8003f2f0_sub_8003f2f0.s}
+  - {start: 0x8006ae58, end: 0x8006aebc, source: src/main/8006ae58__SsVmGetSeqVol.c}
+  - {start: 0x80062924, end: 0x80062988, source: src/main/80062924_StoreImage.c}
+  - {start: 0x800623d4, end: 0x80062438, source: src/main/800623d4_SetGraphDebug.c}
+  - {start: 0x80055d4c, end: 0x80055db0, source: asm/hand_written/80055d4c_sub_80055d4c.s}
+  - {start: 0x80055414, end: 0x80055478, source: src/main/80055414_scene_flow_state_table_init.c}
+  - {start: 0x8003e8c4, end: 0x8003e928, source: src/main/8003e8c4_vsync_wait_glue_e8c4.c, small_data: true}
+  - {start: 0x80038e48, end: 0x80038eac, source: asm/hand_written/80038e48_sub_80038e48.s}
+  - {start: 0x80017d50, end: 0x80017db4, source: asm/hand_written/80017d50_sub_80017d50.s}
+  - {start: 0x80073664, end: 0x800736c4, source: src/main/80073664_pad_mode_check.c}
+  - {start: 0x8007094c, end: 0x800709ac, source: src/main/8007094c_StClearRing.c}
+  - {start: 0x8006ccac, end: 0x8006cd0c, source: src/main/8006ccac_SpuRead.c}
+  - {start: 0x8006c28c, end: 0x8006c2ec, source: asm/hand_written/8006c28c__spu_FsetPCR.s}
+  - {start: 0x80067ab0, end: 0x80067b10, source: asm/hand_written/80067ab0__SsSndReplay.s}
+  - {start: 0x80062b9c, end: 0x80062bfc, source: src/main/80062b9c_DrawPrim.c}
+  - {start: 0x80061e78, end: 0x80061ed8, source: asm/hand_written/80061e78_SetDrawMove.s}
+  - {start: 0x80061a9c, end: 0x80061afc, source: src/main/80061a9c_DumpTPage.c}
+  - {start: 0x8004c710, end: 0x8004c76c, source: asm/hand_written/8004c710_sub_8004c710.s}
+  - {start: 0x8003f358, end: 0x8003f3b4, source: asm/hand_written/8003f358_sub_8003f358.s}
+  - {start: 0x80039bd8, end: 0x80039c34, source: src/main/80039bd8_pad_rumble_update.c}
+  - {start: 0x80027c60, end: 0x80027cbc, source: src/main/80027c60_gp_flags_and_buffers_clear.c, small_data: true}
+  - {start: 0x8006cd0c, end: 0x8006cd64, source: asm/hand_written/8006cd0c_SpuSetTransferStartAddr.s}
+  - {start: 0x80068f30, end: 0x80068f88, source: src/main/80068f30_SsUtGetDetVVol.c}
+  - {start: 0x80065af4, end: 0x80065b4c, source: src/main/80065af4_startIntrVSync.c}
+  - {start: 0x80063508, end: 0x80063560, source: src/main/80063508_SetDrawMode.c}
+  - {start: 0x8003d620, end: 0x8003d7b0, source: asm/hand_written/8003d620_sub_8003d620.s}
+  - {start: 0x8002fc90, end: 0x8002fce8, source: src/main/8002fc90_gpu_gt_prim_list_advance.c}
+  - {start: 0x80073610, end: 0x80073664, source: asm/hand_written/80073610_sub_80073610.s}
+  - {start: 0x8006250c, end: 0x80062560, source: src/main/8006250c_handler_register_8007fbd4.c}
+  - {start: 0x80050e18, end: 0x80050e6c, source: src/main/80050e18_sfx_voice_manager_glue_0e18.c, small_data: true}
+  - {start: 0x8004a0a0, end: 0x8004a0f4, source: asm/hand_written/8004a0a0_sub_8004a0a0.s}
+  - {start: 0x80045aac, end: 0x80045b00, source: src/main/80045aac_cd_audio_mix_control_5aac.c}
+  - {start: 0x8004574c, end: 0x800457a0, source: asm/hand_written/8004574c_sub_8004574c.s}
+  - {start: 0x8006f004, end: 0x8006f054, source: src/main/8006f004_CD_initintr.c}
+  - {start: 0x80067c28, end: 0x80067c78, source: src/main/80067c28_SsSetMVol.c}
+  - {start: 0x80065c1c, end: 0x80065c6c, source: asm/hand_written/80065c1c_startIntrDMA.s}
+  - {start: 0x800645c8, end: 0x80064618, source: asm/hand_written/800645c8__cwb.s}
+  - {start: 0x800524b8, end: 0x80052508, source: src/main/800524b8_xz_distance_within_radius_test.c}
+  - {start: 0x80043018, end: 0x80043068, source: asm/hand_written/80043018_sub_80043018.s}
+  - {start: 0x80041a74, end: 0x80041ac4, source: src/main/80041a74_player_vertical_resident_level_glue.c}
+  - {start: 0x80039a20, end: 0x80039a70, source: src/main/80039a20_graphics_reset_teardown.c}
+  - {start: 0x80071940, end: 0x8007198c, source: asm/hand_written/80071940_sub_80071940.s}
+  - {start: 0x8005d8d8, end: 0x8005d924, source: src/main/8005d8d8_actor_index_conditional_store.c}
+  - {start: 0x800467dc, end: 0x80046828, source: src/main/800467dc_cd_controlb_shim.c, small_data: true}
+  - {start: 0x80073770, end: 0x800737b8, source: asm/hand_written/80073770_sub_80073770.s}
+  - {start: 0x8006af04, end: 0x8006af4c, source: asm/hand_written/8006af04__SsVmGetSeqRVol.s}
+  - {start: 0x8006aebc, end: 0x8006af04, source: asm/hand_written/8006aebc__SsVmGetSeqLVol.s}
+  - {start: 0x80067f68, end: 0x80067fb0, source: src/main/80067f68_ss_seq_tick_every_other_dispatch.c}
+  - {start: 0x80045704, end: 0x8004574c, source: src/main/80045704_string_to_upper.c}
+  - {start: 0x80063498, end: 0x800634dc, source: src/main/80063498_SetDrawOffset.c}
+  - {start: 0x8003f5b8, end: 0x8003f5fc, source: src/main/8003f5b8_load_memory_bin.c, small_data: true}
+  - {start: 0x80066768, end: 0x800667a8, source: asm/hand_written/80066768_sub_80066768.s}
+  - {start: 0x80061afc, end: 0x80061b3c, source: src/main/80061afc_DumpClut.c}
+  - {start: 0x80060fb4, end: 0x80060ff4, source: src/main/80060fb4_SetDumpFnt.c}
+  - {start: 0x800507f8, end: 0x80050838, source: src/main/800507f8_cd_audio_volume_apply.c}
+  - {start: 0x8004c68c, end: 0x8004c6cc, source: asm/hand_written/8004c68c_sub_8004c68c.s}
+  - {start: 0x8004c238, end: 0x8004c278, source: asm/hand_written/8004c238_sub_8004c238.s}
+  - {start: 0x80044ce8, end: 0x80044d28, source: src/main/80044ce8_cd_mix_shim.c}
+  - {start: 0x80043144, end: 0x80043184, source: src/main/80043144_find_free_slot_16entry.c}
+  - {start: 0x80038f84, end: 0x80038fc4, source: src/main/80038f84_checkpoint_player_state_read.c}
+  - {start: 0x8001474c, end: 0x8001478c, source: asm/hand_written/8001474c_sub_8001474c.s}
+  - {start: 0x80070c60, end: 0x80070c9c, source: asm/hand_written/80070c60_init_ring_status.s}
+  - {start: 0x800633d8, end: 0x80063414, source: src/main/800633d8_SetTexWindow.c}
+  - {start: 0x80050ea8, end: 0x80050ee4, source: src/main/80050ea8_pickup_target_reset_on_finalize.c}
+  - {start: 0x8004a144, end: 0x8004a180, source: src/main/8004a144_actor_sound40_on_low_state.c}
+  - {start: 0x8003cc1c, end: 0x8003cc58, source: src/main/8003cc1c_level_texture_stage_reset.c}
+  - {start: 0x80038eac, end: 0x80038ee8, source: src/main/80038eac_object_slot_set_field_6.c}
+  - {start: 0x80017d14, end: 0x80017d50, source: asm/hand_written/80017d14_sub_80017d14.s}
+  - {start: 0x80074384, end: 0x800743bc, source: asm/hand_written/80074384_sub_80074384.s}
+  - {start: 0x80072e80, end: 0x80072eb8, source: src/main/80072e80__padGetActSize.c}
+  - {start: 0x800666c8, end: 0x80066700, source: src/main/800666c8_interrupt_handler_dequeue.c}
+  - {start: 0x80066618, end: 0x80066650, source: src/main/80066618_pad_subsystem_shutdown.c}
+  - {start: 0x80066118, end: 0x80066150, source: asm/hand_written/80066118_sub_80066118.s}
+  - {start: 0x80063370, end: 0x800633a8, source: src/main/80063370_GetDispEnv.c}
+  - {start: 0x80062e90, end: 0x80062ec8, source: src/main/80062e90_GetDrawEnv.c}
+  - {start: 0x80057404, end: 0x8005743c, source: src/main/80057404_clear_gameplay_pool_on_reset.c, small_data: true}
+  - {start: 0x8004c59c, end: 0x8004c5d4, source: asm/hand_written/8004c59c_sub_8004c59c.s}
+  - {start: 0x8003a2dc, end: 0x8003a314, source: src/main/8003a2dc_controller_input_latch_update.c}
+  - {start: 0x80038ee8, end: 0x80038f20, source: src/main/80038ee8_object_slot_clear_field.c}
+  - {start: 0x800743f0, end: 0x80074424, source: asm/hand_written/800743f0_sub_800743f0.s}
+  - {start: 0x800716f0, end: 0x80071724, source: src/main/800716f0_mem2mem.c}
+  - {start: 0x8006d370, end: 0x8006d3a4, source: asm/hand_written/8006d370_SpuSetVoicePitch.s}
+  - {start: 0x800661b4, end: 0x800661e8, source: asm/hand_written/800661b4_sub_800661b4.s}
+  - {start: 0x80066180, end: 0x800661b4, source: asm/hand_written/80066180_sub_80066180.s}
+  - {start: 0x80050e6c, end: 0x80050ea0, source: src/main/80050e6c_sfx_dispatch_glue.c}
+  - {start: 0x8004c7d4, end: 0x8004c808, source: asm/hand_written/8004c7d4_sub_8004c7d4.s}
+  - {start: 0x8003e020, end: 0x8003e054, source: src/main/8003e020_gpu_timing_markers_begin.c, small_data: true}
+  - {start: 0x800390f0, end: 0x80039124, source: src/main/800390f0_gte_mesh_assembler_counted.c, small_data: true}
+  - {start: 0x8001881c, end: 0x80018850, source: asm/hand_written/8001881c_sub_8001881c.s}
+  - {start: 0x8006d3a4, end: 0x8006d3d4, source: src/main/8006d3a4_StSetRing.c}
+  - {start: 0x8006b190, end: 0x8006b1c0, source: src/main/8006b190_SsVabFakeHead.c}
+  - {start: 0x8006b160, end: 0x8006b190, source: src/main/8006b160_SsVabOpenHeadSticky.c}
+  - {start: 0x80067bf8, end: 0x80067c28, source: src/main/80067bf8_sound_lib_init_sequence.c}
+  - {start: 0x800665e8, end: 0x80066618, source: src/main/800665e8_pad_subsystem_init_65e8.c, externs: {sub_8006680c: 0x8006680c}}
+  - {start: 0x80066150, end: 0x80066180, source: src/main/80066150_StartRCnt.c}
+  - {start: 0x80060cd4, end: 0x80060d04, source: asm/hand_written/80060cd4_sub_80060cd4.s}
+  - {start: 0x8004c6cc, end: 0x8004c6fc, source: asm/hand_written/8004c6cc_sub_8004c6cc.s}
+  - {start: 0x8004c10c, end: 0x8004c13c, source: src/main/8004c10c_actor_set_anim_sequence.c}
+  - {start: 0x8003f4d4, end: 0x8003f504, source: src/main/8003f4d4_set_draw_env_offset.c, small_data: true}
+  - {start: 0x80014ad4, end: 0x80014b04, source: asm/hand_written/80014ad4_sub_80014ad4.s}
+  - {start: 0x80074878, end: 0x800748a4, source: asm/hand_written/80074878_sub_80074878.s}
+  - {start: 0x80071eb8, end: 0x80071ee4, source: asm/hand_written/80071eb8_sub_80071eb8.s}
+  - {start: 0x8006ce40, end: 0x8006ce6c, source: src/main/8006ce40_ss_vab_set_transfer_mode.c}
+  - {start: 0x8006815c, end: 0x80068188, source: src/main/8006815c_seq_state_init_wrapper_two_arg.c}
+  - {start: 0x800671e4, end: 0x80067210, source: src/main/800671e4__SsSndPlay.c}
+  - {start: 0x80043118, end: 0x80043144, source: src/main/80043118_sound_vab_close.c, small_data: true}
+  - {start: 0x80072b3c, end: 0x80072b64, source: asm/hand_written/80072b3c_sub_80072b3c.s}
+  - {start: 0x8006d704, end: 0x8006d72c, source: src/main/8006d704_def_cbread.c}
+  - {start: 0x8006d6dc, end: 0x8006d704, source: src/main/8006d6dc_def_cbready.c}
+  - {start: 0x8006d6b4, end: 0x8006d6dc, source: src/main/8006d6b4_def_cbsync.c}
+  - {start: 0x8006b65c, end: 0x8006b684, source: src/main/8006b65c_SsVabTransCompleted.c}
+  - {start: 0x80068134, end: 0x8006815c, source: src/main/80068134_seq_state_init_wrapper_one_arg.c}
+  - {start: 0x80065500, end: 0x80065528, source: src/main/80065500_RestartCallback_dispatch_tail.c}
+  - {start: 0x800654d0, end: 0x800654f8, source: src/main/800654d0_StopCallback_dispatch_tail.c}
+  - {start: 0x800654a0, end: 0x800654c8, source: src/main/800654a0_VSyncCallbacks_dispatch_tail.c}
+  - {start: 0x8006543c, end: 0x80065464, source: src/main/8006543c_exec_queue_kick.c}
+  - {start: 0x8006540c, end: 0x80065434, source: src/main/8006540c_InterruptCallback_dispatch_tail.c}
+  - {start: 0x800653dc, end: 0x80065404, source: src/main/800653dc_ResetCallback_dispatch_tail.c}
+  - {start: 0x800633b0, end: 0x800633d8, source: src/main/800633b0_call_vptr56_sign.c}
+  - {start: 0x80057c74, end: 0x80057c9c, source: src/main/80057c74_actor_clear_motion_set_flag.c}
+  - {start: 0x8004c664, end: 0x8004c68c, source: asm/hand_written/8004c664_sub_8004c664.s}
+  - {start: 0x8004a20c, end: 0x8004a234, source: src/main/8004a20c_play_object_sound_42.c}
+  - {start: 0x8004a11c, end: 0x8004a144, source: src/main/8004a11c_object_play_sound_125.c}
+  - {start: 0x80017cdc, end: 0x80017d04, source: asm/hand_written/80017cdc_sub_80017cdc.s}
+  - {start: 0x80014724, end: 0x8001474c, source: asm/hand_written/80014724_sub_80014724.s}
+  - {start: 0x8006c3bc, end: 0x8006c3e0, source: src/main/8006c3bc__SpuDataCallback.c}
+  - {start: 0x800683f0, end: 0x80068414, source: src/main/800683f0_sound_state_set_if_changed.c}
+  - {start: 0x80064694, end: 0x800646b8, source: src/main/80064694__addque.c}
+  - {start: 0x80060674, end: 0x80060698, source: asm/hand_written/80060674_sub_80060674.s}
+  - {start: 0x80060594, end: 0x800605b8, source: asm/hand_written/80060594_sub_80060594.s}
+  - {start: 0x8005f690, end: 0x8005f6b4, source: asm/hand_written/8005f690_entry0.s}
+  - {start: 0x8004c76c, end: 0x8004c790, source: asm/hand_written/8004c76c_sub_8004c76c.s}
+  - {start: 0x8003f5fc, end: 0x8003f620, source: src/main/8003f5fc_reset_visual_sprite_object_pool.c}
+  - {start: 0x800748b0, end: 0x800748d0, source: asm/hand_written/800748b0_sub_800748b0.s}
+  - {start: 0x800743bc, end: 0x800743dc, source: src/main/800743bc_pad_direct_port_to_info.c}
+  - {start: 0x80073738, end: 0x80073758, source: src/main/80073738__padCmdParaMode_G.c}
+  - {start: 0x80073718, end: 0x80073738, source: src/main/80073718__padCmdParaMode_F.c}
+  - {start: 0x800736f8, end: 0x80073718, source: src/main/800736f8__padCmdParaMode_len.c}
+  - {start: 0x800736c4, end: 0x800736e4, source: src/main/800736c4__padCmdParaMode.c}
+  - {start: 0x80071920, end: 0x80071940, source: src/main/80071920_PadStopCom.c}
+  - {start: 0x80071900, end: 0x80071920, source: src/main/80071900_PadStartCom.c}
+  - {start: 0x800718e0, end: 0x80071900, source: src/main/800718e0_PadChkVsync.c}
+  - {start: 0x80070d60, end: 0x80070d80, source: src/main/80070d60_stream_config_store.c}
+  - {start: 0x8007092c, end: 0x8007094c, source: src/main/8007092c_StCdInterrupt2.c}
+  - {start: 0x8006f95c, end: 0x8006f97c, source: src/main/8006f95c__cmp.c}
+  - {start: 0x8006dcd0, end: 0x8006dcf0, source: src/main/8006dcd0_CdGetSector2.c}
+  - {start: 0x8006d878, end: 0x8006d898, source: src/main/8006d878_CdSync.c}
+  - {start: 0x8006d7d8, end: 0x8006d7f8, source: src/main/8006d7d8_CdFlush.c}
+  - {start: 0x8006b684, end: 0x8006b6a4, source: src/main/8006b684_spu__spu_init_glue.c}
+  - {start: 0x80067f00, end: 0x80067f20, source: src/main/80067f00_SpuInit.c}
+  - {start: 0x80067ee0, end: 0x80067f00, source: src/main/80067ee0_SpuInitHot.c}
+  - {start: 0x8005d51c, end: 0x8005d53c, source: src/main/8005d51c_advance_parse_cursor_past_record.c, small_data: true}
+  - {start: 0x80045cac, end: 0x80045ccc, source: src/main/80045cac_music_play_looping_wrapper.c}
+  - {start: 0x80045a40, end: 0x80045a60, source: src/main/80045a40_music_play_once_wrapper.c}
+  - {start: 0x8003e104, end: 0x8003e3e0, source: asm/hand_written/8003e104_sub_8003e104.s, parts: [{start: 0x8003e124, source: asm/hand_written/8003e124_sub_8003e124.s}]}
+  - {start: 0x80073494, end: 0x800734b0, source: src/main/80073494__padCmdParaMode_read.c}
+  - {start: 0x800602c4, end: 0x800602e0, source: asm/hand_written/800602c4_sub_800602c4.s}
+  - {start: 0x8004c7a0, end: 0x8004c7bc, source: asm/hand_written/8004c7a0_sub_8004c7a0.s}
+  - {start: 0x80060614, end: 0x8006062c, source: asm/hand_written/80060614_sub_80060614.s}
+  - {start: 0x8004c7bc, end: 0x8004c7d4, source: asm/hand_written/8004c7bc_sub_8004c7bc.s}
+  - {start: 0x80049b48, end: 0x80049b60, source: asm/hand_written/80049b48_sub_80049b48.s}
+  - {start: 0x80049b30, end: 0x80049b48, source: asm/hand_written/80049b30_sub_80049b30.s}
+  - {start: 0x80049b18, end: 0x80049b30, source: asm/hand_written/80049b18_sub_80049b18.s}
+  - {start: 0x80049b00, end: 0x80049b18, source: asm/hand_written/80049b00_sub_80049b00.s}
+  - {start: 0x80049ae8, end: 0x80049b00, source: asm/hand_written/80049ae8_sub_80049ae8.s}
+  - {start: 0x80049ad0, end: 0x80049ae8, source: asm/hand_written/80049ad0_sub_80049ad0.s}
+  - {start: 0x80049ab8, end: 0x80049ad0, source: asm/hand_written/80049ab8_sub_80049ab8.s}
+  - {start: 0x80049aa0, end: 0x80049ab8, source: asm/hand_written/80049aa0_sub_80049aa0.s}
+  - {start: 0x80049a88, end: 0x80049aa0, source: asm/hand_written/80049a88_sub_80049a88.s}
+  - {start: 0x80049a70, end: 0x80049a88, source: asm/hand_written/80049a70_sub_80049a70.s}
+  - {start: 0x80049a58, end: 0x80049a70, source: asm/hand_written/80049a58_sub_80049a58.s}
+  - {start: 0x800720dc, end: 0x800720f0, source: asm/hand_written/800720dc_sub_800720dc.s}
+  - {start: 0x80066820, end: 0x80066834, source: asm/hand_written/80066820_sub_80066820.s}
+  - {start: 0x8006680c, end: 0x80066820, source: asm/hand_written/8006680c_sub_8006680c.s}
+  - {start: 0x800602b0, end: 0x800602c4, source: asm/hand_written/800602b0_VectorNormalSS.s}
+  - {start: 0x80060270, end: 0x80060284, source: asm/hand_written/80060270_VectorNormalS.s}
+  - {start: 0x80055d38, end: 0x80055d4c, source: asm/hand_written/80055d38_sub_80055d38.s}
+  - {start: 0x8004fc8c, end: 0x8004fca0, source: asm/hand_written/8004fc8c_sub_8004fc8c.s}
+  - {start: 0x8004fc78, end: 0x8004fc8c, source: asm/hand_written/8004fc78_sub_8004fc78.s}
+  - {start: 0x8004fc64, end: 0x8004fc78, source: asm/hand_written/8004fc64_sub_8004fc64.s}
+  - {start: 0x8004fc50, end: 0x8004fc64, source: asm/hand_written/8004fc50_sub_8004fc50.s}
+  - {start: 0x8004fc3c, end: 0x8004fc50, source: asm/hand_written/8004fc3c_sub_8004fc3c.s}
+  - {start: 0x8004c6fc, end: 0x8004c710, source: asm/hand_written/8004c6fc_sub_8004c6fc.s}
+  - {start: 0x80029578, end: 0x8002958c, source: src/main/80029578_gp_state_clear_three_shorts.c, small_data: true}
+  - {start: 0x800737b8, end: 0x80073890, source: asm/hand_written/800737b8_sub_800737b8.s, parts: [{start: 0x800737c8, source: asm/hand_written/800737c8_sub_800737c8.s}]}
+  - {start: 0x80071da0, end: 0x80071eb8, source: asm/hand_written/80071da0_sub_80071da0.s, parts: [{start: 0x80071db0, source: asm/hand_written/80071db0_sub_80071db0.s}]}
+  - {start: 0x80070a30, end: 0x80070ac0, source: asm/hand_written/80070a30_data_ready_callback.s, parts: [{start: 0x80070a40, source: asm/hand_written/80070a40_fmv_frame_counter_setter.s}]}
+  - {start: 0x8006f690, end: 0x8006f6a0, source: asm/hand_written/8006f690_CdSearchFile.s}
+  - {start: 0x8006bde4, end: 0x8006bdf4, source: asm/hand_written/8006bde4__spu_t.s}
+  - {start: 0x8006baac, end: 0x8006babc, source: asm/hand_written/8006baac__spu_FwriteByIO.s}
+  - {start: 0x80065fcc, end: 0x80065fdc, source: asm/hand_written/80065fcc_sub_80065fcc.s}
+  - {start: 0x80065fbc, end: 0x80065fcc, source: asm/hand_written/80065fbc_sub_80065fbc.s}
+  - {start: 0x800651d0, end: 0x800651e0, source: asm/hand_written/800651d0_VSync.s}
+  - {start: 0x80061668, end: 0x80061678, source: asm/hand_written/80061668_FntPrint.s}
+  - {start: 0x80055644, end: 0x80055d38, source: asm/hand_written/80055644_sub_80055644.s, parts: [{start: 0x80055654, source: asm/hand_written/80055654_sub_80055654.s}]}
+  - {start: 0x8004c808, end: 0x8004c818, source: asm/hand_written/8004c808_sub_8004c808.s}
+  - {start: 0x8004c790, end: 0x8004c7a0, source: asm/hand_written/8004c790_sub_8004c790.s}
+  - {start: 0x8004c654, end: 0x8004c664, source: asm/hand_written/8004c654_sub_8004c654.s}
+  - {start: 0x8004c644, end: 0x8004c654, source: asm/hand_written/8004c644_sub_8004c644.s}
+  - {start: 0x8004c634, end: 0x8004c644, source: asm/hand_written/8004c634_sub_8004c634.s}
+  - {start: 0x8004c624, end: 0x8004c634, source: asm/hand_written/8004c624_sub_8004c624.s}
+  - {start: 0x8004c614, end: 0x8004c624, source: asm/hand_written/8004c614_sub_8004c614.s}
+  - {start: 0x8004c604, end: 0x8004c614, source: asm/hand_written/8004c604_sub_8004c604.s}
+  - {start: 0x8004c5f4, end: 0x8004c604, source: asm/hand_written/8004c5f4_sub_8004c5f4.s}
+  - {start: 0x8004c5e4, end: 0x8004c5f4, source: asm/hand_written/8004c5e4_sub_8004c5e4.s}
+  - {start: 0x8004c5d4, end: 0x8004c5e4, source: asm/hand_written/8004c5d4_sub_8004c5d4.s}
+  - {start: 0x8004c228, end: 0x8004c238, source: asm/hand_written/8004c228_sub_8004c228.s}
+  - {start: 0x8003f928, end: 0x8003f938, source: src/main/8003f928_empty_function_stub_f928.c}
+  - {start: 0x8003f918, end: 0x8003f928, source: src/main/8003f918_empty_function_stub_f918.c}
+  - {start: 0x8003f908, end: 0x8003f918, source: src/main/8003f908_empty_function_stub_f908.c}
+  - {start: 0x8003f8f8, end: 0x8003f908, source: src/main/8003f8f8_empty_function_stub_f8f8.c}
+  - {start: 0x8003e0f4, end: 0x8003e104, source: src/main/8003e0f4_empty_function_stub_e0f4.c}
+  - {start: 0x8003e054, end: 0x8003e064, source: src/main/8003e054_text_draw_stub.c}
+  - {start: 0x80017d04, end: 0x80017d14, source: asm/hand_written/80017d04_sub_80017d04.s}
+  - {start: 0x80060634, end: 0x80060640, source: asm/hand_written/80060634_sub_80060634.s}
+  - {start: 0x8005f7ec, end: 0x8005f7f8, source: asm/hand_written/8005f7ec_sprintf.s}
+  - {start: 0x8005f730, end: 0x8005f73c, source: asm/hand_written/8005f730_stup0.s}
+  - {start: 0x80027004, end: 0x80027c60, source: asm/hand_written/80027004_sub_80027004.s, parts: [{start: 0x80027010, source: asm/hand_written/80027010_sub_80027010.s}]}
+  - {start: 0x80073890, end: 0x8007393c, source: asm/hand_written/80073890_sub_80073890.s, parts: [{start: 0x80073898, source: asm/hand_written/80073898_sub_80073898.s}]}
+  - {start: 0x80071f4c, end: 0x800720dc, source: asm/hand_written/80071f4c_sub_80071f4c.s, parts: [{start: 0x80071f54, source: asm/hand_written/80071f54_sub_80071f54.s}]}
+  - {start: 0x80071ee4, end: 0x80071f4c, source: asm/hand_written/80071ee4_sub_80071ee4.s, parts: [{start: 0x80071eec, source: asm/hand_written/80071eec_sub_80071eec.s}]}
+  - {start: 0x80071d04, end: 0x80071d4c, source: asm/hand_written/80071d04_sub_80071d04.s, parts: [{start: 0x80071d0c, source: asm/hand_written/80071d0c_sub_80071d0c.s}]}
+  - {start: 0x80071ccc, end: 0x80071d04, source: asm/hand_written/80071ccc_sub_80071ccc.s, parts: [{start: 0x80071cd4, source: asm/hand_written/80071cd4_sub_80071cd4.s}]}
+  - {start: 0x80071c24, end: 0x80071ccc, source: asm/hand_written/80071c24_sub_80071c24.s, parts: [{start: 0x80071c2c, source: asm/hand_written/80071c2c_sub_80071c2c.s}]}
+  - {start: 0x80071b50, end: 0x80071c24, source: asm/hand_written/80071b50_sub_80071b50.s, parts: [{start: 0x80071b58, source: asm/hand_written/80071b58_sub_80071b58.s}]}
+  - {start: 0x80071a58, end: 0x80071b50, source: asm/hand_written/80071a58_sub_80071a58.s, parts: [{start: 0x80071a60, source: asm/hand_written/80071a60_sub_80071a60.s}]}
+  - {start: 0x8007198c, end: 0x80071a58, source: asm/hand_written/8007198c_sub_8007198c.s, parts: [{start: 0x80071994, source: asm/hand_written/80071994_sub_80071994.s}]}
+  - {start: 0x80070ac0, end: 0x80070b20, source: src/main/80070ac0_StGetBackloc.c}
+  - {start: 0x8006fd04, end: 0x8006fd0c, source: asm/hand_written/8006fd04_CD_cachefile.s}
+  - {start: 0x8006f5ac, end: 0x8006f5b4, source: asm/hand_written/8006f5ac_callback.s}
+  - {start: 0x8006cd98, end: 0x8006cda0, source: asm/hand_written/8006cd98_SpuIsTransferCompleted.s}
+  - {start: 0x8006c434, end: 0x8006c43c, source: asm/hand_written/8006c434_SpuMalloc.s}
+  - {start: 0x8006c074, end: 0x8006c07c, source: asm/hand_written/8006c074__spu_Fw.s}
+  - {start: 0x8006bd38, end: 0x8006bd40, source: asm/hand_written/8006bd38__spu_Fr_.s}
+  - {start: 0x8006bc78, end: 0x8006bc80, source: asm/hand_written/8006bc78__spu_FiDMA.s}
+  - {start: 0x8006b79c, end: 0x8006b7a4, source: asm/hand_written/8006b79c_SpuStart.s}
+  - {start: 0x8006af4c, end: 0x8006af54, source: asm/hand_written/8006af4c__SsVmSeqKeyOff.s}
+  - {start: 0x80067f60, end: 0x80067f68, source: asm/hand_written/80067f60__SsSeqCalledTbyT_1per2.s}
+  - {start: 0x80067f20, end: 0x80067f60, source: src/main/80067f20__SsTrapIntrVSync.c}
+  - {start: 0x80065f1c, end: 0x80065f24, source: asm/hand_written/80065f1c_sub_80065f1c.s}
+  - {start: 0x80065c6c, end: 0x80065c74, source: asm/hand_written/80065c6c_trapIntrDMA.s}
+  - {start: 0x80065b4c, end: 0x80065bc4, source: asm/hand_written/80065b4c_trapIntrVSync.s, parts: [{start: 0x80065b54, source: asm/hand_written/80065b54_sub_80065b54.s}]}
+  - {start: 0x800654f8, end: 0x80065500, source: asm/hand_written/800654f8_RestartCallback.s}
+  - {start: 0x800654c8, end: 0x800654d0, source: asm/hand_written/800654c8_StopCallback.s}
+  - {start: 0x80065498, end: 0x800654a0, source: asm/hand_written/80065498_VSyncCallbacks.s}
+  - {start: 0x80065434, end: 0x8006543c, source: asm/hand_written/80065434_DMACallback.s}
+  - {start: 0x80065404, end: 0x8006540c, source: asm/hand_written/80065404_InterruptCallback.s}
+  - {start: 0x800653d4, end: 0x800653dc, source: asm/hand_written/800653d4_ResetCallback.s}
+  - {start: 0x800653b4, end: 0x800653bc, source: asm/hand_written/800653b4_sub_800653b4.s}
+  - {start: 0x80064998, end: 0x800649a0, source: asm/hand_written/80064998__exeque.s}
+  - {start: 0x800633a8, end: 0x800633b0, source: asm/hand_written/800633a8_GetODE.s}
+  - {start: 0x80062ec8, end: 0x80062ed0, source: asm/hand_written/80062ec8_PutDispEnv.s}
+  - {start: 0x80062bfc, end: 0x80062c70, source: asm/hand_written/80062bfc_DrawOTag.s, parts: [{start: 0x80062c04, source: asm/hand_written/80062c04_sub_80062c04.s}]}
+  - {start: 0x80062b04, end: 0x80062b9c, source: asm/hand_written/80062b04_ClearOTagR.s, parts: [{start: 0x80062b0c, source: asm/hand_written/80062b0c_sub_80062b0c.s}]}
+  - {start: 0x80062a4c, end: 0x80062a54, source: asm/hand_written/80062a4c_ClearOTag.s}
+  - {start: 0x800625fc, end: 0x80062668, source: asm/hand_written/800625fc_DrawSync.s, parts: [{start: 0x80062604, source: asm/hand_written/80062604_sub_80062604.s}]}
+  - {start: 0x80062504, end: 0x8006250c, source: asm/hand_written/80062504_DrawSyncCallback.s}
+  - {start: 0x80062438, end: 0x80062440, source: asm/hand_written/80062438_SetGraphQueue.s}
+  - {start: 0x800622c0, end: 0x800622c8, source: asm/hand_written/800622c0_SetGraphReverse.s}
+  - {start: 0x800600c4, end: 0x800600cc, source: asm/hand_written/800600c4_sub_800600c4.s}
+  - {start: 0x8005b70c, end: 0x8005b714, source: asm/hand_written/8005b70c_sub_8005b70c.s}
+  - {start: 0x8005b4e4, end: 0x8005b4ec, source: asm/hand_written/8005b4e4_sub_8005b4e4.s}
+  - {start: 0x8005b12c, end: 0x8005b134, source: asm/hand_written/8005b12c_sub_8005b12c.s}
+  - {start: 0x80057f44, end: 0x80057f4c, source: asm/hand_written/80057f44_sub_80057f44.s}
+  - {start: 0x80057eac, end: 0x80057eb4, source: asm/hand_written/80057eac_sub_80057eac.s}
+  - {start: 0x80057dcc, end: 0x80057dd4, source: asm/hand_written/80057dcc_sub_80057dcc.s}
+  - {start: 0x800577dc, end: 0x800577e4, source: asm/hand_written/800577dc_sub_800577dc.s}
+  - {start: 0x80053638, end: 0x80053640, source: asm/hand_written/80053638_sub_80053638.s}
+  - {start: 0x80051db4, end: 0x80051dbc, source: asm/hand_written/80051db4_sub_80051db4.s}
+  - {start: 0x80051938, end: 0x80051940, source: asm/hand_written/80051938_sub_80051938.s}
+  - {start: 0x8005149c, end: 0x8005182c, source: asm/hand_written/8005149c_sub_8005149c.s, parts: [{start: 0x800514a4, source: asm/hand_written/800514a4_sub_800514a4.s}]}
+  - {start: 0x80050ea0, end: 0x80050ea8, source: asm/hand_written/80050ea0_sub_80050ea0.s}
+  - {start: 0x8004f478, end: 0x8004f480, source: asm/hand_written/8004f478_sub_8004f478.s}
+  - {start: 0x800457dc, end: 0x800457e4, source: src/main/800457dc_noop_return_stub_800457dc.c}
+  - {start: 0x8003e4e0, end: 0x8003e4e8, source: asm/hand_written/8003e4e0_sub_8003e4e0.s}
+  - {start: 0x8003d7b0, end: 0x8003daec, source: asm/hand_written/8003d7b0_sub_8003d7b0.s, parts: [{start: 0x8003d7b8, source: asm/hand_written/8003d7b8_sub_8003d7b8.s}]}
+  - {start: 0x80039124, end: 0x8003912c, source: src/main/80039124_noop_return_stub_80039124.c}
+  - {start: 0x80030010, end: 0x80030018, source: src/main/80030010_nullsub_80030010.c}
+  - {start: 0x800252b0, end: 0x800252b8, source: asm/hand_written/800252b0_sub_800252b0.s}
+  - {start: 0x800743ec, end: 0x800743f0, source: asm/hand_written/800743ec_sub_800743ec.s}
+  - {start: 0x800743dc, end: 0x800743e0, source: asm/hand_written/800743dc_sub_800743dc.s}
+  - {start: 0x80073d7c, end: 0x80073d80, source: asm/hand_written/80073d7c_sub_80073d7c.s}
+  - {start: 0x800668a8, end: 0x800668ac, source: asm/hand_written/800668a8_sub_800668a8.s}
+  - {start: 0x800667f8, end: 0x800667fc, source: asm/hand_written/800667f8_sub_800667f8.s}
+  - {start: 0x800667e8, end: 0x800667ec, source: asm/hand_written/800667e8_sub_800667e8.s}
+  - {start: 0x80065f38, end: 0x80065f3c, source: asm/hand_written/80065f38_sub_80065f38.s}
+  - {start: 0x800653d0, end: 0x800653d4, source: asm/hand_written/800653d0_sub_800653d0.s}
+  - {start: 0x800653cc, end: 0x800653d0, source: asm/hand_written/800653cc_sub_800653cc.s}
+  - {start: 0x8005f798, end: 0x8005f79c, source: asm/hand_written/8005f798_sub_8005f798.s}
+  - {start: 0x8005f758, end: 0x8005f75c, source: asm/hand_written/8005f758_sub_8005f758.s}
+  - {start: 0x800510f0, end: 0x80051294, source: asm/hand_written/800510f0_sub_800510f0.s, parts: [{start: 0x800510f4, source: asm/hand_written/800510f4_sub_800510f4.s}]}
+  - {start: 0x80050ee4, end: 0x80050ee8, source: asm/hand_written/80050ee4_sub_80050ee4.s}
+  - {start: 0x80045ccc, end: 0x80045cd0, source: asm/hand_written/80045ccc_sub_80045ccc.s}
+  - {start: 0x80045b00, end: 0x80045cac, source: asm/hand_written/80045b00_sub_80045b00.s, parts: [{start: 0x80045b04, source: asm/hand_written/80045b04_sub_80045b04.s}]}
+  - {start: 0x80043114, end: 0x80043118, source: asm/hand_written/80043114_sub_80043114.s}
+  - {start: 0x8003daec, end: 0x8003daf0, source: asm/hand_written/8003daec_sub_8003daec.s}
+  - {start: 0x8003a314, end: 0x8003a318, source: asm/hand_written/8003a314_sub_8003a314.s}
+  - {start: 0x80039c34, end: 0x8003a2dc, source: asm/hand_written/80039c34_sub_80039c34.s, parts: [{start: 0x80039c38, source: asm/hand_written/80039c38_sub_80039c38.s}]}
+  - {start: 0x8003043c, end: 0x80030440, source: asm/hand_written/8003043c_sub_8003043c.s}
+  - {start: 0x80030018, end: 0x8003001c, source: asm/hand_written/80030018_sub_80030018.s}
+  - {start: 0x8002b424, end: 0x8002b428, source: asm/hand_written/8002b424_sub_8002b424.s}
+  - {start: 0x800186ec, end: 0x8001881c, source: asm/hand_written/800186ec_sub_800186ec.s, parts: [{start: 0x800186f0, source: asm/hand_written/800186f0_context_save_callback.s}]}

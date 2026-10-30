@@ -1,0 +1,6 @@
+[
+ {"overlay":"MEMORY","address":"0x800bd6c4","name":"bios_call_thunk_6c4","tier":"inferred","evidence":["li tN,0xNN; jr tN (PS1 BIOS table entry)"],"rationale":"o2: BIOS-call thunk (overlay census skips bios_thunk detection)"},
+ {"overlay":"MEMORY","address":"0x800bd71c","name":"bios_call_thunk_b0","tier":"inferred","evidence":["addiu t2,zero,0xb0; jr t2 (BIOS B-table)"],"rationale":"o2: BIOS B(0xb0) call thunk"},
+ {"overlay":"MEMORY","address":"0x800bd804","name":"bios_call_thunk_804","tier":"inferred","evidence":["li tN,0xNN; jr tN (PS1 BIOS table entry)"],"rationale":"o2: BIOS-call thunk"},
+ {"overlay":"MEMORY","address":"0x800b9f84","name":"card_event_close_wrapper","tier":"inferred","evidence":["dynamic:boot","tail-calls 0x800b9e90 (CloseEvent path)"],"rationale":"o2: thin wrapper over the card event-close"}
+]

@@ -1,0 +1,39 @@
+schema_version: 1
+id: pristine_checkpoint_respawn
+description: >-
+  Replay the centrally pinned LEVEL02 pit lead from its inspected pristine state
+  and assert the smallest natural falling and exact reset-owner boundaries that
+  would catch a regression in the current C15 evidence.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: movies/Phase4/E10/hazard_pit_LEVEL02.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: falling_preserves_pretransition_anchor
+    trigger: {type: movie_frame, target: 100, max_frames: 120, timeout_seconds: 60}
+    assertions:
+      - {id: c15_fall_live_x, type: memory, address: 0x800A6500, width: s32, op: eq, expected: 508614}
+      - {id: c15_fall_live_y, type: memory, address: 0x800A6504, width: s32, op: eq, expected: 39723}
+      - {id: c15_fall_live_z, type: memory, address: 0x800A6508, width: s32, op: eq, expected: 516886}
+      - {id: c15_fall_anchor_x, type: memory, address: 0x800A6550, width: s32, op: eq, expected: 507900}
+      - {id: c15_fall_anchor_y, type: memory, address: 0x800A6554, width: s32, op: eq, expected: 31787}
+      - {id: c15_fall_anchor_z, type: memory, address: 0x800A6558, width: s32, op: eq, expected: 503976}
+      - {id: c15_fall_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: c15_fall_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 5}
+      - {id: c15_fall_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+  - id: pit_transition_selects_and_consumes_safe_anchor
+    trigger: {type: movie_frame, target: 157, max_frames: 60, timeout_seconds: 60}
+    assertions:
+      - {id: c15_post_live_x, type: memory, address: 0x800A6500, width: s32, op: eq, expected: 501696}
+      - {id: c15_post_live_y, type: memory, address: 0x800A6504, width: s32, op: eq, expected: 30092}
+      - {id: c15_post_live_z, type: memory, address: 0x800A6508, width: s32, op: eq, expected: 494016}
+      - {id: c15_post_anchor_x, type: memory, address: 0x800A6550, width: s32, op: eq, expected: 501696}
+      - {id: c15_post_anchor_y, type: memory, address: 0x800A6554, width: s32, op: eq, expected: 30092}
+      - {id: c15_post_anchor_z, type: memory, address: 0x800A6558, width: s32, op: eq, expected: 494016}
+      - {id: c15_post_health_restored, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: c15_post_life_decremented, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 4}
+      - {id: c15_post_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

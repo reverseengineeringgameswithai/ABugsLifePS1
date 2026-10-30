@@ -1,0 +1,100 @@
+{
+  "row": "A13",
+  "mechanic": "plant output cycling and timeout normalization",
+  "date": "2026-08-03",
+  "status": "bounded_exhausted",
+  "promotion": "substantiated",
+  "retained_capsule": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/A13__brown_seed_levels",
+    "manifest_sha256": "902bfdfffa3dcb6ef11d7ab77405ad306a96a330bb344e85944a46a20f88b1dd",
+    "complete": true,
+    "control_match": true,
+    "truncated": false
+  },
+  "fixtures": {
+    "deny_movie": {
+      "path": "movies/Phase4/A13_denied_one_tier.movie.json",
+      "sha256": "29345e4f76fec168218a15bb1cc942de3ed20a132d880c65291a287eedd6d880",
+      "save_sha256": "004a018d1c35d1e0e8b2201286262255e13867a886e060435c5b9849e9304f3e",
+      "version": 4,
+      "frames": 398,
+      "initial_emulator_frame": 8428
+    },
+    "wrap_timeout_movie": {
+      "path": "movies/Phase4/Interpreter/A13_wrap_timeout.movie.json",
+      "sha256": "405efceee50f4ffddb425a06db32f8ea0b7d1187fedc999d0802428bb06089d8",
+      "save_sha256": "b654b1327dc974b0793d30f552b34b395d43d267fd835982b2a7c5e443f7d3cc",
+      "version": 4,
+      "frames": 897,
+      "initial_emulator_frame": 25130
+    }
+  },
+  "identity": {
+    "game_serial": "SCUS-94288",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "bin_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+    "retail_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899"
+  },
+  "runtime": {
+    "execution_mode": "Interpreter",
+    "speed": "1x normal speed; fast-forward and turbo disabled",
+    "deny_control": {
+      "initial_selector": "0x11",
+      "final_selector": "0x11",
+      "initial_timer": 0,
+      "final_timer": 0,
+      "handler_events": 3760,
+      "accepted_prefix_visits_through_0x80047b48": 8,
+      "selector_writes": 0,
+      "timer_writes": 0,
+      "truncated": false
+    },
+    "wrap_timeout_control": {
+      "selector_writes": [
+        {"emulator_frame": 25273, "pc": "0x80047b6c", "old": "0x44", "new": "0x14"},
+        {"emulator_frame": 25309, "pc": "0x80047b6c", "old": "0x14", "new": "0x24"},
+        {"emulator_frame": 25925, "pc": "0x800475c0", "old": "0x24", "new": "0x44"}
+      ],
+      "timer_arm_writes": [
+        {"emulator_frame": 25273, "pc": "0x80047b9c", "old": 0, "new": 120},
+        {"emulator_frame": 25309, "pc": "0x80047b9c", "old": 120, "new": 120}
+      ],
+      "first_decrement": {"emulator_frame": 25687, "cycle": 14543547293, "pc": "0x80047578", "old": 120, "new": 119},
+      "last_decrement": {"emulator_frame": 25925, "cycle": 14678303776, "pc": "0x80047578", "old": 1, "new": 0},
+      "timer_write_count": 122,
+      "timer_decrement_count": 120,
+      "selector_write_count": 3,
+      "truncated": false
+    },
+    "proximity_gate": {
+      "address": "0x8008242c",
+      "clear_pc": "0x800472b8",
+      "candidate_pc": "0x8004736c",
+      "direct_candidate_pc": "0x80047398",
+      "gate_load_pc": "0x80047568",
+      "skip_decrement_branch_pc": "0x80047570",
+      "write_count": 736,
+      "nonzero_write_count": 285,
+      "candidate_pointers": ["0x800a0854", "0x800a08d8"],
+      "last_nonzero": {"emulator_frame": 25685, "cycle": 14542414677, "pointer": "0x800a0854"},
+      "first_clear_without_reselection": {"emulator_frame": 25687, "cycle": 14543546909},
+      "cycles_from_clear_to_first_decrement": 384,
+      "candidate_filter": "actor+0x5c bit 0x20, actor+0x40 != 4, nearest squared distance below 0x57e40",
+      "observed_candidate_color": 0,
+      "truncated": false
+    }
+  },
+  "closure_basis": [
+    "C scan exhausts the natural packed selector state space: 192 accepted and 64 denied states.",
+    "The one-tier Interpreter control executes the Cross path without selector or timer writes.",
+    "The wrap Interpreter control proves 0x44 to 0x14, ordinary advance, timer re-arm, proximity freeze, 120-tick countdown, and normalization to 0x44.",
+    "All row-specific writers, readers, load initialization, respawn behavior, malformed states, and overlay references were covered by the prior static pass."
+  ],
+  "limitations": [
+    "Normal-speed polling paused the clean and instrumented runs a few frames after movie completion, so no new exact final-cycle neutrality claim is made here.",
+    "The proximity latch is generic to eligible nearby actors; the movie demonstrates brown seed actors but does not prove seeds are the only possible blockers.",
+    "No cold boot was required because this was a narrow pristine-runtime experiment with no disc, code, or asset change."
+  ]
+}

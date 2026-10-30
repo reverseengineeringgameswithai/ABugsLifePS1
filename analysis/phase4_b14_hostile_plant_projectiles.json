@@ -1,0 +1,170 @@
+{
+  "schema": "phase4-b14-hostile-plant-projectiles-v1",
+  "row": "B14_hostile_plant_projectiles",
+  "status": "partial",
+  "disposition": "substantiated_correction_bounded_exhausted_move_on",
+  "generated_date": "2026-08-03",
+  "scope": "Native hostile constructor-59 output associated with blue power plants; producer selection, cross-tier applicability, cadence, contact class, damage, targeting, motion, and retirement.",
+  "provenance": {
+    "pristine_executable": {
+      "path": "SCUS_942.88",
+      "size": 471040,
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+    },
+    "movie": {
+      "path": "movies/Phase4/A13/blue_seed_levels.movie.json",
+      "sha256": "79d0aa0d26bcd760316f6bf685bf781f571ec63806a09d78be84d36ab01b68e1"
+    },
+    "start_state": {
+      "path": "movies/Phase4/A13/blue_seed_levels.movie.sav",
+      "sha256": "9198c8c3daa896813f0198ecb2a1b7068c7035116aed0aadbc1072ffdb01f5c3"
+    },
+    "capsule": {
+      "manifest_sha256": "81053aba5b5ec9bb9e33fbb944fffd09d9df2ed95528ff8dafb931e042b7f17d",
+      "tree_sha256": "e44dfa8b665f3c2f7f10dd453e2b986ee5adaf5237e2cd5ae65de7e82cda46b1",
+      "records": 3796,
+      "movie_frames": 3795,
+      "complete": true,
+      "truncated": false,
+      "error": "",
+      "control_match": true,
+      "verified_domain_hashes": 11388,
+      "central_index": "analysis/phase4_trace_capsule_set.json"
+    }
+  },
+  "supersession": {
+    "superseded_claim": "Every blue power-plant tier eventually emits constructor 59.",
+    "replacement": "Only the type-7 blue tiers 1, 2, and 4 can select constructor 59. Blue tier 3 is type 6; it deterministically emits constructor 31 once and has no constructor-59 producer path.",
+    "basis": [
+      "The pristine executable contains exactly two immediate constructor-59 selections, both inside 0x8005C744..0x8005C818.",
+      "The type-6 handler 0x8005C6F0..0x8005C744 computes constructor (extra>>12)+31 and sets one-shot latch 0x0008.",
+      "The accepted tier-3 capsule segment keeps type 6 alive for 720 movie frames, observes constructor 31 at frame 2102, and observes zero constructor-59 births."
+    ]
+  },
+  "tier_matrix": [
+    {
+      "tier": 1,
+      "plant_type": 7,
+      "extra": "0x2000",
+      "static_selection": "constructor 59 when rng_byte&3 == 0; otherwise constructor 37",
+      "fixture_plant_birth": 120,
+      "fixture_outputs": [
+        {"frame": 314, "constructor": 37},
+        {"frame": 482, "constructor": 37},
+        {"frame": 650, "constructor": 37}
+      ],
+      "fixture_constructor59_count": 0
+    },
+    {
+      "tier": 2,
+      "plant_type": 7,
+      "extra": "0x3000",
+      "static_selection": "constructor 59 when rng_byte&3 == 0; otherwise constructor 38",
+      "fixture_plant_birth": 1030,
+      "fixture_outputs": [
+        {"frame": 1224, "constructor": 59},
+        {"frame": 1392, "constructor": 38},
+        {"frame": 1560, "constructor": 59}
+      ],
+      "fixture_constructor59_count": 2
+    },
+    {
+      "tier": 3,
+      "plant_type": 6,
+      "extra": "0x0000",
+      "static_selection": "constructor 31 exactly once; no RNG and no constructor-59 path",
+      "fixture_plant_birth": 2074,
+      "fixture_outputs": [
+        {"frame": 2102, "constructor": 31}
+      ],
+      "fixture_constructor59_count": 0
+    },
+    {
+      "tier": 4,
+      "plant_type": 7,
+      "extra": "0x4000",
+      "static_selection": "constructor 59 on the 1/4 RNG branch; forced constructor 59 after global power bit 0x20 is set; otherwise constructor 39",
+      "fixture_plant_birth": 2950,
+      "fixture_outputs": [
+        {"frame": 3144, "constructor": 39},
+        {"frame": 3312, "constructor": 59},
+        {"frame": 3480, "constructor": 59},
+        {"frame": 3648, "constructor": 59}
+      ],
+      "fixture_constructor59_count": 3
+    }
+  ],
+  "timing": {
+    "type7_first_fire_delay_movie_frames": 194,
+    "type7_repeat_period_movie_frames": 168,
+    "type6_one_shot_delay_movie_frames": 28,
+    "qualification": "Observed exactly in the accepted all-tier fixture. The handlers contain no local recurrence counter; animation/scheduler state owns these frame intervals."
+  },
+  "constructor59": {
+    "producer": "0x8005C744..0x8005C818",
+    "allocator": "0x80059E44",
+    "profile": 6,
+    "spawn_offset_from_plant": [0, -16384, 0],
+    "metadata": {
+      "action_id": 8,
+      "logic_lifetime": 200,
+      "animation_seed": 210,
+      "radius_add": 100,
+      "total_player_contact_radius": 400,
+      "state": -60,
+      "flags": "0xE3"
+    },
+    "motion": {
+      "targeting": "none; flag 0x08 is clear, so the homing/target-follow branch is not entered",
+      "vx_range": [-1016, 1024],
+      "vy_range": [-2560, -2056],
+      "vz_range": [-1016, 1024],
+      "ay": 128,
+      "fixture_observed_vx_range": [-840, 528],
+      "fixture_observed_vy_range": [-2432, -2128],
+      "fixture_observed_vz_range": [56, 936]
+    },
+    "damage": {
+      "contact_action": "action 8 -> 0x80058854 -> record state 0x13 -> FUNC_8004A700",
+      "amount": -1,
+      "health_writer": "0x8004A888",
+      "power_interception": "Existing invincibility/bubble contact-damage gates remain authoritative."
+    },
+    "retirement": {
+      "timeout": "active counter 200 decrements once per logic update; zero becomes -1 and is finalized in the second pool pass",
+      "terrain": "flags bit 0 enables generic terrain/world contact; collision clears active early",
+      "player": "action 8 sets active to 1 and state to 0x13; the next update retires the record after dealing damage",
+      "effect": "If state remains -60, pickup_effect_dispatch negates it and spawns constructor 60 at final coordinates",
+      "fixture_terrain_ages_movie_frames": [80, 82, 84, 80, 86],
+      "fixture_constructor60_effects": 5
+    },
+    "radial_helper": {
+      "address": "0x800579E0",
+      "calls_per_spawn": 1,
+      "behavior": "Eight sibling-spawner calls parameterized around a 4096-angle circle; this is an impact/presentation burst, not player acquisition or steering."
+    }
+  },
+  "block_flow": {
+    "type6_handler_hits": 361,
+    "type7_handler_hits": 1471,
+    "allocator_hits": 42174,
+    "radial_helper_hits": 170
+  },
+  "tools": [
+    "tools/phase4_b14_static.c",
+    "tools/phase4_b14_capsule.c"
+  ],
+  "phase4_boundary": {
+    "high_value_row_scope": "exhausted",
+    "strict_status": "partial",
+    "interpreter_movie_required": false,
+    "cold_boot_required": false,
+    "bounded_residuals": [
+      "Campaign-wide plant-model/presentation census for all applicable levels.",
+      "Exact GPU, sprite, SFX, and SPU ownership of the hostile object and its constructor-60 burst.",
+      "Natural player-hit positive control for constructor 59; the damage chain is instruction-exact but the retained fixture's five objects hit terrain.",
+      "An unobstructed natural timeout control for the 200-logic-update fallback; the counter and cleanup path are instruction-exact."
+    ],
+    "reopen_if": "A pristine Interpreter recording demonstrates a tier-3 hostile output, or a MOD consumer needs exact presentation/audio ownership or a natural no-terrain timeout oracle."
+  }
+}

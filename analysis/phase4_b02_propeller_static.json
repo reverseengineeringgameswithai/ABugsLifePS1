@@ -1,0 +1,15 @@
+{
+  "schema":"abl-phase4-b02-asm-static-v1",
+  "sources":{
+    "propeller_handler":{"path":"asm/hand_written/8005c258_seed_plant_propeller_handler.s","bytes":3712,"sha256":"f11ef7dfbcd3e3f7e3eac3e16b87f0c2633b0289d4485d9d99bdcd738f8e437b"},
+    "carry_detach_helper":{"path":"asm/hand_written/80046cac_sub_80046cac.s","bytes":583,"sha256":"63a30afadc1ab0cbcea2807414b742041b7b2b4cf81dc8a605a9dc0e4a08aac4"},
+    "xz_radius_helper":{"path":"asm/hand_written/800524b8_sub_800524b8.s","bytes":343,"sha256":"bb6eac7a908a45c988ad1909d25e85df83b16acc8af800db23588c941d05469a"}
+  },
+  "identity":{"entry":"0x8005c258","end_exclusive":"0x8005c58c","bytes":820,"instructions":205,"reachable_prefix_instructions":188,"unreachable_shared_walker_suffix_instructions":17},
+  "derived_sites":{"activation_radius_200_argument":"0x8005c290","player_radius_40_argument":"0x8005c350","actor_radius_40_argument":"0x8005c4a0","detach_call":"0x8005c3d0","player_vy_store":"0x8005c424","player_vy_clamp_store":"0x8005c454","actor_vy_store":"0x8005c4dc","actor_field_5e_clear":"0x8005c528","live_table_load":"0x8005c45c","shared_walker_exit":"0x8005c540"},
+  "player_lift_law":{"xz_radius_world_units":40,"requires_player_flag_0x80_clear":true,"requires_contact_0x800a6582_zero":true,"plant_minus_player_y":{"ordinary_min":12289,"ordinary_max":40959,"latch11_bridge_min":4097,"latch11_bridge_max":12288},"per_handler_tick_vy_delta":-512,"vy_floor":-3072,"mode":5,"timer_0x800a6584":0,"animation":13,"animation_timer_if_changed":120},
+  "loose_actor_lift_law":{"table":"0x80090748 compacted live-actor pointers","xz_radius_world_units":40,"requires_flags_0x5c_bit_0x20":true,"requires_field_0x40_zero":true,"plant_minus_actor_y_min":12289,"plant_minus_actor_y_max":40959,"per_handler_tick_vy_delta":-512,"vy_clamp":null,"stationary_xz_initialization":"if vx and vz are both zero, assign successive unsigned RNG bytes","field_0x5e_write":0},
+  "carry_transfer":{"offset_owner":"player+0x5c (0x800a655c)","actor_base":"0x8009fd80","detach_effects":["actor vx/vy/vz := 0","actor flags+0x5c clears 0x40","player carry offset/state cleared"],"ordering":"detach precedes live-actor updraft scan in the same handler call","attached_dual_payload":false},
+  "bounded_conclusions":{"fall_from_above":"player high band 12289..40959 does not require latch 11; a carried actor detaches before its independent loose-actor gate","steering":"handler has no player X/Z position or velocity store; horizontal steering is delegated to shared mode-5 player physics","release_and_landing":"handler sets mode 5 but contains no mode-5 clear or landing transition; lifecycle completion must be read from shared player physics/runtime","enemy_interaction":"the loop is actor-generic, not seed-ID-specific; exact enemy-family eligibility depends on runtime flags+0x5c bit 0x20 and field+0x40","visual_spin":"not attributable in this handler; only loose-actor X/Z velocity initialization and player animation 13 are direct"},
+  "gate":{"low_level_assertions":24,"pass":true}
+}

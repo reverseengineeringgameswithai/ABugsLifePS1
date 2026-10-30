@@ -1,0 +1,97 @@
+arms:
+  control:
+    control_checks:
+      execution_mode_interpreter: true
+      movie_reproducible: true
+      no_trace_truncation: true
+    end_fingerprint: 60f5ea164203b21fbf88afb241ac17e3df4bcdc3a9436fb176a309f80662177c
+    errors: []
+    input_sha256: 66d620e845f5519ce3fe50ca530dd78f08c562d2e47e15ec7b6ee9c241b47e31
+    observations:
+      consumer_proceeded_hits: 1
+      finalizer_hits: 1
+      gp4c4_at_decision: 0
+      request_at_decision: 1
+    perturbations:
+      request_word_override: null
+    receipt_sha256: 498783e315f4fa2ca051d9e492ef37e2b2e91abde64029519e4fedffea982140
+    start_fingerprint: 36f31bd58fc61d83339ad401ab2eee9b2ff03ec0ba47a2494b0466975e1dc592
+    start_state_sha256: a035bd39a62d4217a23fa2e5a020e81d5cd6d1571f606ab7ac9dd6a7510a32a8
+    truncated: false
+  positive:
+    control_checks:
+      execution_mode_interpreter: true
+      movie_reproducible: true
+      no_trace_truncation: true
+    end_fingerprint: 520a8feee8ddbc8df192fc3d9c421c56b14e246e52048c5d3c8532b5f9f944f3
+    errors: []
+    input_sha256: 66d620e845f5519ce3fe50ca530dd78f08c562d2e47e15ec7b6ee9c241b47e31
+    observations:
+      consumer_proceeded_hits: 1
+      finalizer_hits: 0
+      gp4c4_at_decision: 0
+      request_at_decision: 2
+    perturbations:
+      request_word_override: 2
+    receipt_sha256: f1a958ae4ccd3223781f8fe313dd6280a530bf988a1e56e7a5ad7a74c22d6cd8
+    start_fingerprint: 36f31bd58fc61d83339ad401ab2eee9b2ff03ec0ba47a2494b0466975e1dc592
+    start_state_sha256: a035bd39a62d4217a23fa2e5a020e81d5cd6d1571f606ab7ac9dd6a7510a32a8
+    truncated: false
+assertions:
+- control_expected: 1
+  delta_expected: null
+  id: finalizer_skipped
+  op: eq
+  path: finalizer_hits
+  positive_expected: 0
+- control_expected: 1
+  delta_expected: null
+  id: request_value_is_the_variable
+  op: eq
+  path: request_at_decision
+  positive_expected: 2
+- control_expected: 1
+  delta_expected: null
+  id: consumer_still_proceeded
+  op: unchanged
+  path: consumer_proceeded_hits
+  positive_expected: 1
+- control_expected: 0
+  delta_expected: null
+  id: other_skip_condition_ruled_out
+  op: unchanged
+  path: gp4c4_at_decision
+  positive_expected: 0
+authority:
+  changes_campaign_registry: false
+  frame_boundary_proves_exact_instruction: false
+  promotes_row_or_dimension: false
+  requires_fresh_verifier: true
+  runtime_silence_proves_absence: false
+claim:
+  id: F01_request2_skips_finalizer
+  observation_scope: 'Four declared leaves only: hit counts of 0x8004FF14 (consumer proceeded past its
+    request!=0 && timer==0 guard) and 0x8004FF48 (finalizer call), plus the request word and [gp+0x4c4]
+    captured pre-instruction at the 0x8004FF28 re-read. Both arms replay movies/Phase4/Interpreter/Any%
+    Runs/LEVEL01_AntHill.movie.json from the same hash-bound anchor to movie frame 1950, then the positive
+    arm writes u16 2 to 0x800823A0, then both resume to movie frame 2100. Narrow observation is deliberate:
+    every observed difference is asserted, but unobserved state is not claimed.'
+  statement: Setting the scene-transition request word 0x800823A0 to 2 while a completion transition is
+    pending causes the consumer to skip the transition finalizer 0x80045A60, with the other skip condition
+    [gp+0x4c4] measured at 0 in both arms.
+expected_perturbation_keys:
+- request_word_override
+identity:
+  anchor_class: validated_save_state
+  debugger_binary_sha256: 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4
+  debugger_source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5+dirty:c059f118e38617495974064820d2ac33330c6f9a
+  dimension: original_oracle
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  execution_mode: Interpreter
+  fixture_sha256: a035bd39a62d4217a23fa2e5a020e81d5cd6d1571f606ab7ac9dd6a7510a32a8
+  media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  overlay_sha256: f3b1bef4db67bb10a58ace167941f6e2becc4d8303756a58b5d0ba7601df1c21
+  row_id: F01_anthill
+  scope: 'LEVEL01 Anthill scene-transition consumer at 0x8004FEEC: does request==2 cause the transition
+    finalizer 0x80045A60 to be skipped?'
+schema: abl-phase4-differential-witness/1

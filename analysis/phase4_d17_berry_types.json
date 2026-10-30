@@ -1,0 +1,245 @@
+{
+ "row": "D17_bird",
+ "question": "which berry type is 127 vs 128, by register capture at the hit",
+ "movie": "movies/Phase4/Interpreter/D17_Goldberry.movie.json",
+ "method": "breakpoint at PHYSICAL 0x000590E4 reading v1 (the berry type, not clobbered between its load at 0x80059074 and this store) plus s2 (the target actor). \u26a0\ufe0f The KSEG0 form 0x800590E4 is accepted and NEVER fires -- same gotcha as transferLog.resolve.",
+ "damage_table_static": {
+  "0": -2,
+  "1": "hp-99",
+  "12": -2,
+  "127": -4,
+  "128": -3,
+  "default": -1
+ },
+ "immunity_gate": "0x80059068 slti v0,v0,100 -- a target whose HP is >= 100 never reaches the damage table at all",
+ "frames": 5674,
+ "final_playback_index": 5055,
+ "breakpoint_state": {
+  "breakpoints": [
+   {
+    "address": "0x000590e4",
+    "condition": null,
+    "conditional": false,
+    "enabled": true,
+    "hit_count": 19,
+    "id": "bp_1",
+    "number": 1,
+    "temporary": false,
+    "trigger_count": 0,
+    "type": "execute"
+   }
+  ]
+ },
+ "hit_count": 19,
+ "hits": [
+  {
+   "f": 2453,
+   "berry_type": 0,
+   "new_hp": 0,
+   "target_actor": "0x800A01A0",
+   "pool_entry": "0x800B1768",
+   "entry_index": 47
+  },
+  {
+   "f": 2705,
+   "berry_type": 0,
+   "new_hp": 0,
+   "target_actor": "0x800A0224",
+   "pool_entry": "0x800B1180",
+   "entry_index": 20
+  },
+  {
+   "f": 3867,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B12D0",
+   "entry_index": 26
+  },
+  {
+   "f": 4133,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B1570",
+   "entry_index": 38
+  },
+  {
+   "f": 4377,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B14C8",
+   "entry_index": 35
+  },
+  {
+   "f": 4539,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B0F18",
+   "entry_index": 9
+  },
+  {
+   "f": 4631,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B1650",
+   "entry_index": 42
+  },
+  {
+   "f": 4661,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B1228",
+   "entry_index": 23
+  },
+  {
+   "f": 4663,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B1030",
+   "entry_index": 14
+  },
+  {
+   "f": 4713,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B1848",
+   "entry_index": 51
+  },
+  {
+   "f": 4715,
+   "berry_type": 128,
+   "new_hp": 47,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B1998",
+   "entry_index": 57
+  },
+  {
+   "f": 4817,
+   "berry_type": 127,
+   "new_hp": 46,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B18B8",
+   "entry_index": 53
+  },
+  {
+   "f": 4841,
+   "berry_type": 127,
+   "new_hp": 42,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B16F8",
+   "entry_index": 45
+  },
+  {
+   "f": 4869,
+   "berry_type": 127,
+   "new_hp": 38,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B11B8",
+   "entry_index": 21
+  },
+  {
+   "f": 4901,
+   "berry_type": 127,
+   "new_hp": 34,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B0D20",
+   "entry_index": 0
+  },
+  {
+   "f": 4945,
+   "berry_type": 127,
+   "new_hp": 30,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B1730",
+   "entry_index": 46
+  },
+  {
+   "f": 4977,
+   "berry_type": 127,
+   "new_hp": 26,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B11F0",
+   "entry_index": 22
+  },
+  {
+   "f": 5019,
+   "berry_type": 127,
+   "new_hp": 22,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B0EA8",
+   "entry_index": 7
+  },
+  {
+   "f": 5055,
+   "berry_type": 127,
+   "new_hp": 18,
+   "target_actor": "0x800A02A8",
+   "pool_entry": "0x800B1848",
+   "entry_index": 51
+  }
+ ],
+ "targets": {
+  "0x800A01A0": {
+   "hits": 1,
+   "types": [
+    0
+   ],
+   "hp_track": [
+    0
+   ]
+  },
+  "0x800A0224": {
+   "hits": 1,
+   "types": [
+    0
+   ],
+   "hp_track": [
+    0
+   ]
+  },
+  "0x800A02A8": {
+   "hits": 17,
+   "types": [
+    127,
+    128
+   ],
+   "hp_track": [
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    46,
+    42,
+    38,
+    34,
+    30,
+    26,
+    22,
+    18
+   ]
+  }
+ },
+ "findings": {
+  "berry_types_observed": [
+   0,
+   127,
+   128
+  ],
+  "type_127_seen": true,
+  "type_128_seen": true,
+  "verdict": "target 0x800A02A8: -4 hits carry berry type(s) [127], -3 hits carry []",
+  "bird_actor": "0x800A02A8"
+ }
+}

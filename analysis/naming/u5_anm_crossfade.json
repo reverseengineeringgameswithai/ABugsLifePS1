@@ -1,0 +1,27 @@
+{
+ "batch": "u5_anm_crossfade",
+ "generated_by": "manual static reconstruction",
+ "entries": [
+  {
+   "address": "0x8005f110",
+   "end": "0x8005f4ec",
+   "name": "anm_animation_crossfade_keyframe_core",
+   "confidence": "high",
+   "evidence": [
+    "retail disassembly 0x8005f110..0x8005f4ec",
+    "paired ANM sub-block header reads at +0x02/+0x04/+0x06/+0x08/+0x0a",
+    "dense-frame address formula 0x0c + 2*n8 + n10 + 2*frame*n6",
+    "84-byte destination stride at 0x80089f58",
+    "12-bit shortest-path angle interpolation for lanes +6/+8/+10"
+   ],
+   "semantics": {
+    "inputs": "two ANM sub-blocks, one frame index for each, and a 16.16 crossfade fraction",
+    "translation_lanes": [0, 2, 4],
+    "rotation_lanes": [6, 8, 10],
+    "optional_triplet_lanes": [12, 14, 16],
+    "destination": "bone transform array at 0x80089f58 with 84-byte records",
+    "mapping": "signed s16 channel indices at sub-block +0x0c; -1/-2/-3 are control sentinels"
+   }
+  }
+ ]
+}

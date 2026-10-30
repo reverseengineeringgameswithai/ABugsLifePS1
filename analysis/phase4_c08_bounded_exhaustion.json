@@ -1,0 +1,67 @@
+{
+  "schema": "phase4_c08_bounded_exhaustion_v1",
+  "row": "C08_green_homing_berry",
+  "status": "partial",
+  "disposition": "bounded_exhausted",
+  "closure_gate": "PASS",
+  "date": "2026-08-04",
+  "source_identity": {
+    "pristine_executable": "SCUS_942.88",
+    "pristine_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "overlays": []
+  },
+  "method": {
+    "capsule_first": true,
+    "relevant_capsule": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/b12_homing_shooter_multi_target",
+    "capsule_scope": "shared homing acquisition/updater corroboration only; not direct player-thrown C08 target-loss evidence",
+    "capsule_manifest_sha256": "b2a96b6fad84ebf5a7cc555fe2e84bf8821cd7394a1ce6ee4e783007f8a0ebac",
+    "capsule_files_verified": 27,
+    "capsule_errors": [],
+    "capsule_movie_truncated": false,
+    "capsule_control_match": true,
+    "analyzer": "tools/phase4_c08_static.c",
+    "raw_result": "analysis/phase4_c08_green_homing_berry.json",
+    "static_gate": "PASS",
+    "live_escalation": "none; named missing behavior was instruction-bound"
+  },
+  "capsule_query": {
+    "acquisition_entry_0x8005743c": 10,
+    "shared_updater_loop_0x8005a340": 41344,
+    "targeted_child_path_0x8005a3d0": 161,
+    "invalid_counter_branch_0x8005a3e0": 161,
+    "invalid_mask_0x8005a3f0": 161,
+    "expiry_write_0x8005a3fc": 0,
+    "scope_note": "The capsule corroborates the shared valid-target path but contains no target-loss event. Static xrefs and opcodes supply the loss-law evidence."
+  },
+  "fixture_hashes": {
+    "bee_1_homing.sav": "b34addb0b67257b9d670b18037a1183df76dd9cc92930a771c7db5d19a1df504",
+    "bee_2_homing.sav": "a648ec992f4c6af46921428442087f7db1ed91cca5385e61e5563f06bd705068",
+    "homing_berry.sav": "e04d2ddacdd569743db9a632f1260320906216e9e85f1b061694a69165bc9004",
+    "homingberry_worm.sav": "c665051404227578a3600fa19669d3cc4769cd68d84e160c8ff454090809165a"
+  },
+  "confirmed": {
+    "dispatch": "equip index 2 selects primary type 8",
+    "primary_transition": "timer-8 primary subtype 5 calls acquisition once from cleanup with mode 1",
+    "acquisition": "NULL-terminated 0x80090748 scan; state bit 0x1 required, bits 0xA0 excluded; nearest XZ after >>5; no Y or range cutoff; later table entry wins an exact tie",
+    "handoff": "valid selection spawns type 16 with the chosen enemy pointer at record+0x10",
+    "no_target": "no child is spawned; primary becomes timer 80/subtype 3",
+    "seek": "shared quarter-angle steering, vertical correction clamp [-1024,1024], sine velocity scale >>3",
+    "target_loss": "target+0x6E == 0 or target+0x5C mask 0x0880 stages child timer 1; updater has no acquisition call, so cleanup retires rather than retargets",
+    "collision": "type-16 subtype/connection class 3 and damage byte 12 route exact -2 damage through berry-tough actors; defeat is temporary",
+    "lifecycle": "100-tick child plus common floor, distance, flag, collision, and invalid-target retirement; cleanup sequence 0 -> -1 -> 0 dispatches subtype 3",
+    "ownership": "subtype 3 decrements the accepted throw counter at 0x800A6596 exactly once"
+  },
+  "observation": "The valid B12 capsule executed the shared acquisition and targeted-child blocks without an invalidation event. The pristine executable binds green primary subtype 5 to mode-1 acquisition and type-16 child creation.",
+  "inference": "Because every direct acquisition xref belongs to a primary/subtype cleanup arm and the child updater has none, an already-created green child cannot reacquire another enemy.",
+  "causal_confirmation": "Raw branches at 0x8005A3E0 and 0x8005A3F4 write timer 1 at 0x8005A400 for zero-counter or 0x0880-invalid targets; the normal terminal dispatcher reaches subtype 3, whose pristine instructions decrement 0x800A6596.",
+  "remaining_low_return": [
+    "exact GPU ownership of every trail and impact variant",
+    "exact SPU attribution for throw, flight, and impact audio",
+    "campaign-wide enemy and boss-overlay presentation breadth",
+    "pathological signed-distance overflow outside reachable retail coordinates",
+    "the exact visible frame of target-loss disappearance"
+  ],
+  "fixture_need": "None for bounded Phase 4 scope. Request an Interpreter movie only if the exact visible target-loss frame, a stage-specific overlay override, or presentation attribution becomes a concrete dependency.",
+  "cold_boot_required": false,
+  "remaining_direct_behavior": []
+}

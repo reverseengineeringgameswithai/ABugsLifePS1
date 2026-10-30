@@ -1,0 +1,35 @@
+schema_version: 1
+id: pristine_thud_action9_natural_pickup
+description: >-
+  Replay the centrally pinned pristine Thud recording across its first natural
+  action-9 reward pickup and assert the exact health and contact-record boundary
+  without changing input, player position, pickup radius, or guest memory.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: action9_natural_pickup_pre
+    trigger: {type: movie_frame, target: 1431, max_frames: 1440, timeout_seconds: 180}
+    assertions:
+      - {id: action9_pre_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: action9_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 2}
+      - {id: action9_pre_slot47_action, type: memory, address: 0x800B1780, width: u16, op: eq, expected: 9}
+      - {id: action9_pre_slot47_ttl, type: memory, address: 0x800B1782, width: u16, op: eq, expected: 62}
+      - {id: action9_pre_slot47_radius, type: memory, address: 0x800B1788, width: s16, op: eq, expected: 100}
+      - {id: action9_pre_slot47_state, type: memory, address: 0x800B178C, width: s16, op: eq, expected: 7}
+      - {id: action9_pre_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+  - id: action9_natural_pickup_post
+    trigger: {type: movie_frame, target: 1432, max_frames: 2, timeout_seconds: 60}
+    assertions:
+      - {id: action9_post_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: action9_post_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: action9_post_slot47_action, type: memory, address: 0x800B1780, width: u16, op: eq, expected: 9}
+      - {id: action9_post_slot47_ttl, type: memory, address: 0x800B1782, width: u16, op: eq, expected: 1}
+      - {id: action9_post_slot47_radius, type: memory, address: 0x800B1788, width: s16, op: eq, expected: 100}
+      - {id: action9_post_slot47_state, type: memory, address: 0x800B178C, width: s16, op: eq, expected: 7}
+      - {id: action9_post_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

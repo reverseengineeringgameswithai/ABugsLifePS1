@@ -1,0 +1,8 @@
+[
+ {"overlay":"MEMORY","address":"0x800bafd4","name":"memcard_save_dispatch","tier":"inferred","evidence":["dynamic:boot","calls:save_block_builder_SCmagic","calls:memcard_save_write"],"rationale":"o2: sole fn calling BOTH the save-block builder and the writer = the save path orchestrator"},
+ {"overlay":"MEMORY","address":"0x800bb6f4","name":"memcard_load_dispatch","tier":"inferred","evidence":["dynamic:boot","calls:memcard_load_scan","called_by:0x800b8ad4"],"rationale":"o2: load-path orchestrator (calls memcard_load_scan; sz2908)"},
+ {"overlay":"MEMORY","address":"0x800ba374","name":"memcard_save_block_util","tier":"inferred","evidence":["dynamic:boot","called_by:memcard load+save orchestrators (bb6f4,bc250,bd518)"],"rationale":"o2: shared save-block field builder used by every memcard orchestrator"},
+ {"overlay":"MEMORY","address":"0x800ba0a4","name":"memcard_io_leaf","tier":"inferred","evidence":["dynamic:boot","called_by:4 memcard fns","leaf-ish"],"rationale":"o2: shared low-level memcard I/O helper (called by 4 memcard fns)"},
+ {"overlay":"MEMORY","address":"0x800bd518","name":"save_load_screen_entry","tier":"inferred","evidence":["dynamic:boot","resident_entry:0x8003f5b8","calls:memcard_load_scan"],"rationale":"o2: resident-invoked save/load screen entry (calls memcard_load_scan)"},
+ {"overlay":"MEMORY","address":"0x800bc250","name":"save_load_screen_main","tier":"inferred","evidence":["dynamic:boot","calls:memcard_load_scan","top-level (no overlay caller); sz4808"],"rationale":"o2: main save/load screen handler (largest MEMORY fn; slot loop over memcard_load_scan)"}
+]

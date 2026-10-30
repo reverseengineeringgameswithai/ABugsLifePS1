@@ -1,0 +1,89 @@
+{
+  "row": "E04_camera_system",
+  "date": "2026-08-03",
+  "status": "partial, substantially advanced -- committed synthesis assembled, the struct surveyed across six contexts, and the row's own named next executed with an honest negative: there is no single camera-mode enum in the primary struct",
+  "COMMITTED_SYNTHESIS_2026-08-03": {
+    "producer": "camera_follow_update 0x8004DF18 (Canon SYS_camera) -- calls the movement integrator, atan2_heading, and camera_region_query 0x800376A0 (point-in-polygon region test, the 'regions' half of this row's name).",
+    "struct_and_authority": "Camera struct 0x80095358: pos triple +0x00, target triple +0x0C (committed phase3_camera_record.json). AUTHORITY PROVEN there: both triples are DERIVED OUTPUT -- pokes into either decay away (trajectories recorded); moving the camera requires changing the producer or its inputs. Follow law measured: position closes ~0.1506 of the remaining gap toward target per frame (48 samples).",
+    "world_view_matrix": "The camera's world->view rotation R (3x3, 1.3.12 fixed-point, det ~1.598 = rotation x the baked ~1.6x horizontal zoom) is mirrored per-frame in main RAM at 0x80090FB0 (authoritative) + 0x8009E290 (sibling) -- committed SYS_camera. E01's render-transform work consumes the scratchpad copy at 0x1F800374.",
+    "anchor_consumer": "The camera's tracked state feeds the enemy-admission anchor 0x8009EC50 via 0x8004EA8C/0x8004EC94 (committed D12/D05 evidence) -- camera state gates which actors are live, not just what renders."
+  },
+  "STRUCT_SURVEY_2026-08-03": {
+    "scope": "Isolated Interpreter instance /tmp/dsrepro-e04-cam-20260803, port 23655. Read 0x80095358..+0x60 across six context-diverse saves (normal scene 1, Cliffside scene 6, Bug Bar scene 14, Battle Arena scene 13, Training-end scene 17, frontend scene 0), plus one 80-frame dynamic trace.",
+    "fields_observed": {
+      "+0x18_half": "varies wildly per scene (8/1/0/4093/0; 4093 = -3 mod 4096) -- angle-domain, role unconfirmed (possibly theta rate); 0 in the dynamic trace while other fields moved.",
+      "+0x1A_half": "a LIVE angle in the 12-bit domain: equals +0x20 in steady-state saves (3505==3505, 1505==1505, 3072==3072) but moves independently in the Training-end trace (59->52->42->36 over 40 frames while +0x20 stayed 16). NOT a simple target/actual converging pair with +0x20 -- relationship partially characterized only.",
+      "+0x1E_half": "the constant 900 in EVERY gameplay scene (0 in frontend) -- a universal tuning constant (role unassigned; boom/pitch/distance candidate).",
+      "+0x20_half": "the archived '12-bit camera theta' claim CONFIRMED in domain terms (all observed values 0..4095: 3505/1505/3072/0/16) -- but static across the dynamic trace while +0x1A moved, so which of the pair is 'the' live heading needs a dedicated pass.",
+      "+0x22_half": "1 in every gameplay scene, 0 in frontend -- a camera-active flag.",
+      "+0x24_half": "per-scene values (32/20/32/32/14); the dynamic trace shows it RAMPS 14->18->28->32 and holds -- a transition/approach parameter settling to a steady per-scene value (32 common, 20 in Cliffside).",
+      "+0x2A_half": "per-scene small values (96/32/0/0/32) -- unassigned.",
+      "+0x30_beyond": "zeros except a constant 1 at +0x34 in ALL contexts including frontend."
+    },
+    "mode_word_negative": "The row's own named next ('enumerate camera-mode word values across normal/boss/telescope contexts') EXECUTED, with an honest negative result: no field in 0x80095358..+0x60 behaves as a mode ENUM across the six contexts. Camera modes are implemented as separate producers/flags, not a mode variable in the primary struct: the active flag (+0x22), external special-view state (0x800824DC), and scripted/setpiece camera code paths (e.g. the F15 in-engine ending, FUNC_8004DD98's setpiece).",
+    "dual_attribution_flag": "0x800824DC carries TWO committed attributions: G_TELESCOPE_ACTIVE (src_re/pickup_handlers_80054288_80054554.c, kind-0x30 telescope activation) AND the setpiece/bird spawn trigger ('script writes [0x800824dc] = -1 ... then sets it to -2', archived Enemy_spawn_architecture, committed). The observed value sets are disjoint (telescope path: 0/nonzero; setpiece: -1/-2), consistent with ONE shared multi-state 'special view / scripted event' global rather than a conflict -- but this reconciliation is an inference, flagged, not proven."
+  },
+  "L1R1_CAMERA_CONTROLS_2026-08-03": {
+    "trigger": "Operator: 'i think there should be some camera nodes, try DuckStation and holding L1 then R1' -- gameplay knowledge unlocking exactly the manual-camera-input trace the survey lacked.",
+    "scope": "Isolated Interpreter instance /tmp/dsrepro-e04-l1r1-20260803, port 23660, level01.sav; held L1 60f, released, held R1 60f, released, then L1+R1 together; per-6-frame struct sampling + screenshots.",
+    "corrections_to_the_survey": {
+      "+0x18_CORRECTED": "NOT theta-rate. It is the live smoothed BOOM/ELEVATION value: baseline 8 (scene 1); holding L1 drives it DOWN asymptotically (8->3, camera pulls low/close); holding R1 drives it UP asymptotically (8->122, camera rises to an overhead view); on release it decays back toward the per-scene rest value. The cross-context values from the survey (8/1/0/4093=-3/0) are per-scene RESTING boom values.",
+      "+0x1E_CORRECTED": "NOT a universal constant. 900 is the STANDARD camera-distance parameter; in the L1+R1 combined mode it reads 580 -- a close-up distance. The survey's 'constant 900' held only because no surveyed context was in a manual camera mode.",
+      "+0x22_CORRECTED": "The low byte is the active flag as surveyed -- but the HIGH byte is a camera SUBMODE code: 0x0A01 observed while L1+R1 held (submode 0x0A = the close-up/behind-Flik view, screenshot-confirmed). THE MODE FIELD EXISTS AFTER ALL, in the high byte -- the survey's negative was correct only for the six passive contexts, none of which were in a manual mode. Explicitly revising the earlier claim rather than silently replacing it.",
+      "+0x2A_observation": "96 baseline -> 128 during R1 and in the combined mode -- mode-coupled, exact role still unassigned.",
+      "thetas_unaffected": "+0x1A/+0x20 never moved under L1/R1 -- these controls are boom/elevation and zoom, NOT rotation. The theta-pair direction question remains open (rotation appears to be follow-driven only, or on inputs not yet found)."
+    },
+    "hud_detail": "The R1 raised view displays a camera-with-PADLOCK HUD icon (top-right) -- a camera-lock indicator; the combined L1+R1 view is a close-up behind-Flik camera (screenshots retained at /tmp/e04_r1.png, /tmp/e04_l1r1.png during the session).",
+    "nodes_interpretation": "The asymptotic targets (boom ~3 with L1, ~122 with R1, rest 8; distance 900 vs 580) behave as discrete preset camera NODES with smooth interpolation between them -- matching the operator's own framing. Whether these are authored per-scene node records or hardcoded presets is not yet traced."
+  },
+  "OPERATOR_FACTS_CONFIRMED_2026-08-03": {
+    "no_rotational_cameras": "Operator, direct: 'no rotational cameras exist.' This CLOSES the rotation-input open item -- camera heading is follow-driven only; there is no manual rotation control to find. The +0x1A/+0x20 pair question reduces to follow-behavior analysis, not input hunting.",
+    "l1_turn_in_place_UNDOCUMENTED_UNTIL_NOW": "Operator: 'Holding L1 + left or right will rotate Flik on his axis, was that documented?' -- it was NOT, anywhere (grep across Canon/analysis/src_re: zero hits). Live-confirmed: L1+left holds Flik's position EXACTLY frozen (197091,2734,492897 unchanged across 60 frames) while heading rotates steadily ~-15/frame (3505->2545 over 60f), and the CAMERA ORBITS to stay behind him (cam pos swings substantially while Flik is stationary). Also surfaced two more submode codes in +0x22's high byte during the turn: 0x0A then 0x0B. This is a PLAYER movement mechanic belonging to A01_move_run's scope -- cross-banked there as an addendum.",
+    "r1_camera_lock": "Operator: 'R1 is simply a cam lock thing so moving around it will lock the camera after zooming out.' Empirically confirmed WITH R1 HELD: after the zoom-out, walking moves the camera only ~9% of Flik's displacement in the first 15 frames (192 vs 2025 units) versus ~90% lockstep when unlocked (1605 vs 1777 in the release-first control) -- the camera holds position while Flik moves around it, with a LEASH: on a long straight run the drift ratio climbs (~63% by 60f) as the camera gets dragged along, and the boom decays once Flik is far. Boom values beyond the earlier observed 122 occur with longer holds (172 seen). The padlock HUD icon is the lock indicator. Releasing R1 resumes normal follow immediately (the release-first control's near-lockstep drift).",
+    "submode_codes_observed_so_far": "0x00 normal; 0x0A (L1+R1 close-up; also during L1-turn early phase); 0x0B (L1-turn later phase). Enumeration incomplete -- telescope and cutscene contexts untested."
+  },
+  "STILL_OPEN": [],
+  "evidence": {
+    "committed": [
+      "ObsidianVault/Canon/Systems/SYS_camera.md",
+      "analysis/phase3_camera_record.json",
+      "src_re/camera_transform_block.c",
+      "src_re/pickup_handlers_80054288_80054554.c",
+      "ObsidianVault/Archive/Superseded/Systems_Enemy_spawn_architecture.md",
+      "analysis/phase4_d12_worm_id40.json (camera->admission anchor)"
+    ],
+    "survey_fixtures": [
+      "level01.sav",
+      "canyon_bug.sav",
+      "level_09.sav",
+      "level_12.sav",
+      "training_all_stuff_collected_ending.sav",
+      "movies/Phase4/Interpreter/C17_MovieViewer.movie.sav"
+    ],
+    "live_scope": "six saves read + one 80-frame dynamic trace, isolated instance port 23655, read-only (no pokes)"
+  },
+  "phase4_disposition": "substantiated_partial_bounded_exhausted",
+  "closure_date": "2026-08-04",
+  "closure_artifact": "analysis/phase4_e04_bounded_exhaustion.json",
+  "closure": {
+    "capsule_first_gate": "accepted",
+    "static_asm_census": "complete within declared direct-address and direct-call bounds",
+    "normal_camera": "A17 full-bounded evidence reconciled",
+    "setpiece_camera": "C14 and cinematic-camera evidence reconciled",
+    "new_interpreter_movie_required": false,
+    "reason": "No named evidence domain remains that a fresh replay would uniquely answer."
+  },
+  "still_open_superseded": "The +0x1A/+0x20 pair's exact roles under follow (no manual rotation exists per the operator -- analysis is now follow-behavior only); whether the boom/distance presets are authored per-scene node records or hardcoded; the writers of +0x18/+0x1E/+0x22-high inside camera_follow_update (untraced); +0x2A's exact role; the R1 lock's leash distance/conditions (observed, not measured); submode codes beyond 0x0A/0x0B; boom collision and line-of-sight (no dedicated pass); telescope-view camera behavior live (no save with an active telescope existed); cutscene/setpiece camera producers; the 0x800824DC shared-global reconciliation.",
+  "bounded_residuals": [
+    "artistic catalog of every overlay cinematic shot",
+    "semantic gameplay name for the player +0x38 gate on camera +0x24",
+    "visual catalog of every terrain/LOS arrangement",
+    "pointer-derived aliases beyond the completed direct-address census"
+  ],
+  "corrections": [
+    "+0x22 high is a signed countdown/control byte, not a stable submode enum",
+    "+0x1A is final view yaw; +0x20 is follow/orbit heading",
+    "+0x2A is the terrain/region clearance pitch accumulator",
+    "the six normal camera profiles are hardcoded resident data"
+  ]
+}

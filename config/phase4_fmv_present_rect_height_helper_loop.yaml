@@ -1,0 +1,65 @@
+schema: abl-phase4-fmv-present-rect-height-helper-loop-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-072315-3325038-r4
+offline_query:
+  receipt:
+    relative_path: iteration-1-receipts/offline-fmv-helper-loop-index.receipt.json
+    sha256: 3412a5254070301df57bbf6d6972043c48ff10cb79102a33bae2f34dc0a14558
+  output:
+    relative_path: iteration-1-receipts/outputs/fmv-helper-loop-index-search.json
+    sha256: a3939a48467c6e31eb9114c296d5efa5362feefb3aeb9fe03eae841d4ce7f3a1
+  preservation:
+    relative_path: iteration-1-receipts/offline-fmv-helper-loop-index.preservation.json
+    sha256: 503d2f99feaf64b3a44cf03abeedebabb7f650ddf1fdede9a512e53c34c6a46c
+  external_index_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+  expected_zero_terms:
+    - '0x800B6A7C'
+    - '0x800B6C24'
+    - '0x800B6C34'
+    - argument_classes
+    - '1, 1 and 9'
+    - synthetic unwind
+prior_evidence:
+  function_trace_result:
+    path: analysis/phase4_fmv_present_rect_height_function_trace_result.json
+    sha256: 6064fe8a9720854cfb9b2ab14876a0c50c976e04c361f089897beec2c235604d
+  static_height_owner:
+    path: analysis/phase4_fmv_present_rect_height_static_ownership.json
+    sha256: 998d975f91d218d2d8e71b94e713d66679a6cef455b9d0797523508510725673
+claim_boundary:
+  packet_claim: >
+    The pristine 0x800B6C24 helper contains a finite loop whose static bound
+    produces the retained 1, 1 and 9 argument-class counts.
+  corrected_claim: >
+    Pristine 0x800B6C24 calls 0x800B6A7C exactly once per invocation. The
+    player calls the helper once at 0x800B70A0 before its outer loop and once
+    at 0x800B7280 per outer-loop iteration. Only a0 is semantic at the commit
+    entry; a1, a2 and a3 are overwritten before use, so the retained 1/1/9
+    classes are incidental register snapshots. The trace therefore partitions
+    as one initialization call plus ten outer-loop calls, while nine is only
+    the count of the final incidental class in that bounded window.
+  falsifier: >
+    Reject the corrected claim if either function has another direct or
+    indirect caller, 0x800B6C24 calls the commit function other than exactly
+    once per invocation, the initialization call can be revisited by the
+    player back edge, any of a1/a2/a3 is read before its asserted first
+    definition, a0 is not the stable 0x800CABE0 boundary, the 1/1/9 runtime
+    partition differs, either function lacks a conventional guest return, or a
+    load-bearing opcode/artifact/schema mutation leaves the focused guard green.
+  dimension_promoted: false
+  lifecycle_promoted: false
+  next_lane: static
+  next_method: >
+    Keep the corrected helper ABI and outer-loop partition banked. Before any
+    new live control, statically reconstruct the remaining native Pause/stop
+    trigger producers and the caller-owned post-helper exit decisions.
+  not_claimed:
+    - a fixed nine-iteration helper or player loop
+    - semantic meaning for retained a1, a2 or a3 values
+    - a new decoded-record type in config/record_types.yaml
+    - execution outside the retained function-trace window
+    - a direct machine return for the observer-synthesized first exit
+    - lifecycle or any other nine-dimension promotion

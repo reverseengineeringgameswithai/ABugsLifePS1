@@ -1,0 +1,50 @@
+schema: abl-phase4-mips-oracle-spec/1
+engine:
+  name: Unicorn
+  version: 2.1.4
+  architecture: MIPS32
+  endianness: little
+policy:
+  code_base: 0x80010000
+  return_sentinel: 0x800FF000
+  stack_base: 0x801F0000
+  stack_size: 0x1000
+  max_cases: 4096
+  max_instructions: 64
+  allowed_classes: [pure, ram_local]
+  rejected_domains: [MMIO, DMA, GTE, COP0, CD, GPU, SPU, interrupts,
+                     self_modifying_code, timing_sensitive]
+pilots:
+  - id: mask_low_byte
+    class: pure
+    code_words: [0x308200FF, 0x03E00008, 0x00000000]
+    input_domains:
+      a0: [0, 1, 0x7F, 0x80, 0xFF, 0x100, 0x12345678, 0xFFFFFFFF]
+    observe: {type: register, name: v0}
+    model: {op: and, args: [{reg: a0}, {const: 0xFF}]}
+  - id: signed_negative_selector
+    class: pure
+    code_words: [0x28820000, 0x03E00008, 0x00000000]
+    input_domains:
+      a0: [0, 1, 0x7FFFFFFF, 0x80000000, 0xFFFFFFFE, 0xFFFFFFFF]
+    observe: {type: register, name: v0}
+    model: {op: slt_signed, args: [{reg: a0}, {const: 0}]}
+  - id: wrapping_increment
+    class: pure
+    code_words: [0x24820001, 0x03E00008, 0x00000000]
+    input_domains:
+      a0: [0, 1, 0x7FFFFFFF, 0x80000000, 0xFFFFFFFE, 0xFFFFFFFF]
+    observe: {type: register, name: v0}
+    model: {op: add32, args: [{reg: a0}, {const: 1}]}
+  - id: ram_local_increment
+    class: ram_local
+    code_words: [0x8C820000, 0x24420001, 0xAC820004, 0x8C830004,
+                 0x00601021, 0x03E00008, 0x00000000]
+    allowed_memory:
+      - {start: 0x80020000, size: 8}
+    memory_init:
+      - {address: 0x80020000, words: [0x12345678, 0]}
+    input_domains:
+      a0: [0x80020000]
+    observe: {type: register, name: v0}
+    model: {const: 0x12345679}

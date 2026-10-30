@@ -1,0 +1,785 @@
+{
+ "schema": "abl-phase4-evidence-dag-report/1",
+ "config": "config/phase4_evidence_dag.yaml",
+ "config_sha256": "faf62440b88e7e210aaab6c8627707de463fcac0b6a6b43bc5a428698084c5c8",
+ "topological_order": [
+  "offline_queue",
+  "closure_debt",
+  "live_escalations",
+  "movie_priority",
+  "promotion_preflight",
+  "phase4_gate"
+ ],
+ "nodes": {
+  "offline_queue": {
+   "classification": "static",
+   "generator": "tools/phase4_offline_queue.py",
+   "generator_sha256": "8eb10b0fc37af1bdcfce87c5be283a8380203ded76b09bbfead71f6a55879c6a",
+   "command": [
+    "{python}",
+    "tools/phase4_offline_queue.py",
+    "--write"
+   ],
+   "verify_command": [
+    "{python}",
+    "tools/phase4_offline_queue.py",
+    "--check"
+   ],
+   "depends_on": [],
+   "inputs": [
+    {
+     "path": "tools/phase4_common.py",
+     "kind": "file",
+     "size": 23671,
+     "exact_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "semantic_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_coverage.py",
+     "kind": "file",
+     "size": 10205,
+     "exact_sha256": "a42f9e6eee244828cc83ae09dedf3017dcace52f6f2aebdff4126e5eababf7ae",
+     "semantic_sha256": "a42f9e6eee244828cc83ae09dedf3017dcace52f6f2aebdff4126e5eababf7ae",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_inventory.py",
+     "kind": "file",
+     "size": 24685,
+     "exact_sha256": "e67cc08599af5f3e73334a9e3ec82ddeb1ada719dba45e44219da8736e1f2e50",
+     "semantic_sha256": "e67cc08599af5f3e73334a9e3ec82ddeb1ada719dba45e44219da8736e1f2e50",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_priority.py",
+     "kind": "file",
+     "size": 6064,
+     "exact_sha256": "9234d59ec416201857733139d4fa474d3d10d2a5e1bdb2a9fd0b200847ba452a",
+     "semantic_sha256": "9234d59ec416201857733139d4fa474d3d10d2a5e1bdb2a9fd0b200847ba452a",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_offline_queue.yaml",
+     "kind": "file",
+     "size": 3066,
+     "exact_sha256": "09861cd0fadb1e8e418b5ac486e56e72dfe643c1e864a3d2d333fbb6ba049d6a",
+     "semantic_sha256": "09861cd0fadb1e8e418b5ac486e56e72dfe643c1e864a3d2d333fbb6ba049d6a",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_live_escalations.yaml",
+     "kind": "file",
+     "size": 362872,
+     "exact_sha256": "9a4c62ce8017102bb376f79fc3543a039e22bd68aaf3ad795d700f8c113bbda0",
+     "semantic_sha256": "9a4c62ce8017102bb376f79fc3543a039e22bd68aaf3ad795d700f8c113bbda0",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_campaigns.yaml",
+     "kind": "file",
+     "size": 495463,
+     "exact_sha256": "a8fd89db427a0430f58353f9c9bb01ebb8971b82fce551ee190afb9666e4d78e",
+     "semantic_sha256": "a8fd89db427a0430f58353f9c9bb01ebb8971b82fce551ee190afb9666e4d78e",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/mechanics_baseline.yaml",
+     "kind": "file",
+     "size": 459552,
+     "exact_sha256": "97838ed4cc30dc372f3d7449384861b5f531129f31770b8269c4361ee7f23244",
+     "semantic_sha256": "97838ed4cc30dc372f3d7449384861b5f531129f31770b8269c4361ee7f23244",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_campaign_inventory.json",
+     "kind": "file",
+     "size": 1823534,
+     "exact_sha256": "b4d6cf6c92d5346c6ccf1091fbc560692fc8bbc72ed37f37ca78b051da81a6ad",
+     "semantic_sha256": "6919c9a35d79dc26cc340ed2af4dfad1f814fb3d3e38e1413fc158c6858c01e2",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_trace_capsule_set.json",
+     "kind": "file",
+     "size": 61593,
+     "exact_sha256": "569b3ebf073b2384c04edecbc54ca52d4f7a35a0387a02e9540e7a936509cc53",
+     "semantic_sha256": "790c8b3267b4f94b8ac9b1c44b017133d67e468156fba7f5537a4afc76d37506",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_coverage_matrix.json",
+     "kind": "file",
+     "size": 38025,
+     "exact_sha256": "73de21ab0400aa861b325a548ba9b9be969ab25d3dafe60c22ed2421c7da5ae9",
+     "semantic_sha256": "8bac33a3a0473c462f12b710ba85f937f3cf5a701f36c47aefed77f7cc3d1408",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_fixture_audit.json",
+     "kind": "file",
+     "size": 151569,
+     "exact_sha256": "3beb3375c103cdd88d13bf8ea042c29ea220567e4da7aa1b76f44ce714f52bcd",
+     "semantic_sha256": "5f51b548bf271bba3c2a438f2c313955df76d510f8026d9cbba6a5a897ac3ad4",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_priority.json",
+     "kind": "file",
+     "size": 12757,
+     "exact_sha256": "04d729ddae881318fd892b5a4504dd28be7f42d6a28648b821202412f1457380",
+     "semantic_sha256": "c88734fe8745f73656ce5a22ed39f7f1263d5c5854a2774e8a59c203aa93dea5",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase0_2_external_fixture_set.json",
+     "kind": "file",
+     "size": 612601,
+     "exact_sha256": "6142cd2dbf8a3f0cc4c1e922798f70168bddf07fb301cf1697fcb7924abfa59f",
+     "semantic_sha256": "275241930e556707b3fbad7a4015d8cc137b0cbab10669cb09dc862ae98aa00b",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase3_ownership_graph.json",
+     "kind": "file",
+     "size": 562901,
+     "exact_sha256": "445edc9d4cae86a7ddfd8379ceaf1adde8e6b57d61d37932c4b6cdc5199a4a05",
+     "semantic_sha256": "f0e1ec4557e5a3df41adb5ccdb6eb722c799329a8a42548bc3cc30f1316b4683",
+     "mode": "exact"
+    },
+    {
+     "path": "movies",
+     "kind": "tree",
+     "size": 753700091,
+     "file_count": 307,
+     "exact_sha256": "144283bbf0e540f1b5f0a8ec02480475d2c57543c6595a28830224d03d39fe62",
+     "semantic_sha256": "144283bbf0e540f1b5f0a8ec02480475d2c57543c6595a28830224d03d39fe62",
+     "mode": "exact"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase4_movie_inventory.json",
+     "kind": "file",
+     "size": 80886,
+     "exact_sha256": "75592ed849b7047e5397bb0c9f7864d3b9c874c1da0180f35ec43c2d7c8ad125",
+     "semantic_sha256": "3bf43d1c8a141b536d6d9f091eabf20e8a578c75b8817ee3c56b22dd7db23cec",
+     "comparison": "semantic_json"
+    },
+    {
+     "path": "analysis/phase4_offline_opportunity_queue.json",
+     "kind": "file",
+     "size": 940712,
+     "exact_sha256": "84d8e46644d19eb0c4565b661644916207f85a5592079d79314f4cf35668fc24",
+     "semantic_sha256": "e55e253d39f2d21f1114573520778beaf7542a2f48aed8787c0b8ec158792790",
+     "comparison": "semantic_json"
+    }
+   ],
+   "fingerprint": "26ac3f2d245259261d4592d711a54ccb79a25d976f9535868463887032e97356"
+  },
+  "closure_debt": {
+   "classification": "static",
+   "generator": "tools/phase4_closure_debt.py",
+   "generator_sha256": "33be401b0c59c63a1f8f810353201304ca0db34abb34392161b29e8dc4d24482",
+   "command": [
+    "{python}",
+    "tools/phase4_closure_debt.py",
+    "--write"
+   ],
+   "verify_command": [
+    "{python}",
+    "tools/phase4_closure_debt.py",
+    "--check"
+   ],
+   "depends_on": [
+    "offline_queue"
+   ],
+   "inputs": [
+    {
+     "path": "tools/phase4_common.py",
+     "kind": "file",
+     "size": 23671,
+     "exact_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "semantic_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_closure_policy.yaml",
+     "kind": "file",
+     "size": 2550,
+     "exact_sha256": "ad3036e976086cf56773624c0b377c0af41f91af0c3bcc2d8a660423f59ee674",
+     "semantic_sha256": "ad3036e976086cf56773624c0b377c0af41f91af0c3bcc2d8a660423f59ee674",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_campaigns.yaml",
+     "kind": "file",
+     "size": 495463,
+     "exact_sha256": "a8fd89db427a0430f58353f9c9bb01ebb8971b82fce551ee190afb9666e4d78e",
+     "semantic_sha256": "a8fd89db427a0430f58353f9c9bb01ebb8971b82fce551ee190afb9666e4d78e",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_findings.yaml",
+     "kind": "file",
+     "size": 116989,
+     "exact_sha256": "4072850a9a54496ac5b239a60341f752fc5b594e65f69d8349b562a89a92865a",
+     "semantic_sha256": "4072850a9a54496ac5b239a60341f752fc5b594e65f69d8349b562a89a92865a",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/mechanics_baseline.yaml",
+     "kind": "file",
+     "size": 459552,
+     "exact_sha256": "97838ed4cc30dc372f3d7449384861b5f531129f31770b8269c4361ee7f23244",
+     "semantic_sha256": "97838ed4cc30dc372f3d7449384861b5f531129f31770b8269c4361ee7f23244",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_campaign_inventory.json",
+     "kind": "file",
+     "size": 1823534,
+     "exact_sha256": "b4d6cf6c92d5346c6ccf1091fbc560692fc8bbc72ed37f37ca78b051da81a6ad",
+     "semantic_sha256": "6919c9a35d79dc26cc340ed2af4dfad1f814fb3d3e38e1413fc158c6858c01e2",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_coverage_matrix.json",
+     "kind": "file",
+     "size": 38025,
+     "exact_sha256": "73de21ab0400aa861b325a548ba9b9be969ab25d3dafe60c22ed2421c7da5ae9",
+     "semantic_sha256": "8bac33a3a0473c462f12b710ba85f937f3cf5a701f36c47aefed77f7cc3d1408",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_offline_opportunity_queue.json",
+     "kind": "file",
+     "size": 940712,
+     "exact_sha256": "84d8e46644d19eb0c4565b661644916207f85a5592079d79314f4cf35668fc24",
+     "semantic_sha256": "e55e253d39f2d21f1114573520778beaf7542a2f48aed8787c0b8ec158792790",
+     "mode": "exact"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase4_closure_debt.json",
+     "kind": "file",
+     "size": 251535,
+     "exact_sha256": "999ac9fa8984ac61bc18ba5459b0408ef49c088d2ce4195f32821eee68281840",
+     "semantic_sha256": "9272263e36c009c6f0d3bb6f5eb665f6a8a9e8d93e5e1dcdad2b9d8a333d5a06",
+     "comparison": "semantic_json"
+    }
+   ],
+   "fingerprint": "af2edacee9db7678891c1c7bddc2c6354514f0819d15f725c5d25e58774591b8"
+  },
+  "live_escalations": {
+   "classification": "static",
+   "generator": "tools/phase4_live_escalations.py",
+   "generator_sha256": "b1ffd75f6d9125fd42cb162542b996542c352d6945855da52e101fee7da29f50",
+   "command": [
+    "{python}",
+    "tools/phase4_live_escalations.py",
+    "--write"
+   ],
+   "verify_command": [
+    "{python}",
+    "tools/phase4_live_escalations.py",
+    "--check"
+   ],
+   "depends_on": [
+    "offline_queue"
+   ],
+   "inputs": [
+    {
+     "path": "tools/phase4_common.py",
+     "kind": "file",
+     "size": 23671,
+     "exact_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "semantic_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_live_escalations.yaml",
+     "kind": "file",
+     "size": 362872,
+     "exact_sha256": "9a4c62ce8017102bb376f79fc3543a039e22bd68aaf3ad795d700f8c113bbda0",
+     "semantic_sha256": "9a4c62ce8017102bb376f79fc3543a039e22bd68aaf3ad795d700f8c113bbda0",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_offline_opportunity_queue.json",
+     "kind": "file",
+     "size": 940712,
+     "exact_sha256": "84d8e46644d19eb0c4565b661644916207f85a5592079d79314f4cf35668fc24",
+     "semantic_sha256": "e55e253d39f2d21f1114573520778beaf7542a2f48aed8787c0b8ec158792790",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_trace_capsule_set.json",
+     "kind": "file",
+     "size": 61593,
+     "exact_sha256": "569b3ebf073b2384c04edecbc54ca52d4f7a35a0387a02e9540e7a936509cc53",
+     "semantic_sha256": "790c8b3267b4f94b8ac9b1c44b017133d67e468156fba7f5537a4afc76d37506",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase0_2_external_fixture_set.json",
+     "kind": "file",
+     "size": 612601,
+     "exact_sha256": "6142cd2dbf8a3f0cc4c1e922798f70168bddf07fb301cf1697fcb7924abfa59f",
+     "semantic_sha256": "275241930e556707b3fbad7a4015d8cc137b0cbab10669cb09dc862ae98aa00b",
+     "mode": "exact"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase4_live_escalations.json",
+     "kind": "file",
+     "size": 508434,
+     "exact_sha256": "2442cdd35c08d68195acbf7e3a2ab24860eab6faf2f6c1e7f4d33d69c6e1a30b",
+     "semantic_sha256": "d66c61735a96345dbc0d18d7b8e3e8da3ef319c0d19ccfd9abc3611f0954c20f",
+     "comparison": "semantic_json"
+    }
+   ],
+   "fingerprint": "34de593b7cf82abd0d8d14b623b8ea936ec69f6b5a192205c7dd3e5ae3d97181"
+  },
+  "movie_priority": {
+   "classification": "static",
+   "generator": "tools/phase4_movie_priority.py",
+   "generator_sha256": "6504c9bbdeda065dacac087f2f68b106eda3eb03b023e6578290a30275430e0a",
+   "command": [
+    "{python}",
+    "tools/phase4_movie_priority.py",
+    "--write"
+   ],
+   "verify_command": [
+    "{python}",
+    "tools/phase4_movie_priority.py",
+    "--check"
+   ],
+   "depends_on": [
+    "offline_queue",
+    "closure_debt"
+   ],
+   "inputs": [
+    {
+     "path": "tools/phase4_common.py",
+     "kind": "file",
+     "size": 23671,
+     "exact_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "semantic_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_derived_index.py",
+     "kind": "file",
+     "size": 8019,
+     "exact_sha256": "b9d8f85a831dc18b28d29ceb252775e6a1d37692571040348999ebaf77923dd8",
+     "semantic_sha256": "b9d8f85a831dc18b28d29ceb252775e6a1d37692571040348999ebaf77923dd8",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_inventory.py",
+     "kind": "file",
+     "size": 24685,
+     "exact_sha256": "e67cc08599af5f3e73334a9e3ec82ddeb1ada719dba45e44219da8736e1f2e50",
+     "semantic_sha256": "e67cc08599af5f3e73334a9e3ec82ddeb1ada719dba45e44219da8736e1f2e50",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_scheduler_policy.py",
+     "kind": "file",
+     "size": 69136,
+     "exact_sha256": "a8b98c903be461750701192e7c12866c40c11b78a40139696751ed5e7a043700",
+     "semantic_sha256": "a8b98c903be461750701192e7c12866c40c11b78a40139696751ed5e7a043700",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_movie_priority.yaml",
+     "kind": "file",
+     "size": 1572,
+     "exact_sha256": "622631c8b2098f2ae208a5dad044f60def643f4391b7365f083878564928273a",
+     "semantic_sha256": "622631c8b2098f2ae208a5dad044f60def643f4391b7365f083878564928273a",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_scheduler_policy.yaml",
+     "kind": "file",
+     "size": 1707,
+     "exact_sha256": "b6f49c091659c8f901685543fbecdd8ab0d18cc0c367cac96c5267a91e434fa8",
+     "semantic_sha256": "b6f49c091659c8f901685543fbecdd8ab0d18cc0c367cac96c5267a91e434fa8",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/mechanics_baseline.yaml",
+     "kind": "file",
+     "size": 459552,
+     "exact_sha256": "97838ed4cc30dc372f3d7449384861b5f531129f31770b8269c4361ee7f23244",
+     "semantic_sha256": "97838ed4cc30dc372f3d7449384861b5f531129f31770b8269c4361ee7f23244",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_closure_debt.json",
+     "kind": "file",
+     "size": 251535,
+     "exact_sha256": "999ac9fa8984ac61bc18ba5459b0408ef49c088d2ce4195f32821eee68281840",
+     "semantic_sha256": "9272263e36c009c6f0d3bb6f5eb665f6a8a9e8d93e5e1dcdad2b9d8a333d5a06",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_offline_opportunity_queue.json",
+     "kind": "file",
+     "size": 940712,
+     "exact_sha256": "84d8e46644d19eb0c4565b661644916207f85a5592079d79314f4cf35668fc24",
+     "semantic_sha256": "e55e253d39f2d21f1114573520778beaf7542a2f48aed8787c0b8ec158792790",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_movie_inventory.json",
+     "kind": "file",
+     "size": 80886,
+     "exact_sha256": "75592ed849b7047e5397bb0c9f7864d3b9c874c1da0180f35ec43c2d7c8ad125",
+     "semantic_sha256": "3bf43d1c8a141b536d6d9f091eabf20e8a578c75b8817ee3c56b22dd7db23cec",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_fixture_audit.json",
+     "kind": "file",
+     "size": 151569,
+     "exact_sha256": "3beb3375c103cdd88d13bf8ea042c29ea220567e4da7aa1b76f44ce714f52bcd",
+     "semantic_sha256": "5f51b548bf271bba3c2a438f2c313955df76d510f8026d9cbba6a5a897ac3ad4",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase0_2_external_fixture_set.json",
+     "kind": "file",
+     "size": 612601,
+     "exact_sha256": "6142cd2dbf8a3f0cc4c1e922798f70168bddf07fb301cf1697fcb7924abfa59f",
+     "semantic_sha256": "275241930e556707b3fbad7a4015d8cc137b0cbab10669cb09dc862ae98aa00b",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_trace_capsule_set.json",
+     "kind": "file",
+     "size": 61593,
+     "exact_sha256": "569b3ebf073b2384c04edecbc54ca52d4f7a35a0387a02e9540e7a936509cc53",
+     "semantic_sha256": "790c8b3267b4f94b8ac9b1c44b017133d67e468156fba7f5537a4afc76d37506",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_derived_index.json",
+     "kind": "file",
+     "size": 34060,
+     "exact_sha256": "d30b69d49918a6ec9f5a52adc7bf168ce2fbc5a0b90b40a637a1e5e79102ccfe",
+     "semantic_sha256": "a81ce069234bc795e1c434e12f6ef6c3be79f8be151b41542b068ac7bb0925ac",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase3_ownership_graph.json",
+     "kind": "file",
+     "size": 562901,
+     "exact_sha256": "445edc9d4cae86a7ddfd8379ceaf1adde8e6b57d61d37932c4b6cdc5199a4a05",
+     "semantic_sha256": "f0e1ec4557e5a3df41adb5ccdb6eb722c799329a8a42548bc3cc30f1316b4683",
+     "mode": "exact"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase4_movie_priority_queue.json",
+     "kind": "file",
+     "size": 1036000,
+     "exact_sha256": "11c2d4ad5b2484e9061d11850577bb1ad4fed2c91b60e611f6cfacf1bb57299e",
+     "semantic_sha256": "c1762c193a540d172e86a29e4146b8f336bf66583904eeb592a71ebc39a720ea",
+     "comparison": "semantic_json"
+    }
+   ],
+   "fingerprint": "109b883d742cdc919ede3b91ba965540ab59517383fba1c911de00b3e92fcc7d"
+  },
+  "promotion_preflight": {
+   "classification": "static",
+   "generator": "tools/phase4_promotion_preflight.py",
+   "generator_sha256": "beef8bce2bca17828438bed6f3fb44579068b434d6e68b370c38c8ff6e34b2c4",
+   "command": [
+    "{python}",
+    "tools/phase4_promotion_preflight.py"
+   ],
+   "verify_command": [
+    "{python}",
+    "tools/phase4_promotion_preflight.py",
+    "--check"
+   ],
+   "depends_on": [
+    "closure_debt"
+   ],
+   "inputs": [
+    {
+     "path": "tools/phase4_common.py",
+     "kind": "file",
+     "size": 23671,
+     "exact_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "semantic_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_promotion_packets.yaml",
+     "kind": "file",
+     "size": 7295,
+     "exact_sha256": "0858c188ddfbc31ff3d3b748459f7317380fc0145f058701061e79374a72ba0e",
+     "semantic_sha256": "0858c188ddfbc31ff3d3b748459f7317380fc0145f058701061e79374a72ba0e",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_closure_policy.yaml",
+     "kind": "file",
+     "size": 2550,
+     "exact_sha256": "ad3036e976086cf56773624c0b377c0af41f91af0c3bcc2d8a660423f59ee674",
+     "semantic_sha256": "ad3036e976086cf56773624c0b377c0af41f91af0c3bcc2d8a660423f59ee674",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_campaigns.yaml",
+     "kind": "file",
+     "size": 495463,
+     "exact_sha256": "a8fd89db427a0430f58353f9c9bb01ebb8971b82fce551ee190afb9666e4d78e",
+     "semantic_sha256": "a8fd89db427a0430f58353f9c9bb01ebb8971b82fce551ee190afb9666e4d78e",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_closure_debt.json",
+     "kind": "file",
+     "size": 251535,
+     "exact_sha256": "999ac9fa8984ac61bc18ba5459b0408ef49c088d2ce4195f32821eee68281840",
+     "semantic_sha256": "9272263e36c009c6f0d3bb6f5eb665f6a8a9e8d93e5e1dcdad2b9d8a333d5a06",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_static_frontier_index.json",
+     "kind": "file",
+     "size": 21170214,
+     "exact_sha256": "eabdd1376b3d081e373b13a7c7eba0174b7450ad9239d72a9b5fba55538caad1",
+     "semantic_sha256": "c0d2dc8b361af500d1efbee5b5bcce152899d36c6fa4ffe1c9ef0a2d85a3d4e9",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_static_frontier_pilots.json",
+     "kind": "file",
+     "size": 406704,
+     "exact_sha256": "f3c87f70fd0c08d93cbdbfddaa6282144a89aa5baa09bd8071cf4ada4f0ed8ec",
+     "semantic_sha256": "ba9278457eb62d079a4e0fbd2ba5eba81308727979e4a895b5a0b6a7bab45d9d",
+     "mode": "exact"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase4_promotion_preflight.json",
+     "kind": "file",
+     "size": 5536,
+     "exact_sha256": "1a0e935328292fbaf27e43f298b64e8242a4e30726a7dde576d38247d3794e92",
+     "semantic_sha256": "5e26d6ecbb02cccd8187a831266e445af20982b79e4e45ea57513efeb88ad32e",
+     "comparison": "semantic_json"
+    }
+   ],
+   "fingerprint": "5204f71b96ef72f8de0861e4964a17808dfc831139ff14c2cdfad5992f4da208"
+  },
+  "phase4_gate": {
+   "classification": "static",
+   "generator": "tools/phase4_gate.py",
+   "generator_sha256": "d1534a57f2f5b05086b23bc1623ff0574e870adb7d70cea682c9d909ef1d818b",
+   "command": [
+    "{python}",
+    "tools/phase4_gate.py"
+   ],
+   "verify_command": [
+    "{python}",
+    "tools/phase4_gate.py",
+    "--check"
+   ],
+   "depends_on": [
+    "offline_queue",
+    "closure_debt",
+    "live_escalations",
+    "movie_priority",
+    "promotion_preflight"
+   ],
+   "inputs": [
+    {
+     "path": "tools/phase4_common.py",
+     "kind": "file",
+     "size": 23671,
+     "exact_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "semantic_sha256": "1d3ee9400aa0d739e41c8df6eeffb6edbfcb67dba760ff32eb32da6f90daa135",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_coverage.py",
+     "kind": "file",
+     "size": 10205,
+     "exact_sha256": "a42f9e6eee244828cc83ae09dedf3017dcace52f6f2aebdff4126e5eababf7ae",
+     "semantic_sha256": "a42f9e6eee244828cc83ae09dedf3017dcace52f6f2aebdff4126e5eababf7ae",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_inventory.py",
+     "kind": "file",
+     "size": 24685,
+     "exact_sha256": "e67cc08599af5f3e73334a9e3ec82ddeb1ada719dba45e44219da8736e1f2e50",
+     "semantic_sha256": "e67cc08599af5f3e73334a9e3ec82ddeb1ada719dba45e44219da8736e1f2e50",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/phase4_priority.py",
+     "kind": "file",
+     "size": 6064,
+     "exact_sha256": "9234d59ec416201857733139d4fa474d3d10d2a5e1bdb2a9fd0b200847ba452a",
+     "semantic_sha256": "9234d59ec416201857733139d4fa474d3d10d2a5e1bdb2a9fd0b200847ba452a",
+     "mode": "exact"
+    },
+    {
+     "path": "tools/build_identity.py",
+     "kind": "file",
+     "size": 15601,
+     "exact_sha256": "66f85f85e43df64876ab7e1d15db7b2cfa065a34df2a3af20cc3090b2967d520",
+     "semantic_sha256": "66f85f85e43df64876ab7e1d15db7b2cfa065a34df2a3af20cc3090b2967d520",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_campaigns.yaml",
+     "kind": "file",
+     "size": 495463,
+     "exact_sha256": "a8fd89db427a0430f58353f9c9bb01ebb8971b82fce551ee190afb9666e4d78e",
+     "semantic_sha256": "a8fd89db427a0430f58353f9c9bb01ebb8971b82fce551ee190afb9666e4d78e",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_findings.yaml",
+     "kind": "file",
+     "size": 116989,
+     "exact_sha256": "4072850a9a54496ac5b239a60341f752fc5b594e65f69d8349b562a89a92865a",
+     "semantic_sha256": "4072850a9a54496ac5b239a60341f752fc5b594e65f69d8349b562a89a92865a",
+     "mode": "exact"
+    },
+    {
+     "path": "config/phase4_inventory.yaml",
+     "kind": "file",
+     "size": 42257,
+     "exact_sha256": "6edec27028ea00e23338e2e5565a340b17a4cc31398b88d012f434dc3813fd02",
+     "semantic_sha256": "6edec27028ea00e23338e2e5565a340b17a4cc31398b88d012f434dc3813fd02",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/mechanics_baseline.yaml",
+     "kind": "file",
+     "size": 459552,
+     "exact_sha256": "97838ed4cc30dc372f3d7449384861b5f531129f31770b8269c4361ee7f23244",
+     "semantic_sha256": "97838ed4cc30dc372f3d7449384861b5f531129f31770b8269c4361ee7f23244",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_campaign_inventory.json",
+     "kind": "file",
+     "size": 1823534,
+     "exact_sha256": "b4d6cf6c92d5346c6ccf1091fbc560692fc8bbc72ed37f37ca78b051da81a6ad",
+     "semantic_sha256": "6919c9a35d79dc26cc340ed2af4dfad1f814fb3d3e38e1413fc158c6858c01e2",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_fixture_audit.json",
+     "kind": "file",
+     "size": 151569,
+     "exact_sha256": "3beb3375c103cdd88d13bf8ea042c29ea220567e4da7aa1b76f44ce714f52bcd",
+     "semantic_sha256": "5f51b548bf271bba3c2a438f2c313955df76d510f8026d9cbba6a5a897ac3ad4",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_knowledge_audit.json",
+     "kind": "file",
+     "size": 2351,
+     "exact_sha256": "47da5515a69a13abc806b9e242447626023766019f6e67a1841ffa7555a7236e",
+     "semantic_sha256": "b4b06eaab9721bcb3e8a527502ec9bb2c04428256167a7cee4dd21a2713981ec",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_offline_opportunity_queue.json",
+     "kind": "file",
+     "size": 940712,
+     "exact_sha256": "84d8e46644d19eb0c4565b661644916207f85a5592079d79314f4cf35668fc24",
+     "semantic_sha256": "e55e253d39f2d21f1114573520778beaf7542a2f48aed8787c0b8ec158792790",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_movie_inventory.json",
+     "kind": "file",
+     "size": 80886,
+     "exact_sha256": "75592ed849b7047e5397bb0c9f7864d3b9c874c1da0180f35ec43c2d7c8ad125",
+     "semantic_sha256": "3bf43d1c8a141b536d6d9f091eabf20e8a578c75b8817ee3c56b22dd7db23cec",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_closure_debt.json",
+     "kind": "file",
+     "size": 251535,
+     "exact_sha256": "999ac9fa8984ac61bc18ba5459b0408ef49c088d2ce4195f32821eee68281840",
+     "semantic_sha256": "9272263e36c009c6f0d3bb6f5eb665f6a8a9e8d93e5e1dcdad2b9d8a333d5a06",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_live_escalations.json",
+     "kind": "file",
+     "size": 508434,
+     "exact_sha256": "2442cdd35c08d68195acbf7e3a2ab24860eab6faf2f6c1e7f4d33d69c6e1a30b",
+     "semantic_sha256": "d66c61735a96345dbc0d18d7b8e3e8da3ef319c0d19ccfd9abc3611f0954c20f",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_movie_priority_queue.json",
+     "kind": "file",
+     "size": 1036000,
+     "exact_sha256": "11c2d4ad5b2484e9061d11850577bb1ad4fed2c91b60e611f6cfacf1bb57299e",
+     "semantic_sha256": "c1762c193a540d172e86a29e4146b8f336bf66583904eeb592a71ebc39a720ea",
+     "mode": "exact"
+    },
+    {
+     "path": "analysis/phase4_promotion_preflight.json",
+     "kind": "file",
+     "size": 5536,
+     "exact_sha256": "1a0e935328292fbaf27e43f298b64e8242a4e30726a7dde576d38247d3794e92",
+     "semantic_sha256": "5e26d6ecbb02cccd8187a831266e445af20982b79e4e45ea57513efeb88ad32e",
+     "mode": "exact"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase4_gate.json",
+     "kind": "file",
+     "size": 18338,
+     "exact_sha256": "8b18a1a689b2d3f3f9c6d2d59848a2e441c572ac7d676a1ead527ec4ba7f149b",
+     "semantic_sha256": "75ca1e041de90c1dd79452f18386ee98f1f1e852dca7b0ddeb1fd19617add91b",
+     "comparison": "semantic_json"
+    }
+   ],
+   "fingerprint": "fc0efb784018a5db456463208103db130723ee76ccbe92716f3f2f90fa2da505"
+  }
+ },
+ "summary": {
+  "nodes": 6,
+  "edges": 10,
+  "exact_artifact_edges": 12,
+  "semantic_artifact_edges": 0,
+  "live_nodes": 0
+ },
+ "pilot": {
+  "schema": "abl-phase4-evidence-dag-pilot/1",
+  "exact_churn_detected": true,
+  "semantic_churn_suppressed": true,
+  "semantic_change_detected": true,
+  "exact_consumer_invalidated_by_identity_churn": true,
+  "semantic_consumer_invalidated_by_identity_churn": false,
+  "semantic_consumer_invalidated_by_value_change": true
+ },
+ "claims": {
+  "complete_phase4_graph": false,
+  "bounded_chain": "inventory -> offline queue -> debt -> escalation/movie/preflight -> gate",
+  "exact_identity_retained": true,
+  "semantic_hash_never_replaces_preservation_hash": true
+ }
+}

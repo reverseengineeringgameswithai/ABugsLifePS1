@@ -1,0 +1,48 @@
+{
+ "_comment": "Pre-outcome freeze for the fresh detached verifier re-adjudicating exactly ONE dimension on F01_anthill: lifecycle, after the bcfd7dce repair of the writer_pcs +4 attribution defect named at bc03931c. Committed BEFORE any verification outcome existed. Ancestry: outcome commit(s) must descend from this commit.",
+ "schema": "abl-phase4-f01-lifecycle-readjudication-freeze/1",
+ "generated": "2026-08-11",
+ "verifier": "fresh detached verifier (did not author the repair, the probe, the claim map, or the prior adjudication)",
+ "scope": {
+  "dimension": "lifecycle only",
+  "settled_not_reopened": ["original_oracle (MET at bc03931c)", "complete_frontier (MET at bc03931c)"],
+  "named_defect_under_repair": "claim map registered breadth-sweep writer_pcs (store+4 write-watch reporting convention) as value-0 writers without disclosure; at those PCs sit an lw, a bgtz and a lui",
+  "named_remedy": "instruction-exact (or convention-annotated) retirement attribution, then a regenerated claim map"
+ },
+ "baseline": {
+  "head_at_freeze": "bcfd7dce14658c749edc3719fbf4c25b6bef19c2",
+  "prior_verdict_commit": "bc03931cc626d22e0804a419186c6b8add794ab7",
+  "prior_claim_map_commit_for_diff": "2e7749e3e1f09",
+  "git_status_short_line_count": 185,
+  "git_status_short_sha256": "dcfcf72e46d76cd95f620c7672c565c14a5fc2aeec8aa1b35a2f619673ab7c9f",
+  "operator_wip_policy": "no dirty operator file is staged, committed, or reverted by this re-adjudication; WIP grew 167 -> 185 lines since the bc03931c-era freeze (operator active)"
+ },
+ "artifacts_judged": [
+  {"path": "tools/phase4_f01_store_attribution.c", "sha256": "893e52a373185bbb91dd12fa8202fc05be92ee75b54d0a8048e94e564a478ff6"},
+  {"path": "analysis/phase4_f01_retirement_attribution.json", "sha256": "61737b84853a96d4eaa7480ddd24edbaa6a228c79d3a9edacc9691d797970838"},
+  {"path": "tools/phase4_f01_lifecycle_claim_map.py", "sha256": "2459c8d6676f0e57f932cfba4b0e7177817c2dc9a17f85c9dad3d5e5dcb1ee81"},
+  {"path": "analysis/phase4_f01_lifecycle_claim_map.json", "sha256": "5aca39a44e4f06bd587b3c3acde140b978cb872323667655633edb16bc2e0a90"},
+  {"path": "analysis/phase4_f01_campaign_breadth.json", "sha256": "42eeb0e58894c2f1476df485ad1b1ac9f85c638c772c51b4c2a310b77bc7056e"},
+  {"path": "analysis/phase4_f01_breadth_assertions.json", "sha256": "4b58c2c9c67c4f8f10345e4b723bc598e5f0968353385ef71c878f95559429cc"},
+  {"path": "analysis/phase4_f01_request2_probe.json", "sha256": "4cc449da924296261ee117cb7c5277659a7ca88c463cd9796adb4ccfb823accf"},
+  {"path": "analysis/phase4_f01_original_oracle.json", "sha256": "3c5c060478cb4d86b73800e17bd0bbf2fd8d14018c19c4fc1970c1ee9b4d5723"},
+  {"path": "analysis/phase4_f01_objective_lifecycle.json", "sha256": "b4b250b4f8c24895d23a0cd827df28e718d4860b7f0056a999b4b05ae1331486"},
+  {"path": "analysis/phase4_f01_fresh_adjudication.json", "sha256": "674efc11e50e645589bb91047e34bd5febafe48deaf82d1ff7ab2ea90875c6fa"},
+  {"path": "analysis/mechanics_baseline.yaml", "sha256": "0d3d2aa953473e0e43e2f0ec2de3f575651ce48459fa4799082ce9c93a95c5e8"}
+ ],
+ "external_inputs": [
+  {"path": "SCUS_942.88", "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20", "note": "matches tools/build_baselines.json pin; also identical at REBUILD/files/SCUS_942.88"}
+ ],
+ "baseline_test_state": {
+  "files": "tests/test_knowledge_closure.py tests/test_phase4_extent_audit.py tests/test_phase4_closure_debt.py",
+  "result": "4 failed, 31 passed",
+  "failing": [
+   "test_knowledge_closure.py::test_knowledge_closure_artifacts_are_fresh_and_honest",
+   "test_phase4_closure_debt.py::test_movie_ready_projection_changes_only_transient_scheduler_selection",
+   "test_phase4_closure_debt.py::test_e15_durable_evidence_requires_current_fixtures_and_offline_index",
+   "test_phase4_closure_debt.py::test_retained_debt_is_byte_fresh"
+  ],
+  "note": "pre-existing at HEAD bcfd7dce under the operator's live WIP, recorded BEFORE any outcome of this re-adjudication; whether any are owned by this scope is decided in the outcome artifact, not here"
+ },
+ "verdicts": "none at freeze time -- outcomes are committed separately after this commit"
+}

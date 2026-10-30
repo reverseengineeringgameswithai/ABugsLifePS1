@@ -1,0 +1,109 @@
+{
+ "_comment": "Campaign verdict on E16's two systematic residuals. Regenerate: tools/phase4_e16_campaign_verdict.py",
+ "generated": "2026-08-04",
+ "coverage": {
+  "levels_expected": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "levels_present": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "levels_missing": [],
+  "is_full_campaign": true,
+  "movies_validated": 17,
+  "usable": 17,
+  "not_usable": [],
+  "total_events_observed": 2194,
+  "any_event_log_truncated": []
+ },
+ "falsifier_result": {
+  "unenumerated_pcs": {
+   "0x80010bf8": 53,
+   "0x80010da0": 51
+  },
+  "explained": {
+   "0x80010bf8": {
+    "events": 53,
+    "basis": "measured",
+    "what": "per_object_mesh_draw_payload_emitter's load at 0x80010BF4, hoisted by the compiler above its own range check at 0x80010BF8; the loaded register is dead on the failing path (0x80010C80).",
+    "measured": "53 reads over 7 of the 16 campaign levels (1, 2, 7, 29, 1, 2, 11); LEVEL01 was a single read of 0x800A65C0, the marker-0x5C slot. Read-only, never a write.",
+    "why_it_cannot_be_deliberate": "No site in the entire text segment -- including the 46 KB the function census omits -- can materialise a pointer into these windows outside the enumerated set.",
+    "artifacts": [
+     "analysis/phase4_e16_speculative_read_probe.json",
+     "analysis/phase4_e16_address_materialization.json"
+    ]
+   },
+   "0x80010da0": {
+    "events": 51,
+    "basis": "measured",
+    "what": "the sibling copy of the same loop body 424 bytes later -- byte-identical instruction sequence, same hoisted load at 0x80010D9C.",
+    "measured": "51 reads on LEVEL15 across 8 distinct addresses, which is every word of the 32-byte 0x58..0x5F table. Read-only, never a write.",
+    "why_it_cannot_be_deliberate": "Same as its sibling: the base is a register and no materialisation site for these windows exists outside the enumerated set.",
+    "artifacts": [
+     "analysis/phase4_e16_speculative_read_probe_da0.json",
+     "analysis/phase4_e16_address_materialization.json"
+    ]
+   }
+  },
+  "unexplained": {},
+  "falsified": false
+ },
+ "hoisted_load_family": {
+  "sites": 22,
+  "note": "The campaign found two of these one movie at a time (LEVEL01, then LEVEL15). tools/hoisted_load_idiom_scan.c enumerates the whole family so the remainder cannot arrive as fresh surprises."
+ },
+ "static_frontier": {
+  "materialisation_sites_into_the_windows": 5,
+  "all_already_enumerated": true,
+  "near_misses_within_slack": 815,
+  "why_this_is_stronger_than_the_campaign": "A replay shows only what DID execute. This is a static argument that is complete over the scanned text: deliberate access to an address requires materialising it, materialisation is always a lui-based constant, and only 5 such sites reach these windows -- all of them already known. Anything else that lands here is incidental by construction."
+ },
+ "scope_correction": {
+  "text_covered_by_function_census_percent": 90.1,
+  "live_code_the_census_omitted_bytes": 46020,
+  "note": "Every static residual figure for this row was computed over 90.1% of the resident text. The materialisation census above scans 100% of it, which is why it can carry the frontier claim the affine census could not."
+ },
+ "residuals": {
+  "non_negative_index_convention": {
+   "accesses": 531,
+   "status_before_campaign": "asserted non-intersecting on the magnitude argument (zero discharged sites need a small negative index)"
+  },
+  "ge_1k_remainder": {
+   "accesses": 518,
+   "status_before_campaign": "NOT asserted -- no element count read for the objects involved"
+  }
+ },
+ "what_a_clean_campaign_does_NOT_mean": "It is not proof. A replay shows what DID execute; it can never show that an untaken branch or an unspawned object would not have written the window. Treating runtime silence as closure is the reasoning error that produced this row's original false closure, and the roadmap rejects it explicitly. Coverage below is a LIMIT on the claim, not a warrant for it.",
+ "verdict": "NOT FALSIFIED -- all 16 campaign levels, 17 movies, 2194 events, every one from an enumerated or characterised PC. Both systematic residuals survived their own declared experiment across the full campaign. The campaign DID find something -- 0x80010bf8, 0x80010da0 -- and it was characterised rather than waved away: 53 reads over 7 of the 16 campaign levels (1, 2, 7, 29, 1, 2, 11); LEVEL01 was a single read of 0x800A65C0, the marker-0x5C slot. Read-only, never a write.; 51 reads on LEVEL15 across 8 distinct addresses, which is every word of the 32-byte 0x58..0x5F table. Read-only, never a write.",
+ "recommendation": "Assert the >=1k remainder as non-intersecting on the SAME basis the non-negative-index convention already uses -- a magnitude argument with a named, now-executed falsifier -- and record the campaign as its evidence. That takes E16's item-2 packet to zero rejections without claiming proof: the residual remains a declared, evidenced, falsifiable assumption, which is exactly what `bounded_residuals` is for."
+}

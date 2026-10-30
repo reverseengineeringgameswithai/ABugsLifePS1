@@ -1,0 +1,140 @@
+{
+  "format": "phase4_b13_mine_plant_v1",
+  "row": "B13_mine_plant",
+  "date": "2026-08-03",
+  "status": {
+    "row": "substantiated_partial",
+    "bounded_subproblem": "exhausted_move_on",
+    "additional_interpreter_movie_required": false,
+    "reason": "The pristine resident ASM closes selection, planted arming, enemy proximity, blast construction, damage class, permanence, and quota flow. The exact carried/thrown activation owner is a low-return residual; the existing synchronized D02 Interpreter movie can be reused if full promotion is later required."
+  },
+  "identity": {
+    "game_serial": "SCUS-94288",
+    "retail_executable": "REBUILD/files/SCUS_942.88",
+    "retail_executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  "selection_and_dispatch": {
+    "yellow_tier_3": {"pair_index": 18, "plant_type": 11, "extra": 0},
+    "yellow_tier_4": {"pair_index": 19, "plant_type": 11, "extra": 0},
+    "dispatch_table": "0x8001B848",
+    "dispatch_index": 9,
+    "handler": "0x8005C918"
+  },
+  "planted_state_machine": {
+    "armed_state": "slot+0x02 == 1 after the common mature-plant gate",
+    "candidate_set": "0x80090748 null-terminated enemy actor pointer table",
+    "candidate_exclusion": "enemy+0x5C & 0x00A0 != 0",
+    "proximity_helper": "0x80052508",
+    "proximity_law": "strict ((dx>>8)^2 + (dy>>8)^2 + (dz>>8)^2) < 150^2",
+    "player_proximity_triggers": false,
+    "trigger_transition": "a qualifying enemy switches the slot to the explosion animation script through 0x8005C8D4",
+    "terminal_gate": "slot+0x02 == 2 and slot+0x04 == 0x00060000"
+  },
+  "blast_constructor": {
+    "allocator": "0x80059E44",
+    "constructor_index": 56,
+    "stack_mode": 3,
+    "metadata_row_address": "0x8007987C",
+    "metadata_row_hex": "0000010064000001d007d00700000006e47f0000",
+    "contact_pool": "0x800B0D18, 64 records x 0x38",
+    "collision_alias": "contact_vs_actor_handler sets s1 = contact_record + 8 at 0x80058BEC",
+    "handler_relative_fields": {
+      "+0x20": 2000,
+      "+0x22": 2000,
+      "+0x24": 0,
+      "+0x27": 6
+    },
+    "damage_class": 0,
+    "local_hp_delta": -2,
+    "instant_kill": false,
+    "effect_helper": "0x800583F4 spawns 24 alternating ctor-12/13 records, gates positional SFX, and plays sound 13; they are not promoted here as 24 independent damage hits"
+  },
+  "permanent_kill_flow": {
+    "gate": "0x800591F0..0x80059218",
+    "mine_test": "handler hit pointer +0x27 == 6",
+    "permanent_bit": "s7 |= 2 at 0x80059210",
+    "death_tail": "enemy+0x6E := 999; +0x60 := 0; +0x5C sets 0x0880 and clears bit 0x0002; +0x70 receives the hit/death program",
+    "quota": "u16 player+0x8E at 0x800A658E",
+    "quota_store": "0x80059300 decrements once only when the mine hit reaches the permanent death tail",
+    "all_defeated": "zero result calls 0x8005182C with 0x80090B68",
+    "boundary": "A mine contact dealing -2 does not bypass local HP. Permanence is selected on the lethal hit, not on every overlap."
+  },
+  "player_and_throw_boundary": {
+    "planted_trigger": "The state-1 trigger scans enemy pointers, not Flik, so Flik proximity alone cannot detonate the planted mine.",
+    "blast_player_branch": "At terminal resolution, slot+0x2E bit 0x40 admits the shared player-damage handler at 0x8005C9F8; the handler then clears bits 0x40 and 0x02.",
+    "interpreter_control": "The operator-observed D02 Interpreter movie throws the gold mine at input 304 and shortly collides with a spider. Its prior clean and armed normal-speed runs ended at identical frame, cycle, and RAM hash.",
+    "residual": "The exact instruction owner converting the carried/thrown mine into terminal blast state was not captured by the D02 +0x20-only watch set."
+  },
+  "capsule_audit": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/B13_mine_enemy",
+    "manifest_sha256": "402978c7019f831dd746a9304d83480194a70995549cf9a1bc5751155c8fd621",
+    "records": 480,
+    "domain_hash_checks": 1440,
+    "domain_hash_mismatches": 0,
+    "manifest_complete": true,
+    "manifest_truncated": false,
+    "manifest_error": "",
+    "control_mismatches": {},
+    "behavioral_validity": "rejected_for_positive_B13_evidence",
+    "reason": "The stable plant type at slot+0x00 never equals 11, quota remains 15, and coverage contains no mine handler, permanence gate, permanent-bit, or quota-decrement block.",
+    "negative_control_use": "Accepted only as proof that passive capsule reconstruction does not invent a mine event."
+  },
+  "fixtures": {
+    "invalid_positive_capsule_movie": {
+      "movie": "movies/Phase4/B13_mine_enemy.movie.json",
+      "movie_sha256": "da74dffb43a4a77b8683fa7a3baada20346a06bf4465d4d0369d3fdc83b15cf1",
+      "state_sha256": "3c151841f465cfe62f9d33b320172b8c4176dc3cfaad36cd5c81e2f57a5b8d56"
+    },
+    "existing_interpreter_control": {
+      "movie": "movies/Phase4/Interpreter/D02.movie.json",
+      "movie_sha256": "5e7c4098dd95e7ae5f0d4c85d56877181715ceba781ed0fda11926fbe349b09e",
+      "state_sha256": "6e6c9c221cdb93feb419f80ed611ae2ef38f7849a750d97c13f60d9ca8cebb4a",
+      "movie_version": 4,
+      "execution_mode": "Interpreter",
+      "clean_armed_cycle_delta": 0,
+      "clean_armed_final_frame": 267319,
+      "clean_armed_final_cycle": 151356445709,
+      "clean_armed_ram_sha256": "de03646f236492b97ce7ddd38e99a9453608103f0fa373517a7a14e7b7e35ef4",
+      "trace_truncated": false
+    }
+  },
+  "c_evidence": {
+    "accepted_capsule_probe": {
+      "source_sha256": "82b13980fc7b346fb42e6c0adca5b483351c50876fe0043e534f4a625714cfd8",
+      "binary_sha256": "e31be5912449e30a7c82b2301fa02b12f0dfa3991b4cee8000744580cf265b2a",
+      "output_sha256": "5a7cc43c15277699eb0cc769594d01ad7563819532892080f0592ce27133f0b0",
+      "note": "The original +0x00 stable-type decode is correct."
+    },
+    "rejected_animation_selector_probe": {
+      "source_sha256": "dc8e290610b3f47c7905859fcf20ef44d70ea2848b4ff238da8b8a39d64ad559",
+      "binary_sha256": "11979648114ed8cba56c2615ac911d4f072a09eb7e65fc4b5de892d40c32a6f8",
+      "output_sha256": "41d2fe680d3c2bd9348157255079f7a31d89cc533e10061a5ec84d1d37391091",
+      "reason": "It incorrectly treated changing animation selector slot+0x06 as stable plant type; none of its plant-event labels are used."
+    },
+    "accepted_static_guard": {
+      "path": "tools/phase4_b13_static.c",
+      "source_sha256": "412c2931fb6103946308979ecd6b3c9ea5b8126cd43d3c2d8743d8c14e473970",
+      "binary_sha256": "ef2781b132b1c28407181eb7100eb665454836efec1e0f38dd5f305ead0e9dc4",
+      "output_sha256": "5e7a42f8e2314f660e47708b4429b2e9a61816bb4d05843878d27378c1c5bb1"
+    }
+  },
+  "closure": {
+    "closed": [
+      "yellow tier-3 and tier-4 selection",
+      "type-11 dispatch owner",
+      "planted mature/armed state",
+      "enemy-only proximity trigger and exact radius law",
+      "blast constructor and collision-record field set",
+      "ordinary -2 damage law and non-instant-kill boundary",
+      "permanent-bit and quota-decrement chain",
+      "Flik proximity negative",
+      "terminal player-damage branch"
+    ],
+    "open_low_return": [
+      "exact carried/thrown-to-terminal transition writer",
+      "fresh Interpreter event tuple sampling ctor-56 creation and quota decrement in one run",
+      "species-by-species survival breadth for actors with local HP above 2"
+    ],
+    "reopen_rule": "Reopen for full promotion only if a MOD needs the carried/thrown transition owner, or if a current synchronized runtime tuple is required. Reuse D02 first; request a new Interpreter movie only if D02 lacks the needed planted/armed interval."
+  }
+}

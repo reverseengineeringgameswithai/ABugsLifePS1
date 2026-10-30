@@ -1,0 +1,91 @@
+{
+  "format": "phase4_d02_actor20_runtime_v1",
+  "row": "D02",
+  "scope": "enemy actor pool record +0x20",
+  "status": {
+    "field_hypothesis": "confirmed",
+    "field_name": "velocity_y",
+    "bounded_subproblem": "exhausted",
+    "phase4_row": "substantiated_partial_move_on"
+  },
+  "operator_reproduction": {
+    "movie": "movies/Phase4/Interpreter/D02.movie.json",
+    "movie_sha256": "5e7c4098dd95e7ae5f0d4c85d56877181715ceba781ed0fda11926fbe349b09e",
+    "start_state": "movies/Phase4/Interpreter/D02.movie.sav",
+    "start_state_sha256": "6e6c9c221cdb93feb419f80ed611ae2ef38f7849a750d97c13f60d9ca8cebb4a",
+    "movie_version": 4,
+    "armed_while_paused": true,
+    "phase_delay_owed": true,
+    "frames": 459,
+    "initial_emulator_frame": 266857,
+    "throw_input": 304,
+    "observed_action": "Flik throws the gold-colored mine; it shortly collides with a spider",
+    "execution_mode": "Interpreter"
+  },
+  "identity": {
+    "game_serial": "SCUS-94288",
+    "pristine_cue_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+    "retail_exe": "REBUILD/files/SCUS_942.88",
+    "retail_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899"
+  },
+  "instrumentation_control": {
+    "method": "normal-speed debugger.resume plus movie.status polling; no movie.advanceToFrame",
+    "watch_set": "40 readwrite watches, one per enemy actor record +0x20",
+    "clean_final_frame": 267319,
+    "armed_final_frame": 267319,
+    "clean_final_cycle": 151356445709,
+    "armed_final_cycle": 151356445709,
+    "clean_ram_sha256": "de03646f236492b97ce7ddd38e99a9453608103f0fa373517a7a14e7b7e35ef4",
+    "armed_ram_sha256": "de03646f236492b97ce7ddd38e99a9453608103f0fa373517a7a14e7b7e35ef4",
+    "cycle_delta": 0,
+    "ram_match": true,
+    "trace_truncated": false
+  },
+  "trace": {
+    "events": 1991,
+    "reads": 1178,
+    "writes": 813,
+    "actual_instruction_sites": 23,
+    "events_movie_inputs_296_through_380": 417,
+    "touched_record_indices": [1, 2, 11, 15],
+    "sampled_actor_ids_by_index": {
+      "1": 11,
+      "2": 23,
+      "11": 15,
+      "15": 9
+    },
+    "slot_15_actor_id_at_movie_input_440": 0
+  },
+  "static_asm": {
+    "gravity_integrator_a": {
+      "increment": "0x8004BF14..0x8004BF20: actor[+0x20] += 0x100",
+      "cap": "0x8004BF24..0x8004BF38: clamp to +0x1000",
+      "position_use": "0x8004BFA4..0x8004BFB0: actor.y += actor[+0x20]",
+      "settle_clear": "0x8004C02C..0x8004C04C: clear when abs(value) < 2 after collision integration"
+    },
+    "gravity_integrator_b": {
+      "increment": "0x8004CF34..0x8004CF40: actor[+0x20] += 0x100",
+      "cap": "0x8004CF44..0x8004CF50: clamp to +0x1000",
+      "position_use": "0x8004CF54..0x8004CF6C: computed Y plus actor[+0x20] is stored to actor.y",
+      "collision_clear": "0x8004D024..0x8004D02C: actor[+0x20] is cleared in the branch delay slot, so the store executes for either branch outcome once this path is reached"
+    },
+    "airborne_initialization": "0x80049E00..0x80049E0C selects -0xD00 or -0xB60 and stores it at actor +0x20",
+    "vector_evidence": "0x80035DA4/0x80035E30/0x80035E3C and 0x80035F40/0x80035FD0/0x80035FDC consume the watched word as the +4 Y component of an XYZ vector rooted at actor +0x1C"
+  },
+  "conclusion": {
+    "confirmed_semantics": "signed vertical velocity: negative launch/upward impulse, +0x100 gravity step toward a +0x1000 downward cap, direct input to actor Y integration, and zeroed by settle/collision paths",
+    "prior_frame_delta_disproof_reinterpreted": "The six-capsule 4.3 percent direct frame-delta match rejected equality with a final frame-boundary displacement. It does not reject velocity_y because collision/substep handlers consume and alter the value within an update.",
+    "remaining_row_scope": "D02 remains category-wide partial only because the inventory still contains other unclassified actor/object kinds; the +0x20 field itself has no remaining named Phase 4 gap.",
+    "additional_interpreter_movie_required_for_actor20": false,
+    "recommendation": "bank the bounded result and move to another row"
+  },
+  "transient_evidence": {
+    "root": "/tmp/abl-d02-actor20-20260802-r4/evidence",
+    "capture_summary_sha256": "fe8a1ee32c5cac40be4231d88f36c0c7ae37ee0b64f1436cd2f8e8572c4c0a56",
+    "access_events_sha256": "3569cc636f32b05b14f9e0ee8ff743ecd9618287e58defbceec0877ad3aec407",
+    "c_static_analysis_sha256": "c26a531c2aa2117957657f3f790c156f7a31b87322ffa48ef8c469799f886161",
+    "c_source_sha256": "934b0f319de179a444d401a3ff78df6b7414181782fb5b53b95716805894f8e0",
+    "c_binary_sha256": "c35927170696d8b0dc2a8d6049e6e88e13b04bd238856dc056e55a22240d388c"
+  }
+}

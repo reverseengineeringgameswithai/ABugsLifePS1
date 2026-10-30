@@ -1,0 +1,130 @@
+{
+ "_comment": "Does the non-negative-index convention hold for the sites it discharges? Gates whether a movie campaign is worth recording. Regenerate: tools/phase4_e16_signed_index_audit.py",
+ "generated": "2026-08-04",
+ "why_this_gates_recording": "A campaign is the declared falsifier for the convention residual. It is only worth recording if the exception is NARROW; if most indices are signed, the convention is wrong in a way replay cannot rescue.",
+ "sites_discharged_by_the_convention": 2922,
+ "classification": {
+  "non_negative": 130,
+  "unknown": 1989,
+  "signed_capable": 803
+ },
+ "signed_capable_fraction": 0.2748,
+ "defining_instruction_histogram": {
+  "op 0x00": 1114,
+  "block-entry value": 665,
+  "subu": 457,
+  "op 0x23": 187,
+  "sra (arithmetic shift, sign preserved)": 165,
+  "lh": 136,
+  "andi": 121,
+  "sll16/sra16 short cast": 45,
+  "function-entry value": 23,
+  "lbu": 9
+ },
+ "signed_examples": [
+  {
+   "pc": "0x80021378",
+   "base": "0x800A649C",
+   "stride": 4,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x800213B8",
+   "base": "0x800A20C0",
+   "stride": 2,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x80021488",
+   "base": "0x800A20C0",
+   "stride": 2,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x800214CC",
+   "base": "0x800A20C0",
+   "stride": 2,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x8002152C",
+   "base": "0x800A20C0",
+   "stride": 2,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x8002158C",
+   "base": "0x800A20C0",
+   "stride": 2,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x80021700",
+   "base": "0x800A649C",
+   "stride": 4,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x80021C40",
+   "base": "0x800A649C",
+   "stride": 4,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x80021C78",
+   "base": "0x800A649C",
+   "stride": 4,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x80021378",
+   "base": "0x800A649C",
+   "stride": 4,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x800213B8",
+   "base": "0x800A20C0",
+   "stride": 2,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  },
+  {
+   "pc": "0x80021488",
+   "base": "0x800A20C0",
+   "stride": 2,
+   "why": "lh",
+   "target": "markers_0x30_0x57"
+  }
+ ],
+ "per_target": {
+  "markers_0x30_0x57": {
+   "non_negative": 130,
+   "unknown": 1989,
+   "signed_capable": 803
+  }
+ },
+ "verdict": "SAFE TO LEAN ON, with the magnitude stated. ZERO discharged sites need a small negative index; 47 need 64-1k and 2875 need >= 1k. The convention is ruling out an array running hundreds to thousands of elements backwards past its own base, not an off-by-one. 27.5% of the indices are signed-CAPABLE, but none of them is asked to be even slightly negative.",
+ "by_required_magnitude": {
+  "large(>=1k)|non_negative": 130,
+  "large(>=1k)|signed_capable": 787,
+  "large(>=1k)|unknown": 1958,
+  "medium(64-1k)|signed_capable": 16,
+  "medium(64-1k)|unknown": 31
+ },
+ "true_risk_set": {
+  "definition": "needs a SMALL (<64) negative index AND is not provably non-negative -- i.e. where the convention is doing fragile work",
+  "count": 0,
+  "sites": []
+ }
+}

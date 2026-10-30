@@ -1,0 +1,128 @@
+{
+  "schema": "abl-phase4-row-evidence-v1",
+  "row_id": "C07_blue_berry",
+  "date": "2026-08-04",
+  "status": "substantiated_partial_bounded_exhausted",
+  "conclusion": "Blue/Super is equip index 1 and constructor type 5. Its parameter row is physically identical to red except for connection class, damage byte, and two presentation bytes. Connection class 2 and damage byte 0 bypass red's berry-tough reaction-only comparisons and select an exact -2 enemy-local-counter delta for both ordinary and bit-0x40 actors. Defeat remains temporary.",
+  "source_identity": {
+    "path": "SCUS_942.88",
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "load_address": "0x80010000",
+    "text_size": 468992,
+    "overlays_required": false
+  },
+  "capsule_query": {
+    "relevant_capsule_found": false,
+    "live_escalation_required": false,
+    "reason": "The resident executable answers the red/blue delta exactly. Accepted A08 motion evidence and D04 ordinary/tough runtime controls cover the shared domains without another replay."
+  },
+  "static_analysis": {
+    "tool": "tools/phase4_c07_static.c",
+    "transient_probe_output_sha256": "2e98aa65657cedac5923307690d124b74635d9dda0fd80ab41e3c038f9300431",
+    "parameter_table": "0x8007941c",
+    "blue_row": "0x80079480",
+    "anchors_checked": 20,
+    "blue_values": {
+      "equip_index": 1,
+      "constructor_type": 5,
+      "record_class": 2,
+      "timer": 100,
+      "model_or_marker": 110,
+      "connection_class": 2,
+      "flags": "0xe5",
+      "damage_byte": 0,
+      "presentation_bytes": [32, 128]
+    },
+    "red_comparison": {
+      "differing_offsets": [12, 17, 18, 19],
+      "connection_class": "1 -> 2",
+      "damage_byte": "0x70 -> 0x00",
+      "presentation_bytes": "[0x12,0x00] -> [0x20,0x80]",
+      "identical": "timer, model/marker, physical fields, scale/orientation fields, and flags"
+    },
+    "pointer_bias": "The collision scan keeps s1 = allocation base + 8. ASM s1+0x24 reads base+0x2c connection class; ASM s1+0x2c reads base+0x34 damage byte."
+  },
+  "behavior": {
+    "collection_and_throw": {
+      "pickup_selector_writer": "0x800542c8",
+      "pickup_sound": "0x35",
+      "throw_dispatch": "0x800471a8..0x800471b0",
+      "throw_sound": 2
+    },
+    "trajectory_and_visibility": {
+      "motion_family": "shared straight ballistic",
+      "timer": 100,
+      "gravity": 128,
+      "model_or_marker": 110,
+      "flags": "0xe5",
+      "owned_throw_limit": 4,
+      "result": "Instruction-identical to red for motion, active/render flags, ownership, and retirement; only two trailing presentation bytes differ."
+    },
+    "collision": {
+      "ordinary_actor": "damage byte 0 selects -2 at 0x800590c4",
+      "berry_tough_actor": "connection class 2 != 1 and damage byte 0 != 1, so both tough comparisons fall through to the same -2 damage arm",
+      "runtime_class_controls": [
+        "Redbug actor 19: 6 -> 4 -> 2 from blue throws",
+        "shell bug actor 18 with bit 0x40: 3 -> 1, reproduced in separate trials"
+      ]
+    },
+    "defeat": {
+      "counter_at_or_below_zero": "shared temporary defeat and hit/death VM",
+      "permanent_quota": "unchanged because connection class 2 is not 11 and secondary marker 1 is not 6"
+    },
+    "bonus3_boundary": "Damage byte 0 is also the accepted grasshopper-kill class at 0x8005916c; streak/reward behavior remains owned by F18/D06."
+  },
+  "runtime_evidence": [
+    {
+      "path": "analysis/phase4_d09_redbug_identity.json",
+      "sha256": "1a45d3bf839f17fdf4b371571669fbdb6575540f2d1a393e45d56155b49cef4b",
+      "role": "ordinary actor exact -2 control and temporary defeat"
+    },
+    {
+      "path": "analysis/phase4_d13_shell_bug_armor.json",
+      "sha256": "51ad51bb93c9843e88511fd52fc846e58dd4191e1a0734842db203333c81ce3c",
+      "role": "berry-tough actor exact -2 control, reproduced"
+    },
+    {
+      "path": "analysis/phase4_d04_evidence.json",
+      "sha256": "d09458149edcf67482cbdb545e0818eb15e1d12bbbbc66a5b4a485a09247d3f6",
+      "role": "accepted ordinary/tough five-class matrix synthesis"
+    },
+    {
+      "path": "analysis/phase4_a08_bounded_exhaustion.json",
+      "sha256": "3535a9762ff2cca4bd9706960034c4ed71aec8aeccec9a0804201092d2536be9",
+      "role": "accepted shared straight trajectory and retirement lifecycle"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "blueberry.sav",
+      "sha256": "94146512a60e4f2e4ed88fe635d706360747d1aa390a596b97ccc2cc2c326286",
+      "role": "available state anchor; no replay required"
+    },
+    {
+      "path": "blue_berry_walk_up_to_collect.sav",
+      "sha256": "c219ecc6f03b6bb07966f9b33ac7f9fa2b03913e6f6a797c2b8c6d94f72f43da",
+      "role": "available natural collection anchor; no replay required"
+    }
+  ],
+  "coverage": {
+    "proved": [
+      "collection selector and pickup sound",
+      "constructor type and complete parameter-row comparison against red",
+      "same ballistic, visibility-flag, ownership, and retirement path as red",
+      "exact -2 damage to ordinary and berry-tough runtime classes",
+      "temporary defeat and absence of permanent-quota decrement",
+      "blue damage-byte admission to the shared bonus-3 gate"
+    ],
+    "bounded_residuals": [
+      "semantic/GPU ownership of presentation bytes 0x20 and 0x80",
+      "campaign-wide impact presentation for every named family",
+      "boss-specific overlay defeat floors",
+      "exact SPU ownership of impact feedback beyond the bound pickup/throw sounds"
+    ],
+    "movie_required_now": false,
+    "movie_reopen_condition": "Only if a named family contradicts the class law or exact presentation/audio ownership becomes an explicit deliverable."
+  },
+  "disposition": "Move on. The row-specific mechanic is instruction-bound and runtime-substantiated; strict Full remains partial only for low-return presentation and boss breadth."
+}

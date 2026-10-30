@@ -1,0 +1,25 @@
+schema_version: 1
+default: source
+profiles:
+  source:
+    description: Use declarations written directly in the candidate source.
+    cpp_args: []
+  cleanroom_prototyped:
+    description: Use the committed clean-room PsyQ-compatible declarations with ANSI prototypes.
+    cpp_args:
+      - -DABL_PSYQ_DECL_PROFILE=1
+      - -include
+      - include/abl/psyq_decl.h
+  cleanroom_unprototyped:
+    description: Use clean-room PsyQ names/types but K&R-style unprototyped function declarations.
+    cpp_args:
+      - -DABL_PSYQ_DECL_PROFILE=2
+      - -include
+      - include/abl/psyq_decl.h
+  external_psyq:
+    description: Use owner-supplied original headers outside the repository; only their hashes enter evidence logs.
+    external_include_env: ABL_PSYQ_INCLUDE
+    cpp_args:
+      - -DABL_PSYQ_DECL_PROFILE=3
+      - -include
+      - include/abl/psyq_external_oracle.h

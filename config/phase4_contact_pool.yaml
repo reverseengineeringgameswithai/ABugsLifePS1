@@ -1,0 +1,130 @@
+schema: abl-phase4-contact-pool/1
+row: E06_contact_object_pool
+owner: objects_events_hazards
+
+authored_source_catalog:
+  source_record_type: 0x3F
+  staged_inputs: REBUILD/files/LEVEL*/LEVEL*.DAT
+  files_scanned: 21
+  files_with_type3f: 19
+  entries: 1058
+  authored_kinds: [0x10, 0x11, 0x12, 0x13, 0x14,
+                   0x21, 0x22, 0x23, 0x24,
+                   0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x30, 0x31]
+  dispatch_supported_but_unstaged: [0x20]
+  descriptor_index_law: >-
+    The 50 runtime descriptor-pointer slots are indices, not proof of 50
+    authored source kinds. Sixteen indices occur in pinned pristine type-0x3f
+    assets, 0x20 has a resident action but no staged occurrence, and the other
+    33 are not missing E06 source roles.
+
+source_dispatch:
+  function: 0x80053814
+  pointer_global: 0x80096E9C
+  entry_size: 0x10
+  eligibility: entry_y != 0x80000000 and status_at_0x0D == 1
+  construct_distance_limits:
+    grain_0x14: 0x15F8F
+    generic_below_0x30: 0x3D08F
+    contact_action: 0x9C4
+  action_table: {address: 0x8001B42C, index: kind - 0x10, entries: 34}
+  default_target: 0x800545CC
+  presentation_interface:
+    projector: 0x800253E8
+    descriptor_pointer_table: {address: 0x80096B98, entries: 50, pointer_width: u32}
+    descriptor_target_size: 0x0C
+    contact_billboard_renderer:
+      range: [0x80014844, 0x80014AD4]
+      length: 656
+      pristine_sha256: 7fa7b409bac944db9fb8a779fe26d9965930b9ca986002f8e849875ff2e36a0e
+      sampled_record: {fixture: thud_boss_movie.movie.json, slot: 17, action_id: 20}
+      sampled_read_offsets: [0x22, 0x32, 0x00, 0x04, 0x08, 0x2A, 0x28, 0x20, 0x31, 0x33, 0x34]
+      sampled_packet: {dma_source: 0x001CF3D4, writer_pcs: [0x80014A30, 0x80014A34, 0x80014A38, 0x80014A3C, 0x80014A40, 0x80014A44, 0x80014A58, 0x80014A6C]}
+      boundary: >-
+        The sampled action-20 record is causally bound to one textured billboard;
+        this does not make every pool action a billboard or assign asset/audio
+        semantics to the generic renderer.
+
+pool:
+  base: 0x800B0D18
+  stride: 0x38
+  capacity: 64
+  cursor: 0x8008234C
+  allocator: 0x80059E44
+  walker: 0x800586B0
+  post_init: 0x80024DDC
+  allocation_order: pre-increment cursor, wrap at 64, then test slot
+  allocator_occupied_predicate: (flags_at_0x33 & 0x80) and field_0x22 != 0
+  walker_live_predicate: signed field_0x22 > 0 and (flags_at_0x33 & 0x02)
+  full_pool_failure: no escape; the allocator loops until the debugger guest-call timeout
+  abi:
+    arguments: [x, y, z, ctor_type, metadata_a_index]
+    ctor_type: fourth argument, indexes metadata B
+    metadata_a_index: fifth argument at caller SP+0x10, indexes metadata A
+  metadata:
+    table_b: {address: 0x8007941C, stride: 0x14, retained_rows: 129}
+    table_a: {address: 0x80079E30, stride: 0x14, retained_rows: 129}
+  dispatch: {address: 0x8001B570, index: action_id - 2, entries: 117}
+
+record:
+  size: 0x38
+  fields:
+    position: {offsets: [0x00, 0x04, 0x08], type: s32}
+    render_or_motion_words: {offsets: [0x0C, 0x10, 0x14, 0x18], type: s32}
+    sentinel: {offset: 0x1C, type: s32, initial: -1}
+    action_id: {offset: 0x20, type: u16}
+    lifetime_ttl_or_active_gate: {offset: 0x22, type: u16}
+    variant: {offset: 0x24, type: s16}
+    secondary_counter: {offset: 0x26, type: u16}
+    radius_add: {offset: 0x28, type: s16}
+    state: {offset: 0x2C, type: s16}
+    orientation: {offset: 0x2E, type: s8}
+    flags: {offset: 0x33, type: u8}
+    post_init_state: {offset: 0x37, type: u8}
+  field_0x22_ownership: >-
+    Type-specific. Native berry projectile updaters decrement it as a TTL to
+    zero. A directly allocated ctor-0x51 contact-proximity record remains at
+    200 while merely elapsed/far and the walker changes it to 1 on contact.
+    Code that shares the pool must not impose one universal update law.
+  residue_rule: Occupancy is defined only by the retail predicates; nonzero dead bytes are not ownership.
+
+capacity_and_arithmetic_guards:
+  pristine_observed_allocator_occupancy: {min: 0, max: 4, headroom_min: 60, anchors: 19}
+  mod_emitter_limit: Never make all 64 records allocator-occupied.
+  contact_distance_math: signed fixed-point deltas and signed 32-bit squares
+  invalid_coordinate_failure: >-
+    A synthetic +0x100000 delta on each axis overflowed the signed square sum
+    and falsely selected the contact action. Validate coordinate domains; do
+    not assume increasing distance is monotonic outside retail-authored bounds.
+
+ownership_boundaries:
+  owned: >-
+    Type-0x3f authored-source census and source dispatch handoff, contact pool
+    allocation, metadata construction, walker gate/action dispatch, capacity,
+    reuse, pause, retirement and scene/death lifecycle.
+  not_owned:
+    collectible_rewards: C01 through C14
+    projectile_input_and_aim: A08
+    enemy_damage_and_drops: D-family rows
+    descriptor_asset_decoding: E05
+    rendering_submission: E03
+    audio_outcomes: E12
+    persistence_and_results: E13 and E14
+    stage_objectives: F rows
+
+mod_contract:
+  owner: Preserve resident type-0x3f, allocator, walker, projectile, render-handoff and lifecycle order; name every hook.
+  readers: Enumerate source records, descriptor pointers, metadata tables, pool/cursor, walker/projectile, rendering, damage, rewards, audio, HUD, pause, respawn and scene consumers.
+  writers: Do not add unordered writes to source entry status/coordinates, descriptor pointers, cursor, record position/action/field-0x22/state/flags, or lifecycle clears.
+  valid_domains: Source kind is u8; source dispatch is 0x10..0x31; pool index is 0..63; metadata B retained domain is 0..128; coordinates must remain inside proven non-overflow bounds.
+  initialization: Verify pristine assets, initialize source/descriptor tables before use, and initialize MOD-private state before its first reader.
+  reset: Clear private ownership on contact/TTL retirement, pause-shell reset, death/respawn/reload, takeover and every scene transition.
+  retirement: Release every pool unit exactly once and retire source, descriptor and overlay-scoped references before their owners unload.
+  consumers: Collectibles, berries, plants, enemies, effects, rendering, camera, audio, HUD, persistence, stages and bonuses.
+  capacity: Never hold all 64 retail slots occupied; declare stricter per-emitter budgets and reject invalid metadata/source indices before allocation.
+  residency: Allocator, walker, tables and pool addresses are resident; type-0x3f rows and descriptor targets are scene-owned and cannot survive unload.
+  unsafe_assumptions: >-
+    Fifty descriptor slots are not fifty authored kinds; field 0x22 is not one
+    universal TTL law; cursor is not identity; residue is not occupancy; full
+    capacity does not evict oldest; extreme coordinate deltas can overflow the
+    contact square sum; downstream reward/render/audio behavior has separate owners.

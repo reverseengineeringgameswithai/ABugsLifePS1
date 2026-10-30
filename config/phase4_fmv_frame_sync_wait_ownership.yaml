@@ -1,0 +1,78 @@
+schema: abl-phase4-fmv-frame-sync-wait-ownership-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+work_packet:
+  absolute_path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260729-235506-130385/iteration-1-receipts/work-packet.json
+  sha256: 1f9b530c50934f57888b37e70243e3dfde00596750ab7492d02c3e788034bb83
+prior_evidence:
+  pre15792_partition:
+    path: analysis/phase4_fmv_levelb_pre15792_partition.json
+    sha256: 3f80557009fc748d3e68fbe1bd57be99e2b6de77c4233b05dd716703047ea373
+  transition_relocalization:
+    path: analysis/phase4_fmv_levelb_transition_relocalization.json
+    sha256: 0d7783db266fbe33ddc9ab7113c816ca9d88f81baa602244f31e821451b3abc8
+expected:
+  field:
+    address: 0x80082250
+    width: u32
+    residency: resident
+    owner: shared_frame_sync_interrupt_handshake
+    wait_value: 1
+    clear_value: 0
+    legacy_capture_alias: fmv_running_latch
+  direct_xref_count: 10
+  direct_read_count: 4
+  direct_write_count: 6
+  shared_helper: [0x8003F2F0, 0x8003F358]
+  shared_helper_calls:
+    - {pc: 0x80052338, owner: level_transition_orchestrator}
+    - {pc: 0x8005235C, owner: level_transition_orchestrator}
+    - {pc: 0x8005B490, owner: transition_fade_draw_loop}
+    - {pc: 0x8005B644, owner: animated_overlay_display_loop}
+    - {pc: 0x8005B7F8, owner: gameplay_state_reset_cursor_seed_entry}
+  scene_flow_protocol:
+    range: [0x8004FE98, 0x8004FEB8]
+    control_pc: 0x8004FEA4
+    set_pc: 0x8004FEA0
+    read_pc: 0x8004FEA8
+    loop_branch_pc: 0x8004FEB0
+  retained_boundary:
+    frame: 15720
+    cycle: 8900142073
+    pc: 0x8004FEA4
+claim:
+  exact: >-
+    The resident u32 at 0x80082250 is a shared frame-sync interrupt
+    handshake, not an FMV-running or FMV-retirement latch. Scene-flow PC
+    0x8004FEA4 is one inline instance of the same set-one, wait-while-one,
+    interrupt-clear protocol implemented by shared helper 0x8003F2F0 and
+    consumed by transition, display and reset owners. The retained paired
+    frame-15720 boundary therefore establishes only a frame-sync control
+    position; it cannot locate either completed-Level-B scene-setup call or
+    FMV retirement.
+  falsifier: >-
+    Reject the claim if any compiler-standard direct xref to 0x80082250 is
+    unclassified; the scene-flow or shared-helper instruction sequence does
+    not implement set-one then wait-while-one; the context handlers do not
+    clear nonzero state before frame_present; pad start/stop does not also
+    clear the field; the shared helper has an unclassified direct caller; any
+    owner gives the field an FMV-specific lifetime; the retained frame-15720
+    boundary is rewritten into evidence of a scene-setup call or exact
+    retirement; or a load-bearing byte/source/artifact mutation leaves the
+    focused guard green.
+claim_boundary:
+  classification: shared_frame_sync_wait_ownership_corrected
+  dimension_promoted: false
+  lifecycle_promoted: false
+  natural_branch_selected: false
+  exact_retirement_frame: null
+  dma_events_claimed: 0
+  new_live_escalation_authorized: false
+  next_lane: static
+  next_action: >-
+    Preserve the corrected shared frame-sync owner and stop using
+    0x80082250/0x8004FEA4 as an FMV-retirement bracket. Reconstruct a distinct
+    earlier state producer or change the scheduler lane; do not widen or
+    relabel the escaped 15792..15856 observer.

@@ -1,0 +1,40 @@
+---
+kind: system
+id: Finding_-_Region-A_texture_format_decoded
+created: 2026-07-08
+updated: 2026-07-08
+status: legacy_import_confirmed
+confidence: confirmed
+source_state: original_game_or_mixed_legacy_note
+legacy_source: ObsidianVault/Findings/Finding - Region-A texture format decoded.md
+aliases:
+  - "Finding - Region-A texture format decoded"
+archived_source: ObsidianVault/Archive/Superseded/Findings_Finding_-_Region-A_texture_format_decoded.md
+patch_policy: unknown
+---
+
+# Finding_-_Region-A_texture_format_decoded
+
+## Canon Status
+
+This page was created during the 2026-07-08 migration completion pass from `ObsidianVault/Findings/Finding - Region-A texture format decoded.md`. It is a structured Canon landing page for search/linking, but the archived source remains the provenance copy. Treat specific claims as Canon only when they are supported by the evidence links, C source, or stronger curated pages.
+
+- Legacy title: Finding — LEVEL.RAW Region-A texture page format decoded
+- Archived full source: `ObsidianVault/Archive/Superseded/Findings_Finding_-_Region-A_texture_format_decoded.md`
+- Migration action: `convert_to_canon`
+- Migration confidence: `confirmed`
+- Migration reason: System/finding note; split confirmed claims into Canon and stale/history into Archive as needed.
+
+## Legacy Heading Index
+
+- `# Finding — LEVEL.RAW Region-A texture page format decoded`
+- `## Format (per Region-A chunk = one texture page)`
+- `## Command-stream UV decode — STEP 2 DONE (2026-06-20)`
+- `## Texture-page (tpage) binding — STEP 3 (floor DONE, scenery open)`
+- `### Per-mesh tpage — SOLVED statically (2026-06-20)`
+- `## Tools`
+- `## Related`
+
+## Archived Source
+
+The full legacy note is preserved at `ObsidianVault/Archive/Superseded/Findings_Finding_-_Region-A_texture_format_decoded.md`. It is intentionally not copied into this Canon landing page, so stale or superseded claims do not pollute Canon search results.

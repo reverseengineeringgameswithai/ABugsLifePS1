@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "row": "A04_kick",
+  "date": "2026-08-03",
+  "purpose": "Correct the body-contact-only damage conclusion and establish the worm kick exception.",
+  "classification": "corrected_substantiated_partial_bounded_exhaustion",
+  "fixture": {
+    "movie": "movies/Phase4/Interpreter/A04_kick_worm_contanct.movie.json",
+    "movie_sha256": "6fa11751ae055831a5323e1eee554217b1e1c2a26edfce2d0aa8eddd2eb2adb2",
+    "sav": "movies/Phase4/Interpreter/A04_kick_worm_contanct.movie.sav",
+    "sav_sha256": "587cc42c410e6d06c62742b1e598f7ff688df8d3b534549f9024e47c99e93e35",
+    "movie_version": 4,
+    "execution_mode": "Interpreter",
+    "armed_while_paused": true,
+    "input_frames": 353,
+    "initial_emulator_frame": 31738,
+    "square_press_frames": [40, 81, 130, 220, 261, 300],
+    "accepted_kick_count": 4
+  },
+  "media": {
+    "serial": "SCUS-94288",
+    "executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "bin_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+  },
+  "static_c_analysis": {
+    "source": "/tmp/a04_worm_static.c",
+    "source_sha256": "6f14cd00845a24748bcab7ed76ec11a70e57435bf744d0eeaf3e4a07f27c77d0",
+    "binary_sha256": "763618e62269395a944048406e57e5206717a0c064fc486a4ade7b8ada172543",
+    "output_sha256": "fdecc9e42ed1afb78845c02642599d7576c140f613e3c5d7e1767525906e1c52",
+    "findings": [
+      "Ctor109 maps to action class 1.",
+      "Action class 1 selects HP minus 99 at 0x80059094 and stores it at 0x800590E4.",
+      "Generic contact-object damage rejects actor flags 0x20 or 0x80 at 0x80058B54.",
+      "After accepted geometry contact writes knockback 20, actor flag 0x40 plus action class 1 selects a special branch at 0x80058EE8..0x80058F10 that bypasses HP damage.",
+      "The death tail writes HP 999 at 0x800592A8 after a lethal action result."
+    ]
+  },
+  "target": {
+    "actor_id": 40,
+    "record": "0x800A0C74",
+    "start_xyz": [-105568, -81792, 369152],
+    "start_flags": "0x48C5",
+    "start_hp": 8,
+    "persistent_kick_special_flag": "0x0040",
+    "dynamic_prefilter_flag": "0x0080"
+  },
+  "natural_replay": {
+    "clean_end_frame": 32104,
+    "clean_end_cycle": 18176824726,
+    "traced_end_frame": 32104,
+    "traced_end_cycle": 18176824727,
+    "movie_outcome_stable": true,
+    "generic_actor_iterations": 92,
+    "flags_0x20_0x80_prefilter_rejections": 13,
+    "prefilter_passes": 79,
+    "confirmed_kick_effect_contacts": 3,
+    "contact_knockback_value": 20,
+    "special_branch_hits": 3,
+    "hp_dispatch_hits": 0,
+    "hp_store_hits": 0,
+    "hp_before": 8,
+    "hp_after": 8,
+    "decisive_observation": "At confirmed contacts, 0x80058EE8 captured masked value 0x40 and 0x80058F10 captured action class 1; the special branch consumed the kick."
+  },
+  "causal_control": {
+    "scope": "runtime_only",
+    "continuation_frame": 31819,
+    "reason_for_continuation": "The best-effort stop-on-hit request paused at the next safe point after the first natural contact; playback remained active, so the control continued the same synchronized movie before its second contact.",
+    "intervention_pc": "0x80058EE4",
+    "original_instruction": "0x30420040",
+    "control_instruction": "0x30420000",
+    "intervention": "Mask zero instead of actor flag 0x40, leaving the already-recorded inputs, target record, geometry, action class, and all other code unchanged.",
+    "causal_contact_frame": 31906,
+    "hp_before": 8,
+    "action_id": 1,
+    "hp_expression": "8 - 99",
+    "hp_store_value": -91,
+    "hp_store_pc": "0x800590E4",
+    "death_tail_pc": "0x800592A8",
+    "death_tail_value": 999,
+    "lifecycle_reset_pc": "0x80049B90",
+    "lifecycle_reset_value": 0,
+    "conclusion": "Flag 0x40 is causally necessary for this worm's kick-special HP bypass."
+  },
+  "artifacts": {
+    "trace_reducer_source_sha256": "032d35ab5207e308db7981fb964d6c0d9b814305c5a89c4757c2f330eeb893c6",
+    "trace_reducer_binary_sha256": "81428fb211efbfb738e92fc506ea312134ae66b637e63a8395412695f2a3da85",
+    "natural_exec_summary_sha256": "2590eed0112a218fe25c6901d49eaa47cb59a4389fa9a243820810a3216385e8",
+    "natural_access_summary_sha256": "66b10b9e8684f6874817dc3a29da4998f3ea771ed2781ee29c6af3aee8c0e270",
+    "natural_access_events_sha256": "de3092720ef643fb665d17ab97e1609513a6ca0ac0bb13e00f04779583720395",
+    "causal_exec_summary_sha256": "7592c179bc427ec0920949cdc0ccfa8b47d62ded32346b006d3ce8c87f37df75",
+    "causal_access_summary_sha256": "f4c248e1cb3d927ac5f2e33ec7cbf8493a90fd33a0aa1c51543d0b52cb7e5fb1",
+    "causal_exec_events_sha256": "ddae07b5723bd589cfb25af42583af918173f83dda821f4feb098e236b926a52",
+    "causal_access_events_sha256": "deb9d44edabfef3b6dabe3dcd483985f02c63344030701b2ca8b5a425907aeb7",
+    "decisive_event_extract_sha256": "f05e5b0db322990cf5403ddbd5eb385c0e7a9bc0f710c98c5074cc414ac72c62"
+  },
+  "cleanup": {
+    "original_instruction_restored": "0x30420040",
+    "instrumentation_cleared": true,
+    "controller_cleared": true,
+    "isolated_instance_stopped": true
+  },
+  "closure": {
+    "kick_is_absolute_instant_kill": false,
+    "ordinary_rule": "Action class 1 subtracts 99 HP, which is an effective instant kill for ordinary enemies below 100 HP.",
+    "worm_rule": "Worm flag 0x40 diverts a connecting kick into a special reaction before HP dispatch; flag 0x80 can additionally reject contact-object processing while set.",
+    "additional_movie_required": false,
+    "move_on": true
+  }
+}

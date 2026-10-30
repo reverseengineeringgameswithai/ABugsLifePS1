@@ -1,0 +1,84 @@
+schema: abl-phase4-fmv-levelb-two-pc-first-hit-result-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-R10-ITER1-E15-LEVELB-TWO-PC-FIRST-HIT
+missing_fact_id: E15/completed-level-b-natural-scene-setup-first-hit
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260729-200940-229268-r1
+before_ledger:
+  relative_path: iteration-1-escalations-before.json
+  sha256: 66238c7f87c3d00bc0648c0e488a0ff01e2b023054cfaa0732051ea6e710e3f5
+  bytes: 502025
+work_packet:
+  relative_path: iteration-1-receipts/work-packet.json
+  sha256: 3ba5c810ecf6db492e30df43a577c5305b3b8e75d6e7f28fc944c34ddd58f3a9
+  bytes: 3533
+media:
+  serial: SCUS-94288
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  movie_sha256: ece62d4e6f92b887b0500dd8ac3bec48f3638ad5d9858cda7d5b0afb3a8d2602
+  settings_sha256: ca37f959ec414e803b1f64686c1af3fe987853bcf8ee0f263883cb1ad01fa733
+debugger:
+  binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+  dispatcher_sha256: 6ff2640dad39f85eacba9e8bbbfdb65d4e3707cb6d8f72cc74bf404579ae8a3e
+receipts:
+  passive:
+    relative_path: iteration-1-receipts/live/e15-levelb-two-pc-first-hit-passive-prelude/receipt.json
+    sha256: 488c44d4ff9245dda0b1bf21600a262be6848c7aaaece23b6393b120c27048e3
+    bytes: 4453
+    batch_result:
+      relative_path: iteration-1-receipts/live/e15-levelb-two-pc-first-hit-passive-prelude/batch-result.json
+      sha256: 6242bcfef0c181a5fdd5b170f37362df66a76d13bebbe5a32f3f8ea723839a92
+      bytes: 518820
+  native:
+    relative_path: iteration-1-receipts/live/e15-levelb-two-pc-first-hit-native/receipt.json
+    sha256: 7d17d1e6acf9daeeabc3c35fa0f536d571f40b08c5c416cf586d939aff77142e
+    bytes: 4568
+    batch_result:
+      relative_path: iteration-1-receipts/live/e15-levelb-two-pc-first-hit-native/batch-result.json
+      sha256: 5cc35a9b1aa321c27033c1ce3395361d4430a128bfd9e90b5e20f9fa3087f432
+      bytes: 224303
+    direct_result:
+      relative_path: iteration-1-receipts/live/e15-levelb-two-pc-first-hit-native/two-pc-first-hit-result.json
+      sha256: 17c9288417f4ef0ea064d9251e963d3cfc9267f745d47f132410741127872651
+      bytes: 59160
+expected:
+  passive_capture_start: 15776
+  passive_capture_stop: 15872
+  passive_endpoint_frame: 15872
+  passive_endpoint_cycle: 8986205047
+  passive_endpoint_pc: '0x8004fea4'
+  native_anchor_frame: 15792
+  native_anchor_cycle: 8940908745
+  native_anchor_pc: '0x8004fea4'
+  native_frame_ceiling: 15856
+  native_failure_frame: 15857
+  outcome: falsified
+  falsifier_code: TWO_PC_FIRST_HIT_TYPED_PREDICATE_FALSE
+  falsifier_reason: first-hit search escaped the finite emulator-frame bound
+claim_boundary:
+  classification: two_pc_first_hit_window_falsified
+  live_executed: true
+  passive_receipts_closed: 1
+  precise_receipts_closed: 1
+  passive_repeat_equal: true
+  natural_first_hit_observed: false
+  candidate_pc_hits: 0
+  selected_natural_branch_claimed: false
+  dma_events_claimed: 0
+  lifecycle_promoted: false
+  dimension_promoted: false
+  fresh_verifier_pending: true
+  next_lane: static
+  next_method: >-
+    Re-localize a paused cold-boot anchor before frame 15792 and reconstruct
+    when the completed-Level-B scene-setup calls retire. Do not repeat the
+    escaped 15792..15856 managed-breakpoint window.
+  not_claimed:
+    - a hit at 0x8004FD74 or 0x8005029C
+    - the natural scene-setup branch, arguments or exact retirement frame
+    - any Region-B DMA event
+    - fresh-verifier acceptance of either investigator receipt
+    - lifecycle or any other dimension promotion

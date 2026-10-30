@@ -1,0 +1,141 @@
+{
+  "schema": "abl-phase4-a19-component-matrix-v1",
+  "mechanic_id": "A19_status_display",
+  "date": "2026-08-03",
+  "classification": "partial_high_value_bounded_exhausted",
+  "immutable_inputs": {
+    "pristine_executable": {
+      "path": "REBUILD/files/SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+    },
+    "retail_cue": {
+      "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+    },
+    "state": {
+      "path": "~/Downloads/ABL/level01.sav",
+      "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+      "serial": "SCUS-94288"
+    }
+  },
+  "capsule_evidence": {
+    "health_capsule": {
+      "id": "B07_health_partial_full",
+      "manifest_sha256": "bde5cc0ca130e7e74a33c6cd1f556a4e4e2822b1dd2197fea8f4a69b28fc26f7",
+      "records": 324,
+      "domain_hashes_checked": 972,
+      "domain_hash_mismatches": 0,
+      "observed_health_transition": "3 -> 4 at movie frame 77",
+      "observed_latch_transition": "3 -> 4 at movie frame 107"
+    },
+    "seed_capsules": [
+      "A13__blue_seed_levels",
+      "A13__brown_seed_levels",
+      "A13__green_seed_levels",
+      "A13__purple_seed_levels",
+      "A13__yellow_seed_levels"
+    ],
+    "all_manifests_complete": true,
+    "all_controls_exact": true,
+    "reducer_output_sha256": "6e77544fe2568824d1835a03bc917e77f816d9cc9a5d05572bd575fc1f3260e4"
+  },
+  "static_analysis": {
+    "tool": "tools/phase4_a19_components_static.c",
+    "transient_binary_sha256": "d8373f536132c510613792e0a10afcd72c49a8073dd12d8b95d5ca745bc8b0f2",
+    "output_sha256": "0fe9a427c935d55fc93192d5d2393f90166569f5ac17083ad373a75cb3972791",
+    "interesting_calls": 54,
+    "ranges": [
+      "0x80052574..0x800526F4",
+      "0x800526F4..0x80053638"
+    ]
+  },
+  "runtime": {
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "binary": "~/duckstation/build/bin/duckstation-qt",
+    "binary_sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9",
+    "accepted_config": "/tmp/duckstation-debugger-phase4-a19-components-20260803-v3",
+    "port": 24422,
+    "anchor": "hash-pinned save state; volatile RAM counterfactuals only",
+    "movie": null,
+    "execution_mode": "Interpreter forced by execTrace",
+    "matrix_output_sha256": "e6f0c4af046963571395370794076c93c9220ec3e3e00b26fa86780ae8871dd3",
+    "seed_output_sha256": "467a5c75b10b41fa76610bdde1ac301ac29becb5943c431765637f09ea08ecb3",
+    "all_accepted_cases_truncated": false,
+    "cleanup": "owned PID 1142830 stopped through its config launcher; status not running"
+  },
+  "components": {
+    "flik_head": {
+      "draw_call": "0x80052890 -> 0x800260F8",
+      "return_address": "0x80052898",
+      "tile": "0x1C",
+      "position": [16, 16],
+      "animation": "none in 0x80052574 animation driver",
+      "result": "fixed head glyph rendered independently of the lives value"
+    },
+    "lives": {
+      "source": "u8 0x800A65A0",
+      "latch": "u16 0x800B018A",
+      "pulse": "u16 0x800B0188",
+      "draw_call": "0x800528AC -> 0x80025F54",
+      "tile": "0x1E",
+      "tested_values": [0, 1, 5, 9],
+      "observed_variants": [0, 1, 5, 9],
+      "law": "digit variant equals the latched lives value"
+    },
+    "health": {
+      "source": "u8 0x800A6594",
+      "latch": "u16 0x800B0192",
+      "pulse": "u16 0x800B0190",
+      "draw_call": "0x80052984 -> 0x800260F8",
+      "tile": "0x1D",
+      "upload_call": "0x800529D4 -> 0x80026DF4",
+      "runtime_values": [1, 2, 3, 4],
+      "runtime_upload_frames": [3, 2, 1, 0],
+      "law": "upload frame = 4 - authoritative health",
+      "zero_boundary": "static ASM gives frame 4; not advanced live because zero health can enter death logic",
+      "natural_control": "B07 proves 3 -> 4 and the delayed 3 -> 4 display latch"
+    },
+    "grain": {
+      "source": "u8 0x800A65A1",
+      "packed_latch": "u16 0x800B018E",
+      "pulse": "u16 0x800B018C",
+      "icon_tile": "0x14",
+      "digit_tile": "0x1E",
+      "tens_call": "0x80052B1C -> 0x80025F54",
+      "ones_call": "0x80052B38 -> 0x80025F54",
+      "tested_values": [0, 9, 10, 49, 50],
+      "observed_digit_pairs": [[0, 0], [0, 9], [1, 0], [4, 9], [5, 0]],
+      "law": "low latch byte is tens; high latch byte is ones"
+    },
+    "flik_letters": {
+      "source_mask": "u8 0x800A65A2",
+      "tiles": ["0x10", "0x11", "0x12", "0x13"],
+      "x_positions": [112, 136, 160, 184],
+      "tested_masks": [0, 1, 2, 4, 8, 5, 15],
+      "law": "set bit uses 0x800260F8 normal glyph; clear bit uses 0x80026588 tinted glyph",
+      "all_four_bits_independently_confirmed": true
+    },
+    "seed_power_indicator": {
+      "visible_pair": ["0x80053050 -> 0x800260F8", "0x800530A0 -> 0x80026588"],
+      "selected_counter_in_fixture": "u8 0x800A6598",
+      "all_zero_behavior": "pair suppressed",
+      "tested_high_nibbles": [1, 2, 3, 4],
+      "observed_variants": [4, 5, 5, 0],
+      "unselected_slots_tested": ["0x800A6599", "0x800A659A", "0x800A659B"],
+      "unselected_slot_result": "no pair while slot 0 remains selected"
+    }
+  },
+  "evidence_discipline": {
+    "rejected_runs": [
+      "v1 selected build-release and produced zero always-running uploader hits",
+      "the first bulk sweep used client --quiet, suppressing JSON before the C reducer"
+    ],
+    "rejected_runs_used_for_claims": false
+  },
+  "bounds": {
+    "included": "shared renderer ownership, source/latch/pulse addresses, exact draw/upload callsites, finite value matrices, and selected seed indicator",
+    "excluded": "pixel-perfect atlas reconstruction, every scene-specific presentation branch, and the inactive 0x80052C00 block",
+    "movie_required": false,
+    "move_on": true
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "abl.phase4.control_plane_data_quality.v1",
+  "generated": "2026-08-10",
+  "source_commit": "508e2cb00a3f3",
+  "scope": {
+    "initial_closure_debt_errors": 1,
+    "initial_missing_central_pins": 3,
+    "final_closure_debt_errors": 0,
+    "final_missing_central_pins": 0,
+    "dimension_promotion_claimed": false
+  },
+  "fixture_reference_repairs": [
+    {
+      "original": "E02_FreshLoad_Clover.movie.json",
+      "diagnosis": "A real centrally pinned movie was referenced by basename instead of repository-relative path.",
+      "repair": [
+        "movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json"
+      ],
+      "central_sha256": "479f2f2d7b28f3d0abaa88f6443b13927f4aea02c4ea39d5b69bd0202c8982f"
+    },
+    {
+      "original": "6 progression-diverse saves reused read-only; live L1/R1/L1+left/R1-held traces on level01.sav",
+      "diagnosis": "The frozen mechanics row compressed the original six-save E04 survey into prose where fixture paths belong.",
+      "repair": [
+        "level01.sav",
+        "canyon_bug.sav",
+        "level_09.sav",
+        "level_12.sav",
+        "training_all_stuff_collected_ending.sav",
+        "movies/Phase4/Interpreter/C17_MovieViewer.movie.sav"
+      ],
+      "identity_source": "analysis/phase2_fixture_audit.json",
+      "survey_evidence": "analysis/phase4_e04_camera_system.json"
+    },
+    {
+      "original": "6 progression-diverse saves reused read-only; live L1/R1 traces on level01.sav",
+      "diagnosis": "This shorter string was a stale finding retained under analysis/phase3_gate_audit.json:upstream_durability.blockers.missing_fixture_pins, not an authored fixture reference.",
+      "repair": "The fixture scan excludes only the missing_fixture_pins output field of phase3_gate_audit.json; the central missing-pin comparison remains unchanged and all other artifacts and keys remain scanned."
+    }
+  ],
+  "fixture_set": {
+    "paths": [
+      "level01.sav",
+      "canyon_bug.sav",
+      "level_09.sav",
+      "level_12.sav",
+      "training_all_stuff_collected_ending.sav",
+      "movies/Phase4/Interpreter/C17_MovieViewer.movie.sav",
+      "movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json"
+    ],
+    "all_centrally_pinned": true,
+    "source_correction": "config/fixture_reference_sets.yaml",
+    "gate_weakened_or_whitelisted": false
+  },
+  "extent_decision": {
+    "image": "REBUILD/files/SCUS_942.88",
+    "image_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "entry": "0x80042E94",
+    "old_configured_exclusive_end": "0x80042F98",
+    "census_partition_exclusive_end": "0x80042FA0",
+    "decision": "0x80042FA0 is the correct non-overlapping partition end; config/segments.yml was eight bytes short.",
+    "fallthrough_caveat": "The entry's execution can fall through the callable 0x80042FA0 suffix and share its body through jr $ra at 0x80043010 plus the 0x80043014 delay slot. The 0x80042FA0 answer is the census/decomp partition boundary asked by the work order, not a claim that execution returns there.",
+    "tail_words": [
+      {"address": "0x80042F90", "word": "0x0C01AC4C", "decode": "jal 0x8006B130"},
+      {"address": "0x80042F94", "word": "0x2405FFFF", "decode": "addiu $a1,$zero,-1 (delay slot)"},
+      {"address": "0x80042F98", "word": "0xA7820410", "decode": "sh $v0,1040($gp)"},
+      {"address": "0x80042F9C", "word": "0x00021400", "decode": "sll $v0,$v0,16"},
+      {"address": "0x80042FA0", "word": "0x00022C03", "decode": "sra $a1,$v0,16 (callable suffix entry)"},
+      {"address": "0x80042FA4", "word": "0x04A10007", "decode": "bgez $a1,0x80042FC4"}
+    ],
+    "assembly_reproduction": {
+      "source": "asm/hand_written/80042e94_vab_bank_loader.s",
+      "source_sha256": "881c7abb089762939a5fa204034c3ba9d777d77aec37ad8e1e3cda8f27cc7c1d",
+      "bytes": 268,
+      "result": "MATCH"
+    }
+  },
+  "substrate_test_followup": {
+    "diagnosis": "After the requested row was fixed, the formerly fail-fast test exposed three already-reviewed decomp-prefix exceptions and one real four-byte truncation at 0x8001A1E0.",
+    "policy_repair": "The test now accepts only exact config/segments.yml pairs already recorded with verdict decomp_segment_not_a_census_extent in config/phase4_extent_audit_acknowledged.yaml.",
+    "additional_byte_repair": {
+      "entry": "0x8001A1E0",
+      "old_exclusive_end": "0x8001A8FC",
+      "correct_exclusive_end": "0x8001A900",
+      "tail": [
+        {"address": "0x8001A8F8", "word": "0x03E00008", "decode": "jr $ra"},
+        {"address": "0x8001A8FC", "word": "0x00000000", "decode": "nop (delay slot)"}
+      ],
+      "assembly_source_sha256": "d95b8eb4bfd0e4c1b4d81ff61075c73e6f40e8435935b76c5f003a25f1a75fbc",
+      "assembly_bytes": 1824,
+      "assembly_result": "MATCH"
+    }
+  },
+  "retained_outputs": {
+    "analysis/phase0_2_external_fixture_set.json": "5e59d005c2fff344085bdb60be0d79e4cf9e6ebc90da95a8c52a52159a3abdb1",
+    "analysis/phase0_2_knowledge_closure_report.json": "5ba4232df0c1bd46fd3414d2f4f9bceb552b8d2a58b66add65e572482a1fbb6e",
+    "analysis/phase2_row_coverage.json": "62b461b051627c7dc346858c35b83f7deadcfebbe7463688b53cbd3f5c1e7103",
+    "analysis/phase3_ownership_graph.json": "33efc1e50844e04df6256a366828af8fd71445c19c5b0f4b7065cc193aaae8e0",
+    "analysis/phase4_closure_debt.json": "80eb8380dc47a3917715326c2a41f94943d84975ad2d68dfae84da779bf4513a"
+  },
+  "closure_debt": {
+    "valid": true,
+    "errors": 0,
+    "rows": 107,
+    "complete_rows": 16,
+    "dimensions_met": 149,
+    "dimensions_partial": 61,
+    "dimensions_gap": 753
+  },
+  "verification": {
+    "build_identity": "PASS 327/327",
+    "repro_inputs": "PASS",
+    "clean_checkout_inputs": "PASS 1529 centrally declared inputs provisioned or verified",
+    "focused_pytest": "37 passed",
+    "substrate_manifest_test": "PASS",
+    "closure_debt_check": "PASS"
+  }
+}

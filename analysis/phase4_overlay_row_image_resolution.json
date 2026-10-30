@@ -1,0 +1,2339 @@
+{
+ "_comment": "Ambiguous overlay-address citations resolved to an IMAGE per citing row, via the game's own progression table (0x80077FA0) and the disc scene->blob law. Rows whose stage scope spans several overlays get NO answer and are listed with the reason. Regenerate: tools/phase4_overlay_row_image_resolver.py",
+ "schema": "abl-phase4-overlay-row-image-resolution/1",
+ "generated": "2026-08-11",
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "edits_knowledge_bases": false,
+  "requires_fresh_verifier": true
+ },
+ "method": {
+  "axis": "row stage -> scene (progression table, read from SCUS_942.88) -> blob",
+  "scene_to_blob_law": "dir = scene if scene<=10 else scene-10; file = LEVEL.BIN if scene<=10 else LEVEL1.BIN",
+  "progression_table": [
+   17,
+   1,
+   3,
+   2,
+   6,
+   10,
+   11,
+   4,
+   5,
+   14,
+   7,
+   12,
+   13,
+   9,
+   8,
+   15
+  ],
+  "independent_of": "analysis/phase3_ownership_graph.json (the artifact resolved)"
+ },
+ "known_positive_gate": [
+  {
+   "row": "D18_thud",
+   "expected": "LEVEL04_LEVEL1",
+   "derived": "LEVEL04_LEVEL1",
+   "reproduces": true,
+   "independent_basis": "D18's own overlay pin",
+   "route": "single 'stage N'"
+  },
+  {
+   "row": "F00_training",
+   "expected": "LEVEL07_LEVEL1",
+   "derived": "LEVEL07_LEVEL1",
+   "reproduces": true,
+   "independent_basis": "writer-set constraint: both stores exist in exactly 1 of 20 images (analysis/phase4_f00_state_owner_probe.json)",
+   "route": "training == progression ordinal 0"
+  },
+  {
+   "row": "F02_tunnels",
+   "expected": "LEVEL03_LEVEL",
+   "derived": "LEVEL03_LEVEL",
+   "reproduces": true,
+   "independent_basis": "disc-side pin: the overlay address belonged to LEVEL03, not LEVEL02",
+   "route": "bare stage ordinal"
+  },
+  {
+   "row": "F09_bug_bar",
+   "expected": "LEVEL04_LEVEL1",
+   "derived": "LEVEL04_LEVEL1",
+   "reproduces": true,
+   "independent_basis": "compiled-C probe over 21 pinned images (tools/phase4_f09_overlay_pin.c)",
+   "route": "bare stage ordinal"
+  },
+  {
+   "row": "F10_clover_forest",
+   "expected": "LEVEL07_LEVEL",
+   "derived": "LEVEL07_LEVEL",
+   "reproduces": true,
+   "independent_basis": "row states scene 7 (disc level07)",
+   "route": "prose naming exactly one scene"
+  },
+  {
+   "row": "F11_the_tree",
+   "expected": "LEVEL02_LEVEL1",
+   "derived": "LEVEL02_LEVEL1",
+   "reproduces": true,
+   "independent_basis": "100.0% code-window match to LEVEL02/LEVEL1.BIN",
+   "route": "bare stage ordinal"
+  }
+ ],
+ "evidence_pins": [
+  {
+   "path": "SCUS_942.88",
+   "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  },
+  {
+   "path": "analysis/mechanics_baseline.yaml",
+   "sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58"
+  },
+  {
+   "path": "analysis/phase4_d3_contract.json",
+   "sha256": "b14ec3fbafd795cdbc2f9ac364f4f6cbf5a08953d4f40cb6d66a66e4c4c4147d"
+  },
+  {
+   "path": "analysis/functions.json",
+   "sha256": "42f99dc0f1886412751d269f586bca3fc72bac5c9f29d7447fe08fbe4f46ef61"
+  },
+  {
+   "path": "analysis/phase3_ownership_graph.json",
+   "sha256": "be8aea008ade0417bbe7e99e87c788df94c6ed9e50c6079b42b05e2c9f37e483"
+  }
+ ],
+ "summary": {
+  "ambiguous_citations": 150,
+  "resolved": 108,
+  "falsified": 0,
+  "narrowed_to_a_bounded_image_set": 24,
+  "unresolved_open_ended_scope": 18,
+  "resolved_corroborated_by_census": 105,
+  "resolved_contained_in_blob": 108,
+  "resolved_without_censused_code_there": 3,
+  "distinct_images_used": 9,
+  "by_row": {
+   "D16_thumper": 16,
+   "D18_thud": 7,
+   "D19_molt": 11,
+   "F00_training": 1,
+   "F02_tunnels": 2,
+   "F03_council_chamber": 3,
+   "F09_bug_bar": 4,
+   "F10_clover_forest": 16,
+   "F11_the_tree": 32,
+   "F15_canyon_showdown": 1,
+   "F16_bonus1_spiders": 5,
+   "F17_bonus2_mushrooms": 5,
+   "F18_bonus3_grasshoppers": 5
+  }
+ },
+ "resolved": [
+  {
+   "row": "D16_thumper",
+   "address": "0x800B3E54",
+   "candidates": 18,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B400C",
+   "candidates": 15,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4070",
+   "candidates": 15,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4078",
+   "candidates": 15,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4090",
+   "candidates": 15,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4118",
+   "candidates": 13,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4138",
+   "candidates": 13,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4158",
+   "candidates": 13,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4164",
+   "candidates": 13,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4190",
+   "candidates": 13,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4330",
+   "candidates": 12,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B43C0",
+   "candidates": 11,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4560",
+   "candidates": 9,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B45A4",
+   "candidates": 9,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B45AC",
+   "candidates": 9,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D16_thumper",
+   "address": "0x800B4940",
+   "candidates": 6,
+   "stage_scope": "stage 3",
+   "route": "single 'stage N'",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "D18_thud",
+   "address": "0x800B3D88",
+   "candidates": 18,
+   "stage_scope": "stage 9",
+   "route": "single 'stage N'",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D18_thud",
+   "address": "0x800B3DA4",
+   "candidates": 18,
+   "stage_scope": "stage 9",
+   "route": "single 'stage N'",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D18_thud",
+   "address": "0x800B3DB0",
+   "candidates": 18,
+   "stage_scope": "stage 9",
+   "route": "single 'stage N'",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D18_thud",
+   "address": "0x800B3ED0",
+   "candidates": 18,
+   "stage_scope": "stage 9",
+   "route": "single 'stage N'",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D18_thud",
+   "address": "0x800B4528",
+   "candidates": 9,
+   "stage_scope": "stage 9",
+   "route": "single 'stage N'",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D18_thud",
+   "address": "0x800B4CB0",
+   "candidates": 2,
+   "stage_scope": "stage 9",
+   "route": "single 'stage N'",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": null,
+   "corroborated_by_census": false,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "D18_thud",
+   "address": "0x800B4CC8",
+   "candidates": 2,
+   "stage_scope": "stage 9",
+   "route": "single 'stage N'",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": null,
+   "corroborated_by_census": false,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B3C98",
+   "candidates": 18,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B3CC4",
+   "candidates": 18,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B3DEC",
+   "candidates": 18,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B3E6C",
+   "candidates": 18,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B3E70",
+   "candidates": 18,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B3E7C",
+   "candidates": 18,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B41CC",
+   "candidates": 13,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B43F8",
+   "candidates": 11,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B4400",
+   "candidates": 11,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B4468",
+   "candidates": 10,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "D19_molt",
+   "address": "0x800B45B4",
+   "candidates": 9,
+   "stage_scope": "stage 12",
+   "route": "single 'stage N'",
+   "stage_ordinal": 12,
+   "scene": 13,
+   "image": "LEVEL03_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "F00_training",
+   "address": "0x800B4A3C",
+   "candidates": 5,
+   "stage_scope": "Training",
+   "route": "training == progression ordinal 0",
+   "stage_ordinal": 0,
+   "scene": 17,
+   "image": "LEVEL07_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "F02_tunnels",
+   "address": "0x800B43F0",
+   "candidates": 11,
+   "stage_scope": "2",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 2,
+   "scene": 3,
+   "image": "LEVEL03_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_object_spawn_handler_2ac",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F02_tunnels",
+   "address": "0x800B43F8",
+   "candidates": 11,
+   "stage_scope": "2",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 2,
+   "scene": 3,
+   "image": "LEVEL03_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_object_spawn_handler_2ac",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F03_council_chamber",
+   "address": "0x800B4078",
+   "candidates": 15,
+   "stage_scope": "3",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F03_council_chamber",
+   "address": "0x800B4090",
+   "candidates": 15,
+   "stage_scope": "3",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F03_council_chamber",
+   "address": "0x800B4190",
+   "candidates": 13,
+   "stage_scope": "3",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 3,
+   "scene": 2,
+   "image": "LEVEL02_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F09_bug_bar",
+   "address": "0x800B3DB0",
+   "candidates": 18,
+   "stage_scope": "9",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F09_bug_bar",
+   "address": "0x800B3ED0",
+   "candidates": 18,
+   "stage_scope": "9",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F09_bug_bar",
+   "address": "0x800B4528",
+   "candidates": 9,
+   "stage_scope": "9",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F09_bug_bar",
+   "address": "0x800B4CC8",
+   "candidates": 2,
+   "stage_scope": "9",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 9,
+   "scene": 14,
+   "image": "LEVEL04_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": null,
+   "corroborated_by_census": false,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B3E9C",
+   "candidates": 18,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_state_writer_da8",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B3FC8",
+   "candidates": 15,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_state_writer_fc8",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B4190",
+   "candidates": 13,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_fx_mesh_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B41CC",
+   "candidates": 13,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_fx_mesh_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B41EC",
+   "candidates": 13,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_fx_mesh_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B4204",
+   "candidates": 13,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_fx_mesh_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B422C",
+   "candidates": 13,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_fx_mesh_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B4230",
+   "candidates": 13,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_fx_mesh_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B4238",
+   "candidates": 13,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_fx_mesh_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B4244",
+   "candidates": 13,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_fx_mesh_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B4388",
+   "candidates": 12,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B4390",
+   "candidates": 11,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B43AC",
+   "candidates": 11,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B4484",
+   "candidates": 10,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B44B0",
+   "candidates": 9,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F10_clover_forest",
+   "address": "0x800B44C4",
+   "candidates": 9,
+   "stage_scope": "scene 7 (disc level07) -- derived: progression table 0x80077FA0[ordinal 10] = 7, and the Phase-3 scene graph labels scene 7 stage10_clover_forest",
+   "route": "prose naming exactly one scene",
+   "stage_ordinal": null,
+   "scene": 7,
+   "image": "LEVEL07_LEVEL",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B3CAC",
+   "candidates": 18,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_state_writer",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B41A4",
+   "candidates": 13,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B41A8",
+   "candidates": 13,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4218",
+   "candidates": 13,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B421C",
+   "candidates": 13,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4220",
+   "candidates": 13,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4240",
+   "candidates": 13,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B42D4",
+   "candidates": 13,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B42F4",
+   "candidates": 12,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B42F8",
+   "candidates": 12,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4318",
+   "candidates": 12,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4324",
+   "candidates": 12,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4340",
+   "candidates": 12,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B43EC",
+   "candidates": 11,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4400",
+   "candidates": 11,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4424",
+   "candidates": 10,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B449C",
+   "candidates": 9,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B44A4",
+   "candidates": 9,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B44B0",
+   "candidates": 9,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B44B8",
+   "candidates": 9,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B458C",
+   "candidates": 9,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B459C",
+   "candidates": 9,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_completion_handler_f08",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B49EC",
+   "candidates": 6,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A24",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A28",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A2C",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A30",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A34",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A38",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A3C",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A48",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F11_the_tree",
+   "address": "0x800B4A4C",
+   "candidates": 5,
+   "stage_scope": "11",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 11,
+   "scene": 12,
+   "image": "LEVEL02_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "color_channel_lerp",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F15_canyon_showdown",
+   "address": "0x800B4BA8",
+   "candidates": 2,
+   "stage_scope": "15",
+   "route": "bare stage ordinal",
+   "stage_ordinal": 15,
+   "scene": 15,
+   "image": "LEVEL05_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "F16_bonus1_spiders",
+   "address": "0x800B3C98",
+   "candidates": 18,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_state_writer_c98",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F16_bonus1_spiders",
+   "address": "0x800B3D2C",
+   "candidates": 18,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F16_bonus1_spiders",
+   "address": "0x800B3F18",
+   "candidates": 17,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F16_bonus1_spiders",
+   "address": "0x800B3F24",
+   "candidates": 17,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F16_bonus1_spiders",
+   "address": "0x800B4070",
+   "candidates": 15,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "F17_bonus2_mushrooms",
+   "address": "0x800B3C98",
+   "candidates": 18,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_state_writer_c98",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F17_bonus2_mushrooms",
+   "address": "0x800B3D2C",
+   "candidates": 18,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F17_bonus2_mushrooms",
+   "address": "0x800B3F18",
+   "candidates": 17,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F17_bonus2_mushrooms",
+   "address": "0x800B3F24",
+   "candidates": 17,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F17_bonus2_mushrooms",
+   "address": "0x800B4070",
+   "candidates": 15,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": false
+  },
+  {
+   "row": "F18_bonus3_grasshoppers",
+   "address": "0x800B3C98",
+   "candidates": 18,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_state_writer_c98",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F18_bonus3_grasshoppers",
+   "address": "0x800B3D2C",
+   "candidates": 18,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F18_bonus3_grasshoppers",
+   "address": "0x800B3F18",
+   "candidates": 17,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F18_bonus3_grasshoppers",
+   "address": "0x800B3F24",
+   "candidates": 17,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "level_spawn_handler",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": true
+  },
+  {
+   "row": "F18_bonus3_grasshoppers",
+   "address": "0x800B4070",
+   "candidates": 15,
+   "stage_scope": "bonus",
+   "route": "banked F16/F17/F18: bonus scene 0x10 == LEVEL06/LEVEL1.BIN, 455 words fully accounted",
+   "stage_ordinal": null,
+   "scene": 16,
+   "image": "LEVEL06_LEVEL1",
+   "contained_in_blob": true,
+   "census_function_in_this_image": "",
+   "corroborated_by_census": true,
+   "in_census_candidate_list": false
+  }
+ ],
+ "narrowed": [
+  {
+   "row": "D17_bird",
+   "address": "0x800B3E50",
+   "candidates": 18,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "census_candidates": 18,
+   "bounded_image_count": 2,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D17_bird",
+   "address": "0x800B3F34",
+   "candidates": 17,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "census_candidates": 17,
+   "bounded_image_count": 2,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D17_bird",
+   "address": "0x800B3F8C",
+   "candidates": 15,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "census_candidates": 15,
+   "bounded_image_count": 2,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D17_bird",
+   "address": "0x800B3F98",
+   "candidates": 15,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "census_candidates": 15,
+   "bounded_image_count": 2,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D17_bird",
+   "address": "0x800B40F8",
+   "candidates": 14,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1"
+   ],
+   "census_candidates": 14,
+   "bounded_image_count": 1,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D17_bird",
+   "address": "0x800B4158",
+   "candidates": 13,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 1,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D17_bird",
+   "address": "0x800B4164",
+   "candidates": 13,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 1,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D17_bird",
+   "address": "0x800B42B8",
+   "candidates": 13,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 1,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D17_bird",
+   "address": "0x800B441C",
+   "candidates": 10,
+   "stage_scope": "scene 11 (chronological Level 6, Birdnest) confirmed for all 3 Birdnest fixtures; scene 6 (chronological Level 4, Cliffside Canyon) confirmed for the Cliffside fixture -- both halves of this row's scope now directly observed",
+   "route": "prose names 2 scenes -- row spans several overlays",
+   "scenes": [
+    6,
+    11
+   ],
+   "images_from_stage_scope": [
+    "LEVEL01_LEVEL1",
+    "LEVEL06_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL01_LEVEL1"
+   ],
+   "census_candidates": 10,
+   "bounded_image_count": 1,
+   "bound_route": "prose enumerating 2 scenes"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B3B04",
+   "candidates": 18,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 18,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B3BD4",
+   "candidates": 18,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 18,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B3C04",
+   "candidates": 18,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 18,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B4138",
+   "candidates": 13,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B4164",
+   "candidates": 13,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B418C",
+   "candidates": 13,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B41C8",
+   "candidates": 13,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B4270",
+   "candidates": 13,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B428C",
+   "candidates": 13,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 13,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B433C",
+   "candidates": 12,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 12,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B46D4",
+   "candidates": 9,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 9,
+   "bounded_image_count": 3,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B4934",
+   "candidates": 6,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 6,
+   "bounded_image_count": 2,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B4A40",
+   "candidates": 5,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 5,
+   "bounded_image_count": 2,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B4BA8",
+   "candidates": 2,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL05_LEVEL1",
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 2,
+   "bounded_image_count": 2,
+   "bound_route": "stage range 13-15"
+  },
+  {
+   "row": "D20_hopper",
+   "address": "0x800B4CC8",
+   "candidates": 2,
+   "stage_scope": "stages 13-15",
+   "route": "stage RANGE -- row spans several overlays",
+   "scenes": [
+    9,
+    8,
+    15
+   ],
+   "images_from_stage_scope": [
+    "LEVEL05_LEVEL1",
+    "LEVEL08_LEVEL",
+    "LEVEL09_LEVEL"
+   ],
+   "bounded_images": [
+    "LEVEL09_LEVEL"
+   ],
+   "census_candidates": 2,
+   "bounded_image_count": 1,
+   "bound_route": "stage range 13-15"
+  }
+ ],
+ "falsified": [],
+ "unresolved": [
+  {
+   "row": "C04_enemy_token",
+   "address": "0x800B3B68",
+   "candidates": 18,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "C04_enemy_token",
+   "address": "0x800B4100",
+   "candidates": 14,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "C04_enemy_token",
+   "address": "0x800B410C",
+   "candidates": 13,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "C13_grain_harvester",
+   "address": "0x800B44BC",
+   "candidates": 9,
+   "stage_scope": "specific levels (lead)",
+   "route": "stage scope not a single overlay ('specific levels (lead)')"
+  },
+  {
+   "row": "C15_respawn_anchor",
+   "address": "0x800B39A4",
+   "candidates": 16,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "C15_respawn_anchor",
+   "address": "0x800B3B00",
+   "candidates": 18,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "C15_respawn_anchor",
+   "address": "0x800B3BC0",
+   "candidates": 18,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "C17_movie_viewer",
+   "address": "0x800B4084",
+   "candidates": 15,
+   "stage_scope": "frontend",
+   "route": "stage scope not a single overlay ('frontend')"
+  },
+  {
+   "row": "C17_movie_viewer",
+   "address": "0x800B4120",
+   "candidates": 13,
+   "stage_scope": "frontend",
+   "route": "stage scope not a single overlay ('frontend')"
+  },
+  {
+   "row": "D06_grasshoppers",
+   "address": "0x800B3D78",
+   "candidates": 18,
+   "stage_scope": "multiple",
+   "route": "stage scope not a single overlay ('multiple')"
+  },
+  {
+   "row": "D06_grasshoppers",
+   "address": "0x800B3E84",
+   "candidates": 18,
+   "stage_scope": "multiple",
+   "route": "stage scope not a single overlay ('multiple')"
+  },
+  {
+   "row": "E07_event_vm",
+   "address": "0x800B3B54",
+   "candidates": 18,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "E07_event_vm",
+   "address": "0x800B4A3C",
+   "candidates": 5,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "E09_grain_gates",
+   "address": "0x800B4C1C",
+   "candidates": 2,
+   "stage_scope": "Tunnels (2) + others",
+   "route": "stage scope not a single overlay ('Tunnels (2) + others')"
+  },
+  {
+   "row": "E11_dynamic_geometry",
+   "address": "0x800B3C70",
+   "candidates": 18,
+   "stage_scope": "Bug Bar (9) + others",
+   "route": "stage scope not a single overlay ('Bug Bar (9) + others')"
+  },
+  {
+   "row": "E13_hud_results",
+   "address": "0x800B4BA8",
+   "candidates": 2,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "E16_streaming_overlays",
+   "address": "0x800B39A4",
+   "candidates": 16,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  },
+  {
+   "row": "E16_streaming_overlays",
+   "address": "0x800B4084",
+   "candidates": 15,
+   "stage_scope": "all",
+   "route": "stage scope not a single overlay ('all')"
+  }
+ ]
+}

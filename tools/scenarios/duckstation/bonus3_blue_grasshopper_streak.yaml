@@ -1,0 +1,31 @@
+schema_version: 1
+id: bonus3_blue_grasshopper_streak
+description: Five consecutive blue-berry grasshopper kills unlock Bonus 3.
+target:
+  disc: "Disney-Pixar A Bug's Life (v1.0).cue"
+  expected_serial: SCUS-94288
+  expected_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+launch: {profile: repro}
+playback:
+  movie: movies/Bonus_Level_03.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: four_blue_grasshopper_kills
+    trigger: {type: movie_frame, target: 2000, max_frames: 2250, timeout_seconds: 180}
+    assertions:
+      - {id: bonus3_scene_is_tunnels, type: memory, address: 0x80082504, width: u32, op: eq, expected: 3, semantic_id: original.current_scene_id}
+      - {id: bonus3_blue_equipped, type: memory, address: 0x800A6597, width: u8, op: eq, expected: 1, semantic_id: original.player_equipped_berry}
+      - {id: bonus3_streak_is_four, type: memory, address: 0x80082240, width: u32, op: eq, expected: 4, semantic_id: original.bonus3_blue_grasshopper_streak}
+      - {id: bonus3_not_latched_early, type: memory, address: 0x800823A0, width: s16, op: eq, expected: 0, semantic_id: original.bonus_transition_latch}
+  - id: fifth_blue_grasshopper_unlocks
+    trigger: {type: movie_frame, target: 2500, max_frames: 750, timeout_seconds: 180}
+    assertions:
+      - {id: bonus3_success_resets_streak, type: memory, address: 0x80082240, width: u32, op: eq, expected: 0, semantic_id: original.bonus3_blue_grasshopper_streak}
+      - {id: bonus3_transition_is_six, type: memory, address: 0x800823A0, width: s16, op: eq, expected: 6, semantic_id: original.bonus_transition_latch}
+      - {id: bonus3_fade_is_active, type: memory, address: 0x80082470, width: s16, op: gt, expected: 0, semantic_id: original.bonus_fade_timer}
+      - {id: bonus3_unlock_bits, type: memory, address: 0x8009B889, width: u8, op: eq, expected: 0x37, semantic_id: original.bonus_unlock_flags}
+  - id: bonus3_scene_handoff
+    trigger: {type: movie_frame, target: 2750, max_frames: 500, timeout_seconds: 180}
+    assertions:
+      - {id: bonus3_enters_bonus_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 0x10, semantic_id: original.current_scene_id}

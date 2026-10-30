@@ -1,0 +1,28 @@
+{
+ "_comment": "F02 Tunnels: ctorType -> metaB -> action_id -> walker dispatch. Regenerate: tools/phase4_f02_debris_class_bind.c",
+ "row_id": "F02_tunnels",
+ "corrects": "analysis/phase4_f02_contact_action_table.json -- that run indexed the dispatch table by the RAW a3 value and looked for the table at 0x8001B828 (dispatcher_end). a3 is a ctorType, not an action id, and 0x8001B570 is the table itself, not a function.",
+ "metab": "0x8007941C",
+ "metab_rows": 129,
+ "dispatch_table": "0x8001B570",
+ "dispatch_entries": 117,
+ "dispatch_terminator": "0x00000000",
+ "walker": "0x800586B0",
+ "walker_gate": "(rec+0x22 > 0) && (rec+0x33 & 0x02)",
+ "chain": "a3=ctorType -> metaB[ctorType]; action_id=row+0x00 -> record+0x20; active_type=row+0x02 -> record+0x22; flags=row+0x10 -> record+0x33",
+ "classes": [
+  {"ctor": "0x5A", "action_id": 1, "active_type": 16, "flags": "0x20", "radius_add": 200, "walker_index": -1, "reaches_dispatch": false, "handler": "default_0x800589D4", "note": "F02 falling debris (0x800B43F8, 717 calls)"},
+  {"ctor": "0x59", "action_id": 1, "active_type": 20, "flags": "0x20", "radius_add": 100, "walker_index": -1, "reaches_dispatch": false, "handler": "default_0x800589D4", "note": "same run"},
+  {"ctor": "0x31", "action_id": 1, "active_type": 24, "flags": "0x20", "radius_add": 40, "walker_index": -1, "reaches_dispatch": false, "handler": "default_0x800589D4", "note": "same run"},
+  {"ctor": "0x71", "action_id": 4, "active_type": 16, "flags": "0x20", "radius_add": 75, "walker_index": 2, "reaches_dispatch": false, "handler": "", "note": "generic/kind-0x30"},
+  {"ctor": "0x51", "action_id": 20, "active_type": 200, "flags": "0xEA", "radius_add": 100, "walker_index": 18, "reaches_dispatch": true, "handler": "", "note": "grain (control)"},
+  {"ctor": "0x26", "action_id": 9, "active_type": 200, "flags": "0xE3", "radius_add": 100, "walker_index": 7, "reaches_dispatch": true, "handler": "", "note": "health leaf (control)"},
+  {"ctor": "0x4E", "action_id": 2, "active_type": 100, "flags": "0xE3", "radius_add": 75, "walker_index": 0, "reaches_dispatch": true, "handler": "", "note": "control"}
+ ],
+ "debris_ctor": "0x5A",
+ "debris_action_id": 1,
+ "debris_flags": "0x20",
+ "debris_reaches_walker_dispatch": false,
+ "debris_blocked_by": "rec+0x33 flags 0x20 has bit 0x02 clear",
+ "carray_refs": 11
+}

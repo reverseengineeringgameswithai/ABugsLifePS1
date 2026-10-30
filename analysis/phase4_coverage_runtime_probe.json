@@ -1,0 +1,53 @@
+{
+ "_comment": "Does a movie execute code the static census still misses? Regenerate: tools/phase4_coverage_runtime_probe.py",
+ "generated": "2026-08-04",
+ "movie": "movies/Phase4/Interpreter/temp_test_for_coverage.movie.json",
+ "movie_frames": 815,
+ "final_playback_index": 0,
+ "uncovered_dense_gaps": [
+  {
+   "start": "0x8001B0BC",
+   "bytes": 880
+  },
+  {
+   "start": "0x8001B828",
+   "bytes": 4600
+  },
+  {
+   "start": "0x80075930",
+   "bytes": 4216
+  },
+  {
+   "start": "0x80077080",
+   "bytes": 316
+  },
+  {
+   "start": "0x80077458",
+   "bytes": 4
+  },
+  {
+   "start": "0x80077A8C",
+   "bytes": 108
+  },
+  {
+   "start": "0x80078D84",
+   "bytes": 1688
+  },
+  {
+   "start": "0x80079DA0",
+   "bytes": 144
+  },
+  {
+   "start": "0x8007B63C",
+   "bytes": 8068
+  }
+ ],
+ "uncovered_dense_bytes": 20024,
+ "watches_armed": 11,
+ "watch_kind": "range (execTrace.addRangeWatch) -- full coverage of each gap",
+ "control_fired": true,
+ "gap_hits": {},
+ "distinct_gaps_hit": [],
+ "method_limits": "Coverage of the gaps is COMPLETE -- one range watch per gap via execTrace.addRangeWatch, not a sample. The limit is the MOVIE, not the instrument: a hit proves the gap is live code, a miss only says this recording did not execute it. Silence is never proof that a region is dead.",
+ "verdict": "NO GAP CODE OBSERVED -- controls fired, so the instrument worked, and NONE of the 9 uncovered gaps executed anywhere in this movie (full range coverage, not a sample). Consistent with the residual being error paths, unused library code, or data -- but NOT proof of it: another recording could still reach them."
+}

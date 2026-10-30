@@ -1,0 +1,34 @@
+schema: abl-phase4-offline-seed-lifecycle-batch-source/1
+description: >
+  Declarative selection and evidence contract for the three highest-ranked
+  seed carry, planting and uproot rows. The reconstructed per-frame index
+  remains external game-derived evidence; Git retains only hashes, bounded
+  summaries, the generator and falsifiable guards.
+selected_rows:
+  - A09_seed_pickup_drop
+  - A14_plant_seed
+  - A15_uproot_plant
+expected_unique_capsules: 3
+selection_snapshot:
+  queue_counts:
+    rows: 107
+    complete: 16
+    open: 91
+    offline_ready: 9
+    offline_partial: 24
+    live_required: 6
+    no_capsule: 68
+  rows:
+    - {row_id: A09_seed_pickup_drop, queue_rank: 1, classification: offline_ready, completion_state: open}
+    - {row_id: A14_plant_seed, queue_rank: 2, classification: offline_ready, completion_state: open}
+    - {row_id: A15_uproot_plant, queue_rank: 3, classification: offline_ready, completion_state: open}
+external_index:
+  schema: abl-phase4-external-seed-lifecycle-index/1
+  domains: [registers, ram, vram, spu_ram, block_flow]
+tracked_summary:
+  schema: abl-phase4-offline-seed-lifecycle-batch/1
+  excludes: [raw_ram, raw_vram, raw_spu_ram, capsule_chunks, movie_bytes, save_bytes]
+  causality_boundary: >
+    Frame-boundary state changes, input correlations, range intersections and
+    hotspots do not identify an exact CPU writer, collision primitive, GPU/SPU
+    producer or causal behavioral control.

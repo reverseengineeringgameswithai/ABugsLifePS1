@@ -1,0 +1,21 @@
+void SetDrawMove(unsigned char *prim, int *src, short arg2, int arg3)
+{
+  short *s = (short *) src;
+  prim[3] = ((s[2] != 0) && (s[3] != 0)) ? (5) : (0);
+  {
+    {
+      {
+        *((int *) (4 + prim)) = 0x1000000;
+      }
+    }
+  }
+  {
+    *((int *) (8 + prim)) = 0x80000000;
+  }
+  *((int *) (12 + prim)) = src[0];
+  {
+    *((int *) (&prim[16])) = (arg3 << 16) | (0xffff & arg2);
+  }
+  *((int *) (&prim[20])) = src[1];
+}
+

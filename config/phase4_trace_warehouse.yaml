@@ -1,0 +1,42 @@
+schema: abl-phase4-trace-warehouse-policy/1
+engine:
+  name: DuckDB
+  version: 1.5.5
+  extensions_allowed: false
+input:
+  schema: abl-phase4-trace-warehouse-import/1
+  require_complete_capsule_set: true
+  require_control_match: true
+  reject_truncation_or_errors: true
+  allowed_domains: [register, ram, vram, spu, block]
+  allowed_cohorts: [positive, negative, control]
+  max_partitions: 4096
+  max_partition_bytes: 1073741824
+  max_rows: 100000000
+  event_frame:
+    coordinate: movie_relative_frame_boundary
+    interval: closed
+    lower_bound: 0
+    upper_bound: retained_capsule.frames
+output:
+  external_only: true
+  overwrite: false
+  compression: zstd
+  files:
+    database: trace_warehouse.duckdb
+    manifest: trace_warehouse.manifest.json
+    partitions: parquet
+queries:
+  - id: first_change
+    purpose: Earliest observed frame for each changed domain/key in each capsule.
+  - id: cohort_contrast
+    purpose: Positive versus negative/control movie coverage by domain/key.
+  - id: block_enrichment
+    purpose: Positive versus negative/control block-count enrichment.
+  - id: cross_movie
+    purpose: Cross-movie recurrence of each changed domain/key.
+authority:
+  frame_boundary_only: true
+  exact_causality: false
+  campaign_promotion: false
+  live_escalation_requires_named_missing_domain: true

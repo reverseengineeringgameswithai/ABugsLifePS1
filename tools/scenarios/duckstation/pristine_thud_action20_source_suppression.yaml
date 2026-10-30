@@ -1,0 +1,46 @@
+schema_version: 1
+id: pristine_thud_action20_source_suppression
+description: >-
+  Replay the centrally pinned pristine-serial Thud recording to the exact
+  pre-allocation boundary, set only its derived countdown from 9 to zero, and
+  assert that slot 17 remains unallocated through the retained visual-diff
+  endpoint. The paired live evidence, not this memory-only scenario, carries
+  the in-memory framebuffer diff and renderer attribution.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: thud_action20_source_pre_suppression
+    trigger: {type: movie_frame, target: 969, max_frames: 985, timeout_seconds: 180}
+    assertions:
+      - {id: thud_action20_suppress_pre_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: thud_action20_suppress_pre_countdown, type: memory, address: 0x800B4CB4, width: u32, op: eq, expected: 9}
+      - {id: thud_action20_suppress_pre_action, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 1}
+      - {id: thud_action20_suppress_pre_active_gate, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 0}
+      - {id: thud_action20_suppress_pre_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: zero_only_thud_action20_source_countdown
+        method: debugger.writeU32
+        params: {address: 0x800B4CB4, value: 0}
+  - id: thud_action20_source_suppressed_launch
+    trigger: {type: movie_frame, target: 970, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: thud_action20_suppress_post_countdown, type: memory, address: 0x800B4CB4, width: u32, op: eq, expected: 0}
+      - {id: thud_action20_suppress_post_action, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 1}
+      - {id: thud_action20_suppress_post_active_gate, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 0}
+      - {id: thud_action20_suppress_post_class, type: memory, address: 0x800B1104, width: u8, op: eq, expected: 0}
+      - {id: thud_action20_suppress_post_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+  - id: thud_action20_source_suppressed_visual_endpoint
+    trigger: {type: movie_frame, target: 979, max_frames: 12, timeout_seconds: 60}
+    assertions:
+      - {id: thud_action20_suppress_visual_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: thud_action20_suppress_visual_countdown, type: memory, address: 0x800B4CB4, width: u32, op: eq, expected: 0}
+      - {id: thud_action20_suppress_visual_action_absent, type: memory, address: 0x800B10F0, width: u8, op: ne, expected: 20}
+      - {id: thud_action20_suppress_visual_grain_unchanged, type: memory, address: 0x800A65A1, width: u8, op: eq, expected: 0}
+      - {id: thud_action20_suppress_visual_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

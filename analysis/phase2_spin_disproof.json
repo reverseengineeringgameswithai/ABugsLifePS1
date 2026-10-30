@@ -1,0 +1,156 @@
+{
+ "_comment": "Bounded static negative for A07. This artifact supersedes the hand-authored absolute 'NO SPIN MOVE' claim. Regenerate: python3 tools/phase2_spin_disproof.py.",
+ "authority": {
+  "path": "REBUILD/files/SCUS_942.88",
+  "sha1": "af43de22474f15664d0e17498fbd27faeb7ed111",
+  "size": 471040,
+  "load_address": "0x80010000"
+ },
+ "procedure": {
+  "instruction": "MIPS ANDI",
+  "immediates": [
+   "0x0010",
+   "0x0020",
+   "0x0040",
+   "0x0080",
+   "0x00F0"
+  ],
+  "cluster_rule": ">=3 hits spanning <=0x40 bytes"
+ },
+ "clusters": [
+  {
+   "start": "0x80039F14",
+   "end": "0x80039F68",
+   "test_addresses": [
+    "0x80039F14",
+    "0x80039F30",
+    "0x80039F4C",
+    "0x80039F68"
+   ],
+   "nearest_symbol": {
+    "symbol": "controller_input_update",
+    "offset": 736
+   }
+  },
+  {
+   "start": "0x8003A1D0",
+   "end": "0x8003A224",
+   "test_addresses": [
+    "0x8003A1D0",
+    "0x8003A1EC",
+    "0x8003A208",
+    "0x8003A224"
+   ],
+   "nearest_symbol": {
+    "symbol": "controller_input_update",
+    "offset": 1436
+   }
+  },
+  {
+   "start": "0x800490C4",
+   "end": "0x8004911C",
+   "test_addresses": [
+    "0x800490C4",
+    "0x800490EC",
+    "0x8004911C"
+   ],
+   "nearest_symbol": {
+    "symbol": "player_vertical_update",
+    "offset": 3980
+   }
+  },
+  {
+   "start": "0x8004B1B4",
+   "end": "0x8004B1FC",
+   "test_addresses": [
+    "0x8004B1B4",
+    "0x8004B1E8",
+    "0x8004B1FC"
+   ],
+   "nearest_symbol": {
+    "symbol": "actor_player_contact_resolver",
+    "offset": 1472
+   }
+  },
+  {
+   "start": "0x8004F73C",
+   "end": "0x8004F7AC",
+   "test_addresses": [
+    "0x8004F73C",
+    "0x8004F754",
+    "0x8004F794",
+    "0x8004F7AC"
+   ],
+   "nearest_symbol": {
+    "symbol": "gameplay_frame_render",
+    "offset": 700
+   }
+  },
+  {
+   "start": "0x8004F89C",
+   "end": "0x8004F8FC",
+   "test_addresses": [
+    "0x8004F89C",
+    "0x8004F8B4",
+    "0x8004F8E4",
+    "0x8004F8FC"
+   ],
+   "nearest_symbol": {
+    "symbol": "gameplay_frame_render",
+    "offset": 1052
+   }
+  },
+  {
+   "start": "0x8005281C",
+   "end": "0x80052840",
+   "test_addresses": [
+    "0x8005281C",
+    "0x8005282C",
+    "0x80052834",
+    "0x80052840"
+   ],
+   "nearest_symbol": {
+    "symbol": "results_screen_render",
+    "offset": 288
+   }
+  },
+  {
+   "start": "0x80066A08",
+   "end": "0x80066A80",
+   "test_addresses": [
+    "0x80066A08",
+    "0x80066A30",
+    "0x80066A58",
+    "0x80066A80"
+   ],
+   "nearest_symbol": {
+    "symbol": "SsSeqCalledTbyT",
+    "offset": 236
+   }
+  },
+  {
+   "start": "0x800675FC",
+   "end": "0x80067624",
+   "test_addresses": [
+    "0x800675FC",
+    "0x80067618",
+    "0x80067624"
+   ],
+   "nearest_symbol": {
+    "symbol": "_SsGetSeqData",
+    "offset": 160
+   }
+  }
+ ],
+ "direct_clustered_direction_recognizer_found": false,
+ "bounded_verdict": "No direct clustered ANDI direction-mask recognizer was identified by this procedure.",
+ "not_proven": [
+  "absence of a table-driven recognizer",
+  "absence of an analog-input recognizer",
+  "absence of a level-overlay recognizer",
+  "absence of a differently encoded direction/history recognizer",
+  "absence of the secondary-source move itself"
+ ],
+ "classification": "documented_external_lead",
+ "next_experiment": "Obtain the secondary source's exact input sequence and context, replay it on pristine media with per-frame pad/state capture, then trace only after a faithful behavioral trigger exists."
+}

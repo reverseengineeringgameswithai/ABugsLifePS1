@@ -1,0 +1,85 @@
+schema: abl-phase4-fmv-levelb-region-b-dma-exact-pc-result-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-R6-ITER4-E15-LEVELB-REGIONB-EXACT-PC-DMA-PROVENANCE
+missing_fact_id: E15/completed-level-b-region-b-exact-pc-dma-provenance
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-231245-213677-r7
+before_ledger:
+  relative_path: iteration-1-escalations-before.json
+  sha256: fdefbe804f634d2f6f39fb2022f1b8e6bc4e27d8145401983c909b52cf67d3ac
+  bytes: 481975
+work_packet:
+  relative_path: iteration-1-work-packet.json
+  sha256: e18eb42a44771dee7fff8d4bf8dc1fbaeb65d24661c58d6aceccc233648c87f9
+  bytes: 2504
+media:
+  serial: SCUS-94288
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  movie_sha256: ece62d4e6f92b887b0500dd8ac3bec48f3638ad5d9858cda7d5b0afb3a8d2602
+  settings_sha256: ca37f959ec414e803b1f64686c1af3fe987853bcf8ee0f263883cb1ad01fa733
+debugger:
+  binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+receipts:
+  passive:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-exact-pc-passive-prelude/receipt.json
+    sha256: e2303d114e7c1e5ed37093eb313bfb081ae85a3d386bc5d3a06dbe49c46893fe
+    bytes: 4514
+    batch_result:
+      relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-exact-pc-passive-prelude/batch-result.json
+      sha256: f88d659f76d47b21d5b729f409700eac8ccb81bc09e7681b08ed310be8e84231
+      bytes: 274257
+  native:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-exact-pc-native/receipt.json
+    sha256: daa3a25d3644e81c8f77b3062bf0f566dcf1929511b170a025deeba20ae62a52
+    bytes: 4632
+    batch_result:
+      relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-exact-pc-native/batch-result.json
+      sha256: 5afa281a79ce3520360127cca4a303d408b19a455d8a1cfbc391a4cff8e36625
+      bytes: 215084
+    exact_result:
+      relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-exact-pc-native/exact-pc-result.json
+      sha256: bbe9af89a3b80e77d021af6b633706e8e26e894f4cc8b921f4fd9c25de92eea8
+      bytes: 54732
+  repeat:
+    relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-exact-pc-repeat/receipt.json
+    sha256: 8aa9bedd679458e18fd3cebebb9328269c653b4fdcfba9da3123b0de7a57f17b
+    bytes: 4632
+    batch_result:
+      relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-exact-pc-repeat/batch-result.json
+      sha256: 16b0e79b1b3ba7d2b877d73f12030713a8257b8f3ef63a88de1ae8a5a8b6a6ad
+      bytes: 214244
+    exact_result:
+      relative_path: iteration-1-receipts/live/e15-levelb-region-b-dma-exact-pc-repeat/exact-pc-result.json
+      sha256: 9f93e384310632c279e82c770671bd426202510df1231faf1c154db1df39d040
+      bytes: 53936
+expected:
+  anchor_frame: 15816
+  frame_ceiling: 15880
+  failure_frame: 15881
+  outcome: falsified
+  falsifier_code: EXACT_PC_TYPED_PREDICATE_FALSE
+  falsifier_reason: start_stop escaped the finite emulator-frame bound
+claim_boundary:
+  classification: exact_pc_window_falsified_repeated
+  live_executed: true
+  precise_receipts_closed: 2
+  passive_receipts_closed: 1
+  exact_pc_stop_observed: false
+  dma_events_claimed: 0
+  first_region_b_dma_identified: false
+  lifecycle_promoted: false
+  dimension_promoted: false
+  fresh_verifier_pending: true
+  next_lane: static
+  next_method: >
+    Re-localize the completed-Level-B transition against the retained
+    frame-15816 anchor and reconstruct the earlier instruction boundary
+    before any further live replay. Do not repeat the escaped
+    0x80046078 exact-PC window.
+  not_claimed:
+    - any hit at 0x80046078 or 0x800460C4
+    - any Region-B DMA event
+    - fresh-verifier acceptance of investigator receipts
+    - lifecycle or any other dimension promotion

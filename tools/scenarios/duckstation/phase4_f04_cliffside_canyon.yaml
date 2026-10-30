@@ -1,0 +1,36 @@
+schema_version: 1
+id: phase4_f04_cliffside_canyon
+description: Successful Cliffside route holds the dandelion latch through intended landing and exits without bird punishment.
+target:
+  disc: "Disney-Pixar A Bug's Life (v1.0).cue"
+  expected_serial: SCUS-94288
+  expected_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+launch: {profile: repro, execution_mode: Interpreter}
+playback:
+  movie: "movies/Phase4/Interpreter/Any% Runs/LEVEL04_Cliffside.movie.json"
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: cliffside_loaded
+    trigger: {type: movie_frame_realtime, target: 100, max_frames: 150, timeout_seconds: 30}
+    assertions:
+      - {id: scene_is_cliffside, type: memory, address: 0x80082504, width: u32, op: eq, expected: 6, semantic_id: original.current_scene_id}
+  - id: dandelion_route_active
+    trigger: {type: movie_frame_realtime, target: 1000, max_frames: 950, timeout_seconds: 45}
+    assertions:
+      - {id: still_in_cliffside, type: memory, address: 0x80082504, width: u32, op: eq, expected: 6, semantic_id: original.current_scene_id}
+      - {id: dandelion_latch_is_11, type: memory, address: 0x800A659E, width: s16, op: eq, expected: 11, semantic_id: original.player_plant_latch}
+      - {id: lives_unchanged_in_flight, type: memory, address: 0x800A65A0, width: s16, op: eq, expected: 9, semantic_id: original.player_lives}
+  - id: intended_landing
+    trigger: {type: movie_frame_realtime, target: 3220, max_frames: 2270, timeout_seconds: 90}
+    assertions:
+      - {id: scene_still_cliffside, type: memory, address: 0x80082504, width: u32, op: eq, expected: 6, semantic_id: original.current_scene_id}
+      - {id: dandelion_latch_cleared, type: memory, address: 0x800A659E, width: s16, op: eq, expected: 0, semantic_id: original.player_plant_latch}
+      - {id: player_grounded_at_exit, type: memory, address: 0x800A6582, width: u16, op: gt, expected: 0, semantic_id: original.player_grounded}
+      - {id: lives_still_unchanged, type: memory, address: 0x800A65A0, width: s16, op: eq, expected: 9, semantic_id: original.player_lives}
+  - id: successful_route_exit
+    trigger: {type: movie_frame_realtime, target: 3260, max_frames: 90, timeout_seconds: 30}
+    assertions:
+      - {id: scene6_exit_committed, type: memory, address: 0x80082504, width: u32, op: eq, expected: 0, semantic_id: original.current_scene_id}
+      - {id: no_life_lost_on_route, type: memory, address: 0x800A65A0, width: s16, op: eq, expected: 9, semantic_id: original.player_lives}
+      - {id: health_not_consumed, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4, semantic_id: original.player_health}

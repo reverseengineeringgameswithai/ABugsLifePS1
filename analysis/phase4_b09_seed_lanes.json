@@ -1,0 +1,56 @@
+{
+ "_comment": "B09 last item: can super jump co-exist with a launch plant? Lane readings from the operator's B08_SuperJump_EOL movie. Regenerate: tools/phase4_b09_seed_lane_probe.py",
+ "generated": "2026-08-04",
+ "row_id": "B09_super_jump",
+ "row_item": "super-jump's interaction with plants/dandelion/cannon (registry: unstarted, unscoped)",
+ "lane_model": {
+  "0x800A6598": "brown/orange",
+  "0x800A6599": "blue",
+  "0x800A659A": "green",
+  "0x800A659B": "purple",
+  "0x800A659C": "yellow",
+  "packing": "high nibble = selected output, low nibble = highest available",
+  "brown_tiers": "1 mushroom, 2 propeller, 3 dandelion, 4 cannon",
+  "super_jump": "blue tier 4"
+ },
+ "movie": "movies/Phase4/Interpreter/B08_SuperJump_EOL.movie.json",
+ "stage": "LEVEL01/LEVEL1.DAT (bird level) -- one of only 3 stage files with 4 blue tokens",
+ "observed": [
+  {
+   "playback_index": 91,
+   "brown": "1/1",
+   "blue": "0/0"
+  },
+  {
+   "playback_index": 637,
+   "brown": "1/1",
+   "blue": "1/1"
+  },
+  {
+   "playback_index": 910,
+   "brown": "1/1",
+   "blue": "2/2"
+  },
+  {
+   "playback_index": 1274,
+   "brown": "1/1",
+   "blue": "3/3"
+  },
+  {
+   "playback_index": 1729,
+   "brown": "1/1",
+   "blue": "4/4"
+  }
+ ],
+ "finding": "Brown stays 1/1 for the entire level while blue climbs 0->4. Brown tier 1 is MUSHROOM, so dandelion (3) and cannon (4) are UNAVAILABLE in the bird level. Super jump + dandelion/cannon is impossible there. Super jump + mushroom IS possible, so the item is narrower than 'launch plants' in general.",
+ "not_shown": "Campaign-wide impossibility. Canon records the token-upgrade write as n*17 -- a token SETS the tier rather than incrementing it -- and the bird level has ZERO orange tokens, which is why brown sits at baseline 1. LEVEL05/LEVEL.DAT and LEVEL09/LEVEL.DAT (the other stages with blue>=4) have ONE orange token each; the tier those author is unmeasured.",
+ "seed_token_kinds_resolved": {
+  "0x29": "brown/orange (baseline; adds no unlock nibble)",
+  "0x2a": "blue",
+  "0x2b": "green",
+  "0x2c": "purple",
+  "0x2d": "yellow",
+  "note": "The E08 census left 0x2C/0x2D as bare codes, which I wrongly described as 'unnamed seed kinds'. They are purple and yellow, bound via the lane addresses 0x800A659B/9C that FUNC_80054554 already records as their counters."
+ },
+ "next_experiment": "Read the orange-token payload tier in LEVEL05/LEVEL.DAT and LEVEL09/LEVEL.DAT (static, type-0x3f records). If both author brown <= 2, super jump + dandelion/cannon is impossible campaign-wide and this item closes as a reviewed negative. If either authors >= 3, that stage is the recording target."
+}

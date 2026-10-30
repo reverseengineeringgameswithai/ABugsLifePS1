@@ -1,0 +1,60 @@
+{
+  "row": "E01_terrain_visual",
+  "date": "2026-08-03",
+  "status": "partial, substantially advanced -- render-path model assembled from committed Canon (including one stale-binding correction), and the row's own named next step (per-level payload map beyond LEVEL01) executed via a new campaign-wide node-array survey",
+  "RENDER_PATH_SYNTHESIS_2026-08-03": {
+    "source_data": "Terrain/scenery geometry is authored in LEVEL.DAT node arrays: 0x18-stride records carrying s32 world anchor T_obj (+0/4/8), a per-run constant class marker (+0x10), and the payload file offset (+0x14) pointing at an fcn.80010000 vertex payload. Proven for LEVEL01 (GAP-0023, node_base 0x45F0): placement law world = T_obj + v_local, no Y-flip, no offset. Committed carrier: tools/abl_blender/extract_level.py (whose LEVEL01 decode yields 217 meshes -- 42 node-anchored floor/scenery + non-node-anchored decor -- with faces, per-face texpage, and world placement).",
+    "consumer": "FUNC_80010000 per-object mesh draw (RTPT at 0x800106F8) is the terminal emitter. The committed MEM_8012C1D0 page carries the EXACT solved model->world transform: world = (R^-1 * (TR + RT*v/4096) + Cdiv) * 32 via the scratchpad camera struct 0x1F800374 (C@+0x00, Cdiv@+0x10, RT@+0x20, TR@+0x54), validated by exact forward-projection (computed SXY == live SXY0) and a floor-tile reconstruction under Flik. Dispatch: the frame driver's render tail (~0x80062C00..0x80062D04) reaches it through jalr-dispatched function pointers (SYS_world_render_dispatch; suppression-proven live for Tier-3).",
+    "stale_binding_corrected": "E01's own pre-existing registry binding framed the 'shared vertex arena 0x8012C1D0 (chunk 34/35)' as part of visible terrain. The committed MEM_8012C1D0 page's own correction banner REFUTES that: live capture showed the buffer holds Flik's FLICK.ALL model at render time (1032 RTPT hits = only Flik, in LEVEL01 AND LEVEL02), and chunk-34/35 is never drawn. Visible terrain comes from the DAT node-array payloads via FUNC_80010000. The row binding is corrected this pass rather than left asserting the superseded claim.",
+    "materials": "Per-face texpage is decoded offline by the committed extractor stack; the VRAM page<->chunk correspondence map was built once from a live LEVEL01 gpu.readVramRect capture (LEVEL01-only so far -- a named residual, not campaign-wide).",
+    "culling": "FUNC_80014360 = pass-3 backdrop cull (committed Canon page); pass-3 record XYZ is the cull anchor.",
+    "round_trip": "LEVEL01 has been re-created byte-identical from JSON (committed Level_manifest_round-trip Canon + archived provenance) -- the source model is complete enough to reproduce the level, not just read it."
+  },
+  "CAMPAIGN_NODE_SURVEY_2026-08-03": {
+    "trigger": "The row's own next step verbatim: 'Extend the payload map beyond LEVEL01 -- run the extractor across all 10 level dirs.' Executed offline; no emulator needed.",
+    "tool": "tools/phase4_e01_node_survey.py (new, stdlib-only): scans every REBUILD/files/LEVEL*/ *.DAT for 0x18-stride runs whose +0x10 repeats one nonzero constant with strictly-increasing, in-file payload offsets at +0x14. The marker is DISCOVERED per run, not assumed -- necessary because the first pass (assuming LEVEL01's 0xC0080000 constant) found runs in only 4 of 21 DATs.",
+    "self_check": "LEVEL01's proven node_base 0x45F0 is found by the generalized scanner with exactly 42 records and marker 0xC0080000 -- matching the level_editor profile precisely. The scanner refuses to emit if this ground truth is missing.",
+    "result": "All 21 campaign DATs scanned; every main LEVEL.DAT (plus most LEVEL1.DATs) yields a large primary run. Primary runs per level: L00 0x16A0x38, L01 0x45F0x42, L02 0x1630x81, L03/L1 0x1CE0x31, L04 0x78ECx77, L05 0x6710x97, L06 0x3A1Cx72, L07 0x4A68x211, L08 0x5E98x182, L09 0x3E48x42, L10 0x36BCx55. Full per-file detail in analysis/phase4_e01_node_survey.json.",
+    "marker_family_observation": "The primary-run markers form a systematic family -- 0xC0040000, 0xC0060000, 0xC0070000, 0xC0080000, 0xC0090000 (plus 0x40000/0x80040000 variants) -- constant within a run, varying per record class and per level. LEVEL01 alone carries SIX marker classes in adjacent runs inside its known source band (0x45F0..0x8BD8), the 0xC0080000 class being the proven floor/scenery node class. Hypothesis (NOT decoded): a packed class/vertex-format word. Semantics unassigned this pass.",
+    "extractor_cross_level_check": "Ran the committed extractor on LEVEL02: type-0x3f objects decode cross-level already (60 objects), but meshes=0 -- the mesh half needs a per-level profile (this survey supplies the missing node_base/count candidates for each level). LEVEL01 control run: 217 meshes (ground=10, with-faces=208), 70 objects, 32 seeds, 189 exits.",
+    "noise_flagged": "LEVEL05/LEVEL1.DAT and LEVEL08/LEVEL1.DAT also produce dozens of short (4-8 record) runs with non-family markers (0xFFFF..../small values) -- almost certainly OTHER structures coincidentally matching the shape, flagged as unvetted noise, not claimed as node arrays. LEVEL04's LEVEL1/LEVEL4.DAT have no candidate runs at all."
+  },
+  "ANIMATION_MODEL_RESOLVED_2026-08-03": {
+    "trigger": "Operator: 'dig deeper to get your answer' -- resolving whether terrain animation exists at all, previously flagged as the row's one evidence-free sub-domain.",
+    "method_pass_1": "Isolated Interpreter instance (/tmp/dsrepro-e01-anim-20260803, port 23645): loaded three scenes (level01.sav scene 1, level02.sav scene 3, canyon_bug.sav scene 6), idled each with zero input, snapshotted full 1024x512 VRAM via gpu.readVramRect at ~90-frame intervals, diffed per 32x32 cell. Churn classified: (a) the double-buffered framebuffer pair -- mirrored cell blocks exactly 512 apart in x, whose per-scene size tracks how much on-screen MOTION the idle scene has (scene 3 nearly still: 29 cells; LEVEL01 with wandering enemies: 111; Cliffside settling after load: 257 then 72/59); (b) a relocating streaming-upload signature -- the same 64x128 two-column cell shape at a DIFFERENT x per level (L01/canyon at x=640-704, scene 3 at x=512-576) = per-frame character/effect texture streaming, not terrain; (c) scattered y>=448 cells = CLUT/HUD rows.",
+    "method_pass_2_level01_focused": "Snapshotted only the LEVEL01 terrain-page band (VRAM 0..768 x 0..256, pages 0-11 per the committed page<->chunk map) 5 times at 30-frame intervals, hashing every 32x32 cell: 187/192 cells (97.4%) byte-stable. The 4 changing page-10 cells show ALL-DISTINCT contents (forward streaming -- the signature from pass 1, which happens to sit inside the page band). Exactly ONE cell CYCLES: (256,32) in page 4, 4 distinct contents with a repeat over 5 snapshots -- a genuine flipbook.",
+    "offline_uv_join": "Joined the cycling cell against the extractor's LEVEL01 decode (per-face texpage chunk + UVs): the tile (chunk 4, 4bpp texels u<128, 32<=v<64) is sampled by exactly 52 faces -- ALL inside ONE dedicated payload, 'fcn.80010000 payload @0x4c1a4', classification scenery_surface, whose faces repeatedly map the same 64x64-texel rect. No other mesh touches the tile (268 chunk-4 faces total).",
+    "conclusion": "Terrain/scenery animation EXISTS in exactly one identified form: flipbook tile RE-UPLOAD (VRAM texture replacement on a cycle) driving a single dedicated scenery-surface payload -- a water-like animated surface. All other terrain texture content is byte-stable while idling, and no palette-cycling (CLUT animation) was observed in the page band. The row's animation sub-domain moves from 'no evidence either way' to a precise, narrow mechanism.",
+    "hypothesis_flagged_not_traced": "The uploader is plausibly the ALREADY-Canon 0x22-chunk animation-strip pipeline (the training-word letter system: 16-frame tile-keyed strips, committed training-word-native-pipeline Canon) reused for scenery tiles -- consistent shape (small tile, frame strip, periodic upload), but the actual upload call site/PC and the strip's disc source were NOT traced this pass. Frame count >=4 observed; exact cycle length unknown (30-frame sampling aliases it).",
+    "scope_limit": "LEVEL01 idle only, systematically; scenes 3/6 classified at whole-VRAM level (their in-page cells matched the streaming signature, no cycling cell identified -- but a dedicated per-level pass was not run). Campaign breadth of animated tiles is open."
+  },
+  "STILL_OPEN": "Per-level payload DECODE validation (this survey found the candidate node arrays; actually decoding each level's payloads as meshes needs per-level LevelProfile entries in the editor stack -- the survey supplies the node_base/count for each); marker-class word semantics (family observed, meaning undecoded); materials beyond LEVEL01 (the VRAM page<->chunk map is LEVEL01-only); the animated-tile UPLOADER call site and disc source (0x22-chunk pipeline hypothesis, not traced) plus campaign breadth of animated tiles; the noise runs flagged above; whether LEVEL1.DAT secondary scenes' primary runs are floors or overlay-scene decor.",
+  "evidence": {
+    "new_tool": "tools/phase4_e01_node_survey.py",
+    "new_artifact": "analysis/phase4_e01_node_survey.json",
+    "committed_canon": [
+      "ObsidianVault/Canon/Memory/MEM_8012C1D0_Shared_mesh_vertex_buffer_8012C1D0_(terrain_+_actors).md",
+      "ObsidianVault/Canon/Functions/FUNC_80010000_per-object_mesh_draw_-_payload_emitter.md",
+      "ObsidianVault/Canon/Functions/FUNC_80014360_pass3_backdrop_cull_80014360.md",
+      "ObsidianVault/Canon/Systems/SYS_world_render_dispatch.md",
+      "ObsidianVault/Canon/Systems/Level_manifest_round-trip.md"
+    ],
+    "committed_tools": [
+      "tools/abl_blender/extract_level.py",
+      "tools/sculpt_terrain.py"
+    ],
+    "infrastructure_note": "level_editor/ (the scene_importer the committed extractor wraps) is a deliberately-untracked working area with its own venv; its LEVEL01 profile constants were read for this pass's ground truth but the directory itself is not committed here."
+  },
+  "phase4_disposition": "substantiated_partial_bounded_exhausted",
+  "closure_2026_08_04": {
+    "artifact": "analysis/phase4_e01_closure.json",
+    "animated_texture_gap": "closed",
+    "marker_correction": "The +0x10 word is packed angle[2]/unk12, not a node-class marker.",
+    "remaining_scope": [
+      "non-bit3 unk12 semantic name",
+      "exhaustive campaign visual/material catalog",
+      "secondary-DAT noise classification"
+    ],
+    "decision": "The named remaining items are bounded low-return catalog or scalar-semantics work and do not block Phase 4 row closure."
+  }
+}

@@ -1,0 +1,139 @@
+{
+ "row": "E06_contact_object_pool",
+ "scope": "Live-spawn + direct VRAM texture decode classification of the 25 fully-opaque kinds (analysis/phase4_e06_descriptor_shapes.json), following the row's own originally-planned next step.",
+ "session": "Isolated DuckStation instance (port 23470, config /tmp/duckstation-debugger-e06, pristine disc, never the operator's own instance), level03.sav.",
+ "method_history": {
+  "1_in_game_3d_render_injection": "Wrote a synthetic contact record (position, action_id=target kind, +0x28/+0x2A quad size) into a free pool slot, using an actively-managed slot's full byte layout as a template so implicit invariants weren't guessed. PROVEN to trigger real renders: the objective per-frame draw-flag bit (+0x32 bit0, per analysis/phase4_contact_object_render.json's measured pipeline) confirmed drawn=True for 24/26 tested kinds, and drawn=False for kind 0 -- exactly matching that artifact's own documented fact that action_id 0 is the renderer's explicit 'do not draw' sentinel. Real methodology bugs found and fixed along the way: active_type (+0x22) is a countdown, not a flag (a hand-built record with active_type=500 still hit 0 in ~2 frames when other implicit fields didn't match what real game-managed records look like; copying a REAL active record's full byte layout fixed it). gpu.pickObject's returned 'ramAddress' is a GPU draw-command buffer address, not the CPU contact-record address -- do not compare them.",
+  "2_REJECTED_screenshot_sampling": "Captured in-game frames and sampled sprite pixel colour. DECISIVELY INVALIDATED before banking anything: colours cycled with an EXACT PERIOD OF 8 across the test batch, completely unrelated to which kind was set (kind 3's sampled colour == kind 14's == kind 28's, exactly) -- almost certainly dithering/anti-aliasing noise from the in-game 3D pipeline at this tiny sprite scale, not real per-kind signal. This method could not distinguish kinds and its results are NOT used for any classification below.",
+  "3_direct_vram_texture_decode": "gpu.decodeTexture at the descriptor's own exact (TPAGE, CLUT, u0, v0, width, height) -- bypasses the 3D pipeline, dithering, scale and blur entirely. VALIDATED first against kind 20 (grain, already Canon-bound): produced a clean, unmistakable single grain-kernel icon. This is the method used for every classification below."
+ },
+ "classifications": {
+  "13": {
+   "visual": "a dandelion: fluffy grey/white fluff-head fanning out from a brown stem, unmistakable silhouette",
+   "confidence": "HIGH -- resolves the row's own originally UNRESOLVED B03_dandelion_glide system's sprite identity for the first time",
+   "still_open": "confirming this specific kind-13 slot is the one actually PLACED/reachable in the dandelion-glide stages was not done this pass"
+  },
+  "8": {
+   "visual": "a spiky red-and-green ball -- red triangular spikes radiating from a green spherical body",
+   "confidence": "HIGH visual read (hazard/mine-shaped), NOT confirmed as the specific yellow-seed MINE object from a different, already-solved system (that binding uses a different numbering space; not cross-checked this pass)",
+   "note": "this kind did NOT draw via the 3D render-injection test (drawn=False) despite a valid, decodable texture -- unexplained, flagged not solved"
+  },
+  "22": {
+   "visual": "a red-capped mushroom with white spots, brown stem",
+   "confidence": "HIGH"
+  },
+  "24": {
+   "visual": "a blue flower with green stem and leaves",
+   "confidence": "HIGH"
+  },
+  "25": {
+   "visual": "a green leaf/blade shape",
+   "confidence": "HIGH"
+  },
+  "27": {
+   "visual": "a gold coin with an X mark",
+   "confidence": "HIGH"
+  },
+  "28": {
+   "visual": "a blue creature/grub face -- two large cartoon eyes, small mouth, smooth rounded head",
+   "confidence": "HIGH on the visual, no game-object identity"
+  },
+  "30": {
+   "visual": "a bronze/gold token shaped like the digit or letter '0'/'O' with a dark outline",
+   "confidence": "HIGH on the visual, no game-object identity"
+  },
+  "31": {
+   "visual": "a silver coin/token with 'FLIK' embossed across it",
+   "confidence": "HIGH"
+  },
+  "37": {
+   "visual": "the text 'demo' in yellow -- NOT a gameplay sprite",
+   "confidence": "HIGH -- a debug/demo-build watermark asset, explains why no ctorType in 0-199 produces this action_id (never wired to real spawn code)"
+  },
+  "39": {
+   "visual": "the 'Traveller's Tales' developer studio logo/wordmark -- NOT a gameplay sprite",
+   "confidence": "HIGH -- a leftover developer-credit asset, same explanation as kind 37"
+  },
+  "40": {
+   "visual": "a bronze/copper coin with a leaf- or eye-shaped emblem",
+   "confidence": "MEDIUM"
+  },
+  "47": {
+   "visual": "a small red flower cluster with green leaves",
+   "confidence": "HIGH"
+  },
+  "11": {
+   "visual": "a branching brown root/tendril structure, no bulb or cap",
+   "confidence": "MEDIUM -- clearly organic/plant-related, exact object unnamed"
+  },
+  "0": {
+   "visual": "a plain grey/white sphere, no distinguishing marks",
+   "confidence": "LOW -- consistent with the already-Canon grayscale CLUT-recolour placeholder system (pickup-sprite-recolor memory); likely a generic shape meant to be tinted at runtime, not identifiable as a specific game object from the base texture alone"
+  },
+  "2": {
+   "visual": "a grey/white ring or donut shape",
+   "confidence": "LOW, same caveat as kind 0"
+  },
+  "3": {
+   "visual": "a grey/white irregular blob/rock",
+   "confidence": "LOW, same caveat as kind 0"
+  },
+  "4": {
+   "visual": "a grey/white faceted diamond/gem shape",
+   "confidence": "LOW, same caveat as kind 0"
+  },
+  "5": {
+   "visual": "a grey/white oval pebble",
+   "confidence": "LOW, same caveat as kind 0"
+  },
+  "6": {
+   "visual": "a grey/white oval pebble, similar to kind 5",
+   "confidence": "LOW, same caveat as kind 0"
+  },
+  "7": {
+   "visual": "a grey/white irregular rock",
+   "confidence": "LOW, same caveat as kind 0"
+  },
+  "10": {
+   "visual": "a grey/white dome/hemisphere",
+   "confidence": "LOW, same caveat as kind 0"
+  },
+  "14": {
+   "visual": "a grey/white flat pill/oval shape",
+   "confidence": "LOW, same caveat as kind 0"
+  },
+  "21": {
+   "visual": "near-degenerate -- descriptor width is 1 texel (w=desc[2]+1=0+1=1), essentially a sliver, not a real icon",
+   "confidence": "HIGH that this is NOT a normal visible sprite; likely a marker/line primitive or an unused/malformed slot"
+  },
+  "26": {
+   "visual": "a grey/white curved gradient, ambiguous partial shape (may be a corner/edge piece rather than a standalone icon)",
+   "confidence": "LOW"
+  },
+  "1": {
+   "visual": "identical descriptor bytes to kind 0 (same 12-byte struct: type 0x1D, w=h=16, tpage=9, clut=0x36F2, u0=0x80,v0=0x20) -- a plain grey/white sphere, same texture. Unlike kind 0, this action_id DOES draw via the 3D pipeline (drawn=True, confirmed via the +0x32 draw-flag bit) -- kind 0's descriptor is real and renderable, it is only action_id 0 specifically that the renderer refuses to draw.",
+   "confidence": "HIGH on the visual; LOW on game-object identity (same grayscale-placeholder caveat as kind 0)"
+  },
+  "23": {
+   "visual": "a small red/orange berry-like fruit with a yellow sparkle/star-burst effect overlaid",
+   "confidence": "HIGH on the visual -- the sparkle strongly suggests a special/rare pickup rather than a plain collectible"
+  }
+ },
+ "not_yet_texture_decoded": [],
+ "still_open": "Direct VRAM decode gives the TEXTURE, not the GAME-OBJECT SEMANTIC role (when/where each is placed, what collecting or triggering it does). That still needs either a scene-asset cross-reference (which levels load which of these) or a proper in-context observation (finding where each is naturally placed and triggering it for real, not injected). Named next step for a future pass.",
+ "ROW_STATUS_2026-08-02b": {
+  "note": "E06 never got a formal dod_progress tracker matching E15's/B06-B08's convention until this entry -- added while double-checking a 'can we move on' recommendation, to give an honest, complete picture rather than scattered prose across three artifacts (phase4_e06_kind_cross_reference.json, phase4_e06_descriptor_shapes.json, this file).",
+  "dod_progress": {
+   "1_original_oracle": "NOT STARTED -- no cold-boot fixture with observable assertions for the pool",
+   "2_complete_frontier": "NOT STARTED -- no systematic census of the pool's callers/callees/tables was run this campaign (unlike B06/B08 or E15)",
+   "3_typed_state": "ADVANCED -- contact record fields fully typed (position, action_id, active_type-as-TTL, radius, tint, draw-flag), the 0xC-byte descriptor struct fully typed, table A's row layout typed (though its 4 output fields' game-semantic meaning is inferred not proven). NOT MET -- table A's row count is still unresolved",
+   "4_lifecycle": "ADVANCED -- allocator round-robin/free-slot search and the TTL-based retirement mechanism are understood and now real C. NOT MET -- capacity/overflow stress experiment explicitly deferred, needs a fixture",
+   "5_original_interfaces": "MET for the mechanisms this campaign touched -- contact_alloc's full ABI, the renderer's full 10-step pipeline, the walker's dispatch mechanism are all documented and now real compiling C (3 files this session plus the pre-existing allocator/walker)",
+   "6_campaign_breadth": "NOT STARTED -- which levels place which of the 13 newly-identified sprite kinds is the row's own named still-open gap",
+   "7_cross_system": "NOT STARTED -- HUD/save/load interaction untouched",
+   "8_source_closure": "ADVANCED -- 4-file C trio complete and gcc-compiling (allocator, walker, renderer, scatter-component), guarded by tests/test_phase4_e15_e06_c_decompiles.py. NOT MET -- table A's fcn.800593E8 CALLER-side semantic meaning and the remaining ~11 plain-grayscale kinds have no game-object identity",
+   "9_durable_evidence": "PARTIAL -- Canon/artifact/baseline all updated and cross-consistent for what's resolved; no formal evidence-wrapper contract for this row"
+  },
+  "verdict": "E06 row stays partial. Real, substantial progress this session (46->13 identified kinds, full C decompilation of every major measured mechanism) but items 1/2/6/7 are essentially untouched, matching the 'move on' recommendation already given -- rechecked here and confirmed accurate, not just reasserted."
+ }
+}

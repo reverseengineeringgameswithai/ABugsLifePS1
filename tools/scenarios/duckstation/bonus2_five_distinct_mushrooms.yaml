@@ -1,0 +1,34 @@
+schema_version: 1
+id: bonus2_five_distinct_mushrooms
+description: Five distinct mushroom identities fill the native chain and unlock Bonus 2.
+target:
+  disc: "Disney-Pixar A Bug's Life (v1.0).cue"
+  expected_serial: SCUS-94288
+  expected_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+launch: {profile: repro}
+playback:
+  movie: movies/Bonus_Level_02.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: four_distinct_mushrooms
+    trigger: {type: movie_frame, target: 275, max_frames: 500, timeout_seconds: 120}
+    assertions:
+      - {id: bonus2_scene_before_unlock, type: memory, address: 0x80082504, width: u32, op: eq, expected: 1, semantic_id: original.current_scene_id}
+      - {id: bonus2_slot0, type: memory, address: 0x80082248, width: s8, op: eq, expected: 6, semantic_id: original.bonus2_mushroom_slot_0}
+      - {id: bonus2_slot1, type: memory, address: 0x80082249, width: s8, op: eq, expected: 5}
+      - {id: bonus2_slot2, type: memory, address: 0x8008224A, width: s8, op: eq, expected: 4}
+      - {id: bonus2_slot3, type: memory, address: 0x8008224B, width: s8, op: eq, expected: 2}
+      - {id: bonus2_slot4_empty, type: memory, address: 0x8008224C, width: s8, op: eq, expected: -1}
+      - {id: bonus2_not_latched_early, type: memory, address: 0x800823A0, width: s16, op: eq, expected: 0, semantic_id: original.bonus_transition_latch}
+  - id: fifth_distinct_mushroom_unlocks
+    trigger: {type: movie_frame, target: 325, max_frames: 100, timeout_seconds: 120}
+    assertions:
+      - {id: bonus2_slot4_filled, type: memory, address: 0x8008224C, width: s8, op: eq, expected: 3}
+      - {id: bonus2_transition_is_six, type: memory, address: 0x800823A0, width: s16, op: eq, expected: 6, semantic_id: original.bonus_transition_latch}
+      - {id: bonus2_fade_is_active, type: memory, address: 0x80082470, width: s16, op: gt, expected: 0, semantic_id: original.bonus_fade_timer}
+      - {id: bonus2_unlock_bits, type: memory, address: 0x8009B889, width: u8, op: eq, expected: 0x23, semantic_id: original.bonus_unlock_flags}
+  - id: bonus2_scene_handoff
+    trigger: {type: movie_frame, target: 450, max_frames: 200, timeout_seconds: 120}
+    assertions:
+      - {id: bonus2_enters_bonus_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 0x10, semantic_id: original.current_scene_id}

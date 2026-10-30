@@ -1,0 +1,34 @@
+schema_version: 1
+id: pristine_thud_arena_row1_control
+description: >-
+  At the pinned row-1 closest approach, enlarge only row 1's existing squared-
+  distance threshold and assert its native reset/reversal/contact transition.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: arena_row1_negative_origin
+    trigger: {type: movie_frame, target: 2688, max_frames: 2700, timeout_seconds: 240}
+    assertions:
+      - {id: row1_origin_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: row1_origin_threshold, type: memory, address: 0x800B4C10, width: u32, op: eq, expected: 250000}
+      - {id: row1_origin_speed, type: memory, address: 0x800B4BEE, width: s16, op: eq, expected: 120}
+      - {id: row1_origin_ramp, type: memory, address: 0x800B4C7C, width: u32, op: eq, expected: 96}
+    after:
+      - type: rpc
+        id: enlarge_only_arena_row1_threshold
+        method: debugger.writeU32
+        params: {address: 0x800B4C10, value: 700000}
+  - id: arena_row1_controlled_contact
+    trigger: {type: movie_frame, target: 2689, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: row1_contact_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: row1_contact_threshold, type: memory, address: 0x800B4C10, width: u32, op: eq, expected: 700000}
+      - {id: row1_contact_speed, type: memory, address: 0x800B4BEE, width: s16, op: eq, expected: -120}
+      - {id: row1_contact_ramp, type: memory, address: 0x800B4C7C, width: u32, op: eq, expected: 0}
+      - {id: row1_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

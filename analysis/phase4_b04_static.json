@@ -1,0 +1,50 @@
+{
+  "schema": "phase4-b04-static-v1",
+  "row": "B04_cannon_plant",
+  "date": "2026-08-03",
+  "method": "C verifier over the hash-pinned pristine PS-X EXE opcode stream",
+  "executable": {
+    "path": "SCUS_942.88",
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "load_address": "0x80010000",
+    "text_bytes": 468992,
+    "immutable": true
+  },
+  "handler": {
+    "address": "0x8005C110",
+    "dispatch": "plant_behaviors[type-2], type 2",
+    "gates": [
+      "selected-contact equality at 0x8005C110",
+      "slot+0x02 state equals 1 at 0x8005C118..0x8005C124",
+      "slot+0x2E maturity bit 0x2 is set at 0x8005C128..0x8005C138",
+      "contact-object +0x34 trigger bit 0x80 is set at 0x8005C168..0x8005C178"
+    ],
+    "trigger_effects": [
+      "clear trigger-object bits 0x81",
+      "detach a linked carried actor when present",
+      "clear player fields 0x800A657A, 0x800A655C, and 0x800A65A3",
+      "switch the cannon animation/state",
+      "store 17 to player lockout 0x800A657C"
+    ],
+    "direct_velocity_write": false,
+    "direct_camera_write": false
+  },
+  "shared_player_path": {
+    "range": "0x80048658..0x800486D8",
+    "timer": "player+0x7C decrements once per physics update",
+    "seated_hold": "while nonzero, 0x80048688..0x8004869C writes zero to vx/vy/vz and two auxiliary velocities",
+    "expiry": "select mode 5, clear airborne/contact words, and store fixed vy=-8192 at 0x800486CC",
+    "launch_vector_seed": [0, -8192, 0],
+    "vector_source": "fixed immediate 0xE000 at 0x800486B8; no launch-vector table"
+  },
+  "dandelion_combo_path": {
+    "range": "0x800486DC..0x80048728",
+    "latch_address": "0x800A659E",
+    "latch_value": 11,
+    "airborne_law": "vy += 256 while vy < 350, otherwise vy = 350",
+    "grounded_law": "clear latch 11"
+  },
+  "correction": "The older -7680 claim was a later frame boundary. The source seed is -8192; same-update gravity yields -7936 at the first retained boundary and -7680 at the next.",
+  "opcode_checks": 27,
+  "result": "pass"
+}

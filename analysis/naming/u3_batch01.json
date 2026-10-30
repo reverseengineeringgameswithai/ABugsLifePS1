@@ -1,0 +1,329 @@
+[
+ {
+  "address": "0x80065fbc",
+  "name": "EnterCriticalSection",
+  "tier": "proven",
+  "evidence": [
+   "bytes: addiu a0,zero,1; syscall; jr ra (PS1 syscall 1)",
+   "runtime callers: scene_flow_dispatcher, sound_voice_trigger (u3 trace, 60 hits)"
+  ],
+  "rationale": "u3: definitive PsyQ kernel syscall wrapper"
+ },
+ {
+  "address": "0x80065fcc",
+  "name": "ExitCriticalSection",
+  "tier": "proven",
+  "evidence": [
+   "bytes: addiu a0,zero,2; syscall; jr ra (PS1 syscall 2)",
+   "runtime callers: scene_flow_dispatcher, sound_voice_trigger"
+  ],
+  "rationale": "u3: definitive PsyQ kernel syscall wrapper"
+ },
+ {
+  "address": "0x80049e88",
+  "name": "enemy_strike_contact_effect",
+  "tier": "proven",
+  "evidence": [
+   "runtime caller: vm_motion_apply_chase (u3 trace level01, 60 hits)",
+   "calls: play_sound, spawn_drop"
+  ],
+  "rationale": "u3: fired from the VM motion contact path; spawns drop + sound = the strike effect"
+ },
+ {
+  "address": "0x80062ed0",
+  "name": "frame_present_copy_worker",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: frame_present",
+   "calls: memcpy, load_global_80080e44"
+  ],
+  "rationale": "u3: per-frame buffer copy stage inside present"
+ },
+ {
+  "address": "0x8006543c",
+  "name": "exec_queue_kick",
+  "tier": "inferred",
+  "evidence": [
+   "arg0: _exeque (kernel exec queue)",
+   "runtime callers: dma_intr_install, gpu_present_drawotag_vsync"
+  ],
+  "rationale": "u3: kicks the kernel exec queue from DMA/vsync paths"
+ },
+ {
+  "address": "0x800308cc",
+  "name": "pickup_icon_vram_upload",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: nearest_pickup_scan_step",
+   "calls: LoadImage"
+  ],
+  "rationale": "u3: uploads a pickup-related image to VRAM during the pickup scan"
+ },
+ {
+  "address": "0x80027010",
+  "name": "actor_mesh_render_pass",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: scene_render_driver (60 hits/frame loop)",
+   "calls: bone-matrix mesh glue"
+  ],
+  "rationale": "u3: per-frame skinned/actor mesh render pass"
+ },
+ {
+  "address": "0x800651e0",
+  "name": "alarm_vsync_timeout",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: set_alarm",
+   "calls: v_wait (VSync internal)"
+  ],
+  "rationale": "u3: PsyQ alarm/vsync timeout worker"
+ },
+ {
+  "address": "0x80065c74",
+  "name": "trap_exception_report",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: trapIntr",
+   "calls: printf"
+  ],
+  "rationale": "u3: exception/trap report printer"
+ },
+ {
+  "address": "0x80038f84",
+  "name": "checkpoint_player_state_read",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: checkpoint_save",
+   "arg1: player_velocity_delta+0x56"
+  ],
+  "rationale": "u3: reads player state fields for the checkpoint record"
+ },
+ {
+  "address": "0x800153d0",
+  "name": "scene_geometry_normal_pass",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: scene_geometry_draw_dispatcher",
+   "calls: VectorNormal"
+  ],
+  "rationale": "u3: geometry pass computing normals (the u1.5 look-alike pair, now caller-evidenced)"
+ },
+ {
+  "address": "0x80036e70",
+  "name": "collision_probe_candidate_pass",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: collision_candidate_builder",
+   "args: world-coordinate fixed-point values"
+  ],
+  "rationale": "u3: collision probe worker in the candidate build"
+ },
+ {
+  "address": "0x800370c8",
+  "name": "collision_probe_player_pass",
+  "tier": "inferred",
+  "evidence": [
+   "runtime caller: player_vertical_update",
+   "args: player world coordinates"
+  ],
+  "rationale": "u3: collision probe worker for the player integrator"
+ },
+ {
+  "address": "0x80051db4",
+  "name": "global_mode_flags_read",
+  "tier": "inferred",
+  "evidence": [
+   "bytes: lh v0,[0x80082488]",
+   "runtime caller: gameplay_state_machine"
+  ],
+  "rationale": "u3: getter of the documented mode/strike-pulse flags word 0x80082488"
+ },
+ {
+  "address": "0x8004c808",
+  "name": "mover_vm_op0_jump_back",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[0] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c228",
+  "name": "mover_vm_op2_wait",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[2] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c238",
+  "name": "mover_vm_op3_wait_random",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[3] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c278",
+  "name": "mover_vm_op4_random_dir_step",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[4] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c32c",
+  "name": "mover_vm_op5_path_next_waypoint",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[5] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c47c",
+  "name": "mover_vm_op11_seek_path_endpoint",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[11] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c59c",
+  "name": "mover_vm_op12_call_native",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[12] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c664",
+  "name": "mover_vm_op13_flags_mask",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[13] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c68c",
+  "name": "mover_vm_op14_anim_clip_load",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[14] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c6cc",
+  "name": "mover_vm_op15_cond_noise_mask",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[15] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c6fc",
+  "name": "mover_vm_op16_chase_radius_scratch",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[16] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c710",
+  "name": "mover_vm_op17_player_proximity",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[17] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c76c",
+  "name": "mover_vm_op20_branch_fwd_if_s3",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[20] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c790",
+  "name": "mover_vm_op22_done_disable",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[22] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c7a0",
+  "name": "mover_vm_op23_set_byte_params",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[23] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c7bc",
+  "name": "mover_vm_op24_call_play_sound",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[24] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ },
+ {
+  "address": "0x8004c7d4",
+  "name": "mover_vm_op25_cond_powerup_flag",
+  "tier": "proven",
+  "evidence": [
+   "opcode table 0x8001B2F4[25] -> this handler",
+   "SEM confirmed in analysis/vm_programs.json",
+   "runtime caller: mover_updater (u3 trace)"
+  ],
+  "rationale": "u3: mover-VM opcode handler, ISA-grounded"
+ }
+]

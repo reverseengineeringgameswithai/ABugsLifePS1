@@ -1,0 +1,121 @@
+schema_version: 1
+row: B03_dandelion_glide
+status: bounded_exhaustion_partial
+authority:
+  media: hash-verified pristine retail SCUS-94288
+  allmods_role: comparison_only_not_consumed
+machine_contract:
+  launch:
+    handler: 0x8005C818
+    velocity_y_writer: 0x8005C848
+    velocity_y: -4096
+    state_writer: 0x8005C854
+    state: 5
+    carrier_reset: 0x80046CAC
+  glide_latch:
+    address: 0x800A659E
+    width: s16
+    value: 11
+    writer: 0x8005C8BC
+    consumer: 0x800486DC
+    grounded_clearer: 0x80048700
+    velocity_law: "vy < 350 ? vy + 256 : 350"
+    terminal_descent: 350
+  steering:
+    vx_writer: 0x80049524
+    vz_writer: 0x80049540
+    rejoins_after_glide_override: 0x80048D90
+  landing:
+    grounded_address: 0x800A6582
+    grounded_value: 0x0101
+    byte_set_writers:
+      low: 0x80036CB8
+      high: 0x80036CC0
+  activation:
+    plant_lane: brown_tier_3
+    plant_type: 8
+    resident_behavior_entry: 0x8005C818
+    selected_slot_required: true
+    slot_extra_bit_0x02_required: true
+    walker_active_bit_0x04_required: true
+    quantized_xyz_radius: 40
+    sphere_center_y_offset: -29696
+    harvester_flag_0x80_blocks_latch: true
+  presentation:
+    overhead_effect_gate: 0x80051B8C
+    action_lockout_gate: 0x80051BA4
+    effect_submit: 0x80051C30
+    effect_transform: 0x80022FE0
+    effect_y_offset: -22528
+    player_animation_writer: 0x800568D4
+    player_animation: 18
+    display_tail_bound_movie_frames_after_clear: ">2 and <=11"
+  lifecycle:
+    grounded_clear: 0x80048700
+    level_transition_clear: 0x8004A87C
+    harvester_activation_clear: 0x80051EA4
+    respawn_clear: 0x8005B314
+    direct_writer_values: [0, 11, 12]
+    direct_timer_or_arithmetic_writer: false
+scenario:
+  kind: interpreter_input_movie
+  execution_mode: Interpreter
+  movie:
+    path: movies/Phase4/Interpreter/B03.movie.json
+    sha256: 9c0528b26d3ba25d69f834fb0b78cf853d3e01e4194c7807304ba736ec780b9a
+    frames: 819
+    preservation: external_evidence_do_not_commit
+  start_state:
+    path: movies/Phase4/Interpreter/B03.movie.sav
+    sha256: e4ff915614dbb01b17e6280de7405314bf24a3648e132e83d36807226da2d04a
+    preservation: external_evidence_do_not_commit
+  target_movie_frame: 819
+  assertions:
+    - movie_frame_239_writes_latch_11_at_0x8005C8BC
+    - movie_frame_241_first_consumes_latch_11
+    - terminal_vy_350_first_reached_at_movie_frame_261
+    - latch_active_steering_has_nonzero_vx_and_vz
+    - movie_frame_717_native_collision_sets_grounded_0x0101
+    - movie_frame_719_reads_grounded_0x0101_and_clears_latch
+    - end_player_is_grounded_idle_with_zero_velocity_and_zero_latch
+    - instrumented_and_control_end_cycle_frame_pc_sp_player_block_match
+evidence:
+  static_artifact: analysis/phase4_b03_dandelion_static.json
+  static_state_artifact: analysis/phase4_b03_glide_state_static.json
+  runtime_artifact: analysis/phase4_b03_dandelion_runtime.json
+  runtime_analyzer: tools/phase4_b03_runtime_trace_analyzer.c
+  experiment: ObsidianVault/Experiments/EXP_2026-08-02_phase4_b03_dandelion_interpreter_trace.md
+  bounded_exhaustion_experiment: ObsidianVault/Experiments/EXP_2026-08-02_phase4_b03_bounded_exhaustion.md
+  canon: ObsidianVault/Canon/Systems/SYS_dandelion_glide.md
+frontier:
+  retained_asm_files: 892
+  retained_asm_instructions: 100425
+  direct_latch_accesses: 19
+  direct_latch_reads: 10
+  direct_latch_writes: 9
+  direct_absolute_sites: 15
+  typed_player_relative_sites: 4
+  direct_retained_asm_census_complete: true
+  indirect_and_overlay_alias_completeness: false
+phase4_scorecard:
+  original_oracle: advanced_single_native_fixture
+  complete_frontier: deferred_shared_player_pointer_wall
+  typed_state: met
+  lifecycle: advanced_direct_paths
+  original_interfaces: advanced_core_and_presentation
+  campaign_breadth: deferred_low_return
+  cross_system: advanced
+  source_closure: met_documentation_grade
+  durable_evidence: advanced
+exhaustion:
+  high_yield_scope: exhausted
+  phase4_solved: false
+  cold_boot_required: false_no_disc_code_or_asset_change
+  movie_needed_only_if:
+    - native dandelion_to_propeller combination is promoted from static contract to behavioral oracle
+    - stage_specific placement or reachability becomes material to a MOD or campaign claim
+residuals:
+  - repository-wide indirect player-pointer and overlay alias proof; deferred shared infrastructure wall
+  - exhaustive per-stage placement and alternate-dandelion reachability; deferred low return
+  - exact GPU/display timing of the greater-than-two and at-most-eleven movie-frame post-clear tail; deferred low return
+  - native dandelion-to-propeller combination replay; static contract confirmed, behavioral breadth deferred

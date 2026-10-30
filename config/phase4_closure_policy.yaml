@@ -1,0 +1,76 @@
+schema: abl-phase4-closure-policy/1
+description: >
+  Scheduling policy for the Phase-4 closure funnel. This file defines the
+  roadmap dimensions and execution lanes, but never certifies a dimension or
+  subsystem. tools/phase4_closure_debt.py derives every verdict from retained
+  low-level evidence and the authoritative campaign registry.
+
+dimensions:
+  - id: original_oracle
+    title: Original oracle
+    evidence_groups: [oracle, controls]
+  - id: complete_frontier
+    title: Complete frontier
+    evidence_groups: [frontier]
+  - id: typed_state
+    title: Typed state
+    evidence_groups: [frontier]
+  - id: lifecycle
+    title: Lifecycle
+    evidence_groups: [lifecycle]
+  - id: original_interfaces
+    title: Original interfaces
+    evidence_groups: [frontier, dependencies]
+  - id: campaign_breadth
+    title: Campaign breadth
+    evidence_groups: [breadth]
+  - id: cross_system_behavior
+    title: Cross-system behavior
+    evidence_groups: [controls, dependencies]
+  - id: source_closure
+    title: Source closure
+    evidence_groups: [source]
+  - id: durable_evidence
+    title: Durable evidence
+    evidence_groups: [residuals, exit_gate]
+
+lane_order: [offline, static, live, bank, human]
+
+# One campaign is the normal unit of work. A campaign may contain at most three
+# tightly coupled rows before it must be split into mechanically justified
+# equivalence classes.
+max_active_campaigns: 1
+max_rows_per_iteration: 3
+stagnation_limit: 2
+campaign_verifier_interval: 3
+
+# Bootstrap order for the current architecture tranche. It is deliberately
+# limited to already-active central substrates and is applied only after
+# dependency tier. Once these campaigns close, ordinary debt/centrality ranking
+# takes over.
+active_campaign_focus:
+  - fmv_playback
+  - safe_respawn_anchor
+  - lives_gameover_continue
+  - props_movers_gates
+
+validation_tiers:
+  focused:
+    when: every implementation iteration
+    requirements:
+      - affected generators and falsifiable guards
+      - closure-debt and derived-index freshness
+      - git diff --check
+  campaign:
+    when: any dimension or row is promoted, or every third iteration
+    requirements:
+      - fresh adversarial campaign verifier
+      - relevant fixture and capsule preservation checks
+      - relevant live controls when the promoted claim needs them
+  phase:
+    when: whole-phase closure claim
+    requirements:
+      - all 107 rows and all nine dimensions
+      - complete safe and local-media suites
+      - clean-checkout reproduction with the declared external fixture set
+

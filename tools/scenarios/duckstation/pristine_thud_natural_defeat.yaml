@@ -1,0 +1,217 @@
+schema_version: 1
+id: pristine_thud_natural_defeat
+description: >-
+  Replay the centrally pinned pristine-serial Thud recording and assert the
+  recorded player-projectile allocation, natural action-2/class-0 contact
+  decrement, overlay-target restoration, one Thud-owned action-20 contact-
+  object launch and natural miss/retirement, eight counter-linked cycles,
+  one rolling-boulder overlap, counter-8 actor path, HP-zero, persistent
+  retirement, and scene exit without claiming berry color, boss attack policy,
+  complete rolling-arena geometry, or arena completion.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: thud_player_projectile_pre_launch
+    trigger: {type: movie_frame, target: 895, max_frames: 910, timeout_seconds: 180}
+    assertions:
+      - {id: thud_projectile_pre_windup, type: memory, address: 0x800A6586, width: u16, op: eq, expected: 6}
+      - {id: thud_projectile_pre_in_flight, type: memory, address: 0x800A6596, width: u8, op: eq, expected: 2}
+      - {id: thud_projectile_pre_slot_action, type: memory, address: 0x800B12E8, width: u8, op: eq, expected: 4}
+  - id: thud_player_projectile_post_launch
+    trigger: {type: movie_frame, target: 914, max_frames: 24, timeout_seconds: 60}
+    assertions:
+      - {id: thud_projectile_post_windup, type: memory, address: 0x800A6586, width: u16, op: eq, expected: 9}
+      - {id: thud_projectile_post_in_flight, type: memory, address: 0x800A6596, width: u8, op: eq, expected: 3}
+      - {id: thud_projectile_post_slot_action, type: memory, address: 0x800B12E8, width: u8, op: eq, expected: 2}
+      - {id: thud_projectile_post_slot_ttl, type: memory, address: 0x800B12EA, width: u16, op: eq, expected: 99}
+  - id: thud_contact_pre_damage
+    trigger: {type: movie_frame, target: 963, max_frames: 975, timeout_seconds: 180}
+    assertions:
+      - {id: thud_contact_pre_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_contact_action, type: memory, address: 0x800B12E8, width: u8, op: eq, expected: 2}
+      - {id: thud_contact_class, type: memory, address: 0x800B12FC, width: u8, op: eq, expected: 0}
+      - {id: thud_overlay_target_pre, type: memory, address: 0x800B4C70, width: u32, op: eq, expected: 50}
+  - id: thud_contact_damage
+    trigger: {type: movie_frame, target: 964, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: thud_contact_damage_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 48}
+      - {id: thud_contact_damage_action, type: memory, address: 0x800B12E8, width: u8, op: eq, expected: 2}
+      - {id: thud_contact_damage_class, type: memory, address: 0x800B12FC, width: u8, op: eq, expected: 0}
+      - {id: thud_overlay_target_held, type: memory, address: 0x800B4C70, width: u32, op: eq, expected: 50}
+      - {id: thud_reset_1_counter_before, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 0}
+  - id: thud_overlay_restore
+    trigger: {type: movie_frame, target: 966, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_overlay_restored_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_overlay_restored_target, type: memory, address: 0x800B4C70, width: u32, op: eq, expected: 50}
+      - {id: thud_overlay_actor_retained, type: memory, address: 0x8009FD80, width: u32, op: eq, expected: 36}
+      - {id: thud_reset_1_counter_after, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 1}
+      - {id: thud_reset_1_master_after, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+      - {id: thud_overlay_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+  - id: thud_owned_contact_pre_launch
+    trigger: {type: movie_frame, target: 969, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_owned_pre_countdown, type: memory, address: 0x800B4CB4, width: u32, op: eq, expected: 9}
+      - {id: thud_owned_pre_action, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 1}
+      - {id: thud_owned_pre_ttl, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 0}
+      - {id: thud_owned_pre_class, type: memory, address: 0x800B1104, width: u8, op: eq, expected: 0}
+  - id: thud_owned_contact_post_launch
+    trigger: {type: movie_frame, target: 970, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: thud_owned_post_countdown, type: memory, address: 0x800B4CB4, width: u32, op: eq, expected: 8}
+      - {id: thud_owned_post_action, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 20}
+      - {id: thud_owned_post_ttl, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 200}
+      - {id: thud_owned_post_class, type: memory, address: 0x800B1104, width: u8, op: eq, expected: 128}
+      - {id: thud_owned_post_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+  - id: thud_owned_contact_natural_flight
+    trigger: {type: movie_frame, target: 1020, max_frames: 55, timeout_seconds: 60}
+    assertions:
+      - {id: thud_owned_flight_action, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 20}
+      - {id: thud_owned_flight_active_gate, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 175}
+      - {id: thud_owned_flight_radius_add, type: memory, address: 0x800B10F8, width: s16, op: eq, expected: 100}
+      - {id: thud_owned_flight_state, type: memory, address: 0x800B10FC, width: s16, op: eq, expected: 24}
+      - {id: thud_owned_flight_grain_unchanged, type: memory, address: 0x800A65A1, width: u8, op: eq, expected: 0}
+  - id: thud_owned_contact_natural_retirement
+    trigger: {type: movie_frame, target: 1022, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_owned_retired_action_residue, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 20}
+      - {id: thud_owned_retired_active_gate, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 0}
+      - {id: thud_owned_retired_state_residue, type: memory, address: 0x800B10FC, width: s16, op: eq, expected: 24}
+      - {id: thud_owned_retired_grain_unchanged, type: memory, address: 0x800A65A1, width: u8, op: eq, expected: 0}
+  - id: thud_reset_2_damage
+    trigger: {type: movie_frame, target: 1310, max_frames: 1320, timeout_seconds: 180}
+    assertions:
+      - {id: thud_reset_2_damage_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 48}
+      - {id: thud_reset_2_counter_before, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 1}
+  - id: thud_reset_2_restore
+    trigger: {type: movie_frame, target: 1312, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_reset_2_restore_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_reset_2_counter_after, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 2}
+  - id: bug_bar_boulder_pre_overlap
+    trigger: {type: movie_frame, target: 1465, max_frames: 170, timeout_seconds: 180}
+    assertions:
+      - {id: boulder_pre_player_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: boulder_pre_player_x, type: memory, address: 0x800A6500, width: s32, op: eq, expected: 104318}
+      - {id: boulder_pre_player_y, type: memory, address: 0x800A6504, width: s32, op: eq, expected: 1478}
+      - {id: boulder_pre_player_z, type: memory, address: 0x800A6508, width: s32, op: eq, expected: -20326}
+      - {id: boulder_row_4_threshold_pre, type: memory, address: 0x800B4C1C, width: u32, op: eq, expected: 490000}
+      - {id: boulder_pre_thud_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+  - id: bug_bar_boulder_damage
+    trigger: {type: movie_frame, target: 1471, max_frames: 8, timeout_seconds: 60}
+    assertions:
+      - {id: boulder_damage_player_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 2}
+      - {id: boulder_damage_player_x, type: memory, address: 0x800A6500, width: s32, op: eq, expected: 99005}
+      - {id: boulder_damage_player_y, type: memory, address: 0x800A6504, width: s32, op: eq, expected: -934}
+      - {id: boulder_damage_player_z, type: memory, address: 0x800A6508, width: s32, op: eq, expected: -18472}
+      - {id: boulder_row_4_threshold_held, type: memory, address: 0x800B4C1C, width: u32, op: eq, expected: 490000}
+      - {id: boulder_damage_thud_hp_held, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+  - id: thud_reset_3_damage
+    trigger: {type: movie_frame, target: 1710, max_frames: 1720, timeout_seconds: 180}
+    assertions:
+      - {id: thud_reset_3_damage_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 48}
+      - {id: thud_reset_3_counter_before, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 2}
+  - id: thud_reset_3_restore
+    trigger: {type: movie_frame, target: 1712, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_reset_3_restore_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_reset_3_counter_after, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 3}
+  - id: thud_reset_4_damage
+    trigger: {type: movie_frame, target: 2124, max_frames: 2135, timeout_seconds: 180}
+    assertions:
+      - {id: thud_reset_4_damage_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 48}
+      - {id: thud_reset_4_counter_before, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 3}
+  - id: thud_reset_4_restore
+    trigger: {type: movie_frame, target: 2126, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_reset_4_restore_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_reset_4_counter_after, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 4}
+  - id: thud_reset_5_damage
+    trigger: {type: movie_frame, target: 2522, max_frames: 2535, timeout_seconds: 180}
+    assertions:
+      - {id: thud_reset_5_damage_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 48}
+      - {id: thud_reset_5_counter_before, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 4}
+  - id: thud_reset_5_restore
+    trigger: {type: movie_frame, target: 2524, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_reset_5_restore_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_reset_5_counter_after, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 5}
+  - id: thud_reset_6_damage
+    trigger: {type: movie_frame, target: 2938, max_frames: 2950, timeout_seconds: 180}
+    assertions:
+      - {id: thud_reset_6_damage_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 48}
+      - {id: thud_reset_6_counter_before, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 5}
+  - id: thud_reset_6_restore
+    trigger: {type: movie_frame, target: 2940, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_reset_6_restore_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_reset_6_counter_after, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 6}
+  - id: thud_reset_7_damage
+    trigger: {type: movie_frame, target: 3308, max_frames: 3320, timeout_seconds: 180}
+    assertions:
+      - {id: thud_reset_7_damage_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 48}
+      - {id: thud_reset_7_counter_before, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 6}
+  - id: thud_reset_7_restore
+    trigger: {type: movie_frame, target: 3310, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_reset_7_restore_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_reset_7_counter_after, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 7}
+  - id: thud_reset_8_damage
+    trigger: {type: movie_frame, target: 3738, max_frames: 3750, timeout_seconds: 180}
+    assertions:
+      - {id: thud_reset_8_damage_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 48}
+      - {id: thud_reset_8_counter_before, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 7}
+      - {id: thud_reset_8_master_before, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+  - id: thud_reset_8_arena_transition
+    trigger: {type: movie_frame, target: 3740, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_reset_8_restore_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_reset_8_counter_after, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 8}
+      - {id: thud_reset_8_master_after, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 1}
+      - {id: thud_reset_8_heading_after, type: memory, address: 0x800B4CD0, width: u32, op: eq, expected: 32}
+      - {id: thud_reset_8_motion_timer_after, type: memory, address: 0x800B4CD8, width: u32, op: eq, expected: 149}
+  - id: thud_post_counter_8_actor_path
+    trigger: {type: movie_frame, target: 3814, max_frames: 80, timeout_seconds: 120}
+    assertions:
+      - {id: thud_path_coordinate_middle, type: memory, address: 0x800B4CB0, width: u32, op: eq, expected: 61984}
+      - {id: thud_path_actor_x_middle, type: memory, address: 0x8009FD84, width: s32, op: eq, expected: 102808}
+      - {id: thud_path_actor_y_middle, type: memory, address: 0x8009FD88, width: s32, op: eq, expected: -39328}
+      - {id: thud_path_actor_z_middle, type: memory, address: 0x8009FD8C, width: s32, op: eq, expected: -3845}
+      - {id: thud_path_target_x_middle, type: memory, address: 0x8009FDA8, width: s32, op: eq, expected: 61984}
+      - {id: thud_path_target_z_middle, type: memory, address: 0x8009FDB4, width: s32, op: eq, expected: 61984}
+      - {id: thud_path_heading_middle, type: memory, address: 0x800B4CD0, width: u32, op: eq, expected: 1216}
+      - {id: thud_path_motion_timer_middle, type: memory, address: 0x800B4CD8, width: u32, op: eq, expected: 112}
+  - id: thud_pre_defeat
+    trigger: {type: movie_frame, target: 3896, max_frames: 3910, timeout_seconds: 240}
+    assertions:
+      - {id: thud_pre_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: thud_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 1}
+      - {id: thud_pre_actor_id, type: memory, address: 0x8009FD80, width: u32, op: eq, expected: 36}
+      - {id: thud_pre_actor_flags, type: memory, address: 0x8009FDDC, width: u16, op: eq, expected: 0x4055}
+      - {id: thud_pre_actor_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+      - {id: thud_pre_live_slot, type: memory, address: 0x80090748, width: u32, op: eq, expected: 0x8009FD80}
+      - {id: thud_pre_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+  - id: thud_natural_hp_zero
+    trigger: {type: movie_frame, target: 3899, max_frames: 8, timeout_seconds: 60}
+    assertions:
+      - {id: thud_zero_scene_retained, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: thud_zero_actor_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 0}
+      - {id: thud_zero_actor_still_live, type: memory, address: 0x80090748, width: u32, op: eq, expected: 0x8009FD80}
+  - id: thud_persistent_retirement
+    trigger: {type: movie_frame, target: 3900, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: thud_retired_flags, type: memory, address: 0x8009FDDC, width: u16, op: eq, expected: 0x0055}
+      - {id: thud_retired_live_slot, type: memory, address: 0x80090748, width: u32, op: eq, expected: 0}
+      - {id: thud_retired_actor_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 0}
+  - id: bug_bar_scene_exit
+    trigger: {type: movie_frame, target: 4040, max_frames: 145, timeout_seconds: 120}
+    assertions:
+      - {id: thud_exit_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 0}
+      - {id: thud_exit_live_slot_remains_clear, type: memory, address: 0x80090748, width: u32, op: eq, expected: 0}
+      - {id: thud_exit_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

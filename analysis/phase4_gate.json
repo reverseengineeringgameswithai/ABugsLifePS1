@@ -1,0 +1,593 @@
+{
+ "_comment": "Exact Phase-4 exit gate. The four binding predicates and global prerequisites are recomputed from baseline rows, low-level evidence leaves, central fixture pins, current pristine bytes, and the Phase-3 gate functions. High-level campaign passes/complete/solved/gate flags are never accepted as evidence. Regenerate: python3 tools/phase4_gate.py",
+ "generated": "2026-07-19",
+ "gate_met": false,
+ "predicates": {
+  "1_complete_campaign_coverage": {
+   "met": false,
+   "baseline_rows": 107,
+   "complete_rows": 16,
+   "complete_families": 2
+  },
+  "2_subsystem_definition_of_done": {
+   "met": false,
+   "declared_completed_campaigns": 15,
+   "audited_completed_campaigns": 15
+  },
+  "3_breadth_and_generalization": {
+   "met": false,
+   "breadth_work_packages_met": false,
+   "missing_individual_subjects": [
+    "armored_beetles",
+    "bird",
+    "centipedes",
+    "cockroaches",
+    "daddy_long_legs",
+    "dragonflies",
+    "earthworms",
+    "flies",
+    "grasshopper",
+    "grubs",
+    "hopper",
+    "mites",
+    "molt",
+    "mosquito",
+    "spiders",
+    "thud",
+    "thumper",
+    "wasps"
+   ]
+  },
+  "4_bounded_intersections": {
+   "met": false,
+   "intersecting_residuals": [],
+   "phase3_handoff": {
+    "checks": {
+     "A07_frontier_preserved_or_phase4_resolved": true,
+     "F09_partial": true,
+     "D18_partial": true,
+     "LEVEL10_external_lead": true,
+     "callback_ABI_unresolved_4": true,
+     "actor_vertical_partial": true,
+     "frontend_lifecycle_blocked": true
+    },
+    "preserved": true,
+    "source_artifacts": [
+     "analysis/mechanics_baseline.yaml",
+     "analysis/phase3_jalr_callbacks.json",
+     "config/phase3_findings.yaml",
+     "config/record_types.yaml"
+    ]
+   }
+  }
+ },
+ "prerequisites": {
+  "priority_work_package": true,
+  "all_six_work_packages": false,
+  "fixture_audit_structural": true,
+  "knowledge_audit_structural": true,
+  "inventory_structural": true,
+  "retained_artifacts_fresh": true,
+  "phase3_gate_recomputed": false,
+  "phase3_confidence_handoff_preserved": true,
+  "pristine_build_identity": true
+ },
+ "freshness": {
+  "priority": true,
+  "coverage": true,
+  "fixture_audit": true,
+  "knowledge_audit": true,
+  "campaign_inventory": true
+ },
+ "phase3_recomputed": {
+  "met": false,
+  "checks": {
+   "coverage_matrix": false,
+   "evidence_inventory": false,
+   "debugger_api_documentation": false,
+   "decisive_evidence": true,
+   "upstream_durability": true,
+   "bullet_1_mechanic_frontier": true,
+   "bullet_2_state_ownership": true,
+   "bullet_3_dispatch_and_overlays": true,
+   "bullet_4_hook_contracts": true,
+   "bullet_5_unknowns_visible": true
+  },
+  "bullets": {
+   "1_mechanic_frontier": {
+    "met": true,
+    "detail": {
+     "mechanics": 107,
+     "address_bound": 107,
+     "residuals": [],
+     "ownership_graph_gap_free": true,
+     "work_package_met": true,
+     "rows_with_open_frontier": [],
+     "note": "A07 was later resolved by Phase-4 pristine directional-heading evidence; the Phase-3 bounded negative remains scoped to distinct-state and unknown-writer hypotheses. An address/function binding alone is not a complete frontier: assets, overlay, readers/writers and lifecycle are also binding WP1 facets."
+    }
+   },
+   "2_state_ownership": {
+    "met": true,
+    "detail": {
+     "owned_entries": 95,
+     "incomplete": [],
+     "semantically_invalid": [],
+     "invalid_reasons": {},
+     "semantic_registry_met": true,
+     "state_scope_work_package_met": true,
+     "ownership_model_work_package_met": true,
+     "missing_scope_groups": [],
+     "ownership_model_gaps": [],
+     "explicit_lifecycle_blockers": [
+      "mod_private.blackberry_effective_index",
+      "mod_private.blackberry_equipped",
+      "mod_private.blackberry_spawn_fast_flag",
+      "original.bonus1_stomp_streak",
+      "original.bonus3_blue_grasshopper_streak",
+      "original.bonus_transition_latch",
+      "original.bonus_unlock_flags",
+      "original.kick_timer",
+      "original.pause_flag",
+      "original.player_berries_in_flight",
+      "original.player_coyote_guard",
+      "original.player_equipped_berry",
+      "original.player_lateral_component",
+      "original.player_powerup_flags",
+      "original.player_state_word",
+      "original.player_swing_attachment_index",
+      "original.player_vertical_action_aux",
+      "original.setpiece_record_index",
+      "original.thumper_defeat_flag"
+     ]
+    }
+   },
+   "3_dispatch_and_overlays": {
+    "met": true,
+    "detail": {
+     "indirect_sites": 234,
+     "jr_classified": true,
+     "jalr_classified": true,
+     "overlays_mapped": 20,
+     "enumeration_met": true,
+     "dispatch_work_package_met": true,
+     "scene_load_unload_work_package_met": true,
+     "scene_graph_gaps": []
+    }
+   },
+   "4_hook_contracts": {
+    "met": true,
+    "detail": {
+     "hooks": 15,
+     "hard_violations": 0,
+     "patched_image_pinned": true,
+     "patched_image_matches_pin": true,
+     "obligated_hooks": 10,
+     "discharged_against_cave": 9,
+     "degraded_with_reason": 1,
+     "cave_unverified_remaining": 0,
+     "module_owed": 0,
+     "refused_needs_review": 0
+    }
+   },
+   "5_unknowns_visible": {
+    "met": true,
+    "detail": {
+     "findings": 19,
+     "all_findings_have_confidence_and_residuals": true,
+     "record_unknown_accounting_intact": true,
+     "local_unknowns_met": true,
+     "record_family_work_package_met": true,
+     "contradiction_work_package_met": true,
+     "missing_record_families": [],
+     "documentation_contradictions": []
+    }
+   }
+  },
+  "coverage": {
+   "overall_met": false,
+   "unmet_packages": [
+    "WP3"
+   ],
+   "retained_artifact_fresh": false,
+   "packages": {
+    "WP1": "Mechanic frontier",
+    "WP2": "Semantic-state registry",
+    "WP3": "Fixed-width native domains and consumers",
+    "WP4": "Indirect dispatch, callbacks, overlays",
+    "WP5": "Typed records without hidden unknowns",
+    "WP6": "Allocation capacity, reuse, transfer, retirement, reset",
+    "WP7": "Scene, overlay, and resource load/unload graph",
+    "WP8": "Machine-readable xrefs and asset provenance",
+    "WP9": "Contradictions reconciled and superseded"
+   }
+  },
+  "inventory": {
+   "closure_ready": false,
+   "retained_artifact_fresh": false,
+   "summary": {
+    "generators_discovered": 29,
+    "generators_declared": 29,
+    "artifacts_discovered": 30,
+    "artifacts_declared": 30,
+    "missing_generator_declarations": [],
+    "stale_generator_declarations": [],
+    "orphan_artifacts": [],
+    "missing_outputs": [],
+    "live_artifacts_without_run_provenance": [],
+    "live_save_artifacts_without_preload_state_inspection": [],
+    "live_save_artifacts_with_non_pristine_origin": [],
+    "live_tools_with_hardcoded_default_token": [],
+    "live_tools_without_config_dir_argument": [],
+    "live_mode_environment_declaration_gaps": [
+     "tools/phase3_camera_record.py: declared binary SHA-256 differs from current bytes",
+     "tools/phase3_jalr_callbacks.py: declared binary SHA-256 differs from current bytes",
+     "tools/phase3_semantic_lifetime.py: declared binary SHA-256 differs from current bytes",
+     "tools/phase3_sfx_interface.py: declared binary SHA-256 differs from current bytes",
+     "tools/phase3_spin_functional.py: declared binary SHA-256 differs from current bytes",
+     "tools/phase3_thud_trace.py: declared binary SHA-256 differs from current bytes",
+     "tools/phase3_transition_reset.py: declared binary SHA-256 differs from current bytes",
+     "tools/phase3_unknown_fields.py: declared binary SHA-256 differs from current bytes"
+    ],
+    "live_artifact_environment_mismatches": [],
+    "live_artifact_source_dependency_mismatches": [],
+    "live_artifact_reproduction_guard_failures": [],
+    "compatibility_live_replay_gaps": [],
+    "compatibility_external_fixture_set_gaps": [],
+    "compatibility_knowledge_report_gaps": [],
+    "current_live_toolchain_gaps": [
+     "retained JSON differs from fresh DuckStation source/binary extraction"
+    ],
+    "tracked_input_mutations": []
+   }
+  },
+  "rpc": {
+   "computed_from_method_lists": true,
+   "current_fork_compared_by_gate": true,
+   "current_fork_fresh": false,
+   "counts": {
+    "committed": 114,
+    "dirty_only": 93,
+    "removed_from_head": 0,
+    "current": 207
+   },
+   "source_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "dispatcher_sha256": "6ff2640dad39f85eacba9e8bbbfdb65d4e3707cb6d8f72cc74bf404579ae8a3e",
+   "retained_gaps": [],
+   "current_fork_gaps": [
+    "retained JSON differs from fresh DuckStation source/binary extraction"
+   ],
+   "gaps": [
+    "retained JSON differs from fresh DuckStation source/binary extraction"
+   ]
+  },
+  "decisive": {
+   "spin_low_level_predicates_met": true,
+   "thud_low_level_predicates_met": true,
+   "semantic_lifetime_low_level_predicates_met": true,
+   "hook_contract_fresh": true,
+   "transition_immutable_toolchain_replay_met": true,
+   "transition_runtime_classification": {
+    "classification": "historical_exact_not_current",
+    "historical_runtime_id": "phase3-closure-20260727"
+   },
+   "transition_snapshot": {
+    "verified": true,
+    "path": "/tmp/abl-p3-transition-r2-a1-pzMDCa/toolchain/snapshot_manifest.json",
+    "manifest_sha256": "0f1f5ea07bd6dce20395a60ab05c0ab3057d11630c2172dd4264ff5f3dc16f60",
+    "retained_rpc_manifest_sha256": "e9bc66dc6c163163a0e8e928f1ae600f43bff7033d10e740d79332d4ad322574",
+    "source": {
+     "root": "~/duckstation",
+     "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+     "status_sha256": "7ef1945317759f42b61c78104ae1fb397fcf40844a9a55d108857de57683e47e",
+     "dispatcher_sha256": "3c08833a893dca2b4db57d51fc452568bb2c4d14c2595d4b6a15612af9833151",
+     "method_count": 207
+    },
+    "source_binary_path": "~/duckstation/build-release/bin/duckstation-qt",
+    "binary_sha256": "a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1",
+    "runtime_tree": {
+     "file_count": 207,
+     "total_size": 102191973,
+     "manifest_sha256": "e2c7a483cf6722568edac54ff3e55689fc752aa0e11b34d7405ae585efaea3d0"
+    },
+    "files": {
+     "scripts/debugger-client/launch_debugger_instance.sh": {
+      "sha256": "f39fe7d912f0e50b3e5b32db4ed5845ac51c82d500be6d6b8240c93775515a61",
+      "size": 10607
+     },
+     "scripts/debugger-client/duckstation_debug_client.py": {
+      "sha256": "388d42701d75262903ae4669eec091f02dd2168b206da53571f63b71255691ab",
+      "size": 106427
+     }
+    }
+   },
+   "transition_cleanup": {
+    "owned_pid_stopped": true,
+    "signal": "SIGTERM",
+    "process_final_state": null,
+    "private_binary_removed": true,
+    "private_binary_path": "~/duckstation/build-release/bin/duckstation-qt.phase3-verifier-3f6595875be44c46b6c1fdcd75bdb0f6",
+    "private_binary_sha256": "a236f79ab4b93518defe88f5f7b8799bdc1339e5f123df34c5ecbfac1dab62d1"
+   },
+   "transition_required_source_dependencies": {
+    "tools/live_toolchain_snapshot.py": "f5696430d4709cfcd23941652fd8119dbb2835183bfc90116036f362700e774c",
+    "tools/launch_repro_playback.sh": "2adf9ecc4e5a606ba45d0477e846ed13e23c3bd8b2168e8e0ab59e4b61287f6d"
+   },
+   "live_run_provenance_complete": true,
+   "live_run_provenance_gaps": {
+    "spin": [],
+    "thud": [],
+    "semantic_lifetime": [],
+    "transition": []
+   },
+   "aggregate_pristine_save_origins_met": true,
+   "aggregate_pristine_save_origin_gaps": {
+    "analysis/phase3_record_probe.json": [],
+    "analysis/phase3_render_descriptors.json": [],
+    "analysis/phase3_fn_ptr_fields.json": []
+   },
+   "unchanged_zero_without_blocker": []
+  },
+  "upstream": {
+   "computed_from_low_level_predicates": true,
+   "retained_knowledge_report_fresh": true,
+   "retained_external_fixture_set_fresh": true,
+   "knowledge_report_provenance_source": "phase3_inventory_current_replay",
+   "knowledge_report_compatibility_path": "analysis/phase0_2_knowledge_closure_report.json",
+   "external_fixture_set_provenance_source": "phase3_inventory_current_replay",
+   "external_fixture_set_compatibility_path": "analysis/phase0_2_external_fixture_set.json",
+   "blockers": {
+    "matrix_errors": [],
+    "untracked_imports": [],
+    "provisioned_source_input_errors": [],
+    "external_local_media_input_errors": [],
+    "external_operator_fixture_input_errors": [],
+    "external_local_media_manifest_errors": [],
+    "external_fixture_source_relocation_errors": [],
+    "missing_fixture_pins": [],
+    "unpromoted_confirmed_addresses": [],
+    "retained_knowledge_report_stale": [],
+    "retained_external_fixture_set_stale": []
+   },
+   "historical_phase_labels": {
+    "phase0": "partial",
+    "phase1": "partial",
+    "phase2": "partial"
+   }
+  }
+ },
+ "pristine_identity": {
+  "met": true,
+  "checks": {
+   "staged_tree": true,
+   "mounted_source_media": true
+  },
+  "gaps": [],
+  "verification": {
+   "mounted_path": "<checkout>/Disney-Pixar A Bug's Life (v1.0).cue",
+   "pin_source": "tools/build_baselines.json",
+   "pristine_verified": true,
+   "files": {
+    "Disney-Pixar A Bug's Life (v1.0).cue": {
+     "path": "<checkout>/Disney-Pixar A Bug's Life (v1.0).cue",
+     "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+     "matches_pin": true
+    },
+    "Disney-Pixar A Bug's Life (v1.0).bin": {
+     "path": "<checkout>/Disney-Pixar A Bug's Life (v1.0).bin",
+     "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+     "matches_pin": true
+    }
+   }
+  }
+ },
+ "coverage_counts": {
+  "baseline_rows": 107,
+  "campaign_complete": 15,
+  "reviewed_absent": 1,
+  "complete_total": 16,
+  "open": 91
+ },
+ "open_rows": [
+  "A09_seed_pickup_drop",
+  "A10_handstand",
+  "A11_seed_as_weapon",
+  "A12_seed_color_change",
+  "A13_cycle_plant_output",
+  "A14_plant_seed",
+  "A15_uproot_plant",
+  "A19_status_display",
+  "B01_mushroom_trampoline",
+  "B02_propeller_plant",
+  "B03_dandelion_glide",
+  "B04_cannon_plant",
+  "B05_green_leaf_platforms",
+  "B06_invincibility",
+  "B07_health_power",
+  "B08_bubble_shield",
+  "B09_super_jump",
+  "B10_purple_berry_plants",
+  "B11_blue_berry_shooter",
+  "B12_homing_shooter",
+  "B13_mine_plant",
+  "B14_hostile_plant_projectiles",
+  "C01_grain_pickup",
+  "C02_fifty_grain_reward",
+  "C03_flik_letters",
+  "C04_enemy_token",
+  "C05_three_tokens",
+  "C06_red_berry",
+  "C07_blue_berry",
+  "C08_green_homing_berry",
+  "C09_mega_homing_berry",
+  "C10_gold_berry",
+  "C11_seed_tokens",
+  "C12_health_leaves",
+  "C13_grain_harvester",
+  "C14_telescope",
+  "C15_checkpoints",
+  "C16_lives_gameover",
+  "C17_movie_viewer",
+  "C18_bonus_entry",
+  "D01_enemy_spawn_update",
+  "D02_mover_vm",
+  "D03_contact_damage",
+  "D04_berry_immunity_matrix",
+  "D05_death_respawn",
+  "D06_grasshoppers",
+  "D07_mosquitoes",
+  "D08_flies",
+  "D09_cockroaches",
+  "D10_spiders",
+  "D11_mites_grubs",
+  "D12_centipedes_earthworms",
+  "D13_armored_beetles",
+  "D14_wasps_dragonflies",
+  "D15_daddy_long_legs",
+  "D16_thumper",
+  "D17_bird",
+  "D18_thud",
+  "D19_molt",
+  "D20_hopper",
+  "E01_terrain_visual",
+  "E03_render_pipeline",
+  "E04_camera_system",
+  "E05_actor_models_anim",
+  "E08_props_movers_gates",
+  "E10_hazards",
+  "E11_dynamic_geometry",
+  "E12_audio",
+  "E13_hud_results",
+  "E14_frontend_save",
+  "E15_fmv",
+  "E16_streaming_overlays",
+  "F00_training",
+  "F01_anthill",
+  "F02_tunnels",
+  "F03_council_chamber",
+  "F04_cliffside_canyon",
+  "F05_riverbed_run",
+  "F06_birdnest",
+  "F07_city_entrance",
+  "F08_city_square",
+  "F09_bug_bar",
+  "F10_clover_forest",
+  "F11_the_tree",
+  "F12_battle_arena",
+  "F13_anthill_two",
+  "F14_riverbed_flight",
+  "F15_canyon_showdown",
+  "F16_bonus1_spiders",
+  "F17_bonus2_mushrooms",
+  "F18_bonus3_grasshoppers"
+ ],
+ "work_packages": {
+  "WP1": {
+   "description": "Dependency-centrality and pristine-gap priority",
+   "met": true,
+   "priority_order": [
+    "input_player_actions",
+    "player_lifecycle",
+    "objects_events_hazards",
+    "audio_cinematics",
+    "loading_overlays_resources",
+    "movement_world_physics",
+    "rendering_camera_animation",
+    "enemies_combat",
+    "collectibles_equipment_rewards",
+    "seeds_plants_traversal_powers",
+    "hud_frontend_persistence",
+    "bosses_special_objectives"
+   ],
+   "low_level_checks": {
+    "registry_valid": true,
+    "all_twelve_ranked": true,
+    "core_substrates_are_tier_one": true,
+    "priority_uses_shared_surface": true,
+    "priority_uses_baseline_gaps": true,
+    "active_mod_demand_not_a_priority_input": true
+   }
+  },
+  "WP2": {
+   "description": "Core player/input/lifecycle and shared object/render/audio substrates first",
+   "met": false,
+   "core_family_status": {
+    "audio_cinematics": "active",
+    "input_player_actions": "complete",
+    "loading_overlays_resources": "pending",
+    "movement_world_physics": "complete",
+    "objects_events_hazards": "active",
+    "player_lifecycle": "active",
+    "rendering_camera_animation": "pending"
+   }
+  },
+  "WP3": {
+   "description": "Collectible, plant, enemy, and objective breadth across applicable levels",
+   "met": false,
+   "family_status": {
+    "bosses_special_objectives": "active",
+    "collectibles_equipment_rewards": "active",
+    "enemies_combat": "pending",
+    "seeds_plants_traversal_powers": "pending"
+   }
+  },
+  "WP4": {
+   "description": "Every regular enemy family and boss completed individually",
+   "met": false,
+   "required_subjects": [
+    "grasshopper",
+    "mosquito",
+    "flies",
+    "cockroaches",
+    "spiders",
+    "mites",
+    "grubs",
+    "centipedes",
+    "earthworms",
+    "armored_beetles",
+    "wasps",
+    "dragonflies",
+    "daddy_long_legs",
+    "thumper",
+    "bird",
+    "thud",
+    "molt",
+    "hopper"
+   ],
+   "missing_subjects": [
+    "armored_beetles",
+    "bird",
+    "centipedes",
+    "cockroaches",
+    "daddy_long_legs",
+    "dragonflies",
+    "earthworms",
+    "flies",
+    "grasshopper",
+    "grubs",
+    "hopper",
+    "mites",
+    "molt",
+    "mosquito",
+    "spiders",
+    "thud",
+    "thumper",
+    "wasps"
+   ]
+  },
+  "WP5": {
+   "description": "Special-stage mechanics and exceptional overlay paths",
+   "met": false,
+   "family_status": {
+    "bosses_special_objectives": "active",
+    "loading_overlays_resources": "pending"
+   }
+  },
+  "WP6": {
+   "description": "Baseline changes are derived from completed evidence",
+   "met": true,
+   "gaps": []
+  }
+ }
+}

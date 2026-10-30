@@ -1,0 +1,28 @@
+{
+  "schema": "abl-phase4-d05-static-resolution-v1",
+  "date": "2026-08-04",
+  "status": "verified",
+  "input": {
+    "path": "SCUS_942.88",
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "load_address": "0x80010000",
+    "payload_size": "0x72800"
+  },
+  "analyzer": "tools/phase4_d05_static.c",
+  "results": {
+    "corrected_reinitializer_entry": "0x80049C30",
+    "padding_predecessor": "0x80049C2C",
+    "direct_callers": ["0x8004A664", "0x8004D3F0"],
+    "runtime_scheduler": "0x8004D224-0x8004D694",
+    "hp_branch": "0x8004D294 loads actor+0x6E; 0x8004D29C BLEZ selects the KO path",
+    "live_path": "HP>0 only; near-camera admission and live-table insertion",
+    "ko_path": "HP<=0 bypasses live admission; actor+0x62 delay then spawn visibility gate",
+    "spawn_visibility_predicate": "0x80025084",
+    "runtime_reinit_call": "0x8004D3F0 JAL 0x80049C30",
+    "hp_restore_instruction": "0x80049CA0 SH to actor+0x6E",
+    "respawn_delay_seed_instruction": "0x80049CC0 SH to actor+0x62",
+    "separate_death_timer": "actor+0x4A, processed in the scheduler live-table pass"
+  },
+  "resolution": "The apparent admission/respawn contradiction came from conflating mutually exclusive HP>0 and HP<=0 scheduler branches. A KO actor reinitializes after its +0x62 delay only when its fixed spawn point is outside the camera-space predicate, unless flag 0x10 bypasses that predicate.",
+  "phase4_disposition": "substantiated_partial_bounded_exhausted"
+}

@@ -1,0 +1,7977 @@
+{
+ "_comment": "Phase-4 E16: tightening the overlay-ABI per-overlay entry lists. The committed artifact's 27/42 was a LOWER BOUND from prologue matching; a return-derived detector raises it and the two together cover all 42. Regenerate: tools/phase4_e16_overlay_starts.py",
+ "generated": "2026-08-04",
+ "region_a_base": "0x800B39A0",
+ "entry_points_checked": 42,
+ "overlays_scanned": 20,
+ "detectors": {
+  "prologue": "first word is `addiu sp,sp,-N` or a bare `jr ra`. UNDER-counts: a leaf function with any other prologue is missed. This is the detector the committed artifact used.",
+  "return_derived": "a function start is the instruction after the delay slot of a `jr ra` (plus base+4, the first function). Assumes no prologue at all. OVER-counts: embedded data that decodes as a false `jr ra` invents a start.",
+  "why_both": "They err in OPPOSITE directions, so they bracket the truth. An entry accepted by both is solid; one accepted by neither is genuinely absent from that overlay."
+ },
+ "union_over_the_campaign": {
+  "by_prologue": 27,
+  "by_return": 39,
+  "by_both": 24,
+  "by_either": 42,
+  "total_entry_points": 42,
+  "only_return_found": [
+   "0x800b3afc",
+   "0x800b3b58",
+   "0x800b3b70",
+   "0x800b3b84",
+   "0x800b3b94",
+   "0x800b3bbc",
+   "0x800b3bd4",
+   "0x800b3bf0",
+   "0x800b3c70",
+   "0x800b3c74",
+   "0x800b3c94",
+   "0x800b3c98",
+   "0x800b3e88",
+   "0x800b3f00",
+   "0x800b3f48"
+  ],
+  "only_prologue_found": [
+   "0x800b39b8",
+   "0x800b39c8",
+   "0x800b39dc"
+  ]
+ },
+ "per_overlay": {
+  "LEVEL00_LEVEL.BIN": {
+   "size": 4,
+   "returns": 0,
+   "function_starts": 1,
+   "entries_by_prologue": [],
+   "entries_by_return": [],
+   "entries_by_both": []
+  },
+  "LEVEL01_LEVEL.BIN": {
+   "size": 1680,
+   "returns": 3,
+   "function_starts": 4,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3aec",
+    "0x800b3bb8"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3aec",
+    "0x800b3bb8"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b3aec",
+    "0x800b3bb8"
+   ]
+  },
+  "LEVEL01_LEVEL1.BIN": {
+   "size": 2700,
+   "returns": 3,
+   "function_starts": 4,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3aec"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3af4",
+    "0x800b3b58"
+   ],
+   "entries_by_both": [
+    "0x800b39a4"
+   ]
+  },
+  "LEVEL02_LEVEL.BIN": {
+   "size": 4032,
+   "returns": 4,
+   "function_starts": 5,
+   "entries_by_prologue": [
+    "0x800b39a4"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3aec",
+    "0x800b3b70",
+    "0x800b3b84"
+   ],
+   "entries_by_both": [
+    "0x800b39a4"
+   ]
+  },
+  "LEVEL02_LEVEL1.BIN": {
+   "size": 4272,
+   "returns": 5,
+   "function_starts": 6,
+   "entries_by_prologue": [
+    "0x800b39c8",
+    "0x800b3b14"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3b14",
+    "0x800b3f00"
+   ],
+   "entries_by_both": [
+    "0x800b3b14"
+   ]
+  },
+  "LEVEL03_LEVEL.BIN": {
+   "size": 5036,
+   "returns": 5,
+   "function_starts": 6,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3adc",
+    "0x800b3c54",
+    "0x800b3d78"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3adc",
+    "0x800b3c54",
+    "0x800b3d78",
+    "0x800b3e88"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b3adc",
+    "0x800b3c54",
+    "0x800b3d78"
+   ]
+  },
+  "LEVEL03_LEVEL1.BIN": {
+   "size": 3184,
+   "returns": 3,
+   "function_starts": 4,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3b2c"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3adc",
+    "0x800b3b2c"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b3b2c"
+   ]
+  },
+  "LEVEL04_LEVEL.BIN": {
+   "size": 3068,
+   "returns": 6,
+   "function_starts": 7,
+   "entries_by_prologue": [
+    "0x800b39b8",
+    "0x800b3b08",
+    "0x800b3c54",
+    "0x800b3c5c",
+    "0x800b3f3c"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3b08",
+    "0x800b3c5c",
+    "0x800b3f3c"
+   ],
+   "entries_by_both": [
+    "0x800b3b08",
+    "0x800b3c5c",
+    "0x800b3f3c"
+   ]
+  },
+  "LEVEL04_LEVEL1.BIN": {
+   "size": 4924,
+   "returns": 4,
+   "function_starts": 5,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3b14"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3aec",
+    "0x800b3b14",
+    "0x800b3c70"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b3b14"
+   ]
+  },
+  "LEVEL05_LEVEL.BIN": {
+   "size": 2400,
+   "returns": 4,
+   "function_starts": 5,
+   "entries_by_prologue": [
+    "0x800b39c8",
+    "0x800b3b54"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3b18",
+    "0x800b3b54",
+    "0x800b3d78"
+   ],
+   "entries_by_both": [
+    "0x800b3b54"
+   ]
+  },
+  "LEVEL05_LEVEL1.BIN": {
+   "size": 4672,
+   "returns": 4,
+   "function_starts": 5,
+   "entries_by_prologue": [
+    "0x800b39b8",
+    "0x800b3af4",
+    "0x800b3c04"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3afc",
+    "0x800b3bd4",
+    "0x800b3c04"
+   ],
+   "entries_by_both": [
+    "0x800b3c04"
+   ]
+  },
+  "LEVEL06_LEVEL.BIN": {
+   "size": 1608,
+   "returns": 4,
+   "function_starts": 5,
+   "entries_by_prologue": [
+    "0x800b39a4"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3aec",
+    "0x800b3b94",
+    "0x800b3bbc"
+   ],
+   "entries_by_both": [
+    "0x800b39a4"
+   ]
+  },
+  "LEVEL06_LEVEL1.BIN": {
+   "size": 1820,
+   "returns": 4,
+   "function_starts": 5,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3aec",
+    "0x800b3b18",
+    "0x800b3b30"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3af4",
+    "0x800b3b30",
+    "0x800b3c98"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b3b30"
+   ]
+  },
+  "LEVEL07_LEVEL.BIN": {
+   "size": 7656,
+   "returns": 6,
+   "function_starts": 7,
+   "entries_by_prologue": [
+    "0x800b39c8",
+    "0x800b3da8",
+    "0x800b42ac"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3c54",
+    "0x800b3da8",
+    "0x800b42ac"
+   ],
+   "entries_by_both": [
+    "0x800b3da8",
+    "0x800b42ac"
+   ]
+  },
+  "LEVEL07_LEVEL1.BIN": {
+   "size": 4336,
+   "returns": 5,
+   "function_starts": 6,
+   "entries_by_prologue": [
+    "0x800b39dc",
+    "0x800b3b54"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3b54",
+    "0x800b3c94",
+    "0x800b3f00",
+    "0x800b3f48"
+   ],
+   "entries_by_both": [
+    "0x800b3b54"
+   ]
+  },
+  "LEVEL08_LEVEL.BIN": {
+   "size": 3500,
+   "returns": 4,
+   "function_starts": 5,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3ae8",
+    "0x800b3b54"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3ae8",
+    "0x800b3b54",
+    "0x800b3c74"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b3ae8",
+    "0x800b3b54"
+   ]
+  },
+  "LEVEL08_LEVEL1.BIN": {
+   "size": 4064,
+   "returns": 3,
+   "function_starts": 4,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b4084"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3b70",
+    "0x800b4084"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b4084"
+   ]
+  },
+  "LEVEL09_LEVEL.BIN": {
+   "size": 5232,
+   "returns": 6,
+   "function_starts": 7,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3c2c",
+    "0x800b3dc8",
+    "0x800b3de8"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3b70",
+    "0x800b3c2c",
+    "0x800b3dc8",
+    "0x800b3de8"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b3c2c",
+    "0x800b3dc8",
+    "0x800b3de8"
+   ]
+  },
+  "LEVEL09_LEVEL1.BIN": {
+   "size": 532,
+   "returns": 1,
+   "function_starts": 2,
+   "entries_by_prologue": [
+    "0x800b39a4"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3aec"
+   ],
+   "entries_by_both": [
+    "0x800b39a4"
+   ]
+  },
+  "LEVEL10_LEVEL.BIN": {
+   "size": 2080,
+   "returns": 4,
+   "function_starts": 5,
+   "entries_by_prologue": [
+    "0x800b39a4",
+    "0x800b3adc",
+    "0x800b3c1c"
+   ],
+   "entries_by_return": [
+    "0x800b39a4",
+    "0x800b3adc",
+    "0x800b3bf0",
+    "0x800b3c1c"
+   ],
+   "entries_by_both": [
+    "0x800b39a4",
+    "0x800b3adc",
+    "0x800b3c1c"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL00/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 4,
+   "returns": 0,
+   "function_starts": 1,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": false
+    }
+   ],
+   "in_range": 0,
+   "by_prologue": 0,
+   "by_return": 0,
+   "by_both": 0,
+   "key": "LEVEL00_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL01/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 1680,
+   "returns": 3,
+   "function_starts": 4,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x8fb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x27bdffd0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x344282c9",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x24050077",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x3c07fffe",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x3411c350",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0xafb00020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0xafa20010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0xafb10014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x3c07fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x34e78375",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x3c020001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x34c605e2",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0xafb10014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x27bdffc0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x3c04800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0xafb40030",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x8c42402c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0xac22402c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x24034001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x30424001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x90640000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x3c018008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0xac2222f4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x90630002",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x24c6ff80",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x00063100",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x3c028009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x01002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x00420018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x8e240004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x24020001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x8fb20028",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x27bd0040",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": false
+    }
+   ],
+   "in_range": 40,
+   "by_prologue": 3,
+   "by_return": 3,
+   "by_both": 3,
+   "key": "LEVEL01_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL01/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 2700,
+   "returns": 3,
+   "function_starts": 4,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x8fb20018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x27bd0020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x03e00008",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x3c03800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x3c04800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0xac224414",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0xac20441c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x3c04800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0xafb20028",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x00433023",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x8c830008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x0043102a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x14400007",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x0802cf1a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x30420fff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x3c06800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x8cc50000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x00431021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x00822021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x3c03800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x8c6302d8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x1480000f",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x8c6322f4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x24060003",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x84a20000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x2442fe00",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 2,
+   "by_return": 3,
+   "by_both": 1,
+   "key": "LEVEL01_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL02/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 4032,
+   "returns": 4,
+   "function_starts": 5,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x8fb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x3c03800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x240203e8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0xac224950",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0xac224940",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0xac22fe18",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0xac204944",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0xac234948",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x34038000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x2402003c",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x3c02800b",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0xafb10034",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x00002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x3c02800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0xac22495c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x3c04800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x24a5fe60",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x30620001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x3c018008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0xac2222f4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x24a5ffa4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x0c014347",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x8463ff78",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x3042fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x90820000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x24a510a2",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x844223a0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x2605ff92",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x3c02800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 1,
+   "by_return": 4,
+   "by_both": 1,
+   "key": "LEVEL02_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL02/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 4272,
+   "returns": 5,
+   "function_starts": 6,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x6576656c",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0x6576656c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x27bdffb0",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0xafbf004c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x2a220080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x0c00f938",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x8fb20048",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x8fb00040",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x27bdffc8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x00002021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x34e7c5fd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x24022f78",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0xac204a28",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0xafa20010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x36731170",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x34c6268f",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x3c02fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x34429523",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x34e72000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x00002021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0xafa20010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x3c06fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x2402f37c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x34c6d832",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x34e79894",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x3c02fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x34427bef",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0xafa20014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x0c010b1c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x00471023",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0xac261a6c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x00021040",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0xac236508",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x8c424a40",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x2442ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0xac2222f4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x8e020040",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 2,
+   "by_return": 3,
+   "by_both": 1,
+   "key": "LEVEL02_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL03/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 5036,
+   "returns": 5,
+   "function_starts": 6,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x00002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x24020100",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0xafb00018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0xac204d10",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0xac204d08",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0xac204d04",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x2463fdea",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x00002021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x24630084",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x24840084",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x1440fff9",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x02002021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x2407002c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x10860008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0xac224d00",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x24636590",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x10400039",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x3c077fff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x00405821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x01002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x27bdffd0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x00822023",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x8e220008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x00431821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x3c05800b",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x00402021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x3c09800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x3c028009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 4,
+   "by_return": 5,
+   "by_both": 4,
+   "key": "LEVEL03_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL03/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 3184,
+   "returns": 3,
+   "function_starts": 4,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x8c637e3c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0xac204604",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0xac2245f4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x27bdffc0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0xafbf003c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x14400030",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x3c02800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x3c04800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x14400021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x3c10800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x2610ff90",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x02002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x90620000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x0c01439b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x3c02800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x2442ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0xac2045fc",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x24120001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0xac2322f4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0xafb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0xac2322f4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0xac224600",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x00031840",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x8e020004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x2463ff80",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 2,
+   "by_return": 3,
+   "by_both": 2,
+   "key": "LEVEL03_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL04/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 3068,
+   "returns": 6,
+   "function_starts": 7,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x6576656c",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x24426d94",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x1440ffdd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x8fbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x8fb10014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x27bd0020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x27bdfff8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x3c06800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x24c6fddc",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x1040000d",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x94620012",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x28a20040",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x24634594",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0xac204568",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x00002021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0xac20456c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x24070004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x10870008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x03e00008",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x27bdffe8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x30420010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0xaca3ffc0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x27bd0020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0xafb50034",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0xafbf0038",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x27a50010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x02602021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x27bdffc0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x00002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x30421000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 5,
+   "by_return": 4,
+   "by_both": 3,
+   "key": "LEVEL04_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL04/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 4924,
+   "returns": 4,
+   "function_starts": 5,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x8fb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x24420020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x27bdffe8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x3c03fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x24c64c00",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x2402003c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x2402f500",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0xac204c90",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0xac204c5c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x24c60002",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x24050565",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x2406fef2",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x844223a0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0xafb30074",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0xafb20070",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x3c02fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x24420001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x8cc6fd8c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x00220821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x24020096",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x8e66000c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x24020080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x3c038008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x28620c01",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 2,
+   "by_return": 4,
+   "by_both": 2,
+   "key": "LEVEL04_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL05/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 2400,
+   "returns": 4,
+   "function_starts": 5,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x6576656c",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0x6576656c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x00431021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x2a220080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x1440ffdd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x0c00f938",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x8fbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x8fb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x240200fa",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0xac2042ec",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x27bdffd8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0xafb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0xafb3001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x30421000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x0c013043",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0xa060001b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0xae030030",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x24420001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x00340821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x24020001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x0802cf2e",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0xac2242f8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x0c01159e",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x26040004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x3c02800b",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x0c014310",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x90620000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x00002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x24020003",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x248439a4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x2442e000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x006f0018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 2,
+   "by_return": 4,
+   "by_both": 1,
+   "key": "LEVEL05_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL05/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 4672,
+   "returns": 4,
+   "function_starts": 5,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x6576656c",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x24426d94",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x8fb10014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x8fb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x03e00008",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x2402001e",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x2402000a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x2402003c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x24020004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x3c07800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x8ce70880",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0xac224bc4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0xac204bb8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0xac204bac",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0xac264bcc",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x3c03800b",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x84234b80",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x27bdff90",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0xafb20058",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x10400032",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x3c04800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x8c424ba4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x3c038008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x28420094",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x24040001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x24020001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x0c010c06",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x0c014366",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x84632470",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 3,
+   "by_return": 4,
+   "by_both": 1,
+   "key": "LEVEL05_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL06/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 1608,
+   "returns": 4,
+   "function_starts": 5,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x8fb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x3c02fffe",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x3c04fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0xac23fda8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x3c03800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x8c63fe00",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0xa4226578",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0xac24fd8c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0xa4620016",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0xac203fe0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x3c04800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x3c030003",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x0062182b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x14400010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x3c038008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0xac223fe4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x8c423fe4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0xac223fe4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x3c02ffec",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0xac24fda8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x00601021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x2462fffb",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x8c423fdc",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x3c028009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x27a60010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x80081fd0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x80081dd4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": false
+    }
+   ],
+   "in_range": 40,
+   "by_prologue": 1,
+   "by_return": 4,
+   "by_both": 1,
+   "key": "LEVEL06_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL06/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 1820,
+   "returns": 4,
+   "function_starts": 5,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x8fb20018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x27bd0020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x03e00008",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x00042040",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x00240821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0xa0223f80",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x90223f85",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x27bdfff8",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x27bdffd0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x14a2000f",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x24020001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0xa420fdee",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x2882000c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x10a20022",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x1840000b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x24630004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x94420000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x24030630",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x00230821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x24020002",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x3402a12d",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x2404000e",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x24030738",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x00230821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0xa425fde2",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x3c04800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0xafa20010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0xafa30020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x842240a4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x10400011",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x2484ff80",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x00004812",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x8c4240b8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x3042000f",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0xfffec8a7",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": false
+    }
+   ],
+   "in_range": 41,
+   "by_prologue": 4,
+   "by_return": 4,
+   "by_both": 2,
+   "key": "LEVEL06_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL07/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 7656,
+   "returns": 6,
+   "function_starts": 7,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x6576656c",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0x6576656c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x0c00f938",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x8fb20018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x8fb10014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x27bd0020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x24630014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x00031080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x3c018009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x00220821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x00431021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x00021080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x24630013",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x00431021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x24630002",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x3c018009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x24040001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x00431021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x8c426364",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x00031080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x00431021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x00021080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x84430004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x84430004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x27bdffe8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x3c05fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x3c0b0005",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0xac23573c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0xafa0001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x27bdffd8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 3,
+   "by_return": 4,
+   "by_both": 2,
+   "key": "LEVEL07_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL07/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 4336,
+   "returns": 5,
+   "function_starts": 6,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x800b3fd4",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0x800b4368",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x800b43fc",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0xa4a20006",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x1440ffdd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x26100004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x944210d2",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x3c048009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x94a57dfa",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x3c018009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0xa42411b0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0xafb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0xafbf0018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x10400017",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x24040033",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x00002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x00003810",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x00663023",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x02003021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x00002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x00003810",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x02003021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x3042fff0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x00501021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x3c04800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x9084ec7f",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0xa420fffe",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0xac204a30",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0xac204a64",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0xac204a74",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0xac82fff6",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x3c04800b",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x27bd0018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x3c03800a",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0xac820004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 2,
+   "by_return": 5,
+   "by_both": 1,
+   "key": "LEVEL07_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL08/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 3500,
+   "returns": 4,
+   "function_starts": 5,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x27bd0020",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x27bdffe8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x3c05fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x24041670",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x24020160",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0xac256550",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0xac236558",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0xac246504",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x27bdffe8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x3c04800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x2487ff72",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x00003021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x908465a1",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0xac224744",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0xac2044a8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0xaca20000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x24a50010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x24c60010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x3c028008",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x24844488",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x00002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x2863000b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x02002021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x3c018008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x14620008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x1440001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x02002821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x8c424744",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x34428000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 3,
+   "by_return": 4,
+   "by_both": 3,
+   "key": "LEVEL08_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL08/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 4064,
+   "returns": 3,
+   "function_starts": 4,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffd8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf0024",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0xafb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c078009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x00641821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0xa4a20006",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x00741021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x00731021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x0c018692",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x84620000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0xa4620006",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x8fb3001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x8fb20018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x3c022aaa",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x00809821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x3c0a8009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x01231823",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x000320c0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x00822821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x00431021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x04610002",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x24c2ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x2402fffb",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x04e10002",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x24e2001f",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x24a60001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x000528c0",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x00052040",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x00852021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x00001812",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x24020100",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x00001812",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x8cc20004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x8e620014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x27bdff40",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x27de0001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 2,
+   "by_return": 3,
+   "by_both": 2,
+   "key": "LEVEL08_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL09/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 5232,
+   "returns": 6,
+   "function_starts": 7,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffd8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf0024",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0xafb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c078009",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x00641821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0xa4a20006",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x00741021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x00731021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x0c018692",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x84620000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0xa4620006",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x8fb3001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x8fb20018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x8c820000",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x8c226300",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x00031080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x2484ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0x0481fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x24040014",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x00021080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x0481fffd",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x27bdfff8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x2442ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x8cc50004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0xac224dfc",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x2402032c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0xac224df4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x27bdffe8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x27bdff98",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x24060004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x8442fdee",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x3c03800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x0802cff9",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": true,
+     "word": "0x8ce70918",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    }
+   ],
+   "in_range": 42,
+   "by_prologue": 4,
+   "by_return": 5,
+   "by_both": 4,
+   "key": "LEVEL09_LEVEL.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL09/LEVEL1.BIN",
+   "base": "0x800b39a0",
+   "size": 532,
+   "returns": 1,
+   "function_starts": 2,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x8fb00010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x80081d98",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x80081da8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x80081e3c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x80081e64",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x80081fac",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x80081fb8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x80081dc8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x80081dd4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x80081fe8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x80081ff4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x80081e8c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x80082024",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x80081ebc",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": false
+    }
+   ],
+   "in_range": 19,
+   "by_prologue": 1,
+   "by_return": 2,
+   "by_both": 1,
+   "key": "LEVEL09_LEVEL1.BIN"
+  },
+  {
+   "file": "~/Downloads/ABL/REBUILD/files/LEVEL10/LEVEL.BIN",
+   "base": "0x800b39a0",
+   "size": 2080,
+   "returns": 4,
+   "function_starts": 5,
+   "entries": [
+    {
+     "entry": "0x800b39a4",
+     "off": 4,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b39b8",
+     "off": 24,
+     "in_range": true,
+     "word": "0xafbf001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39c8",
+     "off": 40,
+     "in_range": true,
+     "word": "0x2631ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b39dc",
+     "off": 60,
+     "in_range": true,
+     "word": "0x3c06800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3adc",
+     "off": 316,
+     "in_range": true,
+     "word": "0x27bdffe0",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3ae8",
+     "off": 328,
+     "in_range": true,
+     "word": "0xafbf0018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3aec",
+     "off": 332,
+     "in_range": true,
+     "word": "0x94620000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3af4",
+     "off": 340,
+     "in_range": true,
+     "word": "0x30420010",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3afc",
+     "off": 348,
+     "in_range": true,
+     "word": "0x3c077fff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b08",
+     "off": 360,
+     "in_range": true,
+     "word": "0x34e7ffff",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b14",
+     "off": 372,
+     "in_range": true,
+     "word": "0x1840001c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b18",
+     "off": 376,
+     "in_range": true,
+     "word": "0x00003021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b2c",
+     "off": 396,
+     "in_range": true,
+     "word": "0x00025143",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b30",
+     "off": 400,
+     "in_range": true,
+     "word": "0x00031943",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b54",
+     "off": 436,
+     "in_range": true,
+     "word": "0x000210c3",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b58",
+     "off": 440,
+     "in_range": true,
+     "word": "0x00420018",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b70",
+     "off": 464,
+     "in_range": true,
+     "word": "0x00803821",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b84",
+     "off": 484,
+     "in_range": true,
+     "word": "0x24a5000c",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3b94",
+     "off": 500,
+     "in_range": true,
+     "word": "0x00021080",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bb8",
+     "off": 536,
+     "in_range": true,
+     "word": "0x3c01800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bbc",
+     "off": 540,
+     "in_range": true,
+     "word": "0xac256554",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bd4",
+     "off": 564,
+     "in_range": true,
+     "word": "0x2442ff00",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3bf0",
+     "off": 592,
+     "in_range": true,
+     "word": "0x24020014",
+     "prologue_match": false,
+     "return_derived_start": true,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c04",
+     "off": 612,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c1c",
+     "off": 636,
+     "in_range": true,
+     "word": "0x27bdffc8",
+     "prologue_match": true,
+     "return_derived_start": true,
+     "both": true
+    },
+    {
+     "entry": "0x800b3c2c",
+     "off": 652,
+     "in_range": true,
+     "word": "0x24060004",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c54",
+     "off": 692,
+     "in_range": true,
+     "word": "0x24420748",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c5c",
+     "off": 700,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c70",
+     "off": 720,
+     "in_range": true,
+     "word": "0x14620026",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c74",
+     "off": 724,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c94",
+     "off": 756,
+     "in_range": true,
+     "word": "0x00000000",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3c98",
+     "off": 760,
+     "in_range": true,
+     "word": "0x24620001",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3d78",
+     "off": 984,
+     "in_range": true,
+     "word": "0x3c020002",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3da8",
+     "off": 1032,
+     "in_range": true,
+     "word": "0xac2222f4",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3dc8",
+     "off": 1064,
+     "in_range": true,
+     "word": "0x8c6341b8",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3de8",
+     "off": 1096,
+     "in_range": true,
+     "word": "0x3c01800b",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3e88",
+     "off": 1256,
+     "in_range": true,
+     "word": "0x84234970",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f00",
+     "off": 1376,
+     "in_range": true,
+     "word": "0x00408021",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f3c",
+     "off": 1436,
+     "in_range": true,
+     "word": "0x8ca50008",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b3f48",
+     "off": 1448,
+     "in_range": true,
+     "word": "0x0c016791",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b4084",
+     "off": 1764,
+     "in_range": true,
+     "word": "0x3c02800a",
+     "prologue_match": false,
+     "return_derived_start": false,
+     "both": false
+    },
+    {
+     "entry": "0x800b42ac",
+     "off": 2316,
+     "in_range": false
+    }
+   ],
+   "in_range": 41,
+   "by_prologue": 3,
+   "by_return": 4,
+   "by_both": 3,
+   "key": "LEVEL10_LEVEL.BIN"
+  }
+ ]
+}

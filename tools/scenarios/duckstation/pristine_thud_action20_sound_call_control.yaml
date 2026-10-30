@@ -1,0 +1,51 @@
+schema_version: 1
+id: pristine_thud_action20_sound_call_control
+description: >-
+  Replay the centrally pinned pristine-serial Thud recording to the exact
+  pre-launch boundary, NOP only the save-owned play_sound call at 0x800B3FFC,
+  re-arm the SPU event trace after state load, and assert that the action-20
+  object still launches while the bounded endpoint has the seven-event control
+  page and no key-on before the natural cue's shared frame. The paired live
+  generator retains the natural branch and exact event-level causal comparison.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: thud_action20_sound_pre_control
+    trigger: {type: movie_frame, target: 969, max_frames: 985, timeout_seconds: 180}
+    assertions:
+      - {id: thud_sound_pre_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: thud_sound_pre_call_word, type: memory, address: 0x800B3FFC, width: u32, op: eq, expected: 0x0C014113}
+      - {id: thud_sound_pre_countdown, type: memory, address: 0x800B4CB4, width: u32, op: eq, expected: 9}
+      - {id: thud_sound_pre_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: nop_only_thud_action20_sound_call
+        method: debugger.writeU32
+        params: {address: 0x800B3FFC, value: 0}
+      - {type: spu_trace_start, id: thud_action20_sound_spu_trace, params: {clear: true}}
+  - id: thud_action20_sound_nop_endpoint
+    trigger: {type: movie_frame, target: 980, max_frames: 12, timeout_seconds: 60}
+    captures:
+      - {id: thud_sound_nop_spu_events, type: rpc, method: spu.events.get, params: {offset: 0, limit: 1000}}
+    assertions:
+      - {id: thud_sound_nop_call_word, type: memory, address: 0x800B3FFC, width: u32, op: eq, expected: 0}
+      - {id: thud_sound_nop_action, type: memory, address: 0x800B10F0, width: u8, op: eq, expected: 20}
+      - {id: thud_sound_nop_ttl, type: memory, address: 0x800B10F2, width: u16, op: eq, expected: 195}
+      - {id: thud_sound_nop_radius, type: memory, address: 0x800B10F8, width: s16, op: eq, expected: 100}
+      - {id: thud_sound_nop_state, type: memory, address: 0x800B10FC, width: s16, op: eq, expected: 24}
+      - {id: thud_sound_nop_class, type: memory, address: 0x800B1104, width: u8, op: eq, expected: 128}
+      - {id: thud_sound_nop_event_total, type: capture, capture: thud_sound_nop_spu_events, path: total, op: eq, expected: 7}
+      - {id: thud_sound_nop_trace_complete, type: capture, capture: thud_sound_nop_spu_events, path: truncated, op: eq, expected: false}
+      - {id: thud_sound_nop_first_event_type, type: capture, capture: thud_sound_nop_spu_events, path: events.0.type, op: eq, expected: completed}
+      - {id: thud_sound_nop_first_event_frame, type: capture, capture: thud_sound_nop_spu_events, path: events.0.frame, op: eq, expected: 327717}
+      - {id: thud_sound_nop_second_event_type, type: capture, capture: thud_sound_nop_spu_events, path: events.1.type, op: eq, expected: completed}
+      - {id: thud_sound_nop_third_event_type, type: capture, capture: thud_sound_nop_spu_events, path: events.2.type, op: eq, expected: completed}
+      - {id: thud_sound_nop_first_key_on_frame, type: capture, capture: thud_sound_nop_spu_events, path: events.3.frame, op: eq, expected: 327722}
+      - {id: thud_sound_nop_first_key_on_type, type: capture, capture: thud_sound_nop_spu_events, path: events.3.type, op: eq, expected: key_on}
+      - {id: thud_sound_nop_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

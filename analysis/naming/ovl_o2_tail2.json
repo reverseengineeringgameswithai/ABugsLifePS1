@@ -1,0 +1,8 @@
+[
+ {"overlay":"MEMORY","address":"0x800b5f78","name":"frontend_page_draw_f78","tier":"inferred","evidence":["calls:GetTPage x2","static"],"rationale":"o2: GPU texture-page draw helper (GetTPage)"},
+ {"overlay":"MEMORY","address":"0x800b7a84","name":"frontend_scroll_screen_a84","tier":"inferred","evidence":["calls:scroll_bg_update","calls:music_play_once","calls:hud_draw_sprite_tile","calls:queue_draw_prim"],"rationale":"o2: a scrolling-sprite screen handler (music + sprite draw + scroll)"},
+ {"overlay":"MEMORY","address":"0x800ba9d4","name":"memcard_filename_format","tier":"inferred","evidence":["calls:sprintf","calls:format"],"rationale":"o2: builds a memcard filename via sprintf/format"},
+ {"overlay":"MEMORY","address":"0x800baee8","name":"memcard_probe","tier":"inferred","evidence":["calls:card_open","calls:card_close x2"],"rationale":"o2: opens+closes a card (presence/format check, no read)"},
+ {"overlay":"MEMORY","address":"0x800bb298","name":"memcard_file_erase","tier":"inferred","evidence":["calls:sprintf","calls:erase"],"rationale":"o2: erase (delete) a memcard file by formatted name"},
+ {"overlay":"MEMORY","address":"0x800bb448","name":"memcard_slot_manage","tier":"inferred","evidence":["calls:memcard_file_erase","calls:sprintf","calls:0x800baad4","calls:0x800bafcc"],"rationale":"o2: save-slot management orchestrator (invokes erase + filename build)"}
+]

@@ -1,0 +1,122 @@
+{
+  "row_id": "A16_swinging",
+  "date": "2026-08-03",
+  "classification": "substantiated_partial_bounded_exhausted",
+  "move_on": true,
+  "authority": {
+    "retail_exe": "REBUILD/files/SCUS_942.88",
+    "retail_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "retail_cue": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "retail_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "serial": "SCUS-94288",
+    "duckstation_binary": "~/duckstation/build/bin/duckstation-qt",
+    "duckstation_binary_sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9",
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5"
+  },
+  "fixtures": {
+    "on_swing.sav": "7c8570ff595909324aa4f2c0ba213b6f2c318b55c544d7aa581afdbeee3cc7c2",
+    "in_front_of_swing.sav": "50cf0d173e6e1f70ab1d41042d6f99c8fe4bacae1a0efbe7e4be437de1f53b1a",
+    "tree_complex_holding_swings.sav": "d7f504743ec5c523eede2aa60e47eb3385c98fbcf96ead7bd4aa5d375947add3",
+    "phase2_seed_action_controls.json": "011375d52bd2820f9cec462511bfebc34444f64c4a9b2bbf6ecd066679e42c60"
+  },
+  "capsule": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v3/swing",
+    "accepted": true,
+    "errors": [],
+    "truncated": false,
+    "frame_records_parsed": 1050,
+    "movie_frame_interval": [0, 1049],
+    "fingerprint_checks": 3150,
+    "fingerprint_mismatches": 0,
+    "represented_instructions": 261746917,
+    "movie": "movies/Phase4/swing.movie.json",
+    "movie_sha256": "774e98961aecbd34332103418a5dea7d5044d82bad0c5d51b9d0304c7c73f780",
+    "start_state": "movies/Phase4/swing.movie.sav",
+    "start_state_sha256": "30e22afb84bae609723985da59435f214d0e358368d2b8efac216c05e87943a1",
+    "capture_mode": "CachedInterpreter",
+    "use_restriction": "offline query only; never arm instrumentation while replaying this movie",
+    "attached_segment": {
+      "movie_frames": [124, 905],
+      "display_frame_boundaries": 782,
+      "gameplay_ticks": 391,
+      "mode": 5,
+      "grounded": 0,
+      "entry_mode": 1,
+      "exit_mode": 1,
+      "position_ranges": {
+        "x": [-161071, -146585],
+        "y": [-122565, -116082],
+        "z": [136951, 170496]
+      },
+      "velocity_ranges": {
+        "x": [-553, 589],
+        "y": [-547, 590],
+        "z": [-1407, 1391]
+      }
+    }
+  },
+  "c_analysis": {
+    "capsule_source": "tools/phase4_a16_capsule.c",
+    "capsule_source_sha256": "0498926e7ec566455640dc14af5d2574cb86947761e311d062000ad43f79eb36",
+    "capsule_binary_sha256": "d9da2b27a6a4f752f869d44330af4f84e5a7cbacd5447835c1942af217d8e312",
+    "capsule_output_sha256": "b72edfaf5082d31e2d6c9a3f05f85f061d586b75dc5cf21bda444b3155997b70",
+    "static_source": "tools/phase4_a16_static.c",
+    "static_source_sha256": "5ba464d45e00e4c484814e25469388b0c380e85cc03c09cec16d6bdbb98c234d",
+    "static_binary_sha256": "997d8451547ad4b805b31fbe7ce19e0f519fe3108f43288f593fbe1b230172b4",
+    "static_output_sha256": "c6b09e33202ba076c0a73d14c4d402fd142ef897cbd55c1ff7b5bf8a4939d6b5",
+    "static_scan": {
+      "relevant_player_references": 345,
+      "writes": 159,
+      "button_predicates": 9,
+      "calls_in_candidate_ranges": 45
+    }
+  },
+  "runtime_controls": {
+    "config_dir": "/tmp/duckstation-debugger-phase4-a16-20260803-02",
+    "port": 24423,
+    "anchor": "on_swing.sav",
+    "method": "same-save controller counterfactuals with per-load execTrace re-arming; CPU instrumentation forces precise Interpreter; no movie",
+    "raw_log_sha256": "b4ec111c5e37aae2030e22f2453706e06c4d3ce94d082d680d1db4659542278b",
+    "c_reducer_output_sha256": "b703c574f8dc33967d2b052e1991b5c9cb5bbb0734f5e5d0e8acb0a2279db25b",
+    "results_after_30_display_frames": {
+      "idle": {"mode": 5, "grounded": 0, "handle": 2, "heading": 2207, "target_heading": 2209, "position": [-153104, -116994, 161067]},
+      "left": {"mode": 5, "grounded": 0, "handle": 2, "heading": 1727, "target_heading": 968, "position": [-152578, -117011, 161085]},
+      "right": {"mode": 5, "grounded": 0, "handle": 2, "heading": 2687, "target_heading": 3438, "position": [-153667, -117019, 161386]},
+      "up": {"mode": 5, "grounded": 0, "handle": 2, "heading": 2207, "target_heading": 2209, "position": [-153104, -116994, 161067]},
+      "down": {"mode": 5, "grounded": 0, "handle": 2, "heading": 2207, "target_heading": 161, "position": [-152270, -118148, 164987]}
+    },
+    "cross_after_2_display_frames": {"mode": 1, "grounded": 0, "handle": 0, "action": 3, "velocity": [386, -2140, 1516]},
+    "cross_after_60_display_frames": {"mode": 0, "grounded": 257, "handle": 0, "action": 22, "velocity": [-25, 29, -97]}
+  },
+  "attachment_writer_trace": {
+    "config_dir": "/tmp/duckstation-debugger-phase4-a16-20260803-03",
+    "port": 24424,
+    "anchor": "on_swing.sav",
+    "display_frames": 8,
+    "player_handle": 2,
+    "record_index": 1,
+    "record_start": "0x8009CBB4",
+    "record_stride": "0x344",
+    "detach_field": "0x8009CBB8 (record+0x04)",
+    "watched_interval": "0x8009CBB8..0x8009CEFB; four API ranges because each access watch is capped at 256 bytes",
+    "raw_log_sha256": "72121da440034f69262e32cb8d27cd600efe73dbaf8b2c892f8274520891459a",
+    "c_reducer_output_sha256": "387db761af4ffe4641c476c0cd3fce457e13e9213aaf3158ee1aac71f0be3060",
+    "retained_events": 7508,
+    "changed_record_body_bytes": 132,
+    "observed_writer_ranges": ["0x800409F8..0x80041A70", "0x80042428..0x80042618"],
+    "consumer_projector": "0x80041AC4..0x800423F4",
+    "player_integrator_store_pcs": ["0x80036D20", "0x80036D34", "0x80036D48"]
+  },
+  "exact_laws": [
+    "0x80041AC4 publishes moving-surface handle+1 at player+0x8C and projected velocity at player+0x2C/+0x30/+0x34.",
+    "A nonzero surface result enters mode 5 at 0x8004892C; the attached handler resolves camera-relative target heading and turns toward it through the shared surface projector.",
+    "A fresh Cross edge is current pad 0x80082488 bit 0x4000 set while previous pad 0x80082380 bit 0x4000 is clear.",
+    "Release calls 0x80041A74, sets action 3 and mode 1, doubles velocity X and Z, and subtracts 0x800 from velocity Y.",
+    "0x80041A74 writes -30 to visual-sprite/mover record[index].field+0x04 and clears player+0x8C."
+  ],
+  "bounded_residuals": [
+    "Algebraic semantic naming of every per-vertex constant inside the shared 0x800409F8 transform/normal routine.",
+    "Swing-specific decomposition of camera response beyond the already confirmed shared camera-relative heading input."
+  ],
+  "why_move_on": "The remaining work is shared mover/camera engine internals with high effort and little A16-specific behavioral return. No unresolved A16 trigger, latch, steering, release, landing, attachment identity, or writer-chain branch remains."
+}

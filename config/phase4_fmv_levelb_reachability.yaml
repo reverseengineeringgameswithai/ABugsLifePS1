@@ -1,0 +1,133 @@
+schema: abl-phase4-fmv-levelb-reachability-source/2
+description: >
+  Preservation and falsification contract for the corrected natural LEVEL01-B
+  reachability evidence. The old precise-observer cold boot remains only as
+  superseded provenance; a reproducible phase-neutral replay proves the
+  from-boot movie reaches the completed-level-B caller. Raw debugger receipts,
+  movie/save bytes, disc bytes and cleanup profiles remain outside Git.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_ids:
+  - P4-ITER86-E15-LEVELB-LIFECYCLE-CONTROL
+  - P4-ITER87-E15-LEVELB-SAVE-ANCHOR-CONTROL
+  - P4-ITER88-E15-LEVELB-PHASE-NEUTRAL-REVALIDATION
+batch_plan:
+  path: config/phase4_fmv_levelb_lifecycle_batch.yaml
+  file_sha256: 58e187f8180cff32060e5d8fb680516993c32ab5249948791321b6e32d5ff959
+  canonical_sha256: bfa16e81a697cbc586fa0aeb3e9e60b9ea32d9365b4ce5b3f92f2dd4445896eb
+external_receipts:
+  - role: cold_boot_atomic
+    relative_path: live/Phase4/e15-levelb-lifecycle-v1-20260724/result.json
+    sha256: 669ff479be014be70b5381195c9cec8b2a7001447f9d1fcdad3487572b471aac
+    bytes: 99165
+  - role: cold_boot_cleanup
+    relative_path: live/Phase4/e15-levelb-lifecycle-v1-20260724/cleanup.json
+    sha256: d2f9867e70277a934af7350dca5858802cd7783d03b24f25589aa867f8918eda
+    bytes: 798
+  - role: save_recipe
+    relative_path: live/Phase4/e15-levelb-save-v1-20260724/staged-result.json
+    sha256: 3aea80328c5ee8567f7e66fe04b755fe37fec81df89da3739135fc60fad2beb3
+    bytes: 136858
+  - role: save_recipe_cleanup
+    relative_path: live/Phase4/e15-levelb-save-v1-20260724/staged-cleanup.json
+    sha256: fcda9e890b7996a777c3ea32602efa3f5db2691fb29c3a646bb452cfd6eb05a3
+    bytes: 808
+  - role: phase_neutral_replay
+    relative_path: live/Phase4/e15-levelb-phase-neutral-v1-20260725/result.json
+    sha256: e1703728f98a7c55e7f70fc2dbd15e7e92f7f3a4eacd7a72283e0cd057e873ca
+    bytes: 209259
+  - role: phase_neutral_cleanup
+    relative_path: live/Phase4/e15-levelb-phase-neutral-v1-20260725/cleanup.json
+    sha256: 96e9790f22f7e0dfcc680547dd9fd1dfd6c93829fd86cffceeed6154ab0b0f34
+    bytes: 824
+profiles:
+  - {config_dir: /var/tmp/abl-p4-e15-levelb.7rXtGw, port: 24686, owned_pid: 1630355, owned_pid_stopped: true}
+  - {config_dir: /var/tmp/abl-p4-e15-levelb-recipe.faXKj1, port: 24689, owned_pid: 1632571, owned_pid_stopped: true}
+  - {config_dir: /var/tmp/abl-p4-e15-levelb-phase-neutral.iter30b.24731, port: 24731, owned_pid: 1834352, owned_pid_stopped: true}
+fixtures:
+  movie:
+    path: movies/100% Runs/LEVEL01.movie.json
+    sha256: ece62d4e6f92b887b0500dd8ac3bec48f3638ad5d9858cda7d5b0afb3a8d2602
+    bytes: 11030625
+    media_class: pristine_serial
+  state:
+    path: level01_end_of_stage.sav
+    sha256: 42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f
+    bytes: 2033862
+    media_class: pristine
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  serial: SCUS-94288
+debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 55d589032641ad0904526742f2209c034a710a162ebba3e1bc04b4c5da6075a8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty_state_hash: 72dd936c8a6f92f6370815da7d9e192c3bcc2371
+pre_run_ledgers:
+  cold_boot_sha256: e8489bc462a277bd0ca346768923f81214e90e14bdf67ec96a44e4f38b9ee348
+  save_recipe_sha256: 61438b06999959cd9e817aa92c186eaa27e916bad2e9d196dec4b3d54bf893fc
+expected:
+  cold_boot:
+    endpoint_frame: 18001
+    endpoint_cycle: 10191652884
+    positive_selected_limits: [156, 440, 1750, 386]
+    neutral_selected_limits: [156, 440, 1750]
+    level_b_limit: 485
+    caller_hits: 0
+    function_events: 0
+    positive_completion_watch_hits: 32
+    positive_completion_watch_max_events: 32
+    movie_reproducible: false
+  save_recipe:
+    anchor: {frame: 7162, cycle: 4054570165, pc: '0x80010498', sp: '0x801ffe60', scene: 1}
+    endpoint: {frame: 12302, cycle: 6964857570}
+    positive_scene: 0
+    neutral_scene: 1
+    caller_hits: 0
+    function_events: 0
+    neutral_control_frames: 5140
+  phase_neutral:
+    source_frames: 15230
+    derived_frames: 15231
+    target_frame: 15230
+    changed_neutral_frames: 11888
+    first_changed_frame: 1335
+    last_changed_frame: 15229
+    original_endpoint:
+      frame: 15231
+      cycle: 8623268428
+      movie_frame: 15230
+      pc: '0x8003f334'
+      sp: '0x801ffee0'
+      ram_sha256: 77828507ec6624d3842ed507b872218fb598ddb9d678526e48d62d4f230491f1
+      registers_sha256: 7bc652a6c854f7a80aa2a28119a57abaced9e31088d5edaa7a9b8722fbc76053
+    neutral_endpoint:
+      frame: 15231
+      cycle: 8623268427
+      movie_frame: 15230
+      pc: '0x800b98c8'
+      sp: '0x801ff658'
+      ram_sha256: 2d36d2566623b73ad5b4a75a0c144c2566a3081a93b593ca81c832ad802c0567
+      registers_sha256: e08394ef2f5955894a854dfdf4dc03a12cf6de22301c9c089f287fb03749ccac
+    original_observed: {completed_level_b_call: true, level_a_reset_call: true, selected_limit_writer: true}
+    neutral_observed: {completed_level_b_call: false, level_a_reset_call: false, selected_limit_writer: true}
+    coverage:
+      original:
+        resident_fmv_sequence: {total_hits: 650331558, distinct_pc_count: 429, pcs_sha256: 67475d85ac3d17555f2b68d3d246e21b82742a32f800779648e4cb0dc21f7c80}
+        level_a_reset_owner: {total_hits: 738, distinct_pc_count: 340, pcs_sha256: ef57905f5589340b66d46071ec3e5cea89a3298191c3f19af891189637558e5b}
+        fmv_loader: {total_hits: 347269474, distinct_pc_count: 724, pcs_sha256: 499f48edbfb468b86f5bec3d7a747ff7a5c2b5cb323b8a48173a62ce6ce18184}
+        fmv_selector: {total_hits: 5288, distinct_pc_count: 197, pcs_sha256: c15d6792475fc26de0c1bec20649f809f7e67904806395878f51c933cf72c4ac}
+        fmv_completion_limit: {total_hits: 3864, distinct_pc_count: 21, pcs_sha256: ef3d26f82d0d254b843c31800503b5964d4a9d196440d22c3a01c4b395973368}
+        fmv_player: {total_hits: 32208, distinct_pc_count: 467, pcs_sha256: 68dde913ce4d0e77c52c77c472287486d4723e8baebae58bc5832fe0889b907a}
+      neutral:
+        resident_fmv_sequence: {total_hits: 187416675, distinct_pc_count: 403, pcs_sha256: a08834a49daf769531f27210a120b1465e13278f306045474abacfdd69c6cf0c}
+        level_a_reset_owner: {total_hits: 620, distinct_pc_count: 314, pcs_sha256: 6b4332de04b29767c3abdf033e57b3d21d4396af693298e7cf9052672df2695c}
+        fmv_loader: {total_hits: 205275173, distinct_pc_count: 648, pcs_sha256: 4c2e75ef283a79228b5ba4695b153d1519e901dc40cbdf670ffc14d8f7d28ae0}
+        fmv_selector: {total_hits: 306, distinct_pc_count: 71, pcs_sha256: 8dd0ecf86349b70742bcadef527bb12caef8a7a8cff7fe1ddfc64dd7b2f355d0}
+        fmv_completion_limit: {total_hits: 56540, distinct_pc_count: 23, pcs_sha256: 8f1d9254d7953dfbadb5400132ab861e5874fc17aa71f1e1f447cbf01d8da98a}
+        fmv_player: {total_hits: 463258, distinct_pc_count: 461, pcs_sha256: 788bdac080bb98fed083b90499ccead935dbe8bd39c23c31db5408684a70082e}
+tracked_summary:
+  schema: abl-phase4-fmv-levelb-reachability/2
+  excludes: [raw_receipts, movie_bytes, save_bytes, disc_bytes, token]

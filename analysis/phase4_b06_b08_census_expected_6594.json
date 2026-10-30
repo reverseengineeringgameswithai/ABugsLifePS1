@@ -1,0 +1,20 @@
+{
+ "_comment": "Ratchet baseline for the TRUE HEALTH word 0x800A6594. This exists because the B06/B08 damage-immunity claim depends entirely on 0x8004A888 being the only instruction that DECREMENTS health on a contact path -- if another damage-side writer existed, intercepting one site would not be immunity. An earlier immediate-only scan reported 'exactly 4 writers' and was wrong: it missed two zero-offset pointer stores. Regenerate: tools/census_address.py 0x800A6594 --block 0x800A6500 --expect analysis/phase4_b06_b08_census_expected_6594.json",
+ "target": "0x800A6594",
+ "static_resolvable": [
+  "0x80046C04", "0x8004876C", "0x8004A844", "0x8004A888", "0x800499A0",
+  "0x8004B058", "0x8004B49C", "0x8004B4AC", "0x8004F0D8", "0x800501C0",
+  "0x80052908", "0x8005291C", "0x800529AC", "0x800529E4", "0x80052A00",
+  "0x80055124", "0x8005665C", "0x80058880", "0x80058890", "0x80059D98",
+  "0x8005BB4C", "0x8005B30C"
+ ],
+ "runtime_only": [],
+ "writer_roles": {
+  "0x80046C04": "spawn init (level_load_player_spawn_writer)",
+  "0x8004A888": "DAMAGE decrement -- the unique contact-path decrement, and the write the power slot intercepts",
+  "0x8005291C": "results screen: clamp to 4 when health >= 5, not a damage path",
+  "0x80055124": "sfx_nearest_pickup_f_glue",
+  "0x80058890": "heal pickup: health += 1 with sfx 62, an INCREMENT",
+  "0x8005B30C": "respawn restore"
+ }
+}

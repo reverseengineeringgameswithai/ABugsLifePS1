@@ -1,0 +1,150 @@
+{
+  "schema": "abl-phase4-row-analysis-v1",
+  "row": "B10_purple_berry_plants",
+  "date": "2026-08-03",
+  "status": "substantiated_partial",
+  "disposition": "bounded_exhausted_move_on",
+  "scope": "Purple seed tiers 1-4, their type-6 plant output, berry-grant contact objects, equip-byte writes, and row-specific lifecycle/reset behavior",
+  "identity": {
+    "game_serial": "SCUS-94288",
+    "pristine_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "movie_sha256": "6dd25c666bdd8040a84e62b1ebeb9bbe33100f151f4534773c8043d79cc31176",
+    "state_sha256": "a78f53720ed38902f38c4a6c7b35406b30013dba51a41d791d66df56a4df5d79"
+  },
+  "capsule": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2/A13__purple_seed_levels",
+    "manifest_sha256": "c86cb9e2baeff56d10d2d6d09b1a63ba1b11904546e93d0add39519478db5b5e",
+    "accepted": true,
+    "complete": true,
+    "truncated": false,
+    "error": "",
+    "frame_states": 2316,
+    "passive_blocks": 78903390,
+    "instructions": 571789014,
+    "control_mismatches": {},
+    "matching_fingerprints": {
+      "machine_state_sha256": "d97cabe1a8c1bf13272a9a8f8f4f521cecc06af9f77290c95956709f7d3593e1",
+      "ram_sha256": "62a8148aaafdbe45a8a214370b76cbc321639933fc44394483a511c3a39d3382",
+      "registers_sha256": "3a5020303b45c1d940c8fcc6c8e1254083dec30af57e010cd2a85588e10479d3",
+      "spu_ram_sha256": "e67e7277bc2829ee24c2b66bc52904531ef49b76d9d0398eda54172718732b0f",
+      "vram_sha256": "06a1550238eb67f3d9feaba169d15f88c1eb59559b775e235fb487ac9567a6b2"
+    },
+    "evidence_boundary": "Frame-boundary RAM and passive block coverage only; exact instructions and branches come from the pristine executable."
+  },
+  "tier_map": [
+    {
+      "tier": 1,
+      "selector": "0x14",
+      "pair_address": "0x8007A478",
+      "plant_type": 6,
+      "extra": "0x4000",
+      "constructor": 35,
+      "action": 35,
+      "handler": "0x80058968",
+      "equip": 1,
+      "berry": "blue/super",
+      "sfx": 53,
+      "runtime_frame": 133396,
+      "runtime_transition": "0 -> 1"
+    },
+    {
+      "tier": 2,
+      "selector": "0x24",
+      "pair_address": "0x8007A47C",
+      "plant_type": 6,
+      "extra": "0x2000",
+      "constructor": 33,
+      "action": 33,
+      "handler": "0x80058940",
+      "equip": 2,
+      "berry": "green/homing",
+      "sfx": 54,
+      "runtime_frame": 133920,
+      "runtime_transition": "1 -> 2"
+    },
+    {
+      "tier": 3,
+      "selector": "0x34",
+      "pair_address": "0x8007A480",
+      "plant_type": 6,
+      "extra": "0x1000",
+      "constructor": 32,
+      "action": 36,
+      "handler": "0x80058978",
+      "equip": 4,
+      "berry": "purple/mega homing",
+      "sfx": 55,
+      "runtime_frame": 134486,
+      "runtime_transition": "2 -> 4"
+    },
+    {
+      "tier": 4,
+      "selector": "0x44",
+      "pair_address": "0x8007A484",
+      "plant_type": 6,
+      "extra": "0x3000",
+      "constructor": 34,
+      "action": 34,
+      "handler": "0x80058954",
+      "equip": 3,
+      "berry": "gold",
+      "sfx": 56,
+      "runtime_frame": 135204,
+      "runtime_transition": "4 -> 3"
+    }
+  ],
+  "producer": {
+    "handler": "0x8005C6F0..0x8005C740",
+    "gate": "(u32(slot+0x2C) & 0x000A0000) == 0x00020000",
+    "constructor_formula": "(signed(slot+0x2E) >> 12) + 31",
+    "spawn_call": "0x8005C728 -> 0x80059E44",
+    "spawn_position": "plant X, plant Y - 0x1400, plant Z",
+    "metadata_a_index": 3,
+    "one_shot": "After allocation, 0x8005C738..0x8005C740 ORs 0x0008 into slot+0x2E. The admission mask then fails, preventing a second grant from that plant instance.",
+    "rng": "none"
+  },
+  "contact_lifecycle": {
+    "pool": "0x800B0D18, 64 records, stride 0x38",
+    "metadata_common_to_constructors_32_35": {
+      "initial_count": 230,
+      "aux_timer": 240,
+      "radius_add": 100,
+      "collection_state": 7,
+      "flags": "0xE2"
+    },
+    "effective_collection_radius": 400,
+    "uncollected_expiry": "Shared contact countdown starts at 230 logic ticks, approximately 7.67 seconds at 30 Hz.",
+    "collection": "The walker dispatch overwrites 0x800A6597, sets the record to common state 7 and count 1, and invokes the common pickup bookkeeping.",
+    "retirement_control": "For the tier-1 record, equip changes at frame 133396, the collected record remains at count 1 through frame 133397, and it is inactive by frame 133398."
+  },
+  "equip_and_reset": {
+    "equip_address": "u8 0x800A6597",
+    "overwrite": "Each grant directly overwrites the current equip value; no stack, inventory, or same-tier denial exists in the four handlers.",
+    "throw": "0x80047160..0x8004725C reads equip for dispatch but contains no equip write. Accepted throws do not consume or reset the selected berry type.",
+    "level_load": "0x80046B68 calls the bulk clear with player base 0x800A6500 and length 0xA8, covering 0x800A6597 and restoring red/default equip 0.",
+    "other_native_writers": "The direct pristine frontier also contains a separate assignment family at 0x8005428C..0x800542DC and the contact-walker assignments at 0x80058934..0x80058980. B10 claims only its four walker actions."
+  },
+  "closure": {
+    "resolved": [
+      "all four purple tier-to-constructor mappings",
+      "all four natural equip transitions",
+      "deterministic one-shot producer and spawn position",
+      "contact actions, sounds, radius, timers, collection tail, and retirement",
+      "overwrite behavior",
+      "non-consumption on throw",
+      "level-load reset"
+    ],
+    "strict_full_gaps": [
+      "campaign-wide visible type-6 model and authored-instance census",
+      "natural uncollected-expiry visual control for every tier",
+      "paired ordinary-respawn and scene-reload persistence controls",
+      "exact GPU/animation ownership of the shared berry icon"
+    ],
+    "rationale": "The row-specific spawn/contact/equip/reset law is instruction-exact and all four positive transitions are independently present in an accepted capsule. Remaining gaps are breadth or shared presentation work with minimal expected return."
+  },
+  "live_escalation": {
+    "required": false,
+    "interpreter_movie_required": false,
+    "reason": "The accepted capsule supplies every natural tier transition and retirement control; pristine C/ASM analysis supplies exact producer, handler, writer, throw, and reset attribution."
+  }
+}

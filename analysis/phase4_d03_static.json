@@ -1,0 +1,13 @@
+{
+  "schema": "abl.phase4.d03.static.v1",
+  "row": "D03_contact_damage",
+  "input": {"path": "SCUS_942.88", "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20", "anchors_checked": 56},
+  "damage_handler": "0x8004A700",
+  "callers": ["0x800496B0","0x80049740","0x80049868","0x8004B4A0","0x80058A48","0x8005C9F8"],
+  "ordinary_contact_callers": ["0x80049740","0x8004B4A0","0x80058A48","0x8005C9F8"],
+  "special_nonordinary_callers": [{"pc":"0x800496B0","kind":1},{"pc":"0x80049868","kind":2}],
+  "hitbox": {"broad_phase":"actor XYZ plus +0x64/+0x66/+0x68 versus player Y-7360, all divided by 32, radius actor+0x6A plus 250","narrow_phase":"pose-indexed oriented ellipsoid from actor+0x74, also expanded by 250","both_required":true},
+  "ordinary_damage": {"health":"s16 0x800A6594","delta":-1,"survive_timer":45,"death_timer":-45,"vertical_velocity":-1024,"horizontal_source":"collision vector normalized by 0x80060284 then quarter-scaled"},
+  "suppression": {"positive_stagger_suppresses_health_and_vertical_launch":true,"horizontal_vector_written_before_stagger_gate":true,"positive_timer_ticks_toward_zero":true,"negative_timer_ticks_toward_zero":true,"intercept_timer":-30},
+  "family_law": "damage amount, timer, and launch are resident-global; family variation is actor hitbox data and eligibility flags"
+}

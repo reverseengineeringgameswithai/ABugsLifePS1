@@ -1,0 +1,84 @@
+schema: abl-phase4-fmv-levelb-region-b-dma-exact-pc-arm-config/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+work_packet:
+  path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-211730-213677-r5/iteration-1-work-packet.json
+  sha256: 2d0cc13285e6b0895b7a6f823a1810dfada3b0ee39dff269dd5a9afcec1d685b
+static_subwindow:
+  path: analysis/phase4_fmv_levelb_region_b_dma_subwindow.json
+  sha256: c7d3696ea7fbd0276b57f64f0790b57351932bb10a84e68cf6e80985d5120f07
+rpc_manifest:
+  path: analysis/phase3_duckstation_rpc_manifest.json
+  sha256: a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062
+capsule_index:
+  path: analysis/phase4_trace_capsule_set.json
+  sha256: 9896da99613631d878901547aed9c7aa559221548a3b86e5f9a6e00c2b59f659
+exact_pc_plan:
+  schema: abl-phase4-duckstation-exact-pc-plan/1
+  campaign_id: fmv_playback
+  row_ids: [E15_fmv]
+  identity_join:
+    rpc_manifest_sha256: a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062
+    source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+    source_dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+    dispatcher_sha256: 6ff2640dad39f85eacba9e8bbbfdb65d4e3707cb6d8f72cc74bf404579ae8a3e
+    binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+    media_serial: SCUS-94288
+    media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  start_stop:
+    method: debugger.runUntilAddress
+    address: 0x80046078
+    boundary: before_instruction
+    required_registers:
+      pc: 0x80046078
+      a0: 18
+      a1: 0x800B5788
+  arm_sequence:
+    - {sequence: 0, method: transferLog.clear, params: {}}
+    - {sequence: 1, method: transferLog.start, params: {}}
+  terminal_stop:
+    method: debugger.runUntilAddress
+    address: 0x800460C4
+    boundary: before_instruction
+  execution_limit:
+    clock: emulator_frame
+    max_frame_delta: 64
+    max_status_polls_per_stop: 512
+    poll_interval_ms: 10
+    socket_timeout_ms: 5000
+  transfer_pagination:
+    page_size: 10000
+    max_pages: 10
+    max_records: 100000
+    max_bytes: 67108864
+    require_contiguous_indexes: true
+    require_truncated: false
+  terminal_capture:
+    method: capture.atomic
+    params:
+      trigger: e15_levelb_region_b_exact_pc_terminal
+      include_registers: true
+      trace_limit: 10000
+      memory_dumps:
+        - {label: region_b_head, address: 0x800B5788, length: 0x100}
+claim_boundary:
+  adapter_preflight_complete: true
+  synthetic_transcript_only: true
+  live_executed: false
+  live_receipts: 0
+  dma_events_claimed: 0
+  dimension_promoted: false
+  next_lane: static
+  next_action: >-
+    Predeclare a fresh exact-PC escalation and a strictly wider passive
+    cold-boot movie receipt. The precise plan must establish its atomic paused
+    anchor before calling this adapter and must retain the direct command
+    sequence in the receipt stream. Execute neither plan until a future
+    immutable before-ledger admits that escalation.
+  not_claimed:
+    - a native DMA event, sector predecessor, cycle, transfer count or result
+    - native success of CdRead or completion of CdReadSync
+    - a lifecycle or other roadmap-dimension promotion
+    - authorization for a live run in this iteration

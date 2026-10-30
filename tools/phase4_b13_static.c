@@ -1,0 +1,16 @@
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+static uint16_t u16(const uint8_t*p){return(uint16_t)(p[0]|p[1]<<8);}static uint32_t u32(const uint8_t*p){return(uint32_t)p[0]|(uint32_t)p[1]<<8|(uint32_t)p[2]<<16|(uint32_t)p[3]<<24;}
+static void fail(const char*s){fprintf(stderr,"b13_static: %s\n",s);exit(2);}static uint8_t*load(const char*p,size_t*n){FILE*f=fopen(p,"rb");if(!f){perror(p);exit(2);}fseek(f,0,SEEK_END);*n=(size_t)ftell(f);rewind(f);uint8_t*b=malloc(*n);if(!b||fread(b,1,*n,f)!=*n)fail("read");fclose(f);return b;}
+static const uint8_t*at(const uint8_t*e,size_t n,uint32_t va,size_t z){uint32_t base=u32(e+0x18),sz=u32(e+0x1c);if(va<base||va-base+z>sz||0x800u+va-base+z>n)fail("range");return e+0x800+(va-base);}
+static void word(const uint8_t*e,size_t n,uint32_t pc,uint32_t want,const char*meaning){uint32_t got=u32(at(e,n,pc,4));printf("PIN pc=%08x word=%08x expected=%08x ok=%s meaning=%s\n",pc,got,want,got==want?"yes":"NO",meaning);if(got!=want)exit(3);}
+int main(int ac,char**av){if(ac!=2)return 2;size_t n;uint8_t*e=load(av[1],&n);if(n<0x800||memcmp(e,"PS-X EXE",8))fail("not exe");const uint8_t *p18=at(e,n,0x8007a448+18*4,4), *p19=at(e,n,0x8007a448+19*4,4);
+printf("YELLOW_PAIR tier3={type=%u,extra=0x%04x} tier4={type=%u,extra=0x%04x}\n",u16(p18),u16(p18+2),u16(p19),u16(p19+2));
+printf("DISPATCH type11_index9=0x%08x\n",u32(at(e,n,0x8001b848+9*4,4)));
+uint32_t data11=u32(at(e,n,0x8007a40c+11*4,4)); printf("TYPE11_DATA ptr=0x%08x bytes=",data11); const uint8_t *d11=at(e,n,data11,20); for(int i=0;i<20;i++)printf("%02x",d11[i]); putchar('\n');
+int alias_found=0; for(uint32_t pc=0x80058af8;pc+12<0x80058c64;pc+=4)if(u32(at(e,n,pc,4))==0x3c15800b&&u32(at(e,n,pc+4,4))==0x26b50d18&&u32(at(e,n,pc+8,4))==0x26b10008){printf("CONTACT_ALIAS pc=%08x base=0x800b0d18 hit_ptr_bias=8\n",pc);alias_found=1;} if(!alias_found)fail("contact alias");
+const uint8_t*r=at(e,n,0x8007941c+56*0x14,0x14);printf("CTOR56_ROW addr=%08x bytes=",0x8007941c+56*0x14);for(int i=0;i<0x14;i++)printf("%02x",r[i]);putchar('\n');printf("  action=%u active_type=%u init24=%d bytes26_27=%02x,%02x radius_add=%d f2a=%d damage_class_f2c=%d sign=%d f2f=%u flags=%02x rgb=%u,%u,%u\n",u16(r),u16(r+2),(int16_t)u16(r+4),r[6],r[7],(int16_t)u16(r+8),(int16_t)u16(r+0xa),(int16_t)u16(r+0xc),(int8_t)r[0xe],r[0xf],r[0x10],r[0x11],r[0x12],r[0x13]);
+word(e,n,0x8005c920,0x14620018,"mine state1 gate");word(e,n,0x8005c94c,0x304200a0,"skip enemy flags 0xa0");word(e,n,0x8005c95c,0x0c014942,"3D sphere helper");word(e,n,0x8005c960,0x24060096,"radius 150");word(e,n,0x8005c998,0x146200d3,"terminal animation 0x60000 gate");word(e,n,0x8005c9b0,0x0c016791,"contact allocator");word(e,n,0x8005c9b4,0x24070038,"constructor 56");word(e,n,0x8005c9b8,0x0c0160fd,"24-debris/SFX effect");word(e,n,0x800591f0,0x86230024,"permanence reads hit+0x24");word(e,n,0x80059200,0x92230027,"permanence reads hit+0x27");word(e,n,0x80059208,0x14620002,"hit+0x27 versus 6");word(e,n,0x80059210,0x36f70002,"sets permanent bit");word(e,n,0x80059300,0xa4620000,"quota decrement store");
+printf("POST_INIT_80024DDC\n");for(uint32_t pc=0x80024ddc;pc<0x80024e04;pc+=4)printf("  %08x %08x\n",pc,u32(at(e,n,pc,4)));free(e);return 0;}

@@ -1,0 +1,2190 @@
+{
+  "schema": "abl-phase4-fmv-interface-frontier/1",
+  "generated": "2026-07-20",
+  "row": "E15_fmv",
+  "lane": "static",
+  "inputs": {
+    "resident_executable": {
+      "path": "REBUILD/files/SCUS_942.88",
+      "size": 471040,
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "identity_verified": true
+    },
+    "fmv_bin": {
+      "path": "REBUILD/files/FMV/FMV.BIN",
+      "size": 509800,
+      "sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+      "identity_verified": true
+    }
+  },
+  "callback_lifecycle": {
+    "functions": [
+      {
+        "name": "StSetRing",
+        "start": "0x8006D3A4",
+        "end": "0x8006D3D4",
+        "size": 48,
+        "sha256": "3a0b46232dcbbd9265bac82a505dc971fb85bd677fe7318cf23e720aab795624",
+        "source": "src/main/8006d3a4_StSetRing.c",
+        "source_sha256": "c23d83a412034065468cb7e169e83087bcc671f292f58e7784aac624a4519725",
+        "source_status": "semantic_c"
+      },
+      {
+        "name": "CdReadyCallback",
+        "start": "0x8006D8D0",
+        "end": "0x8006D8E8",
+        "size": 24,
+        "sha256": "27e7875611b0053f59299d6fac17efb67469cceb7ae4a35e7b8c1509026ab262",
+        "source": "src/main/8006d8d0_CdReadyCallback.c",
+        "source_sha256": "00ec17d74a5cfa4e53ed7e39141ccc5811b985e1e9fc835183a4b0bc3056bc1f",
+        "source_status": "matching_c"
+      },
+      {
+        "name": "CdDataCallback",
+        "start": "0x8006DCF0",
+        "end": "0x8006DD14",
+        "size": 36,
+        "sha256": "d8b7802b4f8111454c7760f1c7ba52855397602331f299796e8b375b2c5c3016",
+        "source": "src/main/8006dcf0_CdDataCallback.c",
+        "source_sha256": "f0478196b5bc7e1497473a8e8182f4098ef21e9150679b69d7933b272e2dc6c3",
+        "source_status": "semantic_c"
+      },
+      {
+        "name": "CdRead2",
+        "start": "0x80070898",
+        "end": "0x8007092C",
+        "size": 148,
+        "sha256": "86264944c3e4d9689a633f60d5077abec4219a13a5ce0bc17809e1ea07df1986",
+        "source": "src/main/80070898_CdRead2.c",
+        "source_sha256": "ec97052f6f1a1c4a919bce595c6c59322acdbd1ecf8cabb552e73277feb1bfb6",
+        "source_status": "semantic_c"
+      },
+      {
+        "name": "StCdInterrupt2",
+        "start": "0x8007092C",
+        "end": "0x8007094C",
+        "size": 32,
+        "sha256": "39e1641a090dcac70e03cdec395d7a7e5f70f82458eca4e2d4d6ffcc26f5c86e",
+        "source": "src/main/8007092c_StCdInterrupt2.c",
+        "source_sha256": "0d5e4d523aa91f7510ed0c2edd27337c4eb5d2f72efeb4ca1316dda397c8da3e",
+        "source_status": "semantic_c"
+      },
+      {
+        "name": "StClearRing",
+        "start": "0x8007094C",
+        "end": "0x800709AC",
+        "size": 96,
+        "sha256": "4d60b9f0fdcf5c5c38a2b387ef163ee905c48c74ed550db5ad864fb0b885db57",
+        "source": "src/main/8007094c_StClearRing.c",
+        "source_sha256": "191958717854aa3f2997f4524f510b5554232aacb0e31afccbca1eda1670258a",
+        "source_status": "semantic_c"
+      },
+      {
+        "name": "callback_teardown",
+        "start": "0x800709AC",
+        "end": "0x80070A30",
+        "size": 132,
+        "sha256": "68273860d94512ef4526780762085d0ddb1ec53bc51df25421b25f674e7ef372",
+        "source": "src/main/800709ac_sub_800709ac.c",
+        "source_sha256": "21bb06802db2024e9c19e7e664899238e9793e46bf3acca535804fe09b55bf5a",
+        "source_status": "semantic_c"
+      },
+      {
+        "name": "str_data_ready_callback",
+        "start": "0x80070A30",
+        "end": "0x80070AC0",
+        "size": 144,
+        "sha256": "c02374915f14d8c7854f6239677a9162e98a312331a9cba330622f79c96fb5c3",
+        "source": "asm/hand_written/80070a30_data_ready_callback.s",
+        "source_sha256": "5b738ae34a455e03d6545eba95b39bc74dbc304239953d9820e49be1565e0eb9",
+        "source_status": "handwritten_asm"
+      },
+      {
+        "name": "StSetStream",
+        "start": "0x80070B20",
+        "end": "0x80070BA8",
+        "size": 136,
+        "sha256": "e257373ad1ec4e57331020385631c4d14ea9610f1efe3ff1fc15d35db989dd66",
+        "source": "src/main/80070b20_StSetStream.c",
+        "source_sha256": "a5ca832ed709b4535cdeb789bfc52c7843ee7a9c0e1e40a6d4e452e093cc1379",
+        "source_status": "semantic_c"
+      },
+      {
+        "name": "stream_config_store",
+        "start": "0x80070D60",
+        "end": "0x80070D80",
+        "size": 32,
+        "sha256": "f33263c00db52c806cb0934b2dc718119778d64578dc396a69789d9b140b974c",
+        "source": "src/main/80070d60_stream_config_store.c",
+        "source_sha256": "e337466459b0af1675ac4af0d66fdcb8af41b90562a415aac0c6fc976d1f540c",
+        "source_status": "semantic_c"
+      },
+      {
+        "name": "StCdInterrupt",
+        "start": "0x80070D80",
+        "end": "0x800716F0",
+        "size": 2416,
+        "sha256": "cae6990f39bbd4f661d76f3913899630eb6f15473b8d7b42db3312a875f0639c",
+        "source": "asm/hand_written/80070d80_StCdInterrupt.s",
+        "source_sha256": "fa54bc31a80d1ebb746457540ae4829c678c8f052055817968991f6cb8c2b00d",
+        "source_status": "handwritten_asm"
+      }
+    ],
+    "direct_jal_census": {
+      "0x8006DCF0": {
+        "direct_call_count": 10,
+        "call_sites": [
+          "0x80070084",
+          "0x800700A8",
+          "0x80070290",
+          "0x800703A0",
+          "0x80070428",
+          "0x80070590",
+          "0x80070670",
+          "0x80070744",
+          "0x800708F0",
+          "0x800709E8"
+        ]
+      },
+      "0x8006D8D0": {
+        "direct_call_count": 11,
+        "call_sites": [
+          "0x80039944",
+          "0x80045FA4",
+          "0x8006D658",
+          "0x80070268",
+          "0x80070378",
+          "0x80070404",
+          "0x80070568",
+          "0x8007064C",
+          "0x8007071C",
+          "0x80070900",
+          "0x800709F0"
+        ]
+      },
+      "0x80070D80": {
+        "direct_call_count": 1,
+        "call_sites": [
+          "0x80070934"
+        ]
+      },
+      "0x80070A30": {
+        "direct_call_count": 1,
+        "call_sites": [
+          "0x800716D8"
+        ]
+      },
+      "0x8007094C": {
+        "direct_call_count": 1,
+        "call_sites": [
+          "0x8006D3BC"
+        ]
+      }
+    },
+    "setup": {
+      "ring_call": "0x800B6F9C",
+      "ring_records": 32,
+      "stream_call": "0x800B6FC4",
+      "arguments": {
+        "a0": "display_mode_equals_3",
+        "a1": 1,
+        "a2": "0x0FFFFFFF",
+        "a3_optional_callback": 0,
+        "stack_arg5": 0
+      },
+      "optional_callback_slots": {
+        "frame_ready": {
+          "address": "0x800910F0",
+          "argument": "a3",
+          "store": "0x80070B58",
+          "delivery_sites": [
+            "0x80070AA0"
+          ],
+          "enabled_for_e15": false
+        },
+        "sector_ready": {
+          "address": "0x800910F4",
+          "argument": "stack_arg5",
+          "argument_load": "0x80070B38",
+          "store": "0x80070B88",
+          "delivery_sites": [
+            "0x800712DC",
+            "0x80071388"
+          ],
+          "enabled_for_e15": false
+        }
+      },
+      "optional_callback_enabled_for_e15": false
+    },
+    "installation": {
+      "player_cdread2_call": "0x800B704C",
+      "mode": "0x000001C0",
+      "data_callback_install": {
+        "site": "0x800708F0",
+        "api": "CdDataCallback",
+        "handler": "0x80070A30"
+      },
+      "ready_callback_install": {
+        "site": "0x80070900",
+        "api": "CdReadyCallback",
+        "handler": "0x8007092C"
+      },
+      "ready_wrapper_target": "0x80070D80",
+      "interrupt_delivery_to_data_handler": "0x800716D8"
+    },
+    "teardown": {
+      "common_player_range": "0x800B7464..0x800B752C",
+      "ring_clear_call": "0x800B749C",
+      "callback_clear_call": "0x800B74A4",
+      "critical_section_range": "0x800709AC..0x80070A30",
+      "default_backend_clears": [
+        "0x800709E8",
+        "0x800709F0"
+      ],
+      "alternate_backend_clears": [
+        "0x800709D0",
+        "0x800709D8"
+      ],
+      "post_clear_flag_pointers": [
+        "0x80081C28",
+        "0x80081C34"
+      ],
+      "all_player_exit_edges_converge": true
+    },
+    "exact_instructions": [
+      {
+        "pc": "0x800708E8",
+        "word": "0x3C048007",
+        "mnemonic": "lui a0,0x8007"
+      },
+      {
+        "pc": "0x800708EC",
+        "word": "0x24840A30",
+        "mnemonic": "addiu a0,a0,2608"
+      },
+      {
+        "pc": "0x800708F0",
+        "word": "0x0C01B73C",
+        "mnemonic": "jal 0x8006dcf0"
+      },
+      {
+        "pc": "0x800708F8",
+        "word": "0x3C048007",
+        "mnemonic": "lui a0,0x8007"
+      },
+      {
+        "pc": "0x800708FC",
+        "word": "0x2484092C",
+        "mnemonic": "addiu a0,a0,2348"
+      },
+      {
+        "pc": "0x80070900",
+        "word": "0x0C01B634",
+        "mnemonic": "jal 0x8006d8d0"
+      },
+      {
+        "pc": "0x80070934",
+        "word": "0x0C01C360",
+        "mnemonic": "jal 0x80070d80"
+      },
+      {
+        "pc": "0x800709B4",
+        "word": "0x0C0197EF",
+        "mnemonic": "jal 0x80065fbc"
+      },
+      {
+        "pc": "0x800709E8",
+        "word": "0x0C01B73C",
+        "mnemonic": "jal 0x8006dcf0"
+      },
+      {
+        "pc": "0x800709EC",
+        "word": "0x00002021",
+        "mnemonic": "addu a0,zero,zero"
+      },
+      {
+        "pc": "0x800709F0",
+        "word": "0x0C01B634",
+        "mnemonic": "jal 0x8006d8d0"
+      },
+      {
+        "pc": "0x800709F4",
+        "word": "0x00002021",
+        "mnemonic": "addu a0,zero,zero"
+      },
+      {
+        "pc": "0x80070A18",
+        "word": "0x0C0197F3",
+        "mnemonic": "jal 0x80065fcc"
+      },
+      {
+        "pc": "0x80070A84",
+        "word": "0x8C8410F0",
+        "mnemonic": "lw a0,4336(a0)"
+      },
+      {
+        "pc": "0x80070A98",
+        "word": "0x10800003",
+        "mnemonic": "beq a0,zero,0x80070aa8"
+      },
+      {
+        "pc": "0x80070AA0",
+        "word": "0x0080F809",
+        "mnemonic": "jalr a0"
+      },
+      {
+        "pc": "0x80070B30",
+        "word": "0x00E08821",
+        "mnemonic": "addu s1,a3,zero"
+      },
+      {
+        "pc": "0x80070B38",
+        "word": "0x8FB20030",
+        "mnemonic": "lw s2,48(sp)"
+      },
+      {
+        "pc": "0x80070B58",
+        "word": "0xAC3110F0",
+        "mnemonic": "sw s1,4336(at)"
+      },
+      {
+        "pc": "0x80070B88",
+        "word": "0xAC3210F4",
+        "mnemonic": "sw s2,4340(at)"
+      },
+      {
+        "pc": "0x800712C4",
+        "word": "0x8C6310F4",
+        "mnemonic": "lw v1,4340(v1)"
+      },
+      {
+        "pc": "0x800712D4",
+        "word": "0x10600003",
+        "mnemonic": "beq v1,zero,0x800712e4"
+      },
+      {
+        "pc": "0x800712DC",
+        "word": "0x0060F809",
+        "mnemonic": "jalr v1"
+      },
+      {
+        "pc": "0x80071370",
+        "word": "0x8C6310F4",
+        "mnemonic": "lw v1,4340(v1)"
+      },
+      {
+        "pc": "0x80071380",
+        "word": "0x10600003",
+        "mnemonic": "beq v1,zero,0x80071390"
+      },
+      {
+        "pc": "0x80071388",
+        "word": "0x0060F809",
+        "mnemonic": "jalr v1"
+      },
+      {
+        "pc": "0x800716D8",
+        "word": "0x0C01C28C",
+        "mnemonic": "jal 0x80070a30"
+      },
+      {
+        "pc": "0x800B6C40",
+        "word": "0x1220000E",
+        "mnemonic": "beq s1,zero,0x800b6c7c"
+      },
+      {
+        "pc": "0x800B6C84",
+        "word": "0xA0229A54",
+        "mnemonic": "sb v0,-26028(at)"
+      },
+      {
+        "pc": "0x800B6CBC",
+        "word": "0x3C020080",
+        "mnemonic": "lui v0,0x80"
+      },
+      {
+        "pc": "0x800B6CE8",
+        "word": "0x14400014",
+        "mnemonic": "bne v0,zero,0x800b6d3c"
+      },
+      {
+        "pc": "0x800B6CF4",
+        "word": "0x24845B80",
+        "mnemonic": "addiu a0,a0,23424"
+      },
+      {
+        "pc": "0x800B6CF8",
+        "word": "0x0C01859A",
+        "mnemonic": "jal 0x80061668"
+      },
+      {
+        "pc": "0x800B6DE8",
+        "word": "0x12020018",
+        "mnemonic": "beq s0,v0,0x800b6e4c"
+      },
+      {
+        "pc": "0x800B6E4C",
+        "word": "0x3C04800B",
+        "mnemonic": "lui a0,0x800b"
+      },
+      {
+        "pc": "0x800B6E50",
+        "word": "0x24845BA4",
+        "mnemonic": "addiu a0,a0,23460"
+      },
+      {
+        "pc": "0x800B6F9C",
+        "word": "0x0C01B4E9",
+        "mnemonic": "jal 0x8006d3a4"
+      },
+      {
+        "pc": "0x800B6FA0",
+        "word": "0x24050020",
+        "mnemonic": "addiu a1,zero,32"
+      },
+      {
+        "pc": "0x800B6FA4",
+        "word": "0x24050001",
+        "mnemonic": "addiu a1,zero,1"
+      },
+      {
+        "pc": "0x800B6FA8",
+        "word": "0x3C060FFF",
+        "mnemonic": "lui a2,0xfff"
+      },
+      {
+        "pc": "0x800B6FAC",
+        "word": "0x34C6FFFF",
+        "mnemonic": "ori a2,a2,0xffff"
+      },
+      {
+        "pc": "0x800B6FB8",
+        "word": "0x00003821",
+        "mnemonic": "addu a3,zero,zero"
+      },
+      {
+        "pc": "0x800B6FBC",
+        "word": "0xAFA00010",
+        "mnemonic": "sw zero,16(sp)"
+      },
+      {
+        "pc": "0x800B6FC4",
+        "word": "0x0C01C2C8",
+        "mnemonic": "jal 0x80070b20"
+      },
+      {
+        "pc": "0x800B6FC8",
+        "word": "0x2C840001",
+        "mnemonic": "sltiu a0,a0,1"
+      },
+      {
+        "pc": "0x800B703C",
+        "word": "0x0C01B63A",
+        "mnemonic": "jal 0x8006d8e8"
+      },
+      {
+        "pc": "0x800B7044",
+        "word": "0x1040FFFB",
+        "mnemonic": "beq v0,zero,0x800b7034"
+      },
+      {
+        "pc": "0x800B704C",
+        "word": "0x0C01C226",
+        "mnemonic": "jal 0x80070898"
+      },
+      {
+        "pc": "0x800B7050",
+        "word": "0x240401C0",
+        "mnemonic": "addiu a0,zero,448"
+      },
+      {
+        "pc": "0x800B7054",
+        "word": "0x1040FFFD",
+        "mnemonic": "beq v0,zero,0x800b704c"
+      },
+      {
+        "pc": "0x800B7294",
+        "word": "0x10540073",
+        "mnemonic": "beq v0,s4,0x800b7464"
+      },
+      {
+        "pc": "0x800B7428",
+        "word": "0x1054000E",
+        "mnemonic": "beq v0,s4,0x800b7464"
+      },
+      {
+        "pc": "0x800B7430",
+        "word": "0x1237000C",
+        "mnemonic": "beq s1,s7,0x800b7464"
+      },
+      {
+        "pc": "0x800B7444",
+        "word": "0x1054FE7C",
+        "mnemonic": "beq v0,s4,0x800b6e38"
+      },
+      {
+        "pc": "0x800B745C",
+        "word": "0x1440FF20",
+        "mnemonic": "bne v0,zero,0x800b70e0"
+      },
+      {
+        "pc": "0x800B7464",
+        "word": "0x2404000B",
+        "mnemonic": "addiu a0,zero,11"
+      },
+      {
+        "pc": "0x800B749C",
+        "word": "0x0C01C253",
+        "mnemonic": "jal 0x8007094c"
+      },
+      {
+        "pc": "0x800B74A4",
+        "word": "0x0C01C26B",
+        "mnemonic": "jal 0x800709ac"
+      }
+    ],
+    "phase3_callback_crosscheck": {
+      "artifact": "analysis/phase3_jalr_callbacks.json",
+      "sha256": "1d5a41a971417219e754655c3313791749872cee866513f24f7262647e80abd4",
+      "sites": {
+        "0x80070AA0": {
+          "class": "global_slot",
+          "function": "str_data_ready_callback",
+          "slot": "0x800910F0"
+        },
+        "0x800712DC": {
+          "class": "global_slot",
+          "function": "StCdInterrupt",
+          "slot": "0x800910F4"
+        },
+        "0x80071388": {
+          "class": "global_slot",
+          "function": "StCdInterrupt",
+          "slot": "0x800910F4"
+        }
+      }
+    }
+  },
+  "resident_consumers": {
+    "loader": {
+      "start": "0x8003E7C0",
+      "end": "0x8003E83C",
+      "size": 124,
+      "sha256": "a9de53707b6fd702ed41d5010d3ac264bbd4145c12a6363475a003ccae9f68e3",
+      "source": "src/main/8003e7c0_fmv_bin_load.c",
+      "source_status": "semantic_c",
+      "call_contract": "synchronous selector dispatch and playback",
+      "hook_contract": "a1 is a zero/nonzero enable value passed to fixed pre/post transition routines; it is not an indirect callback target"
+    },
+    "exhaustive_direct_call_count": 9,
+    "calls": [
+      {
+        "owner": "boot_dlogo",
+        "call": {
+          "pc": "0x8004FB5C",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "constant_1",
+        "hook_argument": 0,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "main_shell_state_machine",
+        "return_pc": "0x8004FB64",
+        "continuation": "next synchronous boot movie"
+      },
+      {
+        "owner": "boot_title",
+        "call": {
+          "pc": "0x8004FB68",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "constant_0",
+        "hook_argument": 0,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "main_shell_state_machine",
+        "return_pc": "0x8004FB70",
+        "continuation": "next synchronous boot movie"
+      },
+      {
+        "owner": "boot_intro",
+        "call": {
+          "pc": "0x8004FB74",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "constant_45",
+        "hook_argument": 0,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "main_shell_state_machine",
+        "return_pc": "0x8004FB7C",
+        "continuation": "shell transition selection"
+      },
+      {
+        "owner": "bonus_clip_sequence",
+        "call": {
+          "pc": "0x8004FFD4",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "bonus_cursor_plus_42",
+        "hook_argument": -1,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "scene_flow_dispatcher",
+        "return_pc": "0x8004FFDC",
+        "continuation": "publish scene-flow state and continue bonus loop"
+      },
+      {
+        "owner": "game_over_lose",
+        "call": {
+          "pc": "0x800500D8",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "constant_46",
+        "hook_argument": 0,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "scene_flow_dispatcher",
+        "return_pc": "0x800500E0",
+        "continuation": "scene_setup_and_load(5, 64)"
+      },
+      {
+        "owner": "finale_lev15c",
+        "call": {
+          "pc": "0x80050284",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "constant_40",
+        "hook_argument": 0,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "scene_flow_dispatcher",
+        "return_pc": "0x8005028C",
+        "continuation": "level_transition_orchestrator(0)"
+      },
+      {
+        "owner": "completed_level_b",
+        "call": {
+          "pc": "0x8005031C",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "level_b_table",
+        "hook_argument": -1,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "fmv_sequence_completion_check",
+        "return_pc": "0x80050324",
+        "continuation": "resume completion/progress scan"
+      },
+      {
+        "owner": "all_levels_complete_lev15d",
+        "call": {
+          "pc": "0x8005036C",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "constant_41",
+        "hook_argument": -1,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "fmv_sequence_completion_check",
+        "return_pc": "0x80050374",
+        "continuation": "publish shell transition value one and return"
+      },
+      {
+        "owner": "level_a_reset_handoff",
+        "call": {
+          "pc": "0x8005B788",
+          "word": "0x0C00F9F0",
+          "mnemonic": "jal 0x8003e7c0"
+        },
+        "selector_source": "level_a_table",
+        "hook_argument": 0,
+        "hook_semantics": "fixed_pre_post_transition_enable",
+        "caller_region": "gameplay_state_reset_cursor_seed",
+        "return_pc": "0x8005B790",
+        "continuation": "clear transition fields then resume scene load"
+      }
+    ],
+    "caller_regions": {
+      "main_shell_state_machine": {
+        "start": "0x8004FA40",
+        "end": "0x8004FC3C",
+        "size": 508,
+        "sha256": "787e0a6a7bbbe06db4aa5664686f30982ec90c10a8e478f6e79ed538ac382d0f",
+        "source": "asm/hand_written/8004fa40_main_shell_state_machine.s",
+        "source_sha256": "cda14ed2a18ef2d3c54713a995f856752eeb5b95058ac7432abf1797235c2548",
+        "source_status": "handwritten_asm"
+      },
+      "scene_flow_set_substate_1": {
+        "start": "0x8004FC3C",
+        "end": "0x8004FC50",
+        "size": 20,
+        "sha256": "c131d892a4b550faebcd3ccaecac3c682a4ca44c5d5e031386d42ec5e0fe0561",
+        "source": "asm/hand_written/8004fc3c_sub_8004fc3c.s",
+        "source_sha256": "e46c7f6f12c98aaa07a112e8f9a10048736ab32e6a82319416476bd4854a7ff9",
+        "source_status": "handwritten_asm"
+      },
+      "scene_flow_set_substate_11": {
+        "start": "0x8004FC50",
+        "end": "0x8004FC64",
+        "size": 20,
+        "sha256": "6f460559adcb58442e1ff6bfaf9d44c87e67c4d6086d5bd84fbb93f84346f1a4",
+        "source": "asm/hand_written/8004fc50_sub_8004fc50.s",
+        "source_sha256": "57f63aa063c5c87f4ed0706312b8439335242a459f167b423cea2b897621e388",
+        "source_status": "handwritten_asm"
+      },
+      "scene_flow_set_substate_2": {
+        "start": "0x8004FC64",
+        "end": "0x8004FC78",
+        "size": 20,
+        "sha256": "6642cd4849f6116e7c4898d56f885290e0f06655916666482da6982836387651",
+        "source": "asm/hand_written/8004fc64_sub_8004fc64.s",
+        "source_sha256": "e5bbc06dc6e84ca6283d8c2bbe422758c76bbe9781672ca6022584f32a0dbbcf",
+        "source_status": "handwritten_asm"
+      },
+      "scene_flow_set_substate_7": {
+        "start": "0x8004FC78",
+        "end": "0x8004FC8C",
+        "size": 20,
+        "sha256": "639a935de52ef3121753a7261b62792970ebe4a5cf6401e50ef49bf3c76f2a8b",
+        "source": "asm/hand_written/8004fc78_sub_8004fc78.s",
+        "source_sha256": "8a3aac95c1571d1fea1a5a98093c20bdf6749d49a0e74331d44eca64b2e985cf",
+        "source_status": "handwritten_asm"
+      },
+      "scene_flow_set_substate_12": {
+        "start": "0x8004FC8C",
+        "end": "0x8004FCA0",
+        "size": 20,
+        "sha256": "e43f1bc62ecb955cd56eee70dc24dd03eaa0eb86e2fd01ade1ae42d25cfcd264",
+        "source": "asm/hand_written/8004fc8c_sub_8004fc8c.s",
+        "source_sha256": "7a1eff5a6b89ee905a00f9e2121b691f6e082a95fa6091b12cb89a4b6f240cf2",
+        "source_status": "handwritten_asm"
+      },
+      "scene_flow_dispatcher": {
+        "start": "0x8004FCA0",
+        "end": "0x800502C4",
+        "size": 1572,
+        "sha256": "02fc946a4c8757792f646d23e5cabdac5e0cf4755211b733cc75aa15b2f0592f",
+        "source": "asm/hand_written/8004fca0_scene_flow_dispatcher.s",
+        "source_sha256": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+        "source_status": "handwritten_asm"
+      },
+      "fmv_sequence_completion_check": {
+        "start": "0x800502C4",
+        "end": "0x8005038C",
+        "size": 200,
+        "sha256": "0b1c9bf09173c00de24df8d5c827b534b2d1ebe3a82dba7fb55b5595ac7d22fb",
+        "source": "asm/hand_written/800502c4_sub_800502c4.s",
+        "source_sha256": "81a8b5cbb3833024def4274c0aa8d9d4479a954fe9d5907b2defc509a78c2ad8",
+        "source_status": "handwritten_asm"
+      },
+      "gameplay_state_reset_cursor_seed": {
+        "start": "0x8005B714",
+        "end": "0x8005BC64",
+        "size": 1360,
+        "sha256": "3c5457746a259267ed697efff5a9385f25a3245f537cf51d8338253ccef73534",
+        "source": "asm/hand_written/8005b714_gameplay_state_reset_cursor_seed.s",
+        "source_sha256": "07b436d13edd1628b61702d27030a1b02af23212758f8e99b352f2831f1c15ca",
+        "source_status": "handwritten_asm"
+      }
+    },
+    "main_shell_dispatch": {
+      "owner_range": [
+        "0x8004FA40",
+        "0x8004FC3C"
+      ],
+      "selector": {
+        "address": "0x8008243C",
+        "guard": "unsigned_less_than_6"
+      },
+      "dispatch_site": "0x8004FC34",
+      "table": {
+        "address": "0x8001B3C4",
+        "entries": 6,
+        "sha256": "9f29dc248a56655a207894378cbd2f3f535345704f617938f7e3efa885639da1"
+      },
+      "targets": [
+        {
+          "index": 0,
+          "target": "0x8004FC3C",
+          "owner": "scene_flow_set_substate_1",
+          "target_range": [
+            "0x8004FC3C",
+            "0x8004FC50"
+          ],
+          "source": "asm/hand_written/8004fc3c_sub_8004fc3c.s",
+          "source_sha256": "e46c7f6f12c98aaa07a112e8f9a10048736ab32e6a82319416476bd4854a7ff9",
+          "semantics": {
+            "destination_index_store": {
+              "address": "0x8008245C",
+              "value": 1
+            },
+            "resolved_scene": 1,
+            "scene_table": "0x80077FA0",
+            "return_join": "0x8004FCC0"
+          }
+        },
+        {
+          "index": 1,
+          "target": "0x8004FC50",
+          "owner": "scene_flow_set_substate_11",
+          "target_range": [
+            "0x8004FC50",
+            "0x8004FC64"
+          ],
+          "source": "asm/hand_written/8004fc50_sub_8004fc50.s",
+          "source_sha256": "57f63aa063c5c87f4ed0706312b8439335242a459f167b423cea2b897621e388",
+          "semantics": {
+            "destination_index_store": {
+              "address": "0x8008245C",
+              "value": 11
+            },
+            "resolved_scene": 12,
+            "scene_table": "0x80077FA0",
+            "return_join": "0x8004FCC0"
+          }
+        },
+        {
+          "index": 2,
+          "target": "0x8004FC64",
+          "owner": "scene_flow_set_substate_2",
+          "target_range": [
+            "0x8004FC64",
+            "0x8004FC78"
+          ],
+          "source": "asm/hand_written/8004fc64_sub_8004fc64.s",
+          "source_sha256": "e5bbc06dc6e84ca6283d8c2bbe422758c76bbe9781672ca6022584f32a0dbbcf",
+          "semantics": {
+            "destination_index_store": {
+              "address": "0x8008245C",
+              "value": 2
+            },
+            "resolved_scene": 3,
+            "scene_table": "0x80077FA0",
+            "return_join": "0x8004FCC0"
+          }
+        },
+        {
+          "index": 3,
+          "target": "0x8004FC78",
+          "owner": "scene_flow_set_substate_7",
+          "target_range": [
+            "0x8004FC78",
+            "0x8004FC8C"
+          ],
+          "source": "asm/hand_written/8004fc78_sub_8004fc78.s",
+          "source_sha256": "8a3aac95c1571d1fea1a5a98093c20bdf6749d49a0e74331d44eca64b2e985cf",
+          "semantics": {
+            "destination_index_store": {
+              "address": "0x8008245C",
+              "value": 7
+            },
+            "resolved_scene": 4,
+            "scene_table": "0x80077FA0",
+            "return_join": "0x8004FCC0"
+          }
+        },
+        {
+          "index": 4,
+          "target": "0x8004FC8C",
+          "owner": "scene_flow_set_substate_12",
+          "target_range": [
+            "0x8004FC8C",
+            "0x8004FCA0"
+          ],
+          "source": "asm/hand_written/8004fc8c_sub_8004fc8c.s",
+          "source_sha256": "7a1eff5a6b89ee905a00f9e2121b691f6e082a95fa6091b12cb89a4b6f240cf2",
+          "semantics": {
+            "destination_index_store": {
+              "address": "0x8008245C",
+              "value": 12
+            },
+            "resolved_scene": 13,
+            "scene_table": "0x80077FA0",
+            "return_join": "0x8004FCC0"
+          }
+        },
+        {
+          "index": 5,
+          "target": "0x8004FCA0",
+          "owner": "scene_flow_dispatcher",
+          "target_range": [
+            "0x8004FCA0",
+            "0x800502C4"
+          ],
+          "source": "asm/hand_written/8004fca0_scene_flow_dispatcher.s",
+          "source_sha256": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+          "semantics": {
+            "shell_substate_store": {
+              "address": "0x8008243C",
+              "value": 0
+            },
+            "orchestrator_call": {
+              "site": "0x8004FCA8",
+              "target": "0x8005222C",
+              "a0": 1
+            },
+            "master_state_store": "0x8004FCB4",
+            "return_join": "0x8004FB3C"
+          }
+        }
+      ],
+      "downstream_scene_resolution": {
+        "shared_join": "0x8004FCC0",
+        "destination_index_load": "0x8004FCF0",
+        "scene_table": "0x80077FA0",
+        "scene_table_load": "0x8004FD04",
+        "scene_store": {
+          "site": "0x8004FD0C",
+          "address": "0x80082504"
+        }
+      },
+      "boot_return_dispatch_join": {
+        "loader_return_pcs": [
+          "0x8004FB64",
+          "0x8004FB70",
+          "0x8004FB7C"
+        ],
+        "owner_range": [
+          "0x8004FA40",
+          "0x8004FC3C"
+        ],
+        "dispatch_site": "0x8004FC34",
+        "target_count": 6
+      },
+      "exact_instructions": [
+        {
+          "pc": "0x8004FC0C",
+          "word": "0x3C038008",
+          "mnemonic": "lui v1,0x8008"
+        },
+        {
+          "pc": "0x8004FC10",
+          "word": "0x8C63243C",
+          "mnemonic": "lw v1,9276(v1)"
+        },
+        {
+          "pc": "0x8004FC18",
+          "word": "0x2C620006",
+          "mnemonic": "sltiu v0,v1,6"
+        },
+        {
+          "pc": "0x8004FC1C",
+          "word": "0x10400028",
+          "mnemonic": "beq v0,zero,0x8004fcc0"
+        },
+        {
+          "pc": "0x8004FC20",
+          "word": "0x00031080",
+          "mnemonic": "sll v0,v1,2"
+        },
+        {
+          "pc": "0x8004FC24",
+          "word": "0x3C018002",
+          "mnemonic": "lui at,0x8002"
+        },
+        {
+          "pc": "0x8004FC28",
+          "word": "0x00220821",
+          "mnemonic": "addu at,at,v0"
+        },
+        {
+          "pc": "0x8004FC2C",
+          "word": "0x8C22B3C4",
+          "mnemonic": "lw v0,-19516(at)"
+        },
+        {
+          "pc": "0x8004FC34",
+          "word": "0x00400008",
+          "mnemonic": "jr v0"
+        },
+        {
+          "pc": "0x8004FC3C",
+          "word": "0x24020001",
+          "mnemonic": "addiu v0,zero,1"
+        },
+        {
+          "pc": "0x8004FC44",
+          "word": "0xA422245C",
+          "mnemonic": "sh v0,9308(at)"
+        },
+        {
+          "pc": "0x8004FC48",
+          "word": "0x08013F30",
+          "mnemonic": "j 0x8004fcc0"
+        },
+        {
+          "pc": "0x8004FC50",
+          "word": "0x2402000B",
+          "mnemonic": "addiu v0,zero,11"
+        },
+        {
+          "pc": "0x8004FC58",
+          "word": "0xA422245C",
+          "mnemonic": "sh v0,9308(at)"
+        },
+        {
+          "pc": "0x8004FC5C",
+          "word": "0x08013F30",
+          "mnemonic": "j 0x8004fcc0"
+        },
+        {
+          "pc": "0x8004FC64",
+          "word": "0x24020002",
+          "mnemonic": "addiu v0,zero,2"
+        },
+        {
+          "pc": "0x8004FC6C",
+          "word": "0xA422245C",
+          "mnemonic": "sh v0,9308(at)"
+        },
+        {
+          "pc": "0x8004FC70",
+          "word": "0x08013F30",
+          "mnemonic": "j 0x8004fcc0"
+        },
+        {
+          "pc": "0x8004FC78",
+          "word": "0x24020007",
+          "mnemonic": "addiu v0,zero,7"
+        },
+        {
+          "pc": "0x8004FC80",
+          "word": "0xA422245C",
+          "mnemonic": "sh v0,9308(at)"
+        },
+        {
+          "pc": "0x8004FC84",
+          "word": "0x08013F30",
+          "mnemonic": "j 0x8004fcc0"
+        },
+        {
+          "pc": "0x8004FC8C",
+          "word": "0x2402000C",
+          "mnemonic": "addiu v0,zero,12"
+        },
+        {
+          "pc": "0x8004FC94",
+          "word": "0xA422245C",
+          "mnemonic": "sh v0,9308(at)"
+        },
+        {
+          "pc": "0x8004FC98",
+          "word": "0x08013F30",
+          "mnemonic": "j 0x8004fcc0"
+        },
+        {
+          "pc": "0x8004FCA4",
+          "word": "0xAC20243C",
+          "mnemonic": "sw zero,9276(at)"
+        },
+        {
+          "pc": "0x8004FCA8",
+          "word": "0x0C01488B",
+          "mnemonic": "jal 0x8005222c"
+        },
+        {
+          "pc": "0x8004FCAC",
+          "word": "0x24040001",
+          "mnemonic": "addiu a0,zero,1"
+        },
+        {
+          "pc": "0x8004FCB4",
+          "word": "0xA42223A0",
+          "mnemonic": "sh v0,9120(at)"
+        },
+        {
+          "pc": "0x8004FCB8",
+          "word": "0x08013ECF",
+          "mnemonic": "j 0x8004fb3c"
+        },
+        {
+          "pc": "0x8004FCC0",
+          "word": "0x3C028008",
+          "mnemonic": "lui v0,0x8008"
+        },
+        {
+          "pc": "0x8004FCF0",
+          "word": "0x8442245C",
+          "mnemonic": "lh v0,9308(v0)"
+        },
+        {
+          "pc": "0x8004FCF8",
+          "word": "0x00021080",
+          "mnemonic": "sll v0,v0,2"
+        },
+        {
+          "pc": "0x8004FCFC",
+          "word": "0x3C018007",
+          "mnemonic": "lui at,0x8007"
+        },
+        {
+          "pc": "0x8004FD00",
+          "word": "0x00220821",
+          "mnemonic": "addu at,at,v0"
+        },
+        {
+          "pc": "0x8004FD04",
+          "word": "0x8C227FA0",
+          "mnemonic": "lw v0,32672(at)"
+        },
+        {
+          "pc": "0x8004FD08",
+          "word": "0x3C018008",
+          "mnemonic": "lui at,0x8008"
+        },
+        {
+          "pc": "0x8004FD0C",
+          "word": "0xAC222504",
+          "mnemonic": "sw v0,9476(at)"
+        }
+      ]
+    },
+    "level_a_post_fmv_continuation": {
+      "start": "0x8005B790",
+      "end": "0x8005BC64",
+      "function_start": "0x8005B714",
+      "function_end": "0x8005BC64",
+      "scene_load_call": "0x8005B7CC",
+      "scene_load_target": "0x8003F358",
+      "direct_call_count": 20,
+      "direct_calls": [
+        {
+          "pc": "0x8005B7A8",
+          "target": "0x80039478",
+          "role": "display_buffers_init",
+          "instruction": {
+            "pc": "0x8005B7A8",
+            "word": "0x0C00E51E",
+            "mnemonic": "jal 0x80039478"
+          }
+        },
+        {
+          "pc": "0x8005B7CC",
+          "target": "0x8003F358",
+          "role": "scene_load_init",
+          "instruction": {
+            "pc": "0x8005B7CC",
+            "word": "0x0C00FCD6",
+            "mnemonic": "jal 0x8003f358"
+          }
+        },
+        {
+          "pc": "0x8005B7F0",
+          "target": "0x80054AAC",
+          "role": "loadscreen_color_store",
+          "instruction": {
+            "pc": "0x8005B7F0",
+            "word": "0x0C0152AB",
+            "mnemonic": "jal 0x80054aac"
+          }
+        },
+        {
+          "pc": "0x8005B7F8",
+          "target": "0x8003F2F0",
+          "role": "wait_for_frame_sync",
+          "instruction": {
+            "pc": "0x8005B7F8",
+            "word": "0x0C00FCBC",
+            "mnemonic": "jal 0x8003f2f0"
+          }
+        },
+        {
+          "pc": "0x8005B800",
+          "target": "0x80054AD4",
+          "role": "loadscreen_state_update",
+          "instruction": {
+            "pc": "0x8005B800",
+            "word": "0x0C0152B5",
+            "mnemonic": "jal 0x80054ad4"
+          }
+        },
+        {
+          "pc": "0x8005B818",
+          "target": "0x80025F54",
+          "role": "loadscreen_glyph_draw",
+          "instruction": {
+            "pc": "0x8005B818",
+            "word": "0x0C0097D5",
+            "mnemonic": "jal 0x80025f54"
+          }
+        },
+        {
+          "pc": "0x8005B820",
+          "target": "0x80026D78",
+          "role": "loadscreen_primitive_queue",
+          "instruction": {
+            "pc": "0x8005B820",
+            "word": "0x0C009B5E",
+            "mnemonic": "jal 0x80026d78"
+          }
+        },
+        {
+          "pc": "0x8005B830",
+          "target": "0x8003CF2C",
+          "role": "resource_id_dat_load_dispatch",
+          "instruction": {
+            "pc": "0x8005B830",
+            "word": "0x0C00F3CB",
+            "mnemonic": "jal 0x8003cf2c"
+          }
+        },
+        {
+          "pc": "0x8005B848",
+          "target": "0x8005B4E4",
+          "role": "post_load_transition_hook",
+          "instruction": {
+            "pc": "0x8005B848",
+            "word": "0x0C016D39",
+            "mnemonic": "jal 0x8005b4e4"
+          }
+        },
+        {
+          "pc": "0x8005B978",
+          "target": "0x8005F7AC",
+          "role": "clear_reset_block_16_a",
+          "instruction": {
+            "pc": "0x8005B978",
+            "word": "0x0C017DEB",
+            "mnemonic": "jal 0x8005f7ac"
+          }
+        },
+        {
+          "pc": "0x8005B98C",
+          "target": "0x8005F7AC",
+          "role": "clear_reset_block_16_b",
+          "instruction": {
+            "pc": "0x8005B98C",
+            "word": "0x0C017DEB",
+            "mnemonic": "jal 0x8005f7ac"
+          }
+        },
+        {
+          "pc": "0x8005B9A0",
+          "target": "0x8005F7AC",
+          "role": "clear_reset_block_160",
+          "instruction": {
+            "pc": "0x8005B9A0",
+            "word": "0x0C017DEB",
+            "mnemonic": "jal 0x8005f7ac"
+          }
+        },
+        {
+          "pc": "0x8005BAA4",
+          "target": "0x80046B20",
+          "role": "level_load_player_spawn_write",
+          "instruction": {
+            "pc": "0x8005BAA4",
+            "word": "0x0C011AC8",
+            "mnemonic": "jal 0x80046b20"
+          }
+        },
+        {
+          "pc": "0x8005BAB4",
+          "target": "0x8004DC0C",
+          "role": "respawn_collision_reset",
+          "instruction": {
+            "pc": "0x8005BAB4",
+            "word": "0x0C013703",
+            "mnemonic": "jal 0x8004dc0c"
+          }
+        },
+        {
+          "pc": "0x8005BABC",
+          "target": "0x80057404",
+          "role": "gameplay_pool_reset",
+          "instruction": {
+            "pc": "0x8005BABC",
+            "word": "0x0C015D01",
+            "mnemonic": "jal 0x80057404"
+          }
+        },
+        {
+          "pc": "0x8005BAC4",
+          "target": "0x8005BC64",
+          "role": "plant_slot_respawn_scan",
+          "instruction": {
+            "pc": "0x8005BAC4",
+            "word": "0x0C016F19",
+            "mnemonic": "jal 0x8005bc64"
+          }
+        },
+        {
+          "pc": "0x8005BACC",
+          "target": "0x80054810",
+          "role": "scene_verb_dispatch",
+          "instruction": {
+            "pc": "0x8005BACC",
+            "word": "0x0C015204",
+            "mnemonic": "jal 0x80054810"
+          }
+        },
+        {
+          "pc": "0x8005BAE8",
+          "target": "0x8003E760",
+          "role": "token_descriptor_reskin",
+          "instruction": {
+            "pc": "0x8005BAE8",
+            "word": "0x0C00F9D8",
+            "mnemonic": "jal 0x8003e760"
+          }
+        },
+        {
+          "pc": "0x8005BB08",
+          "target": "0x8005F4EC",
+          "role": "actor_slot_field_reset",
+          "instruction": {
+            "pc": "0x8005BB08",
+            "word": "0x0C017D3B",
+            "mnemonic": "jal 0x8005f4ec"
+          }
+        },
+        {
+          "pc": "0x8005BC38",
+          "target": "0x80046AE8",
+          "role": "music_play_looping",
+          "instruction": {
+            "pc": "0x8005BC38",
+            "word": "0x0C011ABA",
+            "mnemonic": "jal 0x80046ae8"
+          }
+        }
+      ],
+      "source": "asm/hand_written/8005b714_gameplay_state_reset_cursor_seed.s",
+      "source_status": "handwritten_asm_external_hash_pinned",
+      "source_sha256": "07b436d13edd1628b61702d27030a1b02af23212758f8e99b352f2831f1c15ca"
+    },
+    "exact_instructions": [
+      {
+        "pc": "0x8003E7D8",
+        "word": "0x00A08021",
+        "mnemonic": "addu s0,a1,zero"
+      },
+      {
+        "pc": "0x8003E7DC",
+        "word": "0x12000003",
+        "mnemonic": "beq s0,zero,0x8003e7ec"
+      },
+      {
+        "pc": "0x8003E7E0",
+        "word": "0x02002021",
+        "mnemonic": "addu a0,s0,zero"
+      },
+      {
+        "pc": "0x8003E7E4",
+        "word": "0x0C016D10",
+        "mnemonic": "jal 0x8005b440"
+      },
+      {
+        "pc": "0x8003E804",
+        "word": "0x12000003",
+        "mnemonic": "beq s0,zero,0x8003e814"
+      },
+      {
+        "pc": "0x8003E808",
+        "word": "0x02002021",
+        "mnemonic": "addu a0,s0,zero"
+      },
+      {
+        "pc": "0x8003E80C",
+        "word": "0x0C016D39",
+        "mnemonic": "jal 0x8005b4e4"
+      },
+      {
+        "pc": "0x8003E814",
+        "word": "0x0C02D894",
+        "mnemonic": "jal 0x800b6250"
+      },
+      {
+        "pc": "0x8003E818",
+        "word": "0x02202021",
+        "mnemonic": "addu a0,s1,zero"
+      },
+      {
+        "pc": "0x8003E81C",
+        "word": "0x0C00E615",
+        "mnemonic": "jal 0x80039854"
+      },
+      {
+        "pc": "0x8004FB58",
+        "word": "0x24040001",
+        "mnemonic": "addiu a0,zero,1"
+      },
+      {
+        "pc": "0x8004FB5C",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x8004FB60",
+        "word": "0x00002821",
+        "mnemonic": "addu a1,zero,zero"
+      },
+      {
+        "pc": "0x8004FB64",
+        "word": "0x00002021",
+        "mnemonic": "addu a0,zero,zero"
+      },
+      {
+        "pc": "0x8004FB68",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x8004FB6C",
+        "word": "0x00002821",
+        "mnemonic": "addu a1,zero,zero"
+      },
+      {
+        "pc": "0x8004FB70",
+        "word": "0x2404002D",
+        "mnemonic": "addiu a0,zero,45"
+      },
+      {
+        "pc": "0x8004FB74",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x8004FB78",
+        "word": "0x00002821",
+        "mnemonic": "addu a1,zero,zero"
+      },
+      {
+        "pc": "0x8004FF9C",
+        "word": "0x2405FFFF",
+        "mnemonic": "addiu a1,zero,-1"
+      },
+      {
+        "pc": "0x8004FFAC",
+        "word": "0x90C6B88A",
+        "mnemonic": "lbu a2,-18294(a2)"
+      },
+      {
+        "pc": "0x8004FFB4",
+        "word": "0x24C60001",
+        "mnemonic": "addiu a2,a2,1"
+      },
+      {
+        "pc": "0x8004FFB8",
+        "word": "0x30C400FF",
+        "mnemonic": "andi a0,a2,0xff"
+      },
+      {
+        "pc": "0x8004FFD4",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x8004FFD8",
+        "word": "0x24840029",
+        "mnemonic": "addiu a0,a0,41"
+      },
+      {
+        "pc": "0x8004FFDC",
+        "word": "0xAF90064C",
+        "mnemonic": "sw s0,1612(gp)"
+      },
+      {
+        "pc": "0x800500D4",
+        "word": "0x2404002E",
+        "mnemonic": "addiu a0,zero,46"
+      },
+      {
+        "pc": "0x800500D8",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x800500DC",
+        "word": "0x00002821",
+        "mnemonic": "addu a1,zero,zero"
+      },
+      {
+        "pc": "0x800500E4",
+        "word": "0x0C0140E3",
+        "mnemonic": "jal 0x8005038c"
+      },
+      {
+        "pc": "0x80050280",
+        "word": "0x24040028",
+        "mnemonic": "addiu a0,zero,40"
+      },
+      {
+        "pc": "0x80050284",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x80050288",
+        "word": "0x00002821",
+        "mnemonic": "addu a1,zero,zero"
+      },
+      {
+        "pc": "0x8005028C",
+        "word": "0x0C01488B",
+        "mnemonic": "jal 0x8005222c"
+      },
+      {
+        "pc": "0x80050318",
+        "word": "0x90247FE3",
+        "mnemonic": "lbu a0,32739(at)"
+      },
+      {
+        "pc": "0x8005031C",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x80050320",
+        "word": "0x2405FFFF",
+        "mnemonic": "addiu a1,zero,-1"
+      },
+      {
+        "pc": "0x80050324",
+        "word": "0x00002021",
+        "mnemonic": "addu a0,zero,zero"
+      },
+      {
+        "pc": "0x80050354",
+        "word": "0x24040029",
+        "mnemonic": "addiu a0,zero,41"
+      },
+      {
+        "pc": "0x80050364",
+        "word": "0x2405FFFF",
+        "mnemonic": "addiu a1,zero,-1"
+      },
+      {
+        "pc": "0x8005036C",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x80050370",
+        "word": "0xA0620000",
+        "mnemonic": "sb v0,0(v1)"
+      },
+      {
+        "pc": "0x80050378",
+        "word": "0xAF82064C",
+        "mnemonic": "sw v0,1612(gp)"
+      },
+      {
+        "pc": "0x8005B784",
+        "word": "0x9024A08B",
+        "mnemonic": "lbu a0,-24437(at)"
+      },
+      {
+        "pc": "0x8005B788",
+        "word": "0x0C00F9F0",
+        "mnemonic": "jal 0x8003e7c0"
+      },
+      {
+        "pc": "0x8005B78C",
+        "word": "0x00002821",
+        "mnemonic": "addu a1,zero,zero"
+      },
+      {
+        "pc": "0x8005B794",
+        "word": "0xA4202388",
+        "mnemonic": "sh zero,9096(at)"
+      },
+      {
+        "pc": "0x8005B79C",
+        "word": "0xA4202494",
+        "mnemonic": "sh zero,9364(at)"
+      },
+      {
+        "pc": "0x8005B7A4",
+        "word": "0xA4202430",
+        "mnemonic": "sh zero,9264(at)"
+      },
+      {
+        "pc": "0x8005B7A8",
+        "word": "0x0C00E51E",
+        "mnemonic": "jal 0x80039478"
+      },
+      {
+        "pc": "0x8005B7A8",
+        "word": "0x0C00E51E",
+        "mnemonic": "jal 0x80039478"
+      },
+      {
+        "pc": "0x8005B7CC",
+        "word": "0x0C00FCD6",
+        "mnemonic": "jal 0x8003f358"
+      },
+      {
+        "pc": "0x8005B7F0",
+        "word": "0x0C0152AB",
+        "mnemonic": "jal 0x80054aac"
+      },
+      {
+        "pc": "0x8005B7F8",
+        "word": "0x0C00FCBC",
+        "mnemonic": "jal 0x8003f2f0"
+      },
+      {
+        "pc": "0x8005B800",
+        "word": "0x0C0152B5",
+        "mnemonic": "jal 0x80054ad4"
+      },
+      {
+        "pc": "0x8005B818",
+        "word": "0x0C0097D5",
+        "mnemonic": "jal 0x80025f54"
+      },
+      {
+        "pc": "0x8005B820",
+        "word": "0x0C009B5E",
+        "mnemonic": "jal 0x80026d78"
+      },
+      {
+        "pc": "0x8005B830",
+        "word": "0x0C00F3CB",
+        "mnemonic": "jal 0x8003cf2c"
+      },
+      {
+        "pc": "0x8005B848",
+        "word": "0x0C016D39",
+        "mnemonic": "jal 0x8005b4e4"
+      },
+      {
+        "pc": "0x8005B978",
+        "word": "0x0C017DEB",
+        "mnemonic": "jal 0x8005f7ac"
+      },
+      {
+        "pc": "0x8005B98C",
+        "word": "0x0C017DEB",
+        "mnemonic": "jal 0x8005f7ac"
+      },
+      {
+        "pc": "0x8005B9A0",
+        "word": "0x0C017DEB",
+        "mnemonic": "jal 0x8005f7ac"
+      },
+      {
+        "pc": "0x8005BAA4",
+        "word": "0x0C011AC8",
+        "mnemonic": "jal 0x80046b20"
+      },
+      {
+        "pc": "0x8005BAB4",
+        "word": "0x0C013703",
+        "mnemonic": "jal 0x8004dc0c"
+      },
+      {
+        "pc": "0x8005BABC",
+        "word": "0x0C015D01",
+        "mnemonic": "jal 0x80057404"
+      },
+      {
+        "pc": "0x8005BAC4",
+        "word": "0x0C016F19",
+        "mnemonic": "jal 0x8005bc64"
+      },
+      {
+        "pc": "0x8005BACC",
+        "word": "0x0C015204",
+        "mnemonic": "jal 0x80054810"
+      },
+      {
+        "pc": "0x8005BAE8",
+        "word": "0x0C00F9D8",
+        "mnemonic": "jal 0x8003e760"
+      },
+      {
+        "pc": "0x8005BB08",
+        "word": "0x0C017D3B",
+        "mnemonic": "jal 0x8005f4ec"
+      },
+      {
+        "pc": "0x8005BC38",
+        "word": "0x0C011ABA",
+        "mnemonic": "jal 0x80046ae8"
+      },
+      {
+        "pc": "0x8004FC0C",
+        "word": "0x3C038008",
+        "mnemonic": "lui v1,0x8008"
+      },
+      {
+        "pc": "0x8004FC10",
+        "word": "0x8C63243C",
+        "mnemonic": "lw v1,9276(v1)"
+      },
+      {
+        "pc": "0x8004FC18",
+        "word": "0x2C620006",
+        "mnemonic": "sltiu v0,v1,6"
+      },
+      {
+        "pc": "0x8004FC1C",
+        "word": "0x10400028",
+        "mnemonic": "beq v0,zero,0x8004fcc0"
+      },
+      {
+        "pc": "0x8004FC20",
+        "word": "0x00031080",
+        "mnemonic": "sll v0,v1,2"
+      },
+      {
+        "pc": "0x8004FC24",
+        "word": "0x3C018002",
+        "mnemonic": "lui at,0x8002"
+      },
+      {
+        "pc": "0x8004FC28",
+        "word": "0x00220821",
+        "mnemonic": "addu at,at,v0"
+      },
+      {
+        "pc": "0x8004FC2C",
+        "word": "0x8C22B3C4",
+        "mnemonic": "lw v0,-19516(at)"
+      },
+      {
+        "pc": "0x8004FC34",
+        "word": "0x00400008",
+        "mnemonic": "jr v0"
+      },
+      {
+        "pc": "0x8004FC3C",
+        "word": "0x24020001",
+        "mnemonic": "addiu v0,zero,1"
+      },
+      {
+        "pc": "0x8004FC44",
+        "word": "0xA422245C",
+        "mnemonic": "sh v0,9308(at)"
+      },
+      {
+        "pc": "0x8004FC48",
+        "word": "0x08013F30",
+        "mnemonic": "j 0x8004fcc0"
+      },
+      {
+        "pc": "0x8004FC50",
+        "word": "0x2402000B",
+        "mnemonic": "addiu v0,zero,11"
+      },
+      {
+        "pc": "0x8004FC58",
+        "word": "0xA422245C",
+        "mnemonic": "sh v0,9308(at)"
+      },
+      {
+        "pc": "0x8004FC5C",
+        "word": "0x08013F30",
+        "mnemonic": "j 0x8004fcc0"
+      },
+      {
+        "pc": "0x8004FC64",
+        "word": "0x24020002",
+        "mnemonic": "addiu v0,zero,2"
+      },
+      {
+        "pc": "0x8004FC6C",
+        "word": "0xA422245C",
+        "mnemonic": "sh v0,9308(at)"
+      },
+      {
+        "pc": "0x8004FC70",
+        "word": "0x08013F30",
+        "mnemonic": "j 0x8004fcc0"
+      },
+      {
+        "pc": "0x8004FC78",
+        "word": "0x24020007",
+        "mnemonic": "addiu v0,zero,7"
+      },
+      {
+        "pc": "0x8004FC80",
+        "word": "0xA422245C",
+        "mnemonic": "sh v0,9308(at)"
+      },
+      {
+        "pc": "0x8004FC84",
+        "word": "0x08013F30",
+        "mnemonic": "j 0x8004fcc0"
+      },
+      {
+        "pc": "0x8004FC8C",
+        "word": "0x2402000C",
+        "mnemonic": "addiu v0,zero,12"
+      },
+      {
+        "pc": "0x8004FC94",
+        "word": "0xA422245C",
+        "mnemonic": "sh v0,9308(at)"
+      },
+      {
+        "pc": "0x8004FC98",
+        "word": "0x08013F30",
+        "mnemonic": "j 0x8004fcc0"
+      },
+      {
+        "pc": "0x8004FCA4",
+        "word": "0xAC20243C",
+        "mnemonic": "sw zero,9276(at)"
+      },
+      {
+        "pc": "0x8004FCA8",
+        "word": "0x0C01488B",
+        "mnemonic": "jal 0x8005222c"
+      },
+      {
+        "pc": "0x8004FCAC",
+        "word": "0x24040001",
+        "mnemonic": "addiu a0,zero,1"
+      },
+      {
+        "pc": "0x8004FCB4",
+        "word": "0xA42223A0",
+        "mnemonic": "sh v0,9120(at)"
+      },
+      {
+        "pc": "0x8004FCB8",
+        "word": "0x08013ECF",
+        "mnemonic": "j 0x8004fb3c"
+      },
+      {
+        "pc": "0x8004FCC0",
+        "word": "0x3C028008",
+        "mnemonic": "lui v0,0x8008"
+      },
+      {
+        "pc": "0x8004FCF0",
+        "word": "0x8442245C",
+        "mnemonic": "lh v0,9308(v0)"
+      },
+      {
+        "pc": "0x8004FCF8",
+        "word": "0x00021080",
+        "mnemonic": "sll v0,v0,2"
+      },
+      {
+        "pc": "0x8004FCFC",
+        "word": "0x3C018007",
+        "mnemonic": "lui at,0x8007"
+      },
+      {
+        "pc": "0x8004FD00",
+        "word": "0x00220821",
+        "mnemonic": "addu at,at,v0"
+      },
+      {
+        "pc": "0x8004FD04",
+        "word": "0x8C227FA0",
+        "mnemonic": "lw v0,32672(at)"
+      },
+      {
+        "pc": "0x8004FD08",
+        "word": "0x3C018008",
+        "mnemonic": "lui at,0x8008"
+      },
+      {
+        "pc": "0x8004FD0C",
+        "word": "0xAC222504",
+        "mnemonic": "sw v0,9476(at)"
+      }
+    ],
+    "ownership_partition": {
+      "e15_interface": [
+        "synchronous loader ABI",
+        "selector source",
+        "hook enable",
+        "return continuation address"
+      ],
+      "adjacent_policy": {
+        "C17_movie_viewer": "viewer selection and user-facing policy",
+        "E14_persistence": "unlock/save persistence",
+        "E16_overlay_loader": "generic Region-B replacement policy",
+        "E12_audio": "audio presentation policy"
+      },
+      "viewer_semantics_inferred": false
+    }
+  },
+  "exceptional_frontier": {
+    "paths": [
+      {
+        "id": "file_open_failure",
+        "predicate_pc": "0x800B6DE8",
+        "target": "0x800B6E4C",
+        "diagnostic_pointer": "0x800B5BA4",
+        "static_outcome": "prints File not found and continues initialization"
+      },
+      {
+        "id": "decode_record_absent",
+        "predicate_pc": "0x800B6C40",
+        "target": "0x800B6C7C",
+        "stop_latch_store": "0x800B6C84",
+        "static_outcome": "sets u8 decode_stop_latch to one and returns -1"
+      },
+      {
+        "id": "decode_poll_timeout",
+        "budget_setup": "0x800B6CBC",
+        "budget": "0x00800000",
+        "diagnostic_call": "0x800B6CF8",
+        "diagnostic_pointer": "0x800B5B80",
+        "static_outcome": "publishes timeout fallback record fields"
+      },
+      {
+        "id": "cd_submit_retry",
+        "getlocp_branch": "0x800B7044",
+        "read2_branch": "0x800B7054",
+        "static_outcome": "retries each submission until nonzero"
+      }
+    ],
+    "runtime_frequency_claimed": false,
+    "malformed_media_behavior_claimed": false,
+    "function_slices": [
+      {
+        "start": "0x800B6C24",
+        "end": "0x800B6CA4",
+        "size": 128,
+        "sha256": "9d91718d072e2af77e13cff008ed3a935655e8facd4bb53f50ff0febd2c5d074",
+        "source_status": "exact_asm_slice_semantic_c_in_frontier"
+      },
+      {
+        "start": "0x800B6CA4",
+        "end": "0x800B6D68",
+        "size": 196,
+        "sha256": "06e83c28563ab998976b036f6e23c52c840352bee19c39efdd58322a7383e205",
+        "source_status": "exact_asm_slice_semantic_c_in_frontier"
+      }
+    ]
+  },
+  "summary": {
+    "callback_functions": 11,
+    "callback_install_sites": 2,
+    "callback_clear_sites": 2,
+    "player_exit_edges": 5,
+    "direct_resident_consumers": 9,
+    "consumer_continuations": 9,
+    "level_a_continuation_direct_calls": 20,
+    "main_shell_dispatch_targets": 6,
+    "exceptional_paths": 4,
+    "validated_source_files": 21,
+    "unclassified_callbacks": 0,
+    "unclassified_direct_consumers": 0,
+    "complete_frontier_intersections": 0
+  },
+  "claims": {
+    "confirmed": [
+      "The fixed libcd/libpress callback installation, delivery and teardown chain is exact for E15.",
+      "E15 stores zero in the optional StSetStream callback slot before CdRead2 installs the fixed handlers.",
+      "E15 also stores zero in StSetStream's independent fifth-argument callback slot, disabling both guarded StCdInterrupt deliveries.",
+      "All five player exit edges converge on one ring/callback teardown frontier.",
+      "All nine direct synchronous resident consumers and their return continuations are exact.",
+      "The level-A return continuation is bounded through the full 0x8005B714..0x8005BC64 owner and all 20 post-FMV direct call edges.",
+      "The three boot return continuations remain inside 0x8004FA40..0x8004FC3C and reach the exact six-entry main-shell indirect dispatch with all target fragments and downstream stores partitioned.",
+      "The four statically reachable exceptional categories have exact predicates, stores, diagnostics or retry edges."
+    ],
+    "not_claimed": [
+      "Static callback ownership does not establish runtime frequency, every-cycle attribution or malformed-media outcomes.",
+      "The bonus selector interface does not establish movie-viewer or unlock policy.",
+      "This artifact does not promote SDK-private record interiors into typed MOD state."
+    ]
+  },
+  "dimension_boundary": {
+    "dimension": "complete_frontier",
+    "claim": "met",
+    "confidence": "confirmed",
+    "low_level_basis": "Exact pristine opcodes, exhaustive direct-call censuses, function bounds/slice hashes, source paths, callback slots, return continuations, the six-entry main-shell dispatch and target partitions, the full level-A transition owner, exhaustive post-FMV direct calls and exceptional branches leave no unclassified code owner intersecting E15's playback interface.",
+    "non_intersecting_residuals": [
+      "Runtime callback cadence, repeated playback, pause/stop and failure outcomes remain lifecycle debt.",
+      "Thirty-six manifest entries without live controls remain campaign-breadth debt.",
+      "Movie-viewer/unlock/persistence semantics remain C17/E14 policy debt.",
+      "SDK-private record interiors remain typed-state/source debt outside E15's direct interface."
+    ]
+  },
+  "evidence_dependencies": {
+    "analysis/phase4_fmv_static_owners.json": "8b0ef0d5a0f4f02080a5df30c0611d8888144427f0985cf81ed76c692d1b70f2",
+    "analysis/phase3_jalr_callbacks.json": "1d5a41a971417219e754655c3313791749872cee866513f24f7262647e80abd4"
+  },
+  "source_validation": {
+    "manifest": "tools/repro_inputs.sha256",
+    "manifest_sha256": "d0afeaf584450a0253ecb60d3de37e6d966c981bbb2f07d6cd043439f095e231",
+    "validated_files": [
+      {
+        "path": "asm/hand_written/8004fa40_main_shell_state_machine.s",
+        "sha256": "cda14ed2a18ef2d3c54713a995f856752eeb5b95058ac7432abf1797235c2548",
+        "expected_sha256": "cda14ed2a18ef2d3c54713a995f856752eeb5b95058ac7432abf1797235c2548",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/8004fc3c_sub_8004fc3c.s",
+        "sha256": "e46c7f6f12c98aaa07a112e8f9a10048736ab32e6a82319416476bd4854a7ff9",
+        "expected_sha256": "e46c7f6f12c98aaa07a112e8f9a10048736ab32e6a82319416476bd4854a7ff9",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/8004fc50_sub_8004fc50.s",
+        "sha256": "57f63aa063c5c87f4ed0706312b8439335242a459f167b423cea2b897621e388",
+        "expected_sha256": "57f63aa063c5c87f4ed0706312b8439335242a459f167b423cea2b897621e388",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/8004fc64_sub_8004fc64.s",
+        "sha256": "e5bbc06dc6e84ca6283d8c2bbe422758c76bbe9781672ca6022584f32a0dbbcf",
+        "expected_sha256": "e5bbc06dc6e84ca6283d8c2bbe422758c76bbe9781672ca6022584f32a0dbbcf",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/8004fc78_sub_8004fc78.s",
+        "sha256": "8a3aac95c1571d1fea1a5a98093c20bdf6749d49a0e74331d44eca64b2e985cf",
+        "expected_sha256": "8a3aac95c1571d1fea1a5a98093c20bdf6749d49a0e74331d44eca64b2e985cf",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/8004fc8c_sub_8004fc8c.s",
+        "sha256": "7a1eff5a6b89ee905a00f9e2121b691f6e082a95fa6091b12cb89a4b6f240cf2",
+        "expected_sha256": "7a1eff5a6b89ee905a00f9e2121b691f6e082a95fa6091b12cb89a4b6f240cf2",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/8004fca0_scene_flow_dispatcher.s",
+        "sha256": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+        "expected_sha256": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/800502c4_sub_800502c4.s",
+        "sha256": "81a8b5cbb3833024def4274c0aa8d9d4479a954fe9d5907b2defc509a78c2ad8",
+        "expected_sha256": "81a8b5cbb3833024def4274c0aa8d9d4479a954fe9d5907b2defc509a78c2ad8",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/8005b714_gameplay_state_reset_cursor_seed.s",
+        "sha256": "07b436d13edd1628b61702d27030a1b02af23212758f8e99b352f2831f1c15ca",
+        "expected_sha256": "07b436d13edd1628b61702d27030a1b02af23212758f8e99b352f2831f1c15ca",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/80070a30_data_ready_callback.s",
+        "sha256": "5b738ae34a455e03d6545eba95b39bc74dbc304239953d9820e49be1565e0eb9",
+        "expected_sha256": "5b738ae34a455e03d6545eba95b39bc74dbc304239953d9820e49be1565e0eb9",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/80070a40_fmv_frame_counter_setter.s",
+        "sha256": "101c10872faa7f4c84f88d3367b975d996118dbfa22eb72c0835cf04bce042ca",
+        "expected_sha256": "101c10872faa7f4c84f88d3367b975d996118dbfa22eb72c0835cf04bce042ca",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "asm/hand_written/80070d80_StCdInterrupt.s",
+        "sha256": "fa54bc31a80d1ebb746457540ae4829c678c8f052055817968991f6cb8c2b00d",
+        "expected_sha256": "fa54bc31a80d1ebb746457540ae4829c678c8f052055817968991f6cb8c2b00d",
+        "source_status": "handwritten_asm",
+        "retention": "external_local_media; tools/repro_inputs.sha256; hash-verified provisioning",
+        "validated": true
+      },
+      {
+        "path": "src/main/8006d3a4_StSetRing.c",
+        "sha256": "c23d83a412034065468cb7e169e83087bcc671f292f58e7784aac624a4519725",
+        "expected_sha256": "c23d83a412034065468cb7e169e83087bcc671f292f58e7784aac624a4519725",
+        "source_status": "semantic_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      },
+      {
+        "path": "src/main/8006d8d0_CdReadyCallback.c",
+        "sha256": "00ec17d74a5cfa4e53ed7e39141ccc5811b985e1e9fc835183a4b0bc3056bc1f",
+        "expected_sha256": "00ec17d74a5cfa4e53ed7e39141ccc5811b985e1e9fc835183a4b0bc3056bc1f",
+        "source_status": "matching_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      },
+      {
+        "path": "src/main/8006dcf0_CdDataCallback.c",
+        "sha256": "f0478196b5bc7e1497473a8e8182f4098ef21e9150679b69d7933b272e2dc6c3",
+        "expected_sha256": "f0478196b5bc7e1497473a8e8182f4098ef21e9150679b69d7933b272e2dc6c3",
+        "source_status": "semantic_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      },
+      {
+        "path": "src/main/80070898_CdRead2.c",
+        "sha256": "ec97052f6f1a1c4a919bce595c6c59322acdbd1ecf8cabb552e73277feb1bfb6",
+        "expected_sha256": "ec97052f6f1a1c4a919bce595c6c59322acdbd1ecf8cabb552e73277feb1bfb6",
+        "source_status": "semantic_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      },
+      {
+        "path": "src/main/8007092c_StCdInterrupt2.c",
+        "sha256": "0d5e4d523aa91f7510ed0c2edd27337c4eb5d2f72efeb4ca1316dda397c8da3e",
+        "expected_sha256": "0d5e4d523aa91f7510ed0c2edd27337c4eb5d2f72efeb4ca1316dda397c8da3e",
+        "source_status": "semantic_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      },
+      {
+        "path": "src/main/8007094c_StClearRing.c",
+        "sha256": "191958717854aa3f2997f4524f510b5554232aacb0e31afccbca1eda1670258a",
+        "expected_sha256": "191958717854aa3f2997f4524f510b5554232aacb0e31afccbca1eda1670258a",
+        "source_status": "semantic_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      },
+      {
+        "path": "src/main/800709ac_sub_800709ac.c",
+        "sha256": "21bb06802db2024e9c19e7e664899238e9793e46bf3acca535804fe09b55bf5a",
+        "expected_sha256": "21bb06802db2024e9c19e7e664899238e9793e46bf3acca535804fe09b55bf5a",
+        "source_status": "semantic_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      },
+      {
+        "path": "src/main/80070b20_StSetStream.c",
+        "sha256": "a5ca832ed709b4535cdeb789bfc52c7843ee7a9c0e1e40a6d4e452e093cc1379",
+        "expected_sha256": "a5ca832ed709b4535cdeb789bfc52c7843ee7a9c0e1e40a6d4e452e093cc1379",
+        "source_status": "semantic_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      },
+      {
+        "path": "src/main/80070d60_stream_config_store.c",
+        "sha256": "e337466459b0af1675ac4af0d66fdcb8af41b90562a415aac0c6fc976d1f540c",
+        "expected_sha256": "e337466459b0af1675ac4af0d66fdcb8af41b90562a415aac0c6fc976d1f540c",
+        "source_status": "semantic_c",
+        "retention": "tracked_repository_source",
+        "validated": true
+      }
+    ],
+    "all_validated": true
+  },
+  "source_dependencies": {
+    "config/phase4_fmv.yaml": "63f60045562aa2ec113ac060b3fec8c5c0b562f45cc5e02e4f78ff49077b0d64",
+    "analysis/phase3_jalr_callbacks.json": "1d5a41a971417219e754655c3313791749872cee866513f24f7262647e80abd4",
+    "src_re/fmv_callback_consumer_frontier.c": "d1e432deb06a29785a02e3e6879b797289255e98bc8c592c5d46f956a2953922",
+    "tools/phase4_fmv_interface_frontier.py": "532ff8174778f11bc54d2a84092be1e08a7eb4f3bf908cde4d2e77c342488afe",
+    "tools/repro_inputs.sha256": "d0afeaf584450a0253ecb60d3de37e6d966c981bbb2f07d6cd043439f095e231"
+  }
+}

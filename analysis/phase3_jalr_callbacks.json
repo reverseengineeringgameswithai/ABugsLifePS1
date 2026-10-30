@@ -1,0 +1,1080 @@
+{
+ "_comment": "Phase-3 WP4: every resident `jalr` (indirect CALL) classified by WHERE THE FUNCTION POINTER COMES FROM \u2014 a global callback slot (installable/redirectable, and resolved LIVE here to show what the game actually installs), a struct FIELD (a function-pointer field of some record \u2014 a typed-record fact), a call result (factory/vtable), or unresolved with a reason. CAVEAT: slots holding NULL at this anchor are NOT thereby 'free hooks' \u2014 whether the call site guards against NULL is UNVERIFIED, and several slots (trapIntrVSync, def_cbsync, def_cbread) run in INTERRUPT CONTEXT, where a handler must be interrupt-safe. Handlers are read at ONE anchor and may differ per scene. Regenerate: tools/phase3_jalr_callbacks.py",
+ "run_provenance": {
+  "command": "/usr/bin/python3 tools/phase3_jalr_callbacks.py --port 25775 --token '<redacted-token>' --config-dir /tmp/duckstation-phase3-i6b-jalr-roycxW --instance-state recreated",
+  "generator_sha256": "d347d114070c2c5bcc67e51b662698ba93005c4bfd7e4d21e147008e761d9cdb",
+  "provenance_helper_sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678",
+  "launcher_helper_sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821",
+  "repository_head": "67c1b6db21fb728fd65fe6697a193b4a097faf1d",
+  "recorded_utc": "2026-07-14T21:54:11.974463+00:00",
+  "duckstation": {
+   "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+   "status": "M EXTERNAL_DEBUGGER_CONTROL.md\n M docs/external-debugger-determinism.md\n M docs/external-debugger-experiment-runner.md\n M docs/external-debugger-movie.md\n M docs/external-debugger.md\n M scripts/debugger-client/README.md\n M scripts/debugger-client/duckstation_debug_client.py\n M scripts/debugger-client/mcp_bridge.py\n M src/CMakeLists.txt\n M src/core/CMakeLists.txt\n M src/core/achievements.cpp\n M src/core/analog_controller.cpp\n M src/core/analog_controller.h\n M src/core/analog_joystick.cpp\n M src/core/analog_joystick.h\n M src/core/cdrom.cpp\n M src/core/cdrom.h\n M src/core/controller.cpp\n M src/core/controller.h\n M src/core/core.vcxproj\n M src/core/core.vcxproj.filters\n M src/core/cpu_core.cpp\n M src/core/cpu_core.h\n M src/core/debugger_control_service.cpp\n M src/core/debugger_control_service.h\n M src/core/dma.cpp\n M src/core/fullscreenui_settings.cpp\n M src/core/gpu.cpp\n M src/core/gpu.h\n M src/core/gpu_backend.cpp\n M src/core/gpu_backend.h\n M src/core/imgui_overlays.cpp\n M src/core/input_movie.cpp\n M src/core/input_movie.h\n M src/core/negcon.cpp\n M src/core/negcon.h\n M src/core/negcon_rumble.cpp\n M src/core/negcon_rumble.h\n M src/core/settings.cpp\n M src/core/settings.h\n M src/core/spu.cpp\n M src/core/spu.h\n M src/core/system.cpp\n M src/core/system.h\n M src/core/system_private.h\n M src/duckstation-qt/debuggerrpc.cpp\n M src/duckstation-qt/debuggerrpc.h\n M src/duckstation-qt/debuggerserver.cpp\n M src/duckstation-qt/debuggerserver.h\n M src/duckstation-qt/input_movie_file.cpp\n M src/duckstation-qt/input_movie_file.h\n M src/duckstation-qt/interfacesettingswidget.cpp\n M src/duckstation-qt/interfacesettingswidget.ui\n M src/duckstation-qt/logwindow.cpp\n M src/duckstation-qt/mainwindow.cpp\n M src/duckstation-qt/mainwindow.h\n M src/duckstation-qt/mainwindow.ui\n M src/duckstation-qt/osdsettingswidget.cpp\n M src/duckstation-qt/osdsettingswidget.ui\n M src/duckstation-qt/qthost.cpp\n M src/duckstation-qt/qtutils.cpp\n M src/duckstation-qt/qtutils.h\n M src/duckstation-regtest/regtest_host.cpp\n M src/scmversion/gen_scmversion.bat\n M src/scmversion/gen_scmversion.sh\n M src/scmversion/scmversion.h\n?? api-hardening-artifacts-20260714/\n?? docs/external-debugger-scenarios.md\n?? scripts/debugger-client/launch_debugger_instance.sh\n?? scripts/debugger-client/test_code_patch_invalidation.py\n?? scripts/debugger-client/test_framebuffer_capture.py\n?? scripts/debugger-client/test_function_bounds.py\n?? scripts/debugger-client/test_gp0trace_dma.py\n?? src/core-tests/\n?? src/core/cd_provenance.cpp\n?? src/core/cd_provenance.h\n?? src/core/code_analysis.cpp\n?? src/core/code_analysis.h\n?? src/core/frame_diff.cpp\n?? src/core/frame_diff.h\n?? src/core/gpu_object_picker.cpp\n?? src/core/gpu_object_picker.h\n?? src/core/gte_camera.cpp\n?? src/core/gte_camera.h\n?? src/core/movie_edit.cpp\n?? src/core/movie_edit.h\n?? src/core/write_index.cpp\n?? src/core/write_index.h",
+   "binary_path": "~/duckstation/build-release/bin/duckstation-qt",
+   "binary_sha256": "27d064bcbdfefadf91fd9401d158a2756dc6bbf6d52a0bb2d3a3dfad7129cb54"
+  },
+  "rpc_manifest": {
+   "path": "analysis/phase3_duckstation_rpc_manifest.json",
+   "semantic_sha256": "e2597de77dc56ff2dc4c4b9d2ff72b9abccb76b203a6d7d2c180aeba29fdd80b",
+   "source": {
+    "revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "status_sha256": "1c1a325041c78e0545816a605a2dbc7c41a08549642d4f4b8289d9df87baf130",
+    "dispatcher_sha256": "b1be4d512eae5c67608453adcbabb32e03612c3ead51856c41ab9c0d140f47be",
+    "method_count": 203
+   },
+   "binary": {
+    "path": "~/duckstation/build-release/bin/duckstation-qt",
+    "sha256": "27d064bcbdfefadf91fd9401d158a2756dc6bbf6d52a0bb2d3a3dfad7129cb54",
+    "size": 37860600
+   }
+  },
+  "debugger": {
+   "config_dir": "/tmp/duckstation-phase3-i6b-jalr-roycxW",
+   "port": 25775,
+   "transport": "ws",
+   "token_sha256": "e57ed079356313759c55b3aa7fbbafe6d30b2fa98593cc75468ac99680478f3f",
+   "recreated": true,
+   "owned_pid": 1868419
+  },
+  "anchor": {
+   "save": "level01.sav",
+   "fixture_sha256": {
+    "level01.sav": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2"
+   },
+   "state_inspections": [
+    {
+     "path": "~/.local/state/flik-hard-truth-ratchet/worktrees/phase3-20260714-103837-1135954/level01.sav",
+     "exists": true,
+     "valid": true,
+     "serial": "SCUS-94288",
+     "title": "Disney-Pixar A Bug's Life",
+     "media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "media_subimage_index": 0,
+     "version": 84,
+     "file_size": 1939333,
+     "timestamp": 1784042962,
+     "has_screenshot": true,
+     "fixture_declaration": {
+      "path": "level01.sav",
+      "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+      "size": 1939333,
+      "media_class": "pristine",
+      "manifest": "analysis/phase0_2_external_fixture_set.json"
+     },
+     "state_media_hash_verification": {
+      "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "pin_source": "tools/build_baselines.json",
+      "pristine_verified": true,
+      "files": {
+       "Disney-Pixar A Bug's Life (v1.0).cue": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+        "matches_pin": true
+       },
+       "Disney-Pixar A Bug's Life (v1.0).bin": {
+        "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+        "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+        "matches_pin": true
+       }
+      }
+     }
+    }
+   ],
+   "media_identity": {
+    "game_serial": "SCUS-94288",
+    "game_title": "Disney-Pixar A Bug's Life",
+    "game_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "rpc_before_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "rpc_after_hash": {
+     "cd_overlays_removed": 0,
+     "game_serial": "SCUS-94288",
+     "game_title": "Disney-Pixar A Bug's Life",
+     "has_media": true,
+     "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "subimage_count": 0,
+     "subimage_index": 0
+    },
+    "hash_verification": {
+     "mounted_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+     "pin_source": "tools/build_baselines.json",
+     "pristine_verified": true,
+     "files": {
+      "Disney-Pixar A Bug's Life (v1.0).cue": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+       "actual_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "expected_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+       "matches_pin": true
+      },
+      "Disney-Pixar A Bug's Life (v1.0).bin": {
+       "path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin",
+       "actual_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "expected_sha1": "0bc1a29748d4bd608d076495d085e825574880d1",
+       "matches_pin": true
+      }
+     }
+    }
+   }
+  },
+  "timing": {
+   "settle_frames": 10,
+   "callback_slots": 30
+  },
+  "cleanup": {
+   "owned_pid_stopped": true,
+   "launcher_returncode": 0,
+   "launcher_output": "Stopped isolated instance (pid 1868419).\nowned cleanup: pid=1868419 stopped=true final_state=None waited_ms=0",
+   "process_final_state": null
+  }
+ },
+ "fixture_sha256": {
+  "REBUILD/files/SCUS_942.88": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+ },
+ "jalr_sites": 139,
+ "classification": {
+  "struct_field": 36,
+  "unresolved": 4,
+  "global_slot": 99
+ },
+ "global_callback_slots": [
+  "0x8007FBC4",
+  "0x8007FBD4",
+  "0x80080EB8",
+  "0x80080EBC",
+  "0x800814FC",
+  "0x800818C4",
+  "0x800818C8",
+  "0x80081BDC",
+  "0x80081CF0",
+  "0x80081CF4",
+  "0x80081CF8",
+  "0x80081CFC",
+  "0x80081D04",
+  "0x80081D08",
+  "0x80081D0C",
+  "0x80081D10",
+  "0x80081D14",
+  "0x80081D18",
+  "0x80081D1C",
+  "0x80081D20",
+  "0x80081D74",
+  "0x80086A60",
+  "0x800898A0",
+  "0x800898A8",
+  "0x800898AC",
+  "0x800910F0",
+  "0x800910F4",
+  "0x8009F1E0",
+  "0x8009FD7C",
+  "0x800A65D8"
+ ],
+ "installed_handlers": {
+  "0x8007FBC4": {
+   "value": "0x8005F7DC",
+   "handler": "printf",
+   "is_code": true
+  },
+  "0x8007FBD4": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x80080EB8": {
+   "value": "0x80043284",
+   "handler": "voice_keyon_vol_3284",
+   "is_code": true
+  },
+  "0x80080EBC": {
+   "value": "0x80065B4C",
+   "handler": "trapIntrVSync",
+   "is_code": true
+  },
+  "0x800814FC": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x800818C4": {
+   "value": "0x8006D6B4",
+   "handler": "def_cbsync",
+   "is_code": true
+  },
+  "0x800818C8": {
+   "value": "0x80046828",
+   "handler": "music_loop_poll",
+   "is_code": true
+  },
+  "0x80081BDC": {
+   "value": "0x8006D704",
+   "handler": "def_cbread",
+   "is_code": true
+  },
+  "0x80081CF0": {
+   "value": "0x80073F48",
+   "handler": "pad_direct_next_port",
+   "is_code": true
+  },
+  "0x80081CF4": {
+   "value": "0x80073EE0",
+   "handler": "pad_direct_clear_info",
+   "is_code": true
+  },
+  "0x80081CF8": {
+   "value": "0x8007404C",
+   "handler": "pad_direct_get_txd",
+   "is_code": true
+  },
+  "0x80081CFC": {
+   "value": "0x80074108",
+   "handler": "pad_direct_current_limit",
+   "is_code": true
+  },
+  "0x80081D04": {
+   "value": "0x800743BC",
+   "handler": "pad_direct_port_to_info",
+   "is_code": true
+  },
+  "0x80081D08": {
+   "value": "0x80074424",
+   "handler": "pad_direct_send_auto",
+   "is_code": true
+  },
+  "0x80081D0C": {
+   "value": "0x80074878",
+   "handler": "pad_direct_engine_ready",
+   "is_code": true
+  },
+  "0x80081D10": {
+   "value": "0x80074534",
+   "handler": "pad_direct_recv_auto",
+   "is_code": true
+  },
+  "0x80081D14": {
+   "value": "0x8007403C",
+   "handler": "pad_direct_clear_command",
+   "is_code": true
+  },
+  "0x80081D18": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x80081D1C": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x80081D20": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x80081D74": {
+   "value": "0x80073770",
+   "handler": "pad_sio_stage_begin",
+   "is_code": true
+  },
+  "0x80086A60": {
+   "value": "0xBFC0A5E4",
+   "handler": null,
+   "is_code": false
+  },
+  "0x800898A0": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x800898A8": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x800898AC": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x800910F0": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x800910F4": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x8009F1E0": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x8009FD7C": {
+   "value": "0x00000000",
+   "handler": null,
+   "is_code": false
+  },
+  "0x800A65D8": {
+   "value": "0x800640CC",
+   "handler": "_dws",
+   "is_code": true
+  }
+ },
+ "struct_field_offsets": {
+  "+0x8": 9,
+  "+0x10": 8,
+  "+0x14": 4,
+  "+0x0": 3,
+  "+0x34": 2,
+  "+0x3C": 2,
+  "+0x18": 2,
+  "+0x7C": 1,
+  "+0x28": 1,
+  "+0x2C": 1,
+  "+0x38": 1,
+  "+0xC": 1,
+  "+0x4": 1
+ },
+ "sites": {
+  "0x8004D1E8": {
+   "class": "struct_field",
+   "function": "vm_motion_apply_chase",
+   "offset": "+0x7C",
+   "base_register": 16
+  },
+  "0x80060C78": {
+   "class": "unresolved",
+   "function": "_patch_gte",
+   "why": "pointer materialised as a constant"
+  },
+  "0x80061AE4": {
+   "class": "global_slot",
+   "function": "DumpTPage",
+   "slot": "0x8007FBC4"
+  },
+  "0x80061B24": {
+   "class": "global_slot",
+   "function": "DumpClut",
+   "slot": "0x8007FBC4"
+  },
+  "0x80061FAC": {
+   "class": "global_slot",
+   "function": "DumpDrawEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x80061FCC": {
+   "class": "global_slot",
+   "function": "DumpDrawEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x80061FF4": {
+   "class": "global_slot",
+   "function": "DumpDrawEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062010": {
+   "class": "global_slot",
+   "function": "DumpDrawEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x8006202C": {
+   "class": "global_slot",
+   "function": "DumpDrawEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062074": {
+   "class": "global_slot",
+   "function": "DumpDrawEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x800620C0": {
+   "class": "global_slot",
+   "function": "DumpDispEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x800620E8": {
+   "class": "global_slot",
+   "function": "DumpDispEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062104": {
+   "class": "global_slot",
+   "function": "DumpDispEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062120": {
+   "class": "global_slot",
+   "function": "DumpDispEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062284": {
+   "class": "global_slot",
+   "function": "ResetGraph",
+   "slot": "0x8007FBC4"
+  },
+  "0x800622A0": {
+   "class": "struct_field",
+   "function": "ResetGraph",
+   "offset": "+0x34",
+   "base_register": 2
+  },
+  "0x80062308": {
+   "class": "global_slot",
+   "function": "libgpu_graph_mode_dispatch",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062324": {
+   "class": "struct_field",
+   "function": "libgpu_graph_mode_dispatch",
+   "offset": "+0x28",
+   "base_register": 2
+  },
+  "0x80062364": {
+   "class": "struct_field",
+   "function": "libgpu_graph_mode_dispatch",
+   "offset": "+0x10",
+   "base_register": 2
+  },
+  "0x800623AC": {
+   "class": "struct_field",
+   "function": "libgpu_graph_mode_dispatch",
+   "offset": "+0x10",
+   "base_register": 3
+  },
+  "0x80062418": {
+   "class": "global_slot",
+   "function": "SetGraphDebug",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062480": {
+   "class": "global_slot",
+   "function": "dma_callback_stub",
+   "slot": "0x8007FBC4"
+  },
+  "0x800624AC": {
+   "class": "struct_field",
+   "function": "dma_callback_stub",
+   "offset": "+0x34",
+   "base_register": 2
+  },
+  "0x80062534": {
+   "class": "global_slot",
+   "function": "handler_register_8007fbd4",
+   "slot": "0x8007FBC4"
+  },
+  "0x800625A0": {
+   "class": "global_slot",
+   "function": "SetDispMask",
+   "slot": "0x8007FBC4"
+  },
+  "0x800625DC": {
+   "class": "struct_field",
+   "function": "SetDispMask",
+   "offset": "+0x10",
+   "base_register": 2
+  },
+  "0x80062630": {
+   "class": "global_slot",
+   "function": "DrawSync",
+   "slot": "0x8007FBC4"
+  },
+  "0x8006264C": {
+   "class": "struct_field",
+   "function": "DrawSync",
+   "offset": "+0x3C",
+   "base_register": 2
+  },
+  "0x8006274C": {
+   "class": "global_slot",
+   "function": "checkRECT",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062774": {
+   "class": "global_slot",
+   "function": "checkRECT",
+   "slot": "0x8007FBC4"
+  },
+  "0x800627FC": {
+   "class": "struct_field",
+   "function": "ClearImage",
+   "offset": "+0x8",
+   "base_register": 2
+  },
+  "0x80062898": {
+   "class": "struct_field",
+   "function": "ClearImage2",
+   "offset": "+0x8",
+   "base_register": 3
+  },
+  "0x80062904": {
+   "class": "struct_field",
+   "function": "LoadImage",
+   "offset": "+0x8",
+   "base_register": 2
+  },
+  "0x80062968": {
+   "class": "struct_field",
+   "function": "StoreImage",
+   "offset": "+0x8",
+   "base_register": 2
+  },
+  "0x80062A28": {
+   "class": "struct_field",
+   "function": "MoveImage",
+   "offset": "+0x8",
+   "base_register": 3
+  },
+  "0x80062A88": {
+   "class": "global_slot",
+   "function": "link_prim_packet_chain",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062B44": {
+   "class": "global_slot",
+   "function": "ClearOTagR",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062B60": {
+   "class": "struct_field",
+   "function": "ClearOTagR",
+   "offset": "+0x2C",
+   "base_register": 2
+  },
+  "0x80062BC0": {
+   "class": "struct_field",
+   "function": "DrawPrim",
+   "offset": "+0x3C",
+   "base_register": 2
+  },
+  "0x80062BDC": {
+   "class": "struct_field",
+   "function": "DrawPrim",
+   "offset": "+0x14",
+   "base_register": 2
+  },
+  "0x80062C30": {
+   "class": "global_slot",
+   "function": "DrawOTag",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062C54": {
+   "class": "struct_field",
+   "function": "DrawOTag",
+   "offset": "+0x8",
+   "base_register": 2
+  },
+  "0x80062CB4": {
+   "class": "global_slot",
+   "function": "frame_render_driver",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062CFC": {
+   "class": "struct_field",
+   "function": "frame_render_driver",
+   "offset": "+0x8",
+   "base_register": 3
+  },
+  "0x80062DC4": {
+   "class": "global_slot",
+   "function": "DrawOTagEnv",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062E18": {
+   "class": "struct_field",
+   "function": "DrawOTagEnv",
+   "offset": "+0x8",
+   "base_register": 3
+  },
+  "0x80062F0C": {
+   "class": "global_slot",
+   "function": "frame_present_copy_worker",
+   "slot": "0x8007FBC4"
+  },
+  "0x80062F88": {
+   "class": "struct_field",
+   "function": "frame_present_copy_worker",
+   "offset": "+0x10",
+   "base_register": 2
+  },
+  "0x80063198": {
+   "class": "struct_field",
+   "function": "frame_present_copy_worker",
+   "offset": "+0x10",
+   "base_register": 5
+  },
+  "0x800631C4": {
+   "class": "struct_field",
+   "function": "frame_present_copy_worker",
+   "offset": "+0x10",
+   "base_register": 5
+  },
+  "0x80063330": {
+   "class": "struct_field",
+   "function": "frame_present_copy_worker",
+   "offset": "+0x10",
+   "base_register": 2
+  },
+  "0x800633C0": {
+   "class": "struct_field",
+   "function": "call_vptr56_sign",
+   "offset": "+0x38",
+   "base_register": 2
+  },
+  "0x800647C4": {
+   "class": "unresolved",
+   "function": "gpu_present_drawotag_vsync",
+   "why": "the called register is never defined in this function (passed in as an arg?)"
+  },
+  "0x80064AEC": {
+   "class": "global_slot",
+   "function": "dma_intr_install",
+   "slot": "0x800A65D8"
+  },
+  "0x80064C4C": {
+   "class": "global_slot",
+   "function": "dma_intr_install",
+   "slot": "0x8007FBD4"
+  },
+  "0x800653EC": {
+   "class": "struct_field",
+   "function": "ResetCallback_dispatch_tail",
+   "offset": "+0xC",
+   "base_register": 2
+  },
+  "0x8006541C": {
+   "class": "struct_field",
+   "function": "InterruptCallback_dispatch_tail",
+   "offset": "+0x8",
+   "base_register": 2
+  },
+  "0x8006544C": {
+   "class": "struct_field",
+   "function": "exec_queue_kick",
+   "offset": "+0x4",
+   "base_register": 2
+  },
+  "0x80065480": {
+   "class": "struct_field",
+   "function": "VSyncCallback",
+   "offset": "+0x14",
+   "base_register": 2
+  },
+  "0x800654B0": {
+   "class": "struct_field",
+   "function": "VSyncCallbacks_dispatch_tail",
+   "offset": "+0x14",
+   "base_register": 2
+  },
+  "0x800654E0": {
+   "class": "struct_field",
+   "function": "StopCallback_dispatch_tail",
+   "offset": "+0x10",
+   "base_register": 2
+  },
+  "0x80065510": {
+   "class": "struct_field",
+   "function": "RestartCallback_dispatch_tail",
+   "offset": "+0x18",
+   "base_register": 2
+  },
+  "0x80065728": {
+   "class": "struct_field",
+   "function": "trapIntr",
+   "offset": "+0x0",
+   "base_register": 18
+  },
+  "0x80065B94": {
+   "class": "struct_field",
+   "function": "trapIntrVSync",
+   "offset": "+0x0",
+   "base_register": 16
+  },
+  "0x80065D0C": {
+   "class": "struct_field",
+   "function": "trap_exception_report",
+   "offset": "+0x0",
+   "base_register": 18
+  },
+  "0x8006645C": {
+   "class": "global_slot",
+   "function": "file_dev_dir_hook_trampoline",
+   "slot": "0x80086A60"
+  },
+  "0x8006684C": {
+   "class": "unresolved",
+   "function": "icache_flush_glue",
+   "why": "pointer materialised as a constant"
+  },
+  "0x800668C4": {
+   "class": "unresolved",
+   "function": "icache_flush_glue_68ac",
+   "why": "pointer materialised as a constant"
+  },
+  "0x80067814": {
+   "class": "global_slot",
+   "function": "_SsGetSeqData",
+   "slot": "0x800898A0"
+  },
+  "0x80067878": {
+   "class": "global_slot",
+   "function": "_SsGetSeqData",
+   "slot": "0x800898A8"
+  },
+  "0x800678D0": {
+   "class": "global_slot",
+   "function": "_SsGetSeqData",
+   "slot": "0x800898AC"
+  },
+  "0x80067F34": {
+   "class": "global_slot",
+   "function": "_SsTrapIntrVSync",
+   "slot": "0x80080EBC"
+  },
+  "0x80067F48": {
+   "class": "global_slot",
+   "function": "_SsTrapIntrVSync",
+   "slot": "0x80080EB8"
+  },
+  "0x80067F98": {
+   "class": "global_slot",
+   "function": "ss_seq_tick_every_other_dispatch",
+   "slot": "0x80080EB8"
+  },
+  "0x800697DC": {
+   "class": "global_slot",
+   "function": "_SsVmFlush",
+   "slot": "0x8009FD7C"
+  },
+  "0x80069808": {
+   "class": "global_slot",
+   "function": "_SsVmFlush",
+   "slot": "0x8009F1E0"
+  },
+  "0x8006BD0C": {
+   "class": "global_slot",
+   "function": "spu_fidma_body",
+   "slot": "0x800814FC"
+  },
+  "0x8006E5D8": {
+   "class": "global_slot",
+   "function": "CD_sync",
+   "slot": "0x800818C8"
+  },
+  "0x8006E60C": {
+   "class": "global_slot",
+   "function": "CD_sync",
+   "slot": "0x800818C4"
+  },
+  "0x8006E860": {
+   "class": "global_slot",
+   "function": "CD_ready",
+   "slot": "0x800818C8"
+  },
+  "0x8006E894": {
+   "class": "global_slot",
+   "function": "CD_ready",
+   "slot": "0x800818C4"
+  },
+  "0x8006ECD0": {
+   "class": "global_slot",
+   "function": "CD_cw",
+   "slot": "0x800818C8"
+  },
+  "0x8006ED04": {
+   "class": "global_slot",
+   "function": "CD_cw",
+   "slot": "0x800818C4"
+  },
+  "0x8006F61C": {
+   "class": "global_slot",
+   "function": "cd_interrupt_callback_body",
+   "slot": "0x800818C8"
+  },
+  "0x8006F650": {
+   "class": "global_slot",
+   "function": "cd_interrupt_callback_body",
+   "slot": "0x800818C4"
+  },
+  "0x800702D0": {
+   "class": "global_slot",
+   "function": "cb_read",
+   "slot": "0x80081BDC"
+  },
+  "0x800703D0": {
+   "class": "global_slot",
+   "function": "cd_ready_poll_control",
+   "slot": "0x80081BDC"
+  },
+  "0x80070AA0": {
+   "class": "global_slot",
+   "function": "str_data_ready_callback",
+   "slot": "0x800910F0"
+  },
+  "0x800712DC": {
+   "class": "global_slot",
+   "function": "StCdInterrupt",
+   "slot": "0x800910F4"
+  },
+  "0x80071388": {
+   "class": "global_slot",
+   "function": "StCdInterrupt",
+   "slot": "0x800910F4"
+  },
+  "0x8007199C": {
+   "class": "global_slot",
+   "function": "PadGetState",
+   "slot": "0x80081D04"
+  },
+  "0x80071A74": {
+   "class": "global_slot",
+   "function": "PadInfoMode",
+   "slot": "0x80081D04"
+  },
+  "0x80071B6C": {
+   "class": "global_slot",
+   "function": "PadInfoAct",
+   "slot": "0x80081D04"
+  },
+  "0x80071C40": {
+   "class": "global_slot",
+   "function": "PadInfoComb",
+   "slot": "0x80081D04"
+  },
+  "0x80071CE0": {
+   "class": "global_slot",
+   "function": "PadSetActAlign",
+   "slot": "0x80081D04"
+  },
+  "0x80071D20": {
+   "class": "global_slot",
+   "function": "PadSetMainMode",
+   "slot": "0x80081D04"
+  },
+  "0x80071D68": {
+   "class": "global_slot",
+   "function": "PadSetAct",
+   "slot": "0x80081D04"
+  },
+  "0x80071E20": {
+   "class": "global_slot",
+   "function": "PadEnableCom",
+   "slot": "0x80081CF4"
+  },
+  "0x80071E78": {
+   "class": "global_slot",
+   "function": "PadEnableCom",
+   "slot": "0x80081CF4"
+  },
+  "0x80071F30": {
+   "class": "global_slot",
+   "function": "pad_sio_irq_callback",
+   "slot": "0x80081D18"
+  },
+  "0x80072054": {
+   "class": "global_slot",
+   "function": "pad_vsync_handler",
+   "slot": "0x80081CF0"
+  },
+  "0x8007216C": {
+   "class": "global_slot",
+   "function": "_padStartCom",
+   "slot": "0x80081CF4"
+  },
+  "0x80072188": {
+   "class": "global_slot",
+   "function": "_padStartCom",
+   "slot": "0x80081CF4"
+  },
+  "0x800722DC": {
+   "class": "global_slot",
+   "function": "_padInitSioMode",
+   "slot": "0x80081D10"
+  },
+  "0x80072340": {
+   "class": "global_slot",
+   "function": "_padInitSioMode",
+   "slot": "0x80081D10"
+  },
+  "0x80072354": {
+   "class": "global_slot",
+   "function": "_padInitSioMode",
+   "slot": "0x80081D14"
+  },
+  "0x80072568": {
+   "class": "global_slot",
+   "function": "pad_sio_advance_stage",
+   "slot": "0x80081D74"
+  },
+  "0x800725D4": {
+   "class": "global_slot",
+   "function": "pad_sio_advance_stage",
+   "slot": "0x80081CF0"
+  },
+  "0x8007260C": {
+   "class": "global_slot",
+   "function": "pad_sio_advance_stage",
+   "slot": "0x80081CF0"
+  },
+  "0x80072E04": {
+   "class": "global_slot",
+   "function": "_padRecvAtLoadInfo",
+   "slot": "0x80081CF4"
+  },
+  "0x80072EF0": {
+   "class": "global_slot",
+   "function": "_padLoadActInfo",
+   "slot": "0x80081D0C"
+  },
+  "0x80073448": {
+   "class": "global_slot",
+   "function": "_padSetActAlign",
+   "slot": "0x80081D0C"
+  },
+  "0x800735A4": {
+   "class": "global_slot",
+   "function": "_padSetMainMode",
+   "slot": "0x80081D0C"
+  },
+  "0x800736A8": {
+   "class": "global_slot",
+   "function": null,
+   "slot": "0x80081CF4"
+  },
+  "0x80073784": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_begin",
+   "slot": "0x80081D08"
+  },
+  "0x800737FC": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_command",
+   "slot": "0x80081D20"
+  },
+  "0x80073810": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_command",
+   "slot": "0x80081D1C"
+  },
+  "0x8007383C": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_command",
+   "slot": "0x80081D08"
+  },
+  "0x80073854": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_command",
+   "slot": "0x80081D08"
+  },
+  "0x800738BC": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_length",
+   "slot": "0x80081D08"
+  },
+  "0x800738D4": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_length",
+   "slot": "0x80081D08"
+  },
+  "0x80073980": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_transfer",
+   "slot": "0x80081CF8"
+  },
+  "0x800739F0": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081CFC"
+  },
+  "0x80073A74": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081CFC"
+  },
+  "0x80073A8C": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081CF8"
+  },
+  "0x80073B54": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081D10"
+  },
+  "0x80073BB0": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081D10"
+  },
+  "0x80073BDC": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081D10"
+  },
+  "0x80073BF0": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081D14"
+  },
+  "0x80073C10": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081CF8"
+  },
+  "0x80073CA0": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081CF8"
+  },
+  "0x80073D48": {
+   "class": "global_slot",
+   "function": "pad_sio_stage_finish",
+   "slot": "0x80081CF0"
+  },
+  "0x80074488": {
+   "class": "global_slot",
+   "function": "pad_direct_send_auto",
+   "slot": "0x80081CF4"
+  },
+  "0x80074508": {
+   "class": "struct_field",
+   "function": "pad_direct_send_auto",
+   "offset": "+0x14",
+   "base_register": 16
+  },
+  "0x8007458C": {
+   "class": "global_slot",
+   "function": "pad_direct_recv_auto",
+   "slot": "0x80081CF4"
+  },
+  "0x80074678": {
+   "class": "global_slot",
+   "function": "pad_direct_recv_auto",
+   "slot": "0x80081CF4"
+  },
+  "0x800746E0": {
+   "class": "global_slot",
+   "function": "pad_direct_recv_auto",
+   "slot": "0x80081CF4"
+  },
+  "0x80074760": {
+   "class": "struct_field",
+   "function": "pad_direct_recv_auto",
+   "offset": "+0x18",
+   "base_register": 16
+  },
+  "0x80074828": {
+   "class": "global_slot",
+   "function": "_dirFailAuto",
+   "slot": "0x80081CF4"
+  }
+ }
+}

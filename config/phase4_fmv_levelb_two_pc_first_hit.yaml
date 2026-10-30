@@ -1,0 +1,103 @@
+schema: abl-phase4-fmv-levelb-two-pc-first-hit-config/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260729-024052-213677-r9
+work_packet:
+  relative_path: iteration-1-receipts/work-packet.json
+  sha256: e373de2bfa421f490771ef927d0576166010f4055cb2a33090257cefaefcfadb
+  bytes: 3459
+transition_relocalization:
+  path: analysis/phase4_fmv_levelb_transition_relocalization.json
+  sha256: 0d7783db266fbe33ddc9ab7113c816ca9d88f81baa602244f31e821451b3abc8
+rpc_manifest:
+  path: analysis/phase3_duckstation_rpc_manifest.json
+  sha256: a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062
+capsule_index:
+  path: analysis/phase4_trace_capsule_set.json
+  sha256: 9896da99613631d878901547aed9c7aa559221548a3b86e5f9a6e00c2b59f659
+first_hit_plan:
+  schema: abl-phase4-duckstation-two-pc-first-hit-plan/1
+  campaign_id: fmv_playback
+  row_ids: [E15_fmv]
+  identity_join:
+    rpc_manifest_sha256: a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062
+    source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+    source_dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+    dispatcher_sha256: 6ff2640dad39f85eacba9e8bbbfdb65d4e3707cb6d8f72cc74bf404579ae8a3e
+    binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+    media_serial: SCUS-94288
+    media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  anchor_contract:
+    required_status: valid_paused
+    initial_breakpoints: []
+  breakpoint_sequence:
+    - sequence: 0
+      method: debugger.addBreakpoint
+      params:
+        address: 0x8004FD74
+        type: execute
+        enabled: true
+        temporary: false
+      boundary: before_instruction
+      required_registers:
+        pc: 0x8004FD74
+        a0: 3
+        a1: 0
+    - sequence: 1
+      method: debugger.addBreakpoint
+      params:
+        address: 0x8005029C
+        type: execute
+        enabled: true
+        temporary: false
+      boundary: before_instruction
+      required_registers:
+        pc: 0x8005029C
+        a0: 6
+        a1: 128
+  resume:
+    method: debugger.resume
+    params: {}
+    winner_policy: first_paused_target
+  execution_limit:
+    clock: emulator_frame
+    max_frame_delta: 64
+    max_status_polls: 2048
+    poll_interval_ms: 10
+    socket_timeout_ms: 5000
+  cleanup:
+    method: debugger.removeBreakpoint
+    remove_all_owned: true
+    require_empty_after: true
+  terminal_capture:
+    method: capture.atomic
+    params:
+      trigger: e15_levelb_scene_setup_first_hit
+      include_registers: true
+      trace_limit: 64
+claim_boundary:
+  adapter_preflight_complete: true
+  synthetic_transcript_only: true
+  live_executed: false
+  live_receipts: 0
+  selected_natural_branch_claimed: false
+  dma_events_claimed: 0
+  dimension_promoted: false
+  next_lane: live
+  next_action: >-
+    Preserve the exact two-PC managed-breakpoint contract, its static identity
+    join, the predeclared wider passive receipt and the tracked v2
+    emitter/validator admission. The current immutable before-ledger contains
+    P4-R10-ITER1-E15-LEVELB-TWO-PC-FIRST-HIT as its sole planned entry. The
+    next live work packet must close the passive receipt first, then execute
+    the exact 15792..15856 first-hit receipt and require fresh
+    campaign-verifier consumption. Do not infer a DMA event or promote
+    lifecycle from method readiness.
+  not_claimed:
+    - which first-hit PC the natural completed-Level-B route selects
+    - an exact earlier frame or cycle
+    - a DMA event, CD sector predecessor, transfer direction or result
+    - a lifecycle or other roadmap-dimension promotion
+    - execution or live evidence under the planned escalation in this static packet

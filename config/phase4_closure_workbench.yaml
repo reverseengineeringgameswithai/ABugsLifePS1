@@ -1,0 +1,138 @@
+schema: abl-phase4-closure-workbench-policy/1
+description: >
+  Fail-closed planning and evidence-discovery policy for all nine Phase-4
+  subsystem Definition-of-Done dimensions. The workbench derives work packets
+  and review candidates; it never promotes rows or edits authoritative claims.
+
+dimensions:
+  - id: original_oracle
+    ordinal: 1
+    title: Original oracle
+    required_layers: [oracle_fixtures, oracle_assertions, positive_control, negative_control, provenance]
+    default_lane: offline
+    accelerator: fixture-and-differential-witness compiler
+    completion_question: Can a deterministic pristine cold boot reproduce the behavior and distinguish it from a matched negative control?
+    next_action: Select the smallest centrally pinned cold-boot fixture, derive observable assertions, and minimize a positive/control pair without changing its anchor class.
+  - id: complete_frontier
+    ordinal: 2
+    title: Complete frontier
+    required_layers: [scope_universe, function_roots, callers_callees, callbacks_indirects, readers_writers, overlays_assets, bounded_residuals]
+    default_lane: static
+    accelerator: scoped semantic-frontier compiler with Z3 witnesses
+    completion_question: Are every relevant caller, callee, callback, table, overlay, reader, writer, and downstream consumer enumerated, with every remainder explicitly bounded?
+    next_action: Declare the subsystem universe and roots, compile transitive code/data intersections, and turn each unknown into either a counterexample or one falsifiable bounded residual.
+  - id: typed_state
+    ordinal: 3
+    title: Typed state
+    required_layers: [field_catalog, widths_signedness, ownership, domains, initialization_reset, evidence_confidence]
+    default_lane: static
+    accelerator: typed state/access join compiler
+    completion_question: Do important fields have exact types, owners, domains, initialization, reset, and evidence?
+    next_action: Join frontier accesses to semantic-state and record schemas; emit missing width, signedness, owner, domain, initialization, and reset obligations per field.
+  - id: lifecycle
+    ordinal: 4
+    title: Lifecycle
+    required_layers: [creation, repeated_use, retirement, death_respawn, pause, transition_reload, persistence]
+    default_lane: offline
+    accelerator: lifecycle state-machine and transition-cover compiler
+    completion_question: Is behavior characterized at every applicable creation, reuse, retirement, pause, death, transition, reload, and persistence boundary?
+    next_action: Compile an applicability-qualified lifecycle matrix, query retained transitions first, then request only the smallest missing transition/control witness.
+  - id: original_interfaces
+    ordinal: 5
+    title: Original interfaces
+    required_layers: [call_return, live_registers, stack_ra, hi_lo, gte_delay_slots, memory_effects, callback_overlay_asset_abi]
+    default_lane: static
+    accelerator: ABI ledger plus bounded MIPS micro-oracle
+    completion_question: Is every crossed call, register, memory, callback, overlay, and asset interface contract explicit?
+    next_action: Generate an ABI ledger at each frontier edge; use static p-code first and the bounded MIPS oracle only for pure or RAM-local uncertainties.
+  - id: campaign_breadth
+    ordinal: 6
+    title: Campaign breadth
+    required_layers: [applicability_universe, stages, variants, modes, exceptional_paths, coverage_controls]
+    default_lane: offline
+    accelerator: applicability matrix and weighted fixture-cover planner
+    completion_question: Are all applicable stages, variants, modes, objectives, and exceptional paths covered rather than sampled by convenience?
+    next_action: Derive the mandatory applicability universe from authored data and registries, then compute the minimum identity-compatible fixture cover and list every uncovered cell.
+  - id: cross_system_behavior
+    ordinal: 7
+    title: Cross-system behavior
+    required_layers: [interaction_universe, player_physics, render_animation, audio_hud, objectives_save, transitions, matched_controls]
+    default_lane: offline
+    accelerator: interaction matrix and causal differential compiler
+    completion_question: Are all applicable producer/consumer interactions validated with ownership-preserving controls?
+    next_action: Generate the interaction matrix from dependency edges, rank intersecting consumers, and build one-variable positive/negative witnesses for uncovered interactions.
+  - id: source_closure
+    ordinal: 8
+    title: Source closure
+    required_layers: [source_extent, asm_identity, semantic_or_matching_source, schema_layout, mismatch_ledger, executable_guards]
+    default_lane: static
+    accelerator: source extent and semantic-differential compiler
+    completion_question: Does reviewed source represent the complete behavior, with every byte/layout mismatch bounded?
+    next_action: Bind the frontier extent to ASM and semantic or matching source, enumerate unrepresented blocks/fields, and run native or micro-oracle differentials over boundary cases.
+  - id: durable_evidence
+    ordinal: 9
+    title: Durable evidence
+    required_layers: [canon, experiments, mods_disposition, fixture_pins, regeneration, executable_guard, supersession, clean_checkout]
+    default_lane: bank
+    accelerator: claim/supersession index plus evidence-DAG preflight
+    completion_question: Can a clean-checkout future agent locate, regenerate, falsify, and safely consume every claim without conversation context?
+    next_action: Compile claim lineage, fix orphan/stale knowledge and fixture pins, regenerate the evidence DAG, and submit a promotion packet to a fresh verifier.
+
+frontier_policy:
+  required_categories: [callers, callees, callbacks, indirect_tables, overlays, readers, writers, downstream_consumers]
+  allowed_proof_bases: [exact_address, bounded_index, documented_extent, adjacent_object, materialization_census, typed_record, declared_indirect_target_set, external_owner, runtime_falsifier, reviewed_manual]
+  weak_bases_requiring_independent_falsifier: [adjacent_object, runtime_falsifier, reviewed_manual]
+  unknown_is_disjoint: false
+  runtime_silence_proves_absence: false
+  strict_compiler_closure_equals_item2: false
+  require_scope_statement: true
+  require_image_census: true
+  require_counterexample_on_intersection: true
+
+pilot_rows:
+  - row_id: B06_invincibility
+    dimension: complete_frontier
+    adapter: b06_residual_ledger
+    artifacts: [analysis/phase4_b06_promotion_residuals.json]
+    expected_scope: player power-slot candidate-site universe
+  - row_id: E16_streaming_overlays
+    dimension: complete_frontier
+    adapter: e16_scoped_scorecard
+    artifacts: [analysis/phase4_e16_dod_scorecard.json, analysis/phase4_e16_promotion_residuals.json, analysis/phase4_e16_address_materialization.json]
+    expected_scope: three registered-chunk pointer tables only
+  - row_id: E15_fmv
+    dimension: complete_frontier
+    adapter: accepted_static_pilot
+    artifacts: [analysis/phase4_static_frontier_pilots.json]
+    expected_scope: retained Region-B FMV benchmark
+  - row_id: E08_props_movers_gates
+    dimension: complete_frontier
+    adapter: e08_static_application
+    artifacts: [analysis/phase4_static_frontier_pilots.json]
+    expected_scope: 28 uncontrolled classes, 40 selectors, and ten callbacks
+  - row_id: C13_grain_harvester
+    dimension: complete_frontier
+    adapter: c13_static_application
+    artifacts: [analysis/phase4_static_frontier_pilots.json]
+    expected_scope: retained grain and harvester roots
+
+standalone_scorecards:
+  - row_id: E16_streaming_overlays
+    path: analysis/phase4_e16_dod_scorecard.json
+    schema_kind: numbered_items
+
+live_escalation:
+  required_preconditions: [validated_capsule_set, relevant_capsule_query, named_missing_domain, exact_temporal_or_causal_need, positive_control, negative_control, isolated_config_identity, media_identity]
+  accepted_reasons: [missing_domain, exact_instruction_attribution, exact_dma_gpu_spu_attribution, native_behavioral_control, missing_or_invalid_capsule]
+  capsule_is_frame_boundary_only: true
+  API_change_requires_contract_gap: true
+  current_contract_surfaces: [accessHistory, execTrace, conditional_breakpoints, state_fingerprint, atomic_capture]
+
+authority:
+  changes_campaign_registry: false
+  changes_debt_ledger: false
+  promotes_row_or_dimension: false
+  writes_external_evidence: false
+  launches_emulator: false
+  strongest_verdict: ready_for_fresh_verifier
+  fresh_verifier_required: true

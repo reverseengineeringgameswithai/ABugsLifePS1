@@ -1,0 +1,98 @@
+schema: abl-phase4-jump/1
+description: >
+  Authoritative pristine-game contract for ordinary A03 jumping. It binds the
+  decoded Cross action, eligibility and coyote checks, normal and super-jump
+  takeoff impulses, held/released state transition, gravity, collision handoff,
+  animation, pause/resume, and death/respawn. Riverbed Flight and seed activation
+  are separate consumers of Cross and do not inherit the ordinary jump law.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_jump.json
+  generator: tools/phase4_jump.py
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+
+decoded_input:
+  action_word: {address: '0x80082488', type: u16}
+  cross_mask: '0x4000'
+  reader: '0x80048B60'
+
+ordinary_controller:
+  owner: resident player update 0x80048138..0x800498AB
+  eligibility:
+    grounded: nonzero
+    airborne_coyote_distance: '(floor_y - y) < 1024, signed'
+    coyote_guard:
+      address: '0x80082434'
+      type: u32
+      required: 0
+      level_load_clear: '0x80046C84'
+      post_collision_writer: '0x800495E4'
+      value_source: boolean return from FUNC_80038F20 over signed global 0x80082402
+    blocked_animation: 8
+    blocked_special_mode: nonzero
+  takeoff:
+    normal_impulse: -3072
+    super_jump_impulse: -3776
+    super_jump_flag: {field_offset: '0x90', mask: '0x0020'}
+    state: 1
+    grounded: 0
+    animation: 3
+  held:
+    state: 1
+    gravity_per_player_update: 256
+  released:
+    owner: '0x80048D14..0x80048D50'
+    state: 2
+    negative_velocity_below_minus_800_add: 384
+    transform: signed_half_then_subtract_256
+  terminal_velocity: 4096
+  velocity_writer: '0x80048D8C'
+
+collision_interface:
+  owner: movement/collision integrator 0x8003633C
+  call_site: '0x800495C8'
+  resolved_y_writer: '0x80036CEC'
+  semantics: >
+    The player update proposes signed vertical velocity. The integrator resolves
+    Y, floor and grounded. A grounded release-side update resets state to zero;
+    A03 does not own the resolver's internal geometry or ceiling predicates.
+
+animation:
+  ordinary_rise: 3
+  landing_transition: native actor/collision consumers after grounded publication
+  riverbed_flight: >
+    Cross changes flight-specific movement but retains state 0 and animation 4;
+    the flight law belongs to F14 and does not enter the ordinary jump branch.
+
+lifecycle:
+  initialization: scene load and native respawn initialize the reused player block before Cross is consumed
+  allocation_reuse: no A03-private allocation exists; one resident player block is reused
+  reset: release moves state 1 to 2; grounded release resets state to 0
+  pause: neutral pause freezes player fields; Cross confirms Resume and the retained held edge immediately enters rise state
+  death_respawn: native same-scene respawn restores state 0/grounded and accepts a fresh Cross takeoff
+  unload_transition: resident controller code persists while scene load replaces world/player fields
+  persistence: jump state and velocity are transient world state, not saved progression
+  capacity: one player block, one u16 action word, and no private allocation
+  residency: resident executable code and resident global/player state only
+
+mod_contract:
+  owner: preserve the resident input/player/collision ownership chain and explicitly order every jump hook
+  readers: enumerate input, player, collision, animation, render, camera, audio, pause, death, and exceptional-path consumers
+  writers: do not add unordered writers to action, state, grounded, vertical velocity, Y, floor, or animation
+  valid_domains: action and grounded are u16; state is 0..6 shared; velocity/Y/floor are signed s32; the native super flag is 0x0020
+  initialization: initialize MOD-private jump state before the first resident player update
+  reset: clear private held/released state on release, grounded landing, main-shell reset, death/reload, and every scene transition
+  retirement: retire injected Cross and overlay-scoped hooks before their owner unloads
+  consumers: input, player, collision, animation, render, camera, audio, pause, death/respawn, seed actions, and Riverbed Flight
+  capacity: declare all hook/cave/table expansion bounds and validate them with the hook contract
+  residency: keep resident state outside overlay-owned memory and scope overlay consumers explicitly
+  unsafe_assumptions:
+    - The gravity constant applies per native player update, not per emulator frame.
+    - State 2 is ordinary released/falling state here but is shared with other action paths.
+    - Vertical velocity is a collision proposal; resolved Y and floor can differ from naive integration.
+    - Riverbed Flight consumes Cross through a separate motion law and is not a neutral input path.
+    - Seed slam/plant activation and butt-slam remain separately owned A05 and plant-system behaviors.
+    - Save-state breadth supplements but does not replace the retained cold-boot counterfactual.

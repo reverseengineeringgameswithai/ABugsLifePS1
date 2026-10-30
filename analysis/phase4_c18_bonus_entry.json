@@ -1,0 +1,27 @@
+{
+  "schema": "phase4_c18_static_v1",
+  "row": "C18_bonus_entry",
+  "identity": {"serial": "SCUS-94288", "pristine_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20", "bonus_overlay": "LEVEL06/LEVEL1.BIN", "bonus_overlay_sha256": "4ea72fd6caaddb287d8eef2086c3b66a74191b6c36ddbeb7feaa1fbf5c8db172", "bonus_overlay_bytes": 1820},
+  "anchors_checked": 62,
+  "triggers": [
+    {"condition": "five qualifying butt-slammable interactions", "tentative_bit": "0x02", "earned_guard": "0x20", "hardcoded_stage": false, "scene_0x10_excluded": true},
+    {"condition": "five distinct mature type-5 mushroom contacts; duplicate restarts chain", "tentative_bit": "0x01", "earned_guard": "0x10", "hardcoded_stage": false, "scene_0x10_excluded": true},
+    {"condition": "five blue class-0 lethal contacts against actor id 15; wrong selector or miss resets streak", "tentative_bit": "0x04", "earned_guard": "0x40", "hardcoded_stage": false, "scene_0x10_excluded": false}
+  ],
+  "entry_handoff": {"transition_mode": 6, "scene_override": "0x10", "tentative_flags_address": "0x8009b889"},
+  "bonus_stage": {
+    "selector_address": "0x8009b88a",
+    "selector_role": "successful-bonus completion ordinal and scene-0x10 variant index",
+    "targets": [
+      {"ordinal": 0, "x": -13187, "y": -70036, "z": -22421, "auxiliary": -70036},
+      {"ordinal": 1, "x": -22349, "y": -79705, "z": 48945, "auxiliary": 18380},
+      {"ordinal": 2, "x": 157232, "y": -42406, "z": 5891, "auxiliary": -42406}
+    ],
+    "coordinate_scale_shift": 8, "goal_distance_squared_lt": 1600, "success_transition_mode": 1, "success_fade": 30
+  },
+  "transaction": {"success": "flags=(flags&0x0f)*17; selector++; movie_id=old_selector+42", "non_success": "flags=(flags>>4)*17; selector unchanged; no movie", "commit_sequence_pc": "0x8004ffbc", "rollback_sequence_pc": "0x8004ffe0"},
+  "order_exhaustion": {"challenge_orders_checked": 6, "abort_points_checked": 18, "movie_ids_by_completion_ordinal": [42,43,44], "final_flags_all_orders": "0x77", "final_selector_all_orders": 3},
+  "reward": {"movie_unlock_committed_in_high_nibble": true, "health_lives_grain_store_count": 0, "resource_reward": false},
+  "persistence": {"save_block_base": "0x8009b878", "save_block_bytes": 19, "bonus_flags_offset": 17, "bonus_selector_offset": 18, "serializer_deserializer_base_refs": 2, "serializer_deserializer_loop_bounds": 2},
+  "result": "C18_RESIDENT_OVERLAY_STATIC_PASS"
+}

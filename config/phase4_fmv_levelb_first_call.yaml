@@ -1,0 +1,129 @@
+schema: abl-phase4-fmv-levelb-first-call-source/1
+description: >
+  Preservation and falsification contract for the natural completed-Level-B
+  caller, selector-11 loader interface, limit publication, completion request
+  and balanced player teardown. Raw debugger receipts, transient movie
+  derivatives, disc bytes and credentials remain outside Git.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-ITER89-E15-LEVELB-FIRST-CALL-LIFECYCLE
+external_receipts:
+  - role: result
+    relative_path: live/Phase4/e15-levelb-first-call-v1-20260725/result.json
+    sha256: d7996d79c8477e0d76b16b8b608a8ea72e99e9565ca7ac94c326d8f62877ae4d
+    bytes: 779928
+  - role: cleanup
+    relative_path: live/Phase4/e15-levelb-first-call-v1-20260725/cleanup.json
+    sha256: 9a17e8862796c8d882edf4b2fca77e2d99d3e5922a66f9d5c0f94f7a3a2f28e4
+    bytes: 490
+fixture:
+  path: movies/100% Runs/LEVEL01.movie.json
+  sha256: ece62d4e6f92b887b0500dd8ac3bec48f3638ad5d9858cda7d5b0afb3a8d2602
+  bytes: 11030625
+  media_class: pristine_serial
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  serial: SCUS-94288
+debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 55d589032641ad0904526742f2209c034a710a162ebba3e1bc04b4c5da6075a8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty_state_hash: 72dd936c8a6f92f6370815da7d9e192c3bcc2371
+profile:
+  config_dir: /var/tmp/abl-p4-e15-levelb-first-call.iter1b.24738
+  port: 24738
+  owned_pid: 52516
+  owned_pid_stopped: true
+expected:
+  localization:
+    last_absent_target: 14381
+    first_present_target: 14382
+    targets:
+      - [15230, true]
+      - [14278, false]
+      - [14754, true]
+      - [14516, true]
+      - [14397, true]
+      - [14337, false]
+      - [14367, false]
+      - [14382, true]
+      - [14374, false]
+      - [14378, false]
+      - [14380, false]
+      - [14381, false]
+  first_call:
+    frame: 14382
+    cycle: 8142856967
+    pc: '0x8005031c'
+    a0: '0x00000000'
+    a1: '0x00000000'
+    s0: '0x00000001'
+    ra: '0x800502d8'
+    sp: '0x801fffb8'
+  loader_entry:
+    frame: 14382
+    cycle: 8142856981
+    pc: '0x8003e7c0'
+    selector: '0x0000000b'
+    mode: '0xffffffff'
+    ra: '0x80050324'
+    sp: '0x801fffb8'
+  selected_limit:
+    address: '0x80131eee'
+    instruction_pc: '0x800b6dc0'
+    frame: 14719
+    cycle: 8333601607
+    old: 0
+    new: 485
+    width: 2
+  completion:
+    address: '0x800cac10'
+    instruction_pc: '0x800b6b24'
+    frame: 15763
+    cycle: 8924574918
+    old: 0
+    new: 1
+    width: 4
+    unobserved_limit_writer: '0x800b6b48'
+  common_exit:
+    st_clear_ring:
+      function: '0x8007094c'
+      caller: '0x800b749c'
+      frame: 15816
+      cycle: 8954737420
+    callback_teardown:
+      function: '0x800709ac'
+      caller: '0x800b74a4'
+      frame: 15816
+      cycle: 8954739864
+      synthetic_unwind: false
+    elapsed_frames_from_first_call: 1434
+  trace_counts:
+    positive:
+      functions: 8
+      execution: 1
+      completion_request: 18
+      decode_stop_latch: 2
+      selected_frame_limit: 3
+      str_backloc: 205
+    neutral:
+      functions: 14
+      execution: 0
+      completion_request: 2
+      decode_stop_latch: 0
+      selected_frame_limit: 1
+      str_backloc: 228
+  neutral_generic_loader_entries:
+    - caller: '0x8004fb68'
+      frame: 14385
+      cycle: 8144343688
+      arguments: ['0x00000000', '0x800390f0', '0x00000000', '0x0000000a']
+    - caller: '0x8004fb74'
+      frame: 16018
+      cycle: 9068954443
+      arguments: ['0x0000002d', '0x800390f0', '0x00000000', '0x0000000a']
+tracked_summary:
+  schema: abl-phase4-fmv-levelb-first-call/1
+  excludes: [raw_receipts, movie_bytes, derivative_bytes, disc_bytes, token]

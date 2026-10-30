@@ -1,0 +1,1902 @@
+{
+ "_comment": "F16/F17/F18 measured per-dimension against the DoD bars AS WRITTEN (item 2 = enumerated scoped to relevant; residuals = explicitly bounded; bounded-exhausted is a stop decision, never a met). THREE scorecards, because a shared mechanism is not shared coverage. Judgments authored; every fact derived from a pinned artifact at run time. Regenerate: tools/phase4_f16_f18_written_bar_assessment.py",
+ "schema": "abl-phase4-f16-f18-written-bar-assessment/1",
+ "generated": "2026-08-11",
+ "rows": [
+  "F16_bonus1_spiders",
+  "F17_bonus2_mushrooms",
+  "F18_bonus3_grasshoppers"
+ ],
+ "standard": {
+  "ruling": "engineering-specs/phase4-measurement-standard-ruling.md",
+  "exemplar": "tools/phase4_f01_written_bar_assessment.py",
+  "item2_bar": "enumerated, scoped to relevant (NOT an empty unresolved set)",
+  "exit_gate_bar": "explicitly bounded, not absent",
+  "vocabulary": "bounded-exhausted remains a STOP DECISION and never reads as met; these three rows declare their next as 'Bounded.', which is therefore a disposition and is not counted anywhere here"
+ },
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "edits_registry": false,
+  "edits_mechanics_baseline": false,
+  "requires_fresh_verifier": true,
+  "author_conflict": "the assessor did not author this campaign's evidence but is the same agent line that authored the measurement standard and the F01 exemplar it is applied through; met_candidate is a submission, not a met"
+ },
+ "cross_credit_guard": {
+  "risk": "F16/F17/F18 share one mechanism and carry an identical missing/fixture_need/next block, so one row's evidence reads as three rows' evidence unless the ownership is enforced",
+  "artifact_ownership_derived_from": "each artifact's own `row` field, not its filename",
+  "exclusive_ownership": {
+   "analysis/phase4_F16_reset_test.json": "F16_bonus1_spiders",
+   "analysis/phase4_F16_streak_live.json": "F16_bonus1_spiders",
+   "analysis/phase4_F17_duplicate_test.json": "F17_bonus2_mushrooms",
+   "analysis/phase4_F17_reset_test.json": "F17_bonus2_mushrooms",
+   "analysis/phase4_F17_streak_live.json": "F17_bonus2_mushrooms",
+   "analysis/phase4_F18_reset_test.json": "F18_bonus3_grasshoppers",
+   "analysis/phase4_F18_streak_live.json": "F18_bonus3_grasshoppers"
+  },
+  "violations": [],
+  "self_test": {
+   "cross_credit_guard_fires_on_synthetic_violation": true,
+   "handtyped_number_guard_fires_on_synthetic_violation": true,
+   "synthetic_cross_credit_artifact": "analysis/phase4_F17_duplicate_test.json"
+  }
+ },
+ "handtyped_number_guard": {
+  "rule": "every numeric or hex token in an authored basis/gap must appear in the derived-fact table for that row",
+  "violations": [],
+  "facts_derived": 361,
+  "facts_handtyped": 0
+ },
+ "unmeasured_probe": {
+  "rule": "a dimension with NO evidence to measure against must be scored `unmeasured`, which is a different verdict from measured absence",
+  "violations": [],
+  "dimensions_scored_unmeasured": [],
+  "note": "the probe was applied to all nine dimensions on all three rows and found registered evidence everywhere, so `unmeasured` was available and correctly went unused. That is itself a finding: these rows are evidence-rich and their `partial` registry status is not caused by missing evidence. The one place the word still applies is scoped inside source_closure -- the shared bonus overlay lies outside the source map's address range, so the overlay half of that dimension has no registry to be measured against at all."
+ },
+ "per_row_differences": {
+  "_comment": "The specific risk in this assessment was crediting one row's evidence to its siblings. These are the measured differences; identical STATES do not mean identical COVERAGE.",
+  "dimensions_whose_STATE_differs": {},
+  "dimensions_whose_STATE_is_identical": [
+   "durable_evidence",
+   "original_oracle",
+   "complete_frontier",
+   "campaign_breadth",
+   "typed_state",
+   "lifecycle",
+   "cross_system_behavior",
+   "original_interfaces",
+   "source_closure"
+  ],
+  "facts_that_differ": {
+   "baseline_binding_claims": {
+    "F16_bonus1_spiders": 15,
+    "F17_bonus2_mushrooms": 13,
+    "F18_bonus3_grasshoppers": 12
+   },
+   "c_probe_pins_passed": {
+    "F16_bonus1_spiders": 43,
+    "F17_bonus2_mushrooms": 36,
+    "F18_bonus3_grasshoppers": 24
+   },
+   "c_probe_source": {
+    "F16_bonus1_spiders": "tools/phase4_f16_streak_law.c",
+    "F17_bonus2_mushrooms": "tools/phase4_f17_f18_streak_law.c",
+    "F18_bonus3_grasshoppers": "tools/phase4_f17_f18_streak_law.c"
+   },
+   "c_scan_resolved_loads": {
+    "F16_bonus1_spiders": 1,
+    "F17_bonus2_mushrooms": 2,
+    "F18_bonus3_grasshoppers": 1
+   },
+   "c_scan_resolved_stores": {
+    "F16_bonus1_spiders": 7,
+    "F17_bonus2_mushrooms": 16,
+    "F18_bonus3_grasshoppers": 5
+   },
+   "c_scan_vs_frontier_index_delta": {
+    "F16_bonus1_spiders": 0,
+    "F17_bonus2_mushrooms": 3,
+    "F18_bonus3_grasshoppers": 0
+   },
+   "capsule_bonus_flags_at_completion": {
+    "F16_bonus1_spiders": 2,
+    "F17_bonus2_mushrooms": 35,
+    "F18_bonus3_grasshoppers": 55
+   },
+   "capsule_completion_movie_frame": {
+    "F16_bonus1_spiders": 1072,
+    "F17_bonus2_mushrooms": 313,
+    "F18_bonus3_grasshoppers": 2467
+   },
+   "capsule_decisive_block_covered_families": {
+    "F16_bonus1_spiders": [
+     "bonus1_proximity_updater"
+    ],
+    "F17_bonus2_mushrooms": [
+     "bonus2_mushroom_handler"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "bonus3_contact_handler"
+    ]
+   },
+   "capsule_decisive_block_uncovered_families": {
+    "F16_bonus1_spiders": [
+     "bonus2_mushroom_handler",
+     "bonus3_contact_handler"
+    ],
+    "F17_bonus2_mushrooms": [
+     "bonus1_proximity_updater",
+     "bonus3_contact_handler"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "bonus1_proximity_updater",
+     "bonus2_mushroom_handler"
+    ]
+   },
+   "capsule_frames_completion_to_scene16": {
+    "F16_bonus1_spiders": 59,
+    "F17_bonus2_mushrooms": 118,
+    "F18_bonus3_grasshoppers": 59
+   },
+   "capsule_implied_entry_ordinal": {
+    "F16_bonus1_spiders": 0,
+    "F17_bonus2_mushrooms": 1,
+    "F18_bonus3_grasshoppers": 2
+   },
+   "capsule_movie": {
+    "F16_bonus1_spiders": "movies/Bonus_Level_01.movie.json",
+    "F17_bonus2_mushrooms": "movies/Bonus_Level_02.movie.json",
+    "F18_bonus3_grasshoppers": "movies/Bonus_Level_03.movie.json"
+   },
+   "capsule_movie_frames": {
+    "F16_bonus1_spiders": 3653,
+    "F17_bonus2_mushrooms": 10045,
+    "F18_bonus3_grasshoppers": 5020
+   },
+   "capsule_named_unknown": {
+    "F16_bonus1_spiders": "Qualifying target-family breadth and exact store-cycle attribution remain outside frame-boundary evidence.",
+    "F17_bonus2_mushrooms": "The natural movie has no duplicate; duplicate-reset causality remains solely in the retained native control.",
+    "F18_bonus3_grasshoppers": "The natural movie has no miss; case-13 reset causality remains solely in the retained native control."
+   },
+   "capsule_objective_events": {
+    "F16_bonus1_spiders": 864,
+    "F17_bonus2_mushrooms": 3483,
+    "F18_bonus3_grasshoppers": 554
+   },
+   "capsule_prior_bonuses_banked": {
+    "F16_bonus1_spiders": 0,
+    "F17_bonus2_mushrooms": 1,
+    "F18_bonus3_grasshoppers": 2
+   },
+   "capsule_scene16_movie_frame": {
+    "F16_bonus1_spiders": 1131,
+    "F17_bonus2_mushrooms": 431,
+    "F18_bonus3_grasshoppers": 2526
+   },
+   "capsule_scene_at_completion": {
+    "F16_bonus1_spiders": 17,
+    "F17_bonus2_mushrooms": 1,
+    "F18_bonus3_grasshoppers": 3
+   },
+   "cited_movies": {
+    "F16_bonus1_spiders": [
+     "movies/Phase4/Interpreter/Bonus01_Counter_ResetTest.movie.json",
+     "movies/Phase4/Interpreter/F16_Bonus01.movie.json"
+    ],
+    "F17_bonus2_mushrooms": [
+     "movies/Phase4/Interpreter/F16_Bonus02_ResetTestv2.movie.json",
+     "movies/Phase4/Interpreter/F16_Bonus02_Reset_Test.movie.json",
+     "movies/Phase4/Interpreter/F17_Bonus02.movie.json"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "movies/Phase4/Interpreter/Bonus03_Resets.movie.json",
+     "movies/Phase4/Interpreter/F18_Bonus03.movie.json"
+    ]
+   },
+   "declared_fixture_paths": {
+    "F16_bonus1_spiders": [
+     "movies/Bonus_Level_01.movie.sav",
+     "movies/Bonus_Level_01.movie.json"
+    ],
+    "F17_bonus2_mushrooms": [
+     "movies/Bonus_Level_02.movie.sav",
+     "movies/Bonus_Level_02.movie.json"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "movies/Bonus_Level_03.movie.sav",
+     "movies/Bonus_Level_03.movie.json"
+    ]
+   },
+   "frontier_callers_enumerated": {
+    "F16_bonus1_spiders": 8,
+    "F17_bonus2_mushrooms": 2,
+    "F18_bonus3_grasshoppers": 4
+   },
+   "frontier_direct_callees": {
+    "F16_bonus1_spiders": 30,
+    "F17_bonus2_mushrooms": 9,
+    "F18_bonus3_grasshoppers": 48
+   },
+   "frontier_indirect_jumps": {
+    "F16_bonus1_spiders": 2,
+    "F17_bonus2_mushrooms": 1,
+    "F18_bonus3_grasshoppers": 2
+   },
+   "frontier_resolved_reads": {
+    "F16_bonus1_spiders": 1,
+    "F17_bonus2_mushrooms": 0,
+    "F18_bonus3_grasshoppers": 1
+   },
+   "frontier_resolved_writes": {
+    "F16_bonus1_spiders": 7,
+    "F17_bonus2_mushrooms": 15,
+    "F18_bonus3_grasshoppers": 5
+   },
+   "frontier_unresolved_boundaries": {
+    "F16_bonus1_spiders": 239,
+    "F17_bonus2_mushrooms": 57,
+    "F18_bonus3_grasshoppers": 261
+   },
+   "frontier_unresolved_memory_bases": {
+    "F16_bonus1_spiders": 8,
+    "F17_bonus2_mushrooms": 8,
+    "F18_bonus3_grasshoppers": 10
+   },
+   "governing_function_entries": {
+    "F16_bonus1_spiders": [
+     "0x800470AC",
+     "0x8004A42C",
+     "0x8004A700",
+     "0x8004ABF4"
+    ],
+    "F17_bonus2_mushrooms": [
+     "0x8005BC64",
+     "0x8005BFBC",
+     "0x8005C258"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "0x80057404",
+     "0x80058AF8",
+     "0x8005905C",
+     "0x8005953C"
+    ]
+   },
+   "governing_function_names": {
+    "F16_bonus1_spiders": [
+     "actor_player_contact_resolver",
+     "berry_throw_dispatch",
+     "object_slot_type_init",
+     "resident_level_transition_initiator"
+    ],
+    "F17_bonus2_mushrooms": [
+     "plant_behavior_walker",
+     "plant_slot_respawn_scan",
+     "seed_plant_propeller_handler"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "berry_tough_damage_dispatch",
+     "clear_gameplay_pool_on_reset",
+     "contact_vs_actor_handler",
+     "pickup_effect_dispatch"
+    ]
+   },
+   "governing_functions": {
+    "F16_bonus1_spiders": 4,
+    "F17_bonus2_mushrooms": 3,
+    "F18_bonus3_grasshoppers": 4
+   },
+   "lifecycle_phase_map": {
+    "F16_bonus1_spiders": {
+     "cold_boot": "not_evidenced -- every movie behind this row records from_boot false",
+     "load": "evidenced",
+     "first_use": "evidenced",
+     "repeated_use": "evidenced",
+     "exhaustion": "evidenced",
+     "retirement": "evidenced",
+     "reuse": "no_artifact_addresses_it -- no run attempts this chain after its earned bit is set"
+    },
+    "F17_bonus2_mushrooms": {
+     "cold_boot": "not_evidenced -- every movie behind this row records from_boot false",
+     "load": "evidenced",
+     "first_use": "evidenced",
+     "repeated_use": "evidenced",
+     "exhaustion": "evidenced",
+     "retirement": "shared_mechanism_only -- the reward commit was observed on another row's fixture and is not this row's coverage",
+     "reuse": "no_artifact_addresses_it -- no run attempts this chain after its earned bit is set"
+    },
+    "F18_bonus3_grasshoppers": {
+     "cold_boot": "not_evidenced -- every movie behind this row records from_boot false",
+     "load": "evidenced",
+     "first_use": "evidenced",
+     "repeated_use": "evidenced",
+     "exhaustion": "evidenced",
+     "retirement": "shared_mechanism_only -- the reward commit was observed on another row's fixture and is not this row's coverage",
+     "reuse": "no_artifact_addresses_it -- no run attempts this chain after its earned bit is set"
+    }
+   },
+   "lifecycle_phases_evidenced_row_owned": {
+    "F16_bonus1_spiders": 5,
+    "F17_bonus2_mushrooms": 4,
+    "F18_bonus3_grasshoppers": 4
+   },
+   "movie_provenance": {
+    "F16_bonus1_spiders": [
+     {
+      "path": "movies/Phase4/Interpreter/Bonus01_Counter_ResetTest.movie.json",
+      "sha256": "651b1eae7f2b25eec01e1d31b344031a95a3e40dcffc9b440c476eae2c062d7e",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 4187,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Phase4/Interpreter/F16_Bonus01.movie.json",
+      "sha256": "5412d13e1277328668a1c959fd6ccaf999d08e7617fe4becc2d029339f63b2a4",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 4977,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Bonus_Level_01.movie.json",
+      "sha256": "a1e83e4d0fe822a3e9001bf47e5c296489d0b076b237dd8f9768b31d382f4bad",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 3,
+      "armed_while_paused": null,
+      "recorded_frames": 3653,
+      "from_boot": false
+     }
+    ],
+    "F17_bonus2_mushrooms": [
+     {
+      "path": "movies/Phase4/Interpreter/F16_Bonus02_ResetTestv2.movie.json",
+      "sha256": "9db10fd2d2f64525897efa4c6646b7be87c10637ebf40093934592d897f44dde",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 490,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Phase4/Interpreter/F16_Bonus02_Reset_Test.movie.json",
+      "sha256": "24585a3e4357d5e1139629a485d361ae5f17504d5f9fc6811156a711e4f1566e",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 671,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Phase4/Interpreter/F17_Bonus02.movie.json",
+      "sha256": "6c46b39a991216ecf895421b040f573336e02cda65ea9070591796b320d7b3cc",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 18085,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Bonus_Level_02.movie.json",
+      "sha256": "9780d487a3a6816137c7872542d51142be0b4655dbe791daf50fab26ae6e6f46",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 3,
+      "armed_while_paused": null,
+      "recorded_frames": 10045,
+      "from_boot": false
+     }
+    ],
+    "F18_bonus3_grasshoppers": [
+     {
+      "path": "movies/Phase4/Interpreter/Bonus03_Resets.movie.json",
+      "sha256": "ca2eae603af380c92415fb3e2cb656f258ff3811be35367eddbc21ee9d8c6694",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 3812,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Phase4/Interpreter/F18_Bonus03.movie.json",
+      "sha256": "c7393b119a84206fb083f990f8cb573de608ac3e7997b0c293f1a72479313e38",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 7109,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Bonus_Level_03.movie.json",
+      "sha256": "2beaed383fd0256287e7f1c82bb03e7438b55e4f678d76db1af87c061ca11349",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 3,
+      "armed_while_paused": null,
+      "recorded_frames": 5020,
+      "from_boot": false
+     }
+    ]
+   },
+   "movies_bytes_match_pin": {
+    "F16_bonus1_spiders": "3/3",
+    "F17_bonus2_mushrooms": "4/4",
+    "F18_bonus3_grasshoppers": "3/3"
+   },
+   "movies_centrally_pinned": {
+    "F16_bonus1_spiders": "3/3",
+    "F17_bonus2_mushrooms": "4/4",
+    "F18_bonus3_grasshoppers": "3/3"
+   },
+   "movies_state_anchored": {
+    "F16_bonus1_spiders": 3,
+    "F17_bonus2_mushrooms": 4,
+    "F18_bonus3_grasshoppers": 3
+   },
+   "movies_traceable_v4": {
+    "F16_bonus1_spiders": 2,
+    "F17_bonus2_mushrooms": 3,
+    "F18_bonus3_grasshoppers": 2
+   },
+   "named_unknown_addressed_by_row_artifacts": {
+    "F16_bonus1_spiders": 2,
+    "F17_bonus2_mushrooms": 1,
+    "F18_bonus3_grasshoppers": 1
+   },
+   "named_unknown_addressed_how": {
+    "F16_bonus1_spiders": [
+     "chain resets watched destroying a live chain"
+    ],
+    "F17_bonus2_mushrooms": [
+     "duplicate restart watched live"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "contact-dispatch case-13 reset watched destroying a live chain"
+    ]
+   },
+   "ownership_functions_cited": {
+    "F16_bonus1_spiders": 25,
+    "F17_bonus2_mushrooms": 26,
+    "F18_bonus3_grasshoppers": 23
+   },
+   "ownership_reader_groups": {
+    "F16_bonus1_spiders": 8,
+    "F17_bonus2_mushrooms": 6,
+    "F18_bonus3_grasshoppers": 8
+   },
+   "ownership_state_cited": {
+    "F16_bonus1_spiders": 16,
+    "F17_bonus2_mushrooms": 12,
+    "F18_bonus3_grasshoppers": 12
+   },
+   "ownership_state_window_addresses_registered": {
+    "F16_bonus1_spiders": "1/1",
+    "F17_bonus2_mushrooms": "2/5",
+    "F18_bonus3_grasshoppers": "1/1"
+   },
+   "ownership_state_window_semantic_ids": {
+    "F16_bonus1_spiders": [
+     "original.bonus1_stomp_streak"
+    ],
+    "F17_bonus2_mushrooms": [
+     "original.bonus2_mushroom_slot_0"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "original.bonus3_blue_grasshopper_streak"
+    ]
+   },
+   "ownership_state_window_writer_sites": {
+    "F16_bonus1_spiders": 7,
+    "F17_bonus2_mushrooms": 3,
+    "F18_bonus3_grasshoppers": 5
+   },
+   "ownership_state_with_semantic_owner": {
+    "F16_bonus1_spiders": 8,
+    "F17_bonus2_mushrooms": 7,
+    "F18_bonus3_grasshoppers": 8
+   },
+   "ownership_state_without_owner": {
+    "F16_bonus1_spiders": 8,
+    "F17_bonus2_mushrooms": 5,
+    "F18_bonus3_grasshoppers": 4
+   },
+   "ownership_writer_groups": {
+    "F16_bonus1_spiders": 8,
+    "F17_bonus2_mushrooms": 7,
+    "F18_bonus3_grasshoppers": 8
+   },
+   "reward_commit_observed_by_this_row": {
+    "F16_bonus1_spiders": true,
+    "F17_bonus2_mushrooms": false,
+    "F18_bonus3_grasshoppers": false
+   },
+   "row_artifacts": {
+    "F16_bonus1_spiders": 2,
+    "F17_bonus2_mushrooms": 3,
+    "F18_bonus3_grasshoppers": 2
+   },
+   "row_chain_loss_event_kind": {
+    "F16_bonus1_spiders": "destructive_resets (counter cleared with a live chain)",
+    "F17_bonus2_mushrooms": "duplicate-RESTART (chain re-seeded to one, not wiped)",
+    "F18_bonus3_grasshoppers": "b3_destructive_resets (streak cleared with a live chain)"
+   },
+   "row_chain_loss_events_in_own_domain": {
+    "F16_bonus1_spiders": 7,
+    "F17_bonus2_mushrooms": 85,
+    "F18_bonus3_grasshoppers": 2
+   },
+   "row_marker_pcs": {
+    "F16_bonus1_spiders": [
+     "0x800470d8",
+     "0x8004a854",
+     "0x8004b1d4",
+     "0x8004b350",
+     "0x8004b3a8"
+    ],
+    "F17_bonus2_mushrooms": [],
+    "F18_bonus3_grasshoppers": [
+     "0x800470d8"
+    ]
+   },
+   "row_marker_pcs_in_this_rows_window": {
+    "F16_bonus1_spiders": 5,
+    "F17_bonus2_mushrooms": 0,
+    "F18_bonus3_grasshoppers": 0
+   },
+   "row_markers_are_a_control_for_this_rows_window": {
+    "F16_bonus1_spiders": true,
+    "F17_bonus2_mushrooms": false,
+    "F18_bonus3_grasshoppers": false
+   },
+   "row_markers_that_destroyed_a_chain_in_marker_domain": {
+    "F16_bonus1_spiders": 3,
+    "F17_bonus2_mushrooms": 0,
+    "F18_bonus3_grasshoppers": 0
+   },
+   "row_markers_with_no_event_in_marker_domain": {
+    "F16_bonus1_spiders": 2,
+    "F17_bonus2_mushrooms": 4,
+    "F18_bonus3_grasshoppers": 1
+   },
+   "row_observed_value_domains": {
+    "F16_bonus1_spiders": {
+     "contact_class_values_seen": 23,
+     "action_state_values_seen": 19
+    },
+    "F17_bonus2_mushrooms": {
+     "contact_class_values_seen": 23,
+     "progress_bursts_observed": 6,
+     "action_state_values_seen": 19
+    },
+    "F18_bonus3_grasshoppers": {
+     "contact_class_values_seen": 23,
+     "action_state_values_seen": 19,
+     "progress_bursts_observed": 4
+    }
+   },
+   "row_operator_action_markers": {
+    "F16_bonus1_spiders": 6,
+    "F17_bonus2_mushrooms": 4,
+    "F18_bonus3_grasshoppers": 2
+   },
+   "row_replay_events_total": {
+    "F16_bonus1_spiders": 57343,
+    "F17_bonus2_mushrooms": 49249,
+    "F18_bonus3_grasshoppers": 44421
+   },
+   "row_replay_frames_total": {
+    "F16_bonus1_spiders": 9164,
+    "F17_bonus2_mushrooms": 19246,
+    "F18_bonus3_grasshoppers": 10921
+   },
+   "row_window_append_restart_events": {
+    "F16_bonus1_spiders": null,
+    "F17_bonus2_mushrooms": 88,
+    "F18_bonus3_grasshoppers": null
+   },
+   "row_window_slot_events_sampled_capped": {
+    "F16_bonus1_spiders": null,
+    "F17_bonus2_mushrooms": 900,
+    "F18_bonus3_grasshoppers": null
+   },
+   "row_window_write_counter_is_authoritative": {
+    "F16_bonus1_spiders": true,
+    "F17_bonus2_mushrooms": false,
+    "F18_bonus3_grasshoppers": true
+   },
+   "row_window_writes_authoritative_total": {
+    "F16_bonus1_spiders": 24,
+    "F17_bonus2_mushrooms": null,
+    "F18_bonus3_grasshoppers": 1073
+   },
+   "row_writer_pcs_observed": {
+    "F16_bonus1_spiders": 7,
+    "F17_bonus2_mushrooms": 16,
+    "F18_bonus3_grasshoppers": 5
+   },
+   "source_governing_functions_handwritten_asm": {
+    "F16_bonus1_spiders": 4,
+    "F17_bonus2_mushrooms": 3,
+    "F18_bonus3_grasshoppers": 3
+   },
+   "source_governing_functions_unregistered": {
+    "F16_bonus1_spiders": 0,
+    "F17_bonus2_mushrooms": 0,
+    "F18_bonus3_grasshoppers": 1
+   },
+   "stage_interior_run_is_this_rows_fixture": {
+    "F16_bonus1_spiders": true,
+    "F17_bonus2_mushrooms": false,
+    "F18_bonus3_grasshoppers": false
+   },
+   "stage_variants_observed_by_this_row": {
+    "F16_bonus1_spiders": 1,
+    "F17_bonus2_mushrooms": 0,
+    "F18_bonus3_grasshoppers": 0
+   },
+   "state_window": {
+    "F16_bonus1_spiders": [
+     "0x8008223C"
+    ],
+    "F17_bonus2_mushrooms": [
+     "0x80082248",
+     "0x80082249",
+     "0x8008224A",
+     "0x8008224B",
+     "0x8008224C"
+    ],
+    "F18_bonus3_grasshoppers": [
+     "0x80082240"
+    ]
+   }
+  },
+  "single_stage_interior_run": {
+   "movie": "Bonus_Level_01.movie.json",
+   "variant_observed": 0,
+   "variants_pinned": 3,
+   "owned_by_row": [
+    "F16_bonus1_spiders"
+   ],
+   "inherited_as_shared_mechanism_by": [
+    "F17_bonus2_mushrooms",
+    "F18_bonus3_grasshoppers"
+   ]
+  }
+ },
+ "shared_facts": {
+  "item2_ruling_transferable": "no -- the F01 declared assumption is recorded non-transferable, so these rows may not inherit its bounding mechanism",
+  "stage_probe_pins_passed": 82,
+  "stage_probe_pins_failed": 0,
+  "stage_header_words": 1,
+  "stage_code_words": 373,
+  "stage_data_words": 81,
+  "stage_total_words": 455,
+  "stage_functions_tiled": 4,
+  "stage_runtime_movie": "Bonus_Level_01.movie.json",
+  "stage_runtime_movie_format": "v3 (CachedInterpreter-era) -- POLL ONLY, never instrumented here",
+  "stage_runtime_movie_frames": 3653,
+  "stage_scene_entered_frame": 1140,
+  "stage_overlay_resident_frame": 2010,
+  "stage_measured_load_base": "0x800B39A0",
+  "stage_base_matches_static": true,
+  "stage_variant_observed": 0,
+  "stage_target_table_matches_disc": true,
+  "stage_cull_matches_prediction": true,
+  "stage_actors_culled": 21,
+  "stage_actors_alive": 12,
+  "stage_fire_frame": 2683,
+  "stage_d2_at_fire": 1592,
+  "stage_d2_frame_before": 1859,
+  "stage_control_frames_stepped": 672,
+  "stage_control_min_d2": 1859,
+  "stage_control_coarse_blocked_frames": 78,
+  "stage_control_max_coarse2": 414796,
+  "stage_control_inside_threshold_no_fire": 0,
+  "stage_control_violations": 0,
+  "stage_reward_flags_before": 2,
+  "stage_reward_flags_after": 34,
+  "stage_reward_ordinal_before": 0,
+  "stage_reward_ordinal_after": 1,
+  "stage_reward_player_words_changed": 0,
+  "stage_scene_after_bonus": 0,
+  "stage_target_table_bytes": 48,
+  "stage_target_table_stride": 16,
+  "stage_variants_pinned_in_table": 3,
+  "stage_variants_observed_running": 1,
+  "stage_destination_scene": 16,
+  "frontier_index_records": 1191,
+  "stage_overlay_frontier_records": 6,
+  "stage_overlay_frontier_instructions": 373,
+  "stage_overlay_frontier_direct_calls": 6,
+  "stage_overlay_frontier_indirect_calls": 0,
+  "stage_overlay_frontier_indirect_jumps": 0,
+  "stage_overlay_unresolved_boundaries": 85,
+  "segments_rows": 860,
+  "segments_c_sources": 259,
+  "segments_asm_sources": 601,
+  "segments_va_low": "0x80010000",
+  "segments_va_high": "0x80074970",
+  "segments_rows_covering_overlay_space": 0,
+  "census_f18_segment_substring_hits": 1,
+  "census_f18_segment_substring_sources": [
+   "asm/hand_written/8004df18_camera_follow_update.s}"
+  ],
+  "doc_grade_c_declares_doc_grade": true,
+  "doc_grade_c_declares_not_linked": true,
+  "doc_grade_c_segment_rows": 0,
+  "guard_tests_passed": 94,
+  "guard_tests_failed": 0,
+  "guard_test_files": 3,
+  "census_rows_assessed": 19,
+  "census_durable_evidence_fraction": "19/19",
+  "canon_pages_registered": 4,
+  "canon_stage_carries_correction_history": 3,
+  "canon_stage_flags_unobserved_variants": true,
+  "capsule_batch_capsules": 3,
+  "capsule_batch_reconstructed_records": 18721,
+  "capsule_batch_all_control_match": true,
+  "capsule_batch_bounded_conclusions": 5
+ },
+ "evidence_pins": [
+  {
+   "path": "ObsidianVault/Canon/Systems/SYS_bonus1_streak_law.md",
+   "sha256": "f4c209880aea4179816f052474a4bf85251ebbfbfe6dbed886204eba6bf567a4"
+  },
+  {
+   "path": "ObsidianVault/Canon/Systems/SYS_bonus2_bonus3_chain_law.md",
+   "sha256": "a7410798208f576a51f2a70f2f0c730d50f68cefc400e9338e6bb458af8107d1"
+  },
+  {
+   "path": "ObsidianVault/Canon/Systems/SYS_bonus_stage.md",
+   "sha256": "3bfc220c287ee1a9ce4859504c4cbe93c0bb840bfeab861b2caf44704629589b"
+  },
+  {
+   "path": "ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md",
+   "sha256": "45fbdefcd0d29bb3ced0a127c73d4eccd0381f86e3a2e4feae1221b171f6d5c2"
+  },
+  {
+   "path": "ObsidianVault/Experiments/EXP_2026-08-04_phase4_f16_f18_bonus_stage.md",
+   "sha256": "112f0036e2c12fa0926287f11aae9047e5c146f714228dd256317cf7faf28442"
+  },
+  {
+   "path": "analysis/mechanics_baseline.yaml",
+   "sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58"
+  },
+  {
+   "path": "analysis/phase0_2_external_fixture_set.json",
+   "sha256": "905f2648c3b9205060553d22d0c3727e5efc1ccb903b068d878e76f0dbf4e6f6"
+  },
+  {
+   "path": "analysis/phase3_ownership_graph.json",
+   "sha256": "be8aea008ade0417bbe7e99e87c788df94c6ed9e50c6079b42b05e2c9f37e483"
+  },
+  {
+   "path": "analysis/phase4_F16_reset_test.json",
+   "sha256": "d54adee048e3620c8728fc4804feb23f34f427524bfd413ca4e44aa04a643af5"
+  },
+  {
+   "path": "analysis/phase4_F16_streak_live.json",
+   "sha256": "1bacb45c225bf8e6ad7713b9c0671ae61e61c47e9d31d86c3d2f51e3be7202a7"
+  },
+  {
+   "path": "analysis/phase4_F17_duplicate_test.json",
+   "sha256": "7c7a54c71800181b51029015a5756cec24dba34c1e6c9b20a684379af4f454da"
+  },
+  {
+   "path": "analysis/phase4_F17_reset_test.json",
+   "sha256": "5d2df69f09106a13faed509563f5a9fb456a02762c491b497e38f3479d074337"
+  },
+  {
+   "path": "analysis/phase4_F17_streak_live.json",
+   "sha256": "4070dbc56f8c15fda98c1fabb99dafa884f3e2cf0a1e5b2cea1a3dd7cd73012f"
+  },
+  {
+   "path": "analysis/phase4_F18_reset_test.json",
+   "sha256": "86f1ff84f78e6a71a50fcb4ea123913b33e0e724ee38910f16d9dd00713dc0e3"
+  },
+  {
+   "path": "analysis/phase4_F18_streak_live.json",
+   "sha256": "644c60f6555825aea4625a34d7698c71a3cfcd65d658b9ee17387e3c4b45023c"
+  },
+  {
+   "path": "analysis/phase4_f16_f18_bonus_stage.json",
+   "sha256": "525c37f06d1060768ddd3e23360848062beafab0692e06ecabca5ce31cb59ebe"
+  },
+  {
+   "path": "analysis/phase4_f_row_measured_census.json",
+   "sha256": "fe493509b6fcc1a435a3fd2d1ceaa6ad123a7a8d88ca52000e87ae6cce586e8a"
+  },
+  {
+   "path": "analysis/phase4_offline_bonus_objectives_batch.json",
+   "sha256": "8f97c90980269da516682b3cf32c59537d963cec85786047eae630a484aa51ef"
+  },
+  {
+   "path": "analysis/phase4_static_frontier_index.json",
+   "sha256": "893775dcbebdfd008b629f58f74cbd8c50d3d6a0d5492c42dde8276084d7c328"
+  },
+  {
+   "path": "config/segments.yml",
+   "sha256": "81c4df81ea8b5b1c2d265bfdeb86c3a9be92983bfc09e721379ddc6546d05477"
+  },
+  {
+   "path": "engineering-specs/phase4-item2-bar-ruling.md",
+   "sha256": "3ae564d21bc463a8e2c91e02d9e0aa8605ce25e0660073820652534bceb35798"
+  },
+  {
+   "path": "engineering-specs/phase4-measurement-standard-ruling.md",
+   "sha256": "80fd4896063874c76d0adb2b6dd5593dbc56b508ac8f05d036bf9f8cc654331a"
+  },
+  {
+   "path": "src_re/bonus_unlock_challenges.c",
+   "sha256": "c57b8b0d1e11cdb67a9a3872824f6b5ad37ed6d0e0330be8329d03f5cc60dfb2"
+  },
+  {
+   "path": "tests/test_phase4_f16_f18_bonus_stage.py",
+   "sha256": "0b24fc305b196a03f50ccb08de9bde00d5af74c2f7846f2bf34faaffd4f53888"
+  },
+  {
+   "path": "tests/test_phase4_f16_streak_law.py",
+   "sha256": "58f7b482cd9d51038590a25d355ec137b59e84d36ba120f93d259ad8af67a01c"
+  },
+  {
+   "path": "tests/test_phase4_f17_f18_chain_law.py",
+   "sha256": "bdd2a9eded67a91098d4b1b0cfda9e8a119fb4425ab81ab7975a3da8193d6512"
+  },
+  {
+   "path": "tools/phase4_f16_f18_bonus_stage.c",
+   "sha256": "d2d7784854b05dcca34f69678778176e242c883f5d7a2d5c8064f4cee968372c"
+  },
+  {
+   "path": "tools/phase4_f16_streak_law.c",
+   "sha256": "d276ccb54ca75edfdcfe7c66fcad7dde974ee8b773e431174714020744d2de51"
+  },
+  {
+   "path": "tools/phase4_f17_f18_streak_law.c",
+   "sha256": "cbebc256d4e39ebba01996e3a58c95f2abb82a146199995ad397bea6130ac117"
+  }
+ ],
+ "scorecards": {
+  "F16_bonus1_spiders": {
+   "row_name": "Bonus 1: five consecutive qualifying butt-slams (any butt-slammable target)",
+   "registry_status": "partial",
+   "evidence_provenance": {
+    "row_specific_artifacts": [
+     "analysis/phase4_F16_reset_test.json",
+     "analysis/phase4_F16_streak_live.json"
+    ],
+    "row_declared_fixtures": [
+     "movies/Bonus_Level_01.movie.sav",
+     "movies/Bonus_Level_01.movie.json"
+    ],
+    "row_own_natural_capsule": "movies/Bonus_Level_01.movie.json",
+    "shared_mechanism_artifacts": [
+     "analysis/phase4_f16_f18_bonus_stage.json",
+     "analysis/phase4_offline_bonus_objectives_batch.json",
+     "tools/phase4_f16_f18_bonus_stage.c",
+     "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+    ],
+    "not_this_row": [
+     "analysis/phase4_F17_duplicate_test.json",
+     "analysis/phase4_F17_reset_test.json",
+     "analysis/phase4_F17_streak_live.json",
+     "analysis/phase4_F18_reset_test.json",
+     "analysis/phase4_F18_streak_live.json"
+    ]
+   },
+   "facts": {
+    "state_window": [
+     "0x8008223C"
+    ],
+    "declared_fixtures_intact": "2/2",
+    "declared_fixture_paths": [
+     "movies/Bonus_Level_01.movie.sav",
+     "movies/Bonus_Level_01.movie.json"
+    ],
+    "census_durable_state": "met",
+    "row_artifacts": 2,
+    "cited_movies": [
+     "movies/Phase4/Interpreter/Bonus01_Counter_ResetTest.movie.json",
+     "movies/Phase4/Interpreter/F16_Bonus01.movie.json"
+    ],
+    "movie_provenance": [
+     {
+      "path": "movies/Phase4/Interpreter/Bonus01_Counter_ResetTest.movie.json",
+      "sha256": "651b1eae7f2b25eec01e1d31b344031a95a3e40dcffc9b440c476eae2c062d7e",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 4187,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Phase4/Interpreter/F16_Bonus01.movie.json",
+      "sha256": "5412d13e1277328668a1c959fd6ccaf999d08e7617fe4becc2d029339f63b2a4",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 4977,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Bonus_Level_01.movie.json",
+      "sha256": "a1e83e4d0fe822a3e9001bf47e5c296489d0b076b237dd8f9768b31d382f4bad",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 3,
+      "armed_while_paused": null,
+      "recorded_frames": 3653,
+      "from_boot": false
+     }
+    ],
+    "movies_centrally_pinned": "3/3",
+    "movies_bytes_match_pin": "3/3",
+    "movies_recorded_from_boot": 0,
+    "movies_state_anchored": 3,
+    "movies_traceable_v4": 2,
+    "movies_pollonly_v3": 1,
+    "cited_movies_declared_on_row": 0,
+    "row_replay_frames_total": 9164,
+    "row_replay_events_total": 57343,
+    "row_replay_ring_truncated": 0,
+    "row_movie_format_versions": [
+     4
+    ],
+    "row_window_writes_authoritative_total": 24,
+    "row_window_write_counter_is_authoritative": true,
+    "row_window_slot_events_sampled_capped": null,
+    "row_window_append_restart_events": null,
+    "row_writer_pcs_observed": 7,
+    "row_chain_loss_events_in_own_domain": 7,
+    "row_chain_loss_event_kind": "destructive_resets (counter cleared with a live chain)",
+    "row_writers_outside_resolved_set": 0,
+    "row_observed_value_domains": {
+     "contact_class_values_seen": 23,
+     "action_state_values_seen": 19
+    },
+    "row_operator_action_markers": 6,
+    "row_markers_with_no_event_in_marker_domain": 2,
+    "row_markers_that_destroyed_a_chain_in_marker_domain": 3,
+    "row_marker_pcs": [
+     "0x800470d8",
+     "0x8004a854",
+     "0x8004b1d4",
+     "0x8004b350",
+     "0x8004b3a8"
+    ],
+    "governing_functions": 4,
+    "governing_function_names": [
+     "actor_player_contact_resolver",
+     "berry_throw_dispatch",
+     "object_slot_type_init",
+     "resident_level_transition_initiator"
+    ],
+    "governing_function_entries": [
+     "0x800470AC",
+     "0x8004A42C",
+     "0x8004A700",
+     "0x8004ABF4"
+    ],
+    "frontier_resolved_reads": 1,
+    "frontier_resolved_writes": 7,
+    "frontier_direct_callees": 30,
+    "frontier_indirect_calls": 0,
+    "frontier_indirect_jumps": 2,
+    "frontier_unresolved_boundaries": 239,
+    "frontier_unresolved_memory_bases": 8,
+    "frontier_callers_enumerated": 8,
+    "c_probe_pins_passed": 43,
+    "c_probe_source": "tools/phase4_f16_streak_law.c",
+    "c_scan_resolved_loads": 1,
+    "c_scan_resolved_stores": 7,
+    "c_scan_resolved_overlay_accesses": 0,
+    "c_scan_vs_frontier_index_delta": 0,
+    "ownership_registry_status": "partial",
+    "ownership_functions_cited": 25,
+    "ownership_state_cited": 16,
+    "ownership_state_with_semantic_owner": 8,
+    "ownership_state_without_owner": 8,
+    "ownership_reader_groups": 8,
+    "ownership_writer_groups": 8,
+    "ownership_spaces_cited": 2,
+    "ownership_lifecycle_entries": 1,
+    "ownership_state_window_semantic_ids": [
+     "original.bonus1_stomp_streak"
+    ],
+    "ownership_state_window_writer_sites": 7,
+    "ownership_state_window_addresses_registered": "1/1",
+    "row_marker_pcs_in_this_rows_window": 5,
+    "row_markers_are_a_control_for_this_rows_window": true,
+    "capsule_movie": "movies/Bonus_Level_01.movie.json",
+    "capsule_movie_frames": 3653,
+    "capsule_media_class": "pristine",
+    "capsule_control_match": true,
+    "capsule_objective_events": 864,
+    "capsule_expected_findings_reproduced": true,
+    "capsule_progress_events": 5,
+    "capsule_completion_movie_frame": 1072,
+    "capsule_scene_at_completion": 17,
+    "capsule_bonus_flags_at_completion": 2,
+    "capsule_transition_latch_at_completion": 6,
+    "capsule_scene16_movie_frame": 1131,
+    "capsule_frames_completion_to_scene16": 59,
+    "capsule_decisive_block_covered_families": [
+     "bonus1_proximity_updater"
+    ],
+    "capsule_decisive_block_uncovered_families": [
+     "bonus2_mushroom_handler",
+     "bonus3_contact_handler"
+    ],
+    "capsule_named_unknown": "Qualifying target-family breadth and exact store-cycle attribution remain outside frame-boundary evidence.",
+    "capsule_scenes_observed": 1,
+    "stage_interior_run_is_this_rows_fixture": true,
+    "stage_variants_observed_by_this_row": 1,
+    "reward_commit_observed_by_this_row": true,
+    "named_unknown_addressed_by_row_artifacts": 2,
+    "named_unknown_addressed_how": [
+     "chain resets watched destroying a live chain"
+    ],
+    "lifecycle_phase_map": {
+     "cold_boot": "not_evidenced -- every movie behind this row records from_boot false",
+     "load": "evidenced",
+     "first_use": "evidenced",
+     "repeated_use": "evidenced",
+     "exhaustion": "evidenced",
+     "retirement": "evidenced",
+     "reuse": "no_artifact_addresses_it -- no run attempts this chain after its earned bit is set"
+    },
+    "lifecycle_phases_evidenced_row_owned": 5,
+    "lifecycle_phases_total": 7,
+    "capsule_prior_bonuses_banked": 0,
+    "capsule_implied_entry_ordinal": 0,
+    "capsule_stage_interior_decoded": false,
+    "source_governing_functions_bytematched_c": 0,
+    "source_governing_functions_handwritten_asm": 4,
+    "source_governing_functions_unregistered": 0,
+    "baseline_status": "partial",
+    "baseline_binding_claims": 15,
+    "baseline_declared_evidence_classes": [
+     "manual",
+     "runtime_trace"
+    ],
+    "baseline_declares_next_as_bounded": true
+   },
+   "dimensions": {
+    "durable_evidence": {
+     "state": "met",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_f_row_measured_census.json",
+      "analysis/phase0_2_external_fixture_set.json",
+      "analysis/phase4_F16_reset_test.json",
+      "analysis/phase4_F16_streak_live.json"
+     ],
+     "written_bar": "evidence artifacts durable, pinned, regenerable; every external fixture centrally pinned and declared for preservation",
+     "basis": "carried forward MEASURED from the F-row census: 2/2 declared fixtures intact (exist, centrally pinned, bytes match). Re-derived and widened here over the movies this row's own artifacts actually replay plus its declared pair: 3/3 centrally pinned and 3/3 byte-matching their pins. The generators rebuild under -Werror (43 pins in this row's own probe section of tools/phase4_f16_streak_law.c) and 94 executable guards pass across 3 test files",
+     "gap": "of the 2 movies this row's artifacts replay, 0 appear in the row's own fixture_have, so the registry under-declares the fixture set the conclusions rest on -- a declaration defect, not a durability defect",
+     "evidence_probe": true
+    },
+    "original_oracle": {
+     "state": "met_candidate",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_F16_reset_test.json",
+      "analysis/phase4_F16_streak_live.json",
+      "analysis/phase4_offline_bonus_objectives_batch.json"
+     ],
+     "written_bar": "behaviour asserted against the ORIGINAL game's own natural execution, not injected state",
+     "basis": "every observation for this row is natural playback of pristine media with no poke or perturbation: 2 row-owned replay artifacts totalling 9164 movie frames and 57343 watch events, ring truncated on 0 of them, plus this row's OWN natural capsule movies/Bonus_Level_01.movie.json (3653 frames, media class pristine, control_match True, expected_findings_reproduced True), which reproduces 5 natural progress steps ending at latch 6 on movie frame 1072, then scene 16 entry 59 frames later, with the decisive block covered for exactly ['bonus1_proximity_updater'] and not for ['bonus2_mushroom_handler', 'bonus3_contact_handler']. 0 writers outside the resolved set were observed in any of them. The row carries 6 operator-designed action markers, 2 of which produced no counter event -- but the marker block is Bonus-1-domain in every artifact, so it is a control for THIS row only when row_markers_are_a_control_for_this_rows_window is true, and here it is True (5 of 5 marker PCs write this row's window)",
+     "gap": "the capsule is FRAME-BOUNDARY evidence and carries this row's own named unknown: \"Qualifying target-family breadth and exact store-cycle attribution remain outside frame-boundary evidence.\" 2 later row-owned artifacts bear on it (['chain resets watched destroying a live chain']), which is a repair the batch itself does not record. Adjudication by a fresh verifier is pending; met_candidate is a submission",
+     "evidence_probe": true
+    },
+    "complete_frontier": {
+     "state": "partial",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_static_frontier_index.json",
+      "tools/phase4_f16_streak_law.c",
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "item 2 AS WRITTEN: callers / callees / callbacks / indirect tables ENUMERATED, scoped to relevant -- and the residual EXPLICITLY BOUNDED, not merely absent",
+     "basis": "the resolved-direct frontier IS enumerated for this row's state window ['0x8008223C']: 4 governing functions ['actor_player_contact_resolver', 'berry_throw_dispatch', 'object_slot_type_init', 'resident_level_transition_initiator'], 1 resolved reads and 7 resolved writes, 8 enumerated callers, 30 enumerated direct callees, 0 indirect calls and 2 indirect jumps inside them. A second, independent compiled scan (tools/phase4_f16_streak_law.c) resolves 1 loads and 7 stores over the EXE and every overlay with 0 overlay hits",
+     "gap": "the residual is NAMED but not BOUNDED: 239 unresolved boundaries remain inside the governing functions alone (over 8 distinct unresolved base registers), the two independent scans disagree by 0 accesses on this window, the shared overlay adds 85 more across 6 records, and the Canon pages explicitly RETRACT their former domain-closure wording. F01's declared-assumption bounding cannot be borrowed: no -- the F01 declared assumption is recorded non-transferable, so these rows may not inherit its bounding mechanism",
+     "evidence_probe": true
+    },
+    "campaign_breadth": {
+     "state": "not_met",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_offline_bonus_objectives_batch.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated",
+     "basis": "one axis IS enumerated with a denominator: the stage layout table pins 3 variants (48 bytes at stride 16, verified byte-identical live: True), and across the whole campaign exactly 1 variant (variant 0) has been observed running -- once, on Bonus_Level_01.movie.json. On the challenge axis this row has been observed completing on 1 scene (scene 17 in its own capsule)",
+     "gap": "'every applicable stage' has NO denominator for the challenge: the set of stages carrying qualifying targets is nowhere enumerated, which is what this row's own named unknown says. On the variant axis, which DOES have a denominator, this row owns 1 of 3 observations (stage_interior_run_is_this_rows_fixture=True); the campaign total is 1, and that number belongs to one fixture, not to three rows",
+     "evidence_probe": true
+    },
+    "typed_state": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_F16_reset_test.json",
+      "analysis/phase4_F16_streak_live.json"
+     ],
+     "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)",
+     "basis": "the machine ownership layer types 8 of 16 state addresses this row cites, and the row's own replays measured live value domains {'contact_class_values_seen': 23, 'action_state_values_seen': 19} across 24 window events (authoritative per-PC totals) from 7 distinct writer PCs",
+     "gap": "8 cited state addresses still have no semantic-registry owner, so their value domains are undeclared; the row's own state window is registered 1/1 with semantic ids ['original.bonus1_stomp_streak'], and the registry status for this row is 'partial'",
+     "evidence_probe": true
+    },
+    "lifecycle": {
+     "state": "partial",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_F16_reset_test.json",
+      "analysis/phase4_F16_streak_live.json",
+      "analysis/phase4_offline_bonus_objectives_batch.json",
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced",
+     "basis": "scored phase by phase from ROW-OWNED evidence only: 5 of 7 phases evidenced -- {'cold_boot': 'not_evidenced -- every movie behind this row records from_boot false', 'load': 'evidenced', 'first_use': 'evidenced', 'repeated_use': 'evidenced', 'exhaustion': 'evidenced', 'retirement': 'evidenced', 'reuse': 'no_artifact_addresses_it -- no run attempts this chain after its earned bit is set'}. Behind those: 24 window events (authoritative per-PC totals), 7 chain-loss events watched in this row's OWN domain (destructive_resets (counter cleared with a live chain)), and the natural capsule's 5 progress steps ending in latch 6 and scene 16 entry. The ownership layer carries 1 lifecycle entry for the row",
+     "gap": "COLD BOOT is not evidenced for this row and cannot be: read from the movies' own recorded provenance, 0 of the 3 movies behind these conclusions declare from_boot, and 3 are state-anchored. REUSE after the earned bit is set is unobserved. The load / first use / retirement arc of the bonus STAGE, and the reward commit itself, were observed once on Bonus_Level_01.movie.json: reward_commit_observed_by_this_row=True, so for this row that phase is row-owned",
+     "evidence_probe": true
+    },
+    "cross_system_behavior": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_F16_reset_test.json",
+      "analysis/phase4_F16_streak_live.json"
+     ],
+     "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+     "basis": "this row's own replays cross its chain against other resident systems and measure the result: 7 distinct writer PCs fired across 9164 frames in 4 governing functions ['actor_player_contact_resolver', 'berry_throw_dispatch', 'object_slot_type_init', 'resident_level_transition_initiator'], 7 of the crossings cost a live chain in this row's own domain (destructive_resets (counter cleared with a live chain)), and the observed value domains {'contact_class_values_seen': 23, 'action_state_values_seen': 19} span more than one subsystem",
+     "gap": "no registered COMBINATION MATRIX exists for this row -- the crossings that were exercised are the ones a human happened to record, and the un-exercised combinations are not enumerated anywhere, so the coverage has no denominator (same shape as campaign_breadth)",
+     "evidence_probe": true
+    },
+    "original_interfaces": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase3_ownership_graph.json",
+      "ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md",
+      "analysis/phase4_F16_reset_test.json",
+      "analysis/phase4_F16_streak_live.json"
+     ],
+     "written_bar": "interfaces documented -- owner, readers/writers, valid domains, init/reset/retirement, residency, downstream consumers -- with unknowns enumerated against named obstructions",
+     "basis": "the machine layer registers 8 reader groups and 8 writer groups over 25 cited functions in 2 residency spaces, and the Canon pages carry the reset/retirement rules and 3 explicit correction histories that retract the over-broad earlier wording",
+     "gap": "the consumption contract is incomplete on the semantic half: 8 cited addresses carry no owner, and no named obstruction is registered against them -- unknowns are present but not enumerated-with-obstruction the way the bar asks",
+     "evidence_probe": true
+    },
+    "source_closure": {
+     "state": "not_met",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "config/segments.yml",
+      "src_re/bonus_unlock_challenges.c"
+     ],
+     "written_bar": "byte-matched C through the original toolchain for the row's governing functions",
+     "basis": "measured against the authoritative source map: of this row's 4 governing functions, 0 are byte-matched C, 4 are hand-written ASM and 0 are unregistered -- while the map as a whole does hold 259 C sources out of 860 rows, so the absence is specific to this row, not to the project",
+     "gap": "the only C for this row's blocks is src_re/bonus_unlock_challenges.c, which declares itself DOCUMENTATION-GRADE (declares_doc_grade=True, segment rows=0) -- honestly labelled, and honestly not the bar. The shared stage overlay is outside the source map entirely: it spans 0x80010000..0x80074970 with 0 rows above the resident window, so the overlay half of this dimension is not merely unclosed, it is UNMEASURABLE against the current registry",
+     "evidence_probe": true
+    }
+   },
+   "counts": {
+    "met": 1,
+    "met_candidate": 1,
+    "partial": 5,
+    "not_met": 2
+   },
+   "summary": "1 met, 1 met_candidate, 2 not_met, 5 partial"
+  },
+  "F17_bonus2_mushrooms": {
+   "row_name": "Bonus 2: mushroom-bounce chain",
+   "registry_status": "partial",
+   "evidence_provenance": {
+    "row_specific_artifacts": [
+     "analysis/phase4_F17_duplicate_test.json",
+     "analysis/phase4_F17_reset_test.json",
+     "analysis/phase4_F17_streak_live.json"
+    ],
+    "row_declared_fixtures": [
+     "movies/Bonus_Level_02.movie.sav",
+     "movies/Bonus_Level_02.movie.json"
+    ],
+    "row_own_natural_capsule": "movies/Bonus_Level_02.movie.json",
+    "shared_mechanism_artifacts": [
+     "analysis/phase4_f16_f18_bonus_stage.json",
+     "analysis/phase4_offline_bonus_objectives_batch.json",
+     "tools/phase4_f16_f18_bonus_stage.c",
+     "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+    ],
+    "not_this_row": [
+     "analysis/phase4_F16_reset_test.json",
+     "analysis/phase4_F16_streak_live.json",
+     "analysis/phase4_F18_reset_test.json",
+     "analysis/phase4_F18_streak_live.json"
+    ]
+   },
+   "facts": {
+    "state_window": [
+     "0x80082248",
+     "0x80082249",
+     "0x8008224A",
+     "0x8008224B",
+     "0x8008224C"
+    ],
+    "declared_fixtures_intact": "2/2",
+    "declared_fixture_paths": [
+     "movies/Bonus_Level_02.movie.sav",
+     "movies/Bonus_Level_02.movie.json"
+    ],
+    "census_durable_state": "met",
+    "row_artifacts": 3,
+    "cited_movies": [
+     "movies/Phase4/Interpreter/F16_Bonus02_ResetTestv2.movie.json",
+     "movies/Phase4/Interpreter/F16_Bonus02_Reset_Test.movie.json",
+     "movies/Phase4/Interpreter/F17_Bonus02.movie.json"
+    ],
+    "movie_provenance": [
+     {
+      "path": "movies/Phase4/Interpreter/F16_Bonus02_ResetTestv2.movie.json",
+      "sha256": "9db10fd2d2f64525897efa4c6646b7be87c10637ebf40093934592d897f44dde",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 490,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Phase4/Interpreter/F16_Bonus02_Reset_Test.movie.json",
+      "sha256": "24585a3e4357d5e1139629a485d361ae5f17504d5f9fc6811156a711e4f1566e",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 671,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Phase4/Interpreter/F17_Bonus02.movie.json",
+      "sha256": "6c46b39a991216ecf895421b040f573336e02cda65ea9070591796b320d7b3cc",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 18085,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Bonus_Level_02.movie.json",
+      "sha256": "9780d487a3a6816137c7872542d51142be0b4655dbe791daf50fab26ae6e6f46",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 3,
+      "armed_while_paused": null,
+      "recorded_frames": 10045,
+      "from_boot": false
+     }
+    ],
+    "movies_centrally_pinned": "4/4",
+    "movies_bytes_match_pin": "4/4",
+    "movies_recorded_from_boot": 0,
+    "movies_state_anchored": 4,
+    "movies_traceable_v4": 3,
+    "movies_pollonly_v3": 1,
+    "cited_movies_declared_on_row": 0,
+    "row_replay_frames_total": 19246,
+    "row_replay_events_total": 49249,
+    "row_replay_ring_truncated": 0,
+    "row_movie_format_versions": [
+     4
+    ],
+    "row_window_writes_authoritative_total": null,
+    "row_window_write_counter_is_authoritative": false,
+    "row_window_slot_events_sampled_capped": 900,
+    "row_window_append_restart_events": 88,
+    "row_writer_pcs_observed": 16,
+    "row_chain_loss_events_in_own_domain": 85,
+    "row_chain_loss_event_kind": "duplicate-RESTART (chain re-seeded to one, not wiped)",
+    "row_writers_outside_resolved_set": 0,
+    "row_observed_value_domains": {
+     "contact_class_values_seen": 23,
+     "progress_bursts_observed": 6,
+     "action_state_values_seen": 19
+    },
+    "row_operator_action_markers": 4,
+    "row_markers_with_no_event_in_marker_domain": 4,
+    "row_markers_that_destroyed_a_chain_in_marker_domain": 0,
+    "row_marker_pcs": [],
+    "governing_functions": 3,
+    "governing_function_names": [
+     "plant_behavior_walker",
+     "plant_slot_respawn_scan",
+     "seed_plant_propeller_handler"
+    ],
+    "governing_function_entries": [
+     "0x8005BC64",
+     "0x8005BFBC",
+     "0x8005C258"
+    ],
+    "frontier_resolved_reads": 0,
+    "frontier_resolved_writes": 15,
+    "frontier_direct_callees": 9,
+    "frontier_indirect_calls": 0,
+    "frontier_indirect_jumps": 1,
+    "frontier_unresolved_boundaries": 57,
+    "frontier_unresolved_memory_bases": 8,
+    "frontier_callers_enumerated": 2,
+    "c_probe_pins_passed": 36,
+    "c_probe_source": "tools/phase4_f17_f18_streak_law.c",
+    "c_scan_resolved_loads": 2,
+    "c_scan_resolved_stores": 16,
+    "c_scan_resolved_overlay_accesses": 0,
+    "c_scan_vs_frontier_index_delta": 3,
+    "ownership_registry_status": "partial",
+    "ownership_functions_cited": 26,
+    "ownership_state_cited": 12,
+    "ownership_state_with_semantic_owner": 7,
+    "ownership_state_without_owner": 5,
+    "ownership_reader_groups": 6,
+    "ownership_writer_groups": 7,
+    "ownership_spaces_cited": 2,
+    "ownership_lifecycle_entries": 1,
+    "ownership_state_window_semantic_ids": [
+     "original.bonus2_mushroom_slot_0"
+    ],
+    "ownership_state_window_writer_sites": 3,
+    "ownership_state_window_addresses_registered": "2/5",
+    "row_marker_pcs_in_this_rows_window": 0,
+    "row_markers_are_a_control_for_this_rows_window": false,
+    "capsule_movie": "movies/Bonus_Level_02.movie.json",
+    "capsule_movie_frames": 10045,
+    "capsule_media_class": "pristine",
+    "capsule_control_match": true,
+    "capsule_objective_events": 3483,
+    "capsule_expected_findings_reproduced": true,
+    "capsule_progress_events": 5,
+    "capsule_completion_movie_frame": 313,
+    "capsule_scene_at_completion": 1,
+    "capsule_bonus_flags_at_completion": 35,
+    "capsule_transition_latch_at_completion": 6,
+    "capsule_scene16_movie_frame": 431,
+    "capsule_frames_completion_to_scene16": 118,
+    "capsule_decisive_block_covered_families": [
+     "bonus2_mushroom_handler"
+    ],
+    "capsule_decisive_block_uncovered_families": [
+     "bonus1_proximity_updater",
+     "bonus3_contact_handler"
+    ],
+    "capsule_named_unknown": "The natural movie has no duplicate; duplicate-reset causality remains solely in the retained native control.",
+    "capsule_scenes_observed": 1,
+    "stage_interior_run_is_this_rows_fixture": false,
+    "stage_variants_observed_by_this_row": 0,
+    "reward_commit_observed_by_this_row": false,
+    "named_unknown_addressed_by_row_artifacts": 1,
+    "named_unknown_addressed_how": [
+     "duplicate restart watched live"
+    ],
+    "lifecycle_phase_map": {
+     "cold_boot": "not_evidenced -- every movie behind this row records from_boot false",
+     "load": "evidenced",
+     "first_use": "evidenced",
+     "repeated_use": "evidenced",
+     "exhaustion": "evidenced",
+     "retirement": "shared_mechanism_only -- the reward commit was observed on another row's fixture and is not this row's coverage",
+     "reuse": "no_artifact_addresses_it -- no run attempts this chain after its earned bit is set"
+    },
+    "lifecycle_phases_evidenced_row_owned": 4,
+    "lifecycle_phases_total": 7,
+    "capsule_prior_bonuses_banked": 1,
+    "capsule_implied_entry_ordinal": 1,
+    "capsule_stage_interior_decoded": false,
+    "source_governing_functions_bytematched_c": 0,
+    "source_governing_functions_handwritten_asm": 3,
+    "source_governing_functions_unregistered": 0,
+    "baseline_status": "partial",
+    "baseline_binding_claims": 13,
+    "baseline_declared_evidence_classes": [
+     "manual",
+     "runtime_trace"
+    ],
+    "baseline_declares_next_as_bounded": true
+   },
+   "dimensions": {
+    "durable_evidence": {
+     "state": "met",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_f_row_measured_census.json",
+      "analysis/phase0_2_external_fixture_set.json",
+      "analysis/phase4_F17_duplicate_test.json",
+      "analysis/phase4_F17_reset_test.json",
+      "analysis/phase4_F17_streak_live.json"
+     ],
+     "written_bar": "evidence artifacts durable, pinned, regenerable; every external fixture centrally pinned and declared for preservation",
+     "basis": "carried forward MEASURED from the F-row census: 2/2 declared fixtures intact (exist, centrally pinned, bytes match). Re-derived and widened here over the movies this row's own artifacts actually replay plus its declared pair: 4/4 centrally pinned and 4/4 byte-matching their pins. The generators rebuild under -Werror (36 pins in this row's own probe section of tools/phase4_f17_f18_streak_law.c) and 94 executable guards pass across 3 test files",
+     "gap": "of the 3 movies this row's artifacts replay, 0 appear in the row's own fixture_have, so the registry under-declares the fixture set the conclusions rest on -- a declaration defect, not a durability defect",
+     "evidence_probe": true
+    },
+    "original_oracle": {
+     "state": "met_candidate",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_F17_duplicate_test.json",
+      "analysis/phase4_F17_reset_test.json",
+      "analysis/phase4_F17_streak_live.json",
+      "analysis/phase4_offline_bonus_objectives_batch.json"
+     ],
+     "written_bar": "behaviour asserted against the ORIGINAL game's own natural execution, not injected state",
+     "basis": "every observation for this row is natural playback of pristine media with no poke or perturbation: 3 row-owned replay artifacts totalling 19246 movie frames and 49249 watch events, ring truncated on 0 of them, plus this row's OWN natural capsule movies/Bonus_Level_02.movie.json (10045 frames, media class pristine, control_match True, expected_findings_reproduced True), which reproduces 5 natural progress steps ending at latch 6 on movie frame 313, then scene 16 entry 118 frames later, with the decisive block covered for exactly ['bonus2_mushroom_handler'] and not for ['bonus1_proximity_updater', 'bonus3_contact_handler']. 0 writers outside the resolved set were observed in any of them. The row carries 4 operator-designed action markers, 4 of which produced no counter event -- but the marker block is Bonus-1-domain in every artifact, so it is a control for THIS row only when row_markers_are_a_control_for_this_rows_window is true, and here it is False (0 of 0 marker PCs write this row's window)",
+     "gap": "the capsule is FRAME-BOUNDARY evidence and carries this row's own named unknown: \"The natural movie has no duplicate; duplicate-reset causality remains solely in the retained native control.\" 1 later row-owned artifacts bear on it (['duplicate restart watched live']), which is a repair the batch itself does not record. Adjudication by a fresh verifier is pending; met_candidate is a submission",
+     "evidence_probe": true
+    },
+    "complete_frontier": {
+     "state": "partial",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_static_frontier_index.json",
+      "tools/phase4_f17_f18_streak_law.c",
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "item 2 AS WRITTEN: callers / callees / callbacks / indirect tables ENUMERATED, scoped to relevant -- and the residual EXPLICITLY BOUNDED, not merely absent",
+     "basis": "the resolved-direct frontier IS enumerated for this row's state window ['0x80082248', '0x80082249', '0x8008224A', '0x8008224B', '0x8008224C']: 3 governing functions ['plant_behavior_walker', 'plant_slot_respawn_scan', 'seed_plant_propeller_handler'], 0 resolved reads and 15 resolved writes, 2 enumerated callers, 9 enumerated direct callees, 0 indirect calls and 1 indirect jumps inside them. A second, independent compiled scan (tools/phase4_f17_f18_streak_law.c) resolves 2 loads and 16 stores over the EXE and every overlay with 0 overlay hits",
+     "gap": "the residual is NAMED but not BOUNDED: 57 unresolved boundaries remain inside the governing functions alone (over 8 distinct unresolved base registers), the two independent scans disagree by 3 accesses on this window, the shared overlay adds 85 more across 6 records, and the Canon pages explicitly RETRACT their former domain-closure wording. F01's declared-assumption bounding cannot be borrowed: no -- the F01 declared assumption is recorded non-transferable, so these rows may not inherit its bounding mechanism",
+     "evidence_probe": true
+    },
+    "campaign_breadth": {
+     "state": "not_met",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_offline_bonus_objectives_batch.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated",
+     "basis": "one axis IS enumerated with a denominator: the stage layout table pins 3 variants (48 bytes at stride 16, verified byte-identical live: True), and across the whole campaign exactly 1 variant (variant 0) has been observed running -- once, on Bonus_Level_01.movie.json. On the challenge axis this row has been observed completing on 1 scene (scene 1 in its own capsule)",
+     "gap": "'every applicable stage' has NO denominator for the challenge: the set of stages carrying qualifying targets is nowhere enumerated, which is what this row's own named unknown says. On the variant axis, which DOES have a denominator, this row owns 0 of 3 observations (stage_interior_run_is_this_rows_fixture=False); the campaign total is 1, and that number belongs to one fixture, not to three rows",
+     "evidence_probe": true
+    },
+    "typed_state": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_F17_duplicate_test.json",
+      "analysis/phase4_F17_reset_test.json",
+      "analysis/phase4_F17_streak_live.json"
+     ],
+     "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)",
+     "basis": "the machine ownership layer types 7 of 12 state addresses this row cites, and the row's own replays measured live value domains {'contact_class_values_seen': 23, 'progress_bursts_observed': 6, 'action_state_values_seen': 19} across 88 window events (append/restart events (the per-slot timelines are CAPPED and were deliberately not summed)) from 16 distinct writer PCs",
+     "gap": "5 cited state addresses still have no semantic-registry owner, so their value domains are undeclared; the row's own state window is registered 2/5 with semantic ids ['original.bonus2_mushroom_slot_0'], and the registry status for this row is 'partial'",
+     "evidence_probe": true
+    },
+    "lifecycle": {
+     "state": "partial",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_F17_duplicate_test.json",
+      "analysis/phase4_F17_reset_test.json",
+      "analysis/phase4_F17_streak_live.json",
+      "analysis/phase4_offline_bonus_objectives_batch.json",
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced",
+     "basis": "scored phase by phase from ROW-OWNED evidence only: 4 of 7 phases evidenced -- {'cold_boot': 'not_evidenced -- every movie behind this row records from_boot false', 'load': 'evidenced', 'first_use': 'evidenced', 'repeated_use': 'evidenced', 'exhaustion': 'evidenced', 'retirement': \"shared_mechanism_only -- the reward commit was observed on another row's fixture and is not this row's coverage\", 'reuse': 'no_artifact_addresses_it -- no run attempts this chain after its earned bit is set'}. Behind those: 88 window events (append/restart events (the per-slot timelines are CAPPED and were deliberately not summed)), 85 chain-loss events watched in this row's OWN domain (duplicate-RESTART (chain re-seeded to one, not wiped)), and the natural capsule's 5 progress steps ending in latch 6 and scene 16 entry. The ownership layer carries 1 lifecycle entry for the row",
+     "gap": "COLD BOOT is not evidenced for this row and cannot be: read from the movies' own recorded provenance, 0 of the 4 movies behind these conclusions declare from_boot, and 4 are state-anchored. REUSE after the earned bit is set is unobserved. The load / first use / retirement arc of the bonus STAGE, and the reward commit itself, were observed once on Bonus_Level_01.movie.json: reward_commit_observed_by_this_row=False, so for this row that phase is shared-mechanism inheritance, not coverage",
+     "evidence_probe": true
+    },
+    "cross_system_behavior": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_F17_duplicate_test.json",
+      "analysis/phase4_F17_reset_test.json",
+      "analysis/phase4_F17_streak_live.json"
+     ],
+     "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+     "basis": "this row's own replays cross its chain against other resident systems and measure the result: 16 distinct writer PCs fired across 19246 frames in 3 governing functions ['plant_behavior_walker', 'plant_slot_respawn_scan', 'seed_plant_propeller_handler'], 85 of the crossings cost a live chain in this row's own domain (duplicate-RESTART (chain re-seeded to one, not wiped)), and the observed value domains {'contact_class_values_seen': 23, 'progress_bursts_observed': 6, 'action_state_values_seen': 19} span more than one subsystem",
+     "gap": "no registered COMBINATION MATRIX exists for this row -- the crossings that were exercised are the ones a human happened to record, and the un-exercised combinations are not enumerated anywhere, so the coverage has no denominator (same shape as campaign_breadth)",
+     "evidence_probe": true
+    },
+    "original_interfaces": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase3_ownership_graph.json",
+      "ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md",
+      "analysis/phase4_F17_duplicate_test.json",
+      "analysis/phase4_F17_reset_test.json",
+      "analysis/phase4_F17_streak_live.json"
+     ],
+     "written_bar": "interfaces documented -- owner, readers/writers, valid domains, init/reset/retirement, residency, downstream consumers -- with unknowns enumerated against named obstructions",
+     "basis": "the machine layer registers 6 reader groups and 7 writer groups over 26 cited functions in 2 residency spaces, and the Canon pages carry the reset/retirement rules and 3 explicit correction histories that retract the over-broad earlier wording",
+     "gap": "the consumption contract is incomplete on the semantic half: 5 cited addresses carry no owner, and no named obstruction is registered against them -- unknowns are present but not enumerated-with-obstruction the way the bar asks",
+     "evidence_probe": true
+    },
+    "source_closure": {
+     "state": "not_met",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "config/segments.yml",
+      "src_re/bonus_unlock_challenges.c"
+     ],
+     "written_bar": "byte-matched C through the original toolchain for the row's governing functions",
+     "basis": "measured against the authoritative source map: of this row's 3 governing functions, 0 are byte-matched C, 3 are hand-written ASM and 0 are unregistered -- while the map as a whole does hold 259 C sources out of 860 rows, so the absence is specific to this row, not to the project",
+     "gap": "the only C for this row's blocks is src_re/bonus_unlock_challenges.c, which declares itself DOCUMENTATION-GRADE (declares_doc_grade=True, segment rows=0) -- honestly labelled, and honestly not the bar. The shared stage overlay is outside the source map entirely: it spans 0x80010000..0x80074970 with 0 rows above the resident window, so the overlay half of this dimension is not merely unclosed, it is UNMEASURABLE against the current registry",
+     "evidence_probe": true
+    }
+   },
+   "counts": {
+    "met": 1,
+    "met_candidate": 1,
+    "partial": 5,
+    "not_met": 2
+   },
+   "summary": "1 met, 1 met_candidate, 2 not_met, 5 partial"
+  },
+  "F18_bonus3_grasshoppers": {
+   "row_name": "Bonus 3: consecutive grasshopper kills, no missed blue berry",
+   "registry_status": "partial",
+   "evidence_provenance": {
+    "row_specific_artifacts": [
+     "analysis/phase4_F18_reset_test.json",
+     "analysis/phase4_F18_streak_live.json"
+    ],
+    "row_declared_fixtures": [
+     "movies/Bonus_Level_03.movie.sav",
+     "movies/Bonus_Level_03.movie.json"
+    ],
+    "row_own_natural_capsule": "movies/Bonus_Level_03.movie.json",
+    "shared_mechanism_artifacts": [
+     "analysis/phase4_f16_f18_bonus_stage.json",
+     "analysis/phase4_offline_bonus_objectives_batch.json",
+     "tools/phase4_f16_f18_bonus_stage.c",
+     "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+    ],
+    "not_this_row": [
+     "analysis/phase4_F16_reset_test.json",
+     "analysis/phase4_F16_streak_live.json",
+     "analysis/phase4_F17_duplicate_test.json",
+     "analysis/phase4_F17_reset_test.json",
+     "analysis/phase4_F17_streak_live.json"
+    ]
+   },
+   "facts": {
+    "state_window": [
+     "0x80082240"
+    ],
+    "declared_fixtures_intact": "2/2",
+    "declared_fixture_paths": [
+     "movies/Bonus_Level_03.movie.sav",
+     "movies/Bonus_Level_03.movie.json"
+    ],
+    "census_durable_state": "met",
+    "row_artifacts": 2,
+    "cited_movies": [
+     "movies/Phase4/Interpreter/Bonus03_Resets.movie.json",
+     "movies/Phase4/Interpreter/F18_Bonus03.movie.json"
+    ],
+    "movie_provenance": [
+     {
+      "path": "movies/Phase4/Interpreter/Bonus03_Resets.movie.json",
+      "sha256": "ca2eae603af380c92415fb3e2cb656f258ff3811be35367eddbc21ee9d8c6694",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 3812,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Phase4/Interpreter/F18_Bonus03.movie.json",
+      "sha256": "c7393b119a84206fb083f990f8cb573de608ac3e7997b0c293f1a72479313e38",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 4,
+      "armed_while_paused": true,
+      "recorded_frames": 7109,
+      "from_boot": false
+     },
+     {
+      "path": "movies/Bonus_Level_03.movie.json",
+      "sha256": "2beaed383fd0256287e7f1c82bb03e7438b55e4f678d76db1af87c061ca11349",
+      "centrally_pinned": true,
+      "bytes_match_pin": true,
+      "movie_version": 3,
+      "armed_while_paused": null,
+      "recorded_frames": 5020,
+      "from_boot": false
+     }
+    ],
+    "movies_centrally_pinned": "3/3",
+    "movies_bytes_match_pin": "3/3",
+    "movies_recorded_from_boot": 0,
+    "movies_state_anchored": 3,
+    "movies_traceable_v4": 2,
+    "movies_pollonly_v3": 1,
+    "cited_movies_declared_on_row": 0,
+    "row_replay_frames_total": 10921,
+    "row_replay_events_total": 44421,
+    "row_replay_ring_truncated": 0,
+    "row_movie_format_versions": [
+     4
+    ],
+    "row_window_writes_authoritative_total": 1073,
+    "row_window_write_counter_is_authoritative": true,
+    "row_window_slot_events_sampled_capped": null,
+    "row_window_append_restart_events": null,
+    "row_writer_pcs_observed": 5,
+    "row_chain_loss_events_in_own_domain": 2,
+    "row_chain_loss_event_kind": "b3_destructive_resets (streak cleared with a live chain)",
+    "row_writers_outside_resolved_set": 0,
+    "row_observed_value_domains": {
+     "contact_class_values_seen": 23,
+     "action_state_values_seen": 19,
+     "progress_bursts_observed": 4
+    },
+    "row_operator_action_markers": 2,
+    "row_markers_with_no_event_in_marker_domain": 1,
+    "row_markers_that_destroyed_a_chain_in_marker_domain": 0,
+    "row_marker_pcs": [
+     "0x800470d8"
+    ],
+    "governing_functions": 4,
+    "governing_function_names": [
+     "berry_tough_damage_dispatch",
+     "clear_gameplay_pool_on_reset",
+     "contact_vs_actor_handler",
+     "pickup_effect_dispatch"
+    ],
+    "governing_function_entries": [
+     "0x80057404",
+     "0x80058AF8",
+     "0x8005905C",
+     "0x8005953C"
+    ],
+    "frontier_resolved_reads": 1,
+    "frontier_resolved_writes": 5,
+    "frontier_direct_callees": 48,
+    "frontier_indirect_calls": 0,
+    "frontier_indirect_jumps": 2,
+    "frontier_unresolved_boundaries": 261,
+    "frontier_unresolved_memory_bases": 10,
+    "frontier_callers_enumerated": 4,
+    "c_probe_pins_passed": 24,
+    "c_probe_source": "tools/phase4_f17_f18_streak_law.c",
+    "c_scan_resolved_loads": 1,
+    "c_scan_resolved_stores": 5,
+    "c_scan_resolved_overlay_accesses": 0,
+    "c_scan_vs_frontier_index_delta": 0,
+    "ownership_registry_status": "partial",
+    "ownership_functions_cited": 23,
+    "ownership_state_cited": 12,
+    "ownership_state_with_semantic_owner": 8,
+    "ownership_state_without_owner": 4,
+    "ownership_reader_groups": 8,
+    "ownership_writer_groups": 8,
+    "ownership_spaces_cited": 2,
+    "ownership_lifecycle_entries": 1,
+    "ownership_state_window_semantic_ids": [
+     "original.bonus3_blue_grasshopper_streak"
+    ],
+    "ownership_state_window_writer_sites": 5,
+    "ownership_state_window_addresses_registered": "1/1",
+    "row_marker_pcs_in_this_rows_window": 0,
+    "row_markers_are_a_control_for_this_rows_window": false,
+    "capsule_movie": "movies/Bonus_Level_03.movie.json",
+    "capsule_movie_frames": 5020,
+    "capsule_media_class": "pristine",
+    "capsule_control_match": true,
+    "capsule_objective_events": 554,
+    "capsule_expected_findings_reproduced": true,
+    "capsule_progress_events": 5,
+    "capsule_completion_movie_frame": 2467,
+    "capsule_scene_at_completion": 3,
+    "capsule_bonus_flags_at_completion": 55,
+    "capsule_transition_latch_at_completion": 6,
+    "capsule_scene16_movie_frame": 2526,
+    "capsule_frames_completion_to_scene16": 59,
+    "capsule_decisive_block_covered_families": [
+     "bonus3_contact_handler"
+    ],
+    "capsule_decisive_block_uncovered_families": [
+     "bonus1_proximity_updater",
+     "bonus2_mushroom_handler"
+    ],
+    "capsule_named_unknown": "The natural movie has no miss; case-13 reset causality remains solely in the retained native control.",
+    "capsule_scenes_observed": 1,
+    "stage_interior_run_is_this_rows_fixture": false,
+    "stage_variants_observed_by_this_row": 0,
+    "reward_commit_observed_by_this_row": false,
+    "named_unknown_addressed_by_row_artifacts": 1,
+    "named_unknown_addressed_how": [
+     "contact-dispatch case-13 reset watched destroying a live chain"
+    ],
+    "lifecycle_phase_map": {
+     "cold_boot": "not_evidenced -- every movie behind this row records from_boot false",
+     "load": "evidenced",
+     "first_use": "evidenced",
+     "repeated_use": "evidenced",
+     "exhaustion": "evidenced",
+     "retirement": "shared_mechanism_only -- the reward commit was observed on another row's fixture and is not this row's coverage",
+     "reuse": "no_artifact_addresses_it -- no run attempts this chain after its earned bit is set"
+    },
+    "lifecycle_phases_evidenced_row_owned": 4,
+    "lifecycle_phases_total": 7,
+    "capsule_prior_bonuses_banked": 2,
+    "capsule_implied_entry_ordinal": 2,
+    "capsule_stage_interior_decoded": false,
+    "source_governing_functions_bytematched_c": 0,
+    "source_governing_functions_handwritten_asm": 3,
+    "source_governing_functions_unregistered": 1,
+    "baseline_status": "partial",
+    "baseline_binding_claims": 12,
+    "baseline_declared_evidence_classes": [
+     "manual",
+     "runtime_trace"
+    ],
+    "baseline_declares_next_as_bounded": true
+   },
+   "dimensions": {
+    "durable_evidence": {
+     "state": "met",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_f_row_measured_census.json",
+      "analysis/phase0_2_external_fixture_set.json",
+      "analysis/phase4_F18_reset_test.json",
+      "analysis/phase4_F18_streak_live.json"
+     ],
+     "written_bar": "evidence artifacts durable, pinned, regenerable; every external fixture centrally pinned and declared for preservation",
+     "basis": "carried forward MEASURED from the F-row census: 2/2 declared fixtures intact (exist, centrally pinned, bytes match). Re-derived and widened here over the movies this row's own artifacts actually replay plus its declared pair: 3/3 centrally pinned and 3/3 byte-matching their pins. The generators rebuild under -Werror (24 pins in this row's own probe section of tools/phase4_f17_f18_streak_law.c) and 94 executable guards pass across 3 test files",
+     "gap": "of the 2 movies this row's artifacts replay, 0 appear in the row's own fixture_have, so the registry under-declares the fixture set the conclusions rest on -- a declaration defect, not a durability defect",
+     "evidence_probe": true
+    },
+    "original_oracle": {
+     "state": "met_candidate",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_F18_reset_test.json",
+      "analysis/phase4_F18_streak_live.json",
+      "analysis/phase4_offline_bonus_objectives_batch.json"
+     ],
+     "written_bar": "behaviour asserted against the ORIGINAL game's own natural execution, not injected state",
+     "basis": "every observation for this row is natural playback of pristine media with no poke or perturbation: 2 row-owned replay artifacts totalling 10921 movie frames and 44421 watch events, ring truncated on 0 of them, plus this row's OWN natural capsule movies/Bonus_Level_03.movie.json (5020 frames, media class pristine, control_match True, expected_findings_reproduced True), which reproduces 5 natural progress steps ending at latch 6 on movie frame 2467, then scene 16 entry 59 frames later, with the decisive block covered for exactly ['bonus3_contact_handler'] and not for ['bonus1_proximity_updater', 'bonus2_mushroom_handler']. 0 writers outside the resolved set were observed in any of them. The row carries 2 operator-designed action markers, 1 of which produced no counter event -- but the marker block is Bonus-1-domain in every artifact, so it is a control for THIS row only when row_markers_are_a_control_for_this_rows_window is true, and here it is False (0 of 1 marker PCs write this row's window)",
+     "gap": "the capsule is FRAME-BOUNDARY evidence and carries this row's own named unknown: \"The natural movie has no miss; case-13 reset causality remains solely in the retained native control.\" 1 later row-owned artifacts bear on it (['contact-dispatch case-13 reset watched destroying a live chain']), which is a repair the batch itself does not record. Adjudication by a fresh verifier is pending; met_candidate is a submission",
+     "evidence_probe": true
+    },
+    "complete_frontier": {
+     "state": "partial",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_static_frontier_index.json",
+      "tools/phase4_f17_f18_streak_law.c",
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "item 2 AS WRITTEN: callers / callees / callbacks / indirect tables ENUMERATED, scoped to relevant -- and the residual EXPLICITLY BOUNDED, not merely absent",
+     "basis": "the resolved-direct frontier IS enumerated for this row's state window ['0x80082240']: 4 governing functions ['berry_tough_damage_dispatch', 'clear_gameplay_pool_on_reset', 'contact_vs_actor_handler', 'pickup_effect_dispatch'], 1 resolved reads and 5 resolved writes, 4 enumerated callers, 48 enumerated direct callees, 0 indirect calls and 2 indirect jumps inside them. A second, independent compiled scan (tools/phase4_f17_f18_streak_law.c) resolves 1 loads and 5 stores over the EXE and every overlay with 0 overlay hits",
+     "gap": "the residual is NAMED but not BOUNDED: 261 unresolved boundaries remain inside the governing functions alone (over 10 distinct unresolved base registers), the two independent scans disagree by 0 accesses on this window, the shared overlay adds 85 more across 6 records, and the Canon pages explicitly RETRACT their former domain-closure wording. F01's declared-assumption bounding cannot be borrowed: no -- the F01 declared assumption is recorded non-transferable, so these rows may not inherit its bounding mechanism",
+     "evidence_probe": true
+    },
+    "campaign_breadth": {
+     "state": "not_met",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_offline_bonus_objectives_batch.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated",
+     "basis": "one axis IS enumerated with a denominator: the stage layout table pins 3 variants (48 bytes at stride 16, verified byte-identical live: True), and across the whole campaign exactly 1 variant (variant 0) has been observed running -- once, on Bonus_Level_01.movie.json. On the challenge axis this row has been observed completing on 1 scene (scene 3 in its own capsule)",
+     "gap": "'every applicable stage' has NO denominator for the challenge: the set of stages carrying qualifying targets is nowhere enumerated, which is what this row's own named unknown says. On the variant axis, which DOES have a denominator, this row owns 0 of 3 observations (stage_interior_run_is_this_rows_fixture=False); the campaign total is 1, and that number belongs to one fixture, not to three rows",
+     "evidence_probe": true
+    },
+    "typed_state": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_F18_reset_test.json",
+      "analysis/phase4_F18_streak_live.json"
+     ],
+     "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)",
+     "basis": "the machine ownership layer types 8 of 12 state addresses this row cites, and the row's own replays measured live value domains {'contact_class_values_seen': 23, 'action_state_values_seen': 19, 'progress_bursts_observed': 4} across 1073 window events (authoritative per-PC totals) from 5 distinct writer PCs",
+     "gap": "4 cited state addresses still have no semantic-registry owner, so their value domains are undeclared; the row's own state window is registered 1/1 with semantic ids ['original.bonus3_blue_grasshopper_streak'], and the registry status for this row is 'partial'",
+     "evidence_probe": true
+    },
+    "lifecycle": {
+     "state": "partial",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "analysis/phase4_F18_reset_test.json",
+      "analysis/phase4_F18_streak_live.json",
+      "analysis/phase4_offline_bonus_objectives_batch.json",
+      "analysis/phase3_ownership_graph.json",
+      "analysis/phase4_f16_f18_bonus_stage.json",
+      "tools/phase4_f16_f18_bonus_stage.c",
+      "ObsidianVault/Canon/Systems/SYS_bonus_stage.md"
+     ],
+     "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced",
+     "basis": "scored phase by phase from ROW-OWNED evidence only: 4 of 7 phases evidenced -- {'cold_boot': 'not_evidenced -- every movie behind this row records from_boot false', 'load': 'evidenced', 'first_use': 'evidenced', 'repeated_use': 'evidenced', 'exhaustion': 'evidenced', 'retirement': \"shared_mechanism_only -- the reward commit was observed on another row's fixture and is not this row's coverage\", 'reuse': 'no_artifact_addresses_it -- no run attempts this chain after its earned bit is set'}. Behind those: 1073 window events (authoritative per-PC totals), 2 chain-loss events watched in this row's OWN domain (b3_destructive_resets (streak cleared with a live chain)), and the natural capsule's 5 progress steps ending in latch 6 and scene 16 entry. The ownership layer carries 1 lifecycle entry for the row",
+     "gap": "COLD BOOT is not evidenced for this row and cannot be: read from the movies' own recorded provenance, 0 of the 3 movies behind these conclusions declare from_boot, and 3 are state-anchored. REUSE after the earned bit is set is unobserved. The load / first use / retirement arc of the bonus STAGE, and the reward commit itself, were observed once on Bonus_Level_01.movie.json: reward_commit_observed_by_this_row=False, so for this row that phase is shared-mechanism inheritance, not coverage",
+     "evidence_probe": true
+    },
+    "cross_system_behavior": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase4_F18_reset_test.json",
+      "analysis/phase4_F18_streak_live.json"
+     ],
+     "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+     "basis": "this row's own replays cross its chain against other resident systems and measure the result: 5 distinct writer PCs fired across 10921 frames in 4 governing functions ['berry_tough_damage_dispatch', 'clear_gameplay_pool_on_reset', 'contact_vs_actor_handler', 'pickup_effect_dispatch'], 2 of the crossings cost a live chain in this row's own domain (b3_destructive_resets (streak cleared with a live chain)), and the observed value domains {'contact_class_values_seen': 23, 'action_state_values_seen': 19, 'progress_bursts_observed': 4} span more than one subsystem",
+     "gap": "no registered COMBINATION MATRIX exists for this row -- the crossings that were exercised are the ones a human happened to record, and the un-exercised combinations are not enumerated anywhere, so the coverage has no denominator (same shape as campaign_breadth)",
+     "evidence_probe": true
+    },
+    "original_interfaces": {
+     "state": "partial",
+     "evidence_scope": "row_specific",
+     "rests_on": [
+      "analysis/phase3_ownership_graph.json",
+      "ObsidianVault/Canon/Systems/SYS_bonus_unlock_challenges.md",
+      "analysis/phase4_F18_reset_test.json",
+      "analysis/phase4_F18_streak_live.json"
+     ],
+     "written_bar": "interfaces documented -- owner, readers/writers, valid domains, init/reset/retirement, residency, downstream consumers -- with unknowns enumerated against named obstructions",
+     "basis": "the machine layer registers 8 reader groups and 8 writer groups over 23 cited functions in 2 residency spaces, and the Canon pages carry the reset/retirement rules and 3 explicit correction histories that retract the over-broad earlier wording",
+     "gap": "the consumption contract is incomplete on the semantic half: 4 cited addresses carry no owner, and no named obstruction is registered against them -- unknowns are present but not enumerated-with-obstruction the way the bar asks",
+     "evidence_probe": true
+    },
+    "source_closure": {
+     "state": "not_met",
+     "evidence_scope": "mixed",
+     "rests_on": [
+      "config/segments.yml",
+      "src_re/bonus_unlock_challenges.c"
+     ],
+     "written_bar": "byte-matched C through the original toolchain for the row's governing functions",
+     "basis": "measured against the authoritative source map: of this row's 4 governing functions, 0 are byte-matched C, 3 are hand-written ASM and 1 are unregistered -- while the map as a whole does hold 259 C sources out of 860 rows, so the absence is specific to this row, not to the project",
+     "gap": "the only C for this row's blocks is src_re/bonus_unlock_challenges.c, which declares itself DOCUMENTATION-GRADE (declares_doc_grade=True, segment rows=0) -- honestly labelled, and honestly not the bar. The shared stage overlay is outside the source map entirely: it spans 0x80010000..0x80074970 with 0 rows above the resident window, so the overlay half of this dimension is not merely unclosed, it is UNMEASURABLE against the current registry",
+     "evidence_probe": true
+    }
+   },
+   "counts": {
+    "met": 1,
+    "met_candidate": 1,
+    "partial": 5,
+    "not_met": 2
+   },
+   "summary": "1 met, 1 met_candidate, 2 not_met, 5 partial"
+  }
+ }
+}

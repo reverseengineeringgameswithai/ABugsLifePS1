@@ -1,0 +1,216 @@
+{
+ "row": "F08_city_square",
+ "status": "static half complete; live oracle deferred (fork mid-change)",
+ "mechanism": {
+  "level_data_directory": "ARITHMETIC, no table: dir = scene_id <= 10 ? scene_id : scene_id - 10 (slti @0x8003D204, addiu -10 @0x8003D214); ori 0x0140 @0x8003D218 selects the LEVEL1.* variant for scene_id >= 11.",
+  "sound_bank": "FUNC_8003CF2C computes jumptable[scene_id-1] (bounds sltiu <17 @0x8003CF88, table 0x8001AFB0) and jumps to a per-scene handler; the 0x8001AD0C string it reaches is a VAB/SOUND-BANK prefix, NOT a level-data path.",
+  "index_form": "jumptable[resource_id - 1]",
+  "jump_table": "0x8001AFB0 (17 entries)",
+  "sound_bank_string_table": "0x8001AD0C (15 x 0x10)",
+  "provenance": "This law was banked by Phase 3 on 2026-08-01 (analysis/phase3_scene_asset_graph.json, 'law'). Re-pinned here from the image. The first version of this artifact wrongly presented 0x8001AD0C as the level-data path.",
+  "note": "The two tables are PERMUTED. Indexing 0x8001AD0C at scene_id-1 quotes another scene's sound bank."
+ },
+ "f08_corrected_binding": {
+  "scene_id": 5,
+  "level_data_dir": "LEVEL05/",
+  "variant": "LEVEL.*",
+  "overlay_resident": "OVL/LEVEL05_LEVEL.BIN at 0x800B39A0",
+  "sound_bank_prefix": "level05\\level3b (bank index 7)",
+  "was_claimed": "scene_asset_table[4] = level10\\level2b -- [4] is a JUMP-TABLE index and that string is scene id 10's sound bank"
+ },
+ "residency_confirmation": [
+  {
+   "fixture": "level_08.sav",
+   "scene": 5,
+   "predicted": "level05",
+   "resident": "LEVEL05_LEVEL.BIN@0x800B39A0",
+   "match": true
+  },
+  {
+   "fixture": "shell_bug.sav",
+   "scene": 4,
+   "predicted": "level04",
+   "resident": "LEVEL04_LEVEL.BIN@0x800B39A0",
+   "match": true
+  },
+  {
+   "fixture": "small_pause_issue.sav",
+   "scene": 3,
+   "predicted": "level03",
+   "resident": "LEVEL03_LEVEL.BIN@0x800B39A0",
+   "match": true
+  },
+  {
+   "fixture": "thumper_boss.movie.sav",
+   "scene": 2,
+   "predicted": "level02",
+   "resident": "LEVEL02_LEVEL.BIN@0x800B39A0",
+   "match": true
+  },
+  {
+   "fixture": "thud_boss_movie.movie.sav",
+   "scene": 14,
+   "predicted": "level04",
+   "resident": "LEVEL04_LEVEL1.BIN@0x800B39A0",
+   "match": true
+  }
+ ],
+ "residency_method": "offline: RAM extracted from the .sav container (zstd), overlay identified by >=2 agreeing high-entropy code slices; zero-vs-zero byte agreement excluded (LEVEL05 99.14%% over 1862 non-trivial bytes vs LEVEL10 5.53%%). LEVEL10_LEVEL.BIN is NOT resident anywhere in a scene-5 save.",
+ "false_positive_note": "LEVEL09_LEVEL1.BIN also slice-matches in several saves but at a WANDERING base (0x800B3990/39BC/39CC); the true overlay is always exactly 0x800B39A0. Base stability is the discriminator.",
+ "rows_with_wrong_scene_asset_binding": [
+  {
+   "row": "F02_tunnels",
+   "scene": 3,
+   "claimed": "[2]=level02\\level1c",
+   "truth": "[1]=level03\\level1b"
+  },
+  {
+   "row": "F03_council_chamber",
+   "scene": 2,
+   "claimed": "[1]=level03\\level1b",
+   "truth": "[2]=level02\\level1c"
+  },
+  {
+   "row": "F04_cliffside_canyon",
+   "scene": 6,
+   "claimed": "[5]=level01\\level2c",
+   "truth": "[3]=level06\\level2a"
+  },
+  {
+   "row": "F05_riverbed_run",
+   "scene": 10,
+   "claimed": "[9]=level07\\level4a",
+   "truth": "[4]=level10\\level2b"
+  },
+  {
+   "row": "F06_birdnest",
+   "scene": 11,
+   "claimed": "[10]=level02\\level4b",
+   "truth": "[5]=level01\\level2c"
+  },
+  {
+   "row": "F07_city_entrance",
+   "scene": 4,
+   "claimed": "[3]=level06\\level2a",
+   "truth": "[6]=level04\\level3a"
+  },
+  {
+   "row": "F08_city_square",
+   "scene": 5,
+   "claimed": "[4]=level10\\level2b",
+   "truth": "[7]=level05\\level3b"
+  },
+  {
+   "row": "F11_the_tree",
+   "scene": 12,
+   "claimed": "[11]=level03\\level4c",
+   "truth": "[10]=level02\\level4b"
+  },
+  {
+   "row": "F12_battle_arena",
+   "scene": 13,
+   "claimed": "[12]=level09\\level5a",
+   "truth": "[11]=level03\\level4c"
+  },
+  {
+   "row": "F13_anthill_two",
+   "scene": 9,
+   "claimed": "[8]=level04\\level3c",
+   "truth": "[12]=level09\\level5a"
+  },
+  {
+   "row": "F14_riverbed_flight",
+   "scene": 8,
+   "claimed": "[7]=level05\\level3b",
+   "truth": "[13]=level08\\level5b"
+  }
+ ],
+ "why_it_went_unnoticed": "Only scene ids 1 and 15 satisfy index == id-1. F15_canyon_showdown uses id 15, so its binding is correct BY COINCIDENCE and was additionally corroborated live by D20's transferLog resolution to LEVEL05/LEVEL1.DAT. That correct-looking row is not evidence for the rule.",
+ "scope_limits": [
+  "Static + offline-save evidence only; no live run (the fork was mid-change).",
+  "F08's objective/marker implementation is NOT found.",
+  "F15's binding named the right sound bank already; it was reworded for the arithmetic framing, not corrected."
+ ],
+ "tools": [
+  "tools/phase4_f08_scene_binding.c (11 pins, -Werror)",
+  "tools/phase4_f08_save_ram.py"
+ ],
+ "scene_id_to_sound_bank_index": {
+  "1": 0,
+  "2": 2,
+  "3": 1,
+  "4": 6,
+  "5": 7,
+  "6": 3,
+  "7": 9,
+  "8": 13,
+  "9": 12,
+  "10": 4,
+  "11": 5,
+  "12": 10,
+  "13": 11,
+  "14": 8,
+  "15": 14,
+  "16": 0,
+  "17": 0
+ },
+ "scene_id_to_sound_bank_prefix": {
+  "1": "level01\\level1a",
+  "2": "level02\\level1c",
+  "3": "level03\\level1b",
+  "4": "level04\\level3a",
+  "5": "level05\\level3b",
+  "6": "level06\\level2a",
+  "7": "level07\\level4a",
+  "8": "level08\\level5b",
+  "9": "level09\\level5a",
+  "10": "level10\\level2b",
+  "11": "level01\\level2c",
+  "12": "level02\\level4b",
+  "13": "level03\\level4c",
+  "14": "level04\\level3c",
+  "15": "level05\\level5c",
+  "16": "level01\\level1a",
+  "17": "level01\\level1a"
+ },
+ "scene_id_to_level_data_dir": {
+  "1": "LEVEL01/ LEVEL.*",
+  "2": "LEVEL02/ LEVEL.*",
+  "3": "LEVEL03/ LEVEL.*",
+  "4": "LEVEL04/ LEVEL.*",
+  "5": "LEVEL05/ LEVEL.*",
+  "6": "LEVEL06/ LEVEL.*",
+  "7": "LEVEL07/ LEVEL.*",
+  "8": "LEVEL08/ LEVEL.*",
+  "9": "LEVEL09/ LEVEL.*",
+  "10": "LEVEL10/ LEVEL.*",
+  "11": "LEVEL01/ LEVEL1.*",
+  "12": "LEVEL02/ LEVEL1.*",
+  "13": "LEVEL03/ LEVEL1.*",
+  "14": "LEVEL04/ LEVEL1.*",
+  "15": "LEVEL05/ LEVEL1.*",
+  "16": "LEVEL06/ LEVEL1.*",
+  "17": "LEVEL07/ LEVEL1.*"
+ },
+ "string_dir_vs_arithmetic_dir": {
+  "agree_for_ids": "1-15",
+  "diverge_for_ids": "16,17",
+  "divergence": "ids 16/17 sound-bank prefix says level01 while the data dirs are 6 and 7",
+  "proof": "two scene-17 training saves (training_all_stuff_collected_ending.sav, phase3_pristine_training_gameplay_i5.sav) hold LEVEL07_LEVEL1.BIN resident at 0x800B39A0, exactly as arithmetic+variant predict"
+ },
+ "rows_corrected": [
+  "D18_thud",
+  "F02_tunnels",
+  "F03_council_chamber",
+  "F04_cliffside_canyon",
+  "F05_riverbed_run",
+  "F06_birdnest",
+  "F07_city_entrance",
+  "F08_city_square",
+  "F11_the_tree",
+  "F12_battle_arena",
+  "F13_anthill_two",
+  "F14_riverbed_flight",
+  "F15_canyon_showdown"
+ ]
+}

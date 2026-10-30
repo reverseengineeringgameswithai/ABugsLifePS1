@@ -1,0 +1,815 @@
+{
+ "_comment": "Phase-4 E02/F01 DISC-SIDE region-code census: authored src+0x2C read straight from each scene's own container, diffed against the runtime table's +0x2E. Removes edit_sector_region_code.py's hardcoded LEVEL01 offset, under which every other level silently reported nothing. Regenerate: tools/phase4_e02_disc_region_code_census.py",
+ "generated": "2026-08-10",
+ "source_record": {
+  "stride": 76,
+  "code_offset": 44,
+  "origin_offset": 8
+ },
+ "runtime_record": {
+  "base": "0x800a7e48",
+  "stride": 48,
+  "code_offset": 46,
+  "count_global": "0x800822a0"
+ },
+ "converter_law": "FUNC_80030F60 writers 0x80030F94 / 0x80031264: rt+0x2E <- src+0x2C",
+ "scene_universe": {
+  "valid_scene_ids": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17
+  ],
+  "campaign_progression_table": {
+   "address": "0x80077FA0",
+   "scenes": [
+    17,
+    1,
+    3,
+    2,
+    6,
+    10,
+    11,
+    4,
+    5,
+    14,
+    7,
+    12,
+    13,
+    9,
+    8,
+    15
+   ]
+  },
+  "covered_scenes": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   17
+  ],
+  "uncovered_scenes": [
+   16
+  ],
+  "uncovered_note": "Scene 16 is absent from the progression table and is reached only by the force flag [0x8008225C] (map/results); it has no save anchor, so neither census covers it."
+ },
+ "campaign_disc_histogram": {
+  "0": 3208,
+  "1": 15,
+  "2": 2,
+  "3": 4,
+  "4": 6
+ },
+ "distinct_codes_disc": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "distinct_codes_runtime": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "agreement": {
+  "levels_located": 16,
+  "levels_total": 16,
+  "levels_with_disagreement": [],
+  "disagreements": [],
+  "authored_sectors_compared": 3235
+ },
+ "levels": {
+  "training": {
+   "scene": 17,
+   "container": "LEVEL07/LEVEL1.RAW",
+   "container_sha256": "130fc0e2782742034388f31a093e7d17efe1ee287da448bd6b4f0c67d2404e1e",
+   "save": "phase3_pristine_training_gameplay_i5.sav",
+   "save_sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+   "located": true,
+   "array_stream_offset": 686436,
+   "array_chunk": 33,
+   "array_chunk_local_offset": "0xbd80",
+   "reference_sector": 0,
+   "authored_sectors": 25,
+   "runtime_sectors": 70,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 24,
+    "3": 1
+   },
+   "nonzero_sectors": [
+    {
+     "sector": 24,
+     "code": 3,
+     "runtime_code": 3,
+     "runtime_origin": [
+      480,
+      -24096,
+      268736
+     ],
+     "stream_offset": 688304,
+     "chunk": 33,
+     "chunk_local_offset": "0xc4cc"
+    }
+   ],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage01_anthill": {
+   "scene": 1,
+   "container": "LEVEL01/LEVEL.RAW",
+   "container_sha256": "c07452bafcf3799b55574d1622a37189358f5debcbd1127e167fd0fe0181700e",
+   "save": "level01.sav",
+   "save_sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+   "located": true,
+   "array_stream_offset": 840264,
+   "array_chunk": 32,
+   "array_chunk_local_offset": "0x36570",
+   "reference_sector": 0,
+   "authored_sectors": 178,
+   "runtime_sectors": 223,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 177,
+    "2": 1
+   },
+   "nonzero_sectors": [
+    {
+     "sector": 177,
+     "code": 2,
+     "runtime_code": 2,
+     "runtime_origin": [
+      -163008,
+      -169888,
+      -124832
+     ],
+     "stream_offset": 853760,
+     "chunk": 32,
+     "chunk_local_offset": "0x39a28"
+    }
+   ],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage02_tunnels": {
+   "scene": 3,
+   "container": "LEVEL03/LEVEL.RAW",
+   "container_sha256": "869700f6f8cd51d3d78ca14f55f350b343d6f77692f33fb11a8aef2b5f6a3ca4",
+   "save": "level02.sav",
+   "save_sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+   "located": true,
+   "array_stream_offset": 727348,
+   "array_chunk": 28,
+   "array_chunk_local_offset": "0x36890",
+   "reference_sector": 0,
+   "authored_sectors": 589,
+   "runtime_sectors": 634,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 579,
+    "1": 9,
+    "3": 1
+   },
+   "nonzero_sectors": [
+    {
+     "sector": 570,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      176352,
+      64224,
+      117088
+     ],
+     "stream_offset": 770712,
+     "chunk": 28,
+     "chunk_local_offset": "0x411f4"
+    },
+    {
+     "sector": 571,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      470112,
+      64224,
+      -423840
+     ],
+     "stream_offset": 770788,
+     "chunk": 28,
+     "chunk_local_offset": "0x41240"
+    },
+    {
+     "sector": 572,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      471712,
+      64224,
+      537728
+     ],
+     "stream_offset": 770864,
+     "chunk": 28,
+     "chunk_local_offset": "0x4128c"
+    },
+    {
+     "sector": 573,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      1111712,
+      64224,
+      1336128
+     ],
+     "stream_offset": 770940,
+     "chunk": 28,
+     "chunk_local_offset": "0x412d8"
+    },
+    {
+     "sector": 574,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      1174240,
+      64224,
+      1961280
+     ],
+     "stream_offset": 771016,
+     "chunk": 28,
+     "chunk_local_offset": "0x41324"
+    },
+    {
+     "sector": 575,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      1615424,
+      64224,
+      2512384
+     ],
+     "stream_offset": 771092,
+     "chunk": 28,
+     "chunk_local_offset": "0x41370"
+    },
+    {
+     "sector": 576,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      816864,
+      64224,
+      277568
+     ],
+     "stream_offset": 771168,
+     "chunk": 28,
+     "chunk_local_offset": "0x413bc"
+    },
+    {
+     "sector": 577,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      1454496,
+      64224,
+      1397760
+     ],
+     "stream_offset": 771244,
+     "chunk": 28,
+     "chunk_local_offset": "0x41408"
+    },
+    {
+     "sector": 578,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      811616,
+      59552,
+      593280
+     ],
+     "stream_offset": 771320,
+     "chunk": 28,
+     "chunk_local_offset": "0x41454"
+    },
+    {
+     "sector": 579,
+     "code": 3,
+     "runtime_code": 3,
+     "runtime_origin": [
+      1864160,
+      35520,
+      2916480
+     ],
+     "stream_offset": 771396,
+     "chunk": 28,
+     "chunk_local_offset": "0x414a0"
+    }
+   ],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage03_council_chamber": {
+   "scene": 2,
+   "container": "LEVEL02/LEVEL.RAW",
+   "container_sha256": "6f0c0e44daf0014de890046679f82ade7623e6b5472df3634bc056cd09b13269",
+   "save": "level03.sav",
+   "save_sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+   "located": true,
+   "array_stream_offset": 577924,
+   "array_chunk": 28,
+   "array_chunk_local_offset": "0x120e0",
+   "reference_sector": 0,
+   "authored_sectors": 100,
+   "runtime_sectors": 145,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 100
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage04_cliffside_canyon": {
+   "scene": 6,
+   "container": "LEVEL06/LEVEL.RAW",
+   "container_sha256": "5bbd05b081e79d7d0fe95156b3d49e541a86686a558d3e7cb2ac4c46dc06c9e3",
+   "save": "level04.sav",
+   "save_sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+   "located": true,
+   "array_stream_offset": 745500,
+   "array_chunk": 30,
+   "array_chunk_local_offset": "0x2915c",
+   "reference_sector": 4,
+   "authored_sectors": 132,
+   "runtime_sectors": 177,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 131,
+    "3": 1
+   },
+   "nonzero_sectors": [
+    {
+     "sector": 131,
+     "code": 3,
+     "runtime_code": 3,
+     "runtime_origin": [
+      -1719040,
+      39424,
+      -219488
+     ],
+     "stream_offset": 755500,
+     "chunk": 30,
+     "chunk_local_offset": "0x2b86c"
+    }
+   ],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage05_riverbed_run": {
+   "scene": 10,
+   "container": "LEVEL10/LEVEL.RAW",
+   "container_sha256": "50a1ec79a0d9b55118692dd184778959088487aa397b54c0ff0c33ff56b2fb8c",
+   "save": "level05.sav",
+   "save_sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+   "located": true,
+   "array_stream_offset": 725368,
+   "array_chunk": 31,
+   "array_chunk_local_offset": "0x1d2ac",
+   "reference_sector": 0,
+   "authored_sectors": 298,
+   "runtime_sectors": 343,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 292,
+    "1": 5,
+    "3": 1
+   },
+   "nonzero_sectors": [
+    {
+     "sector": 292,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      285312,
+      23328,
+      920384
+     ],
+     "stream_offset": 747604,
+     "chunk": 31,
+     "chunk_local_offset": "0x22988"
+    },
+    {
+     "sector": 293,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      397440,
+      28256,
+      917952
+     ],
+     "stream_offset": 747680,
+     "chunk": 31,
+     "chunk_local_offset": "0x229d4"
+    },
+    {
+     "sector": 294,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      -199872,
+      23264,
+      1148032
+     ],
+     "stream_offset": 747756,
+     "chunk": 31,
+     "chunk_local_offset": "0x22a20"
+    },
+    {
+     "sector": 295,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      -361024,
+      35136,
+      524960
+     ],
+     "stream_offset": 747832,
+     "chunk": 31,
+     "chunk_local_offset": "0x22a6c"
+    },
+    {
+     "sector": 296,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      -39776,
+      22720,
+      957280
+     ],
+     "stream_offset": 747908,
+     "chunk": 31,
+     "chunk_local_offset": "0x22ab8"
+    },
+    {
+     "sector": 297,
+     "code": 3,
+     "runtime_code": 3,
+     "runtime_origin": [
+      135168,
+      -896,
+      2075328
+     ],
+     "stream_offset": 747984,
+     "chunk": 31,
+     "chunk_local_offset": "0x22b04"
+    }
+   ],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage06_birdnest": {
+   "scene": 11,
+   "container": "LEVEL01/LEVEL1.RAW",
+   "container_sha256": "de7d7cf814fbaef5f86c847d55e76a3f8709e41469e6d1c6146f94a0ee5069a5",
+   "save": "level_06.sav",
+   "save_sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+   "located": true,
+   "array_stream_offset": 566096,
+   "array_chunk": 29,
+   "array_chunk_local_offset": "0xd99c",
+   "reference_sector": 0,
+   "authored_sectors": 75,
+   "runtime_sectors": 120,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 75
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage07_city_entrance": {
+   "scene": 4,
+   "container": "LEVEL04/LEVEL.RAW",
+   "container_sha256": "526fe962ffd5743769123229469f0129e0e754dc3387057701410281ba4108fe",
+   "save": "level_07.sav",
+   "save_sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+   "located": true,
+   "array_stream_offset": 771268,
+   "array_chunk": 31,
+   "array_chunk_local_offset": "0x2cdfc",
+   "reference_sector": 0,
+   "authored_sectors": 229,
+   "runtime_sectors": 274,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 222,
+    "1": 1,
+    "4": 6
+   },
+   "nonzero_sectors": [
+    {
+     "sector": 219,
+     "code": 1,
+     "runtime_code": 1,
+     "runtime_origin": [
+      714912,
+      27648,
+      74784
+     ],
+     "stream_offset": 787956,
+     "chunk": 31,
+     "chunk_local_offset": "0x30f2c"
+    },
+    {
+     "sector": 220,
+     "code": 4,
+     "runtime_code": 4,
+     "runtime_origin": [
+      140928,
+      1120,
+      157792
+     ],
+     "stream_offset": 788032,
+     "chunk": 31,
+     "chunk_local_offset": "0x30f78"
+    },
+    {
+     "sector": 221,
+     "code": 4,
+     "runtime_code": 4,
+     "runtime_origin": [
+      152192,
+      1888,
+      83744
+     ],
+     "stream_offset": 788108,
+     "chunk": 31,
+     "chunk_local_offset": "0x30fc4"
+    },
+    {
+     "sector": 222,
+     "code": 4,
+     "runtime_code": 4,
+     "runtime_origin": [
+      336256,
+      0,
+      204512
+     ],
+     "stream_offset": 788184,
+     "chunk": 31,
+     "chunk_local_offset": "0x31010"
+    },
+    {
+     "sector": 223,
+     "code": 4,
+     "runtime_code": 4,
+     "runtime_origin": [
+      497440,
+      -3968,
+      44288
+     ],
+     "stream_offset": 788260,
+     "chunk": 31,
+     "chunk_local_offset": "0x3105c"
+    },
+    {
+     "sector": 224,
+     "code": 4,
+     "runtime_code": 4,
+     "runtime_origin": [
+      583872,
+      -5920,
+      -288
+     ],
+     "stream_offset": 788336,
+     "chunk": 31,
+     "chunk_local_offset": "0x310a8"
+    },
+    {
+     "sector": 225,
+     "code": 4,
+     "runtime_code": 4,
+     "runtime_origin": [
+      -72384,
+      1568,
+      -103360
+     ],
+     "stream_offset": 788412,
+     "chunk": 31,
+     "chunk_local_offset": "0x310f4"
+    }
+   ],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage08_city_square": {
+   "scene": 5,
+   "container": "LEVEL05/TERRAIN.ALL",
+   "container_sha256": "57bce45056f8ecdeebc14d9851badab5f930c3c4736059075baacd390bb701ff",
+   "save": "level_08.sav",
+   "save_sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+   "located": true,
+   "array_stream_offset": 163892,
+   "array_chunk": 0,
+   "array_chunk_local_offset": "0x28034",
+   "reference_sector": 0,
+   "authored_sectors": 333,
+   "runtime_sectors": 378,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 333
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage09_bug_bar": {
+   "scene": 14,
+   "container": "LEVEL04/LEVEL1.RAW",
+   "container_sha256": "71ceb765fc4c08ea5e80d7584eaab2afafbee48b8d2ccb19b5651a824f3b87bf",
+   "save": "level_09.sav",
+   "save_sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+   "located": true,
+   "array_stream_offset": 487284,
+   "array_chunk": 27,
+   "array_chunk_local_offset": "0x41dc",
+   "reference_sector": 0,
+   "authored_sectors": 1,
+   "runtime_sectors": 46,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 1
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage10_clover_forest": {
+   "scene": 7,
+   "container": "LEVEL07/TERRAIN.ALL",
+   "container_sha256": "7b168efa7934cd6db15d94ae927151ed3df4e78064f1619877d5dcee463cf1c8",
+   "save": "level_10.sav",
+   "save_sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+   "located": true,
+   "array_stream_offset": 119628,
+   "array_chunk": 0,
+   "array_chunk_local_offset": "0x1d34c",
+   "reference_sector": 0,
+   "authored_sectors": 138,
+   "runtime_sectors": 183,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 138
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage11_the_tree": {
+   "scene": 12,
+   "container": "LEVEL02/TERR1.ALL",
+   "container_sha256": "672412e9dc1373c9c6258a8ff0c7f780cf35c69bbf22f6df077ce08c3165c08e",
+   "save": "level_11.sav",
+   "save_sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+   "located": true,
+   "array_stream_offset": 199892,
+   "array_chunk": 0,
+   "array_chunk_local_offset": "0x30cd4",
+   "reference_sector": 0,
+   "authored_sectors": 262,
+   "runtime_sectors": 307,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 262
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage12_battle_arena": {
+   "scene": 13,
+   "container": "LEVEL03/LEVEL1.RAW",
+   "container_sha256": "67c9b8e4bd2b7fc7339eb564bf4de419f0780c07f28f3ca2977854213c495b1f",
+   "save": "level_12.sav",
+   "save_sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+   "located": true,
+   "array_stream_offset": 615116,
+   "array_chunk": 31,
+   "array_chunk_local_offset": "0x5b04",
+   "reference_sector": 0,
+   "authored_sectors": 12,
+   "runtime_sectors": 57,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 12
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage13_anthill_two": {
+   "scene": 9,
+   "container": "LEVEL09/LEVEL.RAW",
+   "container_sha256": "c9a5456e53db16bb63461c5a2ac4228ac4cd6fb1afd4aed5dfb7daa338f6a57b",
+   "save": "level_13.sav",
+   "save_sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+   "located": true,
+   "array_stream_offset": 814000,
+   "array_chunk": 31,
+   "array_chunk_local_offset": "0x2f2e4",
+   "reference_sector": 0,
+   "authored_sectors": 176,
+   "runtime_sectors": 221,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 176
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage14_riverbed_flight": {
+   "scene": 8,
+   "container": "LEVEL08/LEVEL.RAW",
+   "container_sha256": "79f7592d8de319660c1c4d36a96ebc7e9d5e7d5f01ca68593d588e364a4e2343",
+   "save": "level_14.sav",
+   "save_sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+   "located": true,
+   "array_stream_offset": 782460,
+   "array_chunk": 31,
+   "array_chunk_local_offset": "0x2b1b0",
+   "reference_sector": 0,
+   "authored_sectors": 335,
+   "runtime_sectors": 380,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 334,
+    "2": 1
+   },
+   "nonzero_sectors": [
+    {
+     "sector": 334,
+     "code": 2,
+     "runtime_code": 2,
+     "runtime_origin": [
+      1198912,
+      -116448,
+      4879104
+     ],
+     "stream_offset": 807888,
+     "chunk": 31,
+     "chunk_local_offset": "0x31504"
+    }
+   ],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  },
+  "stage15_canyon_showdown": {
+   "scene": 15,
+   "container": "LEVEL05/LEVEL1.RAW",
+   "container_sha256": "3bd5e71140f1d25b60c8be54f712de6f84c4e98d9bfa507003e8574305d9716c",
+   "save": "level_15.sav",
+   "save_sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+   "located": true,
+   "array_stream_offset": 775708,
+   "array_chunk": 31,
+   "array_chunk_local_offset": "0x29c54",
+   "reference_sector": 1,
+   "authored_sectors": 352,
+   "runtime_sectors": 397,
+   "runtime_registered_tail": 45,
+   "code_histogram": {
+    "0": 352
+   },
+   "nonzero_sectors": [],
+   "disc_vs_runtime_mismatches": [],
+   "runtime_nonzero_beyond_authored": []
+  }
+ },
+ "failures": []
+}

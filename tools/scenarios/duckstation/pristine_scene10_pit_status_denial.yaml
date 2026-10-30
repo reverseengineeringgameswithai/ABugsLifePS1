@@ -1,0 +1,49 @@
+schema_version: 1
+id: pristine_scene10_pit_status_denial
+description: >-
+  Replay the centrally pinned scene-10 pit lead from its inspected pristine
+  state, clear only player status mask 0x0010 at the exact frame-144 boundary,
+  and assert that the LEVEL10 nearest-row writer is denied while the resident
+  transition handler consumes the previously retained safe tuple.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: movies/Phase4/E10/hazard_pit_LEVEL05.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: scene10_exact_pre_reset_status_gate
+    trigger: {type: movie_frame, target: 144, max_frames: 170, timeout_seconds: 90}
+    assertions:
+      - {id: c15_s10_denial_pre_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 10}
+      - {id: c15_s10_denial_pre_live_x, type: memory, address: 0x800A6500, width: s32, op: eq, expected: -163392}
+      - {id: c15_s10_denial_pre_live_y, type: memory, address: 0x800A6504, width: s32, op: eq, expected: 111928}
+      - {id: c15_s10_denial_pre_live_z, type: memory, address: 0x800A6508, width: s32, op: eq, expected: 1157047}
+      - {id: c15_s10_denial_pre_anchor_x, type: memory, address: 0x800A6550, width: s32, op: eq, expected: -103436}
+      - {id: c15_s10_denial_pre_anchor_y, type: memory, address: 0x800A6554, width: s32, op: eq, expected: -4903}
+      - {id: c15_s10_denial_pre_anchor_z, type: memory, address: 0x800A6558, width: s32, op: eq, expected: 1209759}
+      - {id: c15_s10_denial_pre_status, type: memory, address: 0x800A6590, width: u16, op: eq, expected: 20}
+      - {id: c15_s10_denial_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 0}
+      - {id: c15_s10_denial_pre_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 1}
+      - {id: c15_s10_denial_pre_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: clear_only_scene10_respawn_selector_status_bit
+        method: debugger.writeU16
+        params: {address: 0x800A6590, value: 4}
+  - id: scene10_denied_writer_consumes_prior_anchor
+    trigger: {type: movie_frame, target: 145, max_frames: 2, timeout_seconds: 60}
+    assertions:
+      - {id: c15_s10_denial_post_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 10}
+      - {id: c15_s10_denial_post_live_x, type: memory, address: 0x800A6500, width: s32, op: eq, expected: -103436}
+      - {id: c15_s10_denial_post_live_y, type: memory, address: 0x800A6504, width: s32, op: eq, expected: -4903}
+      - {id: c15_s10_denial_post_live_z, type: memory, address: 0x800A6508, width: s32, op: eq, expected: 1209759}
+      - {id: c15_s10_denial_post_anchor_x, type: memory, address: 0x800A6550, width: s32, op: eq, expected: -103436}
+      - {id: c15_s10_denial_post_anchor_y, type: memory, address: 0x800A6554, width: s32, op: eq, expected: -4903}
+      - {id: c15_s10_denial_post_anchor_z, type: memory, address: 0x800A6558, width: s32, op: eq, expected: 1209759}
+      - {id: c15_s10_denial_post_heading, type: memory, address: 0x800A6578, width: s16, op: eq, expected: 3141}
+      - {id: c15_s10_denial_post_health_restored, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: c15_s10_denial_post_life_decremented, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 0}
+      - {id: c15_s10_denial_post_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

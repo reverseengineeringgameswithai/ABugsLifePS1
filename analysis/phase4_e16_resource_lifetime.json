@@ -1,0 +1,972 @@
+{
+ "_comment": "Phase-4 E16 resource ownership/lifetime: what happens to the registered chunk pointers across a frontend -> gameplay load. Regenerate: tools/phase4_e16_resource_lifetime.py",
+ "generated": "2026-08-04",
+ "movie": "movies/Phase4/Interpreter/E02_FreshLoad_Clover.movie.json",
+ "tables": [
+  {
+   "name": "markers_0x28_0x2F",
+   "base": "0x8009c210",
+   "slots": 8
+  },
+  {
+   "name": "markers_0x30_0x57",
+   "base": "0x8009b5a8",
+   "slots": 40
+  },
+  {
+   "name": "markers_0x58_0x5F",
+   "base": "0x800a65b0",
+   "slots": 8
+  }
+ ],
+ "final_status": {
+  "armed_while_paused": false,
+  "frame_count": 5562,
+  "game_serial": "SCUS-94288",
+  "game_title": "Disney-Pixar A Bug's Life",
+  "has_movie": true,
+  "movie_version": 4,
+  "phase_delay_owed": false,
+  "playback_index": 0,
+  "playing": false,
+  "ports": [
+   0
+  ],
+  "recording": false,
+  "reproducible": false,
+  "start_state": {
+   "file_size": 0,
+   "frame": 0,
+   "from_boot": true,
+   "game_serial": "SCUS-94288",
+   "game_title": "Disney-Pixar A Bug's Life",
+   "loaded_before_recording": false,
+   "path": "",
+   "pc": "0x00000000",
+   "reproducible_only_from_state": false,
+   "sha256": null,
+   "sp": "0x00000000"
+  },
+  "truncated": false
+ },
+ "survivors_at_end_of_run": [
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 0,
+   "marker_expected": "0x30",
+   "pointer": "0x800be670",
+   "target_first_u32": "0x865a0000",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 1,
+   "marker_expected": "0x31",
+   "pointer": "0x800c3bfc",
+   "target_first_u32": "0x006e6e6e",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 2,
+   "marker_expected": "0x32",
+   "pointer": "0x800c86e8",
+   "target_first_u32": "0x4f60fff9",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 3,
+   "marker_expected": "0x33",
+   "pointer": "0x800cd3b4",
+   "target_first_u32": "0xfee8fe6d",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 4,
+   "marker_expected": "0x34",
+   "pointer": "0x800d2120",
+   "target_first_u32": "0x0002ff20",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 5,
+   "marker_expected": "0x35",
+   "pointer": "0x800d77ec",
+   "target_first_u32": "0x00000000",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 6,
+   "marker_expected": "0x36",
+   "pointer": "0x800dc078",
+   "target_first_u32": "0xfffa0013",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 7,
+   "marker_expected": "0x37",
+   "pointer": "0x800e0e84",
+   "target_first_u32": "0xfee1fa62",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 8,
+   "marker_expected": "0x38",
+   "pointer": "0x800e5a10",
+   "target_first_u32": "0xfd86001c",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 9,
+   "marker_expected": "0x39",
+   "pointer": "0x800e989c",
+   "target_first_u32": "0xffeaffea",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 10,
+   "marker_expected": "0x3a",
+   "pointer": "0x800ee608",
+   "target_first_u32": "0x0000ffef",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 11,
+   "marker_expected": "0x3b",
+   "pointer": "0x800f3374",
+   "target_first_u32": "0xdf200052",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 12,
+   "marker_expected": "0x3c",
+   "pointer": "0x800f7080",
+   "target_first_u32": "0xff8efd67",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 13,
+   "marker_expected": "0x3d",
+   "pointer": "0x800fc06c",
+   "target_first_u32": "0x0167ffba",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 14,
+   "marker_expected": "0x3e",
+   "pointer": "0x80100668",
+   "target_first_u32": "0xffe4ff78",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 15,
+   "marker_expected": "0x3f",
+   "pointer": "0x80104a24",
+   "target_first_u32": "0xfd4dff9d",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 16,
+   "marker_expected": "0x40",
+   "pointer": "0x80108de0",
+   "target_first_u32": "0x8fffffba",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 17,
+   "marker_expected": "0x41",
+   "pointer": "0x8010d8cc",
+   "target_first_u32": "0x00020000",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 18,
+   "marker_expected": "0x42",
+   "pointer": "0x80111c88",
+   "target_first_u32": "0xa0dfffde",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 19,
+   "marker_expected": "0x43",
+   "pointer": "0x80116954",
+   "target_first_u32": "0x00000000",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 20,
+   "marker_expected": "0x44",
+   "pointer": "0x80126c60",
+   "target_first_u32": "0xfffffc7b",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 21,
+   "marker_expected": "0x45",
+   "pointer": "0x8014a89c",
+   "target_first_u32": "0x00000530",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 22,
+   "marker_expected": "0x46",
+   "pointer": "0x8014f708",
+   "target_first_u32": "0x00c000ff",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 23,
+   "marker_expected": "0x47",
+   "pointer": "0x80153714",
+   "target_first_u32": "0x003c3c3c",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 24,
+   "marker_expected": "0x48",
+   "pointer": "0x80157d00",
+   "target_first_u32": "0x00f0fcfc",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 25,
+   "marker_expected": "0x49",
+   "pointer": "0x8015bd4c",
+   "target_first_u32": "0x33ee33ec",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 26,
+   "marker_expected": "0x4a",
+   "pointer": "0x8015fbd8",
+   "target_first_u32": "0x0a550390",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 27,
+   "marker_expected": "0x4b",
+   "pointer": "0x80163ea4",
+   "target_first_u32": "0x00001bcc",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 28,
+   "marker_expected": "0x4c",
+   "pointer": "0x80168350",
+   "target_first_u32": "0x00d8024c",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 29,
+   "marker_expected": "0x4d",
+   "pointer": "0x8016af7c",
+   "target_first_u32": "0x0000f73c",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 30,
+   "marker_expected": "0x4e",
+   "pointer": "0x8016f728",
+   "target_first_u32": "0x03c003cc",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 31,
+   "marker_expected": "0x4f",
+   "pointer": "0x80172434",
+   "target_first_u32": "0x18d01148",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 32,
+   "marker_expected": "0x50",
+   "pointer": "0x80176130",
+   "target_first_u32": "0x0007f459",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 33,
+   "marker_expected": "0x51",
+   "pointer": "0x8017a3cc",
+   "target_first_u32": "0x0000fe14",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 34,
+   "marker_expected": "0x52",
+   "pointer": "0x8017e4b8",
+   "target_first_u32": "0x03e8ffff",
+   "marker_intact": false
+  },
+  {
+   "table": "markers_0x30_0x57",
+   "slot": 35,
+   "marker_expected": "0x53",
+   "pointer": "0x80181e44",
+   "target_first_u32": "0x005f0000",
+   "marker_intact": false
+  }
+ ],
+ "survivor_validity": {
+  "surviving_slots": 36,
+  "marker_intact": 0,
+  "marker_overwritten": 36
+ },
+ "truncated": false,
+ "timeline": [
+  {
+   "frame": 204,
+   "scene": 624,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 400,
+   "scene": 624,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 600,
+   "scene": 624,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 800,
+   "scene": 624,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 1000,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 1200,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 1400,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 1600,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 1800,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 2000,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 2,
+    "distinct": 2
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 2200,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 2,
+    "distinct": 2
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 2400,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 2,
+    "distinct": 2
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 2600,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 2,
+    "distinct": 2
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 2800,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 2,
+    "distinct": 2
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 3000,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 2,
+    "distinct": 2
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 3200,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 3400,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 2,
+    "distinct": 2
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 3600,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 2,
+    "distinct": 2
+   }
+  },
+  {
+   "frame": 3800,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 2,
+    "distinct": 2
+   }
+  },
+  {
+   "frame": 4000,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 2,
+    "distinct": 2
+   }
+  },
+  {
+   "frame": 4200,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 2,
+    "distinct": 2
+   }
+  },
+  {
+   "frame": 4400,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 2,
+    "distinct": 2
+   }
+  },
+  {
+   "frame": 4600,
+   "scene": 0,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 2,
+    "distinct": 2
+   }
+  },
+  {
+   "frame": 4800,
+   "scene": 7,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 5000,
+   "scene": 7,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 5200,
+   "scene": 7,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 5400,
+   "scene": 7,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  },
+  {
+   "frame": 0,
+   "scene": 7,
+   "markers_0x28_0x2F": {
+    "nonzero": 0,
+    "distinct": 0
+   },
+   "markers_0x30_0x57": {
+    "nonzero": 36,
+    "distinct": 36
+   },
+   "markers_0x58_0x5F": {
+    "nonzero": 0,
+    "distinct": 0
+   }
+  }
+ ],
+ "event_count": 264,
+ "writers": {
+  "all": {
+   "0xbfc0d868": 56,
+   "0x8005f6a4": 56,
+   "0x8003a3bc": 40,
+   "0x8003a3c0": 40,
+   "0x8003b9d0": 4,
+   "0x8003bf4c": 36,
+   "0x8003bc58": 2
+  },
+  "zeroing_pcs": {
+   "0xbfc0d868": 56,
+   "0x8005f6a4": 56,
+   "0x8003a3bc": 40,
+   "0x8003a3c0": 40
+  },
+  "populating_pcs": {
+   "0x8003b9d0": 4,
+   "0x8003bf4c": 36,
+   "0x8003bc58": 2
+  },
+  "first_populate_frame": 1827,
+  "last_populate_frame": 3457,
+  "first_zero_frame": 952,
+  "last_zero_frame": 5044
+ },
+ "occupancy_samples": [
+  [
+   204,
+   0
+  ],
+  [
+   400,
+   0
+  ],
+  [
+   600,
+   0
+  ],
+  [
+   800,
+   0
+  ],
+  [
+   1000,
+   0
+  ],
+  [
+   1200,
+   0
+  ],
+  [
+   1400,
+   0
+  ],
+  [
+   1600,
+   0
+  ],
+  [
+   1800,
+   0
+  ],
+  [
+   2000,
+   2
+  ],
+  [
+   2200,
+   2
+  ],
+  [
+   2400,
+   2
+  ],
+  [
+   2600,
+   2
+  ],
+  [
+   2800,
+   2
+  ],
+  [
+   3000,
+   2
+  ],
+  [
+   3200,
+   0
+  ],
+  [
+   3400,
+   2
+  ],
+  [
+   3600,
+   38
+  ],
+  [
+   3800,
+   38
+  ],
+  [
+   4000,
+   38
+  ],
+  [
+   4200,
+   38
+  ],
+  [
+   4400,
+   38
+  ],
+  [
+   4600,
+   38
+  ],
+  [
+   4800,
+   36
+  ],
+  [
+   5000,
+   36
+  ],
+  [
+   5200,
+   36
+  ],
+  [
+   5400,
+   36
+  ],
+  [
+   0,
+   36
+  ]
+ ],
+ "scene_samples": [
+  624,
+  624,
+  624,
+  624,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  7,
+  7,
+  7,
+  7,
+  7
+ ],
+ "peak_populated_slots": 38,
+ "final_populated_slots": 36,
+ "verdict": "POINTERS SURVIVE THE SCENE THAT REGISTERED THEM -- 36 of 38 slots still hold a pointer at the end of the run, after the game left the frontend for a gameplay level. Of the survivors, 0 still read back their own marker and 36 do not. So they are GENUINELY DANGLING: the gameplay load reused that memory and the upload path would read garbage."
+}

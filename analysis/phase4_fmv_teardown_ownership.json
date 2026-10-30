@@ -1,0 +1,669 @@
+{
+  "schema": "abl-phase4-fmv-teardown-ownership/1",
+  "generated": "2026-07-24",
+  "row": "E15_fmv",
+  "lane": "static",
+  "inputs": {
+    "resident_executable": {
+      "path": "REBUILD/files/SCUS_942.88",
+      "size": 471040,
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "identity_verified": true
+    },
+    "fmv_bin": {
+      "path": "REBUILD/files/FMV/FMV.BIN",
+      "size": 509800,
+      "sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+      "identity_verified": true
+    }
+  },
+  "retained_live_join": {
+    "artifact": "analysis/phase4_fmv_callback_lifecycle.json",
+    "sha256": "d6f049488927a476a59ad36c58b0ea7cab682ed533b8a193516e7beaf3f43f85",
+    "caller": "0x800b74a4",
+    "return_address": "0x800b74ac",
+    "function_trace_synthetic_unwind": true,
+    "interpretation": "The retained event classification is preserved. Static guest bytes independently prove a balanced epilogue and contain no synthetic return instruction; the event must not be rewritten as a guest control-flow edge."
+  },
+  "teardown": {
+    "function": {
+      "range": [
+        "0x800709AC",
+        "0x80070A30"
+      ],
+      "size": 132,
+      "critical_section": {
+        "enter": {
+          "call": "0x800709B4",
+          "target": "0x80065FBC",
+          "syscall_code": 1
+        },
+        "exit": {
+          "call": "0x80070A18",
+          "target": "0x80065FCC",
+          "syscall_code": 2
+        }
+      },
+      "mode": {
+        "address": "0x800818E8",
+        "read": "0x800709C0",
+        "direct_xrefs": [
+          "0x800709C0"
+        ],
+        "value_1_backend": "FMV.BIN alternate wrappers",
+        "other_values_backend": "resident PsyQ callback APIs"
+      },
+      "instructions": [
+        {
+          "pc": "0x800709AC",
+          "word": "0x27BDFFE8",
+          "mnemonic": "addiu sp,sp,-24"
+        },
+        {
+          "pc": "0x800709B0",
+          "word": "0xAFBF0010",
+          "mnemonic": "sw ra,16(sp)"
+        },
+        {
+          "pc": "0x800709B4",
+          "word": "0x0C0197EF",
+          "mnemonic": "jal 0x80065fbc"
+        },
+        {
+          "pc": "0x800709BC",
+          "word": "0x3C038008",
+          "mnemonic": "lui v1,0x8008"
+        },
+        {
+          "pc": "0x800709C0",
+          "word": "0x8C6318E8",
+          "mnemonic": "lw v1,6376(v1)"
+        },
+        {
+          "pc": "0x800709C4",
+          "word": "0x24020001",
+          "mnemonic": "addiu v0,zero,1"
+        },
+        {
+          "pc": "0x800709C8",
+          "word": "0x14620007",
+          "mnemonic": "bne v1,v0,0x800709e8"
+        },
+        {
+          "pc": "0x800709D0",
+          "word": "0x0C02E68A",
+          "mnemonic": "jal 0x800b9a28"
+        },
+        {
+          "pc": "0x800709D4",
+          "word": "0x00002021",
+          "mnemonic": "addu a0,zero,zero"
+        },
+        {
+          "pc": "0x800709D8",
+          "word": "0x0C02E685",
+          "mnemonic": "jal 0x800b9a14"
+        },
+        {
+          "pc": "0x800709DC",
+          "word": "0x00002021",
+          "mnemonic": "addu a0,zero,zero"
+        },
+        {
+          "pc": "0x800709E0",
+          "word": "0x0801C27E",
+          "mnemonic": "j 0x800709f8"
+        },
+        {
+          "pc": "0x800709E8",
+          "word": "0x0C01B73C",
+          "mnemonic": "jal 0x8006dcf0"
+        },
+        {
+          "pc": "0x800709EC",
+          "word": "0x00002021",
+          "mnemonic": "addu a0,zero,zero"
+        },
+        {
+          "pc": "0x800709F0",
+          "word": "0x0C01B634",
+          "mnemonic": "jal 0x8006d8d0"
+        },
+        {
+          "pc": "0x800709F4",
+          "word": "0x00002021",
+          "mnemonic": "addu a0,zero,zero"
+        },
+        {
+          "pc": "0x800709F8",
+          "word": "0x3C028008",
+          "mnemonic": "lui v0,0x8008"
+        },
+        {
+          "pc": "0x800709FC",
+          "word": "0x8C421C28",
+          "mnemonic": "lw v0,7208(v0)"
+        },
+        {
+          "pc": "0x80070A04",
+          "word": "0xA0400000",
+          "mnemonic": "sb zero,0(v0)"
+        },
+        {
+          "pc": "0x80070A08",
+          "word": "0x3C028008",
+          "mnemonic": "lui v0,0x8008"
+        },
+        {
+          "pc": "0x80070A0C",
+          "word": "0x8C421C34",
+          "mnemonic": "lw v0,7220(v0)"
+        },
+        {
+          "pc": "0x80070A14",
+          "word": "0xA0400000",
+          "mnemonic": "sb zero,0(v0)"
+        },
+        {
+          "pc": "0x80070A18",
+          "word": "0x0C0197F3",
+          "mnemonic": "jal 0x80065fcc"
+        },
+        {
+          "pc": "0x80070A20",
+          "word": "0x8FBF0010",
+          "mnemonic": "lw ra,16(sp)"
+        },
+        {
+          "pc": "0x80070A24",
+          "word": "0x27BD0018",
+          "mnemonic": "addiu sp,sp,24"
+        },
+        {
+          "pc": "0x80070A28",
+          "word": "0x03E00008",
+          "mnemonic": "jr ra"
+        },
+        {
+          "pc": "0x80070A2C",
+          "word": "0x00000000",
+          "mnemonic": "nop"
+        }
+      ]
+    },
+    "caller": {
+      "call": "0x800B74A4",
+      "return_address": "0x800B74AC",
+      "next_call": {
+        "site": "0x800B74AC",
+        "target": "0x800B91AC"
+      }
+    },
+    "guest_return": {
+      "classification": "conventional_balanced_return",
+      "stack_allocation": 24,
+      "saved_ra": {
+        "store": "0x800709B0",
+        "offset": 16
+      },
+      "restored_ra": {
+        "load": "0x80070A20",
+        "offset": 16
+      },
+      "stack_restore": "0x80070A24",
+      "return_instruction": "0x80070A28",
+      "delay_slot": "0x80070A2C",
+      "caller_continuation": "0x800B74AC",
+      "synthetic_guest_return_instruction": false
+    },
+    "backends": {
+      "default": {
+        "data_clear": {
+          "call": "0x800709E8",
+          "target": "0x8006DCF0",
+          "argument": 0
+        },
+        "ready_clear": {
+          "call": "0x800709F0",
+          "target": "0x8006D8D0",
+          "argument": 0
+        }
+      },
+      "mode_1": {
+        "data_clear": {
+          "call": "0x800709D0",
+          "target": "0x800B9A28",
+          "argument": 0
+        },
+        "ready_clear": {
+          "call": "0x800709D8",
+          "target": "0x800B9A14",
+          "argument": 0
+        },
+        "ready_slot": {
+          "address": "0x800CAECC",
+          "swap_function": [
+            "0x800B9A14",
+            "0x800B9A28"
+          ]
+        }
+      }
+    },
+    "fmv_instructions": [
+      {
+        "pc": "0x800B74A4",
+        "word": "0x0C01C26B",
+        "mnemonic": "jal 0x800709ac"
+      },
+      {
+        "pc": "0x800B74A8",
+        "word": "0x00000000",
+        "mnemonic": "nop"
+      },
+      {
+        "pc": "0x800B74AC",
+        "word": "0x0C02E46B",
+        "mnemonic": "jal 0x800b91ac"
+      },
+      {
+        "pc": "0x800B9A14",
+        "word": "0x3C03800D",
+        "mnemonic": "lui v1,0x800d"
+      },
+      {
+        "pc": "0x800B9A18",
+        "word": "0x2463AECC",
+        "mnemonic": "addiu v1,v1,-20788"
+      },
+      {
+        "pc": "0x800B9A1C",
+        "word": "0x8C620000",
+        "mnemonic": "lw v0,0(v1)"
+      },
+      {
+        "pc": "0x800B9A20",
+        "word": "0x03E00008",
+        "mnemonic": "jr ra"
+      },
+      {
+        "pc": "0x800B9A24",
+        "word": "0xAC640000",
+        "mnemonic": "sw a0,0(v1)"
+      },
+      {
+        "pc": "0x800B9A28",
+        "word": "0x27BDFFE8",
+        "mnemonic": "addiu sp,sp,-24"
+      },
+      {
+        "pc": "0x800B9A30",
+        "word": "0x00802821",
+        "mnemonic": "addu a1,a0,zero"
+      },
+      {
+        "pc": "0x800B9A34",
+        "word": "0x0C01950D",
+        "mnemonic": "jal 0x80065434"
+      },
+      {
+        "pc": "0x800B9A38",
+        "word": "0x24040003",
+        "mnemonic": "addiu a0,zero,3"
+      },
+      {
+        "pc": "0x800B9A44",
+        "word": "0x03E00008",
+        "mnemonic": "jr ra"
+      }
+    ]
+  },
+  "callback_backends": {
+    "default": {
+      "ready": {
+        "address": "0x800818C8",
+        "storage": "resident pointer32",
+        "swap_function": {
+          "range": [
+            "0x8006D8D0",
+            "0x8006D8E8"
+          ],
+          "previous_value_returned_in": "v0",
+          "new_value_source": "a0",
+          "load": "0x8006D8D4",
+          "store": "0x8006D8DC"
+        },
+        "xrefs": [
+          {
+            "instruction": {
+              "pc": "0x8006D8D4",
+              "word": "0x8C4218C8",
+              "mnemonic": "lw v0,6344(v0)"
+            },
+            "access": "read",
+            "owner": "CdReadyCallback_previous"
+          },
+          {
+            "instruction": {
+              "pc": "0x8006D8DC",
+              "word": "0xAC2418C8",
+              "mnemonic": "sw a0,6344(at)"
+            },
+            "access": "write",
+            "owner": "CdReadyCallback_install"
+          },
+          {
+            "instruction": {
+              "pc": "0x8006E5BC",
+              "word": "0x8C4218C8",
+              "mnemonic": "lw v0,6344(v0)"
+            },
+            "access": "read",
+            "owner": "CD_sync_dispatch",
+            "guarded_dispatch": {
+              "pc": "0x8006E5D8",
+              "word": "0x0040F809",
+              "mnemonic": "jalr v0"
+            }
+          },
+          {
+            "instruction": {
+              "pc": "0x8006E844",
+              "word": "0x8C4218C8",
+              "mnemonic": "lw v0,6344(v0)"
+            },
+            "access": "read",
+            "owner": "CD_ready_dispatch",
+            "guarded_dispatch": {
+              "pc": "0x8006E860",
+              "word": "0x0040F809",
+              "mnemonic": "jalr v0"
+            }
+          },
+          {
+            "instruction": {
+              "pc": "0x8006ECB4",
+              "word": "0x8C4218C8",
+              "mnemonic": "lw v0,6344(v0)"
+            },
+            "access": "read",
+            "owner": "CD_cw_dispatch",
+            "guarded_dispatch": {
+              "pc": "0x8006ECD0",
+              "word": "0x0040F809",
+              "mnemonic": "jalr v0"
+            }
+          },
+          {
+            "instruction": {
+              "pc": "0x8006F010",
+              "word": "0xAC2018C8",
+              "mnemonic": "sw zero,6344(at)"
+            },
+            "access": "write",
+            "owner": "CD_initintr_clear"
+          },
+          {
+            "instruction": {
+              "pc": "0x8006F098",
+              "word": "0xAC2018C8",
+              "mnemonic": "sw zero,6344(at)"
+            },
+            "access": "write",
+            "owner": "CD_init_clear"
+          },
+          {
+            "instruction": {
+              "pc": "0x8006F600",
+              "word": "0x8C4218C8",
+              "mnemonic": "lw v0,6344(v0)"
+            },
+            "access": "read",
+            "owner": "CD_interrupt_dispatch",
+            "guarded_dispatch": {
+              "pc": "0x8006F61C",
+              "word": "0x0040F809",
+              "mnemonic": "jalr v0"
+            }
+          }
+        ],
+        "summary": {
+          "total_direct_xrefs": 8,
+          "reads": 5,
+          "writes": 3,
+          "guarded_dispatches": 4,
+          "all_direct_xrefs_classified": true
+        }
+      },
+      "data": {
+        "function": {
+          "range": [
+            "0x8006DCF0",
+            "0x8006DD14"
+          ],
+          "behavior": "DMACallback(3, a0)",
+          "dma_callback_call": "0x8006DCFC",
+          "channel_argument": {
+            "site": "0x8006DD00",
+            "value": 3
+          }
+        },
+        "sdk_dispatch": {
+          "entry": "0x80065434",
+          "kernel_table_pointer_cell": "0x80080DE0",
+          "function_field_offset": 4,
+          "jalr": "0x8006544C",
+          "storage_boundary": "The game calls the PsyQ DMACallback API. Its callback storage is kernel-private behind this table dispatch and is not promoted to game-owned MOD state."
+        },
+        "instructions": [
+          {
+            "pc": "0x8006DCF0",
+            "word": "0x27BDFFE8",
+            "mnemonic": "addiu sp,sp,-24"
+          },
+          {
+            "pc": "0x8006DCF4",
+            "word": "0xAFBF0010",
+            "mnemonic": "sw ra,16(sp)"
+          },
+          {
+            "pc": "0x8006DCF8",
+            "word": "0x00802821",
+            "mnemonic": "addu a1,a0,zero"
+          },
+          {
+            "pc": "0x8006DCFC",
+            "word": "0x0C01950D",
+            "mnemonic": "jal 0x80065434"
+          },
+          {
+            "pc": "0x8006DD00",
+            "word": "0x24040003",
+            "mnemonic": "addiu a0,zero,3"
+          },
+          {
+            "pc": "0x8006DD04",
+            "word": "0x8FBF0010",
+            "mnemonic": "lw ra,16(sp)"
+          },
+          {
+            "pc": "0x8006DD08",
+            "word": "0x27BD0018",
+            "mnemonic": "addiu sp,sp,24"
+          },
+          {
+            "pc": "0x8006DD0C",
+            "word": "0x03E00008",
+            "mnemonic": "jr ra"
+          },
+          {
+            "pc": "0x8006DD10",
+            "word": "0x00000000",
+            "mnemonic": "nop"
+          },
+          {
+            "pc": "0x80065434",
+            "word": "0x3C028008",
+            "mnemonic": "lui v0,0x8008"
+          },
+          {
+            "pc": "0x80065438",
+            "word": "0x8C420DE0",
+            "mnemonic": "lw v0,3552(v0)"
+          },
+          {
+            "pc": "0x80065444",
+            "word": "0x8C420004",
+            "mnemonic": "lw v0,4(v0)"
+          },
+          {
+            "pc": "0x8006544C",
+            "word": "0x0040F809",
+            "mnemonic": "jalr v0"
+          }
+        ]
+      }
+    },
+    "mode_1": {
+      "data_clear": {
+        "call": "0x800709D0",
+        "target": "0x800B9A28",
+        "argument": 0
+      },
+      "ready_clear": {
+        "call": "0x800709D8",
+        "target": "0x800B9A14",
+        "argument": 0
+      },
+      "ready_slot": {
+        "address": "0x800CAECC",
+        "swap_function": [
+          "0x800B9A14",
+          "0x800B9A28"
+        ]
+      }
+    }
+  },
+  "cdrom_mmio_pointer_table": {
+    "range": [
+      "0x80081C28",
+      "0x80081C38"
+    ],
+    "storage": "four resident pointer32 cells",
+    "values": [
+      "0x1F801800",
+      "0x1F801801",
+      "0x1F801802",
+      "0x1F801803"
+    ],
+    "targets": [
+      {
+        "cell": "0x80081C28",
+        "target": "0x1F801800",
+        "cdrom_register": 0
+      },
+      {
+        "cell": "0x80081C2C",
+        "target": "0x1F801801",
+        "cdrom_register": 1
+      },
+      {
+        "cell": "0x80081C30",
+        "target": "0x1F801802",
+        "cdrom_register": 2
+      },
+      {
+        "cell": "0x80081C34",
+        "target": "0x1F801803",
+        "cdrom_register": 3
+      }
+    ],
+    "retained_capture": {
+      "hex": "0018801f0118801f0218801f0318801f",
+      "positive_matches_pristine_table": true,
+      "negative_matches_pristine_table": true,
+      "captured_words_are_pointer_cells": true,
+      "captured_words_are_callback_storage": false,
+      "equal_after_capture_is_expected": true
+    },
+    "teardown_target_stores": [
+      {
+        "pointer_cell": "0x80081C28",
+        "load": "0x800709FC",
+        "target": "0x1F801800",
+        "store": "0x80070A04",
+        "width": "u8",
+        "value": 0
+      },
+      {
+        "pointer_cell": "0x80081C34",
+        "load": "0x80070A0C",
+        "target": "0x1F801803",
+        "store": "0x80070A14",
+        "width": "u8",
+        "value": 0
+      }
+    ],
+    "boundary": "The retained 16-byte endpoint capture observes the immutable resident pointer cells, not the volatile MMIO bytes written through those pointers. Equality cannot falsify either target store."
+  },
+  "reconciliation": {
+    "function_trace_flag_preserved": true,
+    "guest_return_is_conventional": true,
+    "synthetic_unwind_is_guest_return": false,
+    "captured_words_are_callback_words": false,
+    "captured_words_are_mmio_pointer_cells": true,
+    "captured_pointer_equality_falsifies_target_stores": false
+  },
+  "summary": {
+    "teardown_size": 132,
+    "ready_slot_direct_xrefs": 8,
+    "ready_slot_guarded_dispatches": 4,
+    "mmio_pointer_cells": 4,
+    "mmio_target_stores": 2,
+    "unclassified_ready_slot_xrefs": 0,
+    "unresolved_game_owned_teardown_interfaces": 0,
+    "unresolved_cross_boundary_interfaces": 5
+  },
+  "claims": {
+    "confirmed": [
+      "The guest teardown has a conventional balanced return to 0x800B74AC.",
+      "The default ready callback is a resident pointer slot with every direct read, write, initialization clear and guarded dispatch classified.",
+      "The default data callback is cleared through the PsyQ DMACallback channel-3 API; kernel-private storage remains behind the SDK boundary.",
+      "Mode 1 uses the FMV.BIN channel-3 wrapper and resident overlay slot 0x800CAECC.",
+      "The retained four words are CD-ROM MMIO pointer cells; teardown writes zero to register targets 0 and 3 through two of those cells."
+    ],
+    "not_claimed": [
+      "The retained functionTrace synthetic-unwind flag is not rewritten or explained as an exact every-cycle event.",
+      "Static ownership does not establish pause, repeat, decode-failure or malformed-media outcomes.",
+      "Kernel-private DMACallback storage is not promoted to safe game-owned MOD state.",
+      "The mode-field direct-read census does not prove which indirect writers make mode 1 reachable at runtime."
+    ]
+  },
+  "dimension_boundary": {
+    "dimension": "original_interfaces",
+    "claim": "partial",
+    "confidence": "partial",
+    "low_level_basis": "Pristine opcodes bind both callback backends, the complete resident ready-slot xref/dispatch census, the default data SDK boundary, both MMIO target stores, the pointer-table identity, and the conventional guest return. This closes the teardown sub-boundary only; it does not bind every original interface crossed by the E15 subsystem.",
+    "non_intersecting_residuals": [
+      "Pause, repeat and error outcomes remain lifecycle and campaign-breadth debt.",
+      "Kernel-private DMACallback storage remains outside game-owned MOD state.",
+      "Exact functionTrace stack-unwind causality remains observer evidence, not a guest interface."
+    ],
+    "intersecting_residuals": [
+      "Remaining level/viewer completion and transition writers.",
+      "E12 audio-presentation interface.",
+      "C17 movie-viewer selection and unlock interface.",
+      "E14 frontend persistence interface.",
+      "E16 generic overlay/resource-loader interface."
+    ]
+  },
+  "evidence_dependencies": {
+    "analysis/phase4_fmv_callback_lifecycle.json": "d6f049488927a476a59ad36c58b0ea7cab682ed533b8a193516e7beaf3f43f85",
+    "analysis/phase3_jalr_callbacks.json": "1d5a41a971417219e754655c3313791749872cee866513f24f7262647e80abd4"
+  },
+  "source_dependencies": {
+    "config/phase4_fmv.yaml": "63f60045562aa2ec113ac060b3fec8c5c0b562f45cc5e02e4f78ff49077b0d64",
+    "src/main/800709ac_sub_800709ac.c": "21bb06802db2024e9c19e7e664899238e9793e46bf3acca535804fe09b55bf5a",
+    "src_re/fmv_callback_consumer_frontier.c": "d1e432deb06a29785a02e3e6879b797289255e98bc8c592c5d46f956a2953922",
+    "tools/phase4_fmv_teardown_ownership.py": "84e4b7176d2ef2a0c0c329121f6b592f8e02e81601396c252258d37ce4e6c36a"
+  }
+}

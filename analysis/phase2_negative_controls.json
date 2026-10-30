@@ -1,0 +1,50 @@
+{
+ "_comment": "Per-action negative controls (signatures require their inputs). Regenerate: tools/phase2_negative_controls.py.",
+ "generated": "2026-07-12",
+ "media": {
+  "serial": "SCUS-94288"
+ },
+ "controls": {
+  "no_input_idle": {
+   "anchor": "level01.sav",
+   "frames": 120,
+   "s80_values": [
+    0
+   ],
+   "grounded_always": true,
+   "inflight_always_zero": true,
+   "passes": true
+  },
+  "walk_no_square_no_carry": {
+   "anchor": "movies/Phase_Helpers/carry_handstand.movie.sav",
+   "seed_record_index": 0,
+   "frames": 120,
+   "attachment_samples": 0,
+   "player_displacement": 37056,
+   "passes": true
+  },
+  "single_jump_no_slide_states": {
+   "anchor": "level01.sav",
+   "s80_values_seen": [
+    1,
+    5
+   ],
+   "jump_state_observed": true,
+   "note": "state 5 is a shared moving-landing/skid state (observed on plain jumps); only state 4 (slam/dive) is double-tap-exclusive",
+   "passes": true
+  },
+  "triangle_no_carry_no_color_change": {
+   "anchor": "movies/Phase_Helpers/carry_handstand.movie.sav",
+   "seed_record_index": 0,
+   "color_count_bytes_before": "ffff",
+   "after": "ffff",
+   "passes": true
+  },
+  "no_start_no_pause": {
+   "anchor": "level02.sav",
+   "displacement": 42088,
+   "passes": true
+  }
+ },
+ "all_pass": true
+}

@@ -1,0 +1,329 @@
+{
+ "_comment": "F01 original_oracle: all four finalizer leaves observed during a NATURAL cold-boot completion, nothing injected. Complements the injected request==2 witness. RUNTIME EVIDENCE, NOT PROOF -- bounded to this replay. Regenerate: tools/phase4_f01_original_oracle.py",
+ "schema": "abl-phase4-f01-original-oracle/1",
+ "authority": {
+  "runtime_silence_proves_absence": false,
+  "promotes_row_or_dimension": false,
+  "requires_fresh_verifier": true,
+  "bounded_to": "one replay of one from-boot movie"
+ },
+ "fixture": {
+  "movie": "movies/Phase4/Interpreter/Any% Runs/LEVEL01_AntHill_FromBoot.movie.json",
+  "movie_sha256": "b29ae83945aaea1d59c03095867376130a3ac3eefcf4b6042a2c36b8369e2e24",
+  "movie_size": 5062842,
+  "frames": 7385,
+  "from_boot": true,
+  "movie_version": 4,
+  "armed_while_paused": true,
+  "phase_delay_owed": true,
+  "phase_correction": {
+   "phase_correction_consumed_at": 2,
+   "phase_correction_pending": false
+  },
+  "reproducible": true,
+  "playback_completed": true
+ },
+ "media": {
+  "has_media": true,
+  "serial": "SCUS-94288",
+  "title": "Disney-Pixar A Bug's Life",
+  "cue": {
+   "identity": "Disney-Pixar A Bug's Life (v1.0).cue",
+   "sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644"
+  },
+  "track": {
+   "identity": "Disney-Pixar A Bug's Life (v1.0).bin",
+   "sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+  },
+  "executable": {
+   "identity": "SCUS_942.88",
+   "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+  }
+ },
+ "execution_mode": "Interpreter",
+ "method": {
+  "launcher": "tools/launch_repro_playback.sh --execution-mode Interpreter",
+  "playback": "movie.resumeUntilMovieFrame (60 Hz resume path, not frame stepping)",
+  "capture": "execTrace capture_memory at the decision re-read (pre-instruction)",
+  "injection": "NONE -- no write, no perturbation, no poke"
+ },
+ "branch_under_test": {
+  "finalizer": "0x80045A60",
+  "runs_iff": "request != 2 && [0x8008225C] == 0",
+  "decision_pc": "0x8004FF28",
+  "skip_edges": [
+   "0x8004FF30 beq request,2",
+   "0x8004FF40 bnez [0x8008225C]"
+  ]
+ },
+ "scene_timeline": [
+  {
+   "first": 500,
+   "last": 500,
+   "scene": 624
+  },
+  {
+   "first": 1000,
+   "last": 3500,
+   "scene": 0
+  },
+  {
+   "first": 4000,
+   "last": 5500,
+   "scene": 1
+  },
+  {
+   "first": 6000,
+   "last": 7385,
+   "scene": 0
+  }
+ ],
+ "entered_anthill_frame": 4000,
+ "exited_anthill_by_movie_end": true,
+ "leaves": {
+  "consumer_proceeded_hits": 1,
+  "decision_reread_hits": 1,
+  "request_at_decision": [
+   1
+  ],
+  "gp4c4_at_decision": [
+   0
+  ],
+  "finalizer_hits_attributable_to_this_decision": 1,
+  "finalizer_hits_whole_run": 1,
+  "finalizer_hits_before_decision_unrelated": 0,
+  "unrelated_hit_frame_span": null,
+  "decision_to_finalizer_cycles": 28
+ },
+ "decisions": [
+  {
+   "frame": 5895,
+   "request": 1,
+   "gp4c4": 0
+  }
+ ],
+ "preload_noise_rejected": {
+  "counts": {
+   "consumer_proceeded_hits": 0,
+   "decision_reread": 0,
+   "finalizer_hits": 326
+  },
+  "why": "A PC watch is an ADDRESS watch, not a code watch. Before the game EXE is loaded these addresses hold different bytes, so a from-boot replay records executions that are not our instructions at all. Measured: [0x8004FF48] = 0x00000000 at movie frames 300 and 700, becoming `jal 0x80045A60` by frame 1200. Every event above is kept only when the instruction word captured at its own PC equals the pristine image word.",
+  "how_it_was_caught": "A raw whole-run finalizer count of 327 against a decision count of 1 is impossible on straight-line code. A compiled-C scan (tools/phase4_f01_finalizer_entry_probe.c) then found ZERO direct branch/jump entries into the block across 22 images and the decoded jr tables, which ruled out the indirect-entry explanation and left code-not-loaded."
+ },
+ "assertions": [
+  {
+   "id": "objective_completed_naturally",
+   "op": "eq",
+   "expected": true,
+   "actual": true,
+   "detail": "Anthill scene entered then exited with no injection",
+   "passed": true
+  },
+  {
+   "id": "consumer_proceeded",
+   "op": "eq",
+   "expected": 1,
+   "actual": 1,
+   "passed": true
+  },
+  {
+   "id": "request_produced_by_gameplay_not_injected",
+   "op": "eq",
+   "expected": [
+    1
+   ],
+   "actual": [
+    1
+   ],
+   "detail": "region code 2 -> dispatch arm 0x800496C4 writes request 1",
+   "passed": true
+  },
+  {
+   "id": "other_skip_condition_ruled_out",
+   "op": "eq",
+   "expected": [
+    0
+   ],
+   "actual": [
+    0
+   ],
+   "passed": true
+  },
+  {
+   "id": "finalizer_ran_for_this_decision",
+   "op": "eq",
+   "expected": 1,
+   "actual": 1,
+   "detail": "scoped by cycle to the decision; complement of the injected request==2 arm, where the finalizer was skipped",
+   "passed": true
+  },
+  {
+   "id": "finalizer_immediately_follows_the_decision",
+   "op": "le",
+   "expected": 200,
+   "actual": 28,
+   "detail": "same basic block: 0x8004FF28 -> 0x8004FF48 is 7 instructions",
+   "passed": true
+  }
+ ],
+ "provenance_assertions": [
+  {
+   "id": "movie_identity_declared",
+   "expected": true,
+   "actual": true,
+   "passed": true
+  },
+  {
+   "id": "movie_hash_matches_central_pin",
+   "expected": true,
+   "actual": true,
+   "passed": true
+  },
+  {
+   "id": "movie_size_matches_central_pin",
+   "expected": true,
+   "actual": true,
+   "passed": true
+  },
+  {
+   "id": "movie_media_class_is_pristine",
+   "expected": "pristine_serial",
+   "actual": "pristine_serial",
+   "passed": true
+  },
+  {
+   "id": "movie_preservation_required",
+   "expected": true,
+   "actual": true,
+   "passed": true
+  },
+  {
+   "id": "movie_metadata_from_boot",
+   "expected": true,
+   "actual": true,
+   "passed": true
+  },
+  {
+   "id": "movie_metadata_start_path_empty",
+   "expected": "",
+   "actual": "",
+   "passed": true
+  },
+  {
+   "id": "movie_metadata_start_size_zero",
+   "expected": 0,
+   "actual": 0,
+   "passed": true
+  },
+  {
+   "id": "movie_metadata_start_hash_absent",
+   "expected": null,
+   "actual": null,
+   "passed": true
+  },
+  {
+   "id": "movie_metadata_not_loaded_before_recording",
+   "expected": false,
+   "actual": false,
+   "passed": true
+  },
+  {
+   "id": "movie_metadata_not_state_only",
+   "expected": false,
+   "actual": false,
+   "passed": true
+  },
+  {
+   "id": "movie_metadata_serial",
+   "expected": "SCUS-94288",
+   "actual": "SCUS-94288",
+   "passed": true
+  },
+  {
+   "id": "movie_top_level_serial",
+   "expected": "SCUS-94288",
+   "actual": "SCUS-94288",
+   "passed": true
+  },
+  {
+   "id": "playback_reproducible",
+   "expected": true,
+   "actual": true,
+   "passed": true
+  },
+  {
+   "id": "playback_completed",
+   "expected": true,
+   "actual": true,
+   "passed": true
+  },
+  {
+   "id": "exec_trace_not_truncated",
+   "expected": false,
+   "actual": false,
+   "passed": true
+  },
+  {
+   "id": "pristine_media_has_media",
+   "expected": true,
+   "actual": true,
+   "passed": true
+  },
+  {
+   "id": "pristine_media_serial",
+   "expected": "SCUS-94288",
+   "actual": "SCUS-94288",
+   "passed": true
+  },
+  {
+   "id": "pristine_media_title",
+   "expected": "Disney-Pixar A Bug's Life",
+   "actual": "Disney-Pixar A Bug's Life",
+   "passed": true
+  },
+  {
+   "id": "pristine_media_cue_identity",
+   "expected": "Disney-Pixar A Bug's Life (v1.0).cue",
+   "actual": "Disney-Pixar A Bug's Life (v1.0).cue",
+   "passed": true
+  },
+  {
+   "id": "pristine_media_cue_sha256",
+   "expected": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+   "actual": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+   "passed": true
+  },
+  {
+   "id": "pristine_media_track_identity",
+   "expected": "Disney-Pixar A Bug's Life (v1.0).bin",
+   "actual": "Disney-Pixar A Bug's Life (v1.0).bin",
+   "passed": true
+  },
+  {
+   "id": "pristine_media_track_sha256",
+   "expected": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+   "actual": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+   "passed": true
+  },
+  {
+   "id": "pristine_media_executable_identity",
+   "expected": "SCUS_942.88",
+   "actual": "SCUS_942.88",
+   "passed": true
+  },
+  {
+   "id": "pristine_media_executable_sha256",
+   "expected": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+   "actual": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+   "passed": true
+  }
+ ],
+ "all_passed": true,
+ "exec_trace": {
+  "total": 329,
+  "truncated": false,
+  "completeness_source": "event-bearing execTrace.get response"
+ },
+ "status_statement": "F01 original_oracle evidence only; the dimension is not promoted here."
+}

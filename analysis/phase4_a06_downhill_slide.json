@@ -1,0 +1,98 @@
+{
+  "schema": "abl.phase4.a06.downhill_slide.v2",
+  "generated": "2026-08-03",
+  "row": "A06_downhill_slide",
+  "disposition": "complete",
+  "evidence_status": ["substantiated", "bounded_exhausted"],
+  "method": {
+    "order": [
+      "retained capsule identity/capability census",
+      "compiled C extraction over retained pristine ASM",
+      "normal-speed v4 Interpreter replay on pristine media",
+      "compiled C reduction of inputs, state writes, motion writes, and block flow"
+    ],
+    "duckstation_escalation_required": true,
+    "duckstation_reason": "The first static reconstruction conflated the separate player+0x8C contact-projector path with the ordinary held-Cross slide and left ordinary release/latch timing unobserved."
+  },
+  "capsule_census": {
+    "relevant_capsule_found": false,
+    "rejected_candidate": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/a10-a11-v2-20260719/Phase_Helpers__carry_handstand",
+    "candidate_manifest_sha256": "5188a58af0c5c347b5f2a7685e12748631686823edf78ad15c2649d716f02a26",
+    "rejection": "The manifest pins movies/Phase_Helpers/carry_handstand.movie.json, not an A06 slide fixture."
+  },
+  "runtime_fixtures": [
+    {
+      "movie": "movies/Phase4/Interpreter/A06_slide_steering.movie.json",
+      "movie_sha256": "0d96c41768ad190e902312cdc78e8b88705ae8d83c78c56ddaf6809060d0ff4b",
+      "state_sha256": "d22d122ef7d8e08e6b041d8e6c966f2d4a6eb34398d7fa5063e004ff8d0b3ba0",
+      "frames": 452,
+      "initial_emulator_frame": 13701,
+      "finding": "Stable state 5 at movie frames 179..360; left held 68 frames and right 59; Cross first released at 360 and grounded state 0 stored at 361."
+    },
+    {
+      "movie": "movies/Phase4/Interpreter/A06_slide_natural_end.movie.json",
+      "movie_sha256": "2e51e56ec40089c5137f29e021be03edd119299d56569edd8afc36d16867717a",
+      "state_sha256": "5ea40fbfc7705862af0b520e06e18bff77ee013b5148388a099bb44d8c0ca45a",
+      "frames": 689,
+      "initial_emulator_frame": 15403,
+      "finding": "Cross held through frame 595. Projected motion falls below the 0x300 maintenance threshold; selector 0x1C -> 0x06 begins terrain-driven recovery at frame 543 and 0x06 -> 0x00 completes at timer zero on frame 565. Coarse state 5 remains until release at 596 and grounded state 0 at 597."
+    }
+  ],
+  "runtime_environment": {
+    "media": "pristine Disney-Pixar A Bug's Life (v1.0).cue",
+    "serial": "SCUS-94288",
+    "execution_mode": "Interpreter",
+    "movie_version": 4,
+    "speed": 1,
+    "fast_forward": false,
+    "turbo": false,
+    "reproducible_after_playback": true,
+    "trace_truncated": false
+  },
+  "field_bindings": {
+    "player_base": "0x800A6500",
+    "velocity_x_y_z": ["+0x2C", "+0x30", "+0x34"],
+    "heading": "+0x20",
+    "target_heading": "+0x28",
+    "action_state": "+0x80",
+    "grounded": "+0x82",
+    "dive_phase": "+0x84",
+    "animation_selector": "+0x88",
+    "terrain_contact_slot_plus_one": "+0x8C"
+  },
+  "causal_findings": [
+    {
+      "addresses": ["0x80048B5C", "0x80048B6C", "0x80048CD8", "0x80048D64"],
+      "finding": "The ordinary route tests current Cross state and commits grounded state 4 or later to state 5 while Cross is held."
+    },
+    {
+      "addresses": ["0x80048D00", "0x80048D10"],
+      "finding": "Cross release takes the ordinary release branch and clears the action state to 0 when grounded. Both movies show the state clear one movie frame after first release."
+    },
+    {
+      "addresses": ["0x80048EE8", "0x80048F10", "0x80048F30", "0x80048F3C", "0x80056860", "0x800569AC"],
+      "finding": "Visible sliding is maintained by timer +0x7A. After decrement to 11 it rearms to 12 only if Cross is held and +0x38 >= 0x300 or abs(+0x3C) >= 0x300. A below-threshold terrain sample changes animation 0x1C -> recovery 0x06, then timer expiry selects fallback 0x00 while Cross remains held."
+    },
+    {
+      "addresses": ["0x800490D0", "0x80049100", "0x80049240", "0x800492A8"],
+      "finding": "Ordinary steering changes target heading by digital input and converges current heading through a wrapped capped/shifted recurrence. Default ordinary parameters are cap 0x400 and shift 2."
+    },
+    {
+      "addresses": ["0x80041CF8", "0x800488D8", "0x8004892C", "0x80048A70"],
+      "finding": "The player+0x8C contact-projector path is distinct. The A06 movies visibly slide with zero +0x8C writes and zero execution of its entry/steering/projector/exit PCs."
+    },
+    {
+      "addresses": ["0x8004B2AC", "0x8004B314"],
+      "finding": "The shared phase-0 abdomen contact resolver issues actor event 4 and knockback/drop reaction without a direct actor-HP store in this resolver, then applies player rebound handling."
+    }
+  ],
+  "closure_metrics": {
+    "slope_gate_predicate": "closed; no slope-angle gate, with dive vertical separation followed by grounded held-Cross state 5",
+    "velocity_friction_law": "closed to the shared movement integrator; no universal slope-only scalar friction recurrence",
+    "steering": "closed by ordinary target/current heading flow plus left/right Interpreter evidence",
+    "damage_class": "closed by the shared abdomen contact resolver",
+    "termination": "closed: terrain/projected-motion threshold ends visible sliding through 0x1C -> 0x06 -> 0x00 while Cross is held; later grounded release clears the coarse state latch one frame later",
+    "stage_scope": "shared resident code; surface-specific trajectory details remain collision-data dependent"
+  },
+  "bounded_limit": "Named obstacle, airborne-release, or unusual-surface behavior can be investigated later. Exhaustive collision-surface enumeration is high effort with minimal Phase 4 return and does not keep A06 open."
+}

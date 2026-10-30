@@ -1,0 +1,138 @@
+{
+  "campaign": "fmv_playback",
+  "claim_boundary": {
+    "classification": "exact_pc_window_falsified_repeated",
+    "dimension_promoted": false,
+    "dma_events_claimed": 0,
+    "exact_pc_stop_observed": false,
+    "first_region_b_dma_identified": false,
+    "fresh_verifier_pending": true,
+    "lifecycle_promoted": false,
+    "live_executed": true,
+    "next_lane": "static",
+    "next_method": "Re-localize the completed-Level-B transition against the retained frame-15816 anchor and reconstruct the earlier instruction boundary before any further live replay. Do not repeat the escaped 0x80046078 exact-PC window.\n",
+    "not_claimed": [
+      "any hit at 0x80046078 or 0x800460C4",
+      "any Region-B DMA event",
+      "fresh-verifier acceptance of investigator receipts",
+      "lifecycle or any other dimension promotion"
+    ],
+    "passive_receipts_closed": 1,
+    "precise_receipts_closed": 2
+  },
+  "errors": [],
+  "escalation_id": "P4-R6-ITER4-E15-LEVELB-REGIONB-EXACT-PC-DMA-PROVENANCE",
+  "falsifier": {
+    "claim": "Both precise runs must hit 0x80046078 from the paused frame-15816 anchor inside the finite frame-15880 ceiling.",
+    "native_receipt_sha256": "daa3a25d3644e81c8f77b3062bf0f566dcf1929511b170a025deeba20ae62a52",
+    "outcome": "falsified_repeated",
+    "reason": "start_stop escaped the finite emulator-frame bound",
+    "repeat_receipt_sha256": "8aa9bedd679458e18fd3cebebb9328269c653b4fdcfba9da3123b0de7a57f17b"
+  },
+  "generated": "2026-07-29",
+  "inputs": {
+    "authorization": {
+      "before_ledger_sha256": "fdefbe804f634d2f6f39fb2022f1b8e6bc4e27d8145401983c909b52cf67d3ac",
+      "first_unmet_dimension": "lifecycle",
+      "work_packet_sha256": "e18eb42a44771dee7fff8d4bf8dc1fbaeb65d24661c58d6aceccc233648c87f9"
+    },
+    "config": {
+      "path": "config/phase4_fmv_levelb_region_b_dma_exact_pc_result.yaml",
+      "sha256": "39e3245fae368dd211da5a39ef76f29d5272782132afe26d251d132ab9a1d71d"
+    }
+  },
+  "missing_fact_id": "E15/completed-level-b-region-b-exact-pc-dma-provenance",
+  "observation": {
+    "dma_events_claimed": 0,
+    "exact_pc_repeat_equal": true,
+    "independent_server_sessions": true,
+    "passive_window_strictly_wider": true,
+    "precise_receipts_closed": 2
+  },
+  "raw_external_bytes_committed": false,
+  "receipts": [
+    {
+      "batch_result_sha256": "f88d659f76d47b21d5b729f409700eac8ccb81bc09e7681b08ed310be8e84231",
+      "capture_window": {
+        "clock": "emulator_frame",
+        "start": 15800,
+        "stop": 15896,
+        "stop_inclusive": false
+      },
+      "owned_pid": 1148644,
+      "owned_pid_stopped": true,
+      "precise": false,
+      "receipt_sha256": "e2303d114e7c1e5ed37093eb313bfb081ae85a3d386bc5d3a06dbe49c46893fe",
+      "role": "passive"
+    },
+    {
+      "anchor_frame": 15816,
+      "batch_result_sha256": "5afa281a79ce3520360127cca4a303d408b19a455d8a1cfbc391a4cff8e36625",
+      "capture_window": {
+        "clock": "emulator_frame",
+        "start": 15816,
+        "stop": 15880,
+        "stop_inclusive": false
+      },
+      "command_event_count": 67,
+      "exact_result_sha256": "bbe9af89a3b80e77d021af6b633706e8e26e894f4cc8b921f4fd9c25de92eea8",
+      "failure_frame": 15881,
+      "falsifier_code": "EXACT_PC_TYPED_PREDICATE_FALSE",
+      "falsifier_reason": "start_stop escaped the finite emulator-frame bound",
+      "frame_ceiling": 15880,
+      "outcome": "falsified",
+      "owned_pid": 1281238,
+      "owned_pid_stopped": true,
+      "precise": true,
+      "receipt_sha256": "daa3a25d3644e81c8f77b3062bf0f566dcf1929511b170a025deeba20ae62a52",
+      "role": "native",
+      "server_session_id": "e726872e95f3f5be0e34b3df030b8c36fd77bdb886fbc13d3b86cbbb8204297b",
+      "terminal_method": "debugger.pause",
+      "transfer_events": 0
+    },
+    {
+      "anchor_frame": 15816,
+      "batch_result_sha256": "16b0e79b1b3ba7d2b877d73f12030713a8257b8f3ef63a88de1ae8a5a8b6a6ad",
+      "capture_window": {
+        "clock": "emulator_frame",
+        "start": 15816,
+        "stop": 15880,
+        "stop_inclusive": false
+      },
+      "command_event_count": 66,
+      "exact_result_sha256": "9f93e384310632c279e82c770671bd426202510df1231faf1c154db1df39d040",
+      "failure_frame": 15881,
+      "falsifier_code": "EXACT_PC_TYPED_PREDICATE_FALSE",
+      "falsifier_reason": "start_stop escaped the finite emulator-frame bound",
+      "frame_ceiling": 15880,
+      "outcome": "falsified",
+      "owned_pid": 1281416,
+      "owned_pid_stopped": true,
+      "precise": true,
+      "receipt_sha256": "8aa9bedd679458e18fd3cebebb9328269c653b4fdcfba9da3123b0de7a57f17b",
+      "role": "repeat",
+      "server_session_id": "0ed6a9201fdb6f7fbd74c0003dd6aa887569aeb0be69080bdb62866c4ce96e63",
+      "terminal_method": "debugger.pause",
+      "transfer_events": 0
+    }
+  ],
+  "record_counts": {
+    "fresh_verifier_receipts": 0,
+    "investigator_live_receipts": 3,
+    "offline_queries": 0,
+    "offline_queries_reused": 1,
+    "passive_live_receipts": 1,
+    "precise_live_receipts": 2,
+    "promotion_admissible_live_receipts": 0
+  },
+  "row": "E15_fmv",
+  "schema": "abl-phase4-fmv-levelb-region-b-dma-exact-pc-result/1",
+  "source_dependencies": {
+    "analysis/phase4_method_legacy_live_index.json": "ae32ba8352a6c8c0bb302d9e85113135fe3b68627a74769dfb50c4f955eaebde",
+    "config/phase4_fmv_levelb_region_b_dma_exact_pc_result.yaml": "39e3245fae368dd211da5a39ef76f29d5272782132afe26d251d132ab9a1d71d",
+    "tools/phase4_duckstation_exact_pc_batch.py": "497820c593964694eefb3d4b246910548e6063839defc3631aa499d1664353be",
+    "tools/phase4_method_metrics.py": "5f3aa7741f24bb930c177a847a387427c3b417bad5d93ca30f4fda6052e491dd"
+  },
+  "summary": "Two independent pristine-media exact-PC runs escaped the finite 15816..15880 window at frame 15881 before the start stop. The predeclared claim is falsified; no DMA event or dimension is promoted.",
+  "valid": true
+}

@@ -1,0 +1,437 @@
+{
+ "_comment": "Phase-3 WP9 contradiction ledger. Each status is recomputed from the cited low-level surfaces; reconciled/bounded are the only closure states. Regenerate: python3 tools/phase3_contradictions.py",
+ "generated": "2026-07-14",
+ "sources_checked": [
+  {
+   "category": "disassembly",
+   "files": [
+    {
+     "path": "analysis/functions.json",
+     "sha256": "55d5d7723e235822c8bb5aceaee109943023504bf2d8652a16558c17fdfa6e62"
+    },
+    {
+     "path": "symbols/re_symbols.sym",
+     "sha256": "2067681373d1e64ab4029916abf977aa6d9f5fd9a88d5b2d7b3f95d7e7be1363"
+    }
+   ]
+  },
+  {
+   "category": "C",
+   "files": [
+    {
+     "path": "src_re/player_update_80048138.c",
+     "sha256": "ac026d1884e40d1472fd024a6e6d6f03f840007b56d19e9d35a2ae79ceb3c79c"
+    },
+    {
+     "path": "src_re/re_types.h",
+     "sha256": "c7c538e8d877beeb1f512cc18bae42ec7da4e256f6c1f69a5e3c437e3c397c4f"
+    }
+   ]
+  },
+  {
+   "category": "runtime_evidence",
+   "files": [
+    {
+     "path": "analysis/phase3_spin_functional.json",
+     "sha256": "4cd5dcc7b7361e27afb63a97cec3b20aff54ccbf015e46a916b26ef8d5c256ae"
+    },
+    {
+     "path": "analysis/phase3_thud.json",
+     "sha256": "558d1881f5598863e225728be530c5908e44afb08dbd2940f5d866944e082c61"
+    },
+    {
+     "path": "analysis/phase3_semantic_lifetime.json",
+     "sha256": "f1b7fade61e898e1acc32c244287913ddc5e6c9684d8f6f421fb3a3f3a6b8121"
+    },
+    {
+     "path": "analysis/phase3_unknown_fields.json",
+     "sha256": "5af9d01db3269f4f8a427b3c639260a9ea3df4d040517abe0624e264c0bc7c5e"
+    },
+    {
+     "path": "analysis/phase3_render_descriptors.json",
+     "sha256": "8a590fc08464f0ee69d98ad332554e7be3ab639118e000f455dd7572a7d78bfc"
+    },
+    {
+     "path": "analysis/phase3_training_anchor_fixture.json",
+     "sha256": "4158d6dd17f3a303be924942a86c8460c1d3fc349d6bbfdb595de363d521210f"
+    }
+   ]
+  },
+  {
+   "category": "asset_observations",
+   "files": [
+    {
+     "path": "analysis/phase3_scene_asset_graph.json",
+     "sha256": "2ff38e61cbc854f1fdfbbcefbb80e238faf4405ae4eae9e9e8f48bb4c3712d49"
+    },
+    {
+     "path": "analysis/phase3_asset_provenance.json",
+     "sha256": "7d89f90eed6a3e379b51b92aa51a6d2d5bc789a2e5e774694d7ad00e3cd51947"
+    }
+   ]
+  },
+  {
+   "category": "schemas",
+   "files": [
+    {
+     "path": "config/semantic_state.yaml",
+     "sha256": "8ab785ef1445b217f9f2624e7d8ed3cfd6436e37aa5d6f937efe92d591220ab9"
+    },
+    {
+     "path": "config/record_types.yaml",
+     "sha256": "6c37e641c460e28a5fa2682fb8aa30eb24c77f390cbb24f72d1e37fb75f90170"
+    },
+    {
+     "path": "mod/hook_caves.yaml",
+     "sha256": "380dd4b34d5c76a0e966f6badb0dd99d3cd85fc463b74d315a6260ddcc2f54d2"
+    }
+   ]
+  },
+  {
+   "category": "registries",
+   "files": [
+    {
+     "path": "analysis/mechanics_baseline.yaml",
+     "sha256": "6bb22f1e34be57f797d3761e4e52a0f4a737fc2837d88133daa384b1eb862666"
+    },
+    {
+     "path": "config/phase3_findings.yaml",
+     "sha256": "a54ae4ccf05a2f2827676187f3a2e020fdb5467d1b683ea9ab5816765729731a"
+    }
+   ]
+  },
+  {
+   "category": "generated_artifacts",
+   "files": [
+    {
+     "path": "analysis/phase3_xrefs.json",
+     "sha256": "bc0472314df8095f5b454afeff9d8d49fbfb63e5338fff0e2e714af3a58bac81"
+    },
+    {
+     "path": "analysis/phase3_record_types.json",
+     "sha256": "f54ce79bec908248aca5c71411fbbc39aa4b2e8c980c5caa6b79288f7f71dd83"
+    },
+    {
+     "path": "analysis/phase3_hook_contracts.json",
+     "sha256": "e1fc75211f86e3f8d587870d93a7706800a5ab55e4313d0b5b5a0bd7d9105633"
+    },
+    {
+     "path": "analysis/phase3_evidence_inventory.json",
+     "sha256": "e55d9ed046c5e4819df9a85e5f33b2fbe9e2e7bc3118bf257fe1b3efde556518"
+    }
+   ]
+  },
+  {
+   "category": "debugger_toolchain",
+   "files": [
+    {
+     "path": "analysis/phase3_duckstation_rpc_manifest.json",
+     "sha256": "f6e437871303a4b5aab6c5961addf8112858e6da8ab2c1ffa80ecfd6bbce27ae"
+    },
+    {
+     "path": "tools/duckstation_rpc_method_manifest.md",
+     "sha256": "0e99f557ba5441feb74bc3de095fbc138583b8825e38247396ba13b261a6e5d4"
+    },
+    {
+     "path": "tools/phase3_duckstation_rpc_manifest.py",
+     "sha256": "7309de5170d629f2aa71eaa1cc7254dca6886c69840044bc07c67712827132fe"
+    }
+   ]
+  },
+  {
+   "category": "Canon",
+   "files": [
+    {
+     "path": "ObsidianVault/Canon/Systems/SYS_player_action_state_laws.md",
+     "sha256": "9b1a7912ffd5dc4163d1f2e5fc65486451e591c0435f544137db622c2822300b"
+    },
+    {
+     "path": "ObsidianVault/Canon/Systems/SYS_scene_asset_load_graph.md",
+     "sha256": "0deb1b759d9881f93ea04fa0bec92c77bf76582cb1ba92cfc329d41a6e1d7655"
+    },
+    {
+     "path": "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+     "sha256": "034c2f31794c1126ec8213264462f29171fcacd29849d2d996371c5bc5c77449"
+    },
+    {
+     "path": "ObsidianVault/Canon/Indexes/DuckStation_API_Index.md",
+     "sha256": "ba2338930908c80b36e59c8e858097708359f1c53c5ad6bccc2c063c6e75aec2"
+    }
+   ]
+  },
+  {
+   "category": "roadmap",
+   "files": [
+    {
+     "path": "ObsidianVault/Playbooks/Game Solving Roadmap - From Reconstruction to Reliable Modding.md",
+     "sha256": "e40a598214db51c346965c22f4edf1022a0836bc3971439d4b09ae29a1680db8"
+    },
+    {
+     "path": "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md",
+     "sha256": "98c6872c81fa90a06b73e8d373c1233344d6f993c2b8c42a8d1543b79bbd2d0b"
+    }
+   ]
+  }
+ ],
+ "contradictions": [
+  {
+   "id": "a07_absolute_disproof_vs_bounded_negative",
+   "status": "bounded",
+   "surfaces": [
+    "runtime",
+    "mechanic_registry",
+    "finding_registry",
+    "Canon",
+    "roadmap"
+   ],
+   "predicate_met": true,
+   "observation": "The retained battery found no distinct state/writer but cannot exclude a branch inside a named function or an untested trigger.",
+   "resolution": "A07 is an external lead; the runtime result is a bounded negative, never an absolute disproof.",
+   "evidence": [
+    "analysis/phase3_spin_functional.json",
+    "analysis/mechanics_baseline.yaml",
+    "ObsidianVault/Canon/Systems/SYS_player_action_state_laws.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_a07_spin_move_disproof.md"
+   ],
+   "residual": "Obtain the external source's exact input sequence, context, and expected effect, then replay it on pristine media."
+  },
+  {
+   "id": "thud_identity_vs_unsolved_encounter",
+   "status": "bounded",
+   "surfaces": [
+    "runtime",
+    "mechanic_registry",
+    "Canon"
+   ],
+   "predicate_met": true,
+   "observation": "Poke-falsification binds enemy id 0x24 and the HP=0 retirement edge; it does not solve the arena or every phase.",
+   "resolution": "Keep F09 and D18 partial while treating the boss identity/retirement boundary as confirmed.",
+   "evidence": [
+    "analysis/phase3_thud.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "residual": "Phase 4 must map the full encounter state machine and arena semantics."
+  },
+  {
+   "id": "zero_to_zero_vs_initialization_claim",
+   "status": "bounded",
+   "surfaces": [
+    "runtime",
+    "semantic_registry",
+    "generated_lifetime"
+   ],
+   "predicate_met": true,
+   "observation": "11 scalar observations are unchanged 0->0 and therefore establish neither initialization nor reset.",
+   "resolution": "Retain init=unknown and an insufficient-transition-evidence blocker for every unchanged-zero field; reject writable/BSS ROM classifications.",
+   "evidence": [
+    "analysis/phase3_semantic_lifetime.json",
+    "config/semantic_state.yaml",
+    "analysis/phase3_xrefs.json"
+   ],
+   "residual": "Each unchanged-zero field needs a deterministic nonzero->reset experiment before its reset law can be promoted."
+  },
+  {
+   "id": "declared_writers_vs_static_store_scan",
+   "status": "reconciled",
+   "surfaces": [
+    "disassembly",
+    "C",
+    "semantic_registry",
+    "generated_xrefs"
+   ],
+   "predicate_met": true,
+   "observation": "Direct EXE scans cannot resolve pointer-based stores or overlay writers and must not contradict declared writers solely because no absolute store was found.",
+   "resolution": "The xref report separates real contradictions from pointer/overlay method limits; no declared direct writer is contradicted.",
+   "evidence": [
+    "analysis/phase3_xrefs.json",
+    "config/semantic_state.yaml",
+    "analysis/functions.json"
+   ],
+   "residual": ""
+  },
+  {
+   "id": "training_off_table_vs_silent_omission",
+   "status": "reconciled",
+   "surfaces": [
+    "disassembly",
+    "runtime",
+    "asset_observation",
+    "Canon"
+   ],
+   "predicate_met": true,
+   "observation": "Scene 17 lies outside the 15-row campaign table but dispatches through table 0x8001AFB0 index 16 to 0x8003CFC4 and owns pinned LEVEL00 assets.",
+   "resolution": "Model Training as an explicit exceptional resident/shared route, not as a gap or a fabricated Region-A code overlay.",
+   "evidence": [
+    "analysis/phase3_scene_asset_graph.json",
+    "analysis/phase3_jr_tables.json",
+    "ObsidianVault/Canon/Systems/SYS_scene_asset_load_graph.md"
+   ],
+   "residual": ""
+  },
+  {
+   "id": "training_fixture_pin_vs_actual_cold_boot_regeneration",
+   "status": "reconciled",
+   "surfaces": [
+    "runtime",
+    "fixture_registry",
+    "generator",
+    "debugger_lifecycle"
+   ],
+   "predicate_met": true,
+   "observation": "The old generator accepted an existing pinned save without replaying its from-boot movie; the nominal frame-6900 RPC also raced while the guest was running.",
+   "resolution": "Pause before playback, advance from index 0 to 6904, require emulator frame 6905/cycle 3909055795, byte-compare the transient save with the central pin, and stop only the exact config-owned PID.",
+   "evidence": [
+    "analysis/phase3_training_anchor_fixture.json",
+    "analysis/phase0_2_external_fixture_set.json",
+    "tools/phase3_training_anchor_fixture.py",
+    "tools/launch_phase3_debugger.py"
+   ],
+   "residual": ""
+  },
+  {
+   "id": "asset_roles_vs_staged_hash_registry",
+   "status": "reconciled",
+   "surfaces": [
+    "asset_observation",
+    "build_schema",
+    "generated_artifact"
+   ],
+   "predicate_met": true,
+   "observation": "Asset role claims are meaningful only for the exact centrally pinned staged inputs.",
+   "resolution": "Enumerate every pinned staged input, verify its hash, and retain load-owner evidence for every required Phase-3 role.",
+   "evidence": [
+    "analysis/phase3_asset_provenance.json",
+    "tools/build_baselines.json"
+   ],
+   "residual": ""
+  },
+  {
+   "id": "record_schema_vs_generated_byte_accounting",
+   "status": "reconciled",
+   "surfaces": [
+    "C",
+    "record_schema",
+    "generated_artifact",
+    "Canon"
+   ],
+   "predicate_met": true,
+   "observation": "Family labels must not erase unknown bytes or outrun the generated record census.",
+   "resolution": "Require identical record IDs, explicit unknown spans, family evidence, and the current 181/524-byte accounting in Canon.",
+   "evidence": [
+    "config/record_types.yaml",
+    "analysis/phase3_record_types.json",
+    "src_re/re_types.h",
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md"
+   ],
+   "residual": ""
+  },
+  {
+   "id": "actor_y_absence_claim_vs_retained_evidence",
+   "status": "bounded",
+   "surfaces": [
+    "runtime",
+    "record_schema",
+    "finding_registry",
+    "Canon",
+    "roadmap"
+   ],
+   "predicate_met": true,
+   "observation": "The retained drainer artifact contains one Level01 actor, 40 frames, two promoted horizontal fields, and no rejected Y-candidate table; it cannot establish the former 42-anchor/92-tick absence claim.",
+   "resolution": "Supersede the campaign-wide Y-field absence claim, retain the exact X/Z sample, and leave +0x20 and vertical ownership unknown.",
+   "evidence": [
+    "analysis/phase3_unknown_fields.json",
+    "config/record_types.yaml",
+    "config/phase3_findings.yaml",
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "residual": "Capture multiple vertically moving actor families and retain every aligned field candidate and mismatch count before promoting any Y-field identity or absence claim."
+  },
+  {
+   "id": "render_snapshot_variance_vs_loader_causality",
+   "status": "bounded",
+   "surfaces": [
+    "runtime_snapshot",
+    "semantic_registry",
+    "record_schema",
+    "Canon"
+   ],
+   "predicate_met": true,
+   "observation": "Strict-pristine post-load anchors prove five scene-dependent target-byte offsets and seven invariant offsets; the former four extra changes came from an ALLMODS-origin save. Snapshots do not observe the writes.",
+   "resolution": "Retain stable pointer identity and exact byte variance, but keep writer, ownership-transfer, and reset attribution partial.",
+   "evidence": [
+    "analysis/phase3_render_descriptors.json",
+    "config/semantic_state.yaml",
+    "config/record_types.yaml",
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md"
+   ],
+   "residual": "Cold-boot or transition with write watches over the descriptor targets must attribute exact writer PCs before loader causality is promoted."
+  },
+  {
+   "id": "documentation_c_vs_byte_authority",
+   "status": "bounded",
+   "surfaces": [
+    "disassembly",
+    "C",
+    "hook_schema",
+    "built_diagnostic_image"
+   ],
+   "predicate_met": true,
+   "observation": "Documentation-grade src_re C expresses semantics but is not automatically a byte-exact substitute for original instructions or continuation state.",
+   "resolution": "Keep the function census/original bytes authoritative and discharge diagnostic continuation contracts against the pinned independent build.",
+   "evidence": [
+    "analysis/functions.json",
+    "src_re/player_update_80048138.c",
+    "analysis/phase3_hook_contracts.json"
+   ],
+   "residual": "Non-matching documentation C remains semantic reference only until a byte-exact build proves equivalence."
+  },
+  {
+   "id": "hook_discharge_vs_degraded_recovered_extent",
+   "status": "bounded",
+   "surfaces": [
+    "disassembly",
+    "hook_schema",
+    "built_diagnostic_image",
+    "finding_registry",
+    "roadmap"
+   ],
+   "predicate_met": true,
+   "observation": "terrain_emitter_color is post-build clobber-clean, but both its recovered liveness extent and its discharge confidence are degraded.",
+   "resolution": "Count it as one degraded accounted row, not as an exact-confidence discharge; retain 5 proven + 9 exact discharges + 1 degraded row in every authoritative summary.",
+   "evidence": [
+    "analysis/phase3_hook_contracts.json",
+    "config/phase3_findings.yaml",
+    "ObsidianVault/Playbooks/Game Solving Roadmap - From Reconstruction to Reliable Modding.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "residual": "Recover the original containing function boundary from independent code identity before promoting this row from degraded to exact confidence."
+  },
+  {
+   "id": "duckstation_api_prose_vs_exact_phase3_fork",
+   "status": "reconciled",
+   "surfaces": [
+    "debugger_source",
+    "debugger_binary",
+    "generated_artifact",
+    "Canon"
+   ],
+   "predicate_met": true,
+   "observation": "Earlier Canon/Markdown surfaces described obsolete 141/143 and 191-method snapshots; the current fe0cca16 dirty fork exposes 203 dispatched methods.",
+   "resolution": "Extract the balanced KnownMethods/IsKnownMethod table, retain committed/dirty set differences plus exact source/docs/client/binary hashes, deterministically render Markdown, and reject Canon or current-fork drift.",
+   "evidence": [
+    "analysis/phase3_duckstation_rpc_manifest.json",
+    "tools/duckstation_rpc_method_manifest.md",
+    "ObsidianVault/Canon/Indexes/DuckStation_API_Index.md",
+    "tools/phase3_duckstation_rpc_manifest.py"
+   ],
+   "residual": ""
+  }
+ ],
+ "summary": {
+  "rows": 13,
+  "reconciled": 6,
+  "bounded": 7,
+  "open": []
+ }
+}

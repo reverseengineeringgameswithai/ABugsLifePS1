@@ -1,0 +1,86 @@
+schema: abl-phase4-input-actions/1
+description: >
+  Authoritative machine contract for the resident raw-pad to gameplay-action
+  decoder boundary established by the A20 Phase-4 reviewed-absence proof. This
+  describes the pristine game; it does not install a MOD hook or claim that
+  frontend controller-remapping lifecycle is solved.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_circle_absence.json
+  generator: tools/phase4_circle_absence.py
+  source:
+    - config/segments.yml
+
+raw_input:
+  owner: controller polling wrapper at 0x8003A2DC
+  current_word:
+    address: '0x80082412'
+    type: u16
+    valid_domain: '0x0000..0xFFFF active-high raw PS1 pad bits'
+  circle:
+    raw_mask: '0x2000'
+    default_action_bits: '0x0000'
+
+decoded_actions:
+  owner: resident decoder 0x80051294..0x80051358
+  output_word:
+    address: '0x80082488'
+    type: u16
+    low_passthrough_mask: '0x0FFF'
+    synthesized_action_bits: ['0x4000', '0x8000', '0x1000']
+  decisive_writers:
+    - '0x800512D0: base low-bit store'
+    - '0x800512E8: first mapped action store'
+    - '0x80051318: second mapped action store'
+    - '0x80051348: third mapped action store'
+  readers:
+    discovery: analysis/phase3_ownership_graph.json
+    boundary: gameplay consumers read 0x80082488 after the resident decoder
+
+profiles:
+  selector:
+    address: '0x8009EC7D'
+    type: u8
+    decoder_domain: '0x00..0x7F after mask; native table validity is 0..7'
+    native_reset_writer: '0x8004FAF0: sb zero,0xEC7D(at)'
+    resident_readers: ['0x800512A0', '0x80055338']
+  table:
+    address: '0x80078C28'
+    count: 8
+    stride_bytes: 6
+    entry_layout: three little-endian u16 raw masks mapped in order to 0x4000, 0x8000, 0x1000
+    sha256: d0f4b1031cdd5f3e29bcca36482bb46210b13fa72dc02627e568f8c87af9a9f4
+  proven_boundaries:
+    default_profile_0:
+      raw_masks: ['0x4000', '0x8000', '0x1000']
+      circle_action_bits: '0x0000'
+    native_profile_1_positive_control:
+      raw_masks: ['0x4000', '0x2000', '0x1000']
+      circle_action_bits: '0x8000'
+
+lifecycle:
+  initialization: main-shell state machine writes selector zero before default gameplay
+  reset: selector zero is the only resident writer found in the executable census
+  retirement: resident selector storage persists until reset or frontend remapping changes it
+  consumers: resident input decoder and secondary SFX/voice glue reader
+  capacity: exactly eight native table entries of six bytes each
+  residency: decoder, selector, raw/decoded words, and table are resident executable state
+
+mod_contract:
+  owner: any MOD that changes Circle must own one post-decode action bit or an explicit downstream action dispatch
+  readers: preserve existing decoded-word consumers unless the MOD enumerates and migrates them
+  writers: do not add a second unbounded writer to 0x80082488 or 0x8009EC7D
+  valid_domains: selector 0..7 for the native table; raw/action words are u16
+  initialization: initialize MOD-private state before the first gameplay decode
+  reset: clear MOD-private state at main-shell reset, death/reload where applicable, and scene transition
+  retirement: remove injected action state when input releases and on overlay unload
+  consumers: enumerate player, animation, camera, audio, collision, and frontend consumers for any assigned action
+  capacity: declare any hook/cave/table expansion and validate it with the hook contract
+  residency: keep resident hooks out of overlay-owned memory and scope overlay hooks to their owner
+  unsafe_assumptions:
+    - Circle is not globally inert; native profile 1 remaps it to the Square action bit.
+    - The A20 proof does not close frontend remap ownership, persistence, or exceptional menu paths.
+    - Save-state anchors are narrow runtime experiments; disc/code changes still require cold boot.

@@ -1,0 +1,54 @@
+{
+  "_comment": "Era-compiler + assembler-shim toolchain for the decomp substrate C path (docs/SUBSTRATE.md). Hash METADATA only — nothing copyrighted (GPL gcc, MIT maspsx); binaries live OUTSIDE the repo under ~/abl-toolchain (ABL_OLDGCC_DIR / ABL_MASPSX override). All three cc1 run natively as 32-bit i386 static ELF on Fedora 44 (no container needed); podman is the documented fallback. Verified 2026-07-08: the SetPolyGT4 pipeline (cpp -> cc1 -O2 -G0 -mcpu=3000 -> maspsx --dont-expand-li -> gnu as) reproduces the target bytes exactly for all three.",
+  "source": "https://github.com/decompals/old-gcc/releases/tag/0.17",
+  "retrieved": "2026-07-08",
+  "install_root": "~/abl-toolchain",
+  "compilers": [
+    {
+      "id": "gcc2.7.2-psx",
+      "gcc_version": "2.7.2",
+      "role": "primary (PsyQ 4.0/4.1-era candidate)",
+      "dir": "old-gcc/gcc-2.7.2-psx",
+      "arch": "ELF 32-bit i386, statically linked",
+      "url": "https://github.com/decompals/old-gcc/releases/download/0.17/gcc-2.7.2-psx.tar.gz",
+      "tar_sha256": "500a459b3485e885a8d302cac23c2a4632f3900e03a09153f6190699fd723571",
+      "cc1_sha256": "0359379289db8e3904b8ed3b25b422ca631c8d71ab2f543d533c39ed2967764f",
+      "cpp_sha256": "e3e1e53a9c19a6c1defa76da40cb50b922d5c4711e41b637211fbaf3fae60df4"
+    },
+    {
+      "id": "gcc2.8.0-psx",
+      "gcc_version": "2.8.0",
+      "role": "fallback (PsyQ 4.3 shipped 2.8.0)",
+      "dir": "old-gcc/gcc-2.8.0-psx",
+      "arch": "ELF 32-bit i386, statically linked",
+      "url": "https://github.com/decompals/old-gcc/releases/download/0.17/gcc-2.8.0-psx.tar.gz",
+      "tar_sha256": "1a3c956fe8aea5ebdb251749d95de2c84f023530584d7bd663744b5ec24050b7",
+      "cc1_sha256": "f752a0865ae4b9e7570c2f245e6562c7eb7c4349e553265c99d7f6dc8dfc97c6",
+      "cpp_sha256": "dd62b7c41723c43be16b63084e4a2b51fd4a157a465ebe02b3f5355ee8975dbd"
+    },
+    {
+      "id": "gcc2.8.1-psx",
+      "gcc_version": "2.8.1",
+      "role": "fallback (PsyQ 4.4 shipped 2.8.1)",
+      "dir": "old-gcc/gcc-2.8.1-psx",
+      "arch": "ELF 32-bit i386, statically linked",
+      "url": "https://github.com/decompals/old-gcc/releases/download/0.17/gcc-2.8.1-psx.tar.gz",
+      "tar_sha256": "f6f6e883942d4d3289d048236c672e71ed410e546aaae8ff655952f1567e1be0",
+      "cc1_sha256": "1a48ec5ac87a146a074a9d66d7a67734a4d1ad56553d02d91e8b71c7fecc2d52",
+      "cpp_sha256": "8d7f4e90f995089a6c2d62214b607fc77acf43b61f60a871d130d713d9ac96bb"
+    }
+  ],
+  "assembler_shim": {
+    "id": "maspsx",
+    "role": "translate cc1 MIPS asm to GNU-as-compatible input with ASPSX semantics",
+    "repo": "https://github.com/mkst/maspsx",
+    "dir": "maspsx",
+    "commit": "42b862c988fe7a13fe4e7ac0ebec90ed6b9fb763",
+    "entry": "maspsx/maspsx.py",
+    "note": "stdin cc1 .s -> stdout gnu-as .s; key axis --dont-expand-li vs default (li of a small positive const -> addiu vs ori); --aspsx-version sweeps assembler-version nuances"
+  },
+  "gnu_as": {
+    "prefix": "mips64-linux-gnu-",
+    "note": "system cross-binutils; ld -m elf32ltsmip, objcopy -O binary (already used by the asm path)"
+  }
+}

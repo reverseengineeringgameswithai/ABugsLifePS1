@@ -1,0 +1,55 @@
+schema: abl-phase4-fmv-present-rect-height-static-ownership-source/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+run_root: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-043819-3325038-r2
+offline_query:
+  receipt:
+    relative_path: iteration-2-receipts/offline-fmv-height-owner-index.receipt.json
+    sha256: 4d3e3d60016374f2386c3f30173fbb9f94dc4928fa2d9375ded80bfdd2549d5e
+  output:
+    relative_path: iteration-2-receipts/outputs/fmv-height-owner-index-search.json
+    sha256: 53d13c7e5d8b00fbbe625108628271922055f8c50f3c1c97f216a47e8fa303b6
+  external_index_sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+  expected_zero_terms:
+    - '0x800B6BF0'
+    - '0x80064178'
+    - '0x800CAC0A'
+    - '0x800CAC02'
+    - cached_height
+    - presentation_rect
+prior_evidence:
+  static_owners:
+    path: analysis/phase4_fmv_static_owners.json
+    sha256: b8254fe5988a99d9d72c3760d16ad4ee51d23f39a7af0b78ee759a96f36659b6
+  saturated_writer_result:
+    path: analysis/phase4_fmv_present_rect_height_writer_result.json
+    sha256: 59fb66dcf293d9549e52715ffafc0f77615e213d06c48b281ecdbe10aebe7aa1
+claim_boundary:
+  exact_claim: >
+    In pristine FMV.BIN, 0x800B6BF0 copies the low halfword of cached decoded
+    height 0x800B9A5C through the player-boundary pointer rooted at 0x800CABE0
+    into present_rect_h 0x800CAC0A. Resident 0x80064178 is the downstream
+    PsyQ _dws RECT-height clamp reached through LoadImage's driver table.
+  falsifier: >
+    Fail if either caller does not pass 0x800CABE0, the helper does not
+    preserve that argument, the source or destination differs, any direct
+    FMV.BIN caller is unclassified, the resident vtable does not resolve
+    LoadImage to _dws, or either retained writer PC remains unowned.
+  dimension_promoted: false
+  complete_writer_sequence_closed: false
+  next_lane: live
+  next_method: >
+    Do not repeat the broad 0x800CAC0A write watch. If complete ordered
+    ownership remains load-bearing, predeclare a same-anchor functionTrace
+    restricted to 0x800B6A7C..0x800B6C24 over movie frames 160..260 with 32
+    events maximum. This excludes the high-volume downstream 0x80064178 SDK
+    clamp; the prior three retained calls predict six balanced events, while
+    saturation or an unbalanced call is the explicit falsifier.
+  not_claimed:
+    - a complete unsaturated runtime writer sequence after retained event 32
+    - a finite total count of _dws invocations in the prior replay window
+    - GPU or DMA writes outside the retained CPU writer domain
+    - lifecycle or any other nine-dimension promotion
+    - matching C for FMV.BIN, _dws, or gpu_present_drawotag_vsync

@@ -1,0 +1,116 @@
+schema: abl-phase4-grain-gates/1
+campaign_state: completed
+description: >
+  Pristine E09 contract for the nine Tunnels twig gates and three City Entrance
+  doors. Natural operator movies establish threshold-minus-one denials, five
+  Tunnels openings, death/game-over boundaries, and exact replay timing; paired
+  debugger controls alter only grain count to establish the City thresholds.
+  Successful-open native death/respawn and native frontend card I/O close the
+  lifecycle and persistence boundary.
+
+provenance:
+  media: Hash-verified pristine Disney-Pixar A Bug's Life v1.0 CUE and track
+  fixture_manifest: analysis/phase0_2_external_fixture_set.json
+  runtime_fixture_manifest: config/phase3_runtime_fixtures.yaml
+  evidence: analysis/phase4_grain_gates.json
+  generator: tools/phase4_grain_gates.py
+  shared_card_movie: movies/Menu-Navigation.movie_v2.json
+  staged_city_overlay: REBUILD/files/LEVEL04/LEVEL.BIN
+  staged_city_overlay_sha256: a346b8e6a6be4f2d27f7f73cd6dba8b1a96bd079c209d844ef140e2792ffd555
+  tunnels_overlay_boundary: >
+    The centrally pinned saves contain the live Tunnels overlay used by the
+    movies. Its decisive words and bounded region hash are retained, but the
+    checked-out staged overlay differs and is not represented as a byte match.
+
+shared_state:
+  grain_count: {address: '0x800A65A1', type: u8, owner: original_game.objectives}
+  denial_feedback:
+    sfx_id: 76
+    cooldown_base: 60
+    cooldown_rule: next byte from the stream pointer at 0x800822F4 plus 60, then decrement once per gate update
+  native_card_serialization:
+    source: {address: '0x8009EC68', size: 336, owner: original_game.scene_pickup_progress}
+    save_copy: {function: '0x800BAD08', buffer_offset: 648}
+    load_copy: {function: '0x800BAAD0', buffer_offset: 648}
+    excludes: ['0x800A65A1', '0x800B4C1C', '0x800B4570']
+    rule: >
+      Native card I/O copies resident scene/pickup progress, not the live grain
+      mirror or either Region-A gate state. Scene setup initializes gate state;
+      regenerated grain plus normal proximity/update rules can open it again.
+
+tunnels:
+  scene_id: 3
+  table: {address: '0x800B4C1C', stride: 0x14, capacity: 9}
+  record:
+    fields:
+      - {name: state, offset: 0x00, type: s32}
+      - {name: id, offset: 0x04, type: s32}
+      - {name: threshold, offset: 0x08, type: s32}
+      - {name: x, offset: 0x0C, type: s32}
+      - {name: z, offset: 0x10, type: s32}
+  thresholds: [20, 10, 10, 10, 20, 20, 30, 10, 30]
+  state_machine:
+    closed: 4295
+    armed: 4200
+    drop_step: -140
+    final: 1680
+  activation:
+    closed_proximity_radius_after_shift: 100
+    denial_proximity_radius_after_shift: 40
+    rule: grain must be at least the selected record threshold while proximity selects the gate
+  owners:
+    grain_reader: '0x800B44BC'
+    closed_to_armed_writer: '0x800B4530'
+    denial_audio_call: '0x800B4604'
+    drop_writer: '0x800B4624'
+    geometry_helper: '0x80029030'
+
+city_entrance:
+  scene_id: 4
+  function: {start: '0x800B3D84', end_exclusive: '0x800B3F38'}
+  state_table: {address: '0x800B4570', stride: 4, capacity: 3, type: s32}
+  thresholds: [10, 20, 30]
+  state_machine:
+    closed: -1
+    opening_countdown_start: 32
+    open: 0
+  owners:
+    grain_reader: '0x800B3E04'
+    state_writer: '0x800B3E2C'
+    denial_timer: '0x800B456C'
+    denial_audio_call: '0x800B3E90'
+  gate_call_sites: ['0x800B3FC0', '0x800B3FF8', '0x800B402C']
+
+evidence_boundary:
+  natural_positive_tunnels_rows: [1, 2, 3, 5, 6]
+  natural_city_negative_grain: [9, 19, 29]
+  causal_city_positive_grain: [10, 20, 30]
+  retained_lifecycle: >
+    Natural death under a closed Tunnels gate and game-over transition do not
+    open the target gate. Already-open Tunnels state 1680 and City state 0 both
+    survive native fatal contact, one-life decrement, and safe-anchor respawn
+    with grain unchanged. Native card load restores an exact resident progress
+    block; native save emits a causally mutated block into an isolated card file.
+  persistence: >
+    Gate words are transient overlay state and are not card fields. The live
+    grain byte is also not copied directly; persistent scene/pickup records are.
+  instrumentation_exclusion: The access-log lead is excluded from behavioral predicates because it was not cycle/state neutral.
+
+mod_contract:
+  owner: Preserve scene-qualified Tunnels and City overlay ownership; never treat a Region-A address as a universal gate verb.
+  readers: Enumerate grain, player proximity, gate records, collision/geometry, audio, objectives, pause, death, checkpoint, reload, save/load, and transition consumers.
+  writers: Do not add unordered writes to grain, either gate-state table, denial cooldowns, player/collision state, audio requests, or objective state.
+  valid_domains: Grain is u8; thresholds are positive s32; Tunnels records are nine 0x14-byte rows; City state is three s32 words.
+  initialization: Initialize private gate state before the owning overlay's first update and never infer ownership from stale Region-A bytes.
+  reset: Preserve intended private gate state across same-scene native death/safe-anchor respawn; never serialize Region-A-private words directly; rebuild declared state on scene/card load and clear it on scene transition or MOD unload.
+  retirement: Retire injected state and hooks before the owning overlay, geometry, collision, audio, objective, or scene state unloads.
+  consumers: Grain pickups/HUD, player proximity, collision, dynamic geometry, audio, objectives, checkpoint, death, persistence, stages, and overlays.
+  capacity: Preserve the exact 9-row and 3-word bounds unless every typed reader/writer and validator is updated together.
+  residency: Keep persistent private state outside Region-A overlay memory and qualify all gate references by scene/image lifetime.
+  unsafe_assumptions:
+    - Emulator frames are not native gate updates.
+    - A filename or sign is not mounted-media, scene, or successful-open proof.
+    - Owning enough grain does not open a Tunnels gate until proximity selects it.
+    - City closed/open values are not interchangeable with the Tunnels deformation state.
+    - A debugger-mutated threshold control is causal evidence, not a natural pristine outcome.
+    - Same-scene death preservation does not imply card serialization; the native card copy range excludes both gate layouts.

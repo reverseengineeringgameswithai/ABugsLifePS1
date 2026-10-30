@@ -1,0 +1,93 @@
+*.bin
+*.cue
+*.iso
+*.img
+*.chd
+*.sav
+*.mcr
+*.state
+*.ram
+REBUILD/
+BUILD/
+__pycache__/
+*.pyc
+DAT/
+OVL/
+SCUS_942.88
+*.BIN
+*.bin
+MEMORY.BIN
+iso_probe.py
+0x*
+
+# B2 reproducibility: large / host-specific / regenerable artifacts
+# (no inline comments — gitignore treats trailing text as part of the pattern)
+# extracted/ = ~1.3GB bulk media (regenerable); jpsxdec = downloadable tool.
+# Ignore the contents but TRACK the hash manifest (GAP-0005 — hashes only, no asset bytes).
+extracted/*
+!extracted/SHA256SUMS
+jpsxdec_v2.1-beta/
+*.log
+tools/*.png
+tools/LEVEL_*.RAW
+G28_Deformity
+starry_night_result/
+nighttime_want.png
+# tools/LEVEL_RAW_decompressed/*.bin already covered by *.bin;
+# chunk_index.json stays trackable (force-add).
+tools/LEVEL_RAW_decompressed/*.decompressed
+ObsidianVault/.obsidian/workspace.json
+
+# demo screenshots (regenerable; described in the Experiment note)
+flik_demo*.png
+
+# GAP-0002: forbidden local-capture artifacts (screenshots, backups, movies).
+# Identity is hash-pinned in tools/fixtures.sha256; the bytes are never committed.
+# tests/test_no_forbidden_artifacts.py fails the build if one is ever tracked.
+*.png
+*.bak
+*.movie.json
+*.movie*.json
+*.movie*.sav
+# movies/ is ~860MB of captures, 8 of which escape the patterns above (bare .json,
+# one extensionless save state). Ignore the tree but keep the hash-pinning
+# annotation sidecars trackable -- same carve-out as extracted/SHA256SUMS.
+# The bare !movies/**/ line lets git descend; excluding a directory outright
+# would make the re-include below impossible.
+movies/**
+!movies/**/
+!movies/**/*.annotations.yaml
+# findings-store load-before-save guard sidecar (tools/check_findings_store.py snapshot)
+*.loadlock
+
+# Policy: what may/may not be committed or shared (disc/BIOS/saves/memcards/extracted
+# copyrighted assets) and the rationale for each exclusion above are documented in
+# ObsidianVault/Preservation Policy.md (GAP-0004).
+
+# mod pipeline outputs (modded disc + compiled caves) — never commit
+/build/
+mod/caves/*.o
+
+# FMV replacer GUI preview-still cache (regenerable via `media_replace.py precache`)
+/.fmv_preview_cache/
+/extracted/xa_voice/
+
+# Decomp substrate v0 (docs/SUBSTRATE.md): per-function disassembly carves and
+# hand-written matched sources are DERIVED from the copyrighted EXE — local only.
+# (build/substrate/ outputs are covered by /build/ above.)
+asm/
+analysis/traces/ram_usage/
+
+# compiled C analysis tools -- built on demand via `cc -O2 -o tools/X tools/X.c`
+tools/region_provenance
+# intermediate scratch from tools/phase4_region_provenance_report.py; the reconciled
+# output is analysis/phase4_region_provenance.json, which IS committed
+analysis/*.c_raw.json
+
+# level_editor/ is ORIGINAL SOURCE (hand-written .py/.java/.js/.qml + README) and
+# must stay trackable. Only its vendored virtualenv is bulk: 751 of the tree's 754MB.
+# ripped_textures/ and __pycache__/ are already covered by *.png and __pycache__/.
+level_editor/.venv/
+
+# emulator/debugger run logs -- regenerable. *.log above misses these; they are .json.
+logs/

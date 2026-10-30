@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "row": "A09",
+  "mechanic": "pick up and drop movable seed with Square",
+  "date": "2026-08-03",
+  "tools": {
+    "static_pc_mapper": {"path": "tools/phase4_a09_static.c", "sha256": "738872c2c7dc25c1fb31f0049259ce945ce19548272f803a5c3cba8e2bf71bc1"},
+    "writer_union": {"path": "tools/phase4_a09_writer_union.c", "sha256": "16a7b5e4f32c3eb0265063e37987083282400a44398d484a7c3e8c3e137b2358"}
+  },
+  "pristine_asm": [
+    "asm/hand_written/80047284_player_contact_response.s",
+    "asm/hand_written/8004b940_sub_8004b940.s",
+    "asm/hand_written/80046cac_sub_80046cac.s",
+    "asm/hand_written/80048138_player_vertical_update.s",
+    "asm/hand_written/80046b20_level_load_player_spawn_writer.s",
+    "asm/hand_written/8005b134_respawn_transition_state_handler.s"
+  ],
+  "state": {
+    "selected_actor_offset": {"address": "0x800A655C", "width": "u32", "zero": "none", "positive_domain": "offset from 0x8009FD80; LEVEL01 movable seed value 0x00000A50 -> 0x800A07D0"},
+    "carry_mode": {"address": "0x800A65A3", "width": "u8", "observed_movable_seed_sequence": [0, 8, 9, 10, 11, 12, 13, 0]}
+  },
+  "pickup": {
+    "fresh_square_gate_pcs": ["0x80047728", "0x80047740"],
+    "candidate_requirements": [
+      "actor flags +0x5C has bit 0x20",
+      "actor +0x5E is nonzero",
+      "actor behavior state +0x40 is not 4",
+      "3D deltas quantized by >>5 have squared sum <= 0x270FF",
+      "facing delta is inside the native 1024-unit modular window",
+      "player +0x82 is nonzero, +0x84 is zero, +0xA3 is zero, +0x88 is not 13, and +0x7A is zero"
+    ],
+    "selected_offset_writer": "0x80047858",
+    "mode_writer": "0x80047874",
+    "actor_carried_flag_writer": "0x80047888",
+    "motion_clearers": ["0x80047890", "0x80047898"]
+  },
+  "carry": {
+    "mode_11_owner": "0x8004BA38..0x8004BB00 raises toward player Y-19200, centers X/Z, clamps components to +/-2048, then writes mode 12 when all three residuals are within 128",
+    "mode_12_owner": "0x8004BB68..0x8004BC10 validates squared quantized attachment separation <10001; violation clears offset, flag 0x40, and mode",
+    "stable_law": "seed X/Z == player X/Z and seed Y == player Y-19200"
+  },
+  "manual_drop": {
+    "fresh_square_gate_pcs": ["0x80047C28", "0x80047C40"],
+    "actor_flag_clear": "0x80047C60",
+    "selected_offset_clear": "0x80047CE8",
+    "transient_mode_13_writer": "0x80047D00",
+    "motion": "ordinary movable seed receives heading-derived X/Z motion and zero initial Y; gravity advances Y before the next sampled boundary",
+    "environment_denial_gate": false,
+    "correction": "The fixture name 'blocked_drop' does not mean Square release is denied. Obstruction affects post-release actor motion, not the release decision."
+  },
+  "lifecycle_clearers": [
+    {"pc": "0x80046D04", "owner": "generic forced detach helper"},
+    {"pc": "0x80048394", "owner": "player action cancellation"},
+    {"pc": "0x8004BB38", "owner": "mode-11 timeout"},
+    {"pc": "0x8004BBF8", "owner": "mode-12 separation bound"},
+    {"pc": "0x8005B258", "owner": "respawn transition"},
+    {"pc": "0x8005C204", "owner": "cannon plant consumption"}
+  ],
+  "reset": "0x80046B20 clears the 168-byte player block on level/player spawn; respawn also explicitly clears both carry fields.",
+  "classification": "0x800A655C owns selected-object identity. 0x800A65A3 owns lift/carry/release phase. They are correlated but not aliases."
+}

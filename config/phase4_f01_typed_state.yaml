@@ -1,0 +1,164 @@
+schema: abl-phase4-typed-state-schema/1
+row_id: F01_anthill
+ledger: analysis/phase4_f01_frontier_blockers.json
+
+acceptance_fixture:
+  path: analysis/phase4_f01_frontier_resolve.json
+  collection: unresolved_sites
+  predicate: store
+  detail: >-
+    The 238 store sites the generated full-extent
+    tools/phase4_f01_frontier_resolve.c census could not resolve -- the sites
+    that actually block F01's writer-set completeness claim. Chosen by the
+    resolver, not by this schema, so shrinking it cannot flatter coverage.
+
+windows:
+  - {id: transition_request, start: 0x800823A0, end: 0x800823A2}
+  - {id: transition_timer,   start: 0x80082470, end: 0x80082472}
+
+regions:
+  - id: player_actor
+    start: 0x800A6500
+    end:   0x800A6600
+    owner: MEM_800A6500_Player_state
+    evidence: >
+      Canon MEM_800A6500_Player_state. The decoded fields used by F01 all sit
+      inside 0x100: air_state +0x80, GROUNDED +0x82, ANIM_INDEX +0x88, health
+      +0x94, power +0x90. The extent is the declared struct, not a guess about
+      how far a displacement might reach.
+  - id: actor_pool
+    start: "0x8009FD80"
+    end: "0x800A1E80"
+    owner: mover_updater (0x8004D224)
+    evidence: >
+      mover_updater walks the pool with s2 = 0x800A0000 - 640 = 0x8009FD80
+      (lui/addiu at 0x8004D248/0x8004D24C), advancing by 132 = 0x84 per slot
+      (0x8004D3FC, 0x8004D410) while s4 < 64 (slti at 0x8004D41C), and publishes
+      each live slot into the pointer table with `sw s2, 0x748(at)` at 0x8004D378.
+      64 * 0x84 = 0x2100, so the pool ends at 0x800A1E80. The stride and slot
+      count match the Phase-1 chunk-31 registry.
+
+  - id: gp_globals
+    start: 0x80081D98
+    end:   0x80082D98
+    owner: gp-is-a-proven-constant
+    evidence: >
+      $gp = 0x80081D98 proven constant; the two watched windows are inside this
+      region at +0x608 and +0x6D8.
+
+fields:
+  - id: transition_request
+    region: gp_globals
+    offset: 0x608
+    width: 2
+    signedness: signed
+    owner: MEM_800823A0_scene_transition_request
+    domain: "0..6 -- 0 clear, 1 scene complete, 2 death, 3..6 unnamed"
+    init: "0x8005B888 stores 0 on scene reset"
+    reset: "0x8004FE44 stores 0 when the consumer completes a transition"
+    points_to: null
+    evidence: MEM_800823A0_scene_transition_request
+  - id: transition_timer
+    region: gp_globals
+    offset: 0x6D8
+    width: 2
+    signedness: signed
+    owner: MEM_80082470_scene_transition_timer
+    domain: "0..20000 -- 23 completion, 45 entry, 60 death; overlays supply their own"
+    init: "0x8004FE4C stores 45 at scene entry"
+    reset: "0x800553F8 decrements to 0 on the 30 Hz tick; 0x8005B890 stores 0"
+    points_to: null
+    evidence: MEM_80082470_scene_transition_timer
+  - id: player_grounded
+    region: player_actor
+    offset: 0x82
+    width: 2
+    signedness: signed
+    owner: FUNC_8003633C_player_movement_+_collision_integrator
+    domain: "0x0101 grounded, 0 airborne"
+    init: "cleared by the jump/hurt paths in player_vertical_update"
+    reset: "0x80049770 clears it at the region-dispatch join"
+    points_to: null
+    evidence: EXP_2026-08-05_phase4_f01_objective_lifecycle
+  - id: player_anim_index
+    region: player_actor
+    offset: 0x88
+    width: 2
+    signedness: signed
+    owner: FUNC_80048138_player_vertical_update
+    domain: "animation index; 15 is forced while the transition request is 2"
+    init: "set by the vertical/jump state machine"
+    reset: "0x80056890 forces 15 for the whole death countdown"
+    points_to: null
+    evidence: MEM_800823A0_scene_transition_request
+
+region_bindings:
+  # s1 inside player_vertical_update is the player struct base. NOT asserted: the
+  # compiler reads every direct caller and recovers the constant each one puts in
+  # a0, then requires them to agree and to land inside this region.
+  #
+  # There used to be a second binding here for a0 itself. The ABI check retired it:
+  # the blocker ledger has no a0-based unresolved site in this function, so it
+  # bounded nothing. The old caller-counting check accepted it anyway.
+  - image: SCUS_942_88
+    function: "0x80048138"
+    register: s1
+    region: player_actor
+    provenance: caller_argument
+    pointer_table: null
+    detail: >
+      s1 is a pure copy of the incoming a0 (addu s1, a0, zero at 0x80048140). The
+      sole direct caller, gameplay_state_machine, sets a0 in the DELAY SLOT of its
+      jal at 0x8004EFD8: addiu a0, s0, -144 with s0 = 0x800A6590 (lui/addiu at
+      0x8004EF70/74), so a0 = 0x800A6500. The compiler re-derives all of that.
+  # s1 inside actor_player_contact_resolver walks the actor list. The compiler
+  # rebuilds the ASM verifier and re-derives this; the text below is a citation,
+  # not the evidence.
+  - image: SCUS_942_88
+    function: "0x8004ABF4"
+    register: s1
+    region: actor_pool
+    provenance: typed_pointer_load
+    pointer_table: "0x80090748"
+    detail: >
+      both definitions reaching the blocked stores load from the actor pointer
+      table at 0x80090748 -- 0x8004AC00 loads element 0, 0x8004B698 loads
+      element [v0]. The epilogue restore and the lui half of the load idiom
+      reach none of them. That proves the load relation, not the loaded value's
+      pool domain: the binding is rejected while writer_value_domains_proved or
+      table_writer_universe.exhaustive is false. The 2026-08-07 fresh verifier
+      ruled that the falsified four-writer premise cannot be grandfathered.
+  # The target-root island's s0. Its only established entry is the gate-proved
+  # jr at 0x8004C868, so no within-extent analysis can see a definition; the
+  # domain crosses exactly that one edge. Every locator below is re-derived and
+  # instruction-verified by the compiler each run; none is taken on trust.
+  - image: SCUS_942_88
+    function: "0x8004C898"
+    register: s0
+    region: actor_pool
+    provenance: proved_jr_cluster_argument
+    pointer_table: "0x80090748"
+    cluster: {start: "0x8004C13C", end: "0x8004D224"}
+    detail: >
+      s0 at the island is the event_bytecode_interpreter cluster's incoming a0:
+      the prologue purely copies a0 at 0x8004C144 before any control flow, and
+      the only other s0 write in the whole 0x8004C13C..0x8004D224 cluster is
+      the terminal epilogue restore at 0x8004D214 (jr ra 0x8004D21C). Nothing
+      enters the cluster interior from outside -- no direct edge, no proved jr
+      target -- so every activation passes the prologue. The single direct
+      caller, mover_updater, passes a0 = s0 in the delay slot of its jal at
+      0x8004D5E0, and every observable definition of that s0 reaching the call
+      loads from the actor pointer table 0x80090748 (element 0 at 0x8004D44C,
+      element [s3] at 0x8004D660), the same table and corrected image-wide
+      >=6-writer KNOWN LOWER BOUND as the 0x8004ABF4 binding above. Its known
+      non-null writers are the pool publisher 0x8004D378 and the conditional
+      same-table move 0x80049C10; the positive recognizer residual and the
+      5,012-store independent alias residual forbid an exhaustive census.
+      Unbounded jalr entries remain the standing Item-2 blocker class and are
+      NOT excluded by this binding.
+
+authority:
+  promotes_dimension: false
+  declaration_is_not_evidence: true
+  clears_indirect_control_flow_blockers: false
+  fresh_verifier_required: true

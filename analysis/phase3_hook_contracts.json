@@ -1,0 +1,1347 @@
+{
+ "_comment": "Phase-3 gate bullet 4: continuation contracts for every declared hook, MACHINE-CHECKED against the pristine image. mod/hook_caves.yaml declares delay_slot policy and clobbers; nothing verified them until now. A site whose contract cannot be proven is REFUSED with a reason \u2014 never emitted as a passing contract, because a wrong contract launders an assertion into a machine-checked claim. Reports; never rewrites. Regenerate: tools/phase3_hook_contract.py",
+ "generated": "2026-08-10",
+ "fixture_sha256": {
+  "REBUILD/files/SCUS_942.88": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+ },
+ "patched_fixture_sha256": {
+  "build/SCUS_942.88.patched": "5936596c576415847b3a7395599e993b36eb7906"
+ },
+ "patched_build_command": "python3 mod/build.py --mods mod/mods_code_only.yaml --no-disc",
+ "patched_image_pin": {
+  "expected_sha1": "5936596c576415847b3a7395599e993b36eb7906",
+  "expected_sha256": "991fc38c131fe1139df30e9719a222a06a140054f1f8ee46b6321bbd9c0e6808",
+  "on_disk_sha256": "991fc38c131fe1139df30e9719a222a06a140054f1f8ee46b6321bbd9c0e6808",
+  "matches": true,
+  "note": "the discharge image is the FULL 4-code-mod build, pinned by hash. If the on-disk image does not match the pin, the tool does NOT trust it (discharge falls back to 'owed') \u2014 the stale-image hole the audit caught."
+ },
+ "summary": {
+  "_comment": "An OBLIGATION is not a defect: `clobbers` DECLARES the registers a cave intentionally changes (a gameplay mod's purpose) or uses as scratch. The post-build ACCOUNTING discharges a hook when every live register it writes is declared, saved/restored, or reproduced \u2014 i.e. it corrupts nothing UNDECLARED. A VIOLATION is a hard defect (undeclared clobber of a witnessed-live register, k0/k1, split load, no terminal j, unreimplemented branch). DEGRADED = discharge over a recovered/undecoded frame (honest can't-be-sure). A REFUSAL means the contract is not computable / the site is structurally unsafe, and needs human review.",
+  "hooks": 15,
+  "proven_outright": 5,
+  "obligations_DISCHARGED_against_the_built_cave": 9,
+  "degraded_recovered_or_undecoded": 1,
+  "cave_UNVERIFIED_analysis_too_coarse": 0,
+  "module_not_in_this_image_obligation_owed": 0,
+  "proven_subject_to_cave_obligations": 0,
+  "patched_image": "build/SCUS_942.88.patched",
+  "patched_image_matches_pin": true,
+  "hard_violations": 0,
+  "refused_needs_review": 0
+ },
+ "contracts": {
+  "blackberry:contact_spawn_speed": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "a3",
+      "t1",
+      "t2",
+      "t3"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x800810C0",
+    "cave_words": 15,
+    "cave_writes": [
+     "a3",
+     "at",
+     "t0",
+     "t1",
+     "t2",
+     "t3"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [
+     "a3",
+     "t1",
+     "t2",
+     "t3"
+    ],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": null,
+   "address": "0x8005A0F0",
+   "size": 8,
+   "resume": "0x8005A0F8",
+   "function": {
+    "start": "0x8005A0F0",
+    "name": "contact_object_spawn",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x8005A0F0",
+     "word": "0x8FA8003C",
+     "class": "load",
+     "relocatable": true
+    },
+    {
+     "addr": "0x8005A0F4",
+     "word": "0xAFBF001C",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": [
+     {
+      "load": "0x8005A0F0",
+      "reg": "t0",
+      "next": "0x8005A0F4",
+      "next_consumes_it": false
+     }
+    ]
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "a0",
+     "a1",
+     "a2",
+     "a3",
+     "fp",
+     "gp",
+     "ra",
+     "s0",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "t1",
+     "t2",
+     "t3"
+    ],
+    "declared_clobbers": [
+     "a3",
+     "at",
+     "t0",
+     "t1",
+     "t2",
+     "t3"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "replayed_in_cave",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:berry_throw_dispatch": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "t0"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x80081190",
+    "cave_words": 9,
+    "cave_writes": [
+     "at",
+     "t0",
+     "t9",
+     "v1"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [
+     "t0"
+    ],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": {
+    "target": "0x80047174",
+    "branched_from": [
+     "0x80047134",
+     "0x80047140"
+    ],
+    "why_benign": "the interior target is the DELAY SLOT, and it is a `nop` in BOTH the pristine and the patched image \u2014 so those paths execute the same nop and continue to the same place. Behaviour is preserved.",
+    "what_it_means": "these paths SKIP THE CAVE. That is correct only if they do not need it. REVIEW ONCE, then it is a property of the patch, not a hazard."
+   },
+   "address": "0x80047170",
+   "size": 8,
+   "resume": "0x80047178",
+   "function": {
+    "start": "0x800470AC",
+    "name": "berry_throw_dispatch",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x80047170",
+     "word": "0x92030097",
+     "class": "load",
+     "relocatable": true
+    },
+    {
+     "addr": "0x80047174",
+     "word": "0x00000000",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": [
+     {
+      "load": "0x80047170",
+      "reg": "v1",
+      "next": "0x80047174",
+      "next_consumes_it": false
+     }
+    ]
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "a3",
+     "fp",
+     "gp",
+     "s0",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "t0"
+    ],
+    "declared_clobbers": [
+     "at",
+     "t0",
+     "t9"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "replaced_nop",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:white_spread_spawn_wrapper": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "v0"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x800812B8",
+    "cave_words": 26,
+    "cave_writes": [
+     "a0",
+     "a1",
+     "a2",
+     "a3",
+     "at",
+     "hi",
+     "lo",
+     "ra",
+     "s0",
+     "t0",
+     "t1",
+     "t2",
+     "t3",
+     "t4",
+     "t5",
+     "t6",
+     "t7",
+     "t8",
+     "t9",
+     "v0",
+     "v1"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": null,
+   "address": "0x8004724C",
+   "size": 4,
+   "resume": "0x80047254",
+   "function": {
+    "start": "0x800470AC",
+    "name": "berry_throw_dispatch",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x8004724C",
+     "word": "0x0C016838",
+     "class": "jump_abs",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "fp",
+     "gp",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v0"
+    ],
+    "declared_clobbers": [
+     "a0",
+     "a1",
+     "a3",
+     "at",
+     "s0",
+     "t0",
+     "t2",
+     "t8",
+     "t9",
+     "v0"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "preserved_in_place",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:pickup_grain_route": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "v0"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    },
+    {
+     "kind": "reimplement_pcrel_branch",
+     "at": "0x80025324",
+     "target": "0x80025350",
+     "why": "PC-relative: CANNOT be naively relocated into a cave (the cave is ~180KB away, far outside the +/-128KB branch range). The cave must invert the condition and `j` to 0x80025350."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x80081240",
+    "cave_words": 11,
+    "cave_writes": [
+     "a0",
+     "v0"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": null,
+   "address": "0x80025324",
+   "size": 8,
+   "resume": "0x8002532C",
+   "function": {
+    "start": "0x800252B8",
+    "name": "collision_candidates_build_from_records",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x80025324",
+     "word": "0x1462000A",
+     "class": "branch_pcrel",
+     "relocatable": false,
+     "branch_target": "0x80025350",
+     "required_form": "PC-relative: CANNOT be naively relocated into a cave (the cave is ~180KB away, far outside the +/-128KB branch range). The cave must invert the condition and `j` to 0x80025350."
+    },
+    {
+     "addr": "0x80025328",
+     "word": "0x27A40010",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "fp",
+     "gp",
+     "s0",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v0",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "v0"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "replayed_in_cave",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:pickup_recolor": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "a0"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x80081290",
+    "cave_words": 10,
+    "cave_writes": [
+     "a0",
+     "at"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": null,
+   "address": "0x800259A0",
+   "size": 8,
+   "resume": "0x800259A8",
+   "function": {
+    "start": "0x800253E8",
+    "name": "pickup_projector",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x800259A0",
+     "word": "0x34848080",
+     "class": "alu",
+     "relocatable": true
+    },
+    {
+     "addr": "0x800259A4",
+     "word": "0xA0620003",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "a0",
+     "fp",
+     "gp",
+     "s0",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v0",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "a0",
+     "at"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "replayed_in_cave",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:terrain_emitter_color": {
+   "status": "degraded",
+   "obligations": [
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "a3",
+      "v1"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x80081368",
+    "cave_words": 16,
+    "cave_writes": [
+     "a3",
+     "at",
+     "t0",
+     "v1"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [
+     "a3",
+     "at"
+    ],
+    "confidence": "degraded",
+    "degraded_reason": "undecoded_indirect_jr",
+    "discharged": true
+   },
+   "bypass_paths": null,
+   "address": "0x800105F0",
+   "size": 8,
+   "resume": "0x800105F8",
+   "function": {
+    "start": "0x80010000",
+    "name": "per_object_mesh_draw_payload_emitter",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x800105F0",
+     "word": "0xAE63001C",
+     "class": "alu",
+     "relocatable": true
+    },
+    {
+     "addr": "0x800105F4",
+     "word": "0xAE620028",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "degraded",
+    "degraded_reason": "undecoded_indirect_jr",
+    "live_at_site": [
+     "a0",
+     "a1",
+     "a2",
+     "a3",
+     "at",
+     "cop2",
+     "fp",
+     "gp",
+     "hi",
+     "k0",
+     "k1",
+     "lo",
+     "ra",
+     "s0",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "t2",
+     "t3",
+     "t5",
+     "t6",
+     "t7",
+     "t8",
+     "t9",
+     "v0",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "a3",
+     "at",
+     "t0",
+     "v1"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "preserved_in_place",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:contact_emitter_color": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "v1"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x80081368",
+    "cave_words": 19,
+    "cave_writes": [
+     "a3",
+     "at",
+     "t0",
+     "v1"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [
+     "v1"
+    ],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": null,
+   "address": "0x80014A70",
+   "size": 8,
+   "resume": "0x80014A78",
+   "function": {
+    "start": "0x80014844",
+    "name": "contact_record_billboard_render",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x80014A70",
+     "word": "0xAEE30004",
+     "class": "alu",
+     "relocatable": true
+    },
+    {
+     "addr": "0x80014A74",
+     "word": "0x3C0C0900",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "fp",
+     "gp",
+     "ra",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "t1",
+     "t5",
+     "t7",
+     "t8",
+     "t9",
+     "v0",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "a3",
+     "at",
+     "t0",
+     "t4",
+     "v1"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "preserved_in_place",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:native_red_contact_equip": {
+   "status": "proven",
+   "obligations": [],
+   "post_build": null,
+   "bypass_paths": null,
+   "address": "0x80058938",
+   "size": 8,
+   "resume": "0x800589D8",
+   "function": {
+    "start": "0x800586B0",
+    "name": "contact_pickup_walker",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x80058938",
+     "word": "0x08016276",
+     "class": "jump_abs",
+     "relocatable": true
+    },
+    {
+     "addr": "0x8005893C",
+     "word": "0x00000000",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "fp",
+     "gp",
+     "s0",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "at",
+     "t0",
+     "t1",
+     "v0"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "replaced_nop",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:native_nonred_contact_equip": {
+   "status": "proven",
+   "obligations": [],
+   "post_build": null,
+   "bypass_paths": null,
+   "address": "0x80058990",
+   "size": 4,
+   "resume": "0x800589D8",
+   "function": {
+    "start": "0x800586B0",
+    "name": "contact_pickup_walker",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x80058990",
+     "word": "0x08016276",
+     "class": "jump_abs",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "fp",
+     "gp",
+     "s0",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "at",
+     "t0",
+     "t1",
+     "v0"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "preserved_in_place",
+   "forbidden": null,
+   "violations": []
+  },
+  "blackberry:pickup_equip_normalize": {
+   "status": "proven",
+   "obligations": [],
+   "post_build": null,
+   "bypass_paths": null,
+   "address": "0x800542E4",
+   "size": 4,
+   "resume": "0x800542EC",
+   "function": {
+    "start": "0x80053814",
+    "name": "type_0x3f_construct_contact_action_dispatch",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x800542E4",
+     "word": "0x0C014265",
+     "class": "jump_abs",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "a0",
+     "fp",
+     "gp",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp"
+    ],
+    "declared_clobbers": [
+     "at",
+     "ra",
+     "v0",
+     "v1"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "preserved_in_place",
+   "forbidden": null,
+   "violations": []
+  },
+  "six_seed_levels:type6_grant_postspawn": {
+   "status": "proven",
+   "obligations": [],
+   "post_build": null,
+   "bypass_paths": null,
+   "address": "0x8005C730",
+   "size": 8,
+   "resume": "0x8005C738",
+   "function": {
+    "start": "0x8005C6F0",
+    "name": "seed_plant_type6_handler",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x8005C730",
+     "word": "0x9642002E",
+     "class": "load",
+     "relocatable": true
+    },
+    {
+     "addr": "0x8005C734",
+     "word": "0x00000000",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": [
+     {
+      "load": "0x8005C730",
+      "reg": "v0",
+      "next": "0x8005C734",
+      "next_consumes_it": false
+     }
+    ]
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "a0",
+     "a1",
+     "a2",
+     "a3",
+     "fp",
+     "gp",
+     "ra",
+     "s0",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "at",
+     "t0",
+     "t1",
+     "t2",
+     "v0"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "folded_into_cave",
+   "forbidden": null,
+   "violations": []
+  },
+  "golddrop:enemy_death_tail": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "a2",
+      "a3",
+      "v0"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x80081100",
+    "cave_words": 34,
+    "cave_writes": [
+     "a0",
+     "a1",
+     "a2",
+     "a3",
+     "at",
+     "hi",
+     "lo",
+     "ra",
+     "t0",
+     "t1",
+     "t2",
+     "t3",
+     "t4",
+     "t5",
+     "t6",
+     "t7",
+     "t8",
+     "t9",
+     "v0",
+     "v1"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [
+     "a2",
+     "a3"
+    ],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": null,
+   "address": "0x800592A4",
+   "size": 8,
+   "resume": "0x800592AC",
+   "function": {
+    "start": "0x8005921C",
+    "name": "sfx_all_enemies_defe_glue",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x800592A4",
+     "word": "0x9643005C",
+     "class": "load",
+     "relocatable": true
+    },
+    {
+     "addr": "0x800592A8",
+     "word": "0xA642006E",
+     "class": "alu",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": [
+     {
+      "load": "0x800592A4",
+      "reg": "v1",
+      "next": "0x800592A8",
+      "next_consumes_it": false
+     }
+    ]
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "a2",
+     "a3",
+     "fp",
+     "gp",
+     "s0",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v0"
+    ],
+    "declared_clobbers": [
+     "a0",
+     "a1",
+     "a2",
+     "a3",
+     "t0",
+     "t1",
+     "t2",
+     "t3",
+     "t4",
+     "v0",
+     "v1"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "replayed_in_cave",
+   "forbidden": null,
+   "violations": []
+  },
+  "golddrop:default_pickup_branch": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "declare_dropped_instructions",
+     "dropped": [
+      {
+       "addr": "0x800589D8",
+       "word": "0x1A000003",
+       "is_branch": true,
+       "also_jumped_to_from_elsewhere": true
+      }
+     ],
+     "declared_in_manifest": true,
+     "why": "resume lands INSIDE the hook window, so these original instructions never execute. That is legal \u2014 golddrop deleting the default-pickup `blez` is the entire mod \u2014 but a deletion is a semantic change and must be reviewed, not incidental. Add a `drops:` list to the hook."
+    },
+    {
+     "kind": "account_live_register_writes",
+     "registers": [
+      "v1"
+     ],
+     "why": "these are LIVE at the hook site and DECLARED as clobbered. The cave must either intentionally change them (declared) or save/restore them; anything live it writes UNDECLARED is a corruption. Resolved by the post-build accounting."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x80078D84",
+    "cave_words": 32,
+    "sp_frame": "balanced (net-zero local frame; sp preserved)",
+    "cave_writes": [
+     "a0",
+     "a1",
+     "a2",
+     "a3",
+     "at",
+     "hi",
+     "lo",
+     "ra",
+     "s0",
+     "t0",
+     "t1",
+     "t2",
+     "t3",
+     "t4",
+     "t5",
+     "t6",
+     "t7",
+     "t8",
+     "t9",
+     "v0",
+     "v1"
+    ],
+    "cave_saves_restores": [
+     "a0"
+    ],
+    "intentional_live_writes": [
+     "v1"
+    ],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": {
+    "target": "0x800589D8",
+    "branched_from": [],
+    "why_benign": "the interior target is the DELAY SLOT, and it is a `nop` in BOTH the pristine and the patched image \u2014 so those paths execute the same nop and continue to the same place. Behaviour is preserved.",
+    "what_it_means": "these paths SKIP THE CAVE. That is correct only if they do not need it. REVIEW ONCE, then it is a property of the patch, not a hazard."
+   },
+   "address": "0x800589D4",
+   "size": 8,
+   "resume": "0x800589D8",
+   "function": {
+    "start": "0x800586B0",
+    "name": "contact_pickup_walker",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x800589D4",
+     "word": "0x2410000C",
+     "class": "alu",
+     "relocatable": true
+    },
+    {
+     "addr": "0x800589D8",
+     "word": "0x1A000003",
+     "class": "branch_pcrel",
+     "relocatable": false,
+     "branch_target": "0x800589E8",
+     "required_form": "PC-relative: CANNOT be naively relocated into a cave (the cave is ~180KB away, far outside the +/-128KB branch range). The cave must invert the condition and `j` to 0x800589E8."
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "fp",
+     "gp",
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "a0",
+     "a1",
+     "t0",
+     "v0",
+     "v1"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "replaced_nop",
+   "forbidden": null,
+   "violations": []
+  },
+  "grain_hud:hud_total_draw": {
+   "status": "proven",
+   "obligations": [],
+   "post_build": null,
+   "bypass_paths": null,
+   "address": "0x80052B40",
+   "size": 8,
+   "resume": "0x80052B48",
+   "function": {
+    "start": "0x800526FC",
+    "name": "results_screen_render",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x80052B40",
+     "word": "0x3C03800B",
+     "class": "alu",
+     "relocatable": true
+    },
+    {
+     "addr": "0x80052B44",
+     "word": "0x8463018C",
+     "class": "load",
+     "relocatable": true
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": [
+     {
+      "load": "0x80052B44",
+      "reg": "v1",
+      "next": "0x80052B48",
+      "next_consumes_it": false
+     }
+    ]
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "gp",
+     "s0",
+     "s3",
+     "sp"
+    ],
+    "declared_clobbers": [
+     "a0",
+     "v0",
+     "v1"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "replayed_in_cave",
+   "forbidden": null,
+   "violations": []
+  },
+  "grain_hud:all_grain_reward_gate": {
+   "status": "discharged",
+   "obligations": [
+    {
+     "kind": "reimplement_pcrel_branch",
+     "at": "0x8005500C",
+     "target": "0x80055174",
+     "why": "PC-relative: CANNOT be naively relocated into a cave (the cave is ~180KB away, far outside the +/-128KB branch range). The cave must invert the condition and `j` to 0x80055174."
+    }
+   ],
+   "post_build": {
+    "checked": true,
+    "findings": [],
+    "cave": "0x8007F338",
+    "cave_words": 9,
+    "cave_writes": [
+     "a0",
+     "a1",
+     "a2",
+     "a3",
+     "at",
+     "hi",
+     "lo",
+     "ra",
+     "t0",
+     "t1",
+     "t2",
+     "t3",
+     "t4",
+     "t5",
+     "t6",
+     "t7",
+     "t8",
+     "t9",
+     "v0",
+     "v1"
+    ],
+    "cave_saves_restores": [],
+    "intentional_live_writes": [
+     "a0"
+    ],
+    "confidence": "exact",
+    "discharged": true
+   },
+   "bypass_paths": null,
+   "address": "0x80055008",
+   "size": 8,
+   "resume": "0x80055014",
+   "function": {
+    "start": "0x80054EB4",
+    "name": "sfx_nearest_pickup_f_glue",
+    "source": "census"
+   },
+   "displaced": [
+    {
+     "addr": "0x80055008",
+     "word": "0x24020032",
+     "class": "alu",
+     "relocatable": true
+    },
+    {
+     "addr": "0x8005500C",
+     "word": "0x14620059",
+     "class": "branch_pcrel",
+     "relocatable": false,
+     "branch_target": "0x80055174",
+     "required_form": "PC-relative: CANNOT be naively relocated into a cave (the cave is ~180KB away, far outside the +/-128KB branch range). The cave must invert the condition and `j` to 0x80055174."
+    }
+   ],
+   "load_delay": {
+    "broken": false,
+    "pairs": []
+   },
+   "liveness": {
+    "method": "intra-function CFG backward-liveness fixpoint over delay-slot-aware basic blocks; lattice = 32 GPRs + HI/LO/COP2. At a call, def=caller-saved (the o32 ABI the game was compiled to \u2014 the one assumption in the unsafe direction, stated) and use=the callee's arity (a cheap use-before-def pre-pass). LIVE is otherwise OVER-approximated (both branch edges, EXIT/tail/ALL boundary seeds) so it can reject a safe hook but never accept an unsafe one. Obligations computed at the RESUME point minus the displaced defs the cave reproduces. A SECOND witnessed-only solution (no boundary seeds, no arity) drives the hard-violation escalation, so a working mod is never accused on an inferred may-read.",
+    "confidence": "exact",
+    "live_at_site": [
+     "fp",
+     "gp",
+     "s0",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "sp",
+     "v1"
+    ],
+    "declared_clobbers": [
+     "a0",
+     "v0"
+    ],
+    "clobber_check": "ok"
+   },
+   "declared_delay_slot_policy": "folded_into_cave",
+   "forbidden": null,
+   "violations": []
+  }
+ },
+ "refused": {}
+}

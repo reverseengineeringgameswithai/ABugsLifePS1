@@ -1,0 +1,223 @@
+{
+ "_comment": "Writes to the target performed by a CALLEE rather than a store site. A store-site census cannot see these by construction. Regenerate: tools/census_callee_writes.py",
+ "target": "0x800A657E",
+ "block_writers": {
+  "0x8005f7ac": "bios_A2B_memset_thunk  (dst=a0, fill=a1, len=a2)"
+ },
+ "why_a_jal_scan_misses_the_bios": "the thunk reaches the BIOS via `jr t2` with t2 = 0xA0 -- register-indirect. A scan for jal 0x000000A0 / 0x800000A0 finds ZERO sites in resident code.",
+ "call_sites_total": 26,
+ "covering_target": [
+  {
+   "pc": "0x80046B68",
+   "function": "level_load_player_spawn_writer",
+   "callee": "0x8005F7AC",
+   "dst": "0x800A6500",
+   "fill": 0,
+   "len": 168
+  }
+ ],
+ "unresolved_destination": [],
+ "not_covering": [
+  {
+   "pc": "0x80027C90",
+   "function": "gp_flags_and_buffers_clear",
+   "callee": "0x8005F7AC",
+   "dst": "0x800B0230",
+   "fill": 0,
+   "len": 128
+  },
+  {
+   "pc": "0x80027CA4",
+   "function": "gp_flags_and_buffers_clear",
+   "callee": "0x8005F7AC",
+   "dst": "0x8009B3A8",
+   "fill": 0,
+   "len": 512
+  },
+  {
+   "pc": "0x8003A478",
+   "function": "high_heap_loader_level_raw_decompress_orchestrator",
+   "callee": "0x8005F7AC",
+   "dst": "0x80094A38",
+   "fill": 0,
+   "len": 1792
+  },
+  {
+   "pc": "0x8003A48C",
+   "function": "high_heap_loader_level_raw_decompress_orchestrator",
+   "callee": "0x8005F7AC",
+   "dst": "0x80090BF0",
+   "fill": 0,
+   "len": 960
+  },
+  {
+   "pc": "0x8003E3F4",
+   "function": "resource_load_buffers_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x80096DA0",
+   "fill": 0,
+   "len": 256
+  },
+  {
+   "pc": "0x8003E408",
+   "function": "resource_load_buffers_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x80089F58",
+   "fill": 0,
+   "len": 25200
+  },
+  {
+   "pc": "0x8003E41C",
+   "function": "resource_load_buffers_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x800A7E48",
+   "fill": 0,
+   "len": 33600
+  },
+  {
+   "pc": "0x8003E42C",
+   "function": "resource_load_buffers_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x1F800000",
+   "fill": 0,
+   "len": 1024
+  },
+  {
+   "pc": "0x8003E43C",
+   "function": "resource_load_buffers_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x1F800000",
+   "fill": 0,
+   "len": 1024
+  },
+  {
+   "pc": "0x8003EEE0",
+   "function": "dat_load_256byte_table",
+   "callee": "0x8005F7AC",
+   "dst": "0x800901C8",
+   "fill": 255,
+   "len": 256
+  },
+  {
+   "pc": "0x80042EBC",
+   "function": "vab_bank_loader",
+   "callee": "0x8005F7AC",
+   "dst": "0x000FFFC9",
+   "fill": 0,
+   "len": 39
+  },
+  {
+   "pc": "0x80046B4C",
+   "function": "level_load_player_spawn_writer",
+   "callee": "0x8005F7AC",
+   "dst": "0x800894D0",
+   "fill": 0,
+   "len": 16
+  },
+  {
+   "pc": "0x8004A468",
+   "function": "object_slot_type_init",
+   "callee": "0x8005F7AC",
+   "dst": "0x8009FD80",
+   "fill": 0,
+   "len": 8448
+  },
+  {
+   "pc": "0x8004A47C",
+   "function": "object_slot_type_init",
+   "callee": "0x8005F7AC",
+   "dst": "0x800B0AB8",
+   "fill": 0,
+   "len": 512
+  },
+  {
+   "pc": "0x8004DC30",
+   "function": "respawn_collision_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x8009EC50",
+   "fill": 0,
+   "len": 20
+  },
+  {
+   "pc": "0x8004DC40",
+   "function": "respawn_collision_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x80095358",
+   "fill": 0,
+   "len": 48
+  },
+  {
+   "pc": "0x8004DC54",
+   "function": "respawn_collision_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x80090BC0",
+   "fill": 0,
+   "len": 48
+  },
+  {
+   "pc": "0x80057418",
+   "function": "clear_gameplay_pool_on_reset",
+   "callee": "0x8005F7AC",
+   "dst": "0x800B0D18",
+   "fill": 0,
+   "len": 3584
+  },
+  {
+   "pc": "0x8005B3E0",
+   "function": "respawn_transition_state_handler",
+   "callee": "0x8005F7AC",
+   "dst": "0x80090FD0",
+   "fill": 0,
+   "len": 160
+  },
+  {
+   "pc": "0x8005B978",
+   "function": "gameplay_state_reset_cursor_seed",
+   "callee": "0x8005F7AC",
+   "dst": "0x80089628",
+   "fill": 0,
+   "len": 16
+  },
+  {
+   "pc": "0x8005B98C",
+   "function": "gameplay_state_reset_cursor_seed",
+   "callee": "0x8005F7AC",
+   "dst": "0x8009FA28",
+   "fill": 0,
+   "len": 16
+  },
+  {
+   "pc": "0x8005B9A0",
+   "function": "gameplay_state_reset_cursor_seed",
+   "callee": "0x8005F7AC",
+   "dst": "0x80090FD0",
+   "fill": 0,
+   "len": 160
+  },
+  {
+   "pc": "0x8005BC80",
+   "function": "plant_slot_respawn_scan",
+   "callee": "0x8005F7AC",
+   "dst": "0x80090BF0",
+   "fill": 0,
+   "len": 960
+  },
+  {
+   "pc": "0x8005DB00",
+   "function": "level_load_chunks",
+   "callee": "0x8005F7AC",
+   "dst": "0x80089F58",
+   "fill": 0,
+   "len": 25200
+  },
+  {
+   "pc": "0x80061074",
+   "function": "FntLoad",
+   "callee": "0x8005F7AC",
+   "dst": "0x8007EFE8",
+   "fill": 0,
+   "len": 384
+  }
+ ],
+ "residual_note": "UNRESOLVED destinations are passed in a register and need a runtime capture (execTrace.addWatch on the store PC with capture=[ra,a0,a2], filtering for a0 == the target byte). For 0x800A657E that identified 0x80046B68 in level_load_player_spawn_writer: memset(player_block, 0, 168) on spawn, which is the clear observed across a level transition."
+}

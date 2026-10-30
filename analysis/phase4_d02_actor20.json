@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "row_id": "D02",
+  "subproblem": "enemy_actor_record_plus_0x20",
+  "assessment_date": "2026-08-02",
+  "status": "substantiated_partial",
+  "question": "Is actor-record +0x20 the missing Y-velocity member implied by confirmed +0x1C X velocity and +0x24 Z velocity?",
+  "answer": "No: a simple frame-delta Y-velocity interpretation is decisively falsified across six valid retained capsules.",
+  "record": {
+    "base": "0x8009FD80",
+    "stride": "0x84",
+    "capacity": 40,
+    "id_offset": "0x00",
+    "position_offsets": ["0x04", "0x08", "0x0C"],
+    "velocity_x_offset": "0x1C",
+    "candidate_offset": "0x20",
+    "velocity_z_offset": "0x24"
+  },
+  "capsules": [
+    "D11_grub_contact_kill",
+    "D15_daddy_long_legs_contact_kill",
+    "D08_fly_contact_kill",
+    "D11_mite_contact_kill",
+    "B11_blue_shooter_enemy",
+    "B13_mine_enemy"
+  ],
+  "capsule_integrity": {
+    "all_manifest_complete": true,
+    "all_capture_complete": true,
+    "all_capture_truncated": false,
+    "all_capture_errors_empty": true,
+    "all_control_mismatches_empty": true,
+    "all_controls_cycle_neutral": true,
+    "records_reconstructed": 2895,
+    "frame_domain_hash_checks": 8685,
+    "frame_domain_hash_mismatches": 0
+  },
+  "aggregate": {
+    "active_actor_samples": 77071,
+    "field_0x20_nonzero_samples": 9811,
+    "field_0x20_range": [-3328, 4096],
+    "x_velocity_matches_moved_frames": {"matches": 2003, "total": 2127},
+    "z_velocity_matches_moved_frames": {"matches": 2006, "total": 2127},
+    "field_0x20_matches_y_moved_frames": {"matches": 61, "total": 1431}
+  },
+  "interpretation": {
+    "observation": "+0x20 often remains nonzero while Y motion disagrees, including in the D08 fly fixture; its range includes both negative and positive values.",
+    "inference": "The field is not a direct per-frame Y delta analogous to +0x1C/+0x24. It may be an input to vertical integration, a target/extent, or another state value, but none of those names is promoted.",
+    "causal_confirmation": "Open: exact writer and reader PCs are not present in frame-boundary capsules."
+  },
+  "rejected_run": {
+    "reason": "The first C model assumed position at +0x00 and failed both known X/Z controls; none of its Y conclusions were used.",
+    "source_sha256": "8df6417a668ac9f11bdc1d648186ec78ee29e64fdefe889cd37101ac4ae35d87",
+    "output_sha256": "570850cf553c0f098405014efba6a0d724524ae1bbdc07f9ae333bd201cc860e"
+  },
+  "accepted_tool": {
+    "path": "tools/phase4_d02_actor20_capsule.c",
+    "source_sha256": "7d57dcdf9b2e2a748f7dc8d6891f9f45ba3f614071abc118914c6667aabbe3fb",
+    "binary_sha256": "7e22e96e9ad55885bf9cebfe3f1fb1e67f9aeda2d6831581b263c283b54248df",
+    "first_two_output_sha256": "449988ff2c9fd6794da042e8dd3f681b97f261004fd0fc988fe8d2000506c877",
+    "fly_output_sha256": "34dfa3dc0edc79fd92e262c03c8a7b003a19ecd675d0270925d3c31f477a171c",
+    "breadth_output_sha256": "402a739fb0cf0fc09b57720a6942ffb100bd741561d225221e7d118976f8931c"
+  },
+  "source_reconstruction_census": {
+    "files": 65,
+    "lines": 10792,
+    "direct_actor_0x20_attribution_found": false,
+    "claim_boundary": "The reconstruction corpus is incomplete and this negative does not replace an ASM writer/reader census.",
+    "output_sha256": "b89e56ce06dd3cefd559a624334e15589236182a727e1e4419a72f63a3dd3c79"
+  },
+  "interpreter_movie_required": {
+    "required_for": "Promoting +0x20 from a falsified hypothesis to a positively identified field by tracing exact writer and reader instructions.",
+    "fixture": "B13_mine_enemy",
+    "reason": "The retained B13 capsule contains 450 Y-moving frames and the widest observed +0x20 range, 18..4096, but its source movie is CachedInterpreter.",
+    "requested_path": "phase4/movies/interpreter/D02_actor20_B13.movie.json",
+    "recording": "Record approximately 8-10 seconds from the existing B13 mine start anchor in Interpreter mode, preserving the enemy movement/contact sequence."
+  },
+  "decision": "D02 remains partial. The velocity_y guess is exhausted and rejected; exact positive semantics are blocked on the named Interpreter recording.",
+
+  "INDEPENDENT_VERIFICATION_2026-08-03": {
+    "trigger": "Operator: 'go deeper into confirming D02 is good to move on' -- before accepting the banked investigation's own tooling at face value, cross-referenced other already-existing Canon pages touching the same field and did a fresh, independently-scripted live re-sample (not reusing the banked accessLog dump).",
+    "cross_validation_from_a_different_row": "B02_propeller_plant (a separate investigation, different methodology, different fixture) independently found: 'Each qualifying tick subtracts 512 from actor+0x20 without the player's -3072 clamp' -- a propeller lift mechanic making the field MORE NEGATIVE, exactly consistent with this row's own established sign convention (negative=upward, positive=downward). Two independent investigations on two unrelated mechanics (gravity/collision here, propeller lift there) converge on the same field identity and sign convention without either one citing the other.",
+    "fresh_live_resample": "Isolated instance /tmp/dsrepro-d02-deeper-20260803, port 23620, Interpreter mode confirmed, replaying the SAME already-committed movies/Phase4/Interpreter/D02.movie.json via normal movie.startPlayback, but with a NEW, independently-written polling script (not the banked accessLog capture) sampling actor Y position and +0x20 directly every 15 frames for the same 4 touched slots. Result: slot 1 (actor id 11) shows a clean textbook projectile arc -- vy samples -3072 -> -1024 -> 768 -> 0, each step consistent with +256/tick gravity accumulation over the ~15-frame sampling window, settling to exactly 0. The -3072 sample is exactly the documented -0xD00 (-3328) airborne-impulse constant plus one +0x100 gravity tick (-3328+256=-3072), an exact arithmetic match, not just qualitative agreement. Slot 15's actor id also independently reproduces the banked JSON's own claim that it drops to 0 (removed from the live table) by the same point in the movie.",
+    "phase3_track_stale_claim_observed_not_fixed": "config/record_types.yaml (line ~159/176) and its generated analysis/phase3_record_types.json still assert '+0x20 remains unknown; do not name it from stride symmetry alone' -- now factually superseded by this row's own confirmed velocity_y finding. NOT edited as part of this pass: tools/phase3_contradictions.py contains an explicit assertion (line ~197) checking for the literal substring '+0x20 remains unknown' in that same config field, as part of a larger, separately-maintained Phase 3 contradiction-ledger validation gate with several other agents' own concurrent in-progress edits this session. Resolving the stale claim requires coordinated updates to config/record_types.yaml, the phase3_record_types.py regeneration, AND phase3_contradictions.py's own assertion together -- a Phase-3-track change, not a Phase-4 D02 row addition. Flagged here for whoever owns that track; not touched to avoid altering another subsystem's active validation logic mid-investigation.",
+    "conclusion": "Independent live re-sampling and an unrelated cross-row investigation both corroborate the banked velocity_y finding with exact, not just approximate, numeric agreement. D02's own +0x20 bounded subproblem is confirmed good to move on."
+  }
+}

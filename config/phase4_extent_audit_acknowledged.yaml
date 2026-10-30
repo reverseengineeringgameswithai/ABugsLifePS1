@@ -1,0 +1,154 @@
+schema: abl-phase4-extent-audit-acknowledged/1
+reviewed: '2026-08-06'
+purpose: Rows a human has looked at. The audit fails on anything NOT here, so a newly typed truncation
+  is caught while the reviewed ones stay quiet. Removing a row makes the audit fail again -- that is the
+  point.
+verdict_meanings:
+  not_an_extent: the address pair is not a start/end range at all
+  drift_pin_covers_less_than_the_function: a real truncation, but the range feeds a sha256 pin rather
+    than a scan. The pin still detects drift inside what it covers; it cannot see the tail. NOT the F01
+    bug, which made a CENSUS report a lower bound as a total.
+  decomp_segment_not_a_census_extent: a config/segments.yml ASM segment boundary, which tracks the decomp
+    build's source cuts rather than the function census
+acknowledged:
+- file: config/phase4_lives_gameover.yaml
+  line: 15
+  entry: '0x8005b714'
+  declared_end: '0x8005b7ec'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 1144
+- file: tools/phase4_abdomen_bounce.py
+  line: 48
+  entry: '0x8004abf4'
+  declared_end: '0x8004b6ac'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 48
+- file: tools/phase4_camera_controls.py
+  line: 86
+  entry: '0x800526fc'
+  declared_end: '0x80052b00'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 2872
+- file: tools/phase4_d16_f03_trace.py
+  line: 248
+  entry: '0x8005cd2c'
+  declared_end: '0x8005ce6c'
+  verdict: not_an_extent
+  reason: '`name 0xENTRY @0xSITE -> callee` / `name 0xENTRY (site 0xPC)` notation: the second address
+    is a call site, not an end'
+  missed_bytes: 1696
+- file: tools/phase4_downhill_slide.py
+  line: 51
+  entry: '0x800563d4'
+  declared_end: '0x80056f18'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 80
+- file: tools/phase4_downhill_slide.py
+  line: 52
+  entry: '0x8004abf4'
+  declared_end: '0x8004b6ac'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 48
+- file: tools/phase4_e16_registered_chunks.py
+  line: 15
+  entry: '0x8003c8bc'
+  declared_end: '0x8003c920'
+  verdict: not_an_extent
+  reason: '`name 0xENTRY @0xSITE -> callee` / `name 0xENTRY (site 0xPC)` notation: the second address
+    is a call site, not an end'
+  missed_bytes: 764
+- file: tools/phase4_e16_registered_chunks.py
+  line: 16
+  entry: '0x8003c388'
+  declared_end: '0x8003c3c0'
+  verdict: not_an_extent
+  reason: '`name 0xENTRY @0xSITE -> callee` / `name 0xENTRY (site 0xPC)` notation: the second address
+    is a call site, not an end'
+  missed_bytes: 1276
+- file: tools/phase4_e16_registered_chunks.py
+  line: 17
+  entry: '0x8003c388'
+  declared_end: '0x8003c5ec'
+  verdict: not_an_extent
+  reason: '`name 0xENTRY @0xSITE -> callee` / `name 0xENTRY (site 0xPC)` notation: the second address
+    is a call site, not an end'
+  missed_bytes: 720
+- file: tools/phase4_fmv_region_b_replacement_ownership.py
+  line: 482
+  entry: '0x8003cf2c'
+  declared_end: '0x8003d318'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 236
+- file: tools/phase4_fmv_region_b_replacement_ownership.py
+  line: 501
+  entry: '0x8003cf2c'
+  declared_end: '0x8003d318'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 236
+- file: tools/phase4_kick.py
+  line: 77
+  entry: '0x8004abf4'
+  declared_end: '0x8004b6ac'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 48
+- file: tools/phase4_lives_gameover.py
+  line: 82
+  entry: '0x8005b714'
+  declared_end: '0x8005b7ec'
+  verdict: drift_pin_covers_less_than_the_function
+  reason: the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function
+    rather than any count being wrong
+  missed_bytes: 1144
+- file: tools/repair_function_coverage.c
+  line: 295
+  entry: '0x80010000'
+  declared_end: '0x800102d4'
+  verdict: not_an_extent
+  reason: a specimen address pair quoted in the tool's own docstring, not a declaration
+  missed_bytes: 11828
+- file: config/segments.yml
+  line: 383
+  entry: '0x80010000'
+  declared_end: '0x800102d4'
+  verdict: decomp_segment_not_a_census_extent
+  reason: config/segments.yml declares hand-written ASM segment boundaries for the decomp build, not census
+    extents. The 2026-08-06 census repair extended five resident functions, so these segments now stop
+    short of the repaired function -- correct for their own purpose. Re-cutting them is decomp work, not
+    this sweep's.
+  missed_bytes: 11828
+- file: config/segments.yml
+  line: 436
+  entry: '0x8006ce84'
+  declared_end: '0x8006d1a8'
+  verdict: decomp_segment_not_a_census_extent
+  reason: config/segments.yml declares hand-written ASM segment boundaries for the decomp build, not census
+    extents. The 2026-08-06 census repair extended five resident functions, so these segments now stop
+    short of the repaired function -- correct for their own purpose. Re-cutting them is decomp work, not
+    this sweep's.
+  missed_bytes: 112
+- file: config/segments.yml
+  line: 587
+  entry: '0x80068284'
+  declared_end: '0x8006833c'
+  verdict: decomp_segment_not_a_census_extent
+  reason: config/segments.yml declares hand-written ASM segment boundaries for the decomp build, not census
+    extents. The 2026-08-06 census repair extended five resident functions, so these segments now stop
+    short of the repaired function -- correct for their own purpose. Re-cutting them is decomp work, not
+    this sweep's.
+  missed_bytes: 180

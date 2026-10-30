@@ -1,0 +1,61 @@
+{
+ "_comment": "What the function-coverage repair actually changed in the censuses that consume the list. Regenerate: tools/repair_function_coverage.c, then re-run affine_bound_recovery.c and region_provenance.c against both lists.",
+ "generated": "2026-08-04",
+ "the_headline_was_corrected": {
+  "first_claim": "46,020 bytes of LIVE CODE in 14 gaps",
+  "problem": "Reachability alone. 20.5% of those bytes are ZERO words, and the largest gap (0x8007E8B8, 13,536 B) is 58.6% zeros sitting directly below $gp = 0x80081D98 -- it is the small-data region, and the transfers 'into' it decode out of data, not code.",
+  "corrected_claim": "32144 bytes in 12 gaps are majority non-zero and are the real dropped code",
+  "how_it_surfaced": "A gate assertion -- a recovered entry must not begin on a zero word -- failed on 0x8007F204. Both entries the tool had 'recovered' were minted from words decoding as REGIMM bgezal, which GCC 2.7.2 never emits, and one was extended across 8,768 bytes that are 72.4% zero."
+ },
+ "coverage": {
+  "before_percent": 90.11,
+  "after_percent": 92.77,
+  "bytes_recovered": 12472,
+  "functions_before": 998,
+  "functions_after": 998,
+  "new_entries": 0,
+  "functions_extended": 6,
+  "real_dropped_code_before": 32144,
+  "real_dropped_code_after": 20024,
+  "note": "No new function entries survived the soundness rules; the whole recovery is existing functions regaining truncated tails. The emitter goes 724 B -> 12,552 B, exactly up to grass_mound_mesh_builder."
+ },
+ "affine_region_census": {
+  "tool": "tools/affine_bound_recovery.c --emit-all",
+  "sites_before": 5810,
+  "sites_after": 5810,
+  "bounded_before": 827,
+  "bounded_after": 827,
+  "pc_sets_identical": true,
+  "reading": "The recovered bytes contain ZERO region-formed accesses. Not a null result: it is the same fact the E16 campaign found from the other side -- this code addresses through REGISTERS, not lui-constant globals, which is why the affine census could never have predicted 0x80010BF4 however complete the function list was. SCOPE and FORM really are independent limits.",
+  "positive_control": "Shrinking vec_normalize_len (495 sites) to 4 bytes drops the count to 5,315, proving the tool honours the sizes. An earlier control shrank a function with 0 sites, saw no change, and briefly 'showed' the tool ignored the list entirely."
+ },
+ "region_provenance": {
+  "tool": "tools/region_provenance.c SCUS_942.88 <list> 0x800A657E 2",
+  "hits_before": 14,
+  "hits_after": 14,
+  "unresolved_before": 10953,
+  "unresolved_after": 11742,
+  "exclusions_before": 2083,
+  "exclusions_after": 2083,
+  "indirect_unresolved_before": 149,
+  "indirect_unresolved_after": 149,
+  "pb_taint_undecided_before": 20424,
+  "pb_taint_undecided_after": 20519,
+  "escaping_stores_before": 3,
+  "escaping_stores_after": 3,
+  "reading": "HITS UNCHANGED at 14: the recovered code holds no new writer to the B06 power slot and no new escaping store. What grows is the RESIDUAL (+789 unresolved) because there is more code to fail to resolve on. The old figures were not wrong about what they found; they were understated about what they had not looked at. (With the data-inflated list this also showed +1 indirect_unresolved -- that was an artifact of walking a pointer table, and it is gone.)"
+ },
+ "does_this_move_E16": {
+  "answer": "No.",
+  "why": "E16's bounded_residuals packet is built from the affine region census, whose site set is byte-identical across the two lists. The 30-entry / 0-rejection result stands, and the SCOPE residual declared in that packet is now measured rather than merely declared: the hole cost 0 region-formed sites."
+ },
+ "recommendation": "Do NOT swap analysis/functions_resident.txt unilaterally. The repaired list is a strict superset -- same 998 entries, same names, same starts, 0 overlaps, only sizes grow -- but it moves B06's residual, a committed baseline another row cites. Ship it alongside as analysis/functions_resident_repaired.txt and switch consumers deliberately once the owners of those baselines have seen the delta.",
+ "a_second_correction_data_walked_as_code": {
+  "first_figure": "95.0% coverage, +22,784 bytes recovered",
+  "problem": "analysis/functions_resident.txt contains DATA entries labelled as functions (contact_metadata_table_a, contact_action_dispatch, sky_clear_r, vm_program_pointer_table). Walking one from its 'entry' decodes a table as instructions and wanders through it. THREE extensions totalling 10,312 bytes were pure data: contact_metadata_table_a +8,068 (a plainly regular lookup table -- 02910fca, 028b0fcb, 02840fcc, ascending), contact_action_dispatch +2,016 (a pointer table of 0x8005Bxxx code addresses), and one +228.",
+  "corrected_figure": "92.8% coverage, +12,472 bytes recovered",
+  "guard": "implausible_fraction() -- an undefined opcode, an undefined SPECIAL funct, or an ALU SPECIAL writing to $zero. Separation is wide: the emitter's real 11,828-byte extension scores 0.0%, a known-good function 0.0%, the data extensions 98.3% and 51.4%. Threshold 15%.",
+  "how_it_surfaced": "Not by inspection. Asked whether the residual gaps were real code, I listed their neighbours and saw names like contact_metadata_table_a -- then checked what the repair had extended and found it had grown that very table by 8,068 bytes.",
+  "second_defect_in_the_guard": "The first guard blacklisted a partial set of undefined opcodes and let the 51%-implausible pointer table pass. Replaced with a WHITELIST of R3000-defined opcodes."
+ }
+}

@@ -1,0 +1,52 @@
+schema: abl-phase4-movie-priority-policy/1
+selection_policy: movie-ready
+description: >
+  Alternate Phase-4 work-order policy for rows that already have a centrally
+  preserved movie/start-state anchor in the provisioned case-sensitive
+  movies/Phase4 tree. This policy does not certify behavior, promote closure
+  debt, or remove any row from the exhaustive roadmap backlog.
+
+eligible_movie_media_classes: [pristine, pristine_serial]
+eligible_start_state_media_classes: [pristine]
+max_rows_per_batch: 3
+
+score_weights:
+  retained_evidence:
+    capsule: 8
+    derived_index: 8
+    prior_offline_analysis: 4
+    maximum: 20
+  static_ownership:
+    function: 2
+    typed_state: 1
+    readers: 2
+    writers: 2
+    overlay_or_asset: 1
+    maximum: 15
+  bounded_frontier:
+    base: 10
+    per_open_domain_penalty: 2
+    maximum: 10
+  control_quality:
+    verified_movie_start_anchor: 8
+    independent_capsule_control: 4
+    maximum: 12
+  remaining_debt:
+    maximum: 10
+  dependency_leverage:
+    per_dependent_family: 2
+    maximum: 10
+
+defer_while_other_eligible:
+  - row_id: E15_fmv
+    reason: >
+      Defer while any other movie-ready row remains. E15 just exhausted
+      repeated static and live method reassessments without row or dimension
+      debt reduction; a different movie-backed campaign must receive the next
+      work packet.
+
+compatibility_semantics:
+  C15_checkpoints: >
+    Historical identifier retained for compatibility only. Its safe meaning is
+    the internal safe-respawn-anchor subsystem; the game has no player-facing
+    checkpoint mechanic.

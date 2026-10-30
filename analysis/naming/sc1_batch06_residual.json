@@ -1,0 +1,353 @@
+[
+ {
+  "address": "0x80014ad4",
+  "name": "gte_vec_length_sqrt_helper",
+  "tier": "inferred",
+  "evidence": [
+   "48B, called by vec_normalize_len; sets COP2/GTE regs; lui t0,0x8006; ori t0,0x154; jr t0 -> tail-calls SquareRoot0 (0x80060154); sums components in delay slots"
+  ],
+  "rationale": "Standalone GTE vector-length helper that sums components and tail-calls SquareRoot0"
+ },
+ {
+  "address": "0x80030010",
+  "name": "nullsub_80030010",
+  "tier": "inferred",
+  "evidence": [
+   "8B jr ra; nop; preceding load_named_file returns via its own epilogue; no callers/prologue"
+  ],
+  "rationale": "Empty leaf stub (immediate return) between two real functions"
+ },
+ {
+  "address": "0x8003d678",
+  "name": "collision_grid_overlay_glue_case_body",
+  "tier": "inferred",
+  "evidence": [
+   "no prologue; repeated 'jal 0x800b39xx; j .L_8003d79c' case arms; shared epilogue frees a -24 frame it never allocated; preceding collision_grid_l_level_overlay__glue 0x8003d620 dispatches via jump table 0x8001B078"
+  ],
+  "rationale": "Mis-split jump-table case bodies belonging to collision_grid_l_level_overlay__glue (should be extent-merged)"
+ },
+ {
+  "address": "0x8003f5fc",
+  "name": "reset_visual_sprite_object_pool",
+  "tier": "inferred",
+  "evidence": [
+   "jr ra; loop clears stride-836 record array at 0x8009C870 (visual_sprite_object_pool); caller resource_load_buffers_reset"
+  ],
+  "rationale": "Standalone routine zeroing the stride-836 visual_sprite_object_pool table"
+ },
+ {
+  "address": "0x80045ccc",
+  "name": "cd_audio_mix_control_5cd0_gp_entry",
+  "tier": "inferred",
+  "evidence": [
+   "single lw v0,1064(gp), no return; falls into cd_audio_mix_control_5cd0 (0x80045cd0)"
+  ],
+  "rationale": "Alternate entry preloading v0=gp+1064 before cd_audio_mix_control_5cd0"
+ },
+ {
+  "address": "0x80050ee4",
+  "name": "sfx_nearest_pickup_gp_entry",
+  "tier": "inferred",
+  "evidence": [
+   "single lw v0,1716(gp), no return; falls into sfx_nearest_pickup_f_glue_0ee8 (0x80050ee8)"
+  ],
+  "rationale": "Alternate entry preloading v0=gp+1716 before sfx_nearest_pickup_f_glue_0ee8"
+ },
+ {
+  "address": "0x80055d38",
+  "name": "load_numbered_asset_file_scene_entry",
+  "tier": "inferred",
+  "evidence": [
+   "20B, no return; caller scene_flow_dispatcher; lw a1,0x80082504 (current_scene_id); div-by-10 magic 0x66666667; falls into load_numbered_asset_file"
+  ],
+  "rationale": "Alternate entry computing scene_id/10 before load_numbered_asset_file"
+ },
+ {
+  "address": "0x800577dc",
+  "name": "contact_object_spawn_ring_entry",
+  "tier": "inferred",
+  "evidence": [
+   "8B, no return; caller player_contact_response; lbu v1,0x800910AA; falls into contact_object_spawn_ring (0x800577e4)"
+  ],
+  "rationale": "Alternate entry preloading byte 0x800910AA before contact_object_spawn_ring"
+ },
+ {
+  "address": "0x80057eac",
+  "name": "spawn_drop_burst_from_kind_entry",
+  "tier": "inferred",
+  "evidence": [
+   "8B, no return; lw v1,0x800822F4; falls into spawn_drop_burst_from_kind (0x80057eb4)"
+  ],
+  "rationale": "Alternate entry preloading 0x800822F4 before spawn_drop_burst_from_kind"
+ },
+ {
+  "address": "0x8005b12c",
+  "name": "respawn_transition_state_handler_entry",
+  "tier": "inferred",
+  "evidence": [
+   "8B, no return; caller scene_flow_dispatcher; lw v0,0x80082504 (current_scene_id); falls into respawn_transition_state_handler (0x8005b134)"
+  ],
+  "rationale": "Alternate entry preloading current_scene_id before respawn_transition_state_handler"
+ },
+ {
+  "address": "0x8005b70c",
+  "name": "gameplay_state_reset_cursor_seed_entry",
+  "tier": "inferred",
+  "evidence": [
+   "8B, no return; caller scene_flow_dispatcher; lw v0,0x800822F8; falls into gameplay_state_reset_cursor_seed (0x8005b714)"
+  ],
+  "rationale": "Alternate entry preloading 0x800822F8 before gameplay_state_reset_cursor_seed"
+ },
+ {
+  "address": "0x800602c4",
+  "name": "gte_svector_store_wrapper",
+  "tier": "inferred",
+  "evidence": [
+   "jr ra; jal MSC02_OBJ_FC (0x800602e0); addu ra,a3,zero; sh t0/t1/t2 to a1[0/1/2] (SVECTOR result)"
+  ],
+  "rationale": "Standalone leaf wrapper calling MSC02_OBJ_FC and storing its 3-halfword vector result"
+ },
+ {
+  "address": "0x8006250c",
+  "name": "handler_register_8007fbd4",
+  "tier": "inferred",
+  "evidence": [
+   "prologue/epilogue; if v0<2 call (*0x8007FBC4)(0x8001BF84,s0); reads old *0x8007FBD4, stores s0, returns old; SDK region near DrawSyncCallback"
+  ],
+  "rationale": "Standalone handler-register: stores s0 into 0x8007FBD4, returns previous value, optional callback"
+ },
+ {
+  "address": "0x80019b48",
+  "name": "bulk_ground_sub_emitter_case_body",
+  "tier": "inferred",
+  "evidence": [
+   "no prologue; enters with s6/s7/t7 live (same s7 base as preceding bulk_ground_sub_emitter 0x80019934); internal j targets inside its 416B extent; GTE emitter ops, no jr ra"
+  ],
+  "rationale": "Interior/case-body of bulk_ground_sub_emitter (mis-split; should be extent-merged)"
+ },
+ {
+  "address": "0x80039124",
+  "name": "noop_return_stub_80039124",
+  "tier": "inferred",
+  "evidence": [
+   "body is exactly jr ra; nop; preceding sub_800390f0 has its own complete epilogue; next display_env_setup has its own prologue"
+  ],
+  "rationale": "Standalone return-only no-op stub"
+ },
+ {
+  "address": "0x8003daec",
+  "name": "sub_8003daf0_entry",
+  "tier": "inferred",
+  "evidence": [
+   "single lh v0,1480(gp), no return; falls through into sub_8003daf0; called via jal by frame_present"
+  ],
+  "rationale": "Alternate entry preloading v0=gp+1480, falling into sub_8003daf0"
+ },
+ {
+  "address": "0x80043114",
+  "name": "sub_80043118_entry",
+  "tier": "inferred",
+  "evidence": [
+   "single lh a0,1040(gp), no return; falls through into sub_80043118"
+  ],
+  "rationale": "Alternate entry preloading a0=gp+1040, falling into sub_80043118"
+ },
+ {
+  "address": "0x8004f478",
+  "name": "gameplay_frame_render_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui v0,0x8008; lh v0,8880(v0)=0x800822B0, no return; falls through into gameplay_frame_render; called via jal by scene_flow_dispatcher"
+  ],
+  "rationale": "Alternate entry preloading 0x800822B0 into v0, falling into gameplay_frame_render"
+ },
+ {
+  "address": "0x80051938",
+  "name": "sub_80051940_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui v0,0x800a; lw v0,-5040(v0)=0x8009EC50, no return; falls through into sub_80051940; called via jal by effect_render_stage"
+  ],
+  "rationale": "Alternate entry preloading 0x8009EC50 into v0, falling into sub_80051940"
+ },
+ {
+  "address": "0x80056ef0",
+  "name": "actor_skinned_update_tail",
+  "tier": "inferred",
+  "evidence": [
+   "no prologue; opens sw v0,1276(gp), closes popping a 128B frame it never allocated; preceding actor_skinned_update 0x800563d4 (-128 frame) flows off its end with no jr ra"
+  ],
+  "rationale": "Epilogue/tail of actor_skinned_update (mis-split; should be extent-merged)"
+ },
+ {
+  "address": "0x80057c74",
+  "name": "actor_clear_motion_set_flag",
+  "tier": "inferred",
+  "evidence": [
+   "leaf ending jr ra; sw v1,80(a0); clears actor +92 bit2, sets 0x80, masks word+8 to +80; called by mover_vm_op_actor_flag_update"
+  ],
+  "rationale": "Standalone leaf clearing a motion flag and setting flag 0x80 on the actor struct"
+ },
+ {
+  "address": "0x80057f44",
+  "name": "sub_80057f4c_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui v0,0x8008; lw v0,8948(v0)=0x800822F4, no return; falls through into sub_80057f4c; called by contact_vs_actor_handler, proximity_updater"
+  ],
+  "rationale": "Alternate entry preloading 0x800822F4 into v0, falling into sub_80057f4c"
+ },
+ {
+  "address": "0x8005b440",
+  "name": "transition_fade_draw_loop",
+  "tier": "inferred",
+  "evidence": [
+   "full prologue/epilogue; 24-iter loop calling hud_draw_sprite_tile, queue_draw_prim, wait_for_frame_sync_flag, seed_cursor_state_jump_dispatch; called by fmv_bin_load"
+  ],
+  "rationale": "Standalone routine running a 24-frame sprite/fade draw loop during a transition"
+ },
+ {
+  "address": "0x8005d8d8",
+  "name": "actor_index_conditional_store",
+  "tier": "inferred",
+  "evidence": [
+   "leaf jr ra; indexes 0x800A6300 by a1<<2, compares entry+2 vs a2, conditionally writes word+8"
+  ],
+  "rationale": "Standalone leaf: index-gated conditional store into an actor/slot table"
+ },
+ {
+  "address": "0x80060cd4",
+  "name": "exception_context_save",
+  "tier": "inferred",
+  "evidence": [
+   "uses k0, reads kernel table [0x100]/[0x108], stores at/v0/v1/ra into +8 context block, mfc0; reached via exception vector not jal; PsyQ/kernel region"
+  ],
+  "rationale": "Low-level exception-handler entry saving registers into the current TCB context"
+ },
+ {
+  "address": "0x800633b0",
+  "name": "call_vptr56_sign",
+  "tier": "inferred",
+  "evidence": [
+   "prologue/epilogue; loads fnptr [v0+56], jalr, returns v0>>31 (sign bit); between GetODE and SetTexWindow"
+  ],
+  "rationale": "Standalone wrapper invoking method ptr at +0x38, returns result's sign bit"
+ },
+ {
+  "address": "0x8006680c",
+  "name": "call_via_ptr_80086aa8",
+  "tier": "inferred",
+  "evidence": [
+   "lui t1,0x8008; lw t1,27304(t1)=0x80086AA8; jr t1; called by pad_subsystem_init_65e8"
+  ],
+  "rationale": "Indirect-call thunk dispatching through the function pointer at 0x80086AA8"
+ },
+ {
+  "address": "0x800252b0",
+  "name": "sub_800252b8_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui v1,0x8009; lw v1,28316(v1)=0x80096E9C, no return; called by collision_grid_builder; falls into sub_800252b8 whose first branch tests v1"
+  ],
+  "rationale": "Alternate entry preloading 0x80096E9C into v1, falling into sub_800252b8"
+ },
+ {
+  "address": "0x8003a314",
+  "name": "high_heap_loader_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lw v0,1556(gp), no return; 3 callers; falls into high_heap_loader at 0x8003a318"
+  ],
+  "rationale": "gp-relative preload entry (gp+1556 -> v0) falling into high_heap_loader"
+ },
+ {
+  "address": "0x8003e4e0",
+  "name": "sub_8003e4e8_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui v0,0x8008; lw v0,9476(v0)=0x80082504, no return; falls into sub_8003e4e8 whose first branch tests v0"
+  ],
+  "rationale": "Alternate entry preloading 0x80082504 into v0, falling into sub_8003e4e8"
+ },
+ {
+  "address": "0x800457dc",
+  "name": "noop_return_stub_800457dc",
+  "tier": "inferred",
+  "evidence": [
+   "body jr ra; nop; preceding 0x8004574c ends with its own jr ra; next 0x800457e4 has a full prologue"
+  ],
+  "rationale": "Self-contained 8-byte return-only leaf stub"
+ },
+ {
+  "address": "0x80050ea0",
+  "name": "sub_80050ea8_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui a0,0x8008; lw a0,9072(a0)=0x80082370, no return; falls into sub_80050ea8 which uses preloaded a0"
+  ],
+  "rationale": "Alternate entry preloading a0=0x80082370, falling into sub_80050ea8"
+ },
+ {
+  "address": "0x80053638",
+  "name": "sub_80053640_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui v0,0x8008; lw v0,9436(v0)=0x800824DC, no return; 2 callers; falls into sub_80053640 whose first branch tests v0"
+  ],
+  "rationale": "Alternate entry preloading 0x800824DC into v0, falling into sub_80053640"
+ },
+ {
+  "address": "0x80057404",
+  "name": "clear_gameplay_pool_on_reset",
+  "tier": "inferred",
+  "evidence": [
+   "prologue/epilogue; memset(0x800B0D18,3584), zeroes 0x8008234C and gp+1192; callers gameplay_state_reset_cursor_seed, respawn_transition_state_handler"
+  ],
+  "rationale": "Standalone reset routine clearing a ~3.5KB gameplay pool buffer + two state globals on reset/respawn"
+ },
+ {
+  "address": "0x80057dcc",
+  "name": "sub_80057dd4_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui v0,0x8008; lw v0,8948(v0)=0x800822F4, no return; caller enemy_update_deathanim; falls into sub_80057dd4"
+  ],
+  "rationale": "Alternate entry preloading 0x800822F4 into v0, falling into sub_80057dd4"
+ },
+ {
+  "address": "0x8005a9ac",
+  "name": "berry_projectile_update_tail",
+  "tier": "inferred",
+  "evidence": [
+   "1920B block starting sll v0,v0,5 with no prologue; 0 callers; live registers from earlier; follows berry_projectile_update 0x8005a308"
+  ],
+  "rationale": "Interior/tail continuation of berry_projectile_update (mis-split; should be extent-merged)"
+ },
+ {
+  "address": "0x8005b4e4",
+  "name": "sub_8005b4ec_entry",
+  "tier": "inferred",
+  "evidence": [
+   "lui v0,0x800a; lw v0,-4660(v0)=0x8009EDCC, no return; 2 callers; falls into sub_8005b4ec"
+  ],
+  "rationale": "Alternate entry preloading 0x8009EDCC into v0, falling into sub_8005b4ec"
+ },
+ {
+  "address": "0x800622c8",
+  "name": "libgpu_graph_mode_dispatch",
+  "tier": "inferred",
+  "evidence": [
+   "prologue/epilogue; reads mode byte, calls driver fnptrs from struct 0x800Bxxxx, issues GPU display packets 0x2000504/0x2000501; between SetGraphReverse and SetGraphDebug"
+  ],
+  "rationale": "libgpu internal reading a graph-mode flag and dispatching driver callbacks / GPU display-mode packets"
+ },
+ {
+  "address": "0x80066820",
+  "name": "pad_stop_driver_thunk",
+  "tier": "inferred",
+  "evidence": [
+   "lui t1,0x8008; lw t1,27308(t1)=0x80086AAC; jr t1; caller pad_subsystem_shutdown"
+  ],
+  "rationale": "Trampoline tail-jumping to the pad-driver fnptr 0x80086AAC during pad shutdown"
+ }
+]

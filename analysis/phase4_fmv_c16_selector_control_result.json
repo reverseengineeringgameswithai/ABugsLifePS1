@@ -1,0 +1,238 @@
+{
+  "campaign_id": "fmv_playback",
+  "claim_boundary": {
+    "classification": "confirmed_staged_selector_interface_control_unadmitted",
+    "dimension_promoted": false,
+    "lifecycle_promoted": false,
+    "live_receipts_admissible": false,
+    "next_lane": "static",
+    "next_method": "Bank this selector/limit/teardown interface, then statically enumerate the remaining pause, repeat, viewer-return, level-continuation, natural completion, and error continuations before authorizing another live run.\n",
+    "not_claimed": [
+      "selector-40 natural completion or completion-request ownership",
+      "finale, Menu, viewer-return, level-continuation, pause, repeat, or error ownership",
+      "the full lifecycle or original-interfaces dimension",
+      "endpoint equality after the deliberately different selector behavior",
+      "either retained live receipt as method-trial-admissible evidence"
+    ]
+  },
+  "errors": [],
+  "escalation_id": "P4-ITER99-E15-C16-STAGED-SELECTOR-LIFECYCLE-CONTROL",
+  "falsifier": {
+    "evidence": [
+      "both branches staged from movie frame 0 to 300 at the same guest frame/cycle",
+      "the sole initial word difference changed selector 46 to 40",
+      "loader caller/mode/return/frame/cycle stayed fixed while the selector and initial limit changed to 40/3162",
+      "both branches retained balanced stop-ring/callback teardown"
+    ],
+    "outcome": "survived",
+    "predicate": "a same-anchor, frame-300 selector-only perturbation either fails to change the first loader/limit pair as predicted or changes its caller, mode, return, frame, or code basis"
+  },
+  "generated": "2026-07-27",
+  "historical_unstaged_attempt": {
+    "claim_boundary": {
+      "classification": "falsified_unstaged_selector_control",
+      "dimension_promoted": false,
+      "lifecycle_promoted": false,
+      "live_receipts_admissible": false,
+      "next_lane": "static",
+      "next_method": "Add and predeclare one atomic staged-prelude recipe that loads the pinned C16 state, advances guest execution and movie input together through a passive prelude, then applies the typed code write and arms the precise observers without reloading or restarting the movie. Its raw counters must derive from the actual movie playback index and remain inside the typed bound.\n",
+      "not_claimed": [
+        "selector-40 loader, limit, completion, return or teardown behavior",
+        "natural finale, Menu, or alternate-route ownership",
+        "any lifecycle dimension reduction",
+        "either emitted v2 receipt as an admissible live receipt"
+      ]
+    },
+    "escalation_id": "P4-ITER96-E15-C16-SELECTOR-LIFECYCLE-CONTROL",
+    "falsifier": {
+      "outcome": "falsified",
+      "predicate": "the typed 299/300-frame prelude is executed before the selector write and lifecycle observer window",
+      "reasons": [
+        "movie_playback_started_at_zero",
+        "raw_counters_escape_typed_movie_frame_bound",
+        "no_selector_limit_completion_or_teardown_event"
+      ]
+    },
+    "missing_fact_id": "E15/c16-selector40-lifecycle",
+    "observation": {
+      "actual_movie_playback_start": 0,
+      "after_load_code_invalidated": true,
+      "after_load_write_verified": true,
+      "all_jobs_untruncated_and_reproducible": true,
+      "all_lifecycle_observer_events": 0,
+      "declared_movie_playback_starts": [
+        299,
+        300
+      ],
+      "only_endpoint_code_difference": "0x800500d4:0x2404002e->0x24040028"
+    },
+    "receipts": [
+      {
+        "batch_result_sha256": "a2dfb5f3140ad22400319b38f2f0f0de3b1c5464c2a7cdfde04cb076163d5630",
+        "cleanup_sha256": "87a26cc7b8968525e9096b1afff4b184da830dbe2946fb5d6fb9e9d23edb352e",
+        "emitted_raw_span": [
+          265211,
+          269217
+        ],
+        "observed_movie_start": 0,
+        "observed_movie_stop": 4006,
+        "plan_guard_errors": [
+          "v2_receipt nonzero movie-frame capture requires one atomic staged_prelude in every job"
+        ],
+        "precise": false,
+        "raw_results_sha256": "30809ec318f9b3d839326d3e399549781d8238db664468bcd9663717b83ee317",
+        "receipt_admissible": false,
+        "receipt_sha256": "cfbd104e589ca381dfe74364e45c88e8cfe313862b234844eb7d10353b94235a",
+        "role": "passive",
+        "typed_movie_start": 299
+      },
+      {
+        "batch_result_sha256": "b2fb1df7b92b8183f809d4564c7086d0da93b86d356841bb6228d709e986db66",
+        "cleanup_sha256": "d42e395fc5dbe69a2750e1c0c6a65beaf28d5f2cc5b68022be7a427d14321c8a",
+        "emitted_raw_span": [
+          265211,
+          269217
+        ],
+        "observed_movie_start": 0,
+        "observed_movie_stop": 4006,
+        "plan_guard_errors": [
+          "v2_receipt nonzero movie-frame capture requires one atomic staged_prelude in every job"
+        ],
+        "precise": true,
+        "raw_results_sha256": "85c90ef7e1ada9f604a694f7efd0cda2417ceb0b4de10ebc070b79a3efb576c6",
+        "receipt_admissible": false,
+        "receipt_sha256": "c7ea7e11010a4ba8f0f7258003476aff18558854835ffb8e6d22214b9e0b460c",
+        "role": "precise",
+        "typed_movie_start": 300
+      }
+    ],
+    "record_counts": {
+      "admissible_live_receipts": 0,
+      "completed_atomic_jobs": 4,
+      "emulator_launches": 2,
+      "exact_after_load_writes": 1,
+      "lifecycle_observer_events": 0,
+      "owned_pids_stopped": 2
+    }
+  },
+  "method_admission": {
+    "intrinsic_v2_receipts_valid": 2,
+    "legacy_index": {
+      "path": "analysis/phase4_method_legacy_live_index.json",
+      "sha256": "ae32ba8352a6c8c0bb302d9e85113135fe3b68627a74769dfb50c4f955eaebde"
+    },
+    "method_trial_receipts_admissible": 0,
+    "overlapping_entry": {
+      "escalation_id": "P4-ITER83-E15-LOSE-GAMEOVER-LIFECYCLE-CONTROL",
+      "normalization": "conservative_deny",
+      "source_entry_sha256": "de8766d688dae3c756375a46076c06d0cfd4866ace0153f4b2d4885acba24356"
+    },
+    "receipt_sha256s": [
+      "926c85ae85b70a856cab78f1051690e53ec59d663c1b8a35f9a93a374dd2ed4e",
+      "9b407d66c7808123884e112d3f0f73ba4cba433cfd9e79e141af9b2211c688d9"
+    ],
+    "status": "rejected_conservative_pre_v2_overlap",
+    "validator": {
+      "path": "tools/phase4_method_metrics.py",
+      "sha256": "5f3aa7741f24bb930c177a847a387427c3b417bad5d93ca30f4fda6052e491dd"
+    }
+  },
+  "missing_fact_id": "E15/c16-staged-selector40-lifecycle",
+  "observation": {
+    "after_load_code_invalidated": true,
+    "after_load_write_verified": true,
+    "all_jobs_untruncated_and_reproducible": true,
+    "balanced_teardown_interface": {
+      "callers": [
+        "0x800b749c",
+        "0x800b74a4"
+      ],
+      "functions": [
+        "0x8007094c",
+        "0x800709ac"
+      ],
+      "negative_first_frame": 266545,
+      "positive_first_frame": 267891
+    },
+    "negative_native_completion_request": {
+      "address": "0x800cac10",
+      "frame": 266492,
+      "instruction_pc": "0x800b6b48",
+      "new_value": 1,
+      "reported_pc": "0x800b6b4c"
+    },
+    "only_initial_code_difference": "0x800500d4:0x2404002e->0x24040028",
+    "positive_natural_completion_request_observed": false,
+    "same_anchor_loader_interface": {
+      "caller": "0x800500d8",
+      "cycle": 150414500686,
+      "frame": 265655,
+      "function": "0x8003e7c0",
+      "negative_selector": 46,
+      "positive_selector": 40,
+      "return_address": "0x800500e0"
+    },
+    "same_frame_initial_limit_interface": {
+      "address": "0x80131eee",
+      "frame": 265826,
+      "instruction_pc": "0x800b6dc0",
+      "negative_limit": 281,
+      "positive_limit": 3162,
+      "reported_pc": "0x800b6dc4"
+    }
+  },
+  "offline_receipt_sha256": "3a7d9f33bbaa628f9ccbd7f4c35ba59554e6613a9404d8962451c46b186f4f10",
+  "raw_external_bytes_committed": false,
+  "receipts": [
+    {
+      "batch_result_sha256": "4f695a3c9a3cac919c44392ffb46d7802538da09d84b9e1090993b27e9b957bc",
+      "cleanup_sha256": "6415a3ed81ec7f57683a063494ecabaa061820fb53f0c381df32a4e3ff54293c",
+      "completed_atomic_jobs": 2,
+      "emulator_launches": 1,
+      "intrinsic_v2_valid": true,
+      "method_trial_admissible": false,
+      "observer_start": 299,
+      "precise": false,
+      "raw_results_sha256": "2e88338da19f6ed99372c36d932417a6011219dcbbfff3468a6baa0fe10b8d60",
+      "receipt_sha256": "926c85ae85b70a856cab78f1051690e53ec59d663c1b8a35f9a93a374dd2ed4e",
+      "replay_stop": 4006,
+      "role": "staged_passive",
+      "stage_start": 0,
+      "stage_stop": 299
+    },
+    {
+      "batch_result_sha256": "77bf84145a59a554431e2fd4e47713e110b4673543cf67ab54349ff10039567c",
+      "cleanup_sha256": "de5f050e6a00a00669e5515fc5672580c1bf293b69c9bc06fcda9dd0e542ec6d",
+      "completed_atomic_jobs": 2,
+      "emulator_launches": 1,
+      "intrinsic_v2_valid": true,
+      "method_trial_admissible": false,
+      "observer_start": 300,
+      "precise": true,
+      "raw_results_sha256": "1b1bc87ae0413d51fafe6db61d873fc794043edf3ec7a134115a5aa93fbc0802",
+      "receipt_sha256": "9b407d66c7808123884e112d3f0f73ba4cba433cfd9e79e141af9b2211c688d9",
+      "replay_stop": 4006,
+      "role": "staged_precise",
+      "stage_start": 0,
+      "stage_stop": 300
+    }
+  ],
+  "record_counts": {
+    "completed_atomic_jobs": 4,
+    "emulator_launches": 2,
+    "exact_after_load_writes": 1,
+    "intrinsically_valid_live_receipts": 2,
+    "method_trial_admissible_live_receipts": 0,
+    "observer_frames": 14826,
+    "owned_pids_stopped": 2,
+    "replay_frames": 16024
+  },
+  "row_id": "E15_fmv",
+  "schema": "abl-phase4-fmv-c16-selector-control-result/3",
+  "source_dependencies": {
+    "config/phase4_fmv_c16_selector_control_result.yaml": "a621dd4c2711ca15f8a3b0612ed7c5e339c1e6cddedfe19d47bd532c9cf6edef",
+    "tools/phase4_duckstation_batch.py": "e94ec290a489484587b50fe72a472dbfa8578a7f17dcaf32f57af2efcf8bb375",
+    "tools/phase4_fmv_c16_selector_control_result.py": "ec2567d980a699a847af28c1d7a8728929222d1288a13c8c4a675de0b73277e0"
+  },
+  "valid": true
+}

@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "row": "B02",
+  "mechanic": "propeller_plant",
+  "status": "accepted_bounded_runtime_evidence",
+  "capture_date": "2026-08-02",
+  "evidence_root": "~/Downloads/ABL-external-evidence/phase4/B02_propeller_interpreter_exec_20260802",
+  "fixture": {
+    "movie": "movies/Phase4/Interpreter/B02.movie.json",
+    "movie_sha256": "6992b9658e9fedec46a5489ff85a1ed160606fadeed41170ddc7840e439080ca",
+    "state": "movies/Phase4/Interpreter/B02.movie.sav",
+    "state_sha256": "3e19b52869076111e04b5810aefdbc18a01d2bec6d0674b77f2f708d5729c6df",
+    "movie_version": 4,
+    "armed_while_paused": true,
+    "phase_delay_owed": true,
+    "initial_emulator_frame": 21677
+  },
+  "runtime": {
+    "execution_mode": "Interpreter",
+    "playback_driver": "debugger.resume plus movie.status polling",
+    "fast_forward": false,
+    "turbo": false,
+    "movie_reproducible": true,
+    "flight_check": {
+      "watch": "0x8005c258..0x8005c58c",
+      "event_limit_reached": 10000,
+      "operator_visual_verdict": "synchronized"
+    },
+    "causal_trace": {
+      "events": 1662,
+      "truncated": false,
+      "carry_write_events": 61,
+      "carry_trace_truncated": false,
+      "postroll_max_frames": 33
+    }
+  },
+  "reduction": {
+    "language": "C11",
+    "tool": "tools/phase4_b02_runtime_trace_analyzer.c",
+    "tool_sha256": "433f11498affb4e93575e6e7111b017a20693aae38824a45f7cbba951b57caf9",
+    "raw_output_sha256": "dba13076601c7abec7089a7d19324dd5f6e79d2f39745c5393f69c9f6252e935",
+    "event_counts": {
+      "radius200": 192,
+      "player_radius40": 577,
+      "detach_call": 59,
+      "player_vy_store": 59,
+      "player_clamp_store": 10,
+      "actor_radius40": 577,
+      "actor_vy_store": 94,
+      "actor_flag_clear": 94,
+      "carry_writes": 61
+    },
+    "invariants": {
+      "detach_and_player_store_pair_by_frame": true,
+      "actor_store_and_clear_pair_by_frame_and_pointer": true,
+      "all_clamps_store_minus_3072": true,
+      "player_radius_pointer_is_0x800a6500": true,
+      "actor_radius_pointer_is_actor_plus_4": true,
+      "carry_writes_during_movie_inputs_86_through_190": 0
+    },
+    "carry_state_changes": [
+      {
+        "kind": "manual_throw_release",
+        "instruction_pc": "0x80047ce8",
+        "emulator_frame": 21974,
+        "movie_input": 296,
+        "cycle": 12441232523,
+        "old": 3696,
+        "new": 0
+      },
+      {
+        "kind": "pickup",
+        "instruction_pc": "0x80047858",
+        "emulator_frame": 22243,
+        "movie_input": 565,
+        "cycle": 12593541774,
+        "old": 0,
+        "new": 3696
+      },
+      {
+        "kind": "propeller_detach_helper",
+        "instruction_pc": "0x80046d04",
+        "emulator_frame": 22457,
+        "movie_input": 779,
+        "cycle": 12714850384,
+        "old": 3696,
+        "new": 0
+      }
+    ],
+    "player_lift": {
+      "events": 59,
+      "preclamp_new_vy_min": -3328,
+      "preclamp_new_vy_max": 2560,
+      "clamp_events": 10,
+      "clamp_value": -3072,
+      "movie_input_segments": [[401, 423], [779, 823], [871, 919]]
+    },
+    "actor_lift": {
+      "events": 94,
+      "actor_pointer": "0x800a0bf0",
+      "actor_offset": 3696,
+      "new_vy_min": -3584,
+      "new_vy_max": 768,
+      "paired_flag_clears": 94,
+      "movie_input_segments": [[92, 180], [298, 326], [779, 787], [809, 827], [849, 867], [889, 907]]
+    }
+  },
+  "conclusions": {
+    "ordinary_carried_approach_auto_releases": false,
+    "carried_seed_is_actor_lift_eligible": true,
+    "manual_throw_is_required_for_first_release": true,
+    "second_square_pickup_succeeds": true,
+    "high_fall_player_gate_invokes_detach": true,
+    "player_and_same_seed_are_lifted_on_detach_frame": true,
+    "actor_lift_has_player_style_minus_3072_clamp": false
+  },
+  "bounds": {
+    "closure": "bounded_exhausted_high_value",
+    "cold_boot_required": false,
+    "cold_boot_reason": "No disc, code, or asset mutation was tested; this is a hash-pinned state-anchored runtime mechanism experiment.",
+    "deferred_low_return": [
+      "Exhaustive RNG-byte distribution after zero-horizontal-velocity actor lift",
+      "Every propeller placement and every non-seed actor class",
+      "Pixel-level trajectory reconstruction beyond the instruction-attributed state transitions"
+    ]
+  }
+}

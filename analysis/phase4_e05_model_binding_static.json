@@ -1,0 +1,973 @@
+{
+ "_comment": "Phase-4 E05: actor id -> model path binding, decoded statically from the pristine EXE's level-load dispatch. The binding is CODE (jr table cases), not a data table; the runtime pointer registry is 0x800A6300 + 4*id, written by level_chunk_loader under a first-load guard. Regenerate: tools/phase4_e05_model_binding_extract.py",
+ "generated": "2026-08-03",
+ "exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+ "constants": {
+  "dispatch_fn": "0x8005dad0",
+  "table1": "0x8001bbdc",
+  "table1_entries": 41,
+  "table2": "0x8001bc84",
+  "table2_entries": 14,
+  "pointer_array": "0x800a6300",
+  "plant_table_canon": "0x800a649c",
+  "plant_id_bias": 103,
+  "pool_base": "0x8009fd80",
+  "pool_stride": 132,
+  "pool_slots": 64,
+  "skeleton_bank_base": "0x80089f58",
+  "skeleton_bank_bytes": 25200,
+  "loader": "0x8005d654",
+  "alt_loader": "0x8005d924"
+ },
+ "flik_variants_by_scene": [
+  {
+   "path": "chars3\\flickd",
+   "string_vaddr": "0x8001b87c",
+   "scene_rule": "scenes {2,3}",
+   "decode_site": "0x8005db98"
+  },
+  {
+   "path": "chars\\flick",
+   "string_vaddr": "0x8001b88c",
+   "scene_rule": "default (all other scenes)",
+   "decode_site": "0x8005dbe4"
+  },
+  {
+   "path": "chars3\\flickp",
+   "string_vaddr": "0x8001b898",
+   "scene_rule": "scenes {6,10,11,14}",
+   "decode_site": "0x8005dc28"
+  },
+  {
+   "path": "chars4\\flickp",
+   "string_vaddr": "0x8001b8a8",
+   "scene_rule": "scenes {4,5}",
+   "decode_site": "0x8005dc34"
+  }
+ ],
+ "table1_actor_models": [
+  {
+   "case_addr": "0x8005dca8",
+   "path": "chars\\gypsy",
+   "model_id": 1,
+   "ptr_slot": 1,
+   "rec_slot": 1,
+   "callee": null,
+   "actor_id": 1,
+   "pointer_global": "0x800a6304"
+  },
+  {
+   "case_addr": "0x8005dccc",
+   "path": "chars\\manny",
+   "model_id": 2,
+   "ptr_slot": 2,
+   "rec_slot": 2,
+   "callee": null,
+   "actor_id": 2,
+   "pointer_global": "0x800a6308"
+  },
+  {
+   "case_addr": "0x8005dcf0",
+   "path": "chars\\fran",
+   "model_id": 3,
+   "ptr_slot": 3,
+   "rec_slot": 3,
+   "callee": null,
+   "actor_id": 3,
+   "pointer_global": "0x800a630c"
+  },
+  {
+   "case_addr": "0x8005dd14",
+   "path": "chars\\rosie",
+   "model_id": 4,
+   "ptr_slot": 4,
+   "rec_slot": 4,
+   "callee": null,
+   "actor_id": 4,
+   "pointer_global": "0x800a6310"
+  },
+  {
+   "case_addr": "0x8005dd38",
+   "path": "chars\\slim",
+   "model_id": 5,
+   "ptr_slot": 5,
+   "rec_slot": 5,
+   "callee": null,
+   "actor_id": 5,
+   "pointer_global": "0x800a6314"
+  },
+  {
+   "case_addr": "0x8005dd5c",
+   "path": "chars\\fly",
+   "model_id": 6,
+   "ptr_slot": 6,
+   "rec_slot": 6,
+   "callee": null,
+   "actor_id": 6,
+   "pointer_global": "0x800a6318"
+  },
+  {
+   "case_addr": "0x8005dd80",
+   "path": "chars\\heim",
+   "model_id": 7,
+   "ptr_slot": 7,
+   "rec_slot": 7,
+   "callee": null,
+   "actor_id": 7,
+   "pointer_global": "0x800a631c"
+  },
+  {
+   "case_addr": "0x8005dda4",
+   "path": "chars\\dim",
+   "model_id": 8,
+   "ptr_slot": 8,
+   "rec_slot": 8,
+   "callee": null,
+   "actor_id": 8,
+   "pointer_global": "0x800a6320"
+  },
+  {
+   "case_addr": "0x8005ddc8",
+   "path": "chars\\badbug",
+   "model_id": 9,
+   "ptr_slot": 9,
+   "rec_slot": 9,
+   "callee": null,
+   "actor_id": 9,
+   "pointer_global": "0x800a6324"
+  },
+  {
+   "case_addr": "0x8005ddec",
+   "path": "chars\\mos",
+   "model_id": 10,
+   "ptr_slot": 10,
+   "rec_slot": 10,
+   "callee": null,
+   "actor_id": 10,
+   "pointer_global": "0x800a6328"
+  },
+  {
+   "case_addr": "0x8005de10",
+   "path": "bits\\seed",
+   "model_id": 11,
+   "ptr_slot": 11,
+   "rec_slot": 11,
+   "callee": "0x8005d924",
+   "actor_id": 11,
+   "pointer_global": "0x800a632c"
+  },
+  {
+   "case_addr": "0x8005de40",
+   "path": "chars\\grub",
+   "model_id": 12,
+   "ptr_slot": 12,
+   "rec_slot": 12,
+   "callee": null,
+   "actor_id": 12,
+   "pointer_global": "0x800a6330"
+  },
+  {
+   "case_addr": "0x8005de64",
+   "path": "chars\\wasp",
+   "model_id": 13,
+   "ptr_slot": 13,
+   "rec_slot": 13,
+   "callee": null,
+   "actor_id": 13,
+   "pointer_global": "0x800a6334"
+  },
+  {
+   "case_addr": "0x8005de88",
+   "path": "chars2\\dot",
+   "model_id": 14,
+   "ptr_slot": 14,
+   "rec_slot": 14,
+   "callee": null,
+   "actor_id": 14,
+   "pointer_global": "0x800a6338"
+  },
+  {
+   "case_addr": "0x8005deac",
+   "path": "chars2\\ggrassh",
+   "model_id": 15,
+   "ptr_slot": 15,
+   "rec_slot": 15,
+   "callee": null,
+   "actor_id": 15,
+   "pointer_global": "0x800a633c"
+  },
+  {
+   "case_addr": "0x8005ded0",
+   "path": "chars2\\thumper",
+   "model_id": 16,
+   "ptr_slot": 16,
+   "rec_slot": 16,
+   "callee": null,
+   "actor_id": 16,
+   "pointer_global": "0x800a6340"
+  },
+  {
+   "case_addr": "0x8005def4",
+   "path": "chars2\\hspider",
+   "model_id": 17,
+   "ptr_slot": 17,
+   "rec_slot": 17,
+   "callee": null,
+   "actor_id": 17,
+   "pointer_global": "0x800a6344"
+  },
+  {
+   "case_addr": "0x8005df18",
+   "path": "chars2\\taxibug",
+   "model_id": 18,
+   "ptr_slot": 18,
+   "rec_slot": 18,
+   "callee": null,
+   "actor_id": 18,
+   "pointer_global": "0x800a6348"
+  },
+  {
+   "case_addr": "0x8005df3c",
+   "path": "chars2\\roach",
+   "model_id": 19,
+   "ptr_slot": 19,
+   "rec_slot": 19,
+   "callee": null,
+   "actor_id": 19,
+   "pointer_global": "0x800a634c"
+  },
+  {
+   "case_addr": "0x8005df60",
+   "path": "chars2\\tuckroll",
+   "model_id": 20,
+   "ptr_slot": 20,
+   "rec_slot": 20,
+   "callee": null,
+   "actor_id": 20,
+   "pointer_global": "0x800a6350"
+  },
+  {
+   "case_addr": "0x8005df84",
+   "path": "chars2\\attaflik",
+   "model_id": 21,
+   "ptr_slot": 21,
+   "rec_slot": 21,
+   "callee": null,
+   "actor_id": 21,
+   "pointer_global": "0x800a6354"
+  },
+  {
+   "case_addr": "0x8005dfa8",
+   "path": "chars2\\hopper",
+   "model_id": 22,
+   "ptr_slot": 22,
+   "rec_slot": 22,
+   "callee": null,
+   "actor_id": 22,
+   "pointer_global": "0x800a6358"
+  },
+  {
+   "case_addr": "0x8005dfcc",
+   "path": "chars2\\tuck",
+   "model_id": 23,
+   "ptr_slot": 23,
+   "rec_slot": 23,
+   "callee": null,
+   "actor_id": 23,
+   "pointer_global": "0x800a635c"
+  },
+  {
+   "case_addr": "0x8005dff0",
+   "path": "chars2\\roll",
+   "model_id": 24,
+   "ptr_slot": 24,
+   "rec_slot": 24,
+   "callee": null,
+   "actor_id": 24,
+   "pointer_global": "0x800a6360"
+  },
+  {
+   "case_addr": "0x8005e014",
+   "path": "chars2\\gypsy",
+   "model_id": 25,
+   "ptr_slot": 25,
+   "rec_slot": 25,
+   "callee": null,
+   "actor_id": 25,
+   "pointer_global": "0x800a6364"
+  },
+  {
+   "case_addr": "0x8005e038",
+   "path": "chars2\\manny2",
+   "model_id": 26,
+   "ptr_slot": 26,
+   "rec_slot": 26,
+   "callee": null,
+   "actor_id": 26,
+   "pointer_global": "0x800a6368"
+  },
+  {
+   "case_addr": "0x8005e05c",
+   "path": "chars2\\franslim",
+   "model_id": 27,
+   "ptr_slot": 27,
+   "rec_slot": 27,
+   "callee": null,
+   "actor_id": 27,
+   "pointer_global": "0x800a636c"
+  },
+  {
+   "case_addr": "0x8005e080",
+   "path": "chars3\\atta",
+   "model_id": 28,
+   "ptr_slot": 28,
+   "rec_slot": 28,
+   "callee": null,
+   "actor_id": 28,
+   "pointer_global": "0x800a6370"
+  },
+  {
+   "case_addr": "0x8005e0a4",
+   "path": "chars3\\molt",
+   "model_id": 29,
+   "ptr_slot": 29,
+   "rec_slot": 29,
+   "callee": null,
+   "actor_id": 29,
+   "pointer_global": "0x800a6374"
+  },
+  {
+   "case_addr": "0x8005e0c8",
+   "path": "chars3\\bbird",
+   "model_id": 30,
+   "ptr_slot": 30,
+   "rec_slot": 30,
+   "callee": null,
+   "actor_id": 30,
+   "pointer_global": "0x800a6378"
+  },
+  {
+   "case_addr": "0x8005e0ec",
+   "path": "chars3\\acorn",
+   "model_id": 31,
+   "ptr_slot": 31,
+   "rec_slot": 31,
+   "callee": null,
+   "actor_id": 31,
+   "pointer_global": "0x800a637c"
+  },
+  {
+   "case_addr": "0x8005e110",
+   "path": "chars3\\bluescot",
+   "model_id": 32,
+   "ptr_slot": 32,
+   "rec_slot": 32,
+   "callee": null,
+   "actor_id": 32,
+   "pointer_global": "0x800a6380"
+  },
+  {
+   "case_addr": "0x8005e134",
+   "path": "chars3\\fdim",
+   "model_id": 33,
+   "ptr_slot": 33,
+   "rec_slot": 33,
+   "callee": null,
+   "actor_id": 33,
+   "pointer_global": "0x800a6384"
+  },
+  {
+   "case_addr": "0x8005e158",
+   "path": "chars3\\dragfly",
+   "model_id": 34,
+   "ptr_slot": 34,
+   "rec_slot": 34,
+   "callee": null,
+   "actor_id": 34,
+   "pointer_global": "0x800a6388"
+  },
+  {
+   "case_addr": "0x8005e17c",
+   "path": "chars3\\flikharv",
+   "model_id": 35,
+   "ptr_slot": 35,
+   "rec_slot": 35,
+   "callee": null,
+   "actor_id": 35,
+   "pointer_global": "0x800a638c"
+  },
+  {
+   "case_addr": "0x8005e1a0",
+   "path": "chars3\\thud",
+   "model_id": 36,
+   "ptr_slot": 36,
+   "rec_slot": 36,
+   "callee": null,
+   "actor_id": 36,
+   "pointer_global": "0x800a6390"
+  },
+  {
+   "case_addr": "0x8005e1c4",
+   "path": "chars3\\weevil",
+   "model_id": 37,
+   "ptr_slot": 37,
+   "rec_slot": 37,
+   "callee": null,
+   "actor_id": 37,
+   "pointer_global": "0x800a6394"
+  },
+  {
+   "case_addr": "0x8005e1e8",
+   "path": "chars3\\soil",
+   "model_id": 38,
+   "ptr_slot": 38,
+   "rec_slot": 38,
+   "callee": null,
+   "actor_id": 38,
+   "pointer_global": "0x800a6398"
+  },
+  {
+   "case_addr": "0x8005e20c",
+   "path": "chars3\\protect",
+   "model_id": 39,
+   "ptr_slot": 39,
+   "rec_slot": 39,
+   "callee": null,
+   "actor_id": 39,
+   "pointer_global": "0x800a639c"
+  },
+  {
+   "case_addr": "0x8005e230",
+   "path": "chars4\\badworm",
+   "model_id": 40,
+   "ptr_slot": 40,
+   "rec_slot": 40,
+   "callee": null,
+   "actor_id": 40,
+   "pointer_global": "0x800a63a0"
+  },
+  {
+   "case_addr": "0x8005e254",
+   "path": "chars4\\badcent",
+   "model_id": 41,
+   "ptr_slot": 41,
+   "rec_slot": 41,
+   "callee": "0x8005d654",
+   "actor_id": 41,
+   "pointer_global": "0x800a63a4"
+  }
+ ],
+ "table2_plant_models": [
+  {
+   "case_addr": "0x8005e2e0",
+   "path": "plants\\plant01",
+   "model_id": 104,
+   "ptr_slot": 104,
+   "rec_slot": 104,
+   "callee": "0x8005d654",
+   "plant_type": 1,
+   "pointer_global": "0x800a64a0"
+  },
+  {
+   "case_addr": "0x8005e370",
+   "path": "plants\\plant02",
+   "model_id": 105,
+   "ptr_slot": 105,
+   "rec_slot": 105,
+   "callee": "0x8005d654",
+   "plant_type": 2,
+   "pointer_global": "0x800a64a4"
+  },
+  {
+   "case_addr": "0x8005e400",
+   "path": "plants\\plant03",
+   "model_id": 106,
+   "ptr_slot": 106,
+   "rec_slot": 106,
+   "callee": "0x8005d654",
+   "plant_type": 3,
+   "pointer_global": "0x800a64a8"
+  },
+  {
+   "case_addr": "0x8005e490",
+   "path": "plants\\plant04",
+   "model_id": 107,
+   "ptr_slot": 107,
+   "rec_slot": 107,
+   "callee": "0x8005d654",
+   "plant_type": 4,
+   "pointer_global": "0x800a64ac"
+  },
+  {
+   "case_addr": "0x8005e520",
+   "path": "plants\\plant05",
+   "model_id": 108,
+   "ptr_slot": 108,
+   "rec_slot": 108,
+   "callee": "0x8005d654",
+   "plant_type": 5,
+   "pointer_global": "0x800a64b0"
+  },
+  {
+   "case_addr": "0x8005e5b0",
+   "path": "plants\\plant06",
+   "model_id": 109,
+   "ptr_slot": 109,
+   "rec_slot": 109,
+   "callee": "0x8005d654",
+   "plant_type": 6,
+   "pointer_global": "0x800a64b4"
+  },
+  {
+   "case_addr": "0x8005e640",
+   "path": "plants\\plant07",
+   "model_id": 110,
+   "ptr_slot": 110,
+   "rec_slot": 110,
+   "callee": "0x8005d654",
+   "plant_type": 7,
+   "pointer_global": "0x800a64b8"
+  },
+  {
+   "case_addr": "0x8005e6d0",
+   "path": "plants\\plant08",
+   "model_id": 111,
+   "ptr_slot": 111,
+   "rec_slot": 111,
+   "callee": "0x8005d654",
+   "plant_type": 8,
+   "pointer_global": "0x800a64bc"
+  },
+  {
+   "case_addr": "0x8005e760",
+   "path": "plants\\plant09",
+   "model_id": 112,
+   "ptr_slot": 112,
+   "rec_slot": 112,
+   "callee": "0x8005d654",
+   "plant_type": 9,
+   "pointer_global": "0x800a64c0"
+  },
+  {
+   "case_addr": "0x8005e7f0",
+   "path": "plants\\plant10",
+   "model_id": 113,
+   "ptr_slot": 113,
+   "rec_slot": 113,
+   "callee": "0x8005d654",
+   "plant_type": 10,
+   "pointer_global": "0x800a64c4"
+  },
+  {
+   "case_addr": "0x8005e880",
+   "path": "plants\\plant11",
+   "model_id": 114,
+   "ptr_slot": 114,
+   "rec_slot": 114,
+   "callee": "0x8005d654",
+   "plant_type": 11,
+   "pointer_global": "0x800a64c8"
+  },
+  {
+   "case_addr": "0x8005e910",
+   "path": "plants2\\plant12",
+   "model_id": 115,
+   "ptr_slot": 115,
+   "rec_slot": 115,
+   "callee": "0x8005d654",
+   "plant_type": 12,
+   "pointer_global": "0x800a64cc"
+  },
+  {
+   "case_addr": "0x8005e9a0",
+   "path": "plants2\\plant13",
+   "model_id": 116,
+   "ptr_slot": 116,
+   "rec_slot": 116,
+   "callee": "0x8005d654",
+   "plant_type": 13,
+   "pointer_global": "0x800a64d0"
+  },
+  {
+   "case_addr": "0x8005ea30",
+   "path": "plants2\\plant14",
+   "model_id": 117,
+   "ptr_slot": 117,
+   "rec_slot": 117,
+   "callee": "0x8005d654",
+   "plant_type": 14,
+   "pointer_global": "0x800a64d4"
+  }
+ ],
+ "id_species_model_join": [
+  {
+   "actor_id": 1,
+   "model_path": "chars\\gypsy",
+   "pointer_global": "0x800a6304",
+   "species_committed": null
+  },
+  {
+   "actor_id": 2,
+   "model_path": "chars\\manny",
+   "pointer_global": "0x800a6308",
+   "species_committed": null
+  },
+  {
+   "actor_id": 3,
+   "model_path": "chars\\fran",
+   "pointer_global": "0x800a630c",
+   "species_committed": null
+  },
+  {
+   "actor_id": 4,
+   "model_path": "chars\\rosie",
+   "pointer_global": "0x800a6310",
+   "species_committed": null
+  },
+  {
+   "actor_id": 5,
+   "model_path": "chars\\slim",
+   "pointer_global": "0x800a6314",
+   "species_committed": null
+  },
+  {
+   "actor_id": 6,
+   "model_path": "chars\\fly",
+   "pointer_global": "0x800a6318",
+   "species_committed": "Horsefly"
+  },
+  {
+   "actor_id": 7,
+   "model_path": "chars\\heim",
+   "pointer_global": "0x800a631c",
+   "species_committed": null
+  },
+  {
+   "actor_id": 8,
+   "model_path": "chars\\dim",
+   "pointer_global": "0x800a6320",
+   "species_committed": null
+  },
+  {
+   "actor_id": 9,
+   "model_path": "chars\\badbug",
+   "pointer_global": "0x800a6324",
+   "species_committed": "spider, the common per-level chaser"
+  },
+  {
+   "actor_id": 10,
+   "model_path": "chars\\mos",
+   "pointer_global": "0x800a6328",
+   "species_committed": "mosquito"
+  },
+  {
+   "actor_id": 11,
+   "model_path": "bits\\seed",
+   "pointer_global": "0x800a632c",
+   "species_committed": null
+  },
+  {
+   "actor_id": 12,
+   "model_path": "chars\\grub",
+   "pointer_global": "0x800a6330",
+   "species_committed": "grub"
+  },
+  {
+   "actor_id": 13,
+   "model_path": "chars\\wasp",
+   "pointer_global": "0x800a6334",
+   "species_committed": "internal 'bee' = campaign wasp"
+  },
+  {
+   "actor_id": 14,
+   "model_path": "chars2\\dot",
+   "pointer_global": "0x800a6338",
+   "species_committed": null
+  },
+  {
+   "actor_id": 15,
+   "model_path": "chars2\\ggrassh",
+   "pointer_global": "0x800a633c",
+   "species_committed": "grasshopper"
+  },
+  {
+   "actor_id": 16,
+   "model_path": "chars2\\thumper",
+   "pointer_global": "0x800a6340",
+   "species_committed": null
+  },
+  {
+   "actor_id": 17,
+   "model_path": "chars2\\hspider",
+   "pointer_global": "0x800a6344",
+   "species_committed": "huge_spider = daddy long legs"
+  },
+  {
+   "actor_id": 18,
+   "model_path": "chars2\\taxibug",
+   "pointer_global": "0x800a6348",
+   "species_committed": "shell_bug / armored beetle"
+  },
+  {
+   "actor_id": 19,
+   "model_path": "chars2\\roach",
+   "pointer_global": "0x800a634c",
+   "species_committed": "Redbug = the row-name 'cockroach'"
+  },
+  {
+   "actor_id": 20,
+   "model_path": "chars2\\tuckroll",
+   "pointer_global": "0x800a6350",
+   "species_committed": null
+  },
+  {
+   "actor_id": 21,
+   "model_path": "chars2\\attaflik",
+   "pointer_global": "0x800a6354",
+   "species_committed": null
+  },
+  {
+   "actor_id": 22,
+   "model_path": "chars2\\hopper",
+   "pointer_global": "0x800a6358",
+   "species_committed": "Hopper"
+  },
+  {
+   "actor_id": 23,
+   "model_path": "chars2\\tuck",
+   "pointer_global": "0x800a635c",
+   "species_committed": null
+  },
+  {
+   "actor_id": 24,
+   "model_path": "chars2\\roll",
+   "pointer_global": "0x800a6360",
+   "species_committed": null
+  },
+  {
+   "actor_id": 25,
+   "model_path": "chars2\\gypsy",
+   "pointer_global": "0x800a6364",
+   "species_committed": null
+  },
+  {
+   "actor_id": 26,
+   "model_path": "chars2\\manny2",
+   "pointer_global": "0x800a6368",
+   "species_committed": null
+  },
+  {
+   "actor_id": 27,
+   "model_path": "chars2\\franslim",
+   "pointer_global": "0x800a636c",
+   "species_committed": null
+  },
+  {
+   "actor_id": 28,
+   "model_path": "chars3\\atta",
+   "pointer_global": "0x800a6370",
+   "species_committed": null
+  },
+  {
+   "actor_id": 29,
+   "model_path": "chars3\\molt",
+   "pointer_global": "0x800a6374",
+   "species_committed": "Molt"
+  },
+  {
+   "actor_id": 30,
+   "model_path": "chars3\\bbird",
+   "pointer_global": "0x800a6378",
+   "species_committed": "bird -- Birdnest boss"
+  },
+  {
+   "actor_id": 31,
+   "model_path": "chars3\\acorn",
+   "pointer_global": "0x800a637c",
+   "species_committed": null
+  },
+  {
+   "actor_id": 32,
+   "model_path": "chars3\\bluescot",
+   "pointer_global": "0x800a6380",
+   "species_committed": null
+  },
+  {
+   "actor_id": 33,
+   "model_path": "chars3\\fdim",
+   "pointer_global": "0x800a6384",
+   "species_committed": null
+  },
+  {
+   "actor_id": 34,
+   "model_path": "chars3\\dragfly",
+   "pointer_global": "0x800a6388",
+   "species_committed": "dragonfly"
+  },
+  {
+   "actor_id": 35,
+   "model_path": "chars3\\flikharv",
+   "pointer_global": "0x800a638c",
+   "species_committed": null
+  },
+  {
+   "actor_id": 36,
+   "model_path": "chars3\\thud",
+   "pointer_global": "0x800a6390",
+   "species_committed": null
+  },
+  {
+   "actor_id": 37,
+   "model_path": "chars3\\weevil",
+   "pointer_global": "0x800a6394",
+   "species_committed": "mite"
+  },
+  {
+   "actor_id": 38,
+   "model_path": "chars3\\soil",
+   "pointer_global": "0x800a6398",
+   "species_committed": null
+  },
+  {
+   "actor_id": 39,
+   "model_path": "chars3\\protect",
+   "pointer_global": "0x800a639c",
+   "species_committed": "pill"
+  },
+  {
+   "actor_id": 40,
+   "model_path": "chars4\\badworm",
+   "pointer_global": "0x800a63a0",
+   "species_committed": "worm"
+  },
+  {
+   "actor_id": 41,
+   "model_path": "chars4\\badcent",
+   "pointer_global": "0x800a63a4",
+   "species_committed": "wall_worm"
+  }
+ ],
+ "per_level_model_manifests": {
+  "training": {
+   "9": "chars\\badbug",
+   "11": "bits\\seed"
+  },
+  "stage01_anthill": {
+   "9": "chars\\badbug",
+   "10": "chars\\mos",
+   "11": "bits\\seed",
+   "13": "chars\\wasp",
+   "14": "chars2\\dot",
+   "39": "chars3\\protect",
+   "40": "chars4\\badworm"
+  },
+  "stage02_tunnels": {
+   "9": "chars\\badbug",
+   "11": "bits\\seed",
+   "12": "chars\\grub",
+   "15": "chars2\\ggrassh",
+   "35": "chars3\\flikharv",
+   "40": "chars4\\badworm",
+   "41": "chars4\\badcent"
+  },
+  "stage03_council_chamber": {
+   "10": "chars\\mos",
+   "11": "bits\\seed",
+   "16": "chars2\\thumper"
+  },
+  "stage04_cliffside_canyon": {
+   "11": "bits\\seed",
+   "34": "chars3\\dragfly",
+   "37": "chars3\\weevil"
+  },
+  "stage05_riverbed_run": {
+   "6": "chars\\fly",
+   "10": "chars\\mos",
+   "11": "bits\\seed",
+   "13": "chars\\wasp",
+   "17": "chars2\\hspider",
+   "35": "chars3\\flikharv",
+   "37": "chars3\\weevil",
+   "39": "chars3\\protect",
+   "40": "chars4\\badworm",
+   "41": "chars4\\badcent"
+  },
+  "stage06_birdnest": {
+   "11": "bits\\seed",
+   "30": "chars3\\bbird",
+   "34": "chars3\\dragfly",
+   "37": "chars3\\weevil"
+  },
+  "stage07_city_entrance": {
+   "3": "chars\\fran",
+   "5": "chars\\slim",
+   "6": "chars\\fly",
+   "7": "chars\\heim",
+   "11": "bits\\seed",
+   "17": "chars2\\hspider",
+   "18": "chars2\\taxibug"
+  },
+  "stage08_city_square": {
+   "1": "chars\\gypsy",
+   "2": "chars\\manny",
+   "4": "chars\\rosie",
+   "6": "chars\\fly",
+   "8": "chars\\dim",
+   "11": "bits\\seed",
+   "17": "chars2\\hspider",
+   "19": "chars2\\roach",
+   "20": "chars2\\tuckroll"
+  },
+  "stage09_bug_bar": {},
+  "stage10_clover_forest": {
+   "7": "chars\\heim",
+   "9": "chars\\badbug",
+   "10": "chars\\mos",
+   "11": "bits\\seed",
+   "13": "chars\\wasp",
+   "25": "chars2\\gypsy",
+   "26": "chars2\\manny2",
+   "27": "chars2\\franslim",
+   "39": "chars3\\protect",
+   "40": "chars4\\badworm"
+  },
+  "stage11_the_tree": {
+   "9": "chars\\badbug",
+   "10": "chars\\mos",
+   "11": "bits\\seed",
+   "13": "chars\\wasp",
+   "32": "chars3\\bluescot"
+  },
+  "stage12_battle_arena": {
+   "9": "chars\\badbug",
+   "11": "bits\\seed",
+   "29": "chars3\\molt"
+  },
+  "stage13_anthill_two": {
+   "9": "chars\\badbug",
+   "10": "chars\\mos",
+   "11": "bits\\seed",
+   "13": "chars\\wasp",
+   "15": "chars2\\ggrassh",
+   "22": "chars2\\hopper",
+   "23": "chars2\\tuck",
+   "24": "chars2\\roll",
+   "28": "chars3\\atta"
+  },
+  "stage14_riverbed_flight": {
+   "13": "chars\\wasp",
+   "21": "chars2\\attaflik",
+   "22": "chars2\\hopper",
+   "34": "chars3\\dragfly",
+   "37": "chars3\\weevil",
+   "40": "chars4\\badworm"
+  },
+  "stage15_canyon_showdown": {
+   "11": "bits\\seed",
+   "15": "chars2\\ggrassh",
+   "22": "chars2\\hopper",
+   "30": "chars3\\bbird"
+  }
+ },
+ "consistency_problems": []
+}

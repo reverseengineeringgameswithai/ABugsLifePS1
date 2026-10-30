@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "row": "A05_abdomen_bounce",
+  "date": "2026-08-03",
+  "classification": "substantiated_partial_bounded_exhaustion",
+  "move_on": true,
+  "movie_required": false,
+  "cold_boot_required": false,
+  "media": {
+    "serial": "SCUS-94288",
+    "executable": "REBUILD/files/SCUS_942.88",
+    "executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "bin_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566"
+  },
+  "retained_capsule_checked_first": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/bonus-objectives-v2-20260719/Bonus_Level_01",
+    "manifest_sha256": "8e83d3171119f6786052e246b1f2b7d4033d61ad02a537ec56bb8afc08e35413",
+    "complete": true,
+    "truncated": false,
+    "error": "",
+    "movie_sha256": "37083359bf7319acd323f3980fa96a6b0a676909209e2adf7a7986fe738f10cc",
+    "start_state_sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+    "records": 3654,
+    "domain_hash_checks": 10962,
+    "domain_hash_mismatches": 0,
+    "passive_flow_instructions": 145850969,
+    "execution_mode_boundary": "Source movie is CachedInterpreter and remains poll/offline-only. It was not replayed with CPU instrumentation."
+  },
+  "input_and_player_state": {
+    "container": "FUNC_80048138, 0x80048B40..0x80048E9C",
+    "cross_mask": "0x4000 at 0x80048B68",
+    "correction": "The Phase-2 <=20 movie-frame double-tap recognizer is an offline classifier, not a native temporal counter.",
+    "low_entry": "air_state 2 and floorY-Y <8193 selects state 3 at 0x80048D64",
+    "high_entry": "air_state 2 and floorY-Y >=8193 writes phase 10, state 4, event 27, and animation selector 2 or 7 at 0x80048C98..0x80048CCC",
+    "phase_law": "phase >1 decrements by 1 and forces vy=0; phase==1 writes vy=4096 and remains 1; negative recovery adds 512 per gameplay update",
+    "ground_impact": "state4 plus grounded writes phase=-6144, action timer=12, vy=0, state=1, radial effects, contact object 91, and sound 16 at 0x80048DD8..0x80048E98",
+    "animation": "high entry selector 2/7; phase-0 rebound selector 3; action timer 12 overrides selector 28 at 0x80056848..0x80056860"
+  },
+  "actor_contact": {
+    "container": "FUNC_8004ABF4",
+    "geometry": "outer sphere uses actor collision-center offsets against player Y-7360 with radius actor+0x6A+250, followed by a model-space ellipsoid",
+    "rejected_actor_flag_mask": "0x20, 0x40, 0x80, or 0x800 route away from the abdomen-bounce slice",
+    "phase_gate": "unsigned player+0x84 <2 at 0x8004B2AC..0x8004B2B8",
+    "reaction": "event -4; actor+0x6C=-20; actor+0x54=4096; actor+0x58=4096; call 0x80057F44 eight-object drop burst",
+    "damage": "No actor+0x6E HP store exists in the qualifying slice. Natural immediate contact windows retain the struck spider HP while reaction+0x6C advances -20,-19,-18.",
+    "phase_zero": "writes player vy=-1536, state=5, grounded=0, animation selector=3; does not increment the Bonus-1 streak",
+    "phase_one": "does not write an upward rebound velocity in the contact resolver; reaches the Bonus-1 streak branch"
+  },
+  "natural_contact_timeline": [
+    {"movie_frame": 128, "state": 4, "phase": 1, "vy": 4096, "streak_after": 1},
+    {"movie_frame": 352, "state": 4, "phase": 1, "vy": 4096, "streak_after": 2},
+    {"movie_frame": 590, "state": 4, "phase": 1, "vy": 4096, "streak_after": 3},
+    {"movie_frame": 742, "state": 4, "phase": 1, "vy": 4096, "streak_after": 4},
+    {"movie_frame": 1072, "state": 4, "phase": 1, "vy": 4096, "streak_after": 0, "bonus_flag": "0x02", "transition_latch": 6}
+  ],
+  "streak_rule": {
+    "counter": "0x8008223C",
+    "qualifier_correction": "0x8004B31C reads player+0x84 via s6=player+0x7A; it is not an independent interaction-record field.",
+    "threshold": 5,
+    "progress_commands": "old_count+114, producing 114..118",
+    "miss_reset": false,
+    "uniqueness_list": false,
+    "direct_clears": ["successful fifth contact at 0x8004B3D0", "shared transition/reset at 0x8004A6C4", "shared transition/reset at 0x8004A854"],
+    "claim_boundary": "Direct-writer census plus natural frame-boundary evidence; not a repository-wide pointer-alias absence proof."
+  },
+  "transient_c_evidence": {
+    "static_reducer_source_sha256": "4143e85f34f2d123f5bba51567884e4f6f77c66bdd398caa99892973f95de3e4",
+    "static_reducer_binary_sha256": "ba292e2d1cffebef008e7ce88617ae50c23542b135073ec0b48ac9c63a4f4107",
+    "static_reducer_output_sha256": "35f0270d3ca822d28247610ac3641764fc5356a68730cf08b3c82e5214ce0348",
+    "capsule_reducer_source_sha256": "3db3d916eadf8d63f018d91d0ac226c70f9db71efc1e5770e054a46e15504b8d",
+    "capsule_reducer_binary_sha256": "ffef9beabea968287cd3a6c1f79ba95f9c9664e118795c55372796668ce8a9b2",
+    "capsule_reducer_output_sha256": "c2e632ceb13129fe51fb7ffa4f0b877ad5e3d5419a4cfe74c3a2d2f0dfd0a527",
+    "existing_d10_capsule_tool_source_sha256": "ca65031a709c70a247dd5b99cfdbbd964e608af3f94c1ed593c9983e89f5fc85",
+    "existing_d10_capsule_output_sha256": "cab1c5fa93598705e2dcc956d95ef463fda0e8e489f3f85ad7746fbc9d3a1a8b"
+  },
+  "closure_metrics": {
+    "original_oracle": "advanced",
+    "complete_frontier": "advanced",
+    "typed_state": "met",
+    "lifecycle": "advanced",
+    "original_interfaces": "advanced",
+    "campaign_breadth": "deferred_low_return",
+    "cross_system": "advanced",
+    "source_closure": "met",
+    "durable_evidence": "advanced"
+  },
+  "residuals": [
+    "non-Training actor and flag applicability census",
+    "every slope and floor-contact presentation variant",
+    "pause, save/load, death, and transition interruption breadth",
+    "pointer-alias-complete streak writer proof",
+    "campaign-wide animation and audio timing"
+  ],
+  "decision": "A05 remains partial under the strict all-context Phase-4 definition, but the row-specific high-yield frontier is bounded-exhausted. Move on; request an Interpreter movie only if a named residual is promoted."
+}

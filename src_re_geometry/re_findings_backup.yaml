@@ -1,0 +1,430 @@
+findings:
+  - id: "f1"
+    address: 0x800771bc
+    address_end: 0x800771c8
+    name: "g30_sky_clear_rgb_cache"
+    type: "field"
+    confidence: "CONFIRMED"
+    notes: "CONFIRMED sky clear recolor lever. Writes to 0x800771bc/c0/c4 set R/G/B words copied to DRAWENV+0x19..1b, then GP0 0x02 fill command 0x02BBGGRR. Red patch -> VRAM 0x001f; green patch -> 0x03e0 after double-buffer flip. This is a background fill, not a polygon."
+    created_at: 1781652808
+    updated_at: 1781652948
+    game_serial: "SCUS-94288"
+    source_save_state: "SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "sky"
+      - "drawenv"
+      - "gp0-fill"
+    evidence_refs:
+      - kind: "memory_scan"
+        summary: "VRAM top sky rows read as 0x6d66; cache words 0x800771bc/c0/c4 were 0x31/0x59/0xdb."
+        path: ""
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+      - kind: "screenshot"
+        summary: "Red cache patch produced red sky on screen."
+        path: "/tmp/abl_sky_src_red_after.png"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+      - kind: "screenshot"
+        summary: "Green cache patch produced green sky on screen."
+        path: "/tmp/abl_sky_src_green_after.png"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+      - kind: "manual_note"
+        summary: "See §19.1 for render path and recolor confirmation."
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f2"
+    address: 0x800c1688
+    address_end: 0x00000000
+    name: "g30_sky_clear_levelraw_color_table"
+    type: "table"
+    confidence: "CONFIRMED"
+    notes: "Authoritative on-disk source for the openground sky clear RGB is the LEVEL.RAW-derived color table at 0x800c1688, entry 0 = 31 59 db. Offline chunk map places it in LEVEL01/LEVEL.RAW chunk 32 (same broad chunk as collision data, separate consumer)."
+    created_at: 1781652808
+    updated_at: 1781652948
+    game_serial: "SCUS-94288"
+    source_save_state: "SCUS-94288_2.sav"
+    tags:
+      - "g30"
+      - "sky"
+      - "levelraw"
+      - "chunk32"
+    evidence_refs:
+      - kind: "access_log"
+        summary: "Pre-load trace: 0x8003b2b8/0x8003b2d8/0x8003b2f8 copy table entry bytes 31/59/db from s3=0x800c1688 into 0x800771bc/c0/c4."
+        path: ""
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+      - kind: "manual_note"
+        summary: "parse_level_raw_chunks.py maps 0x800c1688 to LEVEL01/LEVEL.RAW chunk 32, file_coff=0x492cf, comp=0x2c80f, dec=0x39d90."
+        path: ""
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+      - kind: "manual_note"
+        summary: "See §19.2 for disk provenance."
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f3"
+    address: 0x800639cc
+    address_end: 0x00000000
+    name: "g30_sky_clear_drawenv_fill_builder"
+    type: "function"
+    confidence: "CONFIRMED"
+    notes: "Builds the GP0 0x02 background fill command from active DRAWENV RGB bytes. The submitted transient command copies at 0x801cc3c8/0x801e1384 are rebuilt each frame, so patch the upstream cache/table instead."
+    created_at: 1781652808
+    updated_at: 1781652948
+    game_serial: "SCUS-94288"
+    source_save_state: "SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "sky"
+      - "drawenv"
+      - "gp0-fill"
+    evidence_refs:
+      - kind: "access_log"
+        summary: "execTrace at 0x800639cc: s0=0x801cc390, a1=0x801cc3c8, v0=0x02db5931 from DRAWENV RGB bytes 31 59 db."
+        path: ""
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+      - kind: "manual_note"
+        summary: "See §19.1 for builder details."
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f4"
+    address: 0x800172dc
+    address_end: 0x00000000
+    name: "g30_terrain_renderer_fcn800172dc"
+    type: "function"
+    confidence: "CONFIRMED"
+    notes: "[CONTESTED 2026-06-20, GAP-0008/0010] GENERAL mesh renderer (terrain AND actors incl. Flik, per B7) -- NOT 'the visible terrain renderer'. Builds GP0 0x3C shaded-textured quads (0x800173cc lui 0x3c00); rtps/rtpt 0x80017464/74bc/784c; reads source verts from buffer a1 (0x8012c/d). The 7-scene neutralize found this contributes ~0 visible px (occluded); the VISIBLE walkable floor = f13 (LEVEL.DAT via fcn.80010000). Renderer + GP0 mechanics remain CONFIRMED; the 'visible terrain' role is SUPERSEDED (visible floor = f13). GAP-0011 RESOLVED (M7 2026-06-21): the spawn-floor trace re-confirmed fcn.800172dc draws 0 calls at the spawn while fcn.80010000/DAT renders the visible floor, placing chunk-34/35 in the occluded/collision-adjacent layer (Experiment - Spawn-floor render source). Minor residual: the historical X-shear micro-observation is not separately re-explained. See plan section 14."
+    created_at: 1781653000
+    updated_at: 1782079518
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "terrain"
+      - "renderer"
+    evidence_refs:
+      - kind: "manual_note"
+        summary: "fcn.800172dc draws visible terrain incl walkable ground"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f5"
+    address: 0x8012c1d0
+    address_end: 0x8012e784
+    name: "g30_terrain_vertex_buffer"
+    type: "asset"
+    confidence: "SUPERSEDED"
+    notes: "[SUPERSEDED 2026-06-20, GAP-0008] The 'editable visual-floor lever' claim is superseded: this is the SHARED general-mesh vertex buffer (terrain AND Flik's FLICK.ALL model, per B7), and fcn.800172dc's output is ~0 visible px (occluded) in the 7-scene neutralize. The VISIBLE floor lever = f13 (LEVEL.DAT vert-Y via fcn.80010000). Buffer layout remains CONFIRMED: GP0 0x3C packets, 0x30 stride; 4 verts/quad xy at +0x4/0xc/0x14/0x1c (low16 X, high16 Y), z +0x8/0x10/0x18/0x20; gray colors +0x00/0x24/0x28/0x2c. Residual: X-shear/strip observations not yet reconciled with occlusion (GAP-0011/0038). See plan section 14."
+    created_at: 1781653000
+    updated_at: 1781653000
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "terrain"
+      - "buffer"
+    evidence_refs:
+      - kind: "manual_note"
+        summary: "editable visual floor source buffer"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f6"
+    address: 0x800a7e48
+    address_end: 0x00000000
+    name: "g30_collision_sector_table"
+    type: "table"
+    confidence: "CONFIRMED"
+    notes: "Collision sector table (G29). 223 recs (count [gp+0x508]), 0x30 stride; origin x/y/z +0/4/8, block ptr +0x10. Lever: subtract origin Y (+4) lowers floor; Flik falls ~1:1 when un-grounded. Independent of visual buffer. See plan section 18; G29."
+    created_at: 1781653000
+    updated_at: 1781653000
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "collision"
+      - "g29"
+    evidence_refs:
+      - kind: "manual_note"
+        summary: "collision floor lever, separate from visual"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f7"
+    address: 0x80060724
+    address_end: 0x00000000
+    name: "g30_libgte_leaf_emitter_layer"
+    type: "function"
+    confidence: "CONFIRMED"
+    notes: "Shared libgte RotTransPers leaf (reads src verts a0-a3, writes SXY to [sp+0x10..]). Callers 0x800247b8 (decor/fence 0x801a6xxx), 0x8002574c/0x80025bd8 (props from LEVEL.DAT 0x80160xxx), 0x80022c4c (Flik shadow). This 0x80022-0x80025 layer was missed by prior G-work (only searched 0x8001xxxx inline rtps). See plan section 12-14."
+    created_at: 1781653000
+    updated_at: 1781653000
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "renderer"
+      - "libgte"
+    evidence_refs:
+      - kind: "manual_note"
+        summary: "the missed render layer"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f8"
+    address: 0x800172dc
+    address_end: 0x00000000
+    name: "g30_visual_vs_collision_method_note"
+    type: "note"
+    confidence: "CONFIRMED"
+    notes: "visual != collision (the headline conclusion stands as the project's position). CAVEAT 2026-06-20 (GAP-0008/0038): the 'consistency proven' demo used visual=0x8012c/d, now known to be the OCCLUDED general-mesh buffer; the visible-floor lever is f13 (LEVEL.DAT). RE-VALIDATED (M7 2026-06-21, commit 42239cb): visual!=collision now meets the >=2-independent-method bar -- source separation at the spawn (Experiment - Spawn-floor render source) PLUS the G29 Pass-3 pristine-vs-patched differential (both arms), in which the visual DAT edit leaves the collision sector-table SHA-256 6b7d858f..9793, resolver/plane reads, player-Y writer path, and Flik's footing byte-identical (Experiment - G29 Pass-3 differential). Matched lower of visual+collision(0x800a7e48) lands Flik coincident on lowered floor; uniform lower is visually invisible (camera follows Y + uniform texture). METHOD: NEUTRALIZE is blind to terrain (camera-lock) -> use MOVE-test. Native res 512x224. See plan section 15-16."
+    created_at: 1781653000
+    updated_at: 1782079518
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "method"
+    evidence_refs:
+      - kind: "manual_note"
+        summary: "method correction + R6 consistency"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f9"
+    address: 0x80017464
+    address_end: 0x00000000
+    name: "g30_localized_terrain_edit_by_sxy"
+    type: "note"
+    confidence: "CONFIRMED"
+    notes: "[CONTESTED TARGET 2026-06-20, GAP-0008] The SXY-capture METHOD is valid, but it edits fcn.800172dc's buffer (0x8012c/d) = the OCCLUDED general-mesh buffer, not the visible floor (= f13, LEVEL.DAT). Localized terrain editing: EXEC at fcn.800172dc rtpt 0x80017464, capture per-quad SXY + a1, edit quads in a screen box (diff-confirmed). LIMIT: near ground clips off bottom (y>200, 512x224) so cannot screen-select; selectable mid quads small -> Y edits subtle. Dramatic localized matched pit is rendering-limited. See plan section 16."
+    created_at: 1781653000
+    updated_at: 1781653000
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "method"
+      - "r6"
+    evidence_refs:
+      - kind: "manual_note"
+        summary: "localized edit works; pit is rendering-limited"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f10"
+    address: 0x8012c1d0
+    address_end: 0x00000000
+    name: "g30_terrain_ondisk_chunk35"
+    type: "asset"
+    confidence: "SUPERSEDED"
+    notes: "[SUPERSEDED 2026-06-20, GAP-0008] 'Visible' is wrong: chunk 35 feeds the OCCLUDED general-mesh buffer 0x8012c1d0 (fcn.800172dc, ~0 visible px in the 7-scene neutralize), NOT the visible floor (= LEVEL.DAT, f13). The chunk-35 -> 0x8012c1d0 decompress mapping itself remains CONFIRMED: LEVEL01/LEVEL.RAW chunk 35 (file off 0x9908a, comp 0x1b24 -> dec 0x34f4), decompressed by fcn.8001a1dc (accessLog PCs 0x8001a5e8/5f0/678 write 0x8012c1d0). Load = CD LBA 1823-4149 (transferLog). Tool tools/parse_level_raw_chunks.py. Residual reconciliation: GAP-0011/0038. See plan section 17."
+    created_at: 1781653000
+    updated_at: 1781653000
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_2.sav"
+    tags:
+      - "g30"
+      - "terrain"
+      - "levelraw"
+      - "chunk35"
+    evidence_refs:
+      - kind: "access_log"
+        summary: "decompressor fcn.8001a1dc writes 0x8012c1d0"
+        path: ""
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+      - kind: "manual_note"
+        summary: "chunk 35 mapping"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f11"
+    address: 0x800d10e8
+    address_end: 0x00000000
+    name: "g30_collision_ondisk_chunk32"
+    type: "asset"
+    confidence: "CONFIRMED"
+    notes: "Collision plane geometry (block 0x800c1690, planes 0x800D0xxx) = LEVEL01/LEVEL.RAW chunk 32 (file off 0x492cf, comp 0x2c80f -> dec 0x39d90), decompressor output (accessLog 0x8001a654/678). Sector table 0x800a7e48 built post-decompress by converter 0x80030fac/0x80030fd8. Chunk 32 also holds the sky color table (see f2). See plan section 18."
+    created_at: 1781653000
+    updated_at: 1781653000
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_2.sav"
+    tags:
+      - "g30"
+      - "collision"
+      - "levelraw"
+      - "chunk32"
+    evidence_refs:
+      - kind: "access_log"
+        summary: "decompressor writes plane 0x800D10E8"
+        path: ""
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+      - kind: "manual_note"
+        summary: "chunk 32 mapping"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f12"
+    address: 0x800aa128
+    address_end: 0x00000000
+    name: "g30_collision_lever_sector186"
+    type: "field"
+    confidence: "CONFIRMED"
+    notes: "openground player sector = sec186, origin (20608,0,-40416) at 0x800a7e48+186*0x30 = 0x800aa128; Y lever +4. Lower only it -3000 + jump -> Flik fell -512 (partial; resolver clamps neighbors; full localized lower needs sec186+adjacent). All 223 -> ~-2656 (1:1). readArray reads all 223 in one call. See plan section 18.2."
+    created_at: 1781653000
+    updated_at: 1781653000
+    game_serial: "SCUS-94288"
+    source_save_state: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openground.sav"
+    tags:
+      - "g30"
+      - "collision"
+      - "lever"
+    evidence_refs:
+      - kind: "manual_note"
+        summary: "localized collision lever = sec186"
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: ""
+  - id: "f13"
+    address: 0x80019934
+    address_end: 0x00000000
+    name: "visible ground = fcn.80010000 DAT verts via 0x80019xxx"
+    type: "function"
+    confidence: "CONFIRMED"
+    notes: "AUTHORITATIVE + SOLE CONFIRMED visible-floor source (per Confirmed Knowledge + Remediation 3a; supersedes f4-role/f5/f10 which were a function-address-swap confound 0x80010000<->0x800172dc). fcn.80010000 draws DAT-backed objects (a0=0x80177b7c/0x80178590 in LEVEL.DAT) via 0x80019xxx sub-emitter; s7=scratchpad work; the SAME fcn.80010000/Candidate-A system G28 proved editable. Vert=12B, 6xint16 [c0,c1,Z,0pad,X,Y]; EDIT LEVER Y=int16 @vert+0xa (flat height, span 68 vs X 63480). Lowering Y changes the visible floor (38090px); index->screen: obj1[0:24]=foreground under Flik. Gouraud 0x3C tiles -> Y-edit reshades (low=yellow,high=purple), geometric drop subtle (foreshorten/camera), big edit garbages (frustum); clean range ~+-0x20..0x60. Matched edit levers: visual=a0 vert-Y, collision=sector 0x800a7e48. RE-VALIDATED (M7 2026-06-21, commit 42239cb): the prior 'pending' caveat is cleared. (1) Spawn-floor pick+trace (GAP-0011, Experiment - Spawn-floor render source) confirmed the visible spawn-area floor under Flik (file Z 15403) is written by fcn.80010000 with 20/20 emitter a0 in DAT (file 0x15dec..0x2f59c, incl. Candidate A 0x188cc) and fcn.800172dc=0 calls. (2) G29 Pass-3 pristine-vs-patched counterfactual (both arms; Experiment - G29 Pass-3 differential) showed the visual edit perturbs only the DAT halfword while the collision sector table 0x800a7e48 SHA-256 6b7d858f..9793 is byte-identical. This is the SINGLE CONFIRMED visible-floor answer for the store (GAP-0008)."
+    created_at: 1781676523
+    updated_at: 1782079518
+    game_serial: "SCUS-94288"
+    source_save_state: ""
+    tags:
+      - "visible-floor"
+      - "dat"
+      - "fcn80010000"
+      - "authoritative"
+      - "g28"
+    evidence_refs:
+      - kind: "access_log"
+        summary: "Live read/edit lever: lowering int16 Y @vert+0xa on fcn.80010000 DAT verts moved the visible floor (~38090 px diff)."
+        path: ""
+        hash: ""
+        frame: 0
+        pc: 0x80019934
+        note: ""
+      - kind: "screenshot"
+        summary: "G28 Candidate A operator disc build (DAT 0x18992 v16.y +1024) visibly deformed the projected floor (caves inward, angle-dependent); collision did not follow."
+        path: ""
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: "Experiment - G28 Candidate A floor Y"
+      - kind: "manual_note"
+        summary: "7-scene neutralize: fcn.800172dc/chunk-35 = 0 visible px (occluded); LEVEL.DAT/fcn.80010000 draws the visible floor. Supersedes f4/f5/f10."
+        path: "src_re_geometry/geometry_g30_terrain_render_source_plan.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: "Experiment - Visible floor renderer neutralize"
+      - kind: "manual_note"
+        summary: "Spawn-area floor pick+write-watch: 20/20 fcn.80010000 emitter a0 in DAT (file 0x15dec..0x2f59c incl. Candidate A 0x188cc); fcn.800172dc=0 calls. Replay tools/trace_spawn_floor.py."
+        path: "ObsidianVault/Experiments/Experiment - Spawn-floor render source.md"
+        hash: ""
+        frame: 0
+        pc: 0x80010000
+        note: "Experiment - Spawn-floor render source (GAP-0011, M7 2026-06-21)"
+      - kind: "manual_note"
+        summary: "G29 Pass-3 counterfactual (both arms): visual DAT edit (0x8017918a 5001->6025) leaves collision sector table 0x800a7e48 SHA-256 6b7d858f..9793 byte-identical. Replay tools/trace_g29_pass3_arm_b.py."
+        path: "ObsidianVault/Experiments/Experiment - G29 Pass-3 differential.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: "Experiment - G29 Pass-3 differential (GAP-0038, M7 2026-06-21)"
+      - kind: "manual_note"
+        summary: "Candidate A (DAT 0x188cc) is the DAT-backed visual terrain payload that G28 deformed; same fcn.80010000 family as the spawn floor."
+        path: "ObsidianVault/Findings/Finding - Candidate A is DAT-backed visual terrain.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: "Finding - Candidate A is DAT-backed visual terrain"
+      - kind: "manual_note"
+        summary: "Headline: visible (DAT/fcn.80010000) != collision (chunk-32 sector table 0x800a7e48); meets the >=2-independent-method bar (source separation + Pass-3 counterfactual)."
+        path: "ObsidianVault/Findings/Finding - Visual is not collision.md"
+        hash: ""
+        frame: 0
+        pc: 0x00000000
+        note: "Finding - Visual is not collision"
+fixtures:
+  - id: "x1"
+    name: "g30_openground"
+    save_state_path: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openground.sav"
+    game_serial: "SCUS-94288"
+    description: "Flik on open flat fence-free walkable dirt; G30 working state + R6 spot"
+    frame: 0
+    expected_start_pc: 0x00000000
+    created_at: 1781653000
+    updated_at: 1781653000
+    tags:
+      - "g30"
+      - "terrain"
+      - "r6"
+  - id: "x2"
+    name: "g30_openfloor"
+    save_state_path: "~/.local/share/duckstation/savestates/SCUS-94288_g30_openfloor.sav"
+    game_serial: "SCUS-94288"
+    description: "Flik on big open unobstructed pebbled floor (different area, Z~217790); good visible-ground-edit view. WARNING: walking forward spawns an enemy+fence."
+    frame: 0
+    created_at: 1781676523
+    updated_at: 1781676523
+    tags:
+      - "g30"
+      - "floor"
+      - "openfloor"

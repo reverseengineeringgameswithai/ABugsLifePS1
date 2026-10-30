@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "row_id": "E11_dynamic_geometry",
+  "date": "2026-08-02",
+  "status": "partial",
+  "closure": "static owner and late-phase runtime bound; named Interpreter movie required",
+  "capsule_check": {
+    "root": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/v2",
+    "matching_e11_capsules": 0,
+    "decision": "offline C/ASM analysis first, then narrow isolated live attribution"
+  },
+  "inputs": {
+    "resident": {
+      "path": "REBUILD/files/SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+    },
+    "bug_bar_overlay": {
+      "path": "REBUILD/files/LEVEL04/LEVEL1.BIN",
+      "sha256": "816667f0ba7ae2b602cc39da7c0b3b4020d1a231651d5b90e6374c66c34f39e6",
+      "load_address": "0x800B39A0"
+    },
+    "state": {
+      "path": "level_09.sav",
+      "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487"
+    },
+    "retail_cue_sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5",
+    "retail_bin_sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+  },
+  "scene_identity": {
+    "player_facing_stage": 9,
+    "runtime_scene_id": 14,
+    "scene_id_address": "0x80082504",
+    "correct_overlay": "LEVEL04/LEVEL1.BIN",
+    "corrected_old_assumption": "LEVEL08 is not the scene-14 Bug Bar owner"
+  },
+  "static": {
+    "controller": {
+      "start": "0x800B3C70",
+      "size": 3764
+    },
+    "callsites": [
+      {"pc": "0x800B3C58", "target": "0x80029508", "role": "initialize pass2 object 9 transform"},
+      {"pc": "0x800B4550", "target": "0x80029508", "role": "per-tick pass2 object 9 XYZ"},
+      {"pc": "0x800B487C", "target": "0x800292DC", "role": "rotate pass2 objects 0..9"},
+      {"pc": "0x800B49E0", "target": "0x80029508", "role": "interpolate pass2 objects 0..5"},
+      {"pc": "0x800B4AE0", "target": "0x8004A700", "role": "proximity/contact player damage path"}
+    ],
+    "rotation_deltas_s16": [-100, 120, -90, 144, -110, 128, 32, 32, 32, 64],
+    "path_limits_s16": [92, 96, 112, 100, 104, 88],
+    "controller_targets_s32": [207872, 68864, -78848, -197376],
+    "pass2_transform_leaf": {
+      "address": "0x80029508",
+      "semantics": "validate idx; stamp authored attr; write XYZ to nested transform destination"
+    },
+    "actor_state_leaf": {
+      "address": "0x8004C10C",
+      "writes": ["actor+0x44=a1", "actor+0x4C=0x80077E28[a2]", "actor+0x40=program[0]<<16"]
+    },
+    "direct_shared_vertex_materializations": {
+      "address": "0x8012C1D0",
+      "count": 0,
+      "scope": "resident plus all real level overlays",
+      "limit": "does not rule out indirect/shared consumers"
+    }
+  },
+  "runtime": {
+    "execution_mode": "Interpreter",
+    "rate": "normal 60 Hz via debugger.resume plus poll",
+    "movie_used": false,
+    "boss": {
+      "slot": "0x80090748",
+      "actor": "0x8009FD80",
+      "callback": "0x8004A0F4",
+      "mover_program_pointer": "0x800777A4",
+      "anchor_hp": 0,
+      "phase_limit": "late-phase only"
+    },
+    "round_1": {
+      "frame_start": 145344,
+      "frame_end": 145646,
+      "frames": 302,
+      "controller_hits": 61,
+      "rotation_hits": 610,
+      "transform_hits": 427,
+      "six_path_transform_hits": 366,
+      "watched_global_writes": 1037,
+      "cadence": "one controller tick every five emulator frames",
+      "truncated": false
+    },
+    "register_round": {
+      "frame_start": 145646,
+      "frame_end": 145709,
+      "controller_hits": 12,
+      "rotation_hits": 120,
+      "transform_hits": 84,
+      "player_damage_hits": 0,
+      "sample_object_9_xyz": [2152, -88, 0],
+      "truncated": false
+    }
+  },
+  "limits": [
+    "visible pass2 index-to-arena-piece labels",
+    "early and mid-fight state transitions",
+    "player contact and damage timing",
+    "post-fight and reset lifecycle",
+    "dynamic barriers and platforms in other scenes"
+  ],
+  "required_fixture": {
+    "directory": "movies/Phase4/Interpreter",
+    "mode": "Interpreter",
+    "speed": "normal",
+    "start": "Thud alive at HP 50",
+    "coverage": ["rolling phase", "player/arena contact", "post-fight transition if practical"],
+    "cold_boot_required": false
+  },
+  "transient_evidence": [
+    {"path": "/tmp/abl-phase4-e11-20260802/e11_static_census.tsv", "sha256": "c5200a0bfad30a3e2a76a0f27277e0d9be81c5963b9094d83820795816a4702e"},
+    {"path": "/tmp/abl-phase4-e11-20260802/e11_decode_4c10c.txt", "sha256": "b90b7f8ceed5358b75463109a8d3c48e96da314c0739a7350c985c963a19502f"},
+    {"path": "/tmp/abl-phase4-e11-20260802/e11_runtime_60hz_round1.txt", "sha256": "fc2649e95690ee418c3db971f068b79d62561bfbd5eb8654c87e159a47841d68"},
+    {"path": "/tmp/abl-phase4-e11-20260802/e11_runtime_60hz_registers.txt", "sha256": "e8c4d406ec619a3d86d94ee9d31ee3e800fd73c8b226b01b8cce422b345ce655"}
+  ]
+}

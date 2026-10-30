@@ -1,0 +1,324 @@
+schema: abl-phase4-checkpoint-respawn/2
+row: C15_checkpoints
+owner: player_lifecycle
+campaign_state: active_partial
+
+pristine_frontier:
+  resident_executable:
+    path: REBUILD/files/SCUS_942.88
+    sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  regions:
+    bottomless_fall_transition: [0x800497F4, 0x80049874]
+    respawn_anchor_update: [0x80054C90, 0x80054EAC]
+    respawn_transition_state_handler: [0x8005B12C, 0x8005B440]
+  overlay_executable:
+    path: REBUILD/files/LEVEL03/LEVEL.BIN
+    sha256: fef7bd2a72c5c293b2f164ba1ca195f45c0843c5f19e52cbfdb48fd14fbc59a1
+    safe_anchor_selector: [0x800B3C54, 0x800B3D78]
+    file_offset: 0x2B4
+    slice_sha256: 1fdeb0da151050edbde73a082b5951ae4326ec133979ca5bae2f0198bd8cfbf9
+  authored_row_source:
+    artifact: analysis/phase4_respawn_row_provenance.json
+    sha256: 7de632b7c4cc4bcb88fc5f1d3a4a6d6341ef9915cc8df55e2a7c22903bd3cafd
+    declarative_scenario:
+      path: tools/scenarios/duckstation/pristine_c15_authored_row_provenance.yaml
+      sha256: 81dc60f669be9dfac82f34d9816401398e58d720de0a308a62d064db26a1da9f
+      assertions: 11
+    cold_boot_movie_sha256: 09daafa2f94a2252e805dea1096e82458bca6864863092b2269ffe57b6dcc502
+    transient_progression:
+      pristine_state: level01_end_of_stage.sav
+      pristine_state_sha256: 42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f
+      generated_card_sha256: 5ca4ee4e23d76fe4eb596d0fe7766c481dcac456557756734f28c903fa242d4c
+      generated_marker: BASCUS-94288LEV02:00
+      retained_bytes: false
+    current_binary_movie_repair:
+      removed_button: left
+      frames: [6307, 6316]
+      end_exclusive: true
+      edited_movie_semantic_sha256: 8ad070c7d00135e6f48956819a8b73669203691145139edb1db5f4c635389e47
+      derivative_saved: false
+    runtime_scene: 3
+    dat_path: REBUILD/files/LEVEL03/LEVEL.DAT
+    dat_sha256: bda28dc7287ebc3648998425b3c09f19d6470a85c9fcd439cca5ad8e391c0f2b
+    dat_base: 0x8015E22C
+    type_01_record: {file_offset: 0x458, runtime_pointer: 0x8015E684, count: 18, size: 220, sha256: 6adbdd60b3935d76caf6b929cb108fd4b338d39c1888a2ad4abe92d21416fee3}
+    selected_row_6: {file_offset: 0x4A4, runtime_pointer: 0x8015E6D0, raw_xyz: [15678, 0, 15438], sha256: 88bb66f2ac5168493c220dcdf576a7adff6664b315802d8ed70c93c3c4ac0f49}
+    parser: {range: [0x8001CDC0, 0x8001D3CC], sha256: 7ffcc86cb4c6f0af5dc27d591a07ccbe7315a427a66e6f2a715fee7c9b553981, type_pointer_store: 0x8001CEDC}
+    boundary: exact authored source, causal row-6 consumer and status-mask-0x0010 denial are confirmed for the scene-3 frame-156 boundary; the source/general policy of that mask and other row-selecting variants remain open
+  pit_transition_writers:
+    scene_10_pit:
+      path: REBUILD/files/LEVEL10/LEVEL.BIN
+      file_sha256: 3bd80ee77b5ec1e12b458d330450c3963177e15470bc249f7a12fc071d8db928
+      runtime_range: [0x800B3ADC, 0x800B3C1C]
+      function_bounds: [0x800B3ADC, 0x800B3C18]
+      file_offset: 0x13C
+      slice_sha256: 97e72e5e4bf8c1029cabc98cfcef43d5077666edeb39617d012769f01285c4b8
+      bounded_role: status-0x0010-gated nearest-row selector; X/Z are scaled by 32, Y is ground-query-derived, and heading is preserved
+      decisive_stores: [0x800B3BAC, 0x800B3BBC, 0x800B3BC8, 0x800B3BDC]
+    scene_4_pit:
+      path: REBUILD/files/LEVEL04/LEVEL.BIN
+      file_sha256: a346b8e6a6be4f2d27f7f73cd6dba8b1a96bd079c209d844ef140e2792ffd555
+      runtime_range: [0x800B3C5C, 0x800B3CD8]
+      function_bounds: [0x800B3C5C, 0x800B3CD4]
+      file_offset: 0x2BC
+      slice_sha256: 8494bef9a426a6b2ceea0bb57a634c5520a12abb89c493ce4b88ab3d992764ba
+      bounded_role: status-0x0010-gated fixed X/Z/heading selector with ground-query-derived Y
+      decisive_stores: [0x800B3C94, 0x800B3C9C, 0x800B3CA8, 0x800B3CB0, 0x800B3CC4]
+  direct_writer_catalog:
+    artifact: analysis/phase4_respawn_writer_catalog.json
+    sha256: 647b1c23d75b35bf80424cb5c98b618d6afc448a19e629b5730fcbacc3ba6d80
+    scan_scope: all 11 centrally hash-pinned staged LEVEL.BIN inputs
+    direct_writer_files: [LEVEL03/LEVEL.BIN, LEVEL04/LEVEL.BIN, LEVEL06/LEVEL.BIN,
+                          LEVEL08/LEVEL.BIN, LEVEL10/LEVEL.BIN]
+    direct_write_count: 21
+    newly_bounded_fixed_initializer_functions:
+      - path: REBUILD/files/LEVEL06/LEVEL.BIN
+        runtime_range: [0x800B3AEC, 0x800B3B94]
+        slice_sha256: 33b21c83ad52f8ef13786de5ff7d48ed615fcae8618d7c8833b64c6b481656be
+        role: fixed safe XYZ/heading initialization; scene-6 runtime activation is live and causal
+      - path: REBUILD/files/LEVEL08/LEVEL.BIN
+        runtime_range: [0x800B3AE8, 0x800B3B54]
+        slice_sha256: 4b2e8bccbcd42dcb056b267d66a35bb8b7dbfdf9171eccd1a914ff1f67b029c9
+        role: fixed safe and live XYZ/heading initialization; scene-8 runtime activation is live and causal
+  level06_runtime_activation:
+    artifact: analysis/phase4_e08_hazard_outcomes.json
+    sha256: 4c26dbd2bbc35366d66ca6b9338a9b52a3308ea647ec02e15a4cbd55f4a5d5db
+    fixture_movie: movies/Phase4/E10/hazard_ground_bird_LEVEL04.movie.json
+    fixture_movie_sha256: 7b985f296d7a74311488bb05d9715fa95e82dab17025d737098d53364792dd98
+    fixture_state_sha256: ff1c5fb1a2779ebf82caed0fd1777b8549685becdbf6d24072d3f78dec91caf1
+    boundary: {scene: 6, pre_frame: 487, activation_frame: 488, pre_lives: 4, post_lives: 3}
+    exact_call: {address: 0x8005B194, instruction_word: 0x0C02CEBB, target: 0x800B3AEC, return: 0x8005B19C}
+    coverage: {initializer_hits: 42, initializer_distinct_pcs: 42, truncated: false, cycle_neutral: true}
+    fixed_safe_tuple: {x: 35329, y: -85228, z: -154696, heading: 3063}
+    causal_controls: [suppress_x_store, suppress_y_store, suppress_z_store, heading_constant_plus_one]
+  level08_runtime_activation:
+    artifact: analysis/phase4_c16_flight_death.json
+    sha256: dfa705b97d0091bc171c3ee1193bf5f062ec75f48f4224a8f054347613ef00fd
+    fixture_state: level_14.sav
+    fixture_state_sha256: 6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50
+    boundary: {scene: 8, prepared_frame: 223793, passive_respawn_frame: 223973, exact_causal_frame: 224132}
+    exact_call: {address: 0x8005B1A4, instruction_word: 0x0C02CEBA, target: 0x800B3AE8, return: 0x8005B1AC}
+    coverage: {initializer_hits: 27, initializer_distinct_pcs: 27, response_only_hits: 0, truncated: false, cycle_neutral: true}
+    fixed_safe_and_live_tuple: {x: -157682, y: 5744, z: -12845, heading: 352}
+    direct_writes: 7
+    causal_controls: [x_source_plus_4096, heading_source_plus_one]
+  decisive_instructions:
+    anchor_xyz_stores: [0x80054E70, 0x80054E78, 0x80054E80]
+    respawn_anchor_xyz_loads: [0x8005B1DC, 0x8005B1E4, 0x8005B1EC]
+    respawn_live_xyz_stores: [0x8005B29C, 0x8005B2A4, 0x8005B2AC]
+    respawn_health_restore: 0x8005B30C
+    respawn_lives_decrement: 0x8005B348
+    selector_status_load: 0x800B3C64
+    selector_status_mask: 0x800B3C6C
+    selector_denial_branch: 0x800B3C70
+    selector_table_pointer_load: 0x800B3C7C
+    selector_anchor_xyz_stores: [0x800B3D24, 0x800B3D54, 0x800B3D40]
+    selector_ground_query: 0x800B3D44
+
+typed_state:
+  live_xyz: {address: 0x800A6500, width: 3xs32, residency: resident}
+  safe_anchor_xyz: {address: 0x800A6550, width: 3xs32, residency: resident}
+  safe_anchor_heading: {address: 0x800A6578, width: s16, residency: resident}
+  safe_position_status_bit:
+    {address: 0x800A6590, width: u16, mask: 0x0008, residency: resident,
+     boundary: "shared status word; C15 proves only the updater clear/set operation"}
+  respawn_selector_status_bit:
+    {address: 0x800A6590, width: u16, mask: 0x0010, residency: resident,
+     boundary: "overlay 0x800B3C54 gate; whole-word semantics remain shared"}
+  dat_type_01_pointer:
+    {address: 0x80096DA4, width: u32, residency: resident,
+     boundary: "shared DAT type-pointer table slot 1; scene 3 points to the hash-matched LEVEL03/LEVEL.DAT type-0x01 record, which the LEVEL03 respawn selector consumes as authored coordinate rows"}
+  true_health: {address: 0x800A6594, width: s16, residency: resident}
+  lives: {address: 0x800A65A0, width: u8, residency: resident}
+  setpiece_record_index:
+    address: 0x800823CC
+    width: u32
+    residency: resident
+    readers: [0x8004D69C, 0x8004D8CC]
+    writers: [0x8005456C, 0x8005B9D8]
+    boundary: separate from player+0x50 safe XYZ; zero-to-zero does not establish initialization or reset
+
+reproduced_controls:
+  fixture_movie: movies/Phase4/E10/hazard_pit_LEVEL02.movie.json
+  fixture_movie_sha256: 55c2bb7729ad4460b13a26d91b70f835cd370336dd58aecee05339467c4fc1b8
+  fixture_state: movies/Phase4/E10/hazard_pit_LEVEL02.movie.sav
+  fixture_state_sha256: 91a201a98f3e172e7cbb0d6ef7f8ea007d25097da45ba4a65ef3fa2f6d3bb58f
+  contact_fixture_movie: movies/Phase4/C16_gameover_continue.movie.json
+  contact_fixture_movie_sha256: 39fa618a0adccf39e4dc5cf23870456594c630a179af41e8ae732ff7e61b30bf
+  contact_fixture_state: movies/Phase4/C16_gameover_continue.movie.sav
+  contact_fixture_state_sha256: e9c7a3b6545dffc8bc5455317b43bc58a6a1a6012e393768b64d81e22e1c1592
+  falling_boundary:
+    movie_frame: 100
+    live_xyz: [508614, 39723, 516886]
+    safe_anchor_xyz: [507900, 31787, 503976]
+    true_health: 3
+    lives: 5
+  natural_post_reset:
+    movie_frame: 160
+    live_xyz: [501696, 30215, 494013]
+    safe_anchor_xyz: [501696, 30092, 494016]
+    true_health: 4
+    lives: 4
+  exact_reset_boundary:
+    pre_movie_frame: 156
+    pre_live_xyz: [508193, 153067, 517418]
+    pre_safe_anchor_xyz: [507900, 31787, 503976]
+    reset_movie_frame: 157
+    reset_live_xyz: [501696, 30092, 494016]
+    reset_safe_anchor_xyz: [501696, 30092, 494016]
+    true_health: 4
+    lives: 4
+  reset_owner_control:
+    overlay_function: [0x800B3C54, 0x800B3D78]
+    runtime_table_pointer: 0x8015E684
+    runtime_table_count: 18
+    selected_row: 6
+    selected_x_source: 0x8015E6D0
+    mutation: selected raw X +128 only
+    result: safe/live X +4096 at frame 157; Z and health/lives unchanged; Y ground-recomputed
+    trace_boundary: both branches retain identical owner/handler coverage and exact passive/control RAM, registers, cycle and frame
+  level03_selector_denial:
+    pre_movie_frame: 156
+    mutation: {address: 0x800A6590, before: 0x0014, after: 0x0004, cleared_mask: 0x0010, changed_bytes: [0x800A6590]}
+    post_movie_frame: 157
+    post_live_xyz: [507900, 31787, 503976]
+    post_safe_anchor_xyz: [507900, 31787, 503976]
+    true_health: 4
+    lives: 4
+    selector_coverage: {total_hits: 17, distinct_pcs: 17, safe_xyz_store_pcs_present: [], cycle_neutral: true}
+    resident_handler_coverage: {total_hits: 768, distinct_pcs: 138, matches_natural_control: true}
+    boundary: one exact LEVEL03 boundary proves status mask 0x0010 is necessary for authored-row selection; it does not identify who sets the mask or generalize denial policy
+  movement_neutral_negative:
+    edit: replace only recorded frames 57 through 87 with the source frame-zero neutral pad
+    final_true_health: 3
+    final_lives: 5
+    bottomless_fall_region_coverage_hits: 1790
+    respawn_handler_coverage_hits: 0
+    interpretation: the broader airborne/fall region is not itself a death discriminator
+  transient_anchor_controls:
+    anchor_movie_frame: 100
+    mutation: safe_anchor_x + 4096 only
+    writer_suppression: NOP only 0x80054E70, 0x80054E78 and 0x80054E80 in both same-code branches
+    post_reset_movie_frame: 160
+    result: both the ordinary pair and writer-suppressed pair converge to the natural post-reset state
+    boundary: the stable LEVEL02 pit postcondition has a transition/reset owner beyond the three continuous anchor stores
+  contact_death_safe_anchor_control:
+    derived_state_mutation: {address: 0x800A65A0, before: 0, after: 1, changed_bytes: [0x800A65A0]}
+    fatal_boundary:
+      source_movie_frame: 350
+      scene: 9
+      live_xyz: [-27693, -116008, -162370]
+      safe_anchor_xyz: [-23491, -112966, -142999]
+      true_health: -1
+      lives: 1
+      respawn_selector_status_bit_0x0010: false
+    mutation: {address: 0x800A6550, safe_anchor_x_delta: 4096, changed_bytes: [0x800A6551]}
+    control_post:
+      source_movie_frame: 355
+      live_xyz: [-23491, -112966, -142999]
+      safe_anchor_xyz: [-23491, -112966, -142999]
+      true_health: 4
+      lives: 0
+    mutated_post:
+      source_movie_frame: 355
+      live_xyz: [-19395, -112966, -142999]
+      safe_anchor_xyz: [-19395, -112966, -142999]
+      true_health: 4
+      lives: 0
+    exact_suffix_coverage:
+      continuous_safe_anchor_updater: {total_hits: 50, distinct_pcs: 25, pcs_sha256: d027b62985c1da9a7cfff71bbe722222cdf9bd0149dd62cd2535da918924fff7, anchor_store_pcs_present: []}
+      resident_respawn_handler: {total_hits: 974, distinct_pcs: 173, pcs_sha256: 951f06d598366cf1434b1b6fdd583e20d78e6def61b5c41c205bdea3b86fe2ab}
+      bug_bar_overlay_window: {total_hits: 670, distinct_pcs: 368, pcs_sha256: 48132d08868731793762c236e3b75b939fd8324525504492ffca774ea8162c91}
+      branch_coverage_identical: true
+    result: changing only fatal-state safe X by +4096 changes first-completed-respawn safe/live X by exactly +4096; Y/Z, health/lives, scene and bounded execution coverage remain unchanged
+  pit_stage_breadth:
+    - id: scene_10_pit
+      fixture_movie: movies/Phase4/E10/hazard_pit_LEVEL05.movie.json
+      fixture_movie_sha256: c049d9b8075f458f87301134a3cb9998137ae0a82fa5d8d5516dd05b69c99e24
+      fixture_state: movies/Phase4/E10/hazard_pit_LEVEL05.movie.sav
+      fixture_state_sha256: 959bf87da9deb91fbdb1633175aebefc9de329d5aa4d7ef9ce18df0f34bc6a06
+      boundary: {scene: 10, pre_frame: 144, reset_frame: 145, pre_health: 0, pre_lives: 1, post_health: 4, post_lives: 0}
+      pre_live_xyz: [-163392, 111928, 1157047]
+      post_live_and_safe_xyz: [-159648, 3628, 1182816]
+      runtime_overlay_window_sha256: 52cb5a20a3fc1bfb5821dfe0fba8c124d31292122881a9b732fc77a13b79ccf4
+      exact_transition_writer: {path: REBUILD/files/LEVEL10/LEVEL.BIN, function_bounds: [0x800B3ADC, 0x800B3C18], complete_access_events: 4, decisive_stores: [0x800B3BAC, 0x800B3BBC, 0x800B3BC8, 0x800B3BDC]}
+      writer_role: nearest authored row supplies scaled X/Z, a ground query supplies Y, and the previous safe heading is preserved
+      observer_boundary: access watches force the interpreter and attribute writes only; passive cycle-neutral branches remain behavioral/timing authority
+      causal_control: safe-X-only +4096 is replaced before resident consumption; the continuous safe-XYZ stores do not execute; control and mutation traces are identical
+    - id: scene_4_pit
+      fixture_movie: movies/Phase4/E10/hazard_pit_LEVEL07.movie.json
+      fixture_movie_sha256: a06c81943700db5bd4e570165d54b098e54c67644cb116fde826bf75db8fee99
+      fixture_state: movies/Phase4/E10/hazard_pit_LEVEL07.movie.sav
+      fixture_state_sha256: 9e2cee6d4847c758ad6bae1e396fd7de31830f5b55220e63719a50cc1806973a
+      boundary: {scene: 4, pre_frame: 204, reset_frame: 205, pre_health: 4, pre_lives: 6, post_health: 4, post_lives: 5}
+      pre_live_xyz: [749740, 121085, 124853]
+      post_live_and_safe_xyz: [727892, 9584, 165941]
+      runtime_overlay_window_sha256: b88d820a2ea5366c4cd7989de3b9e5b7abea049cc91c4009f6643115a926f219
+      exact_transition_writer: {path: REBUILD/files/LEVEL04/LEVEL.BIN, function_bounds: [0x800B3C5C, 0x800B3CD4], complete_access_events: 5, decisive_stores: [0x800B3C94, 0x800B3C9C, 0x800B3CA8, 0x800B3CB0, 0x800B3CC4]}
+      writer_role: fixed X/Z and heading 2048 are authored in code while a ground query supplies Y
+      observer_boundary: access watches force the interpreter and attribute writes only; passive cycle-neutral branches remain behavioral/timing authority
+      causal_control: safe-X-only +4096 is replaced before resident consumption; the continuous safe-XYZ stores do not execute; control and mutation traces are identical
+  declarative_scenario:
+    path: tools/scenarios/duckstation/pristine_checkpoint_respawn.yaml
+    assertions: 18
+  contact_declarative_scenario:
+    path: tools/scenarios/duckstation/pristine_contact_respawn_safe_anchor.yaml
+    assertions: 18
+  pit_breadth_declarative_scenarios:
+    - {path: tools/scenarios/duckstation/pristine_scene10_pit_respawn.yaml, assertions: 15}
+    - {path: tools/scenarios/duckstation/pristine_scene4_pit_respawn.yaml, assertions: 15}
+  shared_level06_declarative_scenario:
+    path: tools/scenarios/duckstation/pristine_scene6_level06_respawn_initializer.yaml
+    assertions: 16
+  shared_level08_declarative_scenario:
+    path: tools/scenarios/duckstation/pristine_scene8_level08_respawn_initializer.yaml
+    sha256: 4ab3a5ba150d9ad3d3b2d882a7ba6993058ae26777e51255bf8c7d2e4f78c6b7
+    assertions: 18
+  authored_row_declarative_scenario:
+    path: tools/scenarios/duckstation/pristine_c15_authored_row_provenance.yaml
+    sha256: 81dc60f669be9dfac82f34d9816401398e58d720de0a308a62d064db26a1da9f
+    assertions: 11
+  selector_denial_declarative_scenario:
+    path: tools/scenarios/duckstation/pristine_c15_authored_row_denial.yaml
+    sha256: 03d06a3187229cb948d51d9a838a7d3a81d4715472b551ce77aa76b8f0f0f582
+    assertions: 19
+
+ownership_boundaries:
+  owned_now:
+    - The player+0x50/+0x54/+0x58 fields are a gated continuously maintained safe anchor, not proof of a player-activated checkpoint.
+    - The resident respawn handler statically reads that anchor and writes live XYZ before restoring health and decrementing lives.
+    - Recorded LEVEL02 movement causally selects one pit reset; neutral input prevents the respawn handler while the broader airborne/fall region still executes.
+    - This LEVEL02 pit path converges after a frame-100 anchor mutation even when the three continuous anchor stores are suppressed.
+    - At frame 157, pristine overlay 0x800B3C54 selects nearest runtime row 6, writes safe XYZ, and resident 0x8005B134 immediately copies that tuple to live XYZ.
+    - A selected-row raw-X-only +128 branch causes safe/live X +4096 under identical one-frame input and identical owner/handler execution coverage.
+    - Clearing only player status mask 0x0010 at the exact frame-156 boundary denies every LEVEL03 safe-XYZ selector store while the coverage-identical resident handler consumes the prior safe anchor.
+    - On the Bug Bar contact-death path, a fatal-state safe-X-only +4096 branch causes first-completed-respawn safe/live X +4096 while Y/Z, health/lives, scene and exact updater/handler/overlay coverage remain unchanged.
+    - In live scenes 10 and 4, one-frame pit boundaries execute the resident safe-to-live chain, restore/decrement their typed health/lives state, and replace a safe-X-only +4096 perturbation without executing the continuous safe-XYZ stores.
+    - Scene 10 executes the exact pristine LEVEL10 0x800B3ADC function: four complete writes select scaled row X/Z and ground-derived Y while preserving heading.
+    - Scene 4 executes the exact pristine LEVEL04 0x800B3C5C function: five complete writes install fixed X/Z/heading and ground-derived Y.
+    - Scene 6 selects and executes the exact pristine LEVEL06 0x800B3AEC fixed initializer: four complete stores install safe XYZ/heading, and four same-entry instruction controls independently confirm those field effects.
+    - Scene 8 selects and executes the exact pristine LEVEL08 0x800B3AE8 fixed initializer: seven complete stores install safe XYZ/heading plus live XYZ, while X-source and heading-source controls independently confirm those field effects.
+    - A pristine from-boot scene-3 replay proves 0x80096DA4 is shared DAT type-table slot 1. The resident parser points it at LEVEL03/LEVEL.DAT offset 0x458, and selected row 6 is byte-identical at file offset 0x4A4/runtime 0x8015E6D0 before the retained causal row mutation changes safe/live X.
+  still_open:
+    - Source and general activation policy of status mask 0x0010, denial behavior in other row-selecting variants, plus reset scope.
+    - Indirect/additional overlay variants, actor, scripted and exceptional death classes plus remaining-stage, save/load and scene-transition breadth.
+  dependency_boundary: >-
+    C16 owns lives/game-over/Continue policy, E10 owns hazard-family policy,
+    E02 owns collision inputs, and E16 owns overlay/resource loading. Their
+    interfaces are dependencies and do not confer C15 completion.
+
+mod_contract:
+  owner: Preserve continuous updater, shared DAT type-table construction, residency-qualified LEVEL03/LEVEL10/LEVEL04/LEVEL06/LEVEL08 transition writers and resident consumer ordering; overlay addresses and authored DAT rows are residency/scene-qualified and must be hash-verified before any hook.
+  readers: Enumerate anchor readers in respawn, warp, collision and transition code; never infer ownership from a field nickname.
+  writers: Preserve the three gated continuous stores, LEVEL03 row-selector stores, LEVEL10 row/ground stores, LEVEL04 fixed/ground/heading stores, LEVEL06 fixed safe-tuple stores and LEVEL08 fixed safe/live-tuple stores; enumerate other overlay variants before adding a checkpoint mechanic.
+  valid_domains: XYZ values are signed s32; heading is signed storage with a native 12-bit angular domain; the updater clears/sets shared-status bit 0x0008 and the reproduced overlay selector gates on bit 0x0010, but this campaign does not assign whole-word semantics.
+  initialization: Initialize live and anchor state from a verified scene owner before any respawn consumer runs.
+  reset: Preserve resident safe-anchor consumption on the reproduced Bug Bar contact death, the scene-3 selector's authored type-0x01 row input, and the exact scene-3 status-mask denial path; define mask source/general policy, other row-selector denial, other death-class, scene-load, save-load and frontend reset policy explicitly.
+  retirement: Retire transient transition and overlay references before scene replacement; re-arm all instrumentation after state load.
+  consumers: Player lifecycle, collision, hazard, HUD, frontend, persistence and overlay-loading campaigns.
+  capacity: One resident player block and one safe-anchor tuple; no hidden checkpoint-stack capacity is established.
+  residency: The updater, consumer and player block are resident; LEVEL03/LEVEL10/LEVEL04/LEVEL06/LEVEL08 writer identities are exact only while their pinned staged slices occupy the recorded runtime ranges.
+  unsafe_assumptions: >-
+    A checkpoint-like filename, the stale 0x800823CC field nickname, one static
+    anchor dataflow, three pit scenes, scene-6/scene-8 deaths and one contact replay, or one RAM poke do not prove authored
+    checkpoint activation, persistent respawn selection, reset scope or stage breadth.

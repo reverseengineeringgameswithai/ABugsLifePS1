@@ -1,0 +1,488 @@
+{
+ "acknowledged_declarations": 17,
+ "authority": "phase4_static_frontier_index.json",
+ "by_file": {
+  "config/phase4_lives_gameover.yaml": {
+   "missed_bytes": 1144,
+   "truncated_extents": 1
+  },
+  "config/segments.yml": {
+   "missed_bytes": 12120,
+   "truncated_extents": 3
+  },
+  "tools/phase4_abdomen_bounce.py": {
+   "missed_bytes": 48,
+   "truncated_extents": 1
+  },
+  "tools/phase4_camera_controls.py": {
+   "missed_bytes": 2872,
+   "truncated_extents": 1
+  },
+  "tools/phase4_d16_f03_trace.py": {
+   "missed_bytes": 1696,
+   "truncated_extents": 1
+  },
+  "tools/phase4_downhill_slide.py": {
+   "missed_bytes": 128,
+   "truncated_extents": 2
+  },
+  "tools/phase4_e16_registered_chunks.py": {
+   "missed_bytes": 2760,
+   "truncated_extents": 3
+  },
+  "tools/phase4_fmv_region_b_replacement_ownership.py": {
+   "missed_bytes": 472,
+   "truncated_extents": 2
+  },
+  "tools/phase4_kick.py": {
+   "missed_bytes": 48,
+   "truncated_extents": 1
+  },
+  "tools/phase4_lives_gameover.py": {
+   "missed_bytes": 1144,
+   "truncated_extents": 1
+  },
+  "tools/repair_function_coverage.c": {
+   "missed_bytes": 11828,
+   "truncated_extents": 1
+  }
+ },
+ "candidate_pairs": 5583,
+ "extent_declarations": 2150,
+ "files_scanned": 1113,
+ "note": "`unnamed` pairs are the big rejection class: the line gives an entry address but never names the function, so it is not a declaration about that function. `inclusive` is `end == index end - 1`, a notation difference. Neither is a finding. `unrelated` pairs are counted but never reported as findings -- they are two addresses that happen to share a line. An ambiguous row means the entry exists in several overlay images and the line names none of them; the candidate ends are listed rather than picked.",
+ "pairs_rejected": {
+  "glued_into_one_token": 313,
+  "inclusive_notation": 4,
+  "unnamed": 3089,
+  "unrelated": 27
+ },
+ "question": "Does any hand-typed function extent stop short of the real function, making a census report a lower bound as a total?",
+ "review_verdicts": {
+  "decomp_segment_not_a_census_extent": 3,
+  "drift_pin_covers_less_than_the_function": 9,
+  "not_an_extent": 5
+ },
+ "schema": "abl-phase4-extent-audit/1",
+ "total_missed_bytes": 34260,
+ "total_missed_instructions": 8565,
+ "truncated": [
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x800102d4",
+   "detected_by": "name",
+   "entry": "0x80010000",
+   "file": "tools/repair_function_coverage.c",
+   "index_ends": [
+    "0x80013108"
+   ],
+   "line": 295,
+   "missed_bytes": 11828,
+   "missed_instructions": 2957,
+   "names": [
+    "per_object_mesh_draw_payload_emitter"
+   ],
+   "review_reason": "a specimen address pair quoted in the tool's own docstring, not a declaration",
+   "review_verdict": "not_an_extent",
+   "source": "* `0x80010000 724 per_object_mesh_draw_payload_emitter` ends at 0x800102D4",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x800102d4",
+   "detected_by": "structure",
+   "entry": "0x80010000",
+   "file": "config/segments.yml",
+   "index_ends": [
+    "0x80013108"
+   ],
+   "line": 383,
+   "missed_bytes": 11828,
+   "missed_instructions": 2957,
+   "names": [
+    "per_object_mesh_draw_payload_emitter"
+   ],
+   "review_reason": "config/segments.yml declares hand-written ASM segment boundaries for the decomp build, not census extents. The 2026-08-06 census repair extended five resident functions, so these segments now stop short of the repaired function -- correct for their own purpose. Re-cutting them is decomp work, not this sweep's.",
+   "review_verdict": "decomp_segment_not_a_census_extent",
+   "source": "- {start: 0x80010000, end: 0x800102d4, source: asm/hand_written/80010000_per_object_mesh_draw_payload_emitter.s}",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x80052b00",
+   "detected_by": "structure",
+   "entry": "0x800526fc",
+   "file": "tools/phase4_camera_controls.py",
+   "index_ends": [
+    "0x80053638"
+   ],
+   "line": 86,
+   "missed_bytes": 2872,
+   "missed_instructions": 718,
+   "names": [
+    "results_screen_render"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "HUD_CONSUMER = (0x800526FC, 0x80052B00)",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8005ce6c",
+   "detected_by": "name",
+   "entry": "0x8005cd2c",
+   "file": "tools/phase4_d16_f03_trace.py",
+   "index_ends": [
+    "0x8005d50c"
+   ],
+   "line": 248,
+   "missed_bytes": 1696,
+   "missed_instructions": 424,
+   "names": [
+    "gameplay_effect_spawner"
+   ],
+   "review_reason": "`name 0xENTRY @0xSITE -> callee` / `name 0xENTRY (site 0xPC)` notation: the second address is a call site, not an end",
+   "review_verdict": "not_an_extent",
+   "source": "\"gameplay_effect_spawner 0x8005CD2C (site 0x8005CE6C), not \"",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8003c3c0",
+   "detected_by": "name",
+   "entry": "0x8003c388",
+   "file": "tools/phase4_e16_registered_chunks.py",
+   "index_ends": [
+    "0x8003c8bc"
+   ],
+   "line": 16,
+   "missed_bytes": 1276,
+   "missed_instructions": 319,
+   "names": [
+    "vram_upload_wait"
+   ],
+   "review_reason": "`name 0xENTRY @0xSITE -> callee` / `name 0xENTRY (site 0xPC)` notation: the second address is a call site, not an end",
+   "review_verdict": "not_an_extent",
+   "source": "vram_upload_wait    0x8003c388 @0x8003c3c0 -> LoadImage 0x800628c0",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8005b7ec",
+   "detected_by": "structure",
+   "entry": "0x8005b714",
+   "file": "tools/phase4_lives_gameover.py",
+   "index_ends": [
+    "0x8005bc64"
+   ],
+   "line": 82,
+   "missed_bytes": 1144,
+   "missed_instructions": 286,
+   "names": [
+    "gameplay_state_reset_cursor_seed"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "\"gameplay_state_reset_cursor_seed\": (0x8005B714, 0x8005B7EC),",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8005b7ec",
+   "detected_by": "structure",
+   "entry": "0x8005b714",
+   "file": "config/phase4_lives_gameover.yaml",
+   "index_ends": [
+    "0x8005bc64"
+   ],
+   "line": 15,
+   "missed_bytes": 1144,
+   "missed_instructions": 286,
+   "names": [
+    "gameplay_state_reset_cursor_seed"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "gameplay_state_reset_cursor_seed: [0x8005B714, 0x8005B7EC]",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8003c920",
+   "detected_by": "name",
+   "entry": "0x8003c8bc",
+   "file": "tools/phase4_e16_registered_chunks.py",
+   "index_ends": [
+    "0x8003cc1c"
+   ],
+   "line": 15,
+   "missed_bytes": 764,
+   "missed_instructions": 191,
+   "names": [
+    "level_texture_stage"
+   ],
+   "review_reason": "`name 0xENTRY @0xSITE -> callee` / `name 0xENTRY (site 0xPC)` notation: the second address is a call site, not an end",
+   "review_verdict": "not_an_extent",
+   "source": "level_texture_stage 0x8003c8bc @0x8003c920 -> level_texture_upload 0x8003cc58",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8003c5ec",
+   "detected_by": "name",
+   "entry": "0x8003c388",
+   "file": "tools/phase4_e16_registered_chunks.py",
+   "index_ends": [
+    "0x8003c8bc"
+   ],
+   "line": 17,
+   "missed_bytes": 720,
+   "missed_instructions": 180,
+   "names": [
+    "vram_upload_wait"
+   ],
+   "review_reason": "`name 0xENTRY @0xSITE -> callee` / `name 0xENTRY (site 0xPC)` notation: the second address is a call site, not an end",
+   "review_verdict": "not_an_extent",
+   "source": "vram_upload_wait    0x8003c388 @0x8003c5ec -> LoadImage 0x800628c0",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8003d318",
+   "detected_by": "structure",
+   "entry": "0x8003cf2c",
+   "file": "tools/phase4_fmv_region_b_replacement_ownership.py",
+   "index_ends": [
+    "0x8003d404"
+   ],
+   "line": 482,
+   "missed_bytes": 236,
+   "missed_instructions": 59,
+   "names": [
+    "resource_id_dat_load_dispatcher"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "(0x8003CF2C, 0x8003D318),",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8003d318",
+   "detected_by": "structure",
+   "entry": "0x8003cf2c",
+   "file": "tools/phase4_fmv_region_b_replacement_ownership.py",
+   "index_ends": [
+    "0x8003d404"
+   ],
+   "line": 501,
+   "missed_bytes": 236,
+   "missed_instructions": 59,
+   "names": [
+    "resource_id_dat_load_dispatcher"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "(0x8003CF2C, 0x8003D318),",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8006833c",
+   "detected_by": "structure",
+   "entry": "0x80068284",
+   "file": "config/segments.yml",
+   "index_ends": [
+    "0x800683f0"
+   ],
+   "line": 587,
+   "missed_bytes": 180,
+   "missed_instructions": 45,
+   "names": [
+    "SsSetTickMode"
+   ],
+   "review_reason": "config/segments.yml declares hand-written ASM segment boundaries for the decomp build, not census extents. The 2026-08-06 census repair extended five resident functions, so these segments now stop short of the repaired function -- correct for their own purpose. Re-cutting them is decomp work, not this sweep's.",
+   "review_verdict": "decomp_segment_not_a_census_extent",
+   "source": "- {start: 0x80068284, end: 0x8006833c, source: asm/hand_written/80068284_SsSetTickMode.s}",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8006d1a8",
+   "detected_by": "structure",
+   "entry": "0x8006ce84",
+   "file": "config/segments.yml",
+   "index_ends": [
+    "0x8006d218"
+   ],
+   "line": 436,
+   "missed_bytes": 112,
+   "missed_instructions": 28,
+   "names": [
+    "SpuSetCommonAttr"
+   ],
+   "review_reason": "config/segments.yml declares hand-written ASM segment boundaries for the decomp build, not census extents. The 2026-08-06 census repair extended five resident functions, so these segments now stop short of the repaired function -- correct for their own purpose. Re-cutting them is decomp work, not this sweep's.",
+   "review_verdict": "decomp_segment_not_a_census_extent",
+   "source": "- {start: 0x8006ce84, end: 0x8006d1a8, source: asm/hand_written/8006ce84_SpuSetCommonAttr.s}",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x80056f18",
+   "detected_by": "structure",
+   "entry": "0x800563d4",
+   "file": "tools/phase4_downhill_slide.py",
+   "index_ends": [
+    "0x80056f68"
+   ],
+   "line": 51,
+   "missed_bytes": 80,
+   "missed_instructions": 20,
+   "names": [
+    "actor_skinned_update"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "ANIMATION_OWNER = (0x800563D4, 0x80056F18)",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8004b6ac",
+   "detected_by": "structure",
+   "entry": "0x8004abf4",
+   "file": "tools/phase4_abdomen_bounce.py",
+   "index_ends": [
+    "0x8004b6dc"
+   ],
+   "line": 48,
+   "missed_bytes": 48,
+   "missed_instructions": 12,
+   "names": [
+    "actor_player_contact_resolver"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "PROXIMITY_FN = (0x8004ABF4, 0x8004B6AC)",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8004b6ac",
+   "detected_by": "structure",
+   "entry": "0x8004abf4",
+   "file": "tools/phase4_downhill_slide.py",
+   "index_ends": [
+    "0x8004b6dc"
+   ],
+   "line": 52,
+   "missed_bytes": 48,
+   "missed_instructions": 12,
+   "names": [
+    "actor_player_contact_resolver"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "PROXIMITY_OWNER = (0x8004ABF4, 0x8004B6AC)",
+   "verdict": "TRUNCATED"
+  },
+  {
+   "acknowledged": true,
+   "ambiguous_image": false,
+   "candidates": [
+    "SCUS_942_88"
+   ],
+   "declared_end": "0x8004b6ac",
+   "detected_by": "structure",
+   "entry": "0x8004abf4",
+   "file": "tools/phase4_kick.py",
+   "index_ends": [
+    "0x8004b6dc"
+   ],
+   "line": 77,
+   "missed_bytes": 48,
+   "missed_instructions": 12,
+   "names": [
+    "actor_player_contact_resolver"
+   ],
+   "review_reason": "the range feeds a sha256 drift pin, not a census scan, so the pin is narrower than the function rather than any count being wrong",
+   "review_verdict": "drift_pin_covers_less_than_the_function",
+   "source": "\"proximity_owner\": (0x8004ABF4, 0x8004B6AC),",
+   "verdict": "TRUNCATED"
+  }
+ ],
+ "truncated_declarations": 17,
+ "truncated_distinct": 16,
+ "unacknowledged": [],
+ "unacknowledged_declarations": 0,
+ "verdicts": {
+  "TRUNCATED": 17,
+  "exact": 2127,
+  "over_extent": 6
+ }
+}

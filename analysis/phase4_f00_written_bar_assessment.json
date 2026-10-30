@@ -1,0 +1,1937 @@
+{
+ "_comment": "F00_training measured against the nine DoD dimensions AS WRITTEN (item 2 = enumerated; residuals = explicitly bounded), per engineering-specs/phase4-measurement-standard-ruling.md. Judgments authored; every fact derived from a pinned artifact at run time. Regenerate: tools/phase4_f00_written_bar_assessment.py",
+ "schema": "abl-phase4-f00-written-bar-assessment/1",
+ "generated": "2026-08-11",
+ "row_id": "F00_training",
+ "row_name": "Training: Mr. Soil tutorial",
+ "standard": {
+  "ruling": "engineering-specs/phase4-measurement-standard-ruling.md",
+  "item2_bar": "enumerated, scoped to relevant (NOT empty unresolved set)",
+  "exit_gate_bar": "explicitly bounded, not absent",
+  "vocabulary": "bounded-exhausted remains a stop decision and never reads as met; this assessment publishes measurement, not disposition",
+  "allowed_states": [
+   "met",
+   "met_candidate",
+   "partial",
+   "not_met",
+   "unmeasured"
+  ]
+ },
+ "authority": {
+  "promotes_row_or_dimension": false,
+  "edits_registry": false,
+  "edits_mechanics_baseline": false,
+  "requires_fresh_verifier": true,
+  "author_conflict": "the assessor did not author F00's underlying evidence, but did author this assessment, the F-row census whose durable_evidence result it carries forward, and both NEW measurements in it (the residency pin run and tools/phase4_f00_state_owner_probe.c) -- so on overlay residency, the writer correction and the jump-table enumeration the tool, the claim and the judgment share an author. Every state below is a submission to a fresh detached verifier, not a promotion; `partial` and `not_met` are as challengeable as `met_candidate`"
+ },
+ "carried_forward": {
+  "dimension": "durable_evidence",
+  "from": "analysis/phase4_f_row_measured_census.json",
+  "state": "met",
+  "fraction": "2/2",
+  "note": "measured there against pinned bytes; re-deriving it here would be a second opinion on a settled measurement, not evidence"
+ },
+ "systemic_defect_checks": {
+  "_comment": "two defects confirmed on other rows, checked explicitly here so silence is not read as absence",
+  "a_overlay_misattribution": {
+   "applies_to_this_row": true,
+   "why": "the row's whole binding is a claim about an address in the shared overlay window 0x800B39A0, and 7 of 20 overlay images extend far enough to contain that address",
+   "was_the_row_already_wrong": false,
+   "how_settled": "tools/phase4_f08_overlay_residency_pin.c (reused unchanged: True; its output therefore keeps that tool's F08-branded strings) over 20 images x 2 pristine Training fixtures",
+   "verdict": "F08_OVERLAY_RESIDENCY_PIN_UNIQUE -- OVL/LEVEL07_LEVEL1.BIN (98.92% vs 8.49% for the runner-up OVL/LEVEL02_LEVEL1.BIN), sha1 agreeing with the overlay build registry (True) and with the row's declared overlay (True). The row's scene-17 binding is CONFIRMED by an independent method",
+   "how_much_ambiguity_was_really_there": "2 images actually REFERENCE the address in code, not one: besides the pinned image (21 references, 2 stores) the others are [('OVL/LEVEL02_LEVEL1.BIN', 3, 2)] (path, references, stores). An address-only census had a real chance of picking wrong"
+  },
+  "b_semantic_registry_collision": {
+   "applies_to_this_row": true,
+   "va_collision_hit": true,
+   "measured": "the ownership graph attributes this one state id to 0 rows ([]), and the registry entry carries no image field (False). Resolving each sharing row through the same ordinal->scene->overlay law gives {}, and those overlays are exactly the other images the byte scan finds storing to the same address (False). The collision is therefore not a bookkeeping slip: the same VA is genuinely different, written state in different overlays",
+   "is_the_entry_correct_for_THIS_row": "YES for identity and domain, NO for provenance. Correct: the address is inside the byte-pinned image extent ['0x800B39A0', '0x800B4A90'], it is zero on disc and runtime-written, its observed values [2, 13] lie inside the declared range [0, 13], the arm count of the table it indexes equals that range's span (True), and the one byte-matched C function in the image guards on that same maximum (True). Wrong: the declared writer ['0x800B3DA0', '0x800B47E0'] is not a store in any image (True), the real stores are ['0x800B3DA0', '0x800B47E0'], and the entry names no image so it cannot be right for the other overlay that also writes there"
+  }
+ },
+ "registry_disposition_for_contrast": {
+  "source": "analysis/phase4_closure_debt.json",
+  "campaign_id": null,
+  "completion_state": "open",
+  "dimensions_met": 0,
+  "dimensions_remaining": 9,
+  "distinct_basis_strings": [
+   "no active child campaign"
+  ],
+  "distinct_states": [
+   "gap"
+  ],
+  "note": "the registry carries ONE blanket basis across all nine dimensions and scores the row 0/9, recording movie_count 0 and prior_offline_analysis_count 0 for a stage with 12 pinned movies and 1 credited analysis artifacts. That is a disposition, not a measurement"
+ },
+ "fail_loud_contract": {
+  "guards": [
+   "missing_artifact_aborts",
+   "renamed_key_aborts",
+   "fact_without_a_pinned_source_aborts"
+  ],
+  "in_band": "re-proved on every generation before any artifact is read; if a guard stops firing the run aborts instead of emitting numbers whose staleness detection cannot be trusted",
+  "cross_tool_guards": [
+   "the residency pin's load base and region length must equal what config/overlays.yml declares",
+   "the residency pin's word set must equal the set derived from the RE source's own #defines and loop bounds",
+   "the state-owner probe's $gp, load base and pinned image must equal what analysis/phase3_xrefs.json, config/overlays.yml and the residency pin say",
+   "the probe's reader PCs must equal analysis/phase3_xrefs.json's, its writer PCs must equal config/semantic_state.yaml's, and its searched sequence must equal the RE source's printed jump table",
+   "every credited vault page must exist"
+  ],
+  "out_of_band_probes": "each was run by hand against this exact tool; every one must abort with a non-zero exit and leave NO output file",
+  "out_of_band_probes_run_2026-08-11": [
+   "moved analysis/phase4_f00_state_owner_probe.json aside -> exit 1, no output file, 'STALE CITATION: ... does not exist'",
+   "renamed unique_pin_file inside the residency pin -> exit 1, no output file, 'STALE CITATION: ... no longer has unique_pin_file'",
+   "dropped one named word from the residency pin so its word set no longer equals the RE source's -> exit 1, no output file, both sets printed",
+   "rewrote the state-owner probe's pinned_image to another overlay -> exit 1, no output file, 'the state-owner probe pinned a different image than the residency pin decided'",
+   "moved a credited vault page aside -> exit 1, no output file, 'STALE CITATION: credited vault page ... does not exist'"
+  ],
+  "regenerability_checked": "both new artifacts were regenerated from their compiled-C generators after the probes and compared byte-for-byte with the committed copies"
+ },
+ "fact_provenance": {
+  "facts_total": 325,
+  "facts_derived_from_pinned_artifacts": 325,
+  "facts_hand_typed": 0,
+  "rule": "facts are recorded through fact(key, value, source); a value cannot be stored without naming a pinned artifact, and every lookup is strict, so a renamed or removed key aborts the run instead of silently defaulting",
+  "by_fact": {
+   "fail_loud_guards_fired": "tools/phase4_f00_written_bar_assessment.py",
+   "census_durable_state": "analysis/phase4_f_row_measured_census.json",
+   "census_durable_fraction": "analysis/phase4_f_row_measured_census.json",
+   "census_durable_reason": "analysis/phase4_f_row_measured_census.json",
+   "census_row_status": "analysis/phase4_f_row_measured_census.json",
+   "census_baseline_sha256": "analysis/phase4_f_row_measured_census.json",
+   "census_triage": "analysis/phase4_f_row_measured_census.json",
+   "census_analysis_artifacts_credited": "analysis/phase4_f_row_measured_census.json",
+   "census_analysis_artifacts": "analysis/phase4_f_row_measured_census.json",
+   "census_vault_pages_credited": "analysis/phase4_f_row_measured_census.json",
+   "census_source_files": "analysis/phase4_f_row_measured_census.json",
+   "census_segments_entries": "analysis/phase4_f_row_measured_census.json",
+   "census_overlay_build_entries": "analysis/phase4_f_row_measured_census.json",
+   "census_overlay_matched_sources": "analysis/phase4_f_row_measured_census.json",
+   "census_overlay_name": "analysis/phase4_f_row_measured_census.json",
+   "census_scene_id": "analysis/phase4_f_row_measured_census.json",
+   "census_stage_ordinal": "analysis/phase4_f_row_measured_census.json",
+   "census_has_static_code_evidence": "analysis/phase4_f_row_measured_census.json",
+   "census_has_runtime_trace_evidence": "analysis/phase4_f_row_measured_census.json",
+   "census_overlay_track_totals": "analysis/phase4_f_row_measured_census.json",
+   "row_external_fixtures": "analysis/phase4_f_row_measured_census.json",
+   "row_external_fixture_count": "analysis/phase4_f_row_measured_census.json",
+   "f_rows_censused": "analysis/phase4_f_row_measured_census.json",
+   "f_rows_with_any_source_files": "analysis/phase4_f_row_measured_census.json",
+   "f_rows_with_any_segments_entries": "analysis/phase4_f_row_measured_census.json",
+   "f_rows_with_an_overlay_build_entry": "analysis/phase4_f_row_measured_census.json",
+   "f_rows_with_more_vault_pages_than_this_one": "analysis/phase4_f_row_measured_census.json",
+   "registry_dimensions_met": "analysis/phase4_closure_debt.json",
+   "registry_dimensions_remaining": "analysis/phase4_closure_debt.json",
+   "registry_distinct_bases": "analysis/phase4_closure_debt.json",
+   "registry_distinct_states": "analysis/phase4_closure_debt.json",
+   "registry_completion_state": "analysis/phase4_closure_debt.json",
+   "registry_campaign_id": "analysis/phase4_closure_debt.json",
+   "registry_movie_count": "analysis/phase4_closure_debt.json",
+   "registry_capsule_count": "analysis/phase4_closure_debt.json",
+   "registry_prior_offline_analysis_count": "analysis/phase4_closure_debt.json",
+   "registry_next_lane_reason": "analysis/phase4_closure_debt.json",
+   "baseline_sha256_matches_census": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "row_binding_claims": "analysis/mechanics_baseline.yaml",
+   "row_bindings": "analysis/mechanics_baseline.yaml",
+   "row_declared_fixture_paths": "analysis/mechanics_baseline.yaml",
+   "row_declared_missing": "analysis/mechanics_baseline.yaml",
+   "row_declared_fixture_need": "analysis/mechanics_baseline.yaml",
+   "row_declared_evidence_classes": "analysis/mechanics_baseline.yaml",
+   "row_declared_next": "analysis/mechanics_baseline.yaml",
+   "row_declared_status": "analysis/mechanics_baseline.yaml",
+   "row_declared_stages": "analysis/mechanics_baseline.yaml",
+   "row_artifact_path_citations": "analysis/mechanics_baseline.yaml",
+   "row_artifact_path_citation_count": "analysis/mechanics_baseline.yaml",
+   "dod_dimension_prose": "analysis/mechanics_baseline.yaml",
+   "progression_table_address": "analysis/phase3_scene_asset_graph.json",
+   "progression_table": "analysis/phase3_scene_asset_graph.json",
+   "training_ordinal": "analysis/phase3_scene_asset_graph.json",
+   "scene_from_progression_table": "analysis/phase3_scene_asset_graph.json",
+   "scene_matches_the_census_binding": [
+    "analysis/phase3_scene_asset_graph.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "scene_disc_dir": "analysis/phase3_scene_asset_graph.json",
+   "scene_level_data": "analysis/phase3_scene_asset_graph.json",
+   "scene_vab_dir": "analysis/phase3_scene_asset_graph.json",
+   "scene_vab_dir_matches_disc_dir": "analysis/phase3_scene_asset_graph.json",
+   "scene_phase2_stage_labels": "analysis/phase3_scene_asset_graph.json",
+   "phase3_law_is_the_corrected_one": "analysis/phase3_scene_asset_graph.json",
+   "law_directory_for_this_scene": "analysis/phase4_f08_scene_binding.json",
+   "law_string_dir_diverges_for_ids": "analysis/phase4_f08_scene_binding.json",
+   "this_scene_is_a_string_dir_divergence": "analysis/phase4_f08_scene_binding.json",
+   "prior_prose_residency_claim": "analysis/phase4_f08_scene_binding.json",
+   "prior_prose_residency_claim_names_the_same_two_saves": "analysis/phase4_f08_scene_binding.json",
+   "law_arithmetic_mechanism": "analysis/phase4_f08_scene_binding.json",
+   "law_arithmetic_instruction_pcs": "analysis/phase4_f08_scene_binding.json",
+   "this_stage_level_dat": [
+    "analysis/phase4_e08_object_census.json",
+    "analysis/phase3_scene_asset_graph.json"
+   ],
+   "this_stage_type3f_entries": "analysis/phase4_e08_object_census.json",
+   "this_stage_type3f_kind_histogram": "analysis/phase4_e08_object_census.json",
+   "folk_named_level00_dat_type3f_entries": "analysis/phase4_e08_object_census.json",
+   "folk_named_level00_dat_type3f_tables": "analysis/phase4_e08_object_census.json",
+   "board_editor_target_file": "tools/training_board_edit.py",
+   "board_editor_target_agrees_with_the_law": [
+    "tools/training_board_edit.py",
+    "analysis/phase3_scene_asset_graph.json"
+   ],
+   "board_editor_still_carries_stale_level01_prose": "tools/training_board_edit.py",
+   "overlay_registry_region_a": "config/overlays.yml",
+   "overlay_registry_region_length": "config/overlays.yml",
+   "overlay_registry_entry_blob": "config/overlays.yml",
+   "overlay_registry_entry_sha1": "config/overlays.yml",
+   "overlay_registry_total_overlays": "config/overlays.yml",
+   "re_source_declares_itself_pseudocode": "src_re/training_tutorial_progression.c",
+   "re_source_evidence_disc_is_a_mod_build": "src_re/training_tutorial_progression.c",
+   "re_declared_step_field": "src_re/training_tutorial_progression.c",
+   "re_declared_step_state_array": "src_re/training_tutorial_progression.c",
+   "re_declared_cached_pickup_pointers": "src_re/training_tutorial_progression.c",
+   "re_declared_word_count": "src_re/training_tutorial_progression.c",
+   "re_declared_jump_table_targets": "src_re/training_tutorial_progression.c",
+   "re_declared_jump_table_arms": "src_re/training_tutorial_progression.c",
+   "re_decoded_arm_indices": "src_re/training_tutorial_progression.c",
+   "re_arms_left_in_prose": "src_re/training_tutorial_progression.c",
+   "residency_pin_generator": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_generator_is_reused_unchanged": [
+    "analysis/phase4_f00_overlay_residency_pin.json",
+    "tools/phase4_f08_overlay_residency_pin.c"
+   ],
+   "residency_pin_inputs_match_registries": [
+    "analysis/phase4_f00_overlay_residency_pin.json",
+    "config/overlays.yml",
+    "src_re/training_tutorial_progression.c"
+   ],
+   "residency_pin_images_scanned": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_rams_scanned": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_ram_labels": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_images_argmax_in_every_ram": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_images_with_stable_declared_base": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_unique": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_file": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_sha1": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_size": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_result": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_nontrivial_pct": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_runner_up": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_runner_up_pct": "analysis/phase4_f00_overlay_residency_pin.json",
+   "residency_pin_agrees_with_overlay_registry_sha1": [
+    "analysis/phase4_f00_overlay_residency_pin.json",
+    "config/overlays.yml"
+   ],
+   "residency_pin_agrees_with_row_binding": [
+    "analysis/phase4_f00_overlay_residency_pin.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "pinned_overlay_extent": [
+    "config/overlays.yml",
+    "analysis/phase4_f00_overlay_residency_pin.json"
+   ],
+   "named_words_count": "analysis/phase4_f00_overlay_residency_pin.json",
+   "named_words_inside_pinned_image": "analysis/phase4_f00_overlay_residency_pin.json",
+   "named_words_zero_in_disc_image": "analysis/phase4_f00_overlay_residency_pin.json",
+   "named_words_varying_across_fixtures": "analysis/phase4_f00_overlay_residency_pin.json",
+   "step_field_values_across_fixtures": "analysis/phase4_f00_overlay_residency_pin.json",
+   "step_field_is_zero_on_disc": "analysis/phase4_f00_overlay_residency_pin.json",
+   "step_state_array_values": "analysis/phase4_f00_overlay_residency_pin.json",
+   "step_state_slots_nonzero_per_fixture": "analysis/phase4_f00_overlay_residency_pin.json",
+   "cached_pickup_pointer_values": "analysis/phase4_f00_overlay_residency_pin.json",
+   "cached_pickup_pointer_stride": "analysis/phase4_f00_overlay_residency_pin.json",
+   "cached_pickup_pointer_count_matches_disc_type3f_kinds": [
+    "analysis/phase4_f00_overlay_residency_pin.json",
+    "analysis/phase4_e08_object_census.json",
+    "src_re/training_tutorial_progression.c"
+   ],
+   "audio_id_table_is_static_on_disc": "analysis/phase4_f00_overlay_residency_pin.json",
+   "region_a_bytes": "analysis/phase4_f00_overlay_residency_pin.json",
+   "region_a_differing_bytes": "analysis/phase4_f00_overlay_residency_pin.json",
+   "region_a_differing_inside_pinned_image": "analysis/phase4_f00_overlay_residency_pin.json",
+   "region_a_differing_beyond_pinned_image": "analysis/phase4_f00_overlay_residency_pin.json",
+   "whole_ram_words": "analysis/phase4_f00_overlay_residency_pin.json",
+   "whole_ram_differing_words": "analysis/phase4_f00_overlay_residency_pin.json",
+   "training_saves_centrally_pinned": "analysis/phase0_2_external_fixture_set.json",
+   "training_saves_pristine": "analysis/phase0_2_external_fixture_set.json",
+   "training_saves_non_pristine": "analysis/phase0_2_external_fixture_set.json",
+   "training_saves_bytes_match_pin": "analysis/phase0_2_external_fixture_set.json",
+   "residency_pin_rams_are_pinned_pristine_training_saves": [
+    "analysis/phase4_f00_overlay_residency_pin.json",
+    "analysis/phase0_2_external_fixture_set.json"
+   ],
+   "pristine_training_saves_the_row_declares": [
+    "analysis/phase0_2_external_fixture_set.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "row_external_fixtures_bytes_match_pin": [
+    "analysis/phase0_2_external_fixture_set.json",
+    "analysis/phase4_f_row_measured_census.json"
+   ],
+   "row_external_fixture_consumers": "analysis/phase0_2_external_fixture_set.json",
+   "semantic_state_entries_total": "config/semantic_state.yaml",
+   "registered_entry_id": "config/semantic_state.yaml",
+   "registered_entry_kind": "config/semantic_state.yaml",
+   "registered_entry_width": "config/semantic_state.yaml",
+   "registered_entry_owner": "config/semantic_state.yaml",
+   "registered_entry_confidence": "config/semantic_state.yaml",
+   "registered_entry_evidence": "config/semantic_state.yaml",
+   "registered_entry_range": "config/semantic_state.yaml",
+   "registered_entry_range_context": "config/semantic_state.yaml",
+   "registered_entry_declared_writers": "config/semantic_state.yaml",
+   "registered_entry_declared_writer_names": "config/semantic_state.yaml",
+   "registered_entry_has_no_image_field": "config/semantic_state.yaml",
+   "semantic_entries_inside_shared_region_a": "config/semantic_state.yaml",
+   "semantic_entries_inside_this_rows_overlay_extent": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f00_overlay_residency_pin.json"
+   ],
+   "xrefs_gp": "analysis/phase3_xrefs.json",
+   "xrefs_declared_readers": "analysis/phase3_xrefs.json",
+   "xrefs_declared_reader_functions": "analysis/phase3_xrefs.json",
+   "xrefs_declared_writer_count": "analysis/phase3_xrefs.json",
+   "xrefs_admits_it_cannot_see_the_declared_writer": "analysis/phase3_xrefs.json",
+   "re_named_overlay_code_entries": "src_re/training_tutorial_progression.c",
+   "re_named_overlay_code_entries_all_inside_the_pinned_image": "analysis/phase4_f00_state_owner_probe.json",
+   "re_named_overlay_code_entry_words": "analysis/phase4_f00_state_owner_probe.json",
+   "probe_inputs_match_the_registries_they_check": [
+    "analysis/phase4_f00_state_owner_probe.json",
+    "analysis/phase3_xrefs.json",
+    "config/semantic_state.yaml",
+    "src_re/training_tutorial_progression.c",
+    "analysis/phase4_f00_overlay_residency_pin.json"
+   ],
+   "probe_exe_sha256": "analysis/phase4_f00_state_owner_probe.json",
+   "probe_reference_recovery": "analysis/phase4_f00_state_owner_probe.json",
+   "probe_resident_reference_count": "analysis/phase4_f00_state_owner_probe.json",
+   "probe_images_whose_extent_covers_the_address": "analysis/phase4_f00_state_owner_probe.json",
+   "probe_images_referencing_the_address": "analysis/phase4_f00_state_owner_probe.json",
+   "probe_pinned_image_reference_count": "analysis/phase4_f00_state_owner_probe.json",
+   "probe_pinned_image_store_count": "analysis/phase4_f00_state_owner_probe.json",
+   "probe_pinned_image_load_count": "analysis/phase4_f00_state_owner_probe.json",
+   "other_images_referencing_the_same_address": "analysis/phase4_f00_state_owner_probe.json",
+   "measured_store_pcs_in_the_pinned_image": "analysis/phase4_f00_state_owner_probe.json",
+   "declared_writer_count_vs_measured_store_count": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f00_state_owner_probe.json"
+   ],
+   "declared_writer_is_among_the_measured_stores": [
+    "config/semantic_state.yaml",
+    "analysis/phase4_f00_state_owner_probe.json"
+   ],
+   "declared_writer_word_in_the_pinned_image": "analysis/phase4_f00_state_owner_probe.json",
+   "declared_writer_decodes_as_a_memory_op": "analysis/phase4_f00_state_owner_probe.json",
+   "declared_writer_is_a_store_in_any_image": "analysis/phase4_f00_state_owner_probe.json",
+   "resident_readers_confirmed_from_bytes": "analysis/phase4_f00_state_owner_probe.json",
+   "resident_reader_ops": "analysis/phase4_f00_state_owner_probe.json",
+   "resident_reader_insn_words": "analysis/phase4_f00_state_owner_probe.json",
+   "resident_reader_resolution": "analysis/phase4_f00_state_owner_probe.json",
+   "jump_table_images_containing_it": "analysis/phase4_f00_state_owner_probe.json",
+   "jump_table_address": "analysis/phase4_f00_state_owner_probe.json",
+   "jump_table_image": "analysis/phase4_f00_state_owner_probe.json",
+   "jump_table_all_arms_inside_that_image": "analysis/phase4_f00_state_owner_probe.json",
+   "jump_table_is_in_the_pinned_image": "analysis/phase4_f00_state_owner_probe.json",
+   "jump_table_arms_that_reload_the_field": "analysis/phase4_f00_state_owner_probe.json",
+   "jump_table_arm_reload_offsets": "analysis/phase4_f00_state_owner_probe.json",
+   "jump_table_arm_count_equals_declared_range_span": [
+    "analysis/phase4_f00_state_owner_probe.json",
+    "config/semantic_state.yaml"
+   ],
+   "overlay_images_in_function_census": "analysis/functions.json",
+   "census_entries_in_the_pinned_overlay": "analysis/functions.json",
+   "census_code_functions_in_the_pinned_overlay": "analysis/functions.json",
+   "census_data_records_in_the_pinned_overlay": "analysis/functions.json",
+   "census_function_names_in_the_pinned_overlay": "analysis/functions.json",
+   "overlay_summary_function_count": "analysis/functions.json",
+   "overlay_resident_callees": "analysis/functions.json",
+   "function_census_classifies_the_jump_table_range": "analysis/functions.json",
+   "function_census_jump_table_range_size": "analysis/functions.json",
+   "jump_table_size_matches_arm_count": [
+    "analysis/functions.json",
+    "analysis/phase4_f00_state_owner_probe.json"
+   ],
+   "function_census_classifies_the_state_block": "analysis/functions.json",
+   "function_census_state_block_extent": "analysis/functions.json",
+   "function_owning_each_measured_store": [
+    "analysis/functions.json",
+    "analysis/phase4_f00_state_owner_probe.json"
+   ],
+   "function_owning_the_measured_stores": [
+    "analysis/functions.json",
+    "analysis/phase4_f00_state_owner_probe.json"
+   ],
+   "initializing_store_owner": [
+    "analysis/functions.json",
+    "analysis/phase4_f00_state_owner_probe.json"
+   ],
+   "advancing_store_owner": [
+    "analysis/functions.json",
+    "analysis/phase4_f00_state_owner_probe.json"
+   ],
+   "ownership_functions": "analysis/phase3_ownership_graph.json",
+   "ownership_overlay_entries": "analysis/phase3_ownership_graph.json",
+   "ownership_state_addresses": "analysis/phase3_ownership_graph.json",
+   "ownership_writers": "analysis/phase3_ownership_graph.json",
+   "ownership_gaps": "analysis/phase3_ownership_graph.json",
+   "ownership_frontier_blockers": "analysis/phase3_ownership_graph.json",
+   "ownership_frontier_blocker_texts": "analysis/phase3_ownership_graph.json",
+   "rows_the_ownership_graph_attributes_this_state_to": "analysis/phase3_ownership_graph.json",
+   "rows_sharing_this_state_count": "analysis/phase3_ownership_graph.json",
+   "collision_rows_resolved_to_their_own_overlay": [
+    "analysis/phase3_ownership_graph.json",
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase3_scene_asset_graph.json"
+   ],
+   "collision_explained_by_the_other_images_that_reference_the_address": [
+    "analysis/phase4_f00_state_owner_probe.json",
+    "analysis/phase3_ownership_graph.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "resident_build_units": "config/segments.yml",
+   "resident_build_toolchain": "config/segments.yml",
+   "resident_registry_contains_any_src_re_unit": "config/segments.yml",
+   "overlay_registry_contains_any_src_re_unit": "config/overlays.yml",
+   "census_credited_source_files_are_in_neither_build_registry": [
+    "analysis/phase4_f_row_measured_census.json",
+    "config/segments.yml",
+    "config/overlays.yml"
+   ],
+   "overlay_track_total_code_functions": "analysis/overlay_decomp_progress.json",
+   "overlay_track_matched_functions": "analysis/overlay_decomp_progress.json",
+   "overlay_track_matched_pct": "analysis/overlay_decomp_progress.json",
+   "pinned_overlay_code_functions": "analysis/overlay_decomp_progress.json",
+   "pinned_overlay_matched_functions": "analysis/overlay_decomp_progress.json",
+   "pinned_overlay_rebuild_validated": "analysis/overlay_decomp_progress.json",
+   "pinned_overlay_rebuilt_sha1_matches_the_blob": "analysis/overlay_decomp_progress.json",
+   "pinned_overlay_matched_sources": "analysis/overlay_decomp_progress.json",
+   "pinned_overlay_matched_entry": "analysis/overlay_decomp_progress.json",
+   "byte_matched_c_bound_literals": "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c",
+   "byte_matched_c_outer_guard_literal": "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c",
+   "byte_matched_c_guard_literal_equals_registered_max": [
+    "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c",
+    "config/semantic_state.yaml"
+   ],
+   "byte_matched_c_guard_is_exclusive_so_it_excludes_the_terminal_step": "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c",
+   "byte_matched_c_callee": "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c",
+   "byte_matched_c_is_fed_the_registered_field": "analysis/phase4_f00_state_owner_probe.json",
+   "other_baseline_rows_citing_this_address": "analysis/mechanics_baseline.yaml",
+   "another_row_documents_the_overlay_callback_that_reads_it": "analysis/mechanics_baseline.yaml",
+   "byte_matched_c_bytes": "config/overlays.yml",
+   "governing_roles": [
+    "analysis/phase3_xrefs.json",
+    "analysis/phase4_f00_state_owner_probe.json",
+    "analysis/functions.json",
+    "config/semantic_state.yaml"
+   ],
+   "governing_addresses": [
+    "analysis/phase3_xrefs.json",
+    "analysis/phase4_f00_state_owner_probe.json",
+    "analysis/functions.json",
+    "config/semantic_state.yaml"
+   ],
+   "governing_addresses_resident": [
+    "analysis/phase3_xrefs.json",
+    "analysis/phase4_f00_overlay_residency_pin.json"
+   ],
+   "governing_addresses_in_this_rows_overlay": [
+    "analysis/functions.json",
+    "analysis/phase4_f00_state_owner_probe.json",
+    "analysis/phase4_f00_overlay_residency_pin.json"
+   ],
+   "governing_resident_build_units": "config/segments.yml",
+   "governing_resident_units_matching_c": "config/segments.yml",
+   "governing_resident_units_hand_asm": "config/segments.yml",
+   "governing_resident_addresses_outside_any_build_unit": "config/segments.yml",
+   "governing_overlay_addresses_with_matched_c": [
+    "config/overlays.yml",
+    "analysis/overlay_decomp_progress.json"
+   ],
+   "completion_oracle_stage_key": [
+    "analysis/phase2_completion_oracle.json",
+    "analysis/phase3_scene_asset_graph.json"
+   ],
+   "completion_oracle_movie": "analysis/phase2_completion_oracle.json",
+   "completion_oracle_frames": "analysis/phase2_completion_oracle.json",
+   "completion_oracle_target_scene": "analysis/phase2_completion_oracle.json",
+   "completion_oracle_replay_accepted": "analysis/phase2_completion_oracle.json",
+   "completion_oracle_entered_stage_frame": "analysis/phase2_completion_oracle.json",
+   "completion_oracle_stage_exited": "analysis/phase2_completion_oracle.json",
+   "completion_oracle_snapshot_fields": "analysis/phase2_completion_oracle.json",
+   "completion_oracle_corroborates_the_scene_id": [
+    "analysis/phase2_completion_oracle.json",
+    "analysis/phase3_scene_asset_graph.json"
+   ],
+   "completion_oracle_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase2_completion_oracle.json"
+   ],
+   "stage_movies_pinned": "analysis/phase2_fixture_audit.json",
+   "stage_movies_pinned_paths": "analysis/phase2_fixture_audit.json",
+   "stage_movie_frames": "analysis/phase2_fixture_audit.json",
+   "stage_movies_under_phase4_interpreter": "analysis/phase2_fixture_audit.json",
+   "stage_movie_format_versions": "analysis/phase2_fixture_audit.json",
+   "stage_movies_declared_by_the_row": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "stage_movies_centrally_pinned": [
+    "analysis/phase2_fixture_audit.json",
+    "analysis/phase0_2_external_fixture_set.json"
+   ],
+   "anchor_fixture_classification": "analysis/phase3_training_anchor_fixture.json",
+   "anchor_fixture_observed_scene": "analysis/phase3_training_anchor_fixture.json",
+   "anchor_fixture_reproducible": "analysis/phase3_training_anchor_fixture.json",
+   "anchor_fixture_reproduction_verified": "analysis/phase3_training_anchor_fixture.json",
+   "anchor_fixture_target_frame": "analysis/phase3_training_anchor_fixture.json",
+   "anchor_fixture_movie": "analysis/phase3_training_anchor_fixture.json",
+   "anchor_fixture_from_boot": "analysis/phase3_training_anchor_fixture.json",
+   "anchor_fixture_is_the_pin_ram_source": [
+    "analysis/phase3_training_anchor_fixture.json",
+    "analysis/phase0_2_external_fixture_set.json"
+   ],
+   "row_coverage_status": "analysis/phase2_row_coverage.json",
+   "row_coverage_unaudited_fixtures": "analysis/phase2_row_coverage.json",
+   "row_coverage_non_pristine_fixtures": "analysis/phase2_row_coverage.json",
+   "scheduler_eligible": "analysis/phase4_movie_priority_queue.json",
+   "scheduler_ineligibility_reasons": "analysis/phase4_movie_priority_queue.json",
+   "scheduler_sees_a_phase4_movie": "analysis/phase4_movie_priority_queue.json",
+   "scheduler_frontier_blocker_domains": "analysis/phase4_movie_priority_queue.json",
+   "scheduler_static_ownership_function_count": "analysis/phase4_movie_priority_queue.json",
+   "scheduler_ownership_input_is_current": [
+    "analysis/phase4_movie_priority_queue.json",
+    "analysis/phase3_ownership_graph.json"
+   ],
+   "action_windows_stage_label": "analysis/phase2_action_windows.json",
+   "action_window_recognizers": "analysis/phase2_action_windows.json",
+   "action_windows_in_stage_total": "analysis/phase2_action_windows.json",
+   "action_window_recognizers_with_zero_in_stage": "analysis/phase2_action_windows.json",
+   "action_windows_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase2_action_windows.json"
+   ],
+   "stage_collision_container": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage_collision_scene": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage_authored_collision_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage_runtime_collision_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage_region_code_histogram": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage_nonzero_region_sectors": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage_disc_vs_runtime_mismatches": "analysis/phase4_e02_disc_region_code_census.json",
+   "e02_corroborates_the_scene_id": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/phase3_scene_asset_graph.json"
+   ],
+   "e02_container_agrees_with_the_law": [
+    "analysis/phase4_e02_disc_region_code_census.json",
+    "analysis/phase3_scene_asset_graph.json"
+   ],
+   "e02_authored_sectors_compared": "analysis/phase4_e02_disc_region_code_census.json",
+   "e02_disagreements": "analysis/phase4_e02_disc_region_code_census.json",
+   "stage_actor_census_save": "analysis/phase1_kind_actor_census.json",
+   "stage_actor_records": "analysis/phase1_kind_actor_census.json",
+   "stage_actor_ids": "analysis/phase1_kind_actor_census.json",
+   "stage_actor_ids_with_canon_binding": "analysis/phase1_kind_actor_census.json",
+   "stage_actor_census_uses_the_pin_ram_source": [
+    "analysis/phase1_kind_actor_census.json",
+    "analysis/phase0_2_external_fixture_set.json"
+   ],
+   "stage_actor_census_cited_by_the_row": [
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase1_kind_actor_census.json"
+   ],
+   "c2_row_types": "analysis/phase4_c2_level_type_authority.json",
+   "c2_row_type_rules": "analysis/phase4_c2_level_type_authority.json",
+   "c2_taxonomy_coverage_demonstrated": "analysis/phase4_c2_level_type_authority.json",
+   "c2_underivable_types": "analysis/phase4_c2_level_type_authority.json",
+   "c2_frozen_name_matches_this_row": [
+    "analysis/phase4_c2_level_type_authority.json",
+    "analysis/mechanics_baseline.yaml"
+   ],
+   "vault_pages_total": "analysis/phase4_f_row_measured_census.json",
+   "vault_pages_by_class": "analysis/phase4_f_row_measured_census.json",
+   "vault_pages_markdown": "analysis/phase4_f_row_measured_census.json",
+   "vault_pages_under_mods_dir": "analysis/phase4_f_row_measured_census.json",
+   "vault_page_statuses": [
+    "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md",
+    "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+    "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+    "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md",
+    "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+    "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+    "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+    "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+    "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+    "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md"
+   ],
+   "vault_pages_without_a_status": [
+    "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md",
+    "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+    "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+    "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md",
+    "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+    "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+    "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+    "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+    "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+    "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md"
+   ],
+   "vault_pages_declaring_source_state_original_game": [
+    "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md",
+    "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+    "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+    "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md",
+    "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+    "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+    "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+    "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+    "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+    "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md"
+   ],
+   "vault_pages_that_are_landing_stubs": [
+    "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md",
+    "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+    "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+    "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md",
+    "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+    "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+    "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+    "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+    "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+    "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md"
+   ],
+   "vault_pages_mentioning_an_allmods_build": [
+    "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md",
+    "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+    "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+    "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md",
+    "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+    "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+    "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+    "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+    "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+    "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md"
+   ],
+   "non_mod_vault_pages_mentioning_an_allmods_build": [
+    "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+    "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md",
+    "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+    "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+    "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md",
+    "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+    "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+    "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+    "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+    "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+    "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+    "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md"
+   ],
+   "registered_gate_files": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ],
+   "registered_gate_file_names": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ],
+   "registered_gate_match_tokens": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ],
+   "gate_files_naming_the_row_id": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ],
+   "gate_files_covering_the_new_measurements": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ],
+   "registered_gates_executed": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ],
+   "registered_gate_tests_passed": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ],
+   "registered_gate_tests_failed": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ],
+   "registered_gate_files_with_a_failure": [
+    "tests/test_g3_ready_replacement.py",
+    "tests/test_phase1_census.py",
+    "tests/test_phase2_completion.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_runtime_guards.py",
+    "tests/test_phase3_semantic_lifetime.py",
+    "tests/test_phase4_e02.py",
+    "tests/test_phase4_e02_collision.py",
+    "tests/test_phase4_e03.py",
+    "tests/test_semantic_state.py"
+   ]
+  }
+ },
+ "facts": {
+  "fail_loud_guards_fired": [
+   "missing_artifact_aborts",
+   "renamed_key_aborts",
+   "fact_without_a_pinned_source_aborts"
+  ],
+  "census_durable_state": "met",
+  "census_durable_fraction": "2/2",
+  "census_durable_reason": "2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked",
+  "census_row_status": "partial",
+  "census_baseline_sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58",
+  "census_triage": {
+   "original_oracle": "measurable: runtime evidence present in artifacts",
+   "complete_frontier": "no static evidence found in this row's artifacts",
+   "typed_state": "no static evidence found in this row's artifacts",
+   "lifecycle": "measurable: runtime evidence present in artifacts",
+   "cross_system_behavior": "measurable: runtime evidence present in artifacts",
+   "original_interfaces": "no static evidence found in this row's artifacts",
+   "source_closure": "measurable: source/build entries exist (resident and/or overlay track)",
+   "campaign_breadth": "no static evidence found in this row's artifacts"
+  },
+  "census_analysis_artifacts_credited": 1,
+  "census_analysis_artifacts": [
+   "analysis/phase3_training_anchor_fixture.json"
+  ],
+  "census_vault_pages_credited": 17,
+  "census_source_files": [
+   "src_re/training_board_sign.c",
+   "src_re/training_tutorial_progression.c"
+  ],
+  "census_segments_entries": 0,
+  "census_overlay_build_entries": 1,
+  "census_overlay_matched_sources": [
+   "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c"
+  ],
+  "census_overlay_name": "LEVEL07_LEVEL1",
+  "census_scene_id": 17,
+  "census_stage_ordinal": "Training",
+  "census_has_static_code_evidence": false,
+  "census_has_runtime_trace_evidence": true,
+  "census_overlay_track_totals": {
+   "functions": 158,
+   "matched": 15,
+   "pct": 9.49
+  },
+  "row_external_fixtures": [
+   "TRAINING_NPC_STAGES.movie.json",
+   "collecting_FLIK_LEVELTRAINING.movie.json"
+  ],
+  "row_external_fixture_count": 2,
+  "f_rows_censused": 19,
+  "f_rows_with_any_source_files": [
+   "F00_training"
+  ],
+  "f_rows_with_any_segments_entries": [],
+  "f_rows_with_an_overlay_build_entry": [
+   "F00_training",
+   "F03_council_chamber",
+   "F04_cliffside_canyon",
+   "F05_riverbed_run",
+   "F08_city_square",
+   "F09_bug_bar",
+   "F11_the_tree",
+   "F12_battle_arena",
+   "F13_anthill_two",
+   "F15_canyon_showdown"
+  ],
+  "f_rows_with_more_vault_pages_than_this_one": [],
+  "registry_dimensions_met": 0,
+  "registry_dimensions_remaining": 9,
+  "registry_distinct_bases": [
+   "no active child campaign"
+  ],
+  "registry_distinct_states": [
+   "gap"
+  ],
+  "registry_completion_state": "open",
+  "registry_campaign_id": null,
+  "registry_movie_count": 0,
+  "registry_capsule_count": 0,
+  "registry_prior_offline_analysis_count": 0,
+  "registry_next_lane_reason": "no campaign exists; begin with the static semantic frontier",
+  "baseline_sha256_matches_census": true,
+  "row_binding_claims": 2,
+  "row_bindings": [
+   "Training scene 17; training step counter 0x800B4A3C (overlay field; semantic registry original.training_step)",
+   "Tutorial NPC progression (Canon Training_NPC_progression); scene_id 17; board signs = image atlas"
+  ],
+  "row_declared_fixture_paths": [
+   "TRAINING_NPC_STAGES.movie.json",
+   "collecting_FLIK_LEVELTRAINING.movie.json"
+  ],
+  "row_declared_missing": "Complete lesson/action oracle.",
+  "row_declared_fixture_need": "Full-tutorial cold-boot movie asserting each lesson gate advance.",
+  "row_declared_evidence_classes": [
+   "manual",
+   "runtime_trace"
+  ],
+  "row_declared_next": "Replay TRAINING_NPC_STAGES movie asserting each stage advance write in the NPC progression state.",
+  "row_declared_status": "partial",
+  "row_declared_stages": "Training",
+  "row_artifact_path_citations": [],
+  "row_artifact_path_citation_count": 0,
+  "dod_dimension_prose": [
+   "cold boot / load / first use / repeated use / exhaustion / retirement / reuse",
+   "pause-status / damage / death / respawn-anchor restore / life loss / game over / continue",
+   "level exit / objective completion / results / save / reload / scene+overlay transition",
+   "camera modes / animation states / render double buffering / audio start-stop / effects",
+   "native combinations (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+   "campaign breadth (normal / traversal-special / boss / chase / city / interior / exterior / bonus)"
+  ],
+  "progression_table_address": "0x80077FA0",
+  "progression_table": [
+   17,
+   1,
+   3,
+   2,
+   6,
+   10,
+   11,
+   4,
+   5,
+   14,
+   7,
+   12,
+   13,
+   9,
+   8,
+   15,
+   -1
+  ],
+  "training_ordinal": 0,
+  "scene_from_progression_table": 17,
+  "scene_matches_the_census_binding": true,
+  "scene_disc_dir": "level07",
+  "scene_level_data": {
+   "dat": "LEVEL1.DAT",
+   "bin": "LEVEL1.BIN",
+   "raw": "LEVEL1.RAW"
+  },
+  "scene_vab_dir": "level01",
+  "scene_vab_dir_matches_disc_dir": false,
+  "scene_phase2_stage_labels": [
+   "training"
+  ],
+  "phase3_law_is_the_corrected_one": true,
+  "law_directory_for_this_scene": "LEVEL07/ LEVEL1.*",
+  "law_string_dir_diverges_for_ids": "16,17",
+  "this_scene_is_a_string_dir_divergence": true,
+  "prior_prose_residency_claim": "two scene-17 training saves (training_all_stuff_collected_ending.sav, phase3_pristine_training_gameplay_i5.sav) hold LEVEL07_LEVEL1.BIN resident at 0x800B39A0, exactly as arithmetic+variant predict",
+  "prior_prose_residency_claim_names_the_same_two_saves": true,
+  "law_arithmetic_mechanism": "ARITHMETIC, no table: dir = scene_id <= 10 ? scene_id : scene_id - 10 (slti @0x8003D204, addiu -10 @0x8003D214); ori 0x0140 @0x8003D218 selects the LEVEL1.* variant for scene_id >= 11.",
+  "law_arithmetic_instruction_pcs": [
+   "0x8003D204",
+   "0x8003D214",
+   "0x8003D218"
+  ],
+  "this_stage_level_dat": "LEVEL07/LEVEL1.DAT",
+  "this_stage_type3f_entries": 62,
+  "this_stage_type3f_kind_histogram": {
+   "0x10": 1,
+   "0x11": 1,
+   "0x12": 1,
+   "0x13": 1,
+   "0x14": 50,
+   "0x23": 2,
+   "0x2b": 2,
+   "0x2c": 4
+  },
+  "folk_named_level00_dat_type3f_entries": 0,
+  "folk_named_level00_dat_type3f_tables": 0,
+  "board_editor_target_file": "LEVEL07/LEVEL1.RAW",
+  "board_editor_target_agrees_with_the_law": true,
+  "board_editor_still_carries_stale_level01_prose": true,
+  "overlay_registry_region_a": "0x800B39A0",
+  "overlay_registry_region_length": 7656,
+  "overlay_registry_entry_blob": "REBUILD/files/LEVEL07/LEVEL1.BIN",
+  "overlay_registry_entry_sha1": "79702fa222a0ab71b95107d174d8f360ab8cef19",
+  "overlay_registry_total_overlays": 12,
+  "re_source_declares_itself_pseudocode": true,
+  "re_source_evidence_disc_is_a_mod_build": true,
+  "re_declared_step_field": "0x800B4A3C",
+  "re_declared_step_state_array": [
+   "0x800B4A58",
+   14
+  ],
+  "re_declared_cached_pickup_pointers": [
+   2,
+   4
+  ],
+  "re_declared_word_count": 25,
+  "re_declared_jump_table_targets": [
+   "0x800B3FD4",
+   "0x800B402C",
+   "0x800B40C4",
+   "0x800B4128",
+   "0x800B4200",
+   "0x800B4368",
+   "0x800B4264",
+   "0x800B42C4",
+   "0x800B4318",
+   "0x800B43FC",
+   "0x800B4470",
+   "0x800B4570",
+   "0x800B45E0",
+   "0x800B4670"
+  ],
+  "re_declared_jump_table_arms": 14,
+  "re_decoded_arm_indices": [
+   1,
+   2,
+   6,
+   9,
+   13
+  ],
+  "re_arms_left_in_prose": 9,
+  "residency_pin_generator": "tools/phase4_f08_overlay_residency_pin.c",
+  "residency_pin_generator_is_reused_unchanged": true,
+  "residency_pin_inputs_match_registries": true,
+  "residency_pin_images_scanned": 20,
+  "residency_pin_rams_scanned": 2,
+  "residency_pin_ram_labels": [
+   "train_gameplay_i5",
+   "train_all_collected_ending"
+  ],
+  "residency_pin_images_argmax_in_every_ram": 1,
+  "residency_pin_images_with_stable_declared_base": 1,
+  "residency_pin_unique": true,
+  "residency_pin_file": "OVL/LEVEL07_LEVEL1.BIN",
+  "residency_pin_sha1": "79702fa222a0ab71b95107d174d8f360ab8cef19",
+  "residency_pin_size": 4336,
+  "residency_pin_result": "F08_OVERLAY_RESIDENCY_PIN_UNIQUE",
+  "residency_pin_nontrivial_pct": 98.92,
+  "residency_pin_runner_up": "OVL/LEVEL02_LEVEL1.BIN",
+  "residency_pin_runner_up_pct": 8.49,
+  "residency_pin_agrees_with_overlay_registry_sha1": true,
+  "residency_pin_agrees_with_row_binding": true,
+  "pinned_overlay_extent": [
+   "0x800B39A0",
+   "0x800B4A90"
+  ],
+  "named_words_count": 25,
+  "named_words_inside_pinned_image": 25,
+  "named_words_zero_in_disc_image": 24,
+  "named_words_varying_across_fixtures": 13,
+  "step_field_values_across_fixtures": [
+   2,
+   13
+  ],
+  "step_field_is_zero_on_disc": true,
+  "step_state_array_values": [
+   [
+    7,
+    7
+   ],
+   [
+    7,
+    7
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    0,
+    4
+   ],
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    61
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    3
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    1
+   ]
+  ],
+  "step_state_slots_nonzero_per_fixture": [
+   3,
+   14
+  ],
+  "cached_pickup_pointer_values": [
+   2148650968,
+   2148650984,
+   2148651000,
+   2148651016,
+   2148651032,
+   2148651048
+  ],
+  "cached_pickup_pointer_stride": [
+   16
+  ],
+  "cached_pickup_pointer_count_matches_disc_type3f_kinds": true,
+  "audio_id_table_is_static_on_disc": true,
+  "region_a_bytes": 7656,
+  "region_a_differing_bytes": 13,
+  "region_a_differing_inside_pinned_image": 13,
+  "region_a_differing_beyond_pinned_image": 0,
+  "whole_ram_words": 524288,
+  "whole_ram_differing_words": 35373,
+  "training_saves_centrally_pinned": [
+   "allmods_training_letters_mismatch_movie.movie.sav",
+   "collecting_FLIK_LEVELTRAINING.movie.sav",
+   "movies/100%/LEVEL00_Training.movie.sav",
+   "movies/Phase4/Interpreter/100% Runs/LEVEL00_Training.movie.sav",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL00_TRAINING.movie.sav",
+   "phase3_pristine_training_gameplay_i5.sav",
+   "training_all_stuff_collected_ending.sav"
+  ],
+  "training_saves_pristine": [
+   "movies/100%/LEVEL00_Training.movie.sav",
+   "movies/Phase4/Interpreter/100% Runs/LEVEL00_Training.movie.sav",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL00_TRAINING.movie.sav",
+   "phase3_pristine_training_gameplay_i5.sav",
+   "training_all_stuff_collected_ending.sav"
+  ],
+  "training_saves_non_pristine": [
+   "allmods_training_letters_mismatch_movie.movie.sav",
+   "collecting_FLIK_LEVELTRAINING.movie.sav"
+  ],
+  "training_saves_bytes_match_pin": 7,
+  "residency_pin_rams_are_pinned_pristine_training_saves": true,
+  "pristine_training_saves_the_row_declares": [],
+  "row_external_fixtures_bytes_match_pin": 2,
+  "row_external_fixture_consumers": [
+   "analysis/phase2_fixture_audit.json",
+   "analysis/phase2_row_coverage.json",
+   "analysis/phase3_evidence_inventory.json",
+   "analysis/phase3_ownership_graph.json",
+   "analysis/phase3_training_anchor_fixture.json",
+   "mechanics:C03_flik_letters",
+   "mechanics:F00_training"
+  ],
+  "semantic_state_entries_total": 66,
+  "registered_entry_id": "original.training_step",
+  "registered_entry_kind": "overlay_field",
+  "registered_entry_width": "s32",
+  "registered_entry_owner": "original_game.training_overlay",
+  "registered_entry_confidence": "confirmed",
+  "registered_entry_evidence": [
+   "src_re/training_tutorial_progression.c",
+   "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+   "analysis/phase4_f00_written_bar_assessment.json"
+  ],
+  "registered_entry_range": [
+   0,
+   13
+  ],
+  "registered_entry_range_context": "Training overlay loaded (LEVEL07/LEVEL1.BIN @ 0x800B39A0). Range holds for THIS overlay: observed 2 and 13 in the two pristine fixtures, and the field indexes a 14-arm dispatch table at 0x800B39A4 whose span equals the range span. \u26a0\ufe0f THE ADDRESS IS NOT UNIQUE. Overlay-local VAs are keyed globally here with no image field, and 0x800B4A3C is also real written state in LEVEL02_LEVEL1.BIN (3 refs, 2 stores), which routes via the progression table to F11_the_tree -- where it was measured at 0..320 over 1,896 writes, far outside this range. Three rows have now collided on this entry (E07 / F00 / F11). The range is scoped to the training overlay and must not be read as a property of the address.",
+  "registered_entry_declared_writers": [
+   "0x800B3DA0",
+   "0x800B47E0"
+  ],
+  "registered_entry_declared_writer_names": [
+   "level_state_writer_zeroing_init",
+   "level_transition_handler_increment"
+  ],
+  "registered_entry_has_no_image_field": false,
+  "semantic_entries_inside_shared_region_a": [
+   "0x800B4A3C"
+  ],
+  "semantic_entries_inside_this_rows_overlay_extent": [
+   "0x800B4A3C"
+  ],
+  "xrefs_gp": "0x80081D98",
+  "xrefs_declared_readers": [
+   "0x8004F09C",
+   "0x8004F108"
+  ],
+  "xrefs_declared_reader_functions": [
+   "gameplay_state_machine"
+  ],
+  "xrefs_declared_writer_count": 0,
+  "xrefs_admits_it_cannot_see_the_declared_writer": "the declared writer lies in OVERLAY space (0x800B39A4..0x800BE5E8) \u2014 overlay code is not part of the resident EXE image, so this scan cannot see it. Verifying it needs the overlay blob.",
+  "re_named_overlay_code_entries": [
+   "0x800B39A0",
+   "0x800B3B54",
+   "0x800B3C94",
+   "0x800B3F58"
+  ],
+  "re_named_overlay_code_entries_all_inside_the_pinned_image": true,
+  "re_named_overlay_code_entry_words": {
+   "0x800B39A0": "0x00000015",
+   "0x800B3B54": "0x27BDFFE0",
+   "0x800B3C94": "0x3C04800A",
+   "0x800B3F58": "0x27BDFFE0"
+  },
+  "probe_inputs_match_the_registries_they_check": true,
+  "probe_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+  "probe_reference_recovery": "lui+addiu, lui+ori and $gp-relative are all scanned; a materialized high half expires after 64 instructions or when its register is redefined, and memory ops through an unrecovered base are counted as UNRESOLVED rather than dropped",
+  "probe_resident_reference_count": 2,
+  "probe_images_whose_extent_covers_the_address": 7,
+  "probe_images_referencing_the_address": 2,
+  "probe_pinned_image_reference_count": 21,
+  "probe_pinned_image_store_count": 2,
+  "probe_pinned_image_load_count": 19,
+  "other_images_referencing_the_same_address": [
+   [
+    "OVL/LEVEL02_LEVEL1.BIN",
+    3,
+    2
+   ]
+  ],
+  "measured_store_pcs_in_the_pinned_image": [
+   "0x800B3DA0",
+   "0x800B47E0"
+  ],
+  "declared_writer_count_vs_measured_store_count": [
+   2,
+   2
+  ],
+  "declared_writer_is_among_the_measured_stores": true,
+  "declared_writer_word_in_the_pinned_image": "0xAC204A3C",
+  "declared_writer_decodes_as_a_memory_op": true,
+  "declared_writer_is_a_store_in_any_image": true,
+  "resident_readers_confirmed_from_bytes": 2,
+  "resident_reader_ops": [
+   "lw"
+  ],
+  "resident_reader_insn_words": [
+   "0x8C424A3C"
+  ],
+  "resident_reader_resolution": [
+   "lui_plus_offset"
+  ],
+  "jump_table_images_containing_it": 1,
+  "jump_table_address": "0x800B39A4",
+  "jump_table_image": "OVL/LEVEL07_LEVEL1.BIN",
+  "jump_table_all_arms_inside_that_image": true,
+  "jump_table_is_in_the_pinned_image": true,
+  "jump_table_arms_that_reload_the_field": 14,
+  "jump_table_arm_reload_offsets": [
+   12
+  ],
+  "jump_table_arm_count_equals_declared_range_span": true,
+  "overlay_images_in_function_census": 20,
+  "census_entries_in_the_pinned_overlay": 10,
+  "census_code_functions_in_the_pinned_overlay": 8,
+  "census_data_records_in_the_pinned_overlay": 2,
+  "census_function_names_in_the_pinned_overlay": [
+   "dispatch_small_mode",
+   "level_completion_sub",
+   "level_completion_wrapper",
+   "level_overlay_draw",
+   "level_state_writer",
+   "level_state_writer_f48",
+   "level_transition_handler",
+   "state_writer_arg_entry"
+  ],
+  "overlay_summary_function_count": 8,
+  "overlay_resident_callees": [
+   "0x80026df4",
+   "0x800308cc",
+   "0x80038e48",
+   "0x8003e4e0",
+   "0x80045a60",
+   "0x80046ac0",
+   "0x80046b14",
+   "0x800507f8",
+   "0x80061a48"
+  ],
+  "function_census_classifies_the_jump_table_range": "data",
+  "function_census_jump_table_range_size": 56,
+  "jump_table_size_matches_arm_count": true,
+  "function_census_classifies_the_state_block": "data",
+  "function_census_state_block_extent": [
+   "0x800b492c",
+   "0x800b4a90"
+  ],
+  "function_owning_each_measured_store": {
+   "0x800B3DA0": "level_state_writer",
+   "0x800B47E0": "level_transition_handler"
+  },
+  "function_owning_the_measured_stores": [
+   "level_state_writer",
+   "level_transition_handler"
+  ],
+  "initializing_store_owner": "level_state_writer",
+  "advancing_store_owner": "level_transition_handler",
+  "ownership_functions": 1,
+  "ownership_overlay_entries": 1,
+  "ownership_state_addresses": [],
+  "ownership_writers": 0,
+  "ownership_gaps": 1,
+  "ownership_frontier_blockers": [
+   "readers",
+   "state",
+   "writers"
+  ],
+  "ownership_frontier_blocker_texts": {
+   "state": "no fixed original state address is confirmed for this mechanic",
+   "readers": "no readers are attributable from the current static/pointer evidence",
+   "writers": "no writers are attributable from the current static/pointer evidence"
+  },
+  "rows_the_ownership_graph_attributes_this_state_to": [],
+  "rows_sharing_this_state_count": 0,
+  "collision_rows_resolved_to_their_own_overlay": {},
+  "collision_explained_by_the_other_images_that_reference_the_address": false,
+  "resident_build_units": 913,
+  "resident_build_toolchain": "gcc2.7.2-psx",
+  "resident_registry_contains_any_src_re_unit": false,
+  "overlay_registry_contains_any_src_re_unit": false,
+  "census_credited_source_files_are_in_neither_build_registry": true,
+  "overlay_track_total_code_functions": 158,
+  "overlay_track_matched_functions": 15,
+  "overlay_track_matched_pct": 9.49,
+  "pinned_overlay_code_functions": 8,
+  "pinned_overlay_matched_functions": 1,
+  "pinned_overlay_rebuild_validated": true,
+  "pinned_overlay_rebuilt_sha1_matches_the_blob": true,
+  "pinned_overlay_matched_sources": [
+   "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c"
+  ],
+  "pinned_overlay_matched_entry": "0x800B3F08",
+  "byte_matched_c_bound_literals": [
+   2,
+   4,
+   13
+  ],
+  "byte_matched_c_outer_guard_literal": 13,
+  "byte_matched_c_guard_literal_equals_registered_max": true,
+  "byte_matched_c_guard_is_exclusive_so_it_excludes_the_terminal_step": true,
+  "byte_matched_c_callee": [
+   "800b3b54"
+  ],
+  "byte_matched_c_is_fed_the_registered_field": [
+   "0x800B3F04"
+  ],
+  "other_baseline_rows_citing_this_address": [
+   "E07_event_vm",
+   "F11_the_tree"
+  ],
+  "another_row_documents_the_overlay_callback_that_reads_it": [
+   "E07_event_vm"
+  ],
+  "byte_matched_c_bytes": 64,
+  "governing_roles": 28,
+  "governing_addresses": 28,
+  "governing_addresses_resident": 2,
+  "governing_addresses_in_this_rows_overlay": 26,
+  "governing_resident_build_units": [
+   "asm/hand_written/8004ecd4_gameplay_state_machine.s"
+  ],
+  "governing_resident_units_matching_c": 0,
+  "governing_resident_units_hand_asm": 1,
+  "governing_resident_addresses_outside_any_build_unit": 0,
+  "governing_overlay_addresses_with_matched_c": 1,
+  "completion_oracle_stage_key": "training",
+  "completion_oracle_movie": "movies/go_to_end/LEVEL00-Training.movie.json",
+  "completion_oracle_frames": 9750,
+  "completion_oracle_target_scene": 17,
+  "completion_oracle_replay_accepted": true,
+  "completion_oracle_entered_stage_frame": 4500,
+  "completion_oracle_stage_exited": true,
+  "completion_oracle_snapshot_fields": [
+   "enemy_quota",
+   "equipped_berry",
+   "grain",
+   "health",
+   "lives",
+   "player_floor",
+   "player_grounded",
+   "player_x",
+   "player_y",
+   "player_z",
+   "power_word",
+   "scene_id"
+  ],
+  "completion_oracle_corroborates_the_scene_id": true,
+  "completion_oracle_cited_by_the_row": false,
+  "stage_movies_pinned": 12,
+  "stage_movies_pinned_paths": [
+   "ALLMODS_COLLECTING_TRAINING.movie.json",
+   "LEVEL00_load.movie.json",
+   "TRAINING_NPC_STAGES.movie.json",
+   "allmods_training_letters_mismatch_movie.movie.json",
+   "allmods_training_letters_movie.movie.json",
+   "collecting_FLIK_LEVELTRAINING.movie.json",
+   "movies/100%/LEVEL00_Training.movie.json",
+   "movies/ALLMODS_Training_Still.movie.json",
+   "movies/LEVEL00_GOTOEND_INTERPRETERTEST.movie.json",
+   "movies/Phase4/Interpreter/100% Runs/LEVEL00_Training.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL00_TRAINING.movie.json",
+   "movies/go_to_end/LEVEL00-Training.movie.json"
+  ],
+  "stage_movie_frames": {
+   "ALLMODS_COLLECTING_TRAINING.movie.json": 8325,
+   "LEVEL00_load.movie.json": 4162,
+   "TRAINING_NPC_STAGES.movie.json": 8039,
+   "allmods_training_letters_mismatch_movie.movie.json": 7738,
+   "allmods_training_letters_movie.movie.json": 7733,
+   "collecting_FLIK_LEVELTRAINING.movie.json": 9299,
+   "movies/100%/LEVEL00_Training.movie.json": 10848,
+   "movies/ALLMODS_Training_Still.movie.json": 6994,
+   "movies/LEVEL00_GOTOEND_INTERPRETERTEST.movie.json": 7984,
+   "movies/Phase4/Interpreter/100% Runs/LEVEL00_Training.movie.json": 9219,
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL00_TRAINING.movie.json": 3809,
+   "movies/go_to_end/LEVEL00-Training.movie.json": 9750
+  },
+  "stage_movies_under_phase4_interpreter": [
+   "movies/Phase4/Interpreter/100% Runs/LEVEL00_Training.movie.json",
+   "movies/Phase4/Interpreter/Any% Runs/LEVEL00_TRAINING.movie.json"
+  ],
+  "stage_movie_format_versions": [
+   3,
+   4
+  ],
+  "stage_movies_declared_by_the_row": [
+   "TRAINING_NPC_STAGES.movie.json",
+   "collecting_FLIK_LEVELTRAINING.movie.json"
+  ],
+  "stage_movies_centrally_pinned": 12,
+  "anchor_fixture_classification": "strict_pristine",
+  "anchor_fixture_observed_scene": 17,
+  "anchor_fixture_reproducible": true,
+  "anchor_fixture_reproduction_verified": true,
+  "anchor_fixture_target_frame": 6904,
+  "anchor_fixture_movie": "collecting_FLIK_LEVELTRAINING.movie.json",
+  "anchor_fixture_from_boot": true,
+  "anchor_fixture_is_the_pin_ram_source": true,
+  "row_coverage_status": "pristine_trigger",
+  "row_coverage_unaudited_fixtures": 0,
+  "row_coverage_non_pristine_fixtures": 0,
+  "scheduler_eligible": false,
+  "scheduler_ineligibility_reasons": [
+   "no associated movie under case-sensitive movies/Phase4/"
+  ],
+  "scheduler_sees_a_phase4_movie": false,
+  "scheduler_frontier_blocker_domains": [
+   "readers",
+   "state",
+   "writers"
+  ],
+  "scheduler_static_ownership_function_count": 1,
+  "scheduler_ownership_input_is_current": false,
+  "action_windows_stage_label": "training",
+  "action_window_recognizers": 11,
+  "action_windows_in_stage_total": 168,
+  "action_window_recognizers_with_zero_in_stage": [
+   "camera_lock",
+   "camera_look",
+   "circle_negative",
+   "kick",
+   "pause",
+   "slow_walk",
+   "status"
+  ],
+  "action_windows_cited_by_the_row": false,
+  "stage_collision_container": "LEVEL07/LEVEL1.RAW",
+  "stage_collision_scene": 17,
+  "stage_authored_collision_sectors": 25,
+  "stage_runtime_collision_sectors": 70,
+  "stage_region_code_histogram": {
+   "0": 24,
+   "3": 1
+  },
+  "stage_nonzero_region_sectors": [
+   {
+    "sector": 24,
+    "code": 3,
+    "runtime_code": 3,
+    "runtime_origin": [
+     480,
+     -24096,
+     268736
+    ],
+    "stream_offset": 688304,
+    "chunk": 33,
+    "chunk_local_offset": "0xc4cc"
+   }
+  ],
+  "stage_disc_vs_runtime_mismatches": 0,
+  "e02_corroborates_the_scene_id": true,
+  "e02_container_agrees_with_the_law": true,
+  "e02_authored_sectors_compared": 3235,
+  "e02_disagreements": 0,
+  "stage_actor_census_save": "phase3_pristine_training_gameplay_i5.sav",
+  "stage_actor_records": 8,
+  "stage_actor_ids": [
+   9,
+   11
+  ],
+  "stage_actor_ids_with_canon_binding": [],
+  "stage_actor_census_uses_the_pin_ram_source": true,
+  "stage_actor_census_cited_by_the_row": false,
+  "c2_row_types": [
+   "normal"
+  ],
+  "c2_row_type_rules": [
+   "declared residual: no keyword matched"
+  ],
+  "c2_taxonomy_coverage_demonstrated": false,
+  "c2_underivable_types": [
+   "exterior",
+   "interior"
+  ],
+  "c2_frozen_name_matches_this_row": true,
+  "vault_pages_total": 17,
+  "vault_pages_by_class": {
+   "Archive": 3,
+   "Canon": 4,
+   "Experiments": 1,
+   "Mods": 7,
+   "Sessions": 1,
+   "_attachments": 1
+  },
+  "vault_pages_markdown": 16,
+  "vault_pages_under_mods_dir": 7,
+  "vault_page_statuses": {
+   "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md": "partial-live-confirmed",
+   "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md": null,
+   "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md": null,
+   "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md": "live_confirmed",
+   "ObsidianVault/Canon/Systems/Training_NPC_progression.md": "legacy_import_confirmed",
+   "ObsidianVault/Canon/Systems/Training_board_sign_images.md": "legacy_import_confirmed",
+   "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md": "legacy_import_needs_curation",
+   "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md": "confirmed_training_only",
+   "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md": "runtime_verified",
+   "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md": "composed_into_allmods_cold_boot_verified",
+   "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md": "composed_into_allmods_cold_boot_verified",
+   "ObsidianVault/Mods/Other/MOD_training_board_sign.md": "static_seen",
+   "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md": "superseded_invalid_verification",
+   "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md": "composed_into_allmods_cold_boot_verified",
+   "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md": null,
+   "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md": "ready_for_operator_retest"
+  },
+  "vault_pages_without_a_status": [
+   "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+   "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+   "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md"
+  ],
+  "vault_pages_declaring_source_state_original_game": [
+   "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md"
+  ],
+  "vault_pages_that_are_landing_stubs": [
+   "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+   "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+   "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md"
+  ],
+  "vault_pages_mentioning_an_allmods_build": [
+   "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+   "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+   "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+   "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+   "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+   "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+   "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+   "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+   "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+   "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+   "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md"
+  ],
+  "non_mod_vault_pages_mentioning_an_allmods_build": [
+   "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+   "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+   "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+   "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md"
+  ],
+  "registered_gate_files": 11,
+  "registered_gate_file_names": [
+   "tests/test_g3_ready_replacement.py",
+   "tests/test_phase1_census.py",
+   "tests/test_phase2_completion.py",
+   "tests/test_phase3_evidence_inventory.py",
+   "tests/test_phase3_gate.py",
+   "tests/test_phase3_runtime_guards.py",
+   "tests/test_phase3_semantic_lifetime.py",
+   "tests/test_phase4_e02.py",
+   "tests/test_phase4_e02_collision.py",
+   "tests/test_phase4_e03.py",
+   "tests/test_semantic_state.py"
+  ],
+  "registered_gate_match_tokens": {
+   "tests/test_g3_ready_replacement.py": [
+    "\"training\""
+   ],
+   "tests/test_phase1_census.py": [
+    "\"training\""
+   ],
+   "tests/test_phase2_completion.py": [
+    "\"training\""
+   ],
+   "tests/test_phase3_evidence_inventory.py": [
+    "analysis/phase3_training_anchor_fixture.json"
+   ],
+   "tests/test_phase3_gate.py": [
+    "analysis/phase3_training_anchor_fixture.json"
+   ],
+   "tests/test_phase3_runtime_guards.py": [
+    "\"training\""
+   ],
+   "tests/test_phase3_semantic_lifetime.py": [
+    "training_step"
+   ],
+   "tests/test_phase4_e02.py": [
+    "\"training\""
+   ],
+   "tests/test_phase4_e02_collision.py": [
+    "\"training\""
+   ],
+   "tests/test_phase4_e03.py": [
+    "\"training\""
+   ],
+   "tests/test_semantic_state.py": [
+    "training_step"
+   ]
+  },
+  "gate_files_naming_the_row_id": [],
+  "gate_files_covering_the_new_measurements": [],
+  "registered_gates_executed": true,
+  "registered_gate_tests_passed": 105,
+  "registered_gate_tests_failed": 12,
+  "registered_gate_files_with_a_failure": [
+   "tests/test_phase3_evidence_inventory.py",
+   "tests/test_phase3_gate.py",
+   "tests/test_phase3_semantic_lifetime.py",
+   "tests/test_phase4_e02.py"
+  ]
+ },
+ "evidence_pins": [
+  {
+   "path": "tools/phase4_f00_written_bar_assessment.py",
+   "sha256": "7a03eac5129c68455dbad0c82a1cad8ce8f7c733c109b9c8c9b28578c21be9d9"
+  },
+  {
+   "path": "analysis/phase4_f_row_measured_census.json",
+   "sha256": "fe493509b6fcc1a435a3fd2d1ceaa6ad123a7a8d88ca52000e87ae6cce586e8a"
+  },
+  {
+   "path": "analysis/phase4_closure_debt.json",
+   "sha256": "e0bbdbfce84e744da871502d80156f5b0fa64e05d51e8885a0fdf43f3b7dea8a"
+  },
+  {
+   "path": "analysis/mechanics_baseline.yaml",
+   "sha256": "59dda58fcff90071d302b0dcae54bd05a2cdcfe8094171fb393be775efc38b58"
+  },
+  {
+   "path": "analysis/phase3_scene_asset_graph.json",
+   "sha256": "a714ea00c8db7af2855b8d85fd136d9dae9583ab5bf4bb3d2b48fd4b8f907b49"
+  },
+  {
+   "path": "analysis/phase4_f08_scene_binding.json",
+   "sha256": "75e8cf8b9ad25ee0e099dbea231ba4f9c72c8250eff55e20ca4af6fe127ee9dd"
+  },
+  {
+   "path": "analysis/phase4_e08_object_census.json",
+   "sha256": "5f532d05fc7680d1fff61e9420467715fd24a116f66c1f9b7e67a34abfe28139"
+  },
+  {
+   "path": "tools/training_board_edit.py",
+   "sha256": "06fbc29749eaa784be8f503318c7ea22ae1eb444a089e1d42b00381d98fed918"
+  },
+  {
+   "path": "config/overlays.yml",
+   "sha256": "881c9ebea5805edd10603aef718a83460a4a701d5a3dd9a8fbeff24bdde83c09"
+  },
+  {
+   "path": "src_re/training_tutorial_progression.c",
+   "sha256": "50aa535dbf2acdc24b619f15494b257ac84a03425011afc2bf68ca7552abbdaf"
+  },
+  {
+   "path": "analysis/phase4_f00_overlay_residency_pin.json",
+   "sha256": "daac23f1ad20b3ac437ac0b1c045b0930eff3eff517b4991cd9e285498ff9e77"
+  },
+  {
+   "path": "tools/phase4_f08_overlay_residency_pin.c",
+   "sha256": "a379d6d9035911a36cbd106704bc70ceb55c88ff0e570d79201938a9a058b417"
+  },
+  {
+   "path": "analysis/phase0_2_external_fixture_set.json",
+   "sha256": "905f2648c3b9205060553d22d0c3727e5efc1ccb903b068d878e76f0dbf4e6f6"
+  },
+  {
+   "path": "config/semantic_state.yaml",
+   "sha256": "8f5682cb32af1eac107a9af1e9128ccc07a9e7be08b86abe49642f6c21268f48"
+  },
+  {
+   "path": "analysis/phase3_xrefs.json",
+   "sha256": "66a5f2058c0543987bc50cf2dfbecd4e4c69a8cd225c25c9b151f027ea3f4535"
+  },
+  {
+   "path": "analysis/phase4_f00_state_owner_probe.json",
+   "sha256": "efc02e5ba91d9bdab41bff7eb33ed48386465a817bf40ef4b656ab6937e25607"
+  },
+  {
+   "path": "tools/phase4_f00_state_owner_probe.c",
+   "sha256": "2641c8825f0690f0f365665addf4799f823143a12db33cbd88184a5310bf5a45"
+  },
+  {
+   "path": "analysis/functions.json",
+   "sha256": "42f99dc0f1886412751d269f586bca3fc72bac5c9f29d7447fe08fbe4f46ef61"
+  },
+  {
+   "path": "analysis/phase3_ownership_graph.json",
+   "sha256": "be8aea008ade0417bbe7e99e87c788df94c6ed9e50c6079b42b05e2c9f37e483"
+  },
+  {
+   "path": "config/segments.yml",
+   "sha256": "81c4df81ea8b5b1c2d265bfdeb86c3a9be92983bfc09e721379ddc6546d05477"
+  },
+  {
+   "path": "analysis/overlay_decomp_progress.json",
+   "sha256": "94fda111d1c2451b6aee846f4d07ac5ba16d77a94716c0e20e62479714cf438e"
+  },
+  {
+   "path": "src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c",
+   "sha256": "57c8c9c0fa6b3ad4860f895ea6479b8761237cc80d4e03517500b76b895fe09d"
+  },
+  {
+   "path": "analysis/phase2_fixture_audit.json",
+   "sha256": "48625b97ed1ec4f25eb9882cbf1b8b8e983c30a5dbd2a23230b1888bf24539f0"
+  },
+  {
+   "path": "analysis/phase2_completion_oracle.json",
+   "sha256": "a027364721b9b0105f4c87ec6a0e28c8323425f6efef6954d0d80ae23055849e"
+  },
+  {
+   "path": "analysis/phase3_training_anchor_fixture.json",
+   "sha256": "4158d6dd17f3a303be924942a86c8460c1d3fc349d6bbfdb595de363d521210f"
+  },
+  {
+   "path": "analysis/phase2_row_coverage.json",
+   "sha256": "62b461b051627c7dc346858c35b83f7deadcfebbe7463688b53cbd3f5c1e7103"
+  },
+  {
+   "path": "analysis/phase4_movie_priority_queue.json",
+   "sha256": "11c2d4ad5b2484e9061d11850577bb1ad4fed2c91b60e611f6cfacf1bb57299e"
+  },
+  {
+   "path": "analysis/phase2_action_windows.json",
+   "sha256": "7b7fad3c61b488db62cc4446bc4dbe93a934a0c345e31a584907a9ee24ca2baf"
+  },
+  {
+   "path": "analysis/phase4_e02_disc_region_code_census.json",
+   "sha256": "20e93eae19eca6feef8fb1d03e1903ca3de910db398f0d1e607798fe553a804e"
+  },
+  {
+   "path": "analysis/phase1_kind_actor_census.json",
+   "sha256": "309270b759faefab4c88a374bc0ea0521ab53fbba41c21b8b570f537294e39ed"
+  },
+  {
+   "path": "analysis/phase4_c2_level_type_authority.json",
+   "sha256": "86b9a98310cd9dd44e53d403f37762ce944ba850e42f3f3e63c5251aeb1f59e5"
+  },
+  {
+   "path": "ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md",
+   "sha256": "a1a8a1dc7a9639ad5bcc70857bebb653ed66e39ae6523b9d52138ec8f118cd25"
+  },
+  {
+   "path": "ObsidianVault/Archive/Superseded/Systems_Training_board_sign_images.md",
+   "sha256": "5d89103175b1650c781d0956b3e8eed65c6c021c5d20b1b592647867ed49e6aa"
+  },
+  {
+   "path": "ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md",
+   "sha256": "0a05ab74f86cd266b6cb1c4b7b74788403e2691d1c1ad37850cca52ac8aeb01c"
+  },
+  {
+   "path": "ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md",
+   "sha256": "a6c2dd9c1f3aaa41d72d523fd8c56e50e0628ae89b8d7d7616ec14f47497d88c"
+  },
+  {
+   "path": "ObsidianVault/Canon/Systems/Training_NPC_progression.md",
+   "sha256": "e2506da0983d67858e129a5771d8b49871f378ce4ee4a744d586a65e87b29a8e"
+  },
+  {
+   "path": "ObsidianVault/Canon/Systems/Training_board_sign_images.md",
+   "sha256": "97ca27c8b3943341c1da7abef75effa0e5437cf1cdb3841af26c95f926b9c942"
+  },
+  {
+   "path": "ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md",
+   "sha256": "0981414a73c9d5f9be33b7adafc246cd41ce51451f3e4f36da44dc20a2489a3a"
+  },
+  {
+   "path": "ObsidianVault/Experiments/EXP_2026-08-02_training_ending_trigger_field.md",
+   "sha256": "6ee85cdb0722bd0145b16f18483baf1eae5ec3cc296e19fa37eb8f684095ef0c"
+  },
+  {
+   "path": "ObsidianVault/Mods/Other/MOD_training_25_grain_corner_cage.md",
+   "sha256": "bf311b41e0d927141e3ae70efef85fde19857060744c3f346e85fb97b87c68f4"
+  },
+  {
+   "path": "ObsidianVault/Mods/Other/MOD_training_auto_advance_counter_flash_fix.md",
+   "sha256": "654bcb815536f6f82d66b502dd0d9d14bb5846990acb7a6eec13be412a77184c"
+  },
+  {
+   "path": "ObsidianVault/Mods/Other/MOD_training_blackberry_sign_fidelity.md",
+   "sha256": "8d83de63a3931c72a2f7c46cacb5d5686b29e6a5e6ab1cf0a5c78387d72064ee"
+  },
+  {
+   "path": "ObsidianVault/Mods/Other/MOD_training_board_sign.md",
+   "sha256": "815487a04bb608fb05ebdeec34d40a840272490232b59bd971bc1b1c72f75403"
+  },
+  {
+   "path": "ObsidianVault/Mods/Other/MOD_training_pause_framebuffer_sync.md",
+   "sha256": "a2747749807ca6dcd7de551baa98cf3021c4c537ec6c5dea5a7151d59dd9de75"
+  },
+  {
+   "path": "ObsidianVault/Mods/Other/MOD_training_pause_n_suppression.md",
+   "sha256": "f630737027af660136d99ede782e9c58efe99cdabaca7ebb973c177229cd1084"
+  },
+  {
+   "path": "ObsidianVault/Mods/Other/MOD_training_six_level_purple_seed_ladder.md",
+   "sha256": "80bd8defb0612fa6477608b85b3936dca960a10d5d29a04d4258e6968992bedc"
+  },
+  {
+   "path": "ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md",
+   "sha256": "5be93da94709cc16c04548af05b89fa5243b64e56a557ed721c1c1e8a9c81fa8"
+  },
+  {
+   "path": "tests/test_g3_ready_replacement.py",
+   "sha256": "119a5ad81369b3371af74ab513f2253c7bb27e0262324555204765f477e83d3c"
+  },
+  {
+   "path": "tests/test_phase1_census.py",
+   "sha256": "d2271dfd8a6c7f6b5160f1eb6bfbf686726a8dbb32a7362620302d4a6cb86555"
+  },
+  {
+   "path": "tests/test_phase2_completion.py",
+   "sha256": "da895d2896392591c0f762fa3b4d37bcb44052ff668a2c5f72c764a5d58645c3"
+  },
+  {
+   "path": "tests/test_phase3_evidence_inventory.py",
+   "sha256": "4f5369ed4ee137003a2f7074cbce1a41f0986891ac341a3cc9b9c51c56a2e6d8"
+  },
+  {
+   "path": "tests/test_phase3_gate.py",
+   "sha256": "b795bd87795749e789044cf6af82a5d857e0609294c9d3bff22f07c06be26eff"
+  },
+  {
+   "path": "tests/test_phase3_runtime_guards.py",
+   "sha256": "caa218b73bcbf722489ace9b0777f481545c0800939064112aa79baec24578af"
+  },
+  {
+   "path": "tests/test_phase3_semantic_lifetime.py",
+   "sha256": "e5eb5d07a3f58d960feb9b06bf54d0e45ff53678b3c2a7f5e6a8b29ca4cfd8cf"
+  },
+  {
+   "path": "tests/test_phase4_e02.py",
+   "sha256": "3500164253c4f9635fa9b551cb3b54d65a7009a5b58bd851b48367141ba0b54b"
+  },
+  {
+   "path": "tests/test_phase4_e02_collision.py",
+   "sha256": "9c51611b837df4b73fa37e9b2bf1e54ce2796988624c19a71d4bd5fb00b5c0eb"
+  },
+  {
+   "path": "tests/test_phase4_e03.py",
+   "sha256": "1e47331b1df54fb5df0289731617e6a9aeda7ff466afc400b5dce175a952ecd7"
+  },
+  {
+   "path": "tests/test_semantic_state.py",
+   "sha256": "ff2c3601a04c73c7dba1cc140f866d938d68e8abd7c6bd8277be596a9fbabece"
+  }
+ ],
+ "dimensions": {
+  "durable_evidence": {
+   "state": "met",
+   "written_bar": "evidence artifacts durable, pinned, regenerable",
+   "basis": "CARRIED FORWARD, not re-derived: 2/2 in analysis/phase4_f_row_measured_census.json -- 2/2 declared fixtures intact -- external ones exist, are centrally pinned and byte-match; in-repo ones exist and are git-tracked. This assessment fails loudly if that measurement moves off 'met'. Independently re-confirmed here: 2 of 2 declared external fixtures still byte-match their central pin. Regenerability is unusually strong for this row and was not part of the carried measurement: the strict anchor save is not merely preserved, it is REPRODUCIBLE -- analysis/phase3_training_anchor_fixture.json records a from-boot replay of collecting_FLIK_LEVELTRAINING.movie.json to frame 6904 regenerating the pinned bytes (reproduction_verified=True, classification 'strict_pristine'), and that same save is one of the 2 RAM images both new measurements in this assessment run on. Both new artifacts are regenerable offline with no emulator (105/117 tests in the 11 gate file(s) that touch this row pass on today's tree)",
+   "gap": "the carried measurement covers FIXTURE INTACTNESS of a two-item declared set. Measured here, the declared set is a small fraction of what exists: 12 Training-stage movies are centrally pinned (12 of them byte-checkable) and the row declares 2; 5 pristine Training save states are pinned (plus 2 non-pristine) and the row declares 0. Neither NEW artifact this assessment adds is covered by any gate (0 gate files), and no gate file anywhere names the row id (0)"
+  },
+  "original_oracle": {
+   "state": "partial",
+   "written_bar": "behavior asserted against the ORIGINAL game's own natural execution, not injected state",
+   "basis": "the natural-execution material for this stage is the best-provisioned of any F row assessed so far, and none of it involves injection. A from-boot campaign replay covers the whole stage (movies/go_to_end/LEVEL00-Training.movie.json, 9750 frames, pristine_replay_accepted=True, entered at frame 4500, exited by end=True) and independently corroborates the scene id (True). Both save states this assessment measures are pristine-class and one is provably regenerable from a from-boot movie. NEW HERE, the row's central claim is now asserted against ORIGINAL bytes for the first time: the RE source every downstream page derives from was taken on a MOD build (evidence disc is ABL_ALLMODS: True; it also declares itself pseudocode: True), and its model is re-established here against the pristine image -- the step field's value is [2, 13] in the two natural fixtures, its per-step state array shows [3, 14] of 14 slots written, and the 6 cached pickup pointers are contiguous at stride [16], matching the disc-side type-0x3f kind histogram (True)",
+   "gap": "none of that is an ORACLE. Nothing asserts, at a named frame of a named movie, that a lesson gate advanced -- which is exactly what the row asks for ('Complete lesson/action oracle.'). The two fixtures are two static snapshots, not a progression, and they sample 2 of 14 steps. The campaign oracle asserts entry and exit only, and the row does not cite it (False); 168 in-stage input windows are already recognized for that same movie and are likewise uncited (False). No gate asserts any Training behaviour keyed to the objective"
+  },
+  "complete_frontier": {
+   "state": "met_candidate",
+   "written_bar": "item 2 AS WRITTEN: callers/callees/callbacks/indirect tables ENUMERATED, scoped to relevant -- not an empty unresolved set",
+   "basis": "the relevant frontier for this row's mechanic is a single indirect dispatch table, and it is now ENUMERATED from bytes rather than asserted in prose. tools/phase4_f00_state_owner_probe.c finds the RE-declared 14-arm table verbatim in exactly 1 of 20 overlay images, at 0x800B39A4 in OVL/LEVEL07_LEVEL1.BIN, with every arm inside that image (True) -- and the independent function census classifies exactly that range as 'data' of 56 bytes, which is 4 x the arm count (True). The table is bound to the state field by measurement, not by reading: 14 of 14 arms reload the field at a uniform offset of [12] bytes. The reference census around the field is exhaustive over both spaces: 2 resident references (both confirmed by decode below) and 21 in the pinned overlay (2 stores, 19 loads), against the 8 code functions and 2 data records the function census gives this overlay, plus its 9 enumerated resident callees. The residual is explicitly bounded rather than absent: the ownership graph's three frontier blockers (['readers', 'state', 'writers']) are each retired by a named measurement here",
+   "gap": "two bounded residuals, both named. (1) The enumeration is of the STEP MACHINE, not of the lesson CONDITIONS: what each arm waits for is decoded for 5 arms ([1, 2, 6, 9, 13]) in the RE source and left in prose for the rest, and the RE source is prose about a mod build. (2) The pinned overlay's callers are enumerated only inward: 1 functions are registered to this row in the ownership graph, and no artifact walks the 8 overlay functions to say which resident caller drives the tick. Item 2 names four things and CALLERS is one of them, so a verifier may reasonably reduce this to partial; what is offered against that is that callees ARE enumerated (9 resident callees for the image), the callback is byte-matched, the indirect table is exhaustive and unique across images, and the caller residual is bounded to resident code entering this image. A verifier must decide whether that, with the lesson conditions declared open, meets written item 2"
+  },
+  "campaign_breadth": {
+   "state": "not_met",
+   "written_bar": "conclusions generalize across every applicable stage, variant, lifecycle and exceptional path -- which requires the applicable set itself to be enumerated",
+   "basis": "this row is deliberately stage-unique -- Training is the only stage with a tutorial step machine, so 'generalizes across stages' has no content for its central mechanic, and the type authority places it as ['normal'] with rule ['declared residual: no keyword matched']. What DOES generalize is measured: the scene/asset binding this row depends on is the campaign-wide arithmetic law (phase3_law_is_the_corrected_one=True), and Training is one of the ids where the string directory and the arithmetic directory DIVERGE (True, diverging ids 16,17), so this stage is the law's hardest case and it holds",
+   "gap": "there is no denominator inside the stage either. Of 12 pinned Training routes (2 of them under movies/Phase4/Interpreter/, i.e. traceable), the row's evidence replays none and declares 2. The step machine has 14 arms and the fixtures sample 2 of them. The type authority itself reports taxonomy_coverage_demonstrated=False because ['exterior', 'interior'] have no textual authority. No variant, retry, death or exceptional-path axis is enumerated for this stage, and the applicability universe the written bar needs does not exist"
+  },
+  "typed_state": {
+   "state": "partial",
+   "written_bar": "state fields typed and value domains bounded (enumerating an untyped residual bounds the WORKLIST, not the STATE)",
+   "basis": "this row's one registered field is now typed and DOMAIN-BOUNDED by three independent measurements rather than by declaration. (i) STRUCTURAL: the field indexes a table with exactly 14 arms, byte-located and size-confirmed by the function census, so the domain is bounded by the table -- and the arm count equals the span of the registry's declared range (True). (ii) SOURCE: the one byte-matched C function in this overlay guards on [2, 4, 13], and its outer guard literal 13 IS the registered maximum (True), used exclusively (True) so the callback runs for steps below it and is silent on the terminal step -- exactly the shape a 0..max domain with a looping last arm takes. (iii) OBSERVED: the field reads [2, 13] across the two pristine fixtures, both inside the declared range [0, 13], and it is zero in the disc image (True) so it is runtime state living inside the overlay image. The surrounding block is typed too: 25 RE-declared words, all 25 inside the pinned image, 24 zero on disc with the one exception being the static audio-id table (True), and the per-step state array is populated exactly as a progression predicts ([3, 14] slots written in the two fixtures)",
+   "gap": "the REGISTRY is wrong in ways that matter more than the field being right. Its declared writer ['0x800B3DA0', '0x800B47E0'] named '['level_state_writer_zeroing_init', 'level_transition_handler_increment']' is not a store in ANY of the 20 images (is_store_anywhere=True; in the pinned image the word is 0xAC204A3C, which does not decode as a memory operation), while the real stores are {'0x800B3DA0': 'level_state_writer', '0x800B47E0': 'level_transition_handler'} -- so the declared/measured writer counts are [2, 2] and the declared one is not among them (True). Only 1 semantic entry covers this overlay's whole extent, none of the other 24 state words is registered at all, and 9 of the 14 steps have no decoded advance condition, so the per-step state array's value domain is unbounded"
+  },
+  "lifecycle": {
+   "state": "partial",
+   "written_bar": "cold boot / load / first use / repeated use / exhaustion / retirement / reuse each evidenced",
+   "basis": "COLD BOOT and LOAD are evidenced twice over and from opposite directions. The overlay's arrival at the shared base is proved by bytes in both fixtures (F08_OVERLAY_RESIDENCY_PIN_UNIQUE, 98.92% vs 8.49% for the runner-up), and its INITIALIZATION is proved from an instruction: of the 2 measured stores the lower one sits in level_state_writer and the advancing one in level_transition_handler. Cold boot to stage entry and stage exit are evidenced by the campaign oracle (entered 4500, exited by end=True), and the strict anchor is a from-boot regeneration (True). REPEATED USE is the phase this row is best placed on of any F row: the per-step state array shows [3, 14] slots written between the two fixtures, i.e. the mechanism demonstrably ran many times",
+   "gap": "FIRST USE, EXHAUSTION, RETIREMENT and REUSE have no evidence. The two fixtures are endpoints, not a trace: nothing observes a single advance happening, which is what the row's own next action asks for ('Replay TRAINING_NPC_STAGES movie asserting each stage advance write in the NPC progression state.'). The terminal step's behaviour (exhaustion) is asserted in RE prose from a mod build and never measured; nothing evidences the overlay being torn down or the block being reused by the next scene. No per-phase claim map is registered for this row the way F01 has one"
+  },
+  "cross_system_behavior": {
+   "state": "partial",
+   "written_bar": "native combinations exercised (carry+damage, powers+jump, projectiles at transitions, enemies vs hazards/plants)",
+   "basis": "one native crossing is real and byte-evidenced, and it is not one the row claims: the tutorial step field is read by RESIDENT code. Both resident reader PCs the xref census declares (['0x8004F09C', '0x8004F108'], in ['gameplay_state_machine']) decode as ['lw'] resolving to the registered address (2/2 confirmed, ['lui_plus_offset']), so the overlay-local tutorial state crosses into the resident gameplay state machine. A second crossing is documented by another baseline row and lands in this overlay (['E07_event_vm']; rows citing the address at all: ['E07_event_vm', 'F11_the_tree']): the one byte-matched C function here is that callback, fed the same field (['0x800B3F04']) and dispatching on it to ['800b3b54']. Stage-level crossings exist in uncited artifacts: the campaign oracle's stage snapshot carries 12 cross-system fields and 168 in-stage input events are recognized on that movie",
+   "gap": "the resident crossing is SCENE-GATED and the gate is not measured here: the same two instructions read whatever image is resident at 0x800B39A0, and 2 images write that word, so what those reads mean outside Training is unestablished. Beyond that, no COMBINATION is exercised anywhere. Nothing tests the tutorial advancing while the player takes damage, dies, pauses, or is carrying; the recognizer set on this stage's own movie already reports 7 of 11 recognizers at zero in-stage (['camera_lock', 'camera_look', 'circle_negative', 'kick', 'pause', 'slow_walk', 'status']), so several native axes are not even present in the one route that is analysed. The stage's actor pool is censused at 8 records over ids [9, 11] with 0 of those ids carrying a Canon role, from this row's own pinned save (True) and uncited by it (False) -- so even the instructor NPC the row is named for is not bound to an actor id"
+  },
+  "original_interfaces": {
+   "state": "partial",
+   "written_bar": "interfaces documented; unknowns enumerated with named obstructions",
+   "basis": "the load-side interface is documented to the instruction and this stage is its hardest case: dir = scene<=10 ? scene : scene-10 pinned at ['0x8003D204', '0x8003D214', '0x8003D218'], giving LEVEL07/ LEVEL1.* for scene 17, which the ordinal table at 0x80077FA0 reaches from ordinal 0. Four independent artifacts agree and none is downstream of another: the byte-level residency pin (OVL/LEVEL07_LEVEL1.BIN, sha1 matching the overlay build registry: True), the disc-side collision census (LEVEL07/LEVEL1.RAW, corroborates=True), the completion oracle's observed scene (True), and the board editor's resolved target (LEVEL07/LEVEL1.RAW, agrees=True). The folk name is refuted on the disc side too: LEVEL00/LEVEL.DAT holds 0 type-0x3f entries in 0 tables, while LEVEL07/LEVEL1.DAT holds 62. The unknown is enumerated with a named obstruction rather than left blank: 'Complete lesson/action oracle.'",
+   "gap": "the interface documentation that other readers consult is stale or mod-facing, and that is measurable. Of 17 credited vault pages, 7 live under Mods/ (distribution {'Archive': 3, 'Canon': 4, 'Experiments': 1, 'Mods': 7, 'Sessions': 1, '_attachments': 1}), 3 of the Canon pages are landing stubs that carry no claim of their own, only 1 declares source_state original_game, and 4 of the non-Mods pages cite an ALLMODS build (['ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md', 'ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md', 'ObsidianVault/Canon/Systems/Training_NPC_progression.md', 'ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md']) as does the RE source itself (True). tools/training_board_edit.py still carries stale LEVEL01 prose alongside its resolved LEVEL07 target (True). On the registry side: the shared overlay region holds 1 semantic entry (['0x800B4A3C']), and it carries no image field (False), the xref census itself records that it cannot see the declared writer ('the declared writer lies in OVERLAY space (0x800B39A4..0x800BE5E8) \u2014 overlay code is not part of the resident EXE image, so this scan cannot see it. Verifying it needs the overlay blob.'), and the function census, the overlay summary and the movie scheduler report 10, 8 and 1 functions for the same overlay"
+  },
+  "source_closure": {
+   "state": "partial",
+   "written_bar": "byte-matched C through the original toolchain for the row's governing functions",
+   "basis": "measured against BOTH registries, and the first result is a CORRECTION. The census credits this row with 2 source files (['src_re/training_board_sign.c', 'src_re/training_tutorial_progression.c']) and it is the only F row so credited (['F00_training']) -- but those are RE PROSE, not byte-matched C: they appear in neither build registry (True), and the file says so itself (True). RESIDENT (config/segments.yml, 913 units, toolchain gcc2.7.2-psx): this row has 0 entries, as does every F row ([]), and its 2 resident governing addresses land in 1 build unit(s) with 0 outside any unit. OVERLAY (config/overlays.yml + src/overlays/ + analysis/overlay_decomp_progress.json, 15/158 = 9.49% campaign-wide): this row's overlay HAS a build entry -- 1 of 8 code functions matched from ['src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c'], rebuild validated (True) with rebuilt sha1 equal to the blob's (True), and that sha1 is the sha1 of the image this assessment byte-pinned as resident (True). Unlike the sibling rows, that one matched function is ON this row's frontier rather than beside it: it is fed the row's registered field (['0x800B3F04']) and its outer guard literal is the registered domain maximum (True). So overlay byte-matching is DEMONSTRATED for this row's overlay, not impossible",
+   "gap": "one governing function of 26 overlay governing addresses has matched C (1), and it is a 64-byte dispatch wrapper. The function that actually runs the tutorial -- the one containing the advancing store -- is level_transition_handler and has no C, nor do the other 7 code functions in the image. On the resident side the two confirmed readers resolve to 0 matching-C unit(s) and 1 hand-ASM unit(s). Note the direction of the census's own triage: it reports 'measurable: source/build entries exist (resident and/or overlay track)', which measures REGISTRATION -- and here the registration that produced it was the src_re credit, which is not source closure at all"
+  }
+ },
+ "counts": {
+  "met": 1,
+  "partial": 6,
+  "met_candidate": 1,
+  "not_met": 1
+ },
+ "summary": "1 met, 1 met-candidate, 6 partial, 1 not met, 0 unmeasured -- against the WRITTEN bars. F00 is the most DOCUMENTED and least REGISTERED F row: 17 vault pages and a 0/9 blanket disposition. Measured, its mechanic turns out to be the best-bounded of any F row assessed -- an enumerated 14-arm dispatch table, a domain bound agreed by structure, byte-matched C and observation -- while the objective oracle the row asks for still does not exist.",
+ "notable": [
+  "THE ROW'S SOURCE CREDIT IS NOT SOURCE CLOSURE. This is the only F row the census credits with source files (['F00_training']), and the credit is for ['src_re/training_board_sign.c', 'src_re/training_tutorial_progression.c'] -- RE prose that appears in NEITHER build registry (True) and that says of itself it is not compiled (True). It is also derived from a MOD build (True), as is the archived Canon provenance note. The row's REAL byte-matched C is one overlay function (['src/overlays/LEVEL07_LEVEL1/800b3f08_dispatch_small_mode.c']), and it is better than the credit suggested: it is fed this row's registered field (['0x800B3F04']) and its outer guard literal 13 is the registered domain maximum.",
+  "THE REGISTERED WRITER IS NOT A WRITER. config/semantic_state.yaml declares ['0x800B3DA0', '0x800B47E0'] ('['level_state_writer_zeroing_init', 'level_transition_handler_increment']') as the writer of 0x800B4A3C at confidence 'confirmed'. Decoded from bytes, that word is 0xAC204A3C and it is not a store in ANY of the 20 images (is_store_in_any_image=True). The actual stores are {'0x800B3DA0': 'level_state_writer', '0x800B47E0': 'level_transition_handler'} -- the initializing one in level_state_writer and the advancing one in level_transition_handler. analysis/phase3_xrefs.json already flagged that it could not check this ('the declared writer lies in OVERLAY space (0x800B39A4..0x800BE5E8) \u2014 overlay code is not part of the resident EXE image, so this scan cannot see it. Verifying it needs the overlay blob.') and the check was never done; it is done here.",
+  "THE SAME ADDRESS IS REAL STATE IN TWO DIFFERENT OVERLAYS, AND THAT EXPLAINS THE THREE-ROW COLLISION. 2 of 20 images reference 0x800B4A3C in code; besides this row's (21 references, 2 stores) the others are [('OVL/LEVEL02_LEVEL1.BIN', 3, 2)]. The ownership graph attributes the entry to [], and resolving each of those rows through the ordinal->scene->overlay law lands on exactly those images ({}, consistent=False). A registry that keys overlay VAs globally cannot be right for both rows; adding an image field is the fix, and this row's entry is the correct one for OVL/LEVEL07_LEVEL1.BIN.",
+  "THE DISPATCH TABLE IS WHERE ITEM 2 IS ACTUALLY MET. The 14-arm table exists verbatim at 0x800B39A4 in exactly 1 of 20 images; the function census independently classifies that range as 'data' of 56 bytes (True = 4 x arms); and 14/14 arms reload the indexing field at a uniform offset of [12] bytes. Three independent structures agreeing is what makes this an enumeration rather than a reading of the RE prose it came from.",
+  "THE 17 VAULT PAGES ARE MOSTLY NOT ABOUT THE ORIGINAL GAME. Distribution {'Archive': 3, 'Canon': 4, 'Experiments': 1, 'Mods': 7, 'Sessions': 1, '_attachments': 1}; 7 are MOD pages; 3 of the Canon pages are landing stubs carrying no claim of their own (['ObsidianVault/Canon/Systems/Training_NPC_progression.md', 'ObsidianVault/Canon/Systems/Training_board_sign_images.md', 'ObsidianVault/Canon/Systems/Training_green_token_coord_move_crash_note.md']); exactly 1 page declares source_state original_game (['ObsidianVault/Canon/Systems/SYS_training_ending_trigger_field.md']); and 4 of the non-Mods pages cite an ALLMODS build (['ObsidianVault/Archive/Superseded/Systems_Training_NPC_progression.md', 'ObsidianVault/Archive/Superseded/Systems_Training_green_token_coord_move_crash_note.md', 'ObsidianVault/Canon/Systems/Training_NPC_progression.md', 'ObsidianVault/Sessions/2026/Session_2026-07-11_-_TRAINING_25-grain_cage_handoff.md']), as does the RE source the row's central model comes from. Page count is the wrong proxy for this row's evidence, which is why the census's own inventory is reported here by KIND.",
+  "THE STAGE'S EXIT IS THE REGION-CODE MECHANISM, ALREADY CLOSED BY ANOTHER ROW. LEVEL07/LEVEL1.RAW authors 25 collision sectors with histogram {'0': 24, '3': 1}: a single non-zero sector, [{'sector': 24, 'code': 3, 'runtime_code': 3, 'runtime_origin': [480, -24096, 268736], 'stream_offset': 688304, 'chunk': 33, 'chunk_local_offset': '0xc4cc'}], with zero disc-vs-runtime mismatches (0) across a census of 3235 sectors and 0 disagreements. So unlike F08, this stage's exit path is inherited from a closed row and only the tutorial progression is open.",
+  "THE BLOCKER THE ROW RECORDS IS NOT A MISSING FIXTURE. The row asks for 'Full-tutorial cold-boot movie asserting each lesson gate advance.' while 12 Training movies are pinned (2 under movies/Phase4/Interpreter/, i.e. traceable, format versions [3, 4]) and 5 pristine Training saves exist (['movies/100%/LEVEL00_Training.movie.sav', 'movies/Phase4/Interpreter/100% Runs/LEVEL00_Training.movie.sav', 'movies/Phase4/Interpreter/Any% Runs/LEVEL00_TRAINING.movie.sav', 'phase3_pristine_training_gameplay_i5.sav', 'training_all_stuff_collected_ending.sav']). The row declares 2 of the movies and none of the saves, so the scheduler marks it ineligible with reason ['no associated movie under case-sensitive movies/Phase4/'] (sees_a_phase4_movie=False) and reports 1 owned function(s). Under-declaration in the row is blocking the exact work the row asks for.",
+  "UNMEASURED HERE, and named so a verifier does not read silence as absence: what each of the 14 steps waits for (the RE source decodes 5 arms and leaves 9 in prose, and it is prose about a mod build); whether a single advance can be observed happening (that needs a replay of one of the 2 traceable routes, not a re-read); which actor id among [9, 11] is the instructor NPC; and whether the per-step state array's values have bounded domains."
+ ]
+}

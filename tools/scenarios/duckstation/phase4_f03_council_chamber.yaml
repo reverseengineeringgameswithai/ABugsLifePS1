@@ -1,0 +1,35 @@
+schema_version: 1
+id: phase4_f03_council_chamber
+description: >-
+  Pristine Council Chamber end-to-end oracle: observe Thumper initialize to
+  50 HP, cross the HP<=20 defeat threshold, commit the once-only exit, and
+  enter and leave the MEMORY results overlay.
+target:
+  disc: "Disney-Pixar A Bug's Life (v1.0).cue"
+  expected_serial: SCUS-94288
+  expected_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+launch: {profile: repro, execution_mode: Interpreter}
+playback:
+  movie: "movies/Phase4/Interpreter/Any% Runs/LEVEL03_CouncilChamber.movie.json"
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: thumper_initialized
+    trigger: {type: memory, address: 0x8009FE72, width: s16, op: eq, value: 50, max_frames: 600, timeout_seconds: 60}
+    assertions:
+      - {id: f03_scene_is_council_chamber, type: memory, address: 0x80082504, width: u32, op: eq, expected: 2, semantic_id: original.current_scene_id}
+      - {id: f03_thumper_initial_hp, type: memory, address: 0x8009FE72, width: s16, op: eq, expected: 50, semantic_id: original.thumper_hp}
+    after:
+      - {type: exec_trace_start, id: f03_thumper_damage, pc: 0x800590E4, capture: [pc, v0, v1, s0, s1], max_events: 24}
+      - {type: exec_trace_start, id: f03_goal_store, pc: 0x800B4190, capture: [pc, v0, v1, s0, s1], max_events: 4}
+      - {type: exec_trace_start, id: f03_hp_zero_store, pc: 0x800B45AC, capture: [pc, v0, v1, s0, s1], max_events: 4}
+      - {type: exec_trace_start, id: f03_results_entry, pc: 0x800B7DA0, capture: [pc, ra], max_events: 4}
+      - {type: exec_trace_start, id: f03_results_finalizer, pc: 0x800B8750, capture: [pc, ra], max_events: 4}
+  - id: full_stage_completion
+    trigger: {type: movie_frame_realtime, target: 2805, max_frames: 2805, timeout_seconds: 90, poll_interval_seconds: 0.002}
+    assertions:
+      - {id: f03_damage_commits_reach_threshold, type: exec_hit_count, watch: f03_thumper_damage, op: ge, expected: 15}
+      - {id: f03_goal_store_runs_once, type: exec_hit_count, watch: f03_goal_store, op: eq, expected: 1}
+      - {id: f03_hp_zero_store_runs_once, type: exec_hit_count, watch: f03_hp_zero_store, op: eq, expected: 1}
+      - {id: f03_results_entry_runs_once, type: exec_hit_count, watch: f03_results_entry, op: eq, expected: 1}
+      - {id: f03_results_finalizer_runs_once, type: exec_hit_count, watch: f03_results_finalizer, op: eq, expected: 1}

@@ -1,0 +1,110 @@
+{
+  "schema": "abl-phase4-row-bounded-exhaustion-v1",
+  "row": "E06_contact_object_pool",
+  "generated_on": "2026-08-02",
+  "method": "C static ASM analysis plus C reconstruction of a validated retained trace capsule",
+  "inputs": {
+    "pristine_exe": {
+      "path": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+    },
+    "central_capsule_manifest": {
+      "path": "analysis/phase4_trace_capsule_set.json",
+      "sha256": "569b3ebf073b2384c04edecbc54ca52d4f7a35a0387a02e9540e7a936509cc53"
+    },
+    "capsule_id": "b06_invincibility_hits",
+    "capsule_manifest_sha256": "492aa2134e8d4d4bc8b348cd0c6d16f757d9ac4e5e3134945b2c688132f18c11"
+  },
+  "retained_artifacts": {
+    "tools/phase4_e06_static.c": "13ecd282fe8f15d8a8cb177007707b3f800dc1d393cb12fe33b8a6e5cbfbbcdb",
+    "analysis/phase4_e06_static.json": "cae4da7e21a7ebe7f43c431d29f512034b5221ea25607ef7cb44b7bb52f2ac10",
+    "tools/phase4_e06_capsule.c": "026403fdf22b5197c691b24cee1e34dd7d9be37e639befa998ba60f6cae11d9a",
+    "analysis/phase4_e06_capsule.json": "5bb021b39f898cc0806779fcf053271f96d86e661e60d32c3d9c6ba4cc6ec2c0"
+  },
+  "static_closure": {
+    "pool": {
+      "base": "0x800B0D18",
+      "slots": 64,
+      "stride": 56,
+      "cursor": "0x8008234C"
+    },
+    "allocator_callsites": {
+      "total": 94,
+      "contact_alloc_80059E44": 76,
+      "contact_spawn_full_8005A0E0": 18,
+      "literal_ctor_resolved": 61,
+      "data_or_loop_derived_ctor": 33
+    },
+    "metadata_b": {
+      "start": "0x8007941C",
+      "end_exclusive": "0x80079E30",
+      "stride": 20,
+      "rows": 129,
+      "valid_ctor_ids": "0..128"
+    },
+    "metadata_a": {
+      "start": "0x80079E30",
+      "end_exclusive": "0x8007A448",
+      "stride": 20,
+      "rows": 78
+    },
+    "walker_dispatch": {
+      "entries": 117,
+      "action_ids": "2..118",
+      "nondefault_entries": 15
+    },
+    "render_kind_table": {
+      "address": "0x80096B98",
+      "entries": 50,
+      "kind_ids": "0..49"
+    },
+    "capacity_result": "The round-robin allocator has no full-array escape. If all 64 records satisfy the occupied predicate, allocation does not return.",
+    "behavioral_capacity_control": "analysis/phase2_capacity_hang_proof.json records a native debugger.callFunction A/B: a free-slot call returned 0x800B1920 and an all-64-occupied call timed out without returning."
+  },
+  "capsule_observations": {
+    "records": 1098,
+    "movie_frames": "0..1097",
+    "domain_hash_checks": 3294,
+    "domain_hash_mismatches": 0,
+    "contact_alloc_entries": 465,
+    "spawn_full_entries": 9,
+    "walker_entries": 549,
+    "renderer_entries": 549,
+    "occupied_range": "0..3 of 64",
+    "walker_live_range": "0..2 of 64",
+    "activations": 14,
+    "retirements": 13,
+    "reactivations": 1,
+    "slots_ever_occupied": 14,
+    "cursor_change_frames": 465,
+    "cursor_wraps": 12,
+    "allocator_cursor_frame_correlations": 465,
+    "descriptor_entries_changed": 0
+  },
+  "phase4_scorecard": {
+    "original_oracle": "advanced_not_met",
+    "complete_frontier": "advanced_not_met",
+    "typed_state": "advanced_not_met",
+    "lifecycle_capacity_reset": "advanced_not_met",
+    "original_interfaces": "advanced_not_met",
+    "campaign_breadth": "not_met",
+    "cross_system_contracts": "advanced_not_met",
+    "source_closure": "advanced_not_met",
+    "durable_evidence": "advanced_not_met"
+  },
+  "decision": {
+    "strict_phase4_status": "partial",
+    "allocator_core_scope": "bounded_exhausted",
+    "row_offline_frontier": "open",
+    "interpreter_movie_required_now": false,
+    "deferred_low_return_work": [
+      "Name every decorative render kind and every data-derived constructor producer across all stages.",
+      "Run a per-level campaign solely to raise breadth for this shared substrate."
+    ],
+    "movie_escalation_condition": "Request an Interpreter-mode movie only if a future question needs exact intra-frame instruction attribution or a named natural lifecycle/scene transition absent from retained capsules."
+  },
+  "supersession": {
+    "artifact": "analysis/phase4_e06_ctortype_recipes.json",
+    "correction": "Its scan through ctorType 199 crossed the exact metadata-B boundary at ctorType 128. Rows 129 and above are not metadata-B constructor recipes."
+  }
+}

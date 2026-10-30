@@ -1,0 +1,89 @@
+{
+ "_SUPERSEDED": "2026-08-04 -- this file's premise is WRONG on two counts. (1) It treated 0x8001B570 as a dispatcher FUNCTION and hunted the table at 0x8001B570+696=0x8001B828; 0x8001B570 IS the table (117 in-text pointers, null-terminated). (2) It indexed that table with the raw a3 value; a3 is a ctorType, and the action id is metaB[ctorType]+0x00. Superseded by analysis/phase4_f02_debris_class_bind.json (tools/phase4_f02_debris_class_bind.c). Retained as the negative-result record.",
+ "_comment": "Contact action class -> handler, for the classes the Tunnels run used. Regenerate: tools/phase4_f02_contact_action_table.c",
+ "row_id": "F02_tunnels",
+ "dispatcher": "0x8001B570",
+ "table": "0x8001B828",
+ "consecutive_handler_pointers": 21,
+ "canon_action_count": 117,
+ "health_field": "0x800A6594",
+ "probe_limits": "Each handler is walked straight-line to its first `jr ra` (max 400 insns); branches are not followed, so 'health' is a property of the ENTRY PATH, not a whole-handler proof.",
+ "classes": [
+  {
+   "class": "0x5A",
+   "in_table": false
+  },
+  {
+   "class": "0x31",
+   "in_table": false
+  },
+  {
+   "class": "0x71",
+   "in_table": false
+  },
+  {
+   "class": "0x59",
+   "in_table": false
+  },
+  {
+   "class": "0x0E",
+   "in_table": true,
+   "handler": "0x8005C6F0",
+   "entry_insns": 398,
+   "entry_touches_health": false,
+   "first_call": "0x80059E44"
+  },
+  {
+   "class": "0x15",
+   "in_table": true,
+   "handler": "0x8005CA24",
+   "entry_insns": 193,
+   "entry_touches_health": false,
+   "first_call": "0x80046D24"
+  },
+  {
+   "class": "0x16",
+   "in_table": true,
+   "handler": "0x8005CA7C",
+   "entry_insns": 171,
+   "entry_touches_health": false,
+   "first_call": "0x80046D24"
+  },
+  {
+   "class": "0x17",
+   "in_table": false
+  },
+  {
+   "class": "0x5D",
+   "in_table": false
+  },
+  {
+   "class": "0x5E",
+   "in_table": false
+  },
+  {
+   "class": "0x5F",
+   "in_table": false
+  },
+  {
+   "class": "0x01",
+   "in_table": false
+  },
+  {
+   "class": "0x00",
+   "in_table": false
+  },
+  {
+   "class": "0x06",
+   "in_table": true,
+   "handler": "0x8005B1BC",
+   "entry_insns": 160,
+   "entry_touches_health": true,
+   "first_call": "0x8004DC0C"
+  }
+ ],
+ "debris_class": "0x5A",
+ "debris_class_resolved": false,
+ "why_not": "The table at 0x8001B828 holds 21 entries (action ids 2..22) and then ASCII string data. Class 0x5A is id 90, far outside it. Canon's 117-entry table for ids 2..118 is elsewhere and is NOT located here.",
+ "debris_spawner": "0x800B43F8 (Tunnels overlay), 717 calls, constant a3=0x5A, constant height a1=0xE3A0, 33 X positions"
+}

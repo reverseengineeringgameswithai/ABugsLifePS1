@@ -1,0 +1,9 @@
+[
+ {"overlay":"MEMORY","address":"0x800b96e4","name":"frontend_state_dispatch","tier":"inferred","evidence":["dynamic:boot","8-case jr-table @0x800b57b4","resident_entry:scene_load_init 0x8005038c"],"rationale":"o2: 8-case jump-table dispatcher indexed by a0 (front-end state/screen selector)"},
+ {"overlay":"MEMORY","address":"0x800b8ad4","name":"main_menu_state","tier":"inferred","evidence":["dynamic:boot","calls:music_play_looping","calls:memcard_load_dispatch","top-level sz3088"],"rationale":"o2: top-level state that loops menu music + drives memcard = the main menu"},
+ {"overlay":"MEMORY","address":"0x800b659c","name":"frontend_menu_input_loop","tier":"inferred","evidence":["dynamic:boot","calls:music_play_looping","calls:sfx_menu_blip"],"rationale":"o2: interactive menu loop (looping music + menu-nav blip SFX)"},
+ {"overlay":"MEMORY","address":"0x800b7da0","name":"frontend_scroll_sprite_screen","tier":"inferred","evidence":["dynamic:boot","calls:scroll_background_modulo_offset","calls:hud_draw_sprite_tile x10+","calls:music_play_once"],"rationale":"o2: renders a screen of sprite tiles over a scrolling background"},
+ {"overlay":"MEMORY","address":"0x800b6594","name":"frontend_verb_stub","tier":"inferred","evidence":["dynamic:boot","8-byte jr ra","resident_entry:scene_verb_dispatch"],"rationale":"o2: empty scene-verb handler stub (jr ra)"},
+ {"overlay":"MEMORY","address":"0x800b5ba8","name":"frontend_sprite_draw","tier":"inferred","evidence":["dynamic:boot","calls:GetTPage x2","called_by:menu_nav_cursor"],"rationale":"o2: GPU sprite/texture draw helper used by menu navigation"},
+ {"overlay":"MEMORY","address":"0x800b6138","name":"frontend_tpage_draw","tier":"inferred","evidence":["dynamic:boot","calls:GetTPage x2","called_by:frontend_scroll_sprite_screen"],"rationale":"o2: GPU texture-page draw helper for the sprite screen"}
+]

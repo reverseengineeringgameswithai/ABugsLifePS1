@@ -1,0 +1,33 @@
+{
+  "schema": "abl.phase4.d03.bounded_exhaustion.v1",
+  "row": "D03_contact_damage",
+  "status": "substantiated_partial_bounded_exhausted",
+  "observation": [
+    "Three control-matched retained capsules independently show a natural 4->3 true-health transition at s16 0x800A6594.",
+    "Every event lands at timer 45, state 5, grounded 0, air timer 0, and vertical velocity -1024.",
+    "Each timer consumes exactly 45 ticks over 90 movie frames with no nonmonotonic step."
+  ],
+  "static_confirmation": [
+    "The pristine executable contains exactly six direct calls to 0x8004A700; four are ordinary contact lanes and two pass nonzero special kinds.",
+    "Ordinary contact admission is a broad actor-local sphere followed by a pose-indexed oriented ellipsoid.",
+    "The shared handler writes horizontal knockback before suppression, applies flat health delta -1, and arms +45 only on a surviving ordinary hit.",
+    "Positive stagger suppresses health and vertical launch without refreshing the timer; its signed tick moves one step toward zero."
+  ],
+  "scope_resolution": {
+    "damage_amount": "closed",
+    "hitbox_relationship": "closed",
+    "iframe_window": "closed",
+    "knockback_source_and_axes": "closed",
+    "family_behavior": "closed as a shared law with three independent positive families",
+    "per_pose_numeric_radius_census": "not enumerated; low-return presentation breadth"
+  },
+  "closure_reason": "The remaining work would enumerate authored pose-table values for every actor rather than resolve another damage mechanic. Reopen only for a contradictory enemy family, a named pose-specific reach question, or an explicit full numeric hitbox catalog.",
+  "interpreter_movie_required": false,
+  "evidence": [
+    "analysis/phase4_d03_static.json",
+    "analysis/phase4_d03_capsule.json",
+    "tools/phase4_d03_static.c",
+    "tools/phase4_d03_capsule.c",
+    "src_re/player_contact_damage_8004a700.c"
+  ]
+}

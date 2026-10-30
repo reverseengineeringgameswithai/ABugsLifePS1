@@ -1,0 +1,68 @@
+schema: abl-phase4-scheduler-policy/1
+description: >
+  Reviewed, non-promoting policy for Phase-4 movie-ready work selection. The
+  generated scheduler may rank and defer work, but it never changes a campaign
+  row, a nine-dimension debt leaf, or the Phase-4 exit gate.
+
+cooldown:
+  consecutive_no_reduction_threshold: 2
+  rotate_after_first_no_reduction: true
+  scope: selected_rows_union
+  release: completed_disjoint_iteration_or_any_debt_reduction
+  exhaustion: fail_closed
+  max_retained_attempts: 32
+
+expected_value:
+  benefit_weights:
+    dependency_unlock: 5
+    candidate_reducible_dimension: 8
+    retained_evidence_point: 1
+    static_readiness_point: 1
+    control_readiness_point: 1
+    bounded_frontier_point: 1
+  cost_weights:
+    remaining_dimension: 1
+    prior_no_reduction_overlap: 8
+  lane_base_cost:
+    offline: 2
+    static: 3
+    live: 8
+    unknown: 10
+  dimension_readiness:
+    static:
+      - typed_state
+      - original_interfaces
+      - complete_frontier
+      - source_closure
+    offline:
+      - original_oracle
+      - lifecycle
+      - cross_system_behavior
+      - campaign_breadth
+    durability:
+      - durable_evidence
+
+fixture_cover:
+  algorithm: deterministic_weighted_greedy_set_cover
+  base_cost: 100
+  frames_per_cost_unit: 120
+  missing_capsule_penalty: 100
+  requirement_weights:
+    row: 100
+    family: 20
+    domain: 5
+    independent_control: 10
+  capsule_domains:
+    - registers
+    - ram
+    - vram
+    - spu_ram
+    - block_flow
+    - run_local_full_state_checkpoints
+
+authority:
+  ranking_only: true
+  authored_success_forbidden: true
+  closure_promotion_forbidden: true
+  live_authorization_forbidden: true
+  deterministic_ties_by_identifier: true

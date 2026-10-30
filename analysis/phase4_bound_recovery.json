@@ -1,0 +1,81 @@
+{
+ "_comment": "Affine index-bound recovery: the capability the Phase-4 item-2 wall actually needs, plus its measured yield. Regenerate: tools/phase4_bound_recovery_report.py",
+ "generated": "2026-08-04",
+ "capability": {
+  "what": "Tracks affine relations between registers (value = mul*sym + add) so a range implied for a DERIVED value translates back onto the index that actually feeds the region.",
+  "idioms_recovered": {
+   "sltiu (idx - B), N": "two-sided: idx in [B, B+N) -- the compiler's standard range check, and the one that defeated the previous analyser",
+   "andi idx, M": "unconditional: idx in [0, M+1), needs no branch at all",
+   "slti idx, N": "upper bound only; paired with an implicit lower bound of 0, which leans on the same non-negative-index convention region_provenance.c's TIER 2 already discloses"
+  },
+  "edge_correctness": "A range is applied only on the successor edge where the comparison is true.",
+  "ground_truth": "0x8003BF48 -> [48, 88), i.e. exactly the empirically established window 0x8009B5A8..0x8009B647. The run refuses to report a yield if this fails."
+ },
+ "yield": {
+  "region_formed_sites": 6230,
+  "bounded_sites": 899,
+  "percent": 14.4
+ },
+ "interprocedural": {
+  "what": "Argument ranges observed at every static `jal` are unioned into the callee's entry state, so a bound established in a caller reaches an indexed access in the callee.",
+  "soundness_exclusions": {
+   "address_taken": 85,
+   "overlay_called": 129,
+   "no_static_caller": 337,
+   "cycle_or_unsettled": 0,
+   "why": "Each is a way a function can be entered with arguments this analysis cannot see. Overlay call sites live in a different binary; address-taken functions are reachable via jalr; a function in a call cycle could let a narrowed parameter justify itself. All keep unbounded parameters."
+  },
+  "functions_keeping_unbounded_params": 551,
+  "functions_total": 998,
+  "eligible": 447,
+  "with_a_bounded_parameter": 149,
+  "bounded_parameters": 220,
+  "MEASURED_GAIN": "+8 sites (702 -> 710 before range arithmetic was added). Interprocedural propagation is NOT the missing lever.",
+  "monotonicity_note": "The parameter update must JOIN (widen only). Replacing it each round lets ranges narrow, and a narrowing chain through nested calls oscillates: measured, all 447 eligible functions were still moving at the round cap.",
+  "constant_arguments_matter": "Accepting a CONSTANT argument as the range [c, c+1) took functions with a bounded parameter from 8 to 149. The first version required the value to already carry a range and so discarded the tightest bound available."
+ },
+ "why_the_residual_resists": {
+  "measured_not_assumed": "Every unbounded site is classified by where its index symbol was born.",
+  "origins": {
+   "alu": 3438,
+   "block_entry": 994,
+   "load": 775,
+   "func_entry": 124
+  },
+  "dominant_defining_ops": "SPECIAL fn=0x21:2183  SPECIAL fn=0x23:481  SPECIAL fn=0x24:420  SPECIAL fn=0x03:330  op=0x21:320  op=0x23:307",
+  "conclusion": "The residual is NOT mostly data-derived (load = 775) and NOT mostly waiting on a caller (func-entry = 124). It is dominated by `addu` of two values that each already lack a range. Ranges have to ORIGINATE somewhere -- a mask, a comparison, a constant -- and most index chains in this image never touch one."
+ },
+ "intraprocedural_baseline_sites": 827,
+ "per_target": {
+  "E16_markers_0x30_0x57": {
+   "window": "0x8009B5A8..0x8009B647",
+   "reaching": 6,
+   "excluded_by_bound": 825,
+   "undecided": 5399
+  },
+  "E16_markers_0x28_0x2F": {
+   "window": "0x8009C210..0x8009C22F",
+   "reaching": 6,
+   "excluded_by_bound": 825,
+   "undecided": 5399
+  },
+  "E16_markers_0x58_0x5F": {
+   "window": "0x800A65B0..0x800A65CF",
+   "reaching": 13,
+   "excluded_by_bound": 818,
+   "undecided": 5399
+  },
+  "B06_power_slot": {
+   "window": "0x800A657E..0x800A657F",
+   "reaching": 8,
+   "excluded_by_bound": 823,
+   "undecided": 5399
+  }
+ },
+ "verdict": {
+  "item_2_met": false,
+  "what_moved": "For the E16 windows the undecided residual falls from ~12,280 (region_provenance's unresolved-base count) to 5,527 -- roughly halved -- and 696 of the 702 bounded sites are now provably disjoint from the target rather than merely possible.",
+  "what_did_not": "5,527 of 6,229 region-formed sites (88.7%%) still have no recoverable bound, so the unresolved-intersection set is not empty and item 2 still does not close. The capability is a necessary step, not a sufficient one.",
+  "why_the_rest_resist": "The remaining indices are loaded values with no static range check in the same function -- the bound, where one exists at all, lives in a caller or in the data. Closing them needs interprocedural range propagation (argument ranges at call sites), which is the next capability, not another idiom."
+ }
+}

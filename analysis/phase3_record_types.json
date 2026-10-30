@@ -1,0 +1,206 @@
+{
+ "_comment": "Phase-3 WP5/WP6 typed records with FULL byte accounting: every byte of every record is a declared field or an explicit UNKNOWN span \u2014 typing never erases ignorance. Regenerate: tools/phase3_record_types.py (add --probe for the live domain/lifetime pass).",
+ "generated": "2026-08-05",
+ "records": {
+  "player_block": {
+   "size": 176,
+   "known_bytes": 71,
+   "unknown_bytes": 105,
+   "known_pct": 40.3,
+   "unknown_spans": [
+    {
+     "offset": "0x0C",
+     "length": 4
+    },
+    {
+     "offset": "0x1C",
+     "length": 16
+    },
+    {
+     "offset": "0x3C",
+     "length": 6
+    },
+    {
+     "offset": "0x44",
+     "length": 2
+    },
+    {
+     "offset": "0x4C",
+     "length": 46
+    },
+    {
+     "offset": "0x7C",
+     "length": 4
+    },
+    {
+     "offset": "0x84",
+     "length": 10
+    },
+    {
+     "offset": "0x9D",
+     "length": 3
+    },
+    {
+     "offset": "0xA2",
+     "length": 14
+    }
+   ],
+   "fields": 28,
+   "base": "0x800A6500",
+   "instances": 1,
+   "owner": "original_game.player",
+   "lifetime": "Resident for the whole session; re-initialized at scene load and at respawn (respawn writes hp:=4 at the level spawn point, lives-1). Not pooled."
+  },
+  "contact_record": {
+   "size": 56,
+   "known_bytes": 31,
+   "unknown_bytes": 25,
+   "known_pct": 55.4,
+   "unknown_spans": [
+    {
+     "offset": "0x1A",
+     "length": 8
+    },
+    {
+     "offset": "0x24",
+     "length": 2
+    },
+    {
+     "offset": "0x28",
+     "length": 11
+    },
+    {
+     "offset": "0x34",
+     "length": 4
+    }
+   ],
+   "fields": 11,
+   "base": "0x800B0D18",
+   "instances": 64,
+   "owner": "original_game.contact_pool",
+   "lifetime": "POOLED. Allocated by contact_alloc 0x80059E44 = round-robin FREE-SLOT search over the 64 slots with NO full-array escape: with every slot occupied the search never returns (capacity HANG, proven by callFunction A/B). Cursor 0x8008234C wraps at 0x40 and measures allocation churn, NOT overwrite-oldest. A slot is LIVE when lifetime_ttl(+0x22) > 0 AND flags(+0x33) & 0x02 (the walker gate, disassembled from FUNC_800586B0). RETIREMENT IS BY TTL EXPIRY: +0x22 counts down every logic tick and the slot goes dead at 0 - so contacts free themselves over time, which is why pristine play never approaches capacity. MOD-SAFETY: never hold all 64 slots (a mod that refreshes TTLs can)."
+  },
+  "actor_record": {
+   "size": 132,
+   "known_bytes": 38,
+   "unknown_bytes": 94,
+   "known_pct": 28.8,
+   "unknown_spans": [
+    {
+     "offset": "0x10",
+     "length": 12
+    },
+    {
+     "offset": "0x20",
+     "length": 4
+    },
+    {
+     "offset": "0x28",
+     "length": 52
+    },
+    {
+     "offset": "0x5E",
+     "length": 14
+    },
+    {
+     "offset": "0x74",
+     "length": 8
+    },
+    {
+     "offset": "0x80",
+     "length": 4
+    }
+   ],
+   "fields": 11,
+   "base": "0x8009FE04",
+   "instances": 40,
+   "owner": "original_game.level_actors",
+   "lifetime": "Loaded AT SCENE LOAD from LEVEL.RAW chunk-31 (XYZ file<<5) into a FIXED table; records are not reallocated during play. Enemies additionally appear in the LIVE pointer table 0x80090748, which is COMPACTED when an actor is removed (observed: slots shift up on a kill) - so a live-table index is NOT a stable identity, the record address is. MOTION: one Level01 actor sample confirms velocity_x +0x1C and velocity_z +0x24 over 40 captured frames (19 moved frames; Z is clamped on 7). The retained artifact does not bank rejected Y candidates and therefore cannot support the former whole-campaign claim that actors have no stored Y velocity. Offset +0x20 remains unknown; do not name it from stride symmetry alone."
+  },
+  "plant_slot": {
+   "size": 48,
+   "known_bytes": 3,
+   "unknown_bytes": 45,
+   "known_pct": 6.2,
+   "unknown_spans": [
+    {
+     "offset": "0x02",
+     "length": 44
+    },
+    {
+     "offset": "0x2F",
+     "length": 1
+    }
+   ],
+   "fields": 2,
+   "base": "0x80090BF0",
+   "instances": 20,
+   "owner": "original_game.plants",
+   "lifetime": "POOLED with a cursor (0x800822B8, wraps at 0x14, skips occupied). Created by plant_spawn FUNC_8005BDBC 20-120 frames after the crack input; torn down 40-170 frames after an uproot input (type := 0). The seed RECORD is conserved across the whole cycle - it is raised +20480 while the plant lives and re-grounded at pinned X/Z on teardown."
+  },
+  "camera_record": {
+   "size": 96,
+   "known_bytes": 24,
+   "unknown_bytes": 72,
+   "known_pct": 25.0,
+   "unknown_spans": [
+    {
+     "offset": "0x18",
+     "length": 72
+    }
+   ],
+   "fields": 6,
+   "base": "0x80095358",
+   "instances": 1,
+   "owner": "original_game.camera",
+   "lifetime": "DERIVED OUTPUT, not authoritative state. Written every logic tick by camera_follow_update 0x8004DF18: camera_pos exponentially chases camera_target, closing ~0.15 of the remaining gap per frame, and camera_target is itself RECOMPUTED each tick. PROVEN by poking each triple +50000: the position is pulled back toward the target (drift -39932 over 24 frames) and a poked target is recomputed away (drift -45425). A mod cannot move the camera by writing this struct - it must change the producer or the inputs the producer reads. Behavioral control (Phase 2): the struct provably moves under L1 and is static under no input."
+  },
+  "render_descriptor_pointer_entry": {
+   "size": 4,
+   "known_bytes": 4,
+   "unknown_bytes": 0,
+   "known_pct": 100.0,
+   "unknown_spans": [],
+   "fields": 1,
+   "base": "0x80096B98",
+   "instances": 50,
+   "owner": "original_game.render",
+   "lifetime": "Fixed kind-to-descriptor pointer entries in resident BSS. Targets are shared and non-contiguous. Their strict-pristine post-load snapshots contain five scene-dependent byte offsets, so a consumer must follow the pointer and must not assume a target edit survives a transition. The responsible writer is not yet traced."
+  },
+  "sfx_voice_slot": {
+   "size": 8,
+   "known_bytes": 6,
+   "unknown_bytes": 2,
+   "known_pct": 75.0,
+   "unknown_spans": [
+    {
+     "offset": "0x06",
+     "length": 2
+    }
+   ],
+   "fields": 2,
+   "base": "0x80089860",
+   "instances": 8,
+   "owner": "original_game.audio",
+   "lifetime": "Eight-slot SFX voice scheduler pool. A slot is free when voice_id is -1; the manager prefers the same descriptor, otherwise a free slot, and drops the request when no slot is available. This is original software ownership; the downstream 24 SPU hardware voices are a separate domain."
+  },
+  "frontend_progress_record": {
+   "size": 4,
+   "known_bytes": 4,
+   "unknown_bytes": 0,
+   "known_pct": 100.0,
+   "unknown_spans": [],
+   "fields": 1,
+   "base": "0x80082444",
+   "instances": 1,
+   "owner": "original_game.frontend",
+   "lifetime": "Resident frontend/bonus-progress command word. The exact initialization, retirement, and save interaction are not yet empirically closed; the structured ownership blocker below keeps those missing links visible."
+  }
+ },
+ "totals": {
+  "records": 8,
+  "bytes": 524,
+  "known_bytes": 181,
+  "known_pct": 34.5
+ }
+}

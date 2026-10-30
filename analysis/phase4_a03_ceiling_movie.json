@@ -1,0 +1,157 @@
+{
+  "schema": "phase4_a03_ceiling_movie_v1",
+  "row": "A03_jump",
+  "date": "2026-08-03",
+  "disposition": "movie_attempt_failed",
+  "closure_gate": "FAIL",
+  "movie": {
+    "path": "movies/Phase4/Interpreter/A03_ceiling_contact.movie.json",
+    "sha256": "0b7847cf99dda6986d8756c0186a475765984c542d1246d977ec9af7ffd2b0b6",
+    "format_version": 4,
+    "frame_count": 558,
+    "armed_while_paused": false,
+    "phase_delay_owed": false,
+    "reproducible": true,
+    "truncated": false
+  },
+  "start_state": {
+    "path": "movies/Phase4/Interpreter/A03_ceiling_contact.movie.sav",
+    "sha256": "9e33f6c68ab576643636a9698c31291af326a2e1828b83417c5e055bdf23d091",
+    "initial_frame": 152694,
+    "serial": "SCUS-94288"
+  },
+  "media": {
+    "repository_cue": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "state_cue": "~/.cache/abl-phase4-i12-clean-Hu6j43/Disney-Pixar A Bug's Life (v1.0).cue",
+    "repository_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "state_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "byte_identical": true
+  },
+  "valid_replay": {
+    "config": "/tmp/duckstation-a03-ceiling-20260803",
+    "port": 24416,
+    "execution_mode": "Interpreter",
+    "settings_sha256": "13a40de40090156f55da29237db43e9b8a703868b197d900fc1343d70fb42b8c",
+    "speed": "normal debugger.resume plus movie.status polling",
+    "fast_forward": false,
+    "turbo": false,
+    "instrumentation_armed_after_state_load": true,
+    "note": "An earlier run without an explicit ExecutionMode setting was discarded and is not evidence."
+  },
+  "trace_counts": {
+    "jump_admissions": 2,
+    "vertical_events": 130,
+    "resolver_endpoint_events": 936,
+    "resolver_start_events": 153,
+    "polygon_return_events": 47,
+    "retained_winner_events": 6,
+    "player_y_writes": 357,
+    "any_truncated": false
+  },
+  "control_jump": {
+    "start_frame": 152740,
+    "base_y": -3017,
+    "apex_frame": 152790,
+    "apex_y": -23113,
+    "height": 20096,
+    "returned_near_base": true
+  },
+  "claimed_ceiling_jump": {
+    "start_frame": 153086,
+    "base_y": -19977,
+    "apex_frame": 153127,
+    "apex_y": -40073,
+    "height": 20096,
+    "returned_near_base": true,
+    "height_delta_vs_control": 0,
+    "truncated_vs_control": false
+  },
+  "collision_result": {
+    "dominant_positive_ny_endpoint_events_during_second_jump": 0,
+    "positive_ny_wall_events_during_second_jump": 0,
+    "retained_winner_during_second_ascent": false,
+    "retained_winners": [
+      {
+        "frame": 152855,
+        "plane": "0x8017f87c",
+        "normal": [
+          146,
+          -16383,
+          -62
+        ]
+      },
+      {
+        "frame": 152918,
+        "plane": "0x80196e98",
+        "normal": [
+          142,
+          -15707,
+          4656
+        ]
+      },
+      {
+        "frame": 153002,
+        "plane": "0x80196e18",
+        "normal": [
+          1808,
+          -10802,
+          12184
+        ]
+      },
+      {
+        "frame": 153026,
+        "plane": "0x80196df8",
+        "normal": [
+          -110,
+          -10811,
+          12309
+        ]
+      },
+      {
+        "frame": 153182,
+        "plane": "0x80196df8",
+        "normal": [
+          -110,
+          -10811,
+          12309
+        ]
+      },
+      {
+        "frame": 153226,
+        "plane": "0x80196eb8",
+        "normal": [
+          1526,
+          -15970,
+          3324
+        ]
+      }
+    ],
+    "interpretation": "All retained winners are downward-facing floors or slopes and occur outside the ascent windows. The apparent slanted ceiling is not an upward collision surface on this path."
+  },
+  "c_reducer": {
+    "path": "tools/phase4_a03_movie_trace.c",
+    "sha256": "54327cf497f547f5da8c219a742279fa61220190b4a4fe82bd5080f32ceb83ad",
+    "output": "/tmp/a03_ceiling_movie_reduction.json",
+    "output_sha256": "8653e6b163f995206e3d014ffa928db90573653f045780f903318aad0ab7bb3a"
+  },
+  "trace_hashes": {
+    "jump": "59c22895ecd1c7a9ba0ae0af39cb3bde8b82f5ee6032cb23a413cc4d912cc9ac",
+    "vertical": "628189b4235f0147f3d7518686b284140f326f55db8723d35f4b420734415dfa",
+    "endpoint": "214ac29a28b2eae9c8b64da3ff29ba24dd94e9c439b63203f05d135b265a3c47",
+    "start": "ec5d8985ba2819400032cb9dd1970d96b01a2df2e9c1541ffe514f869d4a3e7e",
+    "polygon": "c061d8c34a6e7096ed52cd6bf6e6d9b839c1c492ce64b1c626eaba90345c79ee",
+    "keep": "77e6aded11058db3dda7e4ed887c247bfc9aef065695de0c62281ca8c9fac4d4",
+    "y_writes": "0669e58877894b76a737eb3490ccb93ad15efc7e5c17b9a3bb264ecd583f0887"
+  },
+  "replacement_gate": {
+    "required": true,
+    "path": "movies/Phase4/Interpreter/A03_ceiling_contact_v2.movie.json",
+    "preserve_previous_movie": true,
+    "control": "Perform a full jump in clear space.",
+    "case": "Jump into an underside that visibly hard-stops Flik well before the control apex, then release and land.",
+    "recommendation": "Prefer a low flat underside or unmistakably concave overhang. The prior slanted surface has no upward collision response on the recorded path.",
+    "acceptance": "World-space height must be lower than the control and a retained collision must occur during ascent, with positive-ny plane evidence or an instruction-attributed alternative ceiling mechanism."
+  },
+  "role": "negative_control",
+  "superseded_for_positive_ceiling_gate_by": "analysis/phase4_a03_ceiling_movie_v2.json"
+}

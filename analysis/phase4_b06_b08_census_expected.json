@@ -1,0 +1,16 @@
+{
+ "_comment": "Ratchet baseline for tools/census_address.py over the power slot 0x800A657E. `static_resolvable` is what the alias-aware value analysis finds on the pristine EXE; `runtime_only` are sites known real from accessLog traces that the analysis provably CANNOT resolve, because their base pointer is loaded from memory rather than computed in the instruction stream. Keeping the second list explicit is the point: it is the demonstrated, non-empty residual that stops this census being called complete. Regenerate: tools/census_address.py 0x800A657E --block 0x800A6500 --expect analysis/phase4_b06_b08_census_expected.json",
+ "target": "0x800A657E",
+ "static_resolvable": [
+  "0x80048640", "0x80048654", "0x80049718",
+  "0x8004A7A4", "0x8004A7E0", "0x8004A808",
+  "0x80051C3C", "0x80051EA0", "0x80051F60",
+  "0x80055BC4", "0x800588B0", "0x800588D0",
+  "0x800589A8", "0x8005B268"
+ ],
+ "runtime_only": [],
+ "runtime_only_detail": {},
+ "REMOVED_2026-08-01": {
+  "0x8004AFB0": "Was carried here as a real 'runtime_only' writer of this slot: 'sh zero,0x7e(fp) ... fp = v1 + 4, unresolvable by construction'. That reasoning is correct about WHY the analysis can't resolve `fp` -- but the site does not write this slot at all. `fp` there is the player block PLUS 4 (0x8004AC70 `addiu fp, v1, 4`), so `0x7e(fp)` lands on player+0x82, not player+0x7E. Measured fp = 0x800A6504 at the block entry; a live 400-tick invincibility ticked straight through the store untouched (381 -> 380 -> 379 across frame 5966). See tools/phase4_knockdown_reachability.py and tools/phase4_knockdown_probe.py. Removed rather than left as a stale 'known real' entry."
+ }
+}

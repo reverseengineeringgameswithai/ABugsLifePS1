@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "reason": "Replace earlier behavior-only labels with exact or subsystem-qualified PsyQ libpad identities.",
+  "changes": [
+    {"address":"0x800720f0","old":"rcnt_interrupt_install","new":"_padStartCom","evidence":"Exact 204-byte cross-build object extent; called by PadStartCom; installs the controller SIO/root-counter handlers."},
+    {"address":"0x800721bc","old":"rcnt_interrupt_remove","new":"_padStopCom","evidence":"Exact 68-byte cross-build object extent; called by PadStopCom; removes the controller SIO/root-counter handlers."},
+    {"address":"0x80072b70","old":"store_word_and_byte","new":"_padSetAct","evidence":"Exact 12-byte cross-build symbol extent; called by PadSetAct with pad-info, actuator buffer, and length."},
+    {"address":"0x8007403c","old":"consume_flag_37","new":"pad_direct_clear_command","evidence":"Installed in the _padFuncClrCmdNo slot by PadInitDirect; behavior-only old label remains accurate but incomplete."}
+  ]
+}

@@ -1,0 +1,388 @@
+{
+ "_comment": "B09 super jump reset/persistence law, measured. Regenerate: tools/phase4_b09_lifetime.py",
+ "generated": "2026-08-04",
+ "movie": "movies/Phase4/Interpreter/B08_SuperJump_EOL.movie.json",
+ "movie_frames": 6403,
+ "movie_covers": "acquire super jump on the bird level, finish the level, and enter the next level -- all inside one recording",
+ "word": "0x800A6590",
+ "bit": "0x20",
+ "total_events": 96080,
+ "writes": 9600,
+ "write_pcs": {
+  "0xbfc02bb4": 4,
+  "0x80047aa4": 2453,
+  "0x80048564": 2492,
+  "0x80049640": 1327,
+  "0x80054cb8": 2492,
+  "0x80054e94": 696,
+  "0x800589d8": 1,
+  "0x80047784": 39,
+  "0x8004ebec": 1,
+  "0x8001d5fc": 95
+ },
+ "distinct_writers_seen": 10,
+ "writers_known_statically": 26,
+ "control_setter_fired": true,
+ "control_setter_pc_as_reported": "0x800589d8",
+ "delay_slot_gotcha": "accessLog reports the NEXT PC. The setter's store is in the delay slot of `j 0x800589D8`, so it is reported as the BRANCH TARGET, not PC+4. Assuming PC+4 made this control read False on a run where the bit demonstrably went 0x00 -> 0x20.",
+ "bios_memset_writes": 4,
+ "suspects": {
+  "0x80048680": {
+   "label": "0x8004867C wholesale store of immediate 1",
+   "fired": false,
+   "count": 0
+  },
+  "0x800486c0": {
+   "label": "0x800486BC wholesale store of zero",
+   "fired": false,
+   "count": 0
+  }
+ },
+ "samples": [
+  {
+   "playback_index": 88,
+   "flags": "0x0004",
+   "super_jump": false
+  },
+  {
+   "playback_index": 179,
+   "flags": "0x0004",
+   "super_jump": false
+  },
+  {
+   "playback_index": 270,
+   "flags": "0x0004",
+   "super_jump": false
+  },
+  {
+   "playback_index": 361,
+   "flags": "0x0004",
+   "super_jump": false
+  },
+  {
+   "playback_index": 452,
+   "flags": "0x0004",
+   "super_jump": false
+  },
+  {
+   "playback_index": 543,
+   "flags": "0x0004",
+   "super_jump": false
+  },
+  {
+   "playback_index": 634,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 726,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 819,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 913,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1008,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1103,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1199,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1296,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1393,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1491,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1590,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1689,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1789,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1891,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 1993,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 2096,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 2200,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 2305,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 2411,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 2518,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 2627,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 2736,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 2849,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 2960,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3072,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3187,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3300,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3415,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3530,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3648,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3764,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3880,
+   "flags": "0x0020",
+   "super_jump": true
+  },
+  {
+   "playback_index": 3997,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 4115,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 4236,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 4355,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 4474,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 4594,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 4714,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 4833,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 4952,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 5073,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 5192,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 5312,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 5431,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 5551,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 5670,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 5789,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 5908,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 6028,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 6149,
+   "flags": "0x0025",
+   "super_jump": true
+  },
+  {
+   "playback_index": 6269,
+   "flags": "0x0000",
+   "super_jump": false
+  },
+  {
+   "playback_index": 6389,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  },
+  {
+   "playback_index": 0,
+   "flags": "0x0008",
+   "super_jump": false
+  }
+ ],
+ "sampling_caveat": "The value is polled on a WALL-CLOCK timer, not frame-exactly, so playback_index figures are approximate and shift a little between runs (acquisition read 2412 on one run and 2519 on the next). The ORDER of events and the set of firing PCs are exact -- they come from accessLog -- and those carry the conclusion. The indices locate it, they do not prove it.",
+ "samples_with_super_jump": 32,
+ "verdict": "LAW CONFIRMED, AND THE SUSPECTS ARE CLEARED OF SUSPICION. The setter fired exactly once (reported 0x800589d8); the bit went 0x00 -> 0x20 near index 2518 and was still set at 6149, surviving the whole level. Across 9600 writes from 10 distinct PCs, NEITHER 0x8004867C NOR 0x800486BC fired -- so the reachability concern the roadmap reserved is unsupported for this path, which covers acquisition through level completion and into the NEXT level. The word is cleared at the scene transition by the BIOS memset (4 writes at 0xbfc02bb4), exactly as B06 proved for its own power -- not by either suspect.",
+ "acquired_near_playback_index": 2518,
+ "still_set_at_playback_index": 6149
+}

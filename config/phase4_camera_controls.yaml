@@ -1,0 +1,107 @@
+schema: abl-phase4-camera-controls/1
+description: >
+  Authoritative pristine-game contract for A17. It binds the resident manual
+  L1/R1 selector, its camera-record fields and smoothing globals, directional
+  L1 variants, HUD readers, pause/reset/respawn lifecycle, and gameplay
+  applicability. Full camera collision, render submission, and flight-camera
+  ownership remain E04/F14 work rather than A17 behavior.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_camera_controls.json
+  generator: tools/phase4_camera_controls.py
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+  strict_pristine_control: level01.sav
+
+selector:
+  owner: '0x8004DF18..0x8004EA8B camera_follow_update'
+  reset_owner: '0x8004DC0C..0x8004DD97 camera reset'
+  decoded_action_address: '0x80082488:u16'
+  mode_address: '0x80082220:s32'
+  mode_domain: {neutral: 0, l1_manual: 2, r1_lock: 3}
+  mode_writers:
+    reset: '0x8004DD6C'
+    l1: '0x8004DFF0'
+    r1: '0x8004E070'
+    neutral: '0x8004E09C'
+  precedence: L1 is tested before R1, so simultaneous L1+R1 selects mode 2.
+  consumers:
+    - '0x800527F4 reads mode 2 for the L1 HUD indicator'
+    - '0x80052A40 reads mode 3 for the R1 HUD indicator'
+
+camera_record:
+  base: '0x80095358'
+  size: '0x60'
+  authoritative_inputs: ['+0x1E distance', '+0x20 orbit yaw', '+0x22 profile/suppression', '+0x24 pitch scale', '+0x2A vertical angle']
+  derived_outputs: ['+0x00/+0x04/+0x08 position', '+0x0C/+0x10/+0x14 target']
+  note: Position and target remain derived outputs; A17 changes the producer's typed control state rather than treating either triple as authoritative.
+
+l1:
+  mask: '0x0400'
+  mode: 2
+  distance_target: 600
+  collision_distance_squared: 160000
+  yaw_correction_max: 80
+  vertical_neutral: 12288
+  vertical_up: 32768
+  vertical_down: 4096
+  down_orbit_bias_target: 12288
+  distance_step: 32
+  vertical_step: 1024
+  orbit_bias_step: 2304
+  feedback_timer: Holding L1 ORs 0x0800 into +0x22; its high byte counts down after release while the low-byte profile remains.
+
+r1:
+  mask: '0x0800'
+  mode: 3
+  distance_target: 1400
+  collision_distance_squared: 1960000
+  vertical_target: 24576
+  yaw_correction_max: 0
+  distance_step: 32
+  vertical_step: 1024
+  lock_lifetime: Mode 3 and zero yaw correction last only while decoded R1 is held; release selects neutral mode 0 on the next native camera update.
+
+globals:
+  orbit_bias: '0x80082280:s32'
+  neutral_tracking_step: '0x800822A8:s32'
+  vertical_target: '0x80082460:s32'
+  pitch_step: '0x80082474:s16'
+
+applicability:
+  standard: Training, stages 1-8, stages 10-13, stage 15, and all three bonuses select modes 2/3.
+  bug_bar: Stage 9 selects L1 mode 2 but its retained R1 control remains mode 0.
+  riverbed_flight: Stage 14 selects neither manual mode; F14 owns its flight camera/control override.
+  bonus2_r1: Bonus 2 selects mode 3 and changes distance/vertical control state, but its timing-matched 16-frame camera output triple does not diverge from neutral; the scene camera consumer remains independently owned.
+
+lifecycle:
+  initialization: Reset initializes mode 0, distance 900, profile/suppression 0x0801, pitch scale 32, vertical target 12288, and neutral tracking step 20.
+  capacity: One resident 0x60-byte camera record, one s32 selector, and four resident smoothing globals; no dynamic allocation participates.
+  allocation_reuse: The same record and globals are reused across every scene; scene-specific camera owners may override A17 applicability without transferring storage identity.
+  reset: Button release restores mode 0, distance 900, vertical target 12288 and orbit bias 0; the suppression high byte counts down to zero.
+  retirement: Manual ownership retires on release, pause-shell takeover, respawn reset, or a scene-specific override; no heap record is retired.
+  pause: Pause freezes the entire camera block and leaves mode 0 despite held L1; L1 selects mode 2 after resume.
+  death_respawn: Native same-scene respawn reset restored mode 0/distance 900, then a new L1 hold re-entered mode 2.
+  unload_transition: Resident storage persists, while the 19-anchor matrix proves standard, L1-only, and disabled scene contexts.
+  persistence: Selector, orbit/distance/vertical smoothing and suppression timer are transient runtime state, not save progression.
+
+mod_contract:
+  owner: Preserve input decoding, resident camera update/reset, collision query, scene override and HUD-consumer order; name every hook explicitly.
+  readers: Enumerate action, player/attachment/scene inputs, mode, record fields, smoothing globals, collision, HUD, pause, respawn, transition and special-camera consumers.
+  writers: Do not add unordered writes to mode, orbit bias, vertical target, neutral tracking step, pitch step, distance, orbit yaw, packed profile/suppression, position or target.
+  valid_domains: Mode is s32 in {0,2,3}; distance/yaw/profile/pitch fields are 16-bit; yaw is modulo 4096; orbit/vertical globals are s32; suppression is the high byte of +0x22.
+  initialization: Initialize private camera state before its first reader and never infer manual ownership from derived position/target movement alone.
+  reset: Clear private manual state on release, pause takeover, death/respawn/reload, scene transition, special-camera takeover and MOD unload.
+  retirement: Retire injected input and private state exactly once before camera/HUD/scene owners unload; allow the original high-byte suppression countdown to finish.
+  consumers: Input, player, swing attachment, camera collision, camera render, HUD, pause, death/respawn, stages, bonuses, flight and overlays.
+  capacity: Declare hook/cave/table bounds; do not widen the one-record layout or selector domain without updating every reader/writer.
+  residency: Keep persistent private state outside overlay memory and scope special-scene references to the scene that owns them.
+  unsafe_assumptions:
+    - Emulator frames are not native camera-update ticks.
+    - Distance and orbit-bias smoothers stop or oscillate within one step; they do not clamp to every requested target.
+    - Position and target triples are derived outputs, not authoritative control state.
+    - L1 has priority over R1 when both decoded bits are present.
+    - Bug Bar and Riverbed Flight are explicit exceptions to the ordinary 2/3 applicability matrix.
+    - E04 collision/rendering and F14 flight-camera internals remain separately owned.

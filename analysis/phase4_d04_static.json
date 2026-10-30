@@ -1,0 +1,14 @@
+{
+  "row": "D04_berry_immunity_matrix",
+  "input": {"exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20", "anchors_checked": 36},
+  "native_throw_classes": {"red":2,"blue":5,"homing":8,"gold":11,"mega":45},
+  "resistance_gate": {"enemy_field": "+0x5c", "mask": "0x40", "ordinary_target": "0x8005905c", "tough_reaction_only_when": ["hit+0x24 == 1","hit+0x2c == 1"], "reaction_only_exit": "0x80059284"},
+  "damage_subtype_deltas": {"0":-2,"1":-99,"12":-2,"127":-4,"128":-3,"default":-1},
+  "permanence": {"hit_field24_gold":11,"hit_field27_secondary":6,"permanent_bit":2,"temporary_bit":1,"quota":"0x800a658e"},
+  "side_table": {"base":"0x80089938","shape":"64x5","selector":"0x800a6597","decrement":-2,"floor_guard":33,"is_kill_or_immunity_oracle":false},
+  "structural_classes": [
+    {"class":"ordinary_damageable","all_native_berries_reach_common_damage":true,"gold_only_native_permanent":true},
+    {"class":"berry_tough_0x40","red_connecting_form_reaction_only":true,"other_native_berries_reach_common_damage":true}
+  ],
+  "conclusion": "D04 immunity is a class gate, not a five-step strength threshold; species outcome breadth depends on membership in the ordinary or bit-0x40 class"
+}

@@ -1,0 +1,143 @@
+{
+  "row": "A07_spin",
+  "date": "2026-08-04",
+  "classification": "substantiated_partial",
+  "bounded_exhausted": true,
+  "move_on": true,
+  "cold_boot_required": false,
+  "interpreter_movie_required": false,
+  "capsule_first": {
+    "queried": "analysis/phase4_trace_capsule_set.json and the declared Phase4 external-evidence root",
+    "relevant_capsule_found": false,
+    "live_reason": "The previous A07 evidence had no positive trigger and no exact writer/temporal domain. The operator supplied the missing Interpreter movie, so a fresh isolated normal-speed access-log replay was necessary.",
+    "closure_contract_note": "The live observation is valid pristine evidence, but A07 had no pre-existing entry in analysis/phase4_live_escalations.json. It is not presented as a contract-compliant whole-Phase-4 closure escalation."
+  },
+  "identity": {
+    "disc": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+    "cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "serial": "SCUS-94288",
+    "title": "Disney-Pixar A Bug's Life",
+    "pristine_exe": "REBUILD/files/SCUS_942.88",
+    "pristine_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "shipping_asm_sha256": "f50038e52d548c44f59f8ac09ca17559e441be749d06dcf5b758cf6f13f38bdc",
+    "duckstation_binary_sha256": "f34aaacd7116994885a2a5a17a9f2c517ce5ed1bfc863826fa9d9750ea5d1899",
+    "duckstation_source_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_dirty_state_hash": "de91329f6d9dba296f4a1746ec1ece5adb86e67c",
+    "debugger_api": "2.1.0 schema 2026-07-18, 208 methods",
+    "isolated_config": "/tmp/duckstation-a07-spin-20260804-01",
+    "port": 24437,
+    "owned_pid": 2213296,
+    "owned_pid_stopped": true
+  },
+  "fixture": {
+    "movie": "movies/Phase4/Interpreter/A07_spin.movie.json",
+    "movie_sha256": "af42baefa4120ab7585c9bac6b2ce2e757a5de683a475abfcec414592bebda7d",
+    "state": "movies/Phase4/Interpreter/A07_spin.movie.sav",
+    "state_sha256": "9c57d073a7ada8db8b069b80b3b6463b48d266662a76f4e26978b129f1853d5d",
+    "movie_version": 4,
+    "movie_frames": 996,
+    "start_emulator_frame": 21620,
+    "from_boot": false,
+    "armed_while_paused": false,
+    "phase_delay_owed": false,
+    "reproducible": true,
+    "playback_regime": "normal debugger.resume playback; fast_forward=false, turbo=false"
+  },
+  "static_mechanism": {
+    "owner": "FUNC_80048138 player_vertical_update, 0x800481C4..0x800483AC",
+    "current_pad": "0x80082488",
+    "previous_pad": "0x80082380",
+    "history_ring": "eight u16 entries at 0x800894D0",
+    "history_index": "s16 0x800823B0",
+    "inactivity_counter": "u16 0x8008229A",
+    "reference_table": "eight u16 entries at 0x80077304 = 0x10,0x20,0x40,0x80 repeated",
+    "trigger": "Eight accepted new exact-cardinal samples equal Up, Right, Down, Left, Up, Right, Down, Left in chronological order.",
+    "input_precision": "The 0xF0 pre-gate accepts a direction nibble, but admission then compares the full pad word to exactly 0x10/0x20/0x40/0x80. Diagonals and any simultaneous non-direction button are not recorded.",
+    "timeout": "Every non-admitted player tick increments 0x8008229A. Exact count 20 appends zero to the ring, resets the counter, and invalidates a stale match.",
+    "deny_gate": "player+0x90 bit 0x80 set",
+    "entry_effect": "Set animation request 13; arm 0x80082294=120 only when changing into 13; clear player+0x7A, +0x5C, +0xA3, +0x9E; release/stop a selected carried actor; call byte-matched 0x80041A74 to clear an indexed attachment.",
+    "no_new_mode": "The branch never writes a distinct spin value to player+0x80.",
+    "no_direct_attack_or_unlock": "The complete entry block writes no attack timer, damage state, unlock, save, or persistent cheat flag. Its only callee is the byte-matched indexed-attachment reset leaf.",
+    "initialization": "Player spawn 0x80046B34..0x80046B60 clears the 16-byte ring and resets index and inactivity. Scene init 0x8005BA90 clears the shared animation-13 SFX timer."
+  },
+  "animation_lifecycle": {
+    "request": "player+0x88",
+    "current_clip": "player+0x8A",
+    "clip": 13,
+    "shared_with": "The propeller-plant ascent path also requests clip 13 and the same timer, so clip identity alone is not recognizer identity.",
+    "retention": "When current clip is 13, 0x8005677C..0x800567C4 keeps requesting 13 while player+0x38 >= 64 or abs(player+0x3C) >= 64.",
+    "sound": "0x80056EE0..0x80056F44 decrements 0x80082294. At zero while request 13 remains active it calls 0x80050C40 with SFX ID 64 and re-arms to random_byte+60.",
+    "movie_release": "Input becomes neutral at relative frame 848. Motion values decay through 144/328, 16/284, 0/221, 0/157, 0/94, 0/31; idle 22 is first requested at 851 and committed at 857."
+  },
+  "runtime_observation": {
+    "watch": "write accessLog over 0x800A6500..0x800A65FF, armed after movie start-state load",
+    "events": 44031,
+    "truncated": false,
+    "first_match_window_relative": [133, 145],
+    "first_match_ticks": 7,
+    "second_match_window_relative": [209, 247],
+    "second_match_ticks": 20,
+    "branch_store_pcs": {
+      "0x8004838C": 27,
+      "0x80048394": 27,
+      "0x8004839C": 27,
+      "0x800483A4": 27,
+      "0x800483AC": 27
+    },
+    "first_branch_store": {
+      "emulator_frame": 21753,
+      "movie_relative_frame": 133,
+      "cycle": 12316106404
+    },
+    "animation_13_commit": {
+      "pc": "0x800569AC",
+      "emulator_frame": 21753,
+      "movie_relative_frame": 133,
+      "cycle": 12316181992
+    },
+    "last_branch_store": {
+      "emulator_frame": 21867,
+      "movie_relative_frame": 247,
+      "cycle": 12380653711
+    },
+    "idle_22_first_request": {
+      "pc": "0x80056654",
+      "emulator_frame": 22471,
+      "movie_relative_frame": 851,
+      "cycle": 12722723164
+    },
+    "idle_22_commit": {
+      "pc": "0x800569AC",
+      "emulator_frame": 22477,
+      "movie_relative_frame": 857,
+      "cycle": 12726122510
+    },
+    "vertical_mode": "No distinct spin mode appeared; player+0x80 remained in its ordinary grounded vocabulary."
+  },
+  "controls": {
+    "negative_prefix": "Movie frames 0..132 include standing and an incomplete/undersampled rotation history but no 0x8004838C..AC writes.",
+    "positive_completion": "The eighth chronological accepted cardinal completes at the player tick on relative frame 133 and all five branch stores begin on that exact tick.",
+    "timeout_control": "The second match is retained for exactly 20 player ticks, relative 209..247, then the inactivity rule invalidates it before relative 249.",
+    "release_control": "Neutral input plus motion decay permits the normal idle request and actor clip commit at relative 851/857."
+  },
+  "transient_evidence": {
+    "/tmp/a07_access_summary.json": "da6d95a209e5846e14f861262fbc814c749b8bfba26b5f00955a4f7b5d2aee66",
+    "/tmp/a07_access_page0.json": "786dd95b346158d4008dd9102c5e89e5c32a568a64358649cf295f9ff1f26897",
+    "/tmp/a07_access_page10000.json": "047d51b0bb5cd55ca7a9c14a705d5b1bf757e689204805106bed156c8a760524",
+    "/tmp/a07_access_page20000.json": "cc13025fbf6000af47494817b4b8eb2977e52e065ea3a6b155bc7abfbb0d64fc",
+    "/tmp/a07_access_page30000.json": "4a1471b9375ef4376e0c5a1070e948d734727bd182a9e0557ad2bf74a45dd205",
+    "/tmp/a07_access_page40000.json": "3bf87ce8cd4968b88db96f427f4e6eefc517a5ff6fd13d8bca7a41bfdf611453",
+    "/tmp/a07_access_reduced.txt": "a246b4a49188b924bc68732c5645b17e51c62056e8ae2441d3114d95f7d3666b",
+    "/tmp/a07_capabilities.json": "797bde1b70c6ad4124d372829df784fef186ffbaf9ee60b92ea1d7f24036433f"
+  },
+  "bounded_residuals": [
+    "The carried-actor cleanup is instruction-exact but its visible seed placement/presentation was not exercised in this no-seed movie; A09/A10 own ordinary seed release behavior.",
+    "No enemy-contact control tested whether clip 13 has a model-specific incidental contact effect. The recognizer entry block itself creates no attack state, damage call, or kick timer.",
+    "A07 was not predeclared in phase4_live_escalations.json, so this row is not promoted to strict Full even though the mechanic-level frontier is bounded-exhausted.",
+    "Animation asset frame semantics and exact SFX-64 presentation belong to the shared animation/audio campaigns rather than this input-recognizer row."
+  ],
+  "reproduction": {
+    "static_command": "cc -O2 -std=c11 -Wall -Wextra -Werror tools/phase4_a07_static.c -o /tmp/phase4_a07_static && /tmp/phase4_a07_static REBUILD/files/SCUS_942.88 movies/Phase4/Interpreter/A07_spin.movie.json",
+    "hash_command": "sha256sum REBUILD/files/SCUS_942.88 asm/hand_written/80048138_player_vertical_update.s movies/Phase4/Interpreter/A07_spin.movie.json movies/Phase4/Interpreter/A07_spin.movie.sav"
+  }
+}

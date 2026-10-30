@@ -1,0 +1,62 @@
+schema_version: 1
+id: d03_contact_iframe
+description: Native beetle contact proves first damage, admitted iframe suppression, and damage again after timer expiry.
+
+target:
+  disc: Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+
+launch: {profile: repro}
+
+anchor:
+  type: save_state
+  path: health_test.sav
+  sha256: b8df83d76fce8da42c4020909219be27aa3b8319542e63ff6baea05a3fa4e6c7
+
+phases:
+  - id: trace_armed_at_native_anchor
+    before:
+      - {type: rpc, id: neutral_settle, method: emulator.advanceFrames, params: {frames: 180}}
+      - {type: rpc, id: clear_access_log, method: accessLog.clear, params: {}}
+      - {type: rpc, id: clear_exec_trace, method: execTrace.clear, params: {}}
+      - {type: rpc, id: watch_health, method: accessLog.addWatch, params: {address: 0x800A6594, length: 2, type: write, max_events: 1000, label: health}}
+      - {type: rpc, id: watch_contact_timer, method: accessLog.addWatch, params: {address: 0x800A6592, length: 2, type: write, max_events: 10000, label: contact_timer}}
+      - {type: rpc, id: watch_damage_entry, method: execTrace.addWatch, params: {pc: 0x8004A700, capture: [pc, ra, a0, a1, a2, a3, s1], max_events: 1000}}
+      - {type: rpc, id: watch_timer_branch, method: execTrace.addWatch, params: {pc: 0x8004A790, capture: [pc], max_events: 1000}}
+      - {type: rpc, id: watch_health_store, method: execTrace.addWatch, params: {pc: 0x8004A888, capture: [pc], max_events: 1000}}
+    trigger: {type: memory, address: 0x800A6594, width: u16, op: eq, value: 4, max_frames: 1}
+    assertions:
+      - {id: starts_full_health, type: memory, address: 0x800A6594, width: u16, op: eq, expected: 4}
+      - {id: starts_without_contact_timer, type: memory, address: 0x800A6592, width: u16, op: eq, expected: 0}
+
+  - id: first_native_contact_damages
+    before:
+      - {type: rpc, id: hold_forward_into_beetle, method: emulator.setControllerState, params: {port: 0, buttons: {Up: true}}}
+      - {type: rpc, id: advance_to_first_contact, method: emulator.advanceFrames, params: {frames: 12}}
+    trigger: {type: memory, address: 0x800A6594, width: u16, op: eq, value: 3, max_frames: 1}
+    assertions:
+      - {id: first_contact_costs_one_health, type: memory, address: 0x800A6594, width: u16, op: eq, expected: 3}
+      - {id: first_contact_arms_45_timer, type: memory, address: 0x800A6592, width: u16, op: eq, expected: 45}
+
+  - id: admitted_contact_during_timer_is_suppressed
+    before:
+      - {type: rpc, id: keep_contact_through_second_admission, method: emulator.advanceFrames, params: {frames: 40}}
+    trigger: {type: memory, address: 0x800A6592, width: u16, op: between, value: [1, 44], max_frames: 1}
+    captures:
+      - {type: rpc, id: iframe_exec_events, method: execTrace.get, params: {max_events: 10000}}
+      - {type: rpc, id: iframe_access_events, method: accessLog.get, params: {max_events: 10000}}
+    assertions:
+      - {id: admitted_recontact_does_not_cost_health, type: memory, address: 0x800A6594, width: u16, op: eq, expected: 3}
+      - {id: timer_continues_instead_of_refreshing, type: memory, address: 0x800A6592, width: u16, op: eq, expected: 25}
+
+  - id: contact_after_expiry_damages_again
+    before:
+      - {type: rpc, id: keep_contact_past_expiry, method: emulator.advanceFrames, params: {frames: 64}}
+      - {type: rpc, id: release_forward, method: emulator.clearControllerState, params: {port: 0, buttons: true, analog: true}}
+    trigger: {type: memory, address: 0x800A6594, width: u16, op: eq, value: 2, max_frames: 1}
+    captures:
+      - {type: rpc, id: complete_exec_events, method: execTrace.get, params: {max_events: 10000}}
+      - {type: rpc, id: complete_access_events, method: accessLog.get, params: {max_events: 10000}}
+    assertions:
+      - {id: post_expiry_contact_costs_health, type: memory, address: 0x800A6594, width: u16, op: eq, expected: 2}
+      - {id: post_expiry_contact_rearms_timer, type: memory, address: 0x800A6592, width: u16, op: eq, expected: 45}

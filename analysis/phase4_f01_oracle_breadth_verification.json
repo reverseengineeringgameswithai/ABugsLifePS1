@@ -1,0 +1,341 @@
+{
+  "schema": "abl-phase4-f01-oracle-breadth-verification/1",
+  "phase": "final_verdict",
+  "issued_order": "engineering-specs/phase4-f01-oracle-breadth-verification-work-order.md",
+  "freeze": {
+    "baseline_commit": "a3aa41270c0c78373d4afb85e8f4e94f6731059b",
+    "freeze_commit": "b079b0342530abb9c2b398b678fab493aa34c2d4",
+    "baseline_status_line_count": 114,
+    "baseline_status_sha256": "1cc78c7a59fc1ab54e361e18eb98ed07e1ee33050dd62a44d0b7502b64a52bbf",
+    "work_order_sha256": "bc3b7d5c09c57ce0891606f8cead856e004b6080a8c5af52fc96b47540369691",
+    "ordering": "The freeze commit contains NOT_EVALUATED_PRE_OUTCOME for both dimensions and is an ancestor of this verdict."
+  },
+  "verifier_environment": {
+    "detached_root": "/tmp/abl-f01-oracle-breadth.1QuXHr/repo",
+    "detached_head": "b079b0342530abb9c2b398b678fab493aa34c2d4",
+    "tracked_tree_clean_before_replay": true,
+    "externally_provisioned_inputs": [
+      "movies/",
+      "SCUS_942.88",
+      "Disney-Pixar A Bug's Life (v1.0).cue",
+      "Disney-Pixar A Bug's Life (v1.0).bin"
+    ],
+    "duckstation_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5",
+    "duckstation_status_line_count": 106,
+    "duckstation_status_sha256": "0ae8b03d3a31322c13a2ce60429a8f4460affed1a9131349b66243d17cda55ac",
+    "duckstation_binary_sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4",
+    "launch_repro_playback_sha256": "39bbd413af3e00310e9f18fd42631c4a0804a20c07b682534cdb957bc63480d6",
+    "disc_cue_sha256": "463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644",
+    "disc_bin_sha256": "2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566",
+    "executable_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "build_identity": "327/327 staged inputs match their pins"
+  },
+  "replay_verification": {
+    "original_oracle": {
+      "executor_isolated_port": 24620,
+      "config_recreated": true,
+      "settings_execution_mode": "Interpreter",
+      "media_serial": "SCUS-94288",
+      "movie_frames_replayed": "7385/7385 in 2/2 independent runs",
+      "semantic_results_matching": "2/2",
+      "executor_regenerated_sha256": "419b229cf669a905b6094bf9cf547be1cf5ffe808441e4f3b22d3f113f1b12d7",
+      "executor_media_path": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+      "executor_byte_identical": true,
+      "hard_truth_detached_root": "/tmp/abl-oracle-hardtruth.7D8ygR",
+      "hard_truth_regenerated_sha256": "ca3fa12f07f8a7bdf45aa97fdb4d2cb60c4e7bed4440a2b71f6c81f0315d77b4",
+      "retained_sha256": "419b229cf669a905b6094bf9cf547be1cf5ffe808441e4f3b22d3f113f1b12d7",
+      "byte_identical": false,
+      "semantic_fields_identical": true,
+      "exact_diff": {
+        "differing_fields": "1/1: media.path",
+        "retained": "~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue",
+        "regenerated": "/tmp/abl-oracle-hardtruth.7D8ygR/Disney-Pixar A Bug's Life (v1.0).cue",
+        "cause": "The submitted generator copies the emulator's checkout-local absolute media path into the artifact without normalization."
+      },
+      "observed": "scene 624 -> 0 -> 1 -> 0; one request-1 decision; gp4c4=0; one attributable finalizer 28 cycles later; trace not truncated",
+      "cleanup": "2/2 owned instances stopped"
+    },
+    "campaign_breadth": {
+      "isolated_ports": [24600, 24601, 24602, 24603, 24604],
+      "config_dirs_recreated": 5,
+      "settings_execution_mode": "Interpreter",
+      "workers_started": "5/5",
+      "movies_completed_before_stop": "1/19",
+      "successful_results_serialized": "0/19",
+      "completed_movie": "LEVEL10_CLOVERFOREST, 35586/35586 frames, reproducible=true",
+      "blocking_error": "ValueError: the absolute ~/Downloads/ABL/... movie is not in the detached ROOT subpath",
+      "blocking_source_shape": "19/19 source session paths are absolute; replay_one always serializes path.relative_to(ROOT)",
+      "error_result_sha256": "a20ada1111cb9f96d31acfcc04e382548715a3cdb5a751b265cd053442a018cf",
+      "artifact_regenerated": false,
+      "stop_reason": "The first completed replay proved a deterministic post-replay serialization failure common to all 19 inputs; four in-progress owned runs were canceled rather than repeat it.",
+      "cleanup": "5/5 owned instances stopped; operator instances untouched"
+    }
+  },
+  "compiled_c_byte_check": {
+    "tool": "tools/phase4_f01_objective_lifecycle.c",
+    "command": "cc -O2 -Wall -Wextra -Werror ... -lm; run against REBUILD/files",
+    "pins": "87/87",
+    "assertions_failed": 0,
+    "regenerated_sha256": "b4b250b4f8c24895d23a0cd827df28e718d4860b7f0056a999b4b05ae1331486",
+    "retained_sha256": "b4b250b4f8c24895d23a0cd827df28e718d4860b7f0056a999b4b05ae1331486",
+    "store_words": {
+      "0x800496D8": "0xA42223A0",
+      "0x800496F8": "0xA42223A0"
+    }
+  },
+  "compiled_c_direct_entry_check": {
+    "tool": "tools/phase4_f01_finalizer_entry_probe.c",
+    "selftest": "5/5 PASS",
+    "universe": "22/22 unique images: SCUS; BITS/MEMORY.BIN; LEVEL00 LEVEL.BIN; LEVEL01..09 LEVEL.BIN + LEVEL1.BIN; LEVEL10 LEVEL.BIN",
+    "load_bases": "SCUS PS-EXE header (0x80010000); MEMORY.BIN 0x800B5788; level overlays 0x800B39A0",
+    "images_scanned": 22,
+    "words_scanned": 143060,
+    "indirect_jr_jalr_occurrences": 1246,
+    "direct_entries_into_0x8004FF14_0x8004FF50": 0,
+    "output_sha256": "bd847bb7473163799a35b654390499c28bf59bc4d9a3b6a6896ebc5653c6021c",
+    "correction": "The submitted 260307-word / 2340-site totals double-count SCUS and omit the one-word LEVEL00 sentinel; 1246 is the deduplicated occurrence count.",
+    "duplicate_signature": "SCUS is 117248 words / 1094 indirect occurrences; 143060 + 117248 - 1 = 260307 and 1246 + 1094 = 2340"
+  },
+  "write_watch_pc_convention_probe": {
+    "tool": "tools/phase4_f01_write_watch_pc_probe.py",
+    "tool_sha256": "6e76e0e2928b4788f9c2e23c676043e9e85d650780d9a28391a6f08759781e6f",
+    "transient_receipt_sha256": "d89d5e6ce056eb8657283e06edcd4c85d158a540a278a203fa08a710e1edb1df",
+    "movie": "LEVEL02_Tunnels, 36397/36397 frames",
+    "movie_sha256": "2d5a8ddc68372aa060c7eb214183e6625570b11c14bf3f179268de14a69cbed9",
+    "assertions": "6/6",
+    "event": {
+      "frame": 40421,
+      "cycle": 22886031829,
+      "address": "0x800823A0",
+      "reported_pc": "0x800496FC",
+      "instruction_pc": "0x800496F8",
+      "instruction_word": "0xA42223A0",
+      "instruction": "sh v0, 0x23a0(at)",
+      "old_value": 0,
+      "new_value": 1,
+      "width": 2
+    },
+    "conclusion": "The historical compatibility PC is store+4, while instruction_pc directly and self-certifyingly identifies the code-3 store. The code-3 correction is valid without treating compatibility pc as a durable API contract."
+  },
+  "offline_recomputed": {
+    "authority": {
+      "breadth_cannot_promote": true,
+      "breadth_movies_from_boot": 0,
+      "oracle_cannot_promote": true,
+      "oracle_scope": "one replay of one from-boot movie"
+    },
+    "campaign_breadth": {
+      "actual_movie_hashes_matching": 19,
+      "central_movie_pins_matching": 19,
+      "central_state_anchor_pins_matching": 19,
+      "decisions": 35,
+      "empty_result_set_would_pass_consolidator": true,
+      "law_failures": 0,
+      "levels": 19,
+      "levels_with_at_least_one_decision": 19,
+      "predicted_call": 19,
+      "predicted_skip": 16,
+      "state_anchor_hashes_matching": 19,
+      "state_anchors": 19,
+      "structured_applicability_matrix_present": false,
+      "structured_level_type_mapping_present": false,
+      "truncated_level_would_pass_consolidator": true,
+      "untruncated_levels": 19,
+      "why_meta_mutations_pass": "consolidate gates only `not fails` and `not errs`; it does not require an exact level universe, a decision, or non-truncation",
+      "window_sensitivity": {
+        "call_deltas": [28],
+        "nearest_skip_to_later_finalizer_cycles": 1164325801,
+        "range": [0, 10000],
+        "retained_window": 2000,
+        "retained_window_inside_stable_interval": true,
+        "stable_passing_interval": [28, 1164325800],
+        "transitions_through_10000": [
+          {"law_failures": 19, "window": 0},
+          {"law_failures": 0, "window": 28}
+        ],
+        "windows_evaluated": 10001
+      },
+      "zero_decision_level_would_pass_consolidator": true
+    },
+    "original_oracle": {
+      "formal_assertions": 6,
+      "formal_assertions_passing": 6,
+      "formal_mutation_ids_rejected": [
+        "objective_completed_naturally",
+        "consumer_proceeded",
+        "request_produced_by_gameplay_not_injected",
+        "other_skip_condition_ruled_out",
+        "finalizer_ran_for_this_decision",
+        "finalizer_immediately_follows_the_decision"
+      ],
+      "formal_mutations_rejected": 6,
+      "generator_derives_from_boot_from_movie": false,
+      "generator_gates_trace_truncation": false,
+      "movie_actual_matches_artifact": true,
+      "movie_central_pin_present": false,
+      "movie_metadata_from_boot": true,
+      "movie_metadata_start_path_empty": true,
+      "natural_request_values": [1],
+      "prior_request2_witness_anchor": "validated_save_state",
+      "prior_request2_witness_is_injected": true
+    },
+    "source_shape_witnesses": {
+      "breadth_consolidator_gate": true,
+      "oracle_from_boot_literal_is_hardcoded": true,
+      "oracle_media_path_is_not_normalized": true
+    },
+    "submitted_hashes": {
+      "campaign_breadth": "f56e817f0f1ed897a835487bb8fd8fef6686346370cc57ef745b7ba2d6a24df6",
+      "original_oracle": "419b229cf669a905b6094bf9cf547be1cf5ffe808441e4f3b22d3f113f1b12d7"
+    }
+  },
+  "campaign_breadth_layer_audit": {
+    "applicability_universe": {
+      "status": "ABSENT",
+      "declared_matrices": "0/1",
+      "effect": "No denominator exists for stages, objectives, variants, modes or exceptional paths."
+    },
+    "stages": {
+      "status": "NOT DEMONSTRATED",
+      "observed_sessions": "19/19 submitted sessions",
+      "denominator": "unknown",
+      "reason": "Nineteen named sessions do not prove that every applicable stage is represented without a frozen applicability universe."
+    },
+    "objectives": {
+      "status": "NOT DEMONSTRATED",
+      "classified_applicability_cells": "0/unknown"
+    },
+    "variants": {
+      "status": "NOT DEMONSTRATED",
+      "classified_enemy_or_actor_variant_cells": "0/unknown"
+    },
+    "modes": {
+      "status": "NOT DEMONSTRATED",
+      "classified_special_mode_cells": "0/unknown"
+    },
+    "exceptional_paths": {
+      "status": "NOT DEMONSTRATED",
+      "classified_exception_cells": "0/unknown"
+    },
+    "required_taxonomy": {
+      "status": "NOT DEMONSTRATED",
+      "assigned_sessions": "0/19",
+      "required_types": "0/8 demonstrated by a pre-outcome mapping"
+    },
+    "coverage_controls": {
+      "status": "FAILED",
+      "invalid_mutations_rejected": "0/3",
+      "accepted_invalid_mutations": ["empty corpus", "zero-decision level", "truncated trace"]
+    }
+  },
+  "work_order_attack_results": {
+    "4a": {
+      "result": "FAILED",
+      "finding": "6/6 formal oracle assertions and 35/35 retained decision rows are value-falsifiable, but the oracle does not derive from_boot or gate trace truncation, and the breadth consolidator accepts 3/3 invalid corpus mutations: empty, zero-decision, and truncated."
+    },
+    "4b": {
+      "result": "SURVIVED",
+      "finding": "10001/10001 integer windows 0..10000 were evaluated. Calls fail below 28; every window 28..10000 passes. The full unambiguous interval is 28..1164325800, so retained 2000 is stable."
+    },
+    "4c": {
+      "result": "SURVIVED",
+      "finding": "Static completeness remains unproved because 1246 distinct jr/jalr occurrences in the exact 22-image / 143060-word universe remain unresolved. The submitted 2340/260307 totals double-count SCUS. Both artifacts explicitly deny proof and promotion, so the corrected residual does not invalidate bounded replay observations but forbids an exclusive-reachability claim."
+    },
+    "4d": {
+      "result": "FAILED",
+      "finding": "0/19 sessions have a structured mapping to the required eight level types. Same-author prose says all types are covered but supplies no assignment and cannot be used to choose labels after outcomes."
+    },
+    "4e": {
+      "result": "SURVIVED",
+      "finding": "A fresh current-binary capture observed reported_pc 0x800496FC and instruction_pc 0x800496F8 with pristine word 0xA42223A0 writing value 1. The code-3 conclusion is confirmed directly."
+    },
+    "4f": {
+      "result": "SURVIVED",
+      "finding": "Both tools are non-promoting; 1/1 oracle movie is from boot and 19/19 breadth movies are state anchored. The scope declarations are accurate."
+    }
+  },
+  "additional_findings": [
+    {
+      "id": "natural_request2_residual_not_answered",
+      "finding": "The new natural oracle observes request 1, not request 2. The only retained request-2 skip arm is still the validated-save-state witness that injects u16 2, so the registered natural-death residual remains open."
+    },
+    {
+      "id": "oracle_fixture_not_centrally_preserved",
+      "finding": "The 5062842-byte from-boot movie matches artifact SHA-256 b29ae839..., but has no entry in analysis/phase0_2_external_fixture_set.json. The 19 breadth movies and 19 state anchors are all centrally pinned."
+    },
+    {
+      "id": "oracle_detached_path_failure",
+      "finding": "The fresh detached replay reproduced every semantic field but not the submitted bytes: the generator embeds the emulator's absolute media.path. The regenerated SHA-256 is ca3fa12f... versus retained 419b229c..., with exactly one field different."
+    },
+    {
+      "id": "breadth_detached_path_failure",
+      "finding": "The exact submitted breadth generator cannot regenerate from the required fresh detached verifier because all 19 source paths are absolute and its output conversion assumes they lie below the detached ROOT."
+    },
+    {
+      "id": "indirect_scan_double_count",
+      "finding": "Compiled-C re-derivation over 22/22 unique images found 143060 words and 1246 jr/jalr occurrences, not 260307/2340. The old totals equal the unique corpus plus SCUS a second time, while omitting the one-word LEVEL00 sentinel."
+    },
+    {
+      "id": "scorecard_note_stale_but_not_replaced",
+      "finding": "The LEVEL01-only scorecard note is stale as an observation summary, but a stale note is not evidence that the eight-type bar is met. It remains untouched because this adjudication rejects promotion."
+    }
+  ],
+  "dimensions": {
+    "original_oracle": {
+      "verdict": "NOT MET",
+      "evidence_that_holds": "2/2 independent detached cold-boot replays reproduced every semantic observation; 6/6 formal assertions pass and reject direct adverse value mutations; natural request 1 reaches the finalizer 28 cycles later.",
+      "missing_elements": [
+        {
+          "id": "natural_request2_skip_control",
+          "missing": "The skip arm's request 2 is still injected from a validated save-state anchor.",
+          "would_satisfy": "A centrally pinned pristine from-boot movie that naturally produces request 2 through gameplay and observes the consumer proceed while the finalizer is skipped would satisfy this element."
+        },
+        {
+          "id": "fail_closed_oracle_provenance",
+          "missing": "The generator hardcodes from_boot, does not gate trace truncation, and the from-boot movie lacks a central preservation entry.",
+          "would_satisfy": "Derive and assert the no-start-state/from-boot metadata, pristine media identity and non-truncation; add the exact movie hash/size to the central preservation manifest; mutate each property and require failure."
+        },
+        {
+          "id": "fresh_detached_oracle_regeneration",
+          "missing": "The exact submitted artifact does not regenerate byte-identically in a fresh checkout because media.path embeds the checkout-local absolute cue path.",
+          "would_satisfy": "Normalize media identity to a checkout-independent value in the submitted generator, regenerate the artifact, and require an exact byte comparison from a separately provisioned detached checkout."
+        }
+      ]
+    },
+    "campaign_breadth": {
+      "verdict": "NOT MET",
+      "evidence_that_holds": "The retained artifact has 19/19 hash-matching movies, 19/19 hash-matching state anchors, 35 decisions, 19 predicted CALL and 16 predicted SKIP, zero law failures, both skip edges, and a stable 2000-cycle window.",
+      "missing_elements": [
+        {
+          "id": "preoutcome_applicability_matrix",
+          "missing": "There is no frozen applicability universe for stages, objectives, enemy/actor variants, special modes or exceptional paths, so their denominators are unknown and coverage is not demonstrated.",
+          "would_satisfy": "Before inspecting outcomes, freeze a complete applicability matrix across every required layer. Give every applicable cell a centrally pinned fixture plus self-certifying assertion, and every inapplicable cell a reproducible reason/proof; then require all cells to be classified and all applicable cells to pass."
+        },
+        {
+          "id": "predeclared_level_type_mapping",
+          "missing": "No independent mapping assigns the 19 levels to normal, traversal-special, boss, chase, city, interior, exterior and bonus.",
+          "would_satisfy": "A pre-outcome row/Canon-owned mapping with at least one passing replay in each of the eight categories would satisfy this taxonomy element only; labels chosen from these outcomes would not, and taxonomy coverage alone would not satisfy the other applicability layers."
+        },
+        {
+          "id": "fail_closed_corpus_gate",
+          "missing": "The exact consolidator accepts empty, zero-decision and truncated result sets.",
+          "would_satisfy": "Require the exact declared 19-level universe, at least one self-certified decision per level, non-truncated traces, zero errors and zero law failures; mutation-test every gate and regenerate."
+        },
+        {
+          "id": "fresh_detached_regeneration",
+          "missing": "The exact submitted tool fails after replay when absolute source paths are serialized relative to a detached ROOT.",
+          "would_satisfy": "Normalize input identities independently of checkout location, then regenerate all 19 results from a fresh detached verifier and byte-compare the artifact."
+        }
+      ]
+    }
+  },
+  "registry_action": {
+    "analysis/mechanics_baseline.yaml": "UNCHANGED: neither dimension met its bar"
+  },
+  "forbidden_scope": {
+    "mechanics_baseline_sha256_before_and_after": "2bbd491c5cd314fb9e922c13689b7441d1f72e39b7addf9ba150d3ea25195383",
+    "submitted_artifacts_modified": false,
+    "frontier_census_seed_gate_typed_state_modified": false
+  },
+  "status_statement": "Adjudication complete: original_oracle NOT MET; campaign_breadth NOT MET. No promotion or F01 status movement is authorized."
+}

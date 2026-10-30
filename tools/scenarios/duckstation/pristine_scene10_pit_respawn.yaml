@@ -1,0 +1,41 @@
+schema_version: 1
+id: pristine_scene10_pit_respawn
+description: >-
+  Replay the centrally pinned scene-10 pit boundary, perturb only fatal-state
+  safe X, and assert that the one-frame transition path replaces the tuple
+  before the resident respawn handler restores health and consumes a life.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: movies/Phase4/E10/hazard_pit_LEVEL05.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: scene10_pre_reset_boundary
+    trigger: {type: movie_frame, target: 144, max_frames: 170, timeout_seconds: 90}
+    assertions:
+      - {id: c15_scene10_pre_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 10}
+      - {id: c15_scene10_pre_anchor_x, type: memory, address: 0x800A6550, width: s32, op: eq, expected: -103436}
+      - {id: c15_scene10_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 0}
+      - {id: c15_scene10_pre_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 1}
+      - {id: c15_scene10_movie_reproducible_before_mutation, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: change_only_scene10_fatal_safe_x
+        method: debugger.writeU32
+        params: {address: 0x800A6550, value: 0xFFFE7BF4}
+  - id: scene10_transition_replaces_safe_tuple
+    trigger: {type: movie_frame, target: 145, max_frames: 2, timeout_seconds: 60}
+    assertions:
+      - {id: c15_scene10_post_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 10}
+      - {id: c15_scene10_post_live_x, type: memory, address: 0x800A6500, width: s32, op: eq, expected: -159648}
+      - {id: c15_scene10_post_live_y, type: memory, address: 0x800A6504, width: s32, op: eq, expected: 3628}
+      - {id: c15_scene10_post_live_z, type: memory, address: 0x800A6508, width: s32, op: eq, expected: 1182816}
+      - {id: c15_scene10_post_anchor_x, type: memory, address: 0x800A6550, width: s32, op: eq, expected: -159648}
+      - {id: c15_scene10_post_anchor_y, type: memory, address: 0x800A6554, width: s32, op: eq, expected: 3628}
+      - {id: c15_scene10_post_anchor_z, type: memory, address: 0x800A6558, width: s32, op: eq, expected: 1182816}
+      - {id: c15_scene10_post_health_restored, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: c15_scene10_post_life_decremented, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 0}
+      - {id: c15_scene10_movie_reproducible_after_respawn, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

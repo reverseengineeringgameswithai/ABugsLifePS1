@@ -1,0 +1,141 @@
+schema: abl-phase4-evidence-dag/1
+description: >
+  Bounded repository-native DAG for the Phase-4 control-plane chain that caused
+  repeated stale-hash repairs during the first acceleration tranche. Exact and
+  semantic identities are both retained. This is not a declaration that every
+  Phase-4 generator is covered.
+nodes:
+  - id: offline_queue
+    classification: static
+    generator: tools/phase4_offline_queue.py
+    command: ["{python}", tools/phase4_offline_queue.py, --write]
+    verify_command: ["{python}", tools/phase4_offline_queue.py, --check]
+    depends_on: []
+    inputs:
+      - {path: tools/phase4_common.py, mode: exact}
+      - {path: tools/phase4_coverage.py, mode: exact}
+      - {path: tools/phase4_inventory.py, mode: exact}
+      - {path: tools/phase4_priority.py, mode: exact}
+      - {path: config/phase4_offline_queue.yaml, mode: exact}
+      - {path: config/phase4_live_escalations.yaml, mode: exact}
+      - {path: config/phase4_campaigns.yaml, mode: exact}
+      - {path: analysis/mechanics_baseline.yaml, mode: exact}
+      - {path: analysis/phase4_campaign_inventory.json, mode: exact}
+      - {path: analysis/phase4_trace_capsule_set.json, mode: exact}
+      - {path: analysis/phase4_coverage_matrix.json, mode: exact}
+      - {path: analysis/phase4_fixture_audit.json, mode: exact}
+      - {path: analysis/phase4_priority.json, mode: exact}
+      - {path: analysis/phase0_2_external_fixture_set.json, mode: exact}
+      - {path: analysis/phase3_ownership_graph.json, mode: exact}
+      - {path: movies, mode: exact, kind: tree}
+    outputs:
+      - {path: analysis/phase4_movie_inventory.json, comparison: semantic_json}
+      - {path: analysis/phase4_offline_opportunity_queue.json, comparison: semantic_json}
+
+  - id: closure_debt
+    classification: static
+    generator: tools/phase4_closure_debt.py
+    command: ["{python}", tools/phase4_closure_debt.py, --write]
+    verify_command: ["{python}", tools/phase4_closure_debt.py, --check]
+    depends_on: [offline_queue]
+    inputs:
+      - {path: tools/phase4_common.py, mode: exact}
+      - {path: config/phase4_closure_policy.yaml, mode: exact}
+      - {path: config/phase4_campaigns.yaml, mode: exact}
+      - {path: config/phase4_findings.yaml, mode: exact}
+      - {path: analysis/mechanics_baseline.yaml, mode: exact}
+      - {path: analysis/phase4_campaign_inventory.json, mode: exact}
+      - {path: analysis/phase4_coverage_matrix.json, mode: exact}
+      - {path: analysis/phase4_offline_opportunity_queue.json, mode: exact}
+    outputs:
+      - {path: analysis/phase4_closure_debt.json, comparison: semantic_json}
+
+  - id: live_escalations
+    classification: static
+    generator: tools/phase4_live_escalations.py
+    command: ["{python}", tools/phase4_live_escalations.py, --write]
+    verify_command: ["{python}", tools/phase4_live_escalations.py, --check]
+    depends_on: [offline_queue]
+    inputs:
+      - {path: tools/phase4_common.py, mode: exact}
+      - {path: config/phase4_live_escalations.yaml, mode: exact}
+      - {path: analysis/phase4_offline_opportunity_queue.json, mode: exact}
+      - {path: analysis/phase4_trace_capsule_set.json, mode: exact}
+      - {path: analysis/phase0_2_external_fixture_set.json, mode: exact}
+    outputs:
+      - {path: analysis/phase4_live_escalations.json, comparison: semantic_json}
+
+  - id: movie_priority
+    classification: static
+    generator: tools/phase4_movie_priority.py
+    command: ["{python}", tools/phase4_movie_priority.py, --write]
+    verify_command: ["{python}", tools/phase4_movie_priority.py, --check]
+    depends_on: [offline_queue, closure_debt]
+    inputs:
+      - {path: tools/phase4_common.py, mode: exact}
+      - {path: tools/phase4_derived_index.py, mode: exact}
+      - {path: tools/phase4_inventory.py, mode: exact}
+      - {path: tools/phase4_scheduler_policy.py, mode: exact}
+      - {path: config/phase4_movie_priority.yaml, mode: exact}
+      - {path: config/phase4_scheduler_policy.yaml, mode: exact}
+      - {path: analysis/mechanics_baseline.yaml, mode: exact}
+      - {path: analysis/phase4_closure_debt.json, mode: exact}
+      - {path: analysis/phase4_offline_opportunity_queue.json, mode: exact}
+      - {path: analysis/phase4_movie_inventory.json, mode: exact}
+      - {path: analysis/phase4_fixture_audit.json, mode: exact}
+      - {path: analysis/phase0_2_external_fixture_set.json, mode: exact}
+      - {path: analysis/phase4_trace_capsule_set.json, mode: exact}
+      - {path: analysis/phase4_derived_index.json, mode: exact}
+      - {path: analysis/phase3_ownership_graph.json, mode: exact}
+    outputs:
+      - {path: analysis/phase4_movie_priority_queue.json, comparison: semantic_json}
+
+  - id: promotion_preflight
+    classification: static
+    generator: tools/phase4_promotion_preflight.py
+    command: ["{python}", tools/phase4_promotion_preflight.py]
+    verify_command: ["{python}", tools/phase4_promotion_preflight.py, --check]
+    # Exit 1 is the tool's documented, non-error state when it successfully
+    # writes a report containing at least one not-ready promotion packet.
+    accepted_exit_codes: [0, 1]
+    depends_on: [closure_debt]
+    inputs:
+      - {path: tools/phase4_common.py, mode: exact}
+      - {path: config/phase4_promotion_packets.yaml, mode: exact}
+      - {path: config/phase4_closure_policy.yaml, mode: exact}
+      - {path: config/phase4_campaigns.yaml, mode: exact}
+      - {path: analysis/phase4_closure_debt.json, mode: exact}
+      - {path: analysis/phase4_static_frontier_index.json, mode: exact}
+      - {path: analysis/phase4_static_frontier_pilots.json, mode: exact}
+    outputs:
+      - {path: analysis/phase4_promotion_preflight.json, comparison: semantic_json}
+
+  - id: phase4_gate
+    classification: static
+    generator: tools/phase4_gate.py
+    command: ["{python}", tools/phase4_gate.py]
+    verify_command: ["{python}", tools/phase4_gate.py, --check]
+    accepted_exit_codes: [0, 1]
+    depends_on: [offline_queue, closure_debt, live_escalations, movie_priority,
+                 promotion_preflight]
+    inputs:
+      - {path: tools/phase4_common.py, mode: exact}
+      - {path: tools/phase4_coverage.py, mode: exact}
+      - {path: tools/phase4_inventory.py, mode: exact}
+      - {path: tools/phase4_priority.py, mode: exact}
+      - {path: tools/build_identity.py, mode: exact}
+      - {path: config/phase4_campaigns.yaml, mode: exact}
+      - {path: config/phase4_findings.yaml, mode: exact}
+      - {path: config/phase4_inventory.yaml, mode: exact}
+      - {path: analysis/mechanics_baseline.yaml, mode: exact}
+      - {path: analysis/phase4_campaign_inventory.json, mode: exact}
+      - {path: analysis/phase4_fixture_audit.json, mode: exact}
+      - {path: analysis/phase4_knowledge_audit.json, mode: exact}
+      - {path: analysis/phase4_offline_opportunity_queue.json, mode: exact}
+      - {path: analysis/phase4_movie_inventory.json, mode: exact}
+      - {path: analysis/phase4_closure_debt.json, mode: exact}
+      - {path: analysis/phase4_live_escalations.json, mode: exact}
+      - {path: analysis/phase4_movie_priority_queue.json, mode: exact}
+      - {path: analysis/phase4_promotion_preflight.json, mode: exact}
+    outputs:
+      - {path: analysis/phase4_gate.json, comparison: semantic_json}

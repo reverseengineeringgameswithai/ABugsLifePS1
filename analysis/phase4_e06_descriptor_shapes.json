@@ -1,0 +1,403 @@
+{
+ "row": "E06_contact_object_pool",
+ "scope": "Descriptor-shape classification of the kinds still unknown after the 2026-08-02 name cross-reference passes (analysis/phase4_e06_kind_cross_reference.json).",
+ "method": "Dereferenced all 50 pointers from the already-captured, scene-invariant (pointer_table_is_scene_invariant: true) 'training' anchor in analysis/phase3_render_descriptors.json -- the pointer TABLE itself is RAM/BSS (built at load, not in the static EXE), but the descriptor CONTENT each pointer targets lives in the static EXE data (0x80081Dxx-0x80082Fxx), so no live session was needed for this pass. Read the 12-byte descriptor at each pointer directly from the pristine EXE.",
+ "counting_note": "A first draft of this artifact undercounted -- its `named` dict omitted 3 of the 4 kinds phase1_kind_actor_census.json already had canon-bound BEFORE this session (29, 38, 48; only 34 was included by coincidence), so still_fully_opaque showed 28 instead of the correct 25, and kind 38 (mercy health leaf, already known) was wrongly listed as an unnamed member of the 0x1E cluster. Caught by re-deriving the count with asserts against phase1's own data before banking, not by inspection. Corrected in this version.",
+ "table": {
+  "0": {
+   "ptr": "0x80081D98",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 80 20 90 20",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "1": {
+   "ptr": "0x80081D98",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 80 20 90 20",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "2": {
+   "ptr": "0x80081DA8",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 20 30 00 00",
+   "type_byte": "0x1D",
+   "role": "post-angle contact, calls FUNC_8004A700(dx,dz,...) -- file's own comment marks the call's semantics UNKNOWN in this context; scene-dependent (state 0x15 if scene==0x0f else 0x14)"
+  },
+  "3": {
+   "ptr": "0x80081DB4",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 00 00 10 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "4": {
+   "ptr": "0x80081E3C",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 80 30 90 30",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "5": {
+   "ptr": "0x80081E4C",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 20 10 00 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "6": {
+   "ptr": "0x80081E58",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 30 10 00 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "7": {
+   "ptr": "0x80081E64",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 00 20 10 20",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "8": {
+   "ptr": "0x80081F30",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 00 80 00 00",
+   "type_byte": "0x1D",
+   "role": "post-angle contact, same mechanism as kind 2, simpler (state 0x13, no scene branch)"
+  },
+  "9": {
+   "ptr": "0x80081F3C",
+   "descriptor_hex": "1d 00 17 1e 00 00 00 00 00 a0 00 00",
+   "type_byte": "0x1D",
+   "role": "B07 health grant"
+  },
+  "10": {
+   "ptr": "0x80081FAC",
+   "descriptor_hex": "1d 00 10 10 00 00 00 00 80 00 00 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "11": {
+   "ptr": "0x80081FB8",
+   "descriptor_hex": "1d 00 3f 2f 00 00 00 00 c0 80 00 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "12": {
+   "ptr": "0x80081EF8",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 40 80 60 80",
+   "type_byte": "0x1D",
+   "role": "B06 invincibility grant"
+  },
+  "13": {
+   "ptr": "0x80081FC4",
+   "descriptor_hex": "1d 00 3f 3f 00 00 00 00 80 80 00 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "14": {
+   "ptr": "0x80081FD0",
+   "descriptor_hex": "1d 00 3f 1f 00 00 00 00 40 20 00 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "15": {
+   "ptr": "0x80081FDC",
+   "descriptor_hex": "1d 00 1f 2f 00 00 00 00 c0 00 00 00",
+   "type_byte": "0x1D",
+   "role": "B09 super-jump grant"
+  },
+  "16": {
+   "ptr": "0x80081DC8",
+   "descriptor_hex": "1d 00 17 17 00 00 00 00 c0 40 00 00",
+   "type_byte": "0x1D",
+   "role": "FLIK-F"
+  },
+  "17": {
+   "ptr": "0x80081DD4",
+   "descriptor_hex": "1d 00 17 17 00 00 00 00 d8 40 00 00",
+   "type_byte": "0x1D",
+   "role": "FLIK-L"
+  },
+  "18": {
+   "ptr": "0x80081DE0",
+   "descriptor_hex": "1d 00 17 17 00 00 00 00 c0 58 00 00",
+   "type_byte": "0x1D",
+   "role": "FLIK-I"
+  },
+  "19": {
+   "ptr": "0x80081DEC",
+   "descriptor_hex": "1d 00 17 17 00 00 00 00 d8 58 00 00",
+   "type_byte": "0x1D",
+   "role": "FLIK-K"
+  },
+  "20": {
+   "ptr": "0x80081DF8",
+   "descriptor_hex": "1d 00 0f 0f 00 00 00 00 f0 70 00 00",
+   "type_byte": "0x1D",
+   "role": "grain"
+  },
+  "21": {
+   "ptr": "0x80081F08",
+   "descriptor_hex": "1d 00 00 0f 00 00 00 00 80 10 81 10",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "22": {
+   "ptr": "0x80081F48",
+   "descriptor_hex": "1c 00 14 1f 00 00 00 00 00 00 15 00",
+   "type_byte": "0x1C",
+   "role": null
+  },
+  "23": {
+   "ptr": "0x80081F5C",
+   "descriptor_hex": "1c 00 14 1f 00 00 00 00 00 40 15 40",
+   "type_byte": "0x1C",
+   "role": null
+  },
+  "24": {
+   "ptr": "0x80081F70",
+   "descriptor_hex": "1c 00 14 1f 00 00 00 00 00 80 15 80",
+   "type_byte": "0x1C",
+   "role": null
+  },
+  "25": {
+   "ptr": "0x80081F84",
+   "descriptor_hex": "1c 00 14 1f 00 00 00 00 00 c0 15 c0",
+   "type_byte": "0x1C",
+   "role": null
+  },
+  "26": {
+   "ptr": "0x80081FE8",
+   "descriptor_hex": "1d 00 3f 3f 00 00 00 00 00 c0 00 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "27": {
+   "ptr": "0x80081FF4",
+   "descriptor_hex": "1e 00 3f 3f 00 00 00 00 00 00 00 00",
+   "type_byte": "0x1E",
+   "role": null
+  },
+  "28": {
+   "ptr": "0x80081E04",
+   "descriptor_hex": "1d 00 20 20 00 00 00 00 00 40 00 00",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "29": {
+   "ptr": "0x80081E10",
+   "descriptor_hex": "1d 00 20 30 00 00 00 00 80 40 00 00",
+   "type_byte": "0x1D",
+   "role": "sprite descriptor class (pickup-render Canon)"
+  },
+  "30": {
+   "ptr": "0x80081E1C",
+   "descriptor_hex": "1d 00 10 10 00 00 00 00 40 40 50 40",
+   "type_byte": "0x1D",
+   "role": null
+  },
+  "31": {
+   "ptr": "0x80082000",
+   "descriptor_hex": "1e 00 3f 3f 00 00 00 00 40 00 00 00",
+   "type_byte": "0x1E",
+   "role": null
+  },
+  "32": {
+   "ptr": "0x80081E80",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 40 00 00 00",
+   "type_byte": "0x1D",
+   "role": "red/default berry"
+  },
+  "33": {
+   "ptr": "0x80081E8C",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 40 00 00 00",
+   "type_byte": "0x1D",
+   "role": "green-berry"
+  },
+  "34": {
+   "ptr": "0x80081E98",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 40 00 00 00",
+   "type_byte": "0x1D",
+   "role": "gold-berry"
+  },
+  "35": {
+   "ptr": "0x80081EA4",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 40 00 00 00",
+   "type_byte": "0x1D",
+   "role": "blueberry"
+  },
+  "36": {
+   "ptr": "0x80081EB0",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 40 00 00 00",
+   "type_byte": "0x1D",
+   "role": "purple-berry"
+  },
+  "37": {
+   "ptr": "0x80082030",
+   "descriptor_hex": "1e 00 40 14 00 00 00 00 80 14 00 00",
+   "type_byte": "0x1E",
+   "role": null
+  },
+  "38": {
+   "ptr": "0x80082024",
+   "descriptor_hex": "1e 00 40 14 00 00 00 00 80 00 00 00",
+   "type_byte": "0x1E",
+   "role": "mercy health leaf"
+  },
+  "39": {
+   "ptr": "0x80082018",
+   "descriptor_hex": "1e 00 30 1e 00 00 00 00 c0 00 00 00",
+   "type_byte": "0x1E",
+   "role": null
+  },
+  "40": {
+   "ptr": "0x8008200C",
+   "descriptor_hex": "1e 00 3f 3f 00 00 00 00 00 40 00 00",
+   "type_byte": "0x1E",
+   "role": null
+  },
+  "41": {
+   "ptr": "0x80081EEC",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 60 00 00 00",
+   "type_byte": "0x1D",
+   "role": "seed-orange"
+  },
+  "42": {
+   "ptr": "0x80081EBC",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 60 00 00 00",
+   "type_byte": "0x1D",
+   "role": "seed-blue"
+  },
+  "43": {
+   "ptr": "0x80081ED4",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 60 00 00 00",
+   "type_byte": "0x1D",
+   "role": "seed-green"
+  },
+  "44": {
+   "ptr": "0x80081EE0",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 60 00 00 00",
+   "type_byte": "0x1D",
+   "role": "seed-token-2c"
+  },
+  "45": {
+   "ptr": "0x80081EC8",
+   "descriptor_hex": "1d 00 1f 1f 00 00 00 00 60 00 00 00",
+   "type_byte": "0x1D",
+   "role": "seed-token-2d"
+  },
+  "46": {
+   "ptr": "0x8008203C",
+   "descriptor_hex": "1e 00 3e 3f 00 00 00 00 80 40 00 00",
+   "type_byte": "0x1E",
+   "role": "B08 bubble grant"
+  },
+  "47": {
+   "ptr": "0x80081F98",
+   "descriptor_hex": "1e 00 14 1f 00 00 00 00 00 80 15 80",
+   "type_byte": "0x1E",
+   "role": null
+  },
+  "48": {
+   "ptr": "0x80082048",
+   "descriptor_hex": "1e 00 2f 2f 00 00 00 00 c0 80 00 00",
+   "type_byte": "0x1E",
+   "role": "dewdrop telescope"
+  },
+  "49": {
+   "ptr": "0x80082054",
+   "descriptor_hex": "1e 00 1f 1f 00 00 00 00 c0 40 00 00",
+   "type_byte": "0x1E",
+   "role": "animated-construct"
+  }
+ },
+ "type_byte_clusters": {
+  "0x1C": [
+   22,
+   23,
+   24,
+   25
+  ],
+  "0x1D": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   26,
+   28,
+   29,
+   30,
+   32,
+   33,
+   34,
+   35,
+   36,
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "0x1E": [
+   27,
+   31,
+   37,
+   38,
+   39,
+   40,
+   46,
+   47,
+   48,
+   49
+  ]
+ },
+ "findings": [
+  "Every one of the 50 kinds has a NON-NULL descriptor (type byte in {0x1C,0x1D,0x1E} for all 50) -- no dead/placeholder slots. Answers part of the row's 'table/action semantics' question: the table has no unused capacity to reclaim.",
+  "Type 0x1E clusters kind 46 (B08 bubble, CONFIRMED sprite pickup), kind 49 (animated-construct, CONFIRMED) and kind 38 (mercy health leaf, CONFIRMED) with 6 still-unnamed kinds ([27, 31, 37, 39, 40, 47]). Strong structural evidence those 6 are ALSO visible sprite/animated pickups, not logic-only objects -- inference from clustering, not a name.",
+  "Kinds 22-25 form a tight, self-consistent 4-entry family: identical type byte (0x1C), identical descriptor pattern (14 1f ...) except a single rotating offset byte (00,40,80,c0) -- structurally similar in SHAPE to the FLIK-letter quad (16-19) and the seed-color set, suggesting a related 4-part collectible. NOT named -- no positive identification, just a flagged, coherent cluster worth checking first when live classification happens."
+ ],
+ "still_fully_opaque": [
+  0,
+  1,
+  3,
+  4,
+  5,
+  6,
+  7,
+  10,
+  11,
+  13,
+  14,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  30,
+  31,
+  37,
+  39,
+  40,
+  47
+ ],
+ "behaviorally_characterized_not_named": [
+  2,
+  8
+ ],
+ "caveat": "Descriptor SHAPE bounds the render CLASS (sprite-like vs not) but cannot give a game-object identity by itself. The row's originally-planned live-spawn experiment is still needed to actually NAME these 25 kinds."
+}

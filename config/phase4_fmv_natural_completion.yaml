@@ -1,0 +1,77 @@
+schema: abl-phase4-fmv-natural-completion-source/1
+description: >
+  Preservation and assertion contract for the same-anchor E15 level-A
+  no-input common-exit reachability control. The raw debugger and cleanup
+  receipts remain outside Git. This receipt does not identify the completion
+  cause.
+campaign_id: fmv_playback
+row_id: E15_fmv
+escalation_id: P4-ITER81-E15-NATURAL-LEVELA-COMPLETION-CONTROL
+batch_plan:
+  path: config/phase4_fmv_natural_completion_batch.yaml
+  canonical_sha256: fcff24ee0a826343488600e79c1b39b282ad90a1ca74f431270d6f658a5712cc
+external_receipt:
+  relative_path: live/Phase4/e15-natural-levela-v1-20260724/result.json
+  sha256: 0f695036639692142307c5a9a212874e7677faa5d1d50e4060ec8566209c0cee
+  bytes: 51177
+cleanup_receipt:
+  relative_path: live/Phase4/e15-natural-levela-v1-20260724/cleanup.json
+  sha256: cab677355e1ab3d141bc260cda4be05d5109c2560f3e7dfd5312ef0d17c747b3
+  bytes: 531
+profile:
+  config_dir: /var/tmp/abl-p4-e15-natural.xssVOl
+  port: 24682
+  owned_pid: 488855
+  owned_pid_stopped: true
+fixture:
+  movie_path: movies/Phase4/E15_fmv_skip.movie.json
+  movie_sha256: ca5219db048a986605bb20c2376166e9014645c7da87c8347a6e6ec0fb681fba
+  state_path: movies/Phase4/E15_fmv_skip.movie.sav
+  state_sha256: 851e8ebffa8b8417abb30ff0791ca4c1872a43cf06101247ee1ff97e4cdac417
+  state_bytes: 1193583
+media:
+  cue_sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  bin_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+  serial: SCUS-94288
+debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: 55d589032641ad0904526742f2209c034a710a162ebba3e1bc04b4c5da6075a8
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty_state_hash: 72dd936c8a6f92f6370815da7d9e192c3bcc2371
+  batch_generator_sha256: 15bdf39d4aae3aee10180a6a58f497a5655e6a6b84db7984bf218462763508d4
+  client_sha256: 388d42701d75262903ae4669eec091f02dd2168b206da53571f63b71255691ab
+prior_boundary:
+  artifact: analysis/phase4_fmv_callback_lifecycle.json
+  sha256: d6f049488927a476a59ad36c58b0ea7cab682ed533b8a193516e7beaf3f43f85
+  no_input_frames: 541
+  no_input_emulator_frame: 4776
+  no_input_str_backloc: 162
+  selected_frame_limit: 386
+  fmv_bin_resident: true
+run:
+  frames: 1500
+  endpoint_emulator_frame: 5735
+  endpoint_cycle: 3246597378
+  trigger: e15_post_frame_1500
+  trace_limit: 16
+expected:
+  initialization:
+    frame: 4443
+    entry_cycle: 2515397349
+    exit_cycle: 2515399779
+  start_skip:
+    frame: 4671
+    cycles: [2644271877, 2644274307, 2644274321, 2644284120]
+    teardown_exit_synthetic_unwind: true
+    endpoint_head_sha256: 6245e366d6fa7f9a4ca2bcfef1a47da70a4f50cb15e50ded0f0f2ffedee3a1b8
+  natural_completion:
+    frame: 5305
+    cycles: [3003377970, 3003380400, 3003380414, 3003384397]
+    teardown_exit_synthetic_unwind: false
+    endpoint_head_sha256: e63f3b3fa1a5f185ed9da114b876917a263971a2306753420d9ee361d36a71cd
+  fmv_bin_head_sha256: ab33c20549aa18877259dbd83cc4925c9ea24db0e160b3f450eaad29551954db
+  mmio_pointer_words_hex: 0018801f0118801f0218801f0318801f
+tracked_summary:
+  schema: abl-phase4-fmv-natural-completion/1
+  excludes: [raw_receipt, movie_bytes, save_bytes, disc_bytes, captures, token]

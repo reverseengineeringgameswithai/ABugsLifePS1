@@ -1,0 +1,948 @@
+schema: abl-phase4-inventory/1
+description: >
+  Declaration surface for Phase-4 generators, retained artifacts, schemas,
+  tests, and notes. tools/phase4_inventory.py discovers phase4_* files and
+  rejects missing or stale declarations.
+generators:
+  - path: tools/phase4_priority.py
+    classification: static
+    outputs: [analysis/phase4_priority.json]
+  - path: tools/phase4_coverage.py
+    classification: static
+    outputs: [analysis/phase4_coverage_matrix.json]
+  - path: tools/phase4_inventory.py
+    classification: static
+    outputs: [analysis/phase4_campaign_inventory.json,
+              analysis/phase4_fixture_audit.json,
+              analysis/phase4_knowledge_audit.json]
+  - path: tools/phase4_static_frontier.py
+    classification: local_media
+    outputs: [analysis/phase4_static_frontier_index.json,
+              analysis/phase4_overlay_semantic_index.json,
+              analysis/phase4_static_frontier_pilots.json,
+              analysis/phase4_ghidra_toolchain.json]
+  - path: tools/phase4_ghidra_export.py
+    classification: local_media
+    outputs: [analysis/phase4_ghidra_regeneration_receipt.json]
+  - path: tools/phase4_promotion_preflight.py
+    classification: static
+    outputs: [analysis/phase4_promotion_preflight.json]
+  - path: tools/phase4_acceleration_bank.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_evidence_dag.py
+    classification: static
+    outputs: [analysis/phase4_evidence_dag.json]
+  - path: tools/phase4_movie_minimizer.py
+    classification: static
+    outputs: [analysis/phase4_movie_minimizer_pilot.json]
+  - path: tools/phase4_mips_oracle.py
+    classification: static
+    outputs: [analysis/phase4_mips_oracle_pilot.json]
+  - path: tools/phase4_acceleration_next_bank.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_trace_warehouse.py
+    classification: static
+    outputs: [analysis/phase4_trace_warehouse_pilot.json]
+  - path: tools/phase4_binary_schema_fuzz.py
+    classification: static
+    outputs: [analysis/phase4_binary_schema_fuzz_pilot.json]
+  - path: tools/phase4_external_evidence.py
+    classification: static
+    outputs: [analysis/phase4_external_evidence_manifest.json,
+              analysis/phase4_external_evidence_pilot.json]
+  - path: tools/phase4_acceleration_third_bank.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_scheduler_policy.py
+    classification: static_library
+    outputs: []
+  - path: tools/phase4_acceleration_scheduler_bank.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_gate.py
+    classification: static
+    outputs: [analysis/phase4_gate.json]
+  - path: tools/phase4_common.py
+    classification: static_library
+    outputs: []
+  - path: tools/phase4_closure_workbench.py
+    classification: static
+    outputs: [analysis/phase4_closure_workbench.json]
+  - path: tools/phase4_semantic_frontier.py
+    classification: static_library
+    outputs: []
+  - path: tools/phase4_witness_compiler.py
+    classification: static_library
+    outputs: []
+  - path: tools/phase4_circle_absence.py
+    classification: live
+    outputs:
+      - analysis/phase4_circle_absence.json
+  - path: tools/phase4_slow_walk.py
+    classification: live
+    outputs:
+      - analysis/phase4_slow_walk.json
+  - path: tools/phase4_run_locomotion.py
+    classification: live
+    outputs:
+      - analysis/phase4_run_locomotion.json
+  - path: tools/phase4_jump.py
+    classification: live
+    outputs:
+      - analysis/phase4_jump.json
+  - path: tools/phase4_kick.py
+    classification: live
+    outputs:
+      - analysis/phase4_kick.json
+  - path: tools/phase4_abdomen_bounce.py
+    classification: live
+    outputs:
+      - analysis/phase4_abdomen_bounce.json
+  - path: tools/phase4_downhill_slide.py
+    classification: live
+    outputs:
+      - analysis/phase4_downhill_slide.json
+  - path: tools/phase4_berry_throw.py
+    classification: live
+    outputs:
+      - analysis/phase4_berry_throw.json
+  - path: tools/phase4_swinging.py
+    classification: live
+    outputs:
+      - analysis/phase4_swinging.json
+  - path: tools/phase4_camera_controls.py
+    classification: live
+    outputs:
+      - analysis/phase4_camera_controls.json
+  - path: tools/phase4_pause.py
+    classification: live
+    outputs:
+      - analysis/phase4_pause.json
+  - path: tools/phase4_spin_heading.py
+    classification: live
+    outputs:
+      - analysis/phase4_spin_heading.json
+  - path: tools/phase4_collision.py
+    classification: live
+    outputs:
+      - analysis/phase4_collision.json
+  - path: tools/phase4_contact_pool.py
+    classification: live
+    outputs:
+      - analysis/phase4_contact_pool.json
+  - path: tools/phase4_event_vm.py
+    classification: live
+    outputs:
+      - analysis/phase4_event_vm.json
+  - path: tools/phase4_props_movers.py
+    classification: live
+    outputs:
+      - analysis/phase4_props_movers.json
+  - path: tools/phase4_e08_oracle_audit.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_e08_oracle_audit.json
+  - path: tools/phase4_e08_outcome_join.py
+    classification: static
+    outputs:
+      - analysis/phase4_e08_outcome_join.json
+  - path: tools/phase4_e08_operator_contacts.py
+    classification: live
+    outputs:
+      - analysis/phase4_e08_operator_contacts.json
+  - path: tools/phase4_e08_hazard_outcomes.py
+    classification: live
+    outputs:
+      - analysis/phase4_e08_hazard_outcomes.json
+  - path: tools/phase4_e08_class_frontier.py
+    classification: static
+    outputs:
+      - analysis/phase4_e08_class_frontier.json
+  - path: tools/phase4_grain_gates.py
+    classification: live
+    outputs:
+      - analysis/phase4_grain_gates.json
+  - path: tools/phase4_fmv.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv.json
+  - path: tools/phase4_fmv_static_owners.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_static_owners.json
+  - path: tools/phase4_fmv_present_rect_height_static_ownership.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_present_rect_height_static_ownership.json
+  - path: tools/phase4_fmv_present_rect_height_helper_loop.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_present_rect_height_helper_loop.json
+  - path: tools/phase4_fmv_player_exit_ownership.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_player_exit_ownership.json
+  - path: tools/phase4_fmv_region_b_replacement_ownership.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_region_b_replacement_ownership.json
+  - path: tools/phase4_fmv_levelb_region_b_dma_subwindow.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_levelb_region_b_dma_subwindow.json
+  - path: tools/phase4_fmv_levelb_transition_relocalization.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_levelb_transition_relocalization.json
+  - path: tools/phase4_fmv_levelb_pre15792_partition.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_levelb_pre15792_partition.json
+  - path: tools/phase4_fmv_frame_sync_wait_ownership.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_frame_sync_wait_ownership.json
+  - path: tools/phase4_staged_prelude_projection.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_fmv_levelb_two_pc_first_hit.py
+    classification: static
+    outputs:
+      - analysis/phase4_fmv_levelb_two_pc_first_hit.json
+  - path: tools/phase4_fmv_levelb_region_b_dma_attempt.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_levelb_region_b_dma_attempt.json
+  - path: tools/phase4_duckstation_late_batch.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_duckstation_exact_pc_batch.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_duckstation_two_pc_first_hit.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_levelb_region_b_dma_exact_pc_live.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_levelb_two_pc_first_hit_live.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_levelb_two_pc_first_hit_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_levelb_two_pc_first_hit_result.json
+  - path: tools/phase4_fmv_levelb_region_b_dma_late_arm.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_levelb_region_b_dma_late_arm.json
+  - path: tools/phase4_fmv_levelb_region_b_dma_exact_pc_arm.py
+    classification: static
+    outputs:
+      - analysis/phase4_fmv_levelb_region_b_dma_exact_pc_arm.json
+  - path: tools/phase4_fmv_levelb_region_b_dma_exact_pc_preflight.py
+    classification: static
+    outputs:
+      - analysis/phase4_fmv_levelb_region_b_dma_exact_pc_preflight.json
+  - path: tools/phase4_fmv_levelb_region_b_dma_exact_pc_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_levelb_region_b_dma_exact_pc_result.json
+  - path: tools/phase4_fmv_levelb_region_b_dma_late_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_levelb_region_b_dma_late_result.json
+  - path: tools/phase4_fmv_interface_frontier.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_interface_frontier.json
+  - path: tools/phase4_fmv_lifecycle_continuations.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_lifecycle_continuations.json
+  - path: tools/phase4_fmv_failure_frontier.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_failure_frontier.json
+  - path: tools/phase4_fmv_resident_identity.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_resident_identity.json
+  - path: tools/phase4_fmv_teardown_ownership.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_teardown_ownership.json
+  - path: tools/phase4_lives_gameover.py
+    classification: live
+    outputs:
+      - analysis/phase4_lives_gameover.json
+  - path: tools/phase4_c16_frontend_card.py
+    classification: live
+    outputs:
+      - analysis/phase4_c16_frontend_card.json
+  - path: tools/phase4_lives_death_breadth.py
+    classification: live
+    outputs:
+      - analysis/phase4_lives_death_breadth.json
+  - path: tools/phase4_c16_boss_death.py
+    classification: live
+    outputs:
+      - analysis/phase4_c16_boss_death.json
+  - path: tools/phase4_c16_bonus_death.py
+    classification: live
+    outputs:
+      - analysis/phase4_c16_bonus_death.json
+  - path: tools/phase4_c16_thumper_death.py
+    classification: live
+    outputs:
+      - analysis/phase4_c16_thumper_death.json
+  - path: tools/phase4_c16_thud_boulder_death.py
+    classification: live
+    outputs:
+      - analysis/phase4_c16_thud_boulder_death.json
+  - path: tools/phase4_c16_flight_death.py
+    classification: live
+    outputs:
+      - analysis/phase4_c16_flight_death.json
+  - path: tools/phase4_thud_defeat.py
+    classification: live
+    outputs:
+      - analysis/phase4_thud_defeat.json
+  - path: tools/phase4_thud_arena.py
+    classification: live
+    outputs:
+      - analysis/phase4_thud_arena.json
+  - path: tools/phase4_thud_completion.py
+    classification: live
+    outputs:
+      - analysis/phase4_thud_completion.json
+  - path: tools/phase4_thud_volley.py
+    classification: live
+    outputs:
+      - analysis/phase4_thud_volley.json
+  - path: tools/phase4_checkpoint_respawn.py
+    classification: live
+    outputs:
+      - analysis/phase4_checkpoint_respawn.json
+  - path: tools/phase4_respawn_status_policy.py
+    classification: live
+    outputs:
+      - analysis/phase4_respawn_status_policy.json
+  - path: tools/phase4_respawn_writer_catalog.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_respawn_writer_catalog.json
+  - path: tools/phase4_respawn_row_provenance.py
+    classification: live
+    outputs:
+      - analysis/phase4_respawn_row_provenance.json
+  - path: tools/phase4_trace_capsules.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_trace_capsule_set.json
+  - path: tools/phase4_offline_queue.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_movie_inventory.json
+      - analysis/phase4_offline_opportunity_queue.json
+  - path: tools/phase4_movie_priority.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_movie_priority_queue.json
+  - path: tools/phase4_live_escalations.py
+    classification: static
+    outputs:
+      - analysis/phase4_live_escalations.json
+  - path: tools/phase4_closure_debt.py
+    classification: static
+    outputs:
+      - analysis/phase4_closure_debt.json
+  - path: tools/phase4_derived_index.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_derived_index.json
+  - path: tools/phase4_duckstation_batch.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_callback_lifecycle.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_callback_lifecycle.json
+  - path: tools/phase4_fmv_natural_completion.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_natural_completion.json
+  - path: tools/phase4_fmv_natural_exit_cause.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_natural_exit_cause.json
+  - path: tools/phase4_fmv_lose_staged_live.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_lose_lifecycle.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_lose_lifecycle.json
+  - path: tools/phase4_fmv_levelb_staged_live.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_levelb_phase_neutral_live.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_levelb_first_call_live.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_owned_pid_cleanup_receipt.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_levelb_reachability.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_levelb_reachability.json
+  - path: tools/phase4_fmv_levelb_first_call.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_levelb_first_call.json
+  - path: tools/phase4_fmv_finale_route_probe_live.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_finale_route_probe.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_finale_route_probe.json
+  - path: tools/phase4_fmv_menu_owner_coverage.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_menu_owner_coverage.json
+  - path: tools/phase4_fmv_menu_phase_neutral_live.py
+    classification: live
+    outputs: []
+  - path: tools/phase4_fmv_menu_phase_neutral_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_menu_phase_neutral_live.json
+  - path: tools/phase4_fmv_c16_selector_control_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_c16_selector_control_result.json
+  - path: tools/phase4_fmv_decoded_record_control_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_decoded_record_control_result.json
+  - path: tools/phase4_fmv_decoded_record_retention_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_decoded_record_retention_result.json
+  - path: tools/phase4_fmv_cd_event_exit_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_cd_event_exit_result.json
+  - path: tools/phase4_fmv_file_open_failure_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_file_open_failure_result.json
+  - path: tools/phase4_fmv_present_rect_height_writer_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_present_rect_height_writer_result.json
+  - path: tools/phase4_fmv_present_rect_height_function_trace_result.py
+    classification: live
+    outputs:
+      - analysis/phase4_fmv_present_rect_height_function_trace_result.json
+  - path: tools/phase4_fmv_file_open_divergence_ownership.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_fmv_file_open_divergence_ownership.json
+  - path: tools/phase4_offline_contact_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_contact_batch.json
+  - path: tools/phase4_offline_collectibles_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_collectibles_batch.json
+  - path: tools/phase4_collectibles_frontier.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_collectibles_frontier.json
+  - path: tools/phase4_offline_plant_power_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_plant_power_batch.json
+  - path: tools/phase4_offline_plant_weapon_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_plant_weapon_batch.json
+  - path: tools/phase4_offline_seed_lifecycle_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_seed_lifecycle_batch.json
+  - path: tools/phase4_offline_traversal_plants_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_traversal_plants_batch.json
+  - path: tools/phase4_offline_seed_actions_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_seed_actions_batch.json
+  - path: tools/phase4_offline_bonus_objectives_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_bonus_objectives_batch.json
+  - path: tools/phase4_offline_e08_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_e08_batch.json
+  - path: tools/phase4_offline_fmv_batch.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_offline_fmv_batch.json
+  - path: tools/phase4_offline_receipt_query.py
+    classification: local_media
+    outputs: []
+  - path: tools/phase4_atomic_anchor_projection.py
+    classification: local_media
+    outputs: []
+  - path: tools/phase4_reconcile_baseline_dependencies.py
+    classification: static
+    outputs:
+      - analysis/phase4_baseline_dependency_reconciliation.json
+  - path: tools/phase4_reconcile_capsule_consumers.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_capsule_consumer_reconciliation.json
+  - path: tools/phase4_reconcile_upstream_dependencies.py
+    classification: static
+    outputs:
+      - analysis/phase4_upstream_dependency_reconciliation.json
+  - path: tools/phase4_reconcile_assertion_pins.py
+    classification: static
+    outputs:
+      - analysis/phase4_assertion_pin_reconciliation.json
+  - path: tools/phase4_method_metrics.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_method_reports.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_method_legacy_live_index.py
+    classification: static
+    outputs:
+      - analysis/phase4_method_legacy_live_index.json
+  - path: tools/phase4_seed_repair_scope.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_seed_verifier.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_seed_validation.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_seed_falsifiers.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_trial_boundary.py
+    classification: static
+    outputs: []
+  - path: tools/phase4_f01_static_hard_truth.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_f01_static_hard_truth.json
+  - path: tools/phase4_f01_local_base_recovery.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_f01_local_base_recovery.json
+      - analysis/phase4_f01_local_base_recovery_1bba2487_outcomes.json
+  - path: tools/phase4_typed_state.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_f01_typed_state.json
+      - analysis/phase4_f01_abi_survey.json
+  - path: tools/phase4_index_interval_demo.py
+    classification: local_media
+    outputs:
+      - analysis/phase4_index_interval_non_f01_demo.json
+schemas:
+  - config/phase4_closure_workbench.yaml
+  - config/phase4_evidence_dag.yaml
+  - config/phase4_movie_minimizer.yaml
+  - config/phase4_mips_oracle.yaml
+  - config/phase4_trace_warehouse.yaml
+  - config/phase4_binary_schema_fuzz.yaml
+  - config/phase4_external_evidence.yaml
+  - schemas/phase4/abl_seed_table.ksy
+  - schemas/phase4/abl_level_raw_container.ksy
+  - schemas/phase4/abl_level_raw_chunk.ksy
+  - config/phase4_static_analysis.yaml
+  - config/phase4_promotion_packets.yaml
+  - config/phase4_campaigns.yaml
+  - config/phase4_findings.yaml
+  - config/phase4_input_actions.yaml
+  - config/phase4_slow_walk.yaml
+  - config/phase4_run_locomotion.yaml
+  - config/phase4_f01_typed_state.yaml
+  - config/phase4_jump.yaml
+  - config/phase4_kick.yaml
+  - config/phase4_abdomen_bounce.yaml
+  - config/phase4_downhill_slide.yaml
+  - config/phase4_berry_throw.yaml
+  - config/phase4_swinging.yaml
+  - config/phase4_camera_controls.yaml
+  - config/phase4_pause.yaml
+  - config/phase4_spin_heading.yaml
+  - config/phase4_collision.yaml
+  - config/phase4_contact_pool.yaml
+  - config/phase4_event_vm.yaml
+  - config/phase4_props_movers.yaml
+  - config/phase4_e08_oracle_audit.yaml
+  - config/phase4_e08_class_frontier.yaml
+  - config/phase4_grain_gates.yaml
+  - config/phase4_fmv.yaml
+  - config/phase4_fmv_lifecycle_continuations.yaml
+  - config/phase4_fmv_failure_frontier.yaml
+  - config/phase4_fmv_resident_identity.yaml
+  - config/phase4_lives_gameover.yaml
+  - config/phase4_checkpoint_respawn.yaml
+  - config/phase4_respawn_status_policy.yaml
+  - config/phase4_thud.yaml
+  - config/phase4_offline_queue.yaml
+  - config/phase4_live_escalations.yaml
+  - config/phase4_closure_policy.yaml
+  - config/phase4_movie_priority.yaml
+  - config/phase4_scheduler_policy.yaml
+  - config/phase4_offline_contact_batch.yaml
+  - config/phase4_offline_collectibles_batch.yaml
+  - config/phase4_collectibles_frontier.yaml
+  - config/phase4_offline_plant_power_batch.yaml
+  - config/phase4_offline_plant_weapon_batch.yaml
+  - config/phase4_offline_seed_lifecycle_batch.yaml
+  - config/phase4_offline_traversal_plants_batch.yaml
+  - config/phase4_offline_seed_actions_batch.yaml
+  - config/phase4_offline_bonus_objectives_batch.yaml
+  - config/phase4_offline_e08_batch.yaml
+  - config/phase4_offline_fmv_batch.yaml
+  - config/phase4_fmv_callback_lifecycle_batch.yaml
+  - config/phase4_fmv_callback_lifecycle.yaml
+  - config/phase4_fmv_c16_selector_passive_batch.yaml
+  - config/phase4_fmv_c16_selector_control_batch.yaml
+  - config/phase4_fmv_c16_staged_selector_passive_batch.yaml
+  - config/phase4_fmv_c16_staged_selector_control_batch.yaml
+  - config/phase4_fmv_decoded_record_passive_batch.yaml
+  - config/phase4_fmv_decoded_record_control_batch.yaml
+  - config/phase4_fmv_natural_completion_batch.yaml
+  - config/phase4_fmv_natural_completion.yaml
+  - config/phase4_fmv_natural_exit_cause_batch.yaml
+  - config/phase4_fmv_natural_exit_cause.yaml
+  - config/phase4_fmv_lose_lifecycle_batch.yaml
+  - config/phase4_fmv_lose_lifecycle.yaml
+  - config/phase4_fmv_levelb_lifecycle_batch.yaml
+  - config/phase4_fmv_levelb_reachability.yaml
+  - config/phase4_fmv_levelb_first_call.yaml
+  - config/phase4_fmv_levelb_region_b_dma_passive_batch.yaml
+  - config/phase4_fmv_levelb_region_b_dma_transfer_batch.yaml
+  - config/phase4_fmv_finale_route_probe.yaml
+  - config/phase4_fmv_menu_v1_passive_batch.yaml
+  - config/phase4_fmv_menu_v1_owner_batch.yaml
+  - config/phase4_fmv_menu_v2_passive_batch.yaml
+  - config/phase4_fmv_menu_v2_owner_batch.yaml
+  - config/phase4_fmv_menu_owner_coverage.yaml
+  - config/phase4_fmv_menu_v1_phase_neutral_passive_batch.yaml
+  - config/phase4_fmv_menu_v1_phase_neutral_owner_batch.yaml
+  - config/phase4_fmv_menu_v2_phase_neutral_passive_batch.yaml
+  - config/phase4_fmv_menu_v2_phase_neutral_owner_batch.yaml
+  - config/phase4_fmv_menu_phase_neutral_result.yaml
+  - config/phase4_fmv_c16_selector_control_result.yaml
+  - config/phase4_fmv_decoded_record_control_result.yaml
+  - config/phase4_fmv_decoded_record_retention_result.yaml
+  - config/phase4_fmv_decoded_record_retention_passive_batch.yaml
+  - config/phase4_fmv_decoded_record_retention_control_batch.yaml
+  - config/phase4_fmv_cd_event_exit_result.yaml
+  - config/phase4_fmv_cd_event_exit_passive_batch.yaml
+  - config/phase4_fmv_cd_event_exit_control_batch.yaml
+  - config/phase4_fmv_file_open_failure_result.yaml
+  - config/phase4_fmv_file_open_divergence_ownership.yaml
+  - config/phase4_fmv_file_open_failure_passive_batch.yaml
+  - config/phase4_fmv_file_open_failure_control_batch.yaml
+  - config/phase4_fmv_present_rect_height_passive_batch.yaml
+  - config/phase4_fmv_present_rect_height_writer_batch.yaml
+  - config/phase4_fmv_present_rect_height_function_passive_batch.yaml
+  - config/phase4_fmv_present_rect_height_function_trace_batch.yaml
+  - config/phase4_fmv_present_rect_height_writer_result.yaml
+  - config/phase4_fmv_present_rect_height_static_ownership.yaml
+  - config/phase4_fmv_present_rect_height_function_trace_result.yaml
+  - config/phase4_fmv_present_rect_height_helper_loop.yaml
+  - config/phase4_fmv_player_exit_ownership.yaml
+  - config/phase4_fmv_region_b_replacement_ownership.yaml
+  - config/phase4_fmv_levelb_region_b_dma_subwindow.yaml
+  - config/phase4_fmv_levelb_transition_relocalization.yaml
+  - config/phase4_fmv_levelb_pre15792_partition.yaml
+  - config/phase4_fmv_frame_sync_wait_ownership.yaml
+  - config/phase4_fmv_levelb_two_pc_first_hit.yaml
+  - config/phase4_fmv_levelb_two_pc_first_hit_passive_batch.yaml
+  - config/phase4_fmv_levelb_two_pc_first_hit_runtime.yaml
+  - config/phase4_fmv_levelb_two_pc_first_hit_result.yaml
+  - config/phase4_fmv_levelb_region_b_dma_attempt.yaml
+  - config/phase4_fmv_levelb_region_b_dma_late_arm.yaml
+  - config/phase4_fmv_levelb_region_b_dma_exact_pc_arm.yaml
+  - config/phase4_fmv_levelb_region_b_dma_exact_pc_live.yaml
+  - config/phase4_fmv_levelb_region_b_dma_exact_pc_runtime.yaml
+  - config/phase4_fmv_levelb_region_b_dma_exact_pc_passive_batch.yaml
+  - config/phase4_fmv_levelb_region_b_dma_exact_pc_result.yaml
+  - config/phase4_fmv_levelb_region_b_dma_late_result.yaml
+  - config/phase4_fmv_levelb_region_b_dma_staged_passive_batch.yaml
+  - config/phase4_fmv_levelb_region_b_dma_late_transfer_batch.yaml
+  - config/phase4_inventory.yaml
+tests:
+  - tests/test_phase4_closure_workbench.py
+  - tests/test_phase4_semantic_frontier.py
+  - tests/test_phase4_witness_compiler.py
+  - tests/test_phase4_evidence_dag.py
+  - tests/test_phase4_movie_minimizer.py
+  - tests/test_phase4_mips_oracle.py
+  - tests/test_phase4_acceleration_next_bank.py
+  - tests/test_phase4_trace_warehouse.py
+  - tests/test_phase4_binary_schema_fuzz.py
+  - tests/test_phase4_external_evidence.py
+  - tests/test_phase4_acceleration_third_bank.py
+  - tests/test_phase4_static_frontier.py
+  - tests/test_phase4_ghidra_export.py
+  - tests/test_phase4_promotion_preflight.py
+  - tests/test_phase4_acceleration_bank.py
+  - tests/test_phase4_registry.py
+  - tests/test_phase4_gate.py
+  - tests/test_phase4_circle_absence.py
+  - tests/test_phase4_slow_walk.py
+  - tests/test_phase4_run_locomotion.py
+  - tests/test_phase4_jump.py
+  - tests/test_phase4_kick.py
+  - tests/test_phase4_abdomen_bounce.py
+  - tests/test_phase4_downhill_slide.py
+  - tests/test_phase4_berry_throw.py
+  - tests/test_phase4_swinging.py
+  - tests/test_phase4_camera_controls.py
+  - tests/test_phase4_pause.py
+  - tests/test_phase4_spin_heading.py
+  - tests/test_phase4_collision.py
+  - tests/test_phase4_contact_pool.py
+  - tests/test_phase4_event_vm.py
+  - tests/test_phase4_props_movers.py
+  - tests/test_phase4_e08_oracle_audit.py
+  - tests/test_phase4_e08_outcome_join.py
+  - tests/test_phase4_e08_operator_contacts.py
+  - tests/test_phase4_e08_hazard_outcomes.py
+  - tests/test_phase4_e08_class_frontier.py
+  - tests/test_phase4_grain_gates.py
+  - tests/test_phase4_fmv.py
+  - tests/test_phase4_fmv_static_owners.py
+  - tests/test_phase4_fmv_interface_frontier.py
+  - tests/test_phase4_fmv_lifecycle_continuations.py
+  - tests/test_phase4_fmv_failure_frontier.py
+  - tests/test_phase4_fmv_resident_identity.py
+  - tests/test_phase4_fmv_teardown_ownership.py
+  - tests/test_phase4_lives_gameover.py
+  - tests/test_phase4_c16_frontend_card.py
+  - tests/test_phase4_lives_death_breadth.py
+  - tests/test_phase4_c16_boss_death.py
+  - tests/test_phase4_c16_bonus_death.py
+  - tests/test_phase4_c16_thumper_death.py
+  - tests/test_phase4_c16_thud_boulder_death.py
+  - tests/test_phase4_c16_flight_death.py
+  - tests/test_phase4_checkpoint_respawn.py
+  - tests/test_phase4_respawn_status_policy.py
+  - tests/test_phase4_respawn_writer_catalog.py
+  - tests/test_phase4_respawn_row_provenance.py
+  - tests/test_phase4_thud_defeat.py
+  - tests/test_phase4_thud_arena.py
+  - tests/test_phase4_thud_completion.py
+  - tests/test_phase4_thud_volley.py
+  - tests/test_phase4_trace_capsule_contract.py
+  - tests/test_phase4_offline_queue.py
+  - tests/test_phase4_closure_debt.py
+  - tests/test_phase4_movie_priority.py
+  - tests/test_phase4_scheduler_policy.py
+  - tests/test_phase4_acceleration_scheduler_bank.py
+  - tests/test_phase4_derived_index.py
+  - tests/test_phase4_duckstation_batch.py
+  - tests/test_phase4_fmv_callback_lifecycle.py
+  - tests/test_phase4_fmv_natural_completion.py
+  - tests/test_phase4_fmv_natural_exit_cause.py
+  - tests/test_phase4_fmv_lose_lifecycle.py
+  - tests/test_phase4_fmv_levelb_reachability.py
+  - tests/test_phase4_fmv_levelb_first_call.py
+  - tests/test_phase4_fmv_finale_route_probe.py
+  - tests/test_phase4_fmv_menu_owner_coverage.py
+  - tests/test_phase4_fmv_menu_phase_neutral_live.py
+  - tests/test_phase4_fmv_menu_phase_neutral_result.py
+  - tests/test_phase4_fmv_c16_selector_control_result.py
+  - tests/test_phase4_fmv_decoded_record_control_result.py
+  - tests/test_phase4_fmv_decoded_record_retention_result.py
+  - tests/test_phase4_fmv_cd_event_exit_result.py
+  - tests/test_phase4_fmv_file_open_failure_result.py
+  - tests/test_phase4_fmv_present_rect_height_writer_result.py
+  - tests/test_phase4_fmv_present_rect_height_static_ownership.py
+  - tests/test_phase4_fmv_present_rect_height_function_trace_result.py
+  - tests/test_phase4_fmv_present_rect_height_helper_loop.py
+  - tests/test_phase4_fmv_player_exit_ownership.py
+  - tests/test_phase4_fmv_region_b_replacement_ownership.py
+  - tests/test_phase4_fmv_levelb_region_b_dma_subwindow.py
+  - tests/test_phase4_fmv_levelb_transition_relocalization.py
+  - tests/test_phase4_fmv_levelb_pre15792_partition.py
+  - tests/test_phase4_fmv_frame_sync_wait_ownership.py
+  - tests/test_phase4_staged_prelude_projection.py
+  - tests/test_phase4_fmv_levelb_two_pc_first_hit.py
+  - tests/test_phase4_fmv_levelb_two_pc_first_hit_live.py
+  - tests/test_phase4_fmv_levelb_two_pc_first_hit_result.py
+  - tests/test_phase4_fmv_levelb_region_b_dma_attempt.py
+  - tests/test_phase4_fmv_levelb_region_b_dma_late_arm.py
+  - tests/test_phase4_duckstation_exact_pc_batch.py
+  - tests/test_phase4_fmv_levelb_region_b_dma_exact_pc_live.py
+  - tests/test_phase4_fmv_levelb_region_b_dma_exact_pc_preflight.py
+  - tests/test_phase4_fmv_levelb_region_b_dma_exact_pc_result.py
+  - tests/test_phase4_fmv_levelb_region_b_dma_late_result.py
+  - tests/test_phase4_fmv_file_open_divergence_ownership.py
+  - tests/test_phase4_offline_contact_batch.py
+  - tests/test_phase4_offline_collectibles_batch.py
+  - tests/test_phase4_collectibles_frontier.py
+  - tests/test_phase4_offline_plant_power_batch.py
+  - tests/test_phase4_offline_plant_weapon_batch.py
+  - tests/test_phase4_offline_seed_lifecycle_batch.py
+  - tests/test_phase4_offline_traversal_plants_batch.py
+  - tests/test_phase4_offline_seed_actions_batch.py
+  - tests/test_phase4_offline_bonus_objectives_batch.py
+  - tests/test_phase4_offline_e08_batch.py
+  - tests/test_phase4_offline_fmv_batch.py
+  - tests/test_phase4_offline_receipt_query.py
+  - tests/test_phase4_atomic_anchor_projection.py
+  - tests/test_phase4_baseline_dependency_reconciliation.py
+  - tests/test_phase4_capsule_consumer_reconciliation.py
+  - tests/test_phase4_upstream_dependency_reconciliation.py
+  - tests/test_phase4_assertion_pin_reconciliation.py
+  - tests/test_phase4_method_metrics.py
+  - tests/test_phase4_seed_repair_scope.py
+  - tests/test_phase4_seed_verifier.py
+  - tests/test_phase4_f01_static_hard_truth.py
+  - tests/test_phase4_f01_local_base_recovery.py
+  - tests/test_phase4_typed_state.py
+  - tests/test_phase4_index_interval_demo.py
+notes:
+  - ObsidianVault/Experiments/EXP_2026-08-05_phase4_f01_objective_lifecycle.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Phase 4 - Typed State Compiler.md
+  - ObsidianVault/Canon/Systems/SYS_sfx_system.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Phase 4 - Acceleration Tooling Strategy.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Phase 4 - Frontier Closure Workbench.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap - From Reconstruction to Reliable Modding.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Phase 4 - Solve Every Gameplay and Engine Subsystem.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Phase 4 - Reverse Engineering Operating Method.md
+  - ObsidianVault/Experiments/EXP_2026-07-18_phase4_trace_capsules.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_closure_funnel.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_contact_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_collectibles_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-30_phase4_collectibles_static_frontier.md
+  - ObsidianVault/Canon/Systems/SYS_grain_collection_and_harvester.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Grain Collection and Harvester.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_plant_power_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_plant_weapon_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_seed_lifecycle_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_traversal_plants_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_seed_actions_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_bonus_objectives_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_e08_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_fmv_batch.md
+  - ObsidianVault/Experiments/EXP_2026-07-27_phase4_fmv_decoded_record_retention.md
+  - ObsidianVault/Experiments/EXP_2026-07-27_phase4_fmv_cd_event_exit_control.md
+  - ObsidianVault/Experiments/EXP_2026-07-28_phase4_fmv_failure_frontier.md
+  - ObsidianVault/Experiments/EXP_2026-07-28_phase4_fmv_present_rect_height_static_ownership.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Whole-Game Mechanics Baseline.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_ratchet_iteration1_machine_gate.md
+  - ObsidianVault/Canon/Systems/SYS_default_circle_input_absence.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_default_circle_absence.md
+  - ObsidianVault/Canon/Systems/SYS_slow_walk_modifier.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_slow_walk.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Slow Walk Modifier.md
+  - ObsidianVault/Canon/Systems/SYS_run_locomotion_controller.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_run_locomotion.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_iteration4_current_toolchain_refresh.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Run Locomotion.md
+  - ObsidianVault/Canon/Systems/SYS_jump_controller.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_jump_controller.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Jump Controller.md
+  - ObsidianVault/Canon/Systems/SYS_kick_attack.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_kick_attack.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Kick Attack.md
+  - ObsidianVault/Canon/Systems/SYS_abdomen_bounce.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_abdomen_bounce.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Abdomen Bounce.md
+  - ObsidianVault/Canon/Systems/SYS_downhill_slide_controller.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_downhill_slide.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Downhill Slide.md
+  - ObsidianVault/Canon/Systems/SYS_berry_projectile_and_homing.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_berry_throw.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Berry Throw.md
+  - ObsidianVault/Canon/Systems/SYS_swing_attachment_controller.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_swing_attachment.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Swing Attachment.md
+  - ObsidianVault/Canon/Systems/SYS_manual_camera_controls.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_manual_camera_controls.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Manual Camera Controls.md
+  - ObsidianVault/Canon/Systems/SYS_pause_shell.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-18_phase4_pause_shell.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Pause Shell.md
+  - ObsidianVault/Canon/Systems/SYS_directional_spin_heading.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_directional_spin_heading.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Directional Spin Heading.md
+  - ObsidianVault/Canon/Systems/SYS_collision_and_floor_planes.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_collision_and_floor_planes.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Collision and Floor Planes.md
+  - ObsidianVault/Canon/Systems/SYS_contact_object_pool.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_contact_object_pool.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Contact Object Pool.md
+  - ObsidianVault/Canon/Systems/SYS_event_vm_and_scripted_objects.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_event_vm.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Event VM and Scripted Objects.md
+  - ObsidianVault/Canon/Systems/SYS_pass_table_props_and_movers.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_props_movers_catalog.md
+  - ObsidianVault/Experiments/EXP_2026-07-30_phase4_e08_original_oracle.md
+  - ObsidianVault/Experiments/EXP_2026-07-30_phase4_e08_class_frontier.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Props Movers Switches and Gates.md
+  - ObsidianVault/Canon/Systems/SYS_native_grain_gates.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-11_native_and_training_grain_gate.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Native Grain Gates.md
+  - ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_fmv_skip.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-19_phase4_fmv_static_owners.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-20_phase4_fmv_interface_frontier.md
+  - ObsidianVault/Experiments/EXP_2026-07-26_phase4_fmv_resident_code_identity.md
+  - ObsidianVault/Experiments/EXP_2026-07-24_phase4_fmv_callback_lifecycle.md
+  - ObsidianVault/Experiments/EXP_2026-07-24_phase4_fmv_natural_completion.md
+  - ObsidianVault/Experiments/EXP_2026-07-24_phase4_fmv_natural_exit_cause.md
+  - ObsidianVault/Experiments/EXP_2026-07-24_phase4_fmv_lose_lifecycle.md
+  - ObsidianVault/Experiments/EXP_2026-07-24_phase4_fmv_levelb_reachability.md
+  - ObsidianVault/Experiments/EXP_2026-07-25_phase4_fmv_levelb_first_call.md
+  - ObsidianVault/Experiments/EXP_2026-07-25_phase4_fmv_finale_route_probe.md
+  - ObsidianVault/Experiments/EXP_2026-07-26_phase4_fmv_menu_owner_receipt_preflight.md
+  - ObsidianVault/Experiments/EXP_2026-07-26_phase4_fmv_menu_owner_control_falsified.md
+  - ObsidianVault/Experiments/EXP_2026-07-26_phase4_fmv_menu_phase_neutral_preflight.md
+  - ObsidianVault/Experiments/EXP_2026-07-26_phase4_fmv_menu_phase_neutral_control_falsified.md
+  - ObsidianVault/Experiments/EXP_2026-07-27_phase4_fmv_c16_selector_control_falsified.md
+  - ObsidianVault/Experiments/EXP_2026-07-27_phase4_fmv_lifecycle_continuations.md
+  - ObsidianVault/Experiments/EXP_2026-07-28_phase4_fmv_player_exit_ownership.md
+  - ObsidianVault/Experiments/EXP_2026-07-28_phase4_fmv_region_b_replacement_ownership.md
+  - ObsidianVault/Experiments/EXP_2026-07-29_phase4_fmv_levelb_exact_pc_falsified.md
+  - ObsidianVault/Experiments/EXP_2026-07-29_phase4_fmv_levelb_transition_relocalization.md
+  - ObsidianVault/Experiments/EXP_2026-07-29_phase4_fmv_levelb_pre15792_partition.md
+  - ObsidianVault/Experiments/EXP_2026-07-29_phase4_fmv_levelb_two_pc_first_hit.md
+  - ObsidianVault/Experiments/EXP_2026-07-27_phase4_fmv_decoded_record_control_falsified.md
+  - ObsidianVault/Experiments/EXP_2026-07-24_phase4_fmv_teardown_ownership.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - FMV Playback and Skip.md
+  - ObsidianVault/Canon/Systems/SYS_lives_gameover_continue.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_lives_gameover_continue.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Lives Game Over and Continue.md
+  - ObsidianVault/Canon/Systems/SYS_safe_respawn_anchor.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_safe_respawn_anchor.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Safe Respawn Anchor.md
+  - ObsidianVault/Canon/Systems/SYS_thud_natural_defeat.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_thud_natural_defeat.md
+  - ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-17_phase4_thud_reward_volley.md
+  - ObsidianVault/Playbooks/Game Solving Roadmap/Game Solving Campaign - Thud Bug Bar.md

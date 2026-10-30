@@ -1,0 +1,162 @@
+{
+  "_comment": "Method preflight only: no live receipt or DMA event is admitted by this artifact.",
+  "campaign_id": "fmv_playback",
+  "claim_boundary": {
+    "dimension_promoted": false,
+    "first_region_b_dma_identified": false,
+    "lifecycle_promoted": false,
+    "live_executed": false,
+    "method_preflight_complete": true,
+    "next_action": "In an iteration whose immutable before-ledger contains the new escalation, execute and close the passive staged-prelude receipt first. Execute the linked precise transfer receipt only if the passive replay and all typed counters validate. Do not launch from this iteration's older before-ledger.\n",
+    "next_lane": "live"
+  },
+  "debugger": {
+    "adapter_sha256": "512caf031b9bdea0b95452698cd7d528b58b049501f1f9f43a19e8b11d2b13c8",
+    "dirty_state_hash": "3c2689e02497ea52fa8f827bee8794b9f4d39bfe",
+    "dispatcher_sha256": "6ff2640dad39f85eacba9e8bbbfdb65d4e3707cb6d8f72cc74bf404579ae8a3e",
+    "manifest_sha256": "a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062",
+    "release_binary_sha256": "d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd",
+    "scenarios_doc_sha256": "0c0337aedf11dd86befb4b885da20cd3c9b09bb41abbcf153998bc955076ec31",
+    "source_revision": "fe0cca16b85e09a304cfde3c39669ce8c0adb8f5"
+  },
+  "dimension": "lifecycle",
+  "errors": [],
+  "escalation": {
+    "higher_priority_offline_ready_rows": [],
+    "receipt_ids": [
+      "e15-levelb-region-b-dma-late-passive-prelude",
+      "e15-levelb-region-b-dma-late-provenance"
+    ],
+    "source_sha256": "5bc500b0b8ddabe823f4f13e5a8c7e8332232633dab3df5591d1ab9ffeed2471",
+    "state": "planned",
+    "target_queue_rank": 5
+  },
+  "falsifier": {
+    "outcome": "not_evaluated",
+    "predicate": "Falsify the claim if no post-teardown Region-B transfer exists, an earlier retained late-window transfer intersects Region B, the first intersecting event has a different channel, direction or base address, the staged prelude does not advance guest execution before observer arming, any transfer page is incomplete, non-contiguous, saturated or truncated, raw counters escape the typed bounds, paired ordered streams differ, or either same-anchor endpoint or required media/source/binary/API identity differs.",
+    "reason": "live_experiment_not_executed"
+  },
+  "generated": "2026-07-28",
+  "inputs": {
+    "adapter_sha256": "512caf031b9bdea0b95452698cd7d528b58b049501f1f9f43a19e8b11d2b13c8",
+    "rpc_manifest_sha256": "a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062",
+    "source_sha256": "ed40bd88fc26b4441e5b36a7f180e2893ff18bc7e7ad8a2ead311d07649b9fa2",
+    "work_packet_sha256": "5e0a396385844188a47183b800a20b06b98bab6fd63759d0bb42c62834085de0"
+  },
+  "lane": "live",
+  "plans": {
+    "passive": {
+      "capture_window": {
+        "clock": "emulator_frame",
+        "start": 15720,
+        "stop": 16120,
+        "stop_inclusive": false
+      },
+      "execution_bound": {
+        "clock": "emulator_frame",
+        "start": 0,
+        "stop": 16120,
+        "stop_inclusive": false
+      },
+      "jobs": 2,
+      "observer_methods": [
+        "debugger.getRegisters"
+      ],
+      "post_prelude_frames": 400,
+      "precise": false,
+      "prelude": {
+        "kind": "emulator_advance",
+        "start": 1,
+        "stop": 15720
+      },
+      "provisioned_movie": "movies/100% Runs/LEVEL01.movie.json",
+      "receipt_id": "e15-levelb-region-b-dma-late-passive-prelude",
+      "recipe": "bootAndRun",
+      "sha256": "520fe5c318cb206a09fe3cc004483938b28b350e326138c1b3c1bc4869a0f628"
+    },
+    "precise": {
+      "capture_window": {
+        "clock": "emulator_frame",
+        "start": 15740,
+        "stop": 16080,
+        "stop_inclusive": false
+      },
+      "execution_bound": {
+        "clock": "emulator_frame",
+        "start": 0,
+        "stop": 16080,
+        "stop_inclusive": false
+      },
+      "jobs": 2,
+      "observer_methods": [
+        "transferLog.start"
+      ],
+      "post_prelude_frames": 340,
+      "precise": true,
+      "prelude": {
+        "kind": "emulator_advance",
+        "start": 1,
+        "stop": 15740
+      },
+      "provisioned_movie": "movies/100% Runs/LEVEL01.movie.json",
+      "receipt_id": "e15-levelb-region-b-dma-late-provenance",
+      "recipe": "bootAndRun",
+      "sha256": "a3e050c550470555df4c7220167eca951a486a150f887a55c53394e6a4c6e12f"
+    }
+  },
+  "prior_evidence": {
+    "dma_attempt_sha256": "a69ad6ad0681317384141c4d66f4ab69997ca038887009b585fb8ff6bb1fe15d",
+    "external_index_sha256": "e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab",
+    "offline_output_sha256": "dba41729dc61fa7bfe6d4c5a52d06d6c022fe2a51fdedce0067b924b7022a399",
+    "offline_receipt_sha256": "ecfd091f44f49943e5e8431ba92e823d55c155f6317a7e6242fcc841934d9126",
+    "replacement_ownership_sha256": "03b5a8d9a518f5c00624f81248b721e98a513b987d8e1456e142c682cc1087a4",
+    "zero_result_terms": 10
+  },
+  "record_counts": {
+    "live_receipts_executed_this_iteration": 0,
+    "offline_queries_executed_this_iteration": 0,
+    "offline_receipts_reused": 1,
+    "planned_live_receipts": 2,
+    "promoted_dimensions": 0
+  },
+  "row_id": "E15_fmv",
+  "schema": "abl-phase4-fmv-levelb-region-b-dma-late-arm/1",
+  "valid": true,
+  "work_packet": {
+    "claim": "After the retained natural completed-Level-B callback teardown at emulator frame 15816, the first device-to-RAM transfer intersecting Region-B destination 0x800B5788 is an untruncated channel-3 CDROM from-device DMA beginning at 0x800B5788, and a typed cold-boot emulator-frame staged prelude can arm transferLog after frame 15740 while retaining a finite paired execution and capture bound.",
+    "evidence_domain": "dma",
+    "falsifier": "Falsify the claim if no post-teardown Region-B transfer exists, an earlier retained late-window transfer intersects Region B, the first intersecting event has a different channel, direction or base address, the staged prelude does not advance guest execution before observer arming, any transfer page is incomplete, non-contiguous, saturated or truncated, raw counters escape the typed bounds, paired ordered streams differ, or either same-anchor endpoint or required media/source/binary/API identity differs.",
+    "inventory": {
+      "operator_all_content_manifest_sha256": "6ad2b874a9aca427d56660661fa27625d6409f59a3876b9423a9285ff201dc3c",
+      "operator_all_movie_bytes": 420121736,
+      "operator_all_movie_files": 147,
+      "operator_phase4_bytes": 153880509,
+      "operator_phase4_content_manifest_sha256": "a9b7df5925239b760f786b0e882628389c63e410b49a611daa040ed074a27452",
+      "operator_phase4_files": 110,
+      "provisioned_content_manifest_sha256": "032b332a520d18dca775fcafafa22df4ab650ca38a819906a7b301d4da2515f4",
+      "provisioned_movie_bytes": 395715280,
+      "provisioned_movie_files": 135
+    },
+    "selection": {
+      "capsule_external_bytes": 3391058326,
+      "capsules": 55,
+      "debt_dimensions": {
+        "gap": 769,
+        "met": 148,
+        "partial": 46
+      },
+      "derived_indexes": 9,
+      "derived_rows": 34,
+      "queue_counts": {
+        "complete": 16,
+        "live_required": 0,
+        "no_capsule": 65,
+        "offline_partial": 42,
+        "offline_ready": 0,
+        "open": 91,
+        "rows": 107
+      }
+    },
+    "sha256": "5e0a396385844188a47183b800a20b06b98bab6fd63759d0bb42c62834085de0"
+  }
+}

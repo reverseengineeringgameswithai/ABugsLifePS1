@@ -1,0 +1,58 @@
+# Headline replay-fixture identity - SHA-256 (GAP-0002 / GAP-0040).
+#
+# These are the LOCAL-ONLY, NON-COMMITTABLE inputs the committed replay tools and
+# headline experiments load (save states, the pristine disc, the from-boot movie).
+# Per the Preservation Policy we record the *hash* (committable, identity-pinning)
+# but NEVER the bytes. This is the "hash-pinned" half of the GAP-0002 acceptance
+# bar ("every fixture is regenerable or hash-pinned").
+#
+# ADVISORY contract (distinct from tools/repro_inputs.sha256, which fails-if-missing):
+#   - A fixture absent on this host is fine (clean clone / fresh machine) -> never fails.
+#   - A fixture PRESENT but with a different hash is fixture drift -> flagged.
+#   tools/verify_repro_inputs.py keeps the fail-if-missing CORE manifest; this file is
+#   parsed + verified by tests/test_fixtures_manifest.py (skip-if-absent).
+#
+# Format (3 fields; path may contain spaces -> split on first two whitespace runs):
+#   <sha256>  <role>  <path-or-env-pattern>
+# Path conventions match the replay tools: $ABL_SAVESTATES defaults to
+# ~/.local/share/duckstation/savestates; bare names are repo-root-relative.
+# Verify one by hand:  sha256sum "$ABL_SAVESTATES/SCUS-94288_g30_openground.sav"
+# Computed locally 2026-06-21 from the owner's inputs (game_serial SCUS-94288, USA V1.0).
+#
+# RETIRED 2026-07-08: the numbered-SLOT states SCUS-94288_1/_2/_3.sav
+# (roles spawn-floor-level01 / fixture-scus2 / level02-scene3-default) are no
+# longer pinned -- numbered quick-save slots get overwritten by normal play and
+# had drifted. Named save states are the only supported fixture class; replay
+# tools now take an explicit --save (see also ABL_SPAWN_SAV for the live test).
+#
+# The preserved DuckStation fork + clean-built binary identity (GAP-0001) is pinned
+# separately in tools/FORK_COMMIT.txt (fork 296955321; clean binary fd4bf9ed...);
+# not duplicated here.
+
+# --- pristine source media (copyrighted; identity also in ObsidianVault/Checksum Manifest.md) ---
+463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644  pristine-disc-cue  Disney-Pixar A Bug's Life (v1.0).cue
+2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566  pristine-disc-bin  Disney-Pixar A Bug's Life (v1.0).bin
+
+# --- headline replay fixtures (one per GAP-0040 headline experiment) ---
+9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152  level02-scene3-experiment  level02.sav
+# from-boot-movie-level01 re-pinned 2026-07-08: the movie was re-captured
+# 2026-06-24 (after the 2026-06-21 pin) and has been the working boot->LEVEL01
+# replay in every session since; the old pin a8b87ffe... was stale.
+fa2e81925fbad56af07081fbfe6980f2789a0dd72e6b63b13f9e7b5fc23ed264  from-boot-movie-level01  flik_to_level01_stall.mv.movie.json
+
+# --- Phase 4 B02 bounded-exhaustion fixture (external, Interpreter mode) ---
+6992b9658e9fedec46a5489ff85a1ed160606fadeed41170ddc7840e439080ca  phase4-b02-interpreter-movie  movies/Phase4/Interpreter/B02.movie.json
+3e19b52869076111e04b5810aefdbc18a01d2bec6d0674b77f2f708d5729c6df  phase4-b02-interpreter-start-state  movies/Phase4/Interpreter/B02.movie.sav
+
+# --- Phase 4 B03 bounded-exhaustion fixture (external, Interpreter mode) ---
+9c0528b26d3ba25d69f834fb0b78cf853d3e01e4194c7807304ba736ec780b9a  phase4-b03-interpreter-movie  movies/Phase4/Interpreter/B03.movie.json
+e4ff915614dbb01b17e6280de7405314bf24a3648e132e83d36807226da2d04a  phase4-b03-interpreter-start-state  movies/Phase4/Interpreter/B03.movie.sav
+
+# --- findings-store fixtures (x1/x2 + f2/f10 source) ---
+4a8e355f6bf8e0e57776d8d2f8f9dbd9cce22abd1bd77d22cf43ccbd32f6f1be  fixture-g30-openground  $ABL_SAVESTATES/SCUS-94288_g30_openground.sav
+d19ba74baacd8a08c0997fab60d8bdae0614430d4f8be510045f76f45411b67b  fixture-g30-openfloor  $ABL_SAVESTATES/SCUS-94288_g30_openfloor.sav
+
+# NOTE: LEVEL02 scene-3 evidence ([[Experiment - LEVEL02 floor source]]) used
+# level02.sav (level02-scene3-experiment) -- pass it explicitly via --save.
+# The G29 Pass-3 arms (arm_a/arm_b) take a LEVEL01 spawn state via --save, or run
+# from from-boot-movie-level01 via --movie; both also take --disc pristine-disc-cue.

@@ -1,0 +1,123 @@
+schema: abl-phase4-fmv-levelb-two-pc-first-hit-runtime/1
+campaign_id: fmv_playback
+row_ids: [E15_fmv]
+escalation_id: P4-R10-ITER1-E15-LEVELB-TWO-PC-FIRST-HIT
+missing_fact_id: E15/completed-level-b-natural-scene-setup-first-hit
+expected_media:
+  path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  serial: SCUS-94288
+  title: Disney-Pixar A Bug's Life
+  sha256: 463102187c2ada6ac90c2990e23cdaf2ef9f8eb56a95a57d8ab496248571d644
+  tracks:
+    - path: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).bin
+      sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+expected_debugger:
+  api_version: 2.1.0
+  schema_version: '2026-07-18'
+  binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+  source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+  source_dirty: true
+  dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+movie:
+  path: movies/100% Runs/LEVEL01.movie.json
+  sha256: ece62d4e6f92b887b0500dd8ac3bec48f3638ad5d9858cda7d5b0afb3a8d2602
+atomic_anchor:
+  job_id: levelb_two_pc_first_hit_anchor
+  target_frame: 15792
+  max_frames: 15792
+  run_frames: 15791
+  capture_trigger: e15_levelb_two_pc_first_hit_anchor
+  trace_limit: 64
+  memory_dumps: []
+first_hit_plan:
+  path: config/phase4_fmv_levelb_two_pc_first_hit.yaml
+  sha256: b38b539c4cf47d71b2086ca394b112344a98d0b50325a815155a27b9d827dbb2
+execution:
+  bound: {clock: emulator_frame, start: 0, stop: 15856, stop_inclusive: false}
+  capture_window: {clock: emulator_frame, start: 15792, stop: 15856, stop_inclusive: false}
+domain: interface
+observer_plan:
+  schema: abl-phase4-observer-plan/2
+  operations:
+    - sequence: 0
+      method: debugger.addBreakpoint
+      args: {address: 0x8004FD74, type: execute, enabled: true, temporary: false}
+    - sequence: 1
+      method: debugger.addBreakpoint
+      args: {address: 0x8005029C, type: execute, enabled: true, temporary: false}
+  result_limits: {max_records: 2060, max_bytes: 16777216, max_pages: 1}
+  direct_command_plan:
+    schema: abl-phase4-duckstation-two-pc-first-hit-plan/1
+    campaign_id: fmv_playback
+    row_ids: [E15_fmv]
+    identity_join:
+      rpc_manifest_sha256: a401fd3b9915582011df5ffab57576688f870d77cab0fd6e25598ac106abb062
+      source_revision: fe0cca16b85e09a304cfde3c39669ce8c0adb8f5
+      source_dirty_state_hash: 3c2689e02497ea52fa8f827bee8794b9f4d39bfe
+      dispatcher_sha256: 6ff2640dad39f85eacba9e8bbbfdb65d4e3707cb6d8f72cc74bf404579ae8a3e
+      binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+      media_serial: SCUS-94288
+      media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+    anchor_contract:
+      required_status: valid_paused
+      initial_breakpoints: []
+    breakpoint_sequence:
+      - sequence: 0
+        method: debugger.addBreakpoint
+        params: {address: 0x8004FD74, type: execute, enabled: true, temporary: false}
+        boundary: before_instruction
+        required_registers: {pc: 0x8004FD74, a0: 3, a1: 0}
+      - sequence: 1
+        method: debugger.addBreakpoint
+        params: {address: 0x8005029C, type: execute, enabled: true, temporary: false}
+        boundary: before_instruction
+        required_registers: {pc: 0x8005029C, a0: 6, a1: 128}
+    resume:
+      method: debugger.resume
+      params: {}
+      winner_policy: first_paused_target
+    execution_limit:
+      clock: emulator_frame
+      max_frame_delta: 64
+      max_status_polls: 2048
+      poll_interval_ms: 10
+      socket_timeout_ms: 5000
+    cleanup:
+      method: debugger.removeBreakpoint
+      remove_all_owned: true
+      require_empty_after: true
+    terminal_capture:
+      method: capture.atomic
+      params:
+        trigger: e15_levelb_scene_setup_first_hit
+        include_registers: true
+        trace_limit: 64
+perturbation_plan:
+  schema: abl-phase4-perturbation-plan/1
+  kind: none
+  operations: []
+settings_snapshot:
+  schema: abl-duckstation-settings-snapshot/1
+  profile: fresh-isolated-defaults-v1
+  binary_sha256: d68b2c6d25f6795a921f5d1fa64ae33c66af3e3d47a786ee45853170766588cd
+  cpu_execution_mode: default_cached_interpreter
+  cpu_overclock_percent: 100
+  cdrom_read_speedup: 1
+  cdrom_seek_speedup: 1
+  region: auto
+  rewind: false
+  runahead_frames: 0
+assertion_plan:
+  kind: e15_levelb_two_pc_first_hit
+  allowed_first_hits:
+    - {pc: 0x8004FD74, a0: 3, a1: 0}
+    - {pc: 0x8005029C, a0: 6, a1: 128}
+  require_winner_hits: 1
+  require_loser_hits: 0
+  require_owned_breakpoints_removed: true
+  require_empty_breakpoint_set: true
+  require_truncated: false
+variant:
+  name: native
+  receipt_id: e15-levelb-two-pc-first-hit-native
+  control_role: positive

@@ -1,0 +1,197 @@
+{
+ "_comment": "Paired BEHAVIORAL controls for kick/camera/status (gate letter): each action's OUTCOME measured against its no-input control. Regenerate: tools/phase2_action_behavior.py.",
+ "generated": "2026-07-12",
+ "media": {
+  "serial": "SCUS-94288"
+ },
+ "controls": {
+  "kick": {
+   "anchor": "level01.sav",
+   "observable": "KICK TIMER 0x800A657A (player+0x7A); the kick branch at 0x80048F4C writes -16",
+   "gates": "L2|R2 held AND Square FRESH PRESS (edge on 0x80082380) AND not already kicking AND grounded (|Y - floorY| < 1024) AND player+0x5C == 0",
+   "trials": [
+    {
+     "label": "L2 held + Square fresh press",
+     "pre": {
+      "l2": true
+     },
+     "press": {
+      "l2": true,
+      "square": true
+     },
+     "timer_before": 0,
+     "timer_series": [
+      -16,
+      -15,
+      -14,
+      -13,
+      -12,
+      -11,
+      -10,
+      -9,
+      -8,
+      -7,
+      -6,
+      -5
+     ],
+     "kick_fired": true,
+     "min_timer": -16
+    },
+    {
+     "label": "R2 held + Square fresh press",
+     "pre": {
+      "r2": true
+     },
+     "press": {
+      "r2": true,
+      "square": true
+     },
+     "timer_before": 0,
+     "timer_series": [
+      -16,
+      -15,
+      -14,
+      -13,
+      -12,
+      -11,
+      -10,
+      -9,
+      -8,
+      -7,
+      -6,
+      -5
+     ],
+     "kick_fired": true,
+     "min_timer": -16
+    },
+    {
+     "label": "Square alone (negative)",
+     "pre": {},
+     "press": {
+      "square": true
+     },
+     "timer_before": 0,
+     "timer_series": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "kick_fired": false,
+     "min_timer": 0
+    },
+    {
+     "label": "no Square (negative)",
+     "pre": {},
+     "press": {
+      "up": true
+     },
+     "timer_before": 0,
+     "timer_series": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "kick_fired": false,
+     "min_timer": 0
+    }
+   ],
+   "l2_kick_fires": true,
+   "r2_kick_fires": true,
+   "square_alone_no_kick": true,
+   "no_input_no_kick": true,
+   "kick_timer_start": -16,
+   "passes": true,
+   "supersedes": "the earlier 'shoulder+Square does not alter the throw' disproof was a METHOD ERROR (held Square = no press edge); the kick EXISTS and is now a positive/negative control.",
+   "residual": "the kick's damage class (which families it hurts) remains registry row A04 \u2014 the ACTION is now bound and controlled."
+  },
+  "camera": {
+   "anchor": "level01.sav",
+   "observable": "0x80095358 (Canon SYS_camera)",
+   "trials": [
+    {
+     "label": "L1 look/reset while moving",
+     "buttons": {
+      "l1": true,
+      "up": true
+     },
+     "camera_changed": true,
+     "frame_changed": true,
+     "camera_before": "7d5903002cc8ffffc64007007d590300",
+     "camera_after": "fc3d03004891ffff4f5607004a3a0300"
+    },
+    {
+     "label": "R1 lock while moving",
+     "buttons": {
+      "r1": true,
+      "up": true
+     },
+     "camera_changed": true,
+     "frame_changed": true,
+     "camera_before": "7d5903002cc8ffffc64007007d590300",
+     "camera_after": "84590300eb99ffffe44007007b480300"
+    },
+    {
+     "label": "move only (control)",
+     "buttons": {
+      "up": true
+     },
+     "camera_changed": true,
+     "frame_changed": true,
+     "camera_before": "7d5903002cc8ffffc64007007d590300",
+     "camera_after": "8834030077c8ffffa25d070053190300"
+    },
+    {
+     "label": "no input (negative control)",
+     "buttons": {},
+     "camera_changed": false,
+     "frame_changed": true,
+     "camera_before": "7d5903002cc8ffffc64007007d590300",
+     "camera_after": "7d5903002cc8ffffc64007007d590300"
+    }
+   ],
+   "l1_changes_camera": true,
+   "r1_changes_camera_differently_than_move_only": true,
+   "negative_control_camera_static": true,
+   "passes": true
+  },
+  "status": {
+   "anchor": "level01.sav",
+   "trials": [
+    {
+     "label": "Select pressed",
+     "frame_after": "70cd23bb53a8ce72b576ad930387a4d550c25a103d383f8cfe9cc1d3d3f873dc",
+     "frame_changed_from_anchor": true
+    },
+    {
+     "label": "no Select (negative control)",
+     "frame_after": "d64d346843461f07b9db2b9158f5c6362c3548969296adee70732a1aaf703d06",
+     "frame_changed_from_anchor": true
+    }
+   ],
+   "discriminator": "same anchor, same advance count: Select vs no Select",
+   "panel_frame": "70cd23bb53a8ce72",
+   "control_frame": "d64d346843461f07",
+   "select_produces_different_frame": true,
+   "passes": true
+  }
+ },
+ "all_pass": true
+}

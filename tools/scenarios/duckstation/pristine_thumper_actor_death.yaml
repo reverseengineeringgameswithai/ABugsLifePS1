@@ -1,0 +1,45 @@
+schema_version: 1
+id: pristine_thumper_actor_death
+description: >-
+  Replay the centrally pinned pristine-serial complete Thumper movie, change
+  only true health at the exact pre-hit boundary, and assert the actor record,
+  native fatal transition, and resident ordinary respawn.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thumper_boss_2.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: thumper_pre_hit_control
+    trigger: {type: movie_frame, target: 2422, max_frames: 2440, timeout_seconds: 180}
+    assertions:
+      - {id: c16_thumper_pre_hit_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 2}
+      - {id: c16_thumper_pre_hit_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: c16_thumper_pre_hit_lives, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 4}
+      - {id: c16_thumper_actor_id, type: memory, address: 0x8009FE04, width: u32, op: eq, expected: 16}
+      - {id: c16_thumper_actor_callback, type: memory, address: 0x8009FE80, width: u32, op: eq, expected: 0x8004A0F4}
+      - {id: c16_thumper_actor_backlink, type: memory, address: 0x8009FE84, width: u32, op: eq, expected: 0x80094A54}
+      - {id: c16_thumper_neighbor_id, type: memory, address: 0x8009FE88, width: u32, op: eq, expected: 10}
+      - {id: c16_thumper_movie_reproducible_before_control, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: change_only_true_health_to_zero
+        method: debugger.writeU16
+        params: {address: 0x800A6594, value: 0}
+  - id: thumper_native_attack_selects_death
+    trigger: {type: movie_frame, target: 2423, max_frames: 2, timeout_seconds: 60}
+    assertions:
+      - {id: c16_thumper_fatal_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 2}
+      - {id: c16_thumper_fatal_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: -1}
+      - {id: c16_thumper_fatal_lives_retained, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 4}
+      - {id: c16_thumper_fatal_master_state, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 2}
+  - id: thumper_ordinary_respawn_completed
+    trigger: {type: movie_frame, target: 2550, max_frames: 132, timeout_seconds: 120}
+    assertions:
+      - {id: c16_thumper_respawn_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 2}
+      - {id: c16_thumper_respawn_health_restored, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: c16_thumper_respawn_life_decremented, type: memory, address: 0x800A65A0, width: u8, op: eq, expected: 3}
+      - {id: c16_thumper_respawn_master_state_cleared, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}

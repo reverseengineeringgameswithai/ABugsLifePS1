@@ -1,0 +1,133 @@
+{
+  "schema": "abl-phase4-row-evidence-v1",
+  "row_id": "D06_grasshoppers",
+  "date": "2026-08-04",
+  "status": "substantiated_partial_bounded_exhausted",
+  "conclusion": "The Tunnels grasshopper family is one actor implementation: actor ID 15, spawn word 0x080f, mover-VM program index 8 at 0x8007760c, and native selector 3 at 0x800b3d78. Ground, airborne/roof-entry, and carried-object appearances are not separate actor IDs or programs in the pinned fixtures. The exact presentation names for the native subtype byte remain unassigned.",
+  "pristine_inputs": [
+    {
+      "path": "SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+    },
+    {
+      "path": "REBUILD/files/LEVEL03/LEVEL.BIN",
+      "load_address": "0x800b39a0",
+      "sha256": "fef7bd2a72c5c293b2f164ba1ca195f45c0843c5f19e52cbfdb48fd14fbc59a1"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "grasshopper.sav",
+      "sha256": "40edaae0c6a8c90fa45315695d60ede16bdfc96afe69c01e4c11c56b5c610f05",
+      "role": "idle/pursuit transition"
+    },
+    {
+      "path": "grasshopper_aggro.sav",
+      "sha256": "2fa4742d057647d7833ae3cb52584f39e940a8fe6441bcb4653eede08ff7a135",
+      "role": "active contact path"
+    },
+    {
+      "path": "movies/Bonus_Level_03.movie.sav",
+      "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+      "role": "existing bonus-3 challenge donor"
+    },
+    {
+      "path": "movies/Bonus_Level_03.movie.json",
+      "sha256": "22ef450e2a88edcd7b3ef52bdfde7dc7cceff37d2967d37f377403bc6d7bf984",
+      "role": "existing bonus-3 input movie"
+    }
+  ],
+  "capsule_query": {
+    "result": "no_relevant_D06_capsule",
+    "effect": "Offline static analysis answered family identity and program flow; the exact state transition writer and contact admission were declared as a narrow live escalation.",
+    "live_escalation_id": "P4-D06-20260804-GRASSHOPPER"
+  },
+  "static_bindings": {
+    "spawn": {
+      "scene": 3,
+      "actor_id": 15,
+      "spawn_word": "0x080f",
+      "program_index": 8,
+      "program_pointer_table": "0x80077af8",
+      "program": "0x8007760c",
+      "observed_spawn_count": 19,
+      "uniform_descriptor": {
+        "hp": 6,
+        "delay": 100,
+        "flags": "0x0052"
+      }
+    },
+    "vm": {
+      "program_load": "0x8004c17c",
+      "opcode_fetch": "0x8004c1ec",
+      "program_commit": "0x8004c834",
+      "arrival_release": "0x8004d02c..0x8004d03c",
+      "native_selector_handler": "0x8004c59c",
+      "selector3_call": "0x8004c5f4",
+      "program_words": [
+        "0x0016", "0x0020", "0xffc0", "0x000b", "0x0003", "0x000d",
+        "0x0001", "0x0002", "0x0006", "0x0015", "0x000d", "0x0000",
+        "0x0001", "0x0002", "0x003f", "0x0020", "0x0003", "0x0005",
+        "0xffff", "0x0005"
+      ],
+      "random_cooldown": "(rng & 0x3f) + 0x20, therefore 32..95 ticks"
+    },
+    "native_selector_3": {
+      "function": "0x800b3d78..0x800b3e84",
+      "instruction_count": 68,
+      "direct_callees": ["0x80060ae4", "0x80059e44", "0x8005044c"],
+      "effects": [
+        "turn actor toward player",
+        "set actor+0x50 bit 1",
+        "index overlay state by spawn-template byte +0x0f",
+        "on the first occurrence of a subtype, create 3 x 8 kind-21 child/effect objects",
+        "increase actor+0x6a by 2400, set actor+0x20 to -2048, and play sound 102"
+      ],
+      "interpretation_limit": "The subtype byte and kind-21 children are structurally bound but not assigned ground/flying/seed-carrier visual names without presentation evidence."
+    },
+    "shared_subsystems": {
+      "contact": "D03 common enemy contact handler 0x8004a700",
+      "berry_damage": "D04 common berry/damage path; no actor-15-specific immunity branch found",
+      "death_respawn": "D05 common enemy death/respawn path",
+      "bonus3": "Actor ID 15 plus accepted blue-class contact increments the challenge streak; the fifth accepted kill sets bonus bit 0x04 and transition latch 6."
+    }
+  },
+  "runtime_evidence": {
+    "execution_mode": "Interpreter",
+    "advance_method": "debugger.resume at normal speed; no fast-forward and no movie",
+    "active_actor": "slot 44 / 0x800a1430 / spawn backlink 0x80094f08",
+    "idle_fixture": {
+      "initial_program": "0x8007761c",
+      "initial_cooldown_or_state_60": 10,
+      "event": "With no input, 0x8004d03c advanced program 0x8007761c to 0x8007761e at frame 250462; 0x8004c834 then committed 0x8007762e at frame 250466.",
+      "native_initializer_hits": 0,
+      "meaning": "The active phase advances naturally through shared arrival handling; selector 3 is initialization-time behavior, not a recurring aggro latch."
+    },
+    "aggro_fixture": {
+      "initial_program": "0x8007762e",
+      "initial_cooldown_or_state_60": 7,
+      "event": "The common contact handler 0x8004a700 executed at frame 251244 with s1=0x800a1430 and return address 0x8004b4a8.",
+      "health_before_after": "11 -> 11 during the sampled admitted call",
+      "meaning": "Grasshopper contact reaches the common D03 interface. The unchanged health sample is not treated as a harmlessness claim because common invulnerability/gating remains in that subsystem."
+    },
+    "control": "The chase-capable flag bit 0x2 was already set in both fixtures. Runtime differentiation was VM program/motion state, not a hit-created aggro bit."
+  },
+  "coverage": {
+    "proved": [
+      "single actor/program family identity and all 19 scene-3 spawn descriptors",
+      "program-8 opcode stream and exact shared VM writers",
+      "native selector-3 overlay body and direct callees",
+      "natural no-input arrival/pursuit transition",
+      "admission to the shared contact handler",
+      "absence of a grasshopper-only berry-immunity branch",
+      "existing unique bonus-3 five-kill rule"
+    ],
+    "bounded_residuals": [
+      "presentation-only mapping from template byte +0x0f to the labels ground, flying/roof-entry, and carried-object",
+      "per-berry outcome matrix, already owned by shared row D04 rather than D06",
+      "visual confirmation of the native initializer's 24 kind-21 children"
+    ],
+    "movie_required_now": false,
+    "movie_trigger_for_future_work": "Record an Interpreter movie only if exact visual subtype names or a species-specific berry outcome matrix becomes a named deliverable."
+  }
+}

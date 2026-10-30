@@ -1,0 +1,82 @@
+{
+  "schema": "abl-phase4-row-analysis-v1",
+  "row": "B07_health_power",
+  "date": "2026-08-03",
+  "status": "substantiated_partial",
+  "disposition": "bounded_exhausted_move_on",
+  "scope": "Blue seed tier-2 production and the resulting health pickup",
+  "overlap": {
+    "C12": "Owns the generic constructor-38/action-9 health-leaf collection law.",
+    "B07": "Owns the blue tier-2 route into constructor 38 and the type-7 plant's competing hostile-spike output.",
+    "B09": "Owns the super-jump flag 0x20 and its extra 0x4000 production branch."
+  },
+  "capsules": [
+    {
+      "name": "B07_health_partial_full",
+      "manifest_sha256": "bde5cc0ca130e7e74a33c6cd1f556a4e4e2822b1dd2197fea8f4a69b28fc26f7",
+      "movie_sha256": "d587fec32c94dd618302cdcaf0f24f3c10007d1a4ccff321a50de4637eb59817",
+      "state_sha256": "2de4884672ebc3b1a90ede89315881e5993cba21a203e57a3138421065611a9d",
+      "accepted": true,
+      "acceptance": "complete, untruncated, error-free, reproducible, pristine SCUS-94288, and independent control fingerprints match for full machine state, RAM, registers, SPU RAM, and VRAM"
+    },
+    {
+      "name": "A13__blue_seed_levels",
+      "manifest_sha256": "81053aba5b5ec9bb9e33fbb944fffd09d9df2ed95528ff8dafb931e042b7f17d",
+      "movie_sha256": "79d0aa0d26bcd760316f6bf685bf781f571ec63806a09d78be84d36ab01f5c3",
+      "state_sha256": "9198c8c3daa896813f0198ecb2a1b7068c7035116aed0aadbc1072ffdb01f5c3",
+      "accepted": true,
+      "acceptance": "complete, untruncated, error-free, reproducible, pristine media, and all retained control fingerprints match"
+    }
+  ],
+  "runtime_observation": {
+    "health_address": "0x800A6594",
+    "storage": "signed 16-bit",
+    "movie_frame": 77,
+    "emulator_frame": 212377,
+    "before": 3,
+    "after": 4,
+    "stable_through_emulator_frame": 212623,
+    "power_word_0x800A6590": "0x00000008 before and after; not the health-power effect"
+  },
+  "static_confirmation": {
+    "pristine_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "tier_pair": "0x8007A45C: plant type 7, extra 0x3000",
+    "selector": "0x8005BDBC; stores selected type at 0x8005BE90 and extra at 0x8005BF3C",
+    "producer": "0x8005C744..0x8005C818",
+    "health_constructor": 38,
+    "hostile_spike_constructor": 59,
+    "output_split": "One RNG byte per eligible invocation; (byte & 3) == 0 produces constructor 59, otherwise B07 extra 0x3000 maps to constructor 38. Exact split is 1/4 spike and 3/4 health leaf.",
+    "cadence": "Exactly one object is emitted per qualifying type-7 activation. This handler contains no recurrence timer; the interval between activations belongs to the shared upstream plant-state scheduler.",
+    "pickup_handler": "action 9 at 0x80058864; load 0x800A6594 at 0x80058880, add 1 at 0x80058888, store halfword at 0x80058890, and request SFX 62",
+    "cap": "No current-health test or clamp exists in action 9. A collected leaf at health 4 therefore writes 5 at this layer.",
+    "lifetime": "Constructor-38 metadata supplies action 9 and a 200-logic-tick lifetime, approximately 6.67 seconds at 30 Hz."
+  },
+  "campaign_applicability": {
+    "visible_type7_model_levels": [1, 3, 5, 6, 7, 8, 10, 13, 14, 15],
+    "visible_type7_model_count": "10/15 operator levels",
+    "local_zero_start_tier2_levels": [1, 5, 6, 8, 10, 13, 15],
+    "local_zero_start_tier2_count": "7/15 operator levels",
+    "qualification": "The packed blue counter persists across levels, so a previously unlocked tier 2 extends selection beyond locally self-sufficient levels."
+  },
+  "closure": {
+    "resolved": [
+      "exact heal delta",
+      "pickup-side cap behavior",
+      "blue tier-2 constructor binding",
+      "one-output-per-qualified-activation cadence",
+      "hostile-spike coexistence and exact RNG split",
+      "natural partial-health runtime control",
+      "bounded campaign applicability"
+    ],
+    "strict_full_gaps": [
+      "natural full-health pickup and visual overfill control",
+      "live exercise of the rare spike branch across multiple plant activations",
+      "timing attribution inside the shared upstream plant-state scheduler"
+    ],
+    "rationale": "Those gaps do not change the B07 row law and have poor return: the relevant branches and writes are instruction-exact, while the retained capsule supplies the natural positive control. Keep Partial for evidence breadth, but treat the row as bounded-exhausted and move on."
+  },
+  "live_escalation": {
+    "required": false,
+    "reason": "The accepted capsules answer frame-boundary state questions and pristine static analysis answers the exact instruction/branch questions. No named missing domain remains that warrants DuckStation or a new Interpreter movie."
+  }
+}

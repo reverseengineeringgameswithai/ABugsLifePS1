@@ -1,0 +1,2881 @@
+{
+ "_comment": "Complete Phase-3 evidence generator/artifact inventory. Classifications are declared per command mode; filesystem discovery rejects silent generator/artifact omissions. Regenerate: python3 tools/phase3_evidence_inventory.py",
+ "generated": "2026-08-11",
+ "generators": {
+  "tools/phase3_asset_provenance.py": {
+   "tool_sha256": "df9a6a632b1688252018ae6c245766f8c2fb1cff78f6998ad77078a3d9640ec5",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_asset_provenance.py",
+     "classification": "local_media"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_asset_provenance.json",
+     "tracked": true,
+     "sha256": "7d89f90eed6a3e379b51b92aa51a6d2d5bc789a2e5e774694d7ad00e3cd51947"
+    }
+   ],
+   "source_path_literals": [
+    "ObsidianVault/Canon/Memory/MEM_800D0000_Collision_plane_record.md",
+    "ObsidianVault/Canon/Memory/MEM_LEVEL.RAW_CHUNK_INVENTORY_LEVEL.RAW_chunk_inventory.md",
+    "ObsidianVault/Canon/Systems/Asset_-_ALL_ANM_Format_Grammar.md",
+    "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md",
+    "ObsidianVault/Canon/Systems/SYS_menu_and_frontend.md",
+    "ObsidianVault/Canon/Systems/SYS_sfx_system.md",
+    "analysis/phase3_overlay_map.json",
+    "analysis/phase3_render_descriptors.json",
+    "analysis/phase3_scene_asset_graph.json",
+    "tools/build_baselines.json"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_reports.py"
+   ],
+   "notes": [
+    "ObsidianVault/Experiments/EXP_2026-08-02_phase4_d11_mite.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_call_graph.py": {
+   "tool_sha256": "cb28428f04f9be077346505d70c867589b401b689494951fe3825d75d4e34435",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_call_graph.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_call_graph.json",
+     "tracked": true,
+     "sha256": "0d66fce76a3918f49858d71123f4c39b95db50503a081937ac46320134d18b3e"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/functions.json",
+    "analysis/phase3_jalr_callbacks.json",
+    "analysis/phase3_jr_tables.json"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_reports.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_enemy_ai.md",
+    "ObsidianVault/Canon/Systems/SYS_fmv_player_streaming.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_phase4_d12_worm_id40.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_camera_record.py": {
+   "tool_sha256": "83f168ff286d866e7d8152dae88f77c95e1130b14eab34d5cef390c3ad7a357a",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_camera_record.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build-release/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build-release/bin/duckstation-qt --binary-sha256 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build-release/bin/duckstation-qt",
+       "sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_camera_record.json",
+     "tracked": true,
+     "sha256": "88d0476e0dbc30ba69e57ea1336f9e231824dbc5ebec98d95407b7fe4fcb735f"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "level01.sav": {
+     "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+     "declared_in": "analysis/phase3_camera_record.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_evidence_inventory.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration7_live_helper_freshness.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_camera_record.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "level01.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained binary path/SHA-256 differs from every declared live mode",
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity",
+      "retained RPC binary identity differs from every declared live mode"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_cfg_liveness.py": {
+   "tool_sha256": "5408ab7d169d8743779cab42a443368151d19cea678b736ac3192038cdb6d359",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "library consumed by tools/phase3_hook_contract.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [],
+   "source_path_literals": [],
+   "artifact_fixtures": {},
+   "guards": [],
+   "notes": [],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_contradictions.py": {
+   "tool_sha256": "83d9cc54679180d1caed651f69184e2fa6ed011868064485e743b2d579d701b0",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_contradictions.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_contradictions.json",
+     "tracked": true,
+     "sha256": null
+    }
+   ],
+   "source_path_literals": [
+    "ObsidianVault/Canon/Indexes/DuckStation_API_Index.md",
+    "ObsidianVault/Canon/Systems/SYS_player_action_state_laws.md",
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Canon/Systems/SYS_scene_asset_load_graph.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_a07_spin_move_disproof.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap - From Reconstruction to Reliable Modding.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md",
+    "analysis/functions.json",
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase0_2_external_fixture_set.json",
+    "analysis/phase3_asset_provenance.json",
+    "analysis/phase3_duckstation_rpc_manifest.json",
+    "analysis/phase3_evidence_inventory.json",
+    "analysis/phase3_hook_contracts.json",
+    "analysis/phase3_jr_tables.json",
+    "analysis/phase3_record_types.json",
+    "analysis/phase3_render_descriptors.json",
+    "analysis/phase3_scene_asset_graph.json",
+    "analysis/phase3_semantic_lifetime.json",
+    "analysis/phase3_spin_functional.json",
+    "analysis/phase3_thud.json",
+    "analysis/phase3_training_anchor_fixture.json",
+    "analysis/phase3_unknown_fields.json",
+    "analysis/phase3_xrefs.json",
+    "config/phase3_findings.yaml",
+    "config/record_types.yaml",
+    "config/semantic_state.yaml",
+    "mod/hook_caves.yaml",
+    "tools/build_baselines.json",
+    "tools/duckstation_rpc_method_manifest.md"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_contradictions.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase4_d02_actor20.py"
+   ],
+   "notes": [
+    "ObsidianVault/Experiments/EXP_2026-08-02_phase4_d02_actor20.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration10_hook_toolchain_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration5_strict_pristine_training_anchor.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration9_rpc_manifest_freshness.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_coverage_matrix.py": {
+   "tool_sha256": "5455034a3d040987c799bf7509529a768bfc04838e17ffacc2e14498553cab74",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_coverage_matrix.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_coverage_matrix.json",
+     "tracked": true,
+     "sha256": "25bf76130c852c67425c92ce6886898cc4091dd38ad0b97c0774e8c9c79e2587"
+    }
+   ],
+   "source_path_literals": [
+    "ObsidianVault/Playbooks/Game Solving Roadmap - From Reconstruction to Reliable Modding.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md",
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase3_asset_provenance.json",
+    "analysis/phase3_call_graph.json",
+    "analysis/phase3_contradictions.json",
+    "analysis/phase3_dispatch_map.json",
+    "analysis/phase3_jalr_callbacks.json",
+    "analysis/phase3_jr_tables.json",
+    "analysis/phase3_native_domains.json",
+    "analysis/phase3_overlay_map.json",
+    "analysis/phase3_ownership_graph.json",
+    "analysis/phase3_record_probe.json",
+    "analysis/phase3_record_types.json",
+    "analysis/phase3_scene_asset_graph.json",
+    "analysis/phase3_semantic_lifetime.json",
+    "analysis/phase3_transition_reset.json",
+    "analysis/phase3_xrefs.json",
+    "config/phase3_campaign_state_scope.yaml",
+    "config/phase3_findings.yaml",
+    "config/record_types.yaml",
+    "config/semantic_state.yaml"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_coverage.py"
+   ],
+   "notes": [
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_dispatch_map.py": {
+   "tool_sha256": "10ac35531bc68f2779689676dd952ee831199a45023eac8855df53b854898a65",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_dispatch_map.py",
+     "classification": "local_media"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_dispatch_map.json",
+     "tracked": true,
+     "sha256": "d4618f5da46fc5b61f7e551c15429173c572e0e28642b084ab69c79973aa8082"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/vm_programs.json"
+   ],
+   "artifact_fixtures": {
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_dispatch_map.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_dispatch.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_indirect_dispatch_map.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase3_architecture_maps.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_duckstation_rpc_manifest.py": {
+   "tool_sha256": "c6b3d28daa22da0c1ed61e53eb3561357e5193900498881c9997f86f66c0f1e5",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_duckstation_rpc_manifest.py --check",
+     "classification": "local_media"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_duckstation_rpc_manifest.json",
+     "tracked": true,
+     "sha256": "d711ded7f391e9b3793d111635fb20eea24674d4bafb8b4e6f29290cb0b6ca62"
+    },
+    {
+     "path": "tools/duckstation_rpc_method_manifest.md",
+     "tracked": true,
+     "sha256": "6df9e317fd7fc479b41234baf9de2cff8dd16693472a06bfced3825f6098037c"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_duckstation_rpc_manifest.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase4_method_metrics.py",
+    "tests/test_phase4_seed_verifier.py",
+    "tests/test_phase4_upstream_dependency_reconciliation.py"
+   ],
+   "notes": [
+    "ObsidianVault/Archive/Unsorted Legacy/DuckStation_Fork_Reproducibility.md",
+    "ObsidianVault/Archive/Unsorted Legacy/Gap_Audit.md",
+    "ObsidianVault/Archive/Unsorted Legacy/Reproducibility_Checklist.md",
+    "ObsidianVault/Archive/Unsorted Legacy/Roadmap.md",
+    "ObsidianVault/Archive/Unsorted Legacy/Toolchain_Census.md",
+    "ObsidianVault/Canon/Indexes/DuckStation_API_Index.md",
+    "ObsidianVault/Experiments/EXP_2026-07-27_phase4_fmv_c16_selector_control_falsified.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration10_hook_toolchain_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration9_rpc_manifest_freshness.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration4_current_live_freshness.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_props_movers_catalog.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_fmv_skip.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 4 - Reverse Engineering Operating Method.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_evidence_inventory.py": {
+   "tool_sha256": "8c9e34e881276a9695c0b981cfcd7a942871740c3a06152ad1a7c9297d8d26fb",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_evidence_inventory.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_evidence_inventory.json",
+     "tracked": true,
+     "sha256": null
+    }
+   ],
+   "source_path_literals": [
+    "analysis/phase0_2_external_fixture_set.json",
+    "analysis/phase3_asset_provenance.json",
+    "analysis/phase3_call_graph.json",
+    "analysis/phase3_camera_record.json",
+    "analysis/phase3_contradictions.json",
+    "analysis/phase3_coverage_matrix.json",
+    "analysis/phase3_dispatch_map.json",
+    "analysis/phase3_duckstation_rpc_manifest.json",
+    "analysis/phase3_fn_ptr_fields.json",
+    "analysis/phase3_gate_audit.json",
+    "analysis/phase3_hook_contracts.json",
+    "analysis/phase3_jalr_callbacks.json",
+    "analysis/phase3_jr_tables.json",
+    "analysis/phase3_knowledge_audit.json",
+    "analysis/phase3_native_domains.json",
+    "analysis/phase3_overlay_map.json",
+    "analysis/phase3_ownership_graph.json",
+    "analysis/phase3_record_probe.json",
+    "analysis/phase3_record_types.json",
+    "analysis/phase3_render_descriptors.json",
+    "analysis/phase3_scene_asset_graph.json",
+    "analysis/phase3_semantic_lifetime.json",
+    "analysis/phase3_sfx_interface.json",
+    "analysis/phase3_spin_functional.json",
+    "analysis/phase3_thud.json",
+    "analysis/phase3_training_anchor_fixture.json",
+    "analysis/phase3_transition_reset.json",
+    "analysis/phase3_unknown_fields.json",
+    "analysis/phase3_xrefs.json",
+    "tools/build_baselines.json",
+    "tools/duckstation_rpc_method_manifest.md"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase4_seed_verifier.py"
+   ],
+   "notes": [
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration6_clean_provision_replay.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration7_live_helper_freshness.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration8_render_replay_durability.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration4_current_live_freshness.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": true,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_fn_ptr_fields.py": {
+   "tool_sha256": "ec225046082190ff678779c41c486286ca553f1385398489d03bad4f75cedd49",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_fn_ptr_fields.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build/bin/duckstation-qt --binary-sha256 ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build/bin/duckstation-qt",
+       "sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_fn_ptr_fields.json",
+     "tracked": true,
+     "sha256": "78c80891de4406e577961549035c20e40f0272a6d8da1d4ce01a73ee06ae31e3"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "phase3_pristine_training_gameplay_i5.sav": {
+     "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level01.sav": {
+     "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level02.sav": {
+     "sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level03.sav": {
+     "sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level04.sav": {
+     "sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level05.sav": {
+     "sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_06.sav": {
+     "sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_07.sav": {
+     "sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_08.sav": {
+     "sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_09.sav": {
+     "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_10.sav": {
+     "sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_11.sav": {
+     "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_12.sav": {
+     "sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_13.sav": {
+     "sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_14.sav": {
+     "sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level_15.sav": {
+     "sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_01.movie.sav": {
+     "sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_02.movie.sav": {
+     "sha256": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_03.movie.sav": {
+     "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "training_all_stuff_collected_ending.sav": {
+     "sha256": "fb0690dcd07a18368ae4468726c7c3658cee9fc4dbdd4b6117f09cc9e94e0a02",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "level01_end_of_stage.sav": {
+     "sha256": "42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL02_ENDING.sav": {
+     "sha256": "f212d375a78fe44e94dfaf2c85b05579ba03a91e7201fac9d33014b5a7e60a48",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL04_ENDING.sav": {
+     "sha256": "bbd3464133939c9eb5fe2fe2325da93f41ea209a2f84d585f709b081949a17fe",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL05_ENDING.sav": {
+     "sha256": "91060017e12caf961385ff6f6d5b618623a8befcdd288eb20e09e47b3c854f24",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL07_ENDING.sav": {
+     "sha256": "124d1a39336729db0894cebbf07df8261946a939b10c4e8a80509062a9865ba3",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL12_ENDING.sav": {
+     "sha256": "bde7040871dce7994bfa2187f1167cd3c0f8f070f36a63c6b7bb26db5d407848",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL14_ENDING.sav": {
+     "sha256": "a46727ea32dd33e177c2210c77116e0189a57deef9173dfc8aa3e6b49215e25c",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_DIM.sav": {
+     "sha256": "7443263879ad964a387f7aa8d1c31ec6475b54aa569a247c0672b9294c662c7c",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_MANNY.sav": {
+     "sha256": "a82e59a88e4f662e67f59933ccd40d7ee064a2ce4ae2043aed67309a7061873b",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_ROSIE.sav": {
+     "sha256": "9df7695a9722cfe1a03b1c8e9d34a976ff9fb03af0f1cea455115d4d8597674f",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_TUCKROLL.sav": {
+     "sha256": "546e49486de3f6038e5fdffe60a50cd90e9c5a77ef323c7d08080c8d1749c37c",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_1.sav": {
+     "sha256": "817e167ed7aa5440362952ff8506ef4d0eea0aef76c407c61b1c3bc5f15b1f73",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_2.sav": {
+     "sha256": "e8596933232cb3571fba7d8a73878ed54555af2140da265524f88dc791ddfd1f",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_3.sav": {
+     "sha256": "05cfc08ef1b14e3b878e192bd8d7a3bd5c81f2f1bdc5dd1036559417ed551ad1",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_4.sav": {
+     "sha256": "74465745c5726134df5ef8200d5bcd2cce0ad9a7b38d438e5979c58c15ab072d",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_5.sav": {
+     "sha256": "7254a3f664d590bad270d14bb1d173a45ac9dac9111b5e496b93b4ee60a588cb",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_1.sav": {
+     "sha256": "c0830fd1bb639bf02cdf89809723ba08ffbe4b0ed2e4376c9c2566f03a50a742",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_2.sav": {
+     "sha256": "f66cff741730804db560c3ec7eece3ed33a7e857f104c0ff0e366380032d484f",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_3.sav": {
+     "sha256": "d1dc63455fa32f13b329113c10a0bab6100ac068282a083f8a2495b5f97336b1",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_4.sav": {
+     "sha256": "4ac201a7f4363c1526346e87618bee179b2fdb9d5ac386959ff425a9b0f04d30",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_5.sav": {
+     "sha256": "d9d7bf3c9b329a7e8fbef37e50283dc8fe19223d0159f9f31025c1e0d6d69f9d",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_DOT.sav": {
+     "sha256": "9b2c7c6f7941a837465798f4036e7d8df1b76a9e39f7d801614048b3a8b90e3e",
+     "declared_in": "analysis/phase3_fn_ptr_fields.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_knowledge_closure.py",
+    "tests/test_phase3_evidence_inventory.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Functions/FUNC_8004A2B0_aimed_object_spawn_sfx.md",
+    "ObsidianVault/Canon/Systems/SYS_enemy_ai.md",
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_phase4_d15_daddy_long_legs.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_fn_ptr_fields.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "phase3_pristine_training_gameplay_i5.sav",
+      "level01.sav",
+      "level02.sav",
+      "level03.sav",
+      "level04.sav",
+      "level05.sav",
+      "level_06.sav",
+      "level_07.sav",
+      "level_08.sav",
+      "level_09.sav",
+      "level_10.sav",
+      "level_11.sav",
+      "level_12.sav",
+      "level_13.sav",
+      "level_14.sav",
+      "level_15.sav",
+      "movies/Bonus_Level_01.movie.sav",
+      "movies/Bonus_Level_02.movie.sav",
+      "movies/Bonus_Level_03.movie.sav",
+      "training_all_stuff_collected_ending.sav",
+      "level01_end_of_stage.sav",
+      "LEVEL02_ENDING.sav",
+      "LEVEL04_ENDING.sav",
+      "LEVEL05_ENDING.sav",
+      "LEVEL07_ENDING.sav",
+      "LEVEL12_ENDING.sav",
+      "LEVEL14_ENDING.sav",
+      "LEVEL08_DIM.sav",
+      "LEVEL08_MANNY.sav",
+      "LEVEL08_ROSIE.sav",
+      "LEVEL08_TUCKROLL.sav",
+      "LEVEL10_1.sav",
+      "LEVEL10_2.sav",
+      "LEVEL10_3.sav",
+      "LEVEL10_4.sav",
+      "LEVEL10_5.sav",
+      "LEVEL11_1.sav",
+      "LEVEL11_2.sav",
+      "LEVEL11_3.sav",
+      "LEVEL11_4.sav",
+      "LEVEL11_5.sav",
+      "LEVEL11_DOT.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_gate_audit.py": {
+   "tool_sha256": "e6295e7bf01bbf4d02f0ff75c613cdf70efa3e983521b6cbb75ee91df57adb6c",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_gate_audit.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_gate_audit.json",
+     "tracked": true,
+     "sha256": null
+    }
+   ],
+   "source_path_literals": [
+    "ObsidianVault/Canon/Indexes/DuckStation_API_Index.md",
+    "analysis/phase0_2_external_fixture_set.json",
+    "analysis/phase0_2_knowledge_closure_report.json",
+    "analysis/phase3_coverage_matrix.json",
+    "analysis/phase3_dispatch_map.json",
+    "analysis/phase3_duckstation_rpc_manifest.json",
+    "analysis/phase3_evidence_inventory.json",
+    "analysis/phase3_fn_ptr_fields.json",
+    "analysis/phase3_hook_contracts.json",
+    "analysis/phase3_jalr_callbacks.json",
+    "analysis/phase3_jr_tables.json",
+    "analysis/phase3_overlay_map.json",
+    "analysis/phase3_ownership_graph.json",
+    "analysis/phase3_record_probe.json",
+    "analysis/phase3_record_types.json",
+    "analysis/phase3_render_descriptors.json",
+    "analysis/phase3_semantic_lifetime.json",
+    "analysis/phase3_spin_functional.json",
+    "analysis/phase3_thud.json",
+    "analysis/phase3_transition_reset.json",
+    "analysis/phase3_xrefs.json",
+    "tools/duckstation_rpc_method_manifest.md"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase4_gate.py",
+    "tests/test_phase4_seed_verifier.py"
+   ],
+   "notes": [
+    "ObsidianVault/Experiments/EXP_2026-08-10_e04_exclusion_and_extent_verification.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration6_clean_provision_replay.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration7_live_helper_freshness.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration8_render_replay_durability.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration9_rpc_manifest_freshness.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase4_ratchet_iteration1_machine_gate.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_hook_contract.py": {
+   "tool_sha256": "dee06e7234c348a82a643e9ec575359504c8b0cd98d5b9918268b46f9e9c4a1f",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_hook_contract.py",
+     "classification": "local_media"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_hook_contracts.json",
+     "tracked": true,
+     "sha256": "9a7876f4819ecdc1a2bfa9d5ce17cc1ebc927db7c4199d471d5b6b3bd4a39f52"
+    }
+   ],
+   "source_path_literals": [
+    "mod/build.py --mods mod/mods_code_only.yaml",
+    "mod/hook_caves.yaml"
+   ],
+   "artifact_fixtures": {
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_hook_contracts.json",
+     "field": "fixture_sha256"
+    },
+    "build/SCUS_942.88.patched": {
+     "sha256": "5936596c576415847b3a7395599e993b36eb7906",
+     "declared_in": "analysis/phase3_hook_contracts.json",
+     "field": "patched_fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_hook_contract.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Hooks/HOOK_forbidden_patch_ranges.md",
+    "ObsidianVault/Experiments/EXP_2026-07-19_phase4_offline_seed_actions_batch.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration10_hook_toolchain_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration5_strict_pristine_training_anchor.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration6_clean_provision_replay.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_jalr_callbacks.py": {
+   "tool_sha256": "d347d114070c2c5bcc67e51b662698ba93005c4bfd7e4d21e147008e761d9cdb",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_jalr_callbacks.py --no-live",
+     "classification": "local_media"
+    },
+    {
+     "command": "python3 tools/phase3_jalr_callbacks.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build-release/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build-release/bin/duckstation-qt --binary-sha256 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build-release/bin/duckstation-qt",
+       "sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_jalr_callbacks.json",
+     "tracked": true,
+     "sha256": "2b8c68de6fa6975dcdf0ef743cf8c82783019a93503d6c4157e89bee69a9d030"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_jalr_callbacks.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_evidence_inventory.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_indirect_dispatch_map.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase3_architecture_maps.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-20_phase4_fmv_interface_frontier.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_jalr_callbacks.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "level01.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained binary path/SHA-256 differs from every declared live mode",
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity",
+      "retained RPC binary identity differs from every declared live mode"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_jr_tables.py": {
+   "tool_sha256": "8c45b955f3d05cca1c26bdf2add25f7c664baa88f7101a49aa53bd59f026b485",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_jr_tables.py",
+     "classification": "local_media"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_jr_tables.json",
+     "tracked": true,
+     "sha256": "ed26a2496359a7c953011d3bb35b0a3f46e93314af9167cc00bb4e95dec0ceb5"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_jr_tables.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_native_domains.py",
+    "tests/test_phase4_frontier_static_census.py",
+    "tests/test_phase4_static_frontier.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_indirect_dispatch_map.md",
+    "ObsidianVault/Experiments/EXP_2026-08-03_phase4_e05_actor_model_binding.md",
+    "ObsidianVault/Experiments/EXP_2026-08-05_phase4_f01_objective_lifecycle.md",
+    "ObsidianVault/Experiments/EXP_2026-08-10_phase4_f01_original_oracle.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase3_architecture_maps.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 4 - Frontier Extractor.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_knowledge_audit.py": {
+   "tool_sha256": "2e7b27511c6e051fd5a9c83b5883892044c792230d3767074d91c7f9482199a5",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_knowledge_audit.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_knowledge_audit.json",
+     "tracked": true,
+     "sha256": "f1e63714088ce8dda850379a2e0215ce1bac9b08689df822b7ab405352bcdfd2"
+    }
+   ],
+   "source_path_literals": [
+    "ObsidianVault/Canon/Indexes/DuckStation_API_Index.md",
+    "analysis/phase0_2_knowledge_closure_report.json",
+    "analysis/phase3_duckstation_rpc_manifest.json",
+    "analysis/phase3_fn_ptr_fields.json",
+    "analysis/phase3_record_probe.json",
+    "analysis/phase3_render_descriptors.json",
+    "config/phase3_findings.yaml",
+    "tools/duckstation_rpc_method_manifest.md"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_knowledge.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration6_clean_provision_replay.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration9_rpc_manifest_freshness.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_native_domains.py": {
+   "tool_sha256": "aec157d46a55311d51cdb53b05a19bc3a46dd57da9f062f795724820f239000d",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_native_domains.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_native_domains.json",
+     "tracked": true,
+     "sha256": "5698e091bfb8993505f13f3180b6323d68e9fa70e45d947783480adf0fbd4045"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/phase3_jr_tables.json",
+    "analysis/phase3_xrefs.json",
+    "config/phase3_campaign_state_scope.yaml",
+    "config/record_types.yaml",
+    "config/semantic_state.yaml"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_native_domains.py"
+   ],
+   "notes": [
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_overlay_map.py": {
+   "tool_sha256": "1cb4cc7e4710bb6313801c0355019e06254003c36319a5bb783fcd751d1cac4d",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_overlay_map.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_overlay_map.json",
+     "tracked": true,
+     "sha256": "455b9537af4349ae9e2bb7f5b9c4540da0fcc4f064b1b2db00be7d373ad9a9e8"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/functions.json",
+    "analysis/phase3_scene_asset_graph.json",
+    "config/overlays.yml",
+    "mod/hook_caves.yaml",
+    "tools/build_baselines.json"
+   ],
+   "artifact_fixtures": {
+    "config/overlays.yml": {
+     "sha256": "881c9ebea5805edd10603aef718a83460a4a701d5a3dd9a8fbeff24bdde83c09",
+     "declared_in": "analysis/phase3_overlay_map.json",
+     "field": "fixture_sha256"
+    },
+    "tools/build_baselines.json": {
+     "sha256": "d3b6a5a2ddf8ef7060839a801928461b20b1f109c383749014f07eee89cab00d",
+     "declared_in": "analysis/phase3_overlay_map.json",
+     "field": "fixture_sha256"
+    },
+    "analysis/functions.json": {
+     "sha256": "42f99dc0f1886412751d269f586bca3fc72bac5c9f29d7447fe08fbe4f46ef61",
+     "declared_in": "analysis/phase3_overlay_map.json",
+     "field": "fixture_sha256"
+    },
+    "analysis/phase3_scene_asset_graph.json": {
+     "sha256": "a714ea00c8db7af2855b8d85fd136d9dae9583ab5bf4bb3d2b48fd4b8f907b49",
+     "declared_in": "analysis/phase3_overlay_map.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_overlay_map.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_scene_asset_load_graph.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_event_vm.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_ownership_graph.py": {
+   "tool_sha256": "22d06677680cc3d681de9b46146f0ee460d6900b5f7a600a1109f07b1f99b95c",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_ownership_graph.py",
+     "classification": "static"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_ownership_graph.json",
+     "tracked": true,
+     "sha256": "be8aea008ade0417bbe7e99e87c788df94c6ed9e50c6079b42b05e2c9f37e483"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/functions.json",
+    "analysis/mechanics_baseline.yaml",
+    "analysis/phase3_xrefs.json",
+    "config/semantic_state.yaml"
+   ],
+   "artifact_fixtures": {},
+   "guards": [
+    "tests/test_phase3_ownership.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_phase3_semantic_architecture_frontier.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase3_architecture_maps.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_record_types.py": {
+   "tool_sha256": "8c8ad34e617bfa5ab2c6376a8927890cbeecd9b9fd9a7dba7c18b41a15c18b1b",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_record_types.py",
+     "classification": "static"
+    },
+    {
+     "command": "python3 tools/phase3_record_types.py --probe --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build/bin/duckstation-qt --binary-sha256 ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build/bin/duckstation-qt",
+       "sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_record_types.json",
+     "tracked": true,
+     "sha256": "0b87d996233a32bb3cca8f10462c659804480df22749047ec319e8890746b192"
+    },
+    {
+     "path": "analysis/phase3_record_probe.json",
+     "tracked": true,
+     "sha256": "a6aa608bcd20a9a75094f3052311b45098a3f9028d0f346e7976ce776d12142d"
+    }
+   ],
+   "source_path_literals": [
+    "config/record_types.yaml"
+   ],
+   "artifact_fixtures": {
+    "phase3_pristine_training_gameplay_i5.sav": {
+     "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level01.sav": {
+     "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level02.sav": {
+     "sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level03.sav": {
+     "sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level04.sav": {
+     "sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level05.sav": {
+     "sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_06.sav": {
+     "sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_07.sav": {
+     "sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_08.sav": {
+     "sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_09.sav": {
+     "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_10.sav": {
+     "sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_11.sav": {
+     "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_12.sav": {
+     "sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_13.sav": {
+     "sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_14.sav": {
+     "sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level_15.sav": {
+     "sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_01.movie.sav": {
+     "sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_02.movie.sav": {
+     "sha256": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_03.movie.sav": {
+     "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "training_all_stuff_collected_ending.sav": {
+     "sha256": "fb0690dcd07a18368ae4468726c7c3658cee9fc4dbdd4b6117f09cc9e94e0a02",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "level01_end_of_stage.sav": {
+     "sha256": "42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL02_ENDING.sav": {
+     "sha256": "f212d375a78fe44e94dfaf2c85b05579ba03a91e7201fac9d33014b5a7e60a48",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL04_ENDING.sav": {
+     "sha256": "bbd3464133939c9eb5fe2fe2325da93f41ea209a2f84d585f709b081949a17fe",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL05_ENDING.sav": {
+     "sha256": "91060017e12caf961385ff6f6d5b618623a8befcdd288eb20e09e47b3c854f24",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL07_ENDING.sav": {
+     "sha256": "124d1a39336729db0894cebbf07df8261946a939b10c4e8a80509062a9865ba3",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL12_ENDING.sav": {
+     "sha256": "bde7040871dce7994bfa2187f1167cd3c0f8f070f36a63c6b7bb26db5d407848",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL14_ENDING.sav": {
+     "sha256": "a46727ea32dd33e177c2210c77116e0189a57deef9173dfc8aa3e6b49215e25c",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_DIM.sav": {
+     "sha256": "7443263879ad964a387f7aa8d1c31ec6475b54aa569a247c0672b9294c662c7c",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_MANNY.sav": {
+     "sha256": "a82e59a88e4f662e67f59933ccd40d7ee064a2ce4ae2043aed67309a7061873b",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_ROSIE.sav": {
+     "sha256": "9df7695a9722cfe1a03b1c8e9d34a976ff9fb03af0f1cea455115d4d8597674f",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_TUCKROLL.sav": {
+     "sha256": "546e49486de3f6038e5fdffe60a50cd90e9c5a77ef323c7d08080c8d1749c37c",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_1.sav": {
+     "sha256": "817e167ed7aa5440362952ff8506ef4d0eea0aef76c407c61b1c3bc5f15b1f73",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_2.sav": {
+     "sha256": "e8596933232cb3571fba7d8a73878ed54555af2140da265524f88dc791ddfd1f",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_3.sav": {
+     "sha256": "05cfc08ef1b14e3b878e192bd8d7a3bd5c81f2f1bdc5dd1036559417ed551ad1",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_4.sav": {
+     "sha256": "74465745c5726134df5ef8200d5bcd2cce0ad9a7b38d438e5979c58c15ab072d",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_5.sav": {
+     "sha256": "7254a3f664d590bad270d14bb1d173a45ac9dac9111b5e496b93b4ee60a588cb",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_1.sav": {
+     "sha256": "c0830fd1bb639bf02cdf89809723ba08ffbe4b0ed2e4376c9c2566f03a50a742",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_2.sav": {
+     "sha256": "f66cff741730804db560c3ec7eece3ed33a7e857f104c0ff0e366380032d484f",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_3.sav": {
+     "sha256": "d1dc63455fa32f13b329113c10a0bab6100ac068282a083f8a2495b5f97336b1",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_4.sav": {
+     "sha256": "4ac201a7f4363c1526346e87618bee179b2fdb9d5ac386959ff425a9b0f04d30",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_5.sav": {
+     "sha256": "d9d7bf3c9b329a7e8fbef37e50283dc8fe19223d0159f9f31025c1e0d6d69f9d",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_DOT.sav": {
+     "sha256": "9b2c7c6f7941a837465798f4036e7d8df1b76a9e39f7d801614048b3a8b90e3e",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    },
+    "collecting_FLIK_LEVELTRAINING.movie.sav": {
+     "sha256": "8d49193ceaf5c0b2de6f97df1a7c54716322a6276c24b4508810f965eb634400",
+     "declared_in": "analysis/phase3_record_probe.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_knowledge_closure.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py",
+    "tests/test_phase3_records.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Experiments/EXP_2026-08-02_phase4_d02_actor20.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase1_kind_actor_census.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase3_architecture_maps.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration6_clean_provision_replay.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_safe_respawn_anchor.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_thud_natural_defeat.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 1 - Establish the Whole-Game Mechanics and Campaign Baseline.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_record_probe.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "collecting_FLIK_LEVELTRAINING.movie.sav",
+      "level01.sav",
+      "level02.sav",
+      "level03.sav",
+      "level04.sav",
+      "level05.sav",
+      "level_06.sav",
+      "level_07.sav",
+      "level_08.sav",
+      "level_09.sav",
+      "level_10.sav",
+      "level_11.sav",
+      "level_12.sav",
+      "level_13.sav",
+      "level_14.sav",
+      "level_15.sav",
+      "movies/Bonus_Level_01.movie.sav",
+      "movies/Bonus_Level_02.movie.sav",
+      "movies/Bonus_Level_03.movie.sav",
+      "training_all_stuff_collected_ending.sav",
+      "level01_end_of_stage.sav",
+      "LEVEL02_ENDING.sav",
+      "LEVEL04_ENDING.sav",
+      "LEVEL05_ENDING.sav",
+      "LEVEL07_ENDING.sav",
+      "LEVEL12_ENDING.sav",
+      "LEVEL14_ENDING.sav",
+      "LEVEL08_DIM.sav",
+      "LEVEL08_MANNY.sav",
+      "LEVEL08_ROSIE.sav",
+      "LEVEL08_TUCKROLL.sav",
+      "LEVEL10_1.sav",
+      "LEVEL10_2.sav",
+      "LEVEL10_3.sav",
+      "LEVEL10_4.sav",
+      "LEVEL10_5.sav",
+      "LEVEL11_1.sav",
+      "LEVEL11_2.sav",
+      "LEVEL11_3.sav",
+      "LEVEL11_4.sav",
+      "LEVEL11_5.sav",
+      "LEVEL11_DOT.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [
+      "collecting_FLIK_LEVELTRAINING.movie.sav: media_class='non_pristine', not strict pristine",
+      "collecting_FLIK_LEVELTRAINING.movie.sav: embedded media path is not a pinned pristine-media name: '/operator/build/ABL_ALLMODS.cue'",
+      "collecting_FLIK_LEVELTRAINING.movie.sav: inspection declaration is not strict pristine",
+      "collecting_FLIK_LEVELTRAINING.movie.sav: embedded media hash verification did not pass",
+      "anchor-selection accepted saves differ from loaded saves",
+      "collecting_FLIK_LEVELTRAINING.movie.sav: inspection declaration names the wrong manifest",
+      "collecting_FLIK_LEVELTRAINING.movie.sav: embedded media verification names the wrong pin source",
+      "collecting_FLIK_LEVELTRAINING.movie.sav: embedded media file hashes are incomplete or mismatched"
+     ],
+     "declared_environment_gaps": [
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_render_descriptors.py": {
+   "tool_sha256": "0f9533fde11de8e122edceceb016a163ff214cd281698621c54e22bbda8d5105",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_render_descriptors.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build/bin/duckstation-qt --binary-sha256 ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build/bin/duckstation-qt",
+       "sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_render_descriptors.json",
+     "tracked": true,
+     "sha256": "70be7202a7022b5a15e2fa4ef4507d83bf8496fb896488efc0831d074c010ec4"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "phase3_pristine_training_gameplay_i5.sav": {
+     "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level01.sav": {
+     "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level02.sav": {
+     "sha256": "9c4cd968151e8c2f630b89b58a9da90e9143de6bd5b14c859e2b783d12f7f152",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level03.sav": {
+     "sha256": "0bf3f26ba0a372ea0aea5f5e4bb513c07ba99b5c785b2da2e9e388f3f1d7e94e",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level04.sav": {
+     "sha256": "0add3b2a695e18a3c8d1d481c9e6a16c35b93bcbdbf289c8c034cbd68dfb469f",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level05.sav": {
+     "sha256": "2c541885f7dc2eaab5d8facabdba8881defaa1f8c5d8e6fb6b86a4f0ff94bbf9",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_06.sav": {
+     "sha256": "587c90df0cd5dfaab45b942bda8f432b669b2b610a6debf3132b6cebdcd23759",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_07.sav": {
+     "sha256": "4065ca0e0ff6f1b661943319ab8257913242116b3c41cc0ec650f1a5eff7bf54",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_08.sav": {
+     "sha256": "94a5fbaf5f2e2462e2c6a4c45d1ae13581d0d0bae289dd0e50a9fab2c50fa2a7",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_09.sav": {
+     "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_10.sav": {
+     "sha256": "3096b57c77b5fc815fc402317c2262db85ae6348aed79c0016cff5ed5edd643b",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_11.sav": {
+     "sha256": "bb7cd0eeafd39cdea4e42f94597c7ca387dfbdc85cf853c16ae1a2f9499c541c",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_12.sav": {
+     "sha256": "7cbfbe762adb225aa11f5eec3a26c018ae469a945f59769cabc335c875d7e0d3",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_13.sav": {
+     "sha256": "3347e64341481b1284bdaebffa005be0f737b227a6320d65ef2a8549126bd916",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_14.sav": {
+     "sha256": "6e56d8c4780851f85059b477186b5b1346e23ed7e8eac79a134192e03fef5f50",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level_15.sav": {
+     "sha256": "f74b8bf7441bb5d2cd7357c7874eb3539cc5ccbb9e686f42b928fc22b698fb1f",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_01.movie.sav": {
+     "sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_02.movie.sav": {
+     "sha256": "ddc5d7c0d4335d39de4ee5d13ad801ea74e742c7b2ac2d16f8708b6f9d0eabd5",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "movies/Bonus_Level_03.movie.sav": {
+     "sha256": "0dd145be44878df0424eee7942c9f645d4b0961e1bfe0a831e6acf0538d6b522",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "training_all_stuff_collected_ending.sav": {
+     "sha256": "fb0690dcd07a18368ae4468726c7c3658cee9fc4dbdd4b6117f09cc9e94e0a02",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "level01_end_of_stage.sav": {
+     "sha256": "42047329754c56f6daaf413e192ba8e88ca40889714bbc9f57216f3462ed739f",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL02_ENDING.sav": {
+     "sha256": "f212d375a78fe44e94dfaf2c85b05579ba03a91e7201fac9d33014b5a7e60a48",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL04_ENDING.sav": {
+     "sha256": "bbd3464133939c9eb5fe2fe2325da93f41ea209a2f84d585f709b081949a17fe",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL05_ENDING.sav": {
+     "sha256": "91060017e12caf961385ff6f6d5b618623a8befcdd288eb20e09e47b3c854f24",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL07_ENDING.sav": {
+     "sha256": "124d1a39336729db0894cebbf07df8261946a939b10c4e8a80509062a9865ba3",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL12_ENDING.sav": {
+     "sha256": "bde7040871dce7994bfa2187f1167cd3c0f8f070f36a63c6b7bb26db5d407848",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL14_ENDING.sav": {
+     "sha256": "a46727ea32dd33e177c2210c77116e0189a57deef9173dfc8aa3e6b49215e25c",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_DIM.sav": {
+     "sha256": "7443263879ad964a387f7aa8d1c31ec6475b54aa569a247c0672b9294c662c7c",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_MANNY.sav": {
+     "sha256": "a82e59a88e4f662e67f59933ccd40d7ee064a2ce4ae2043aed67309a7061873b",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_ROSIE.sav": {
+     "sha256": "9df7695a9722cfe1a03b1c8e9d34a976ff9fb03af0f1cea455115d4d8597674f",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL08_TUCKROLL.sav": {
+     "sha256": "546e49486de3f6038e5fdffe60a50cd90e9c5a77ef323c7d08080c8d1749c37c",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_1.sav": {
+     "sha256": "817e167ed7aa5440362952ff8506ef4d0eea0aef76c407c61b1c3bc5f15b1f73",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_2.sav": {
+     "sha256": "e8596933232cb3571fba7d8a73878ed54555af2140da265524f88dc791ddfd1f",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_3.sav": {
+     "sha256": "05cfc08ef1b14e3b878e192bd8d7a3bd5c81f2f1bdc5dd1036559417ed551ad1",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_4.sav": {
+     "sha256": "74465745c5726134df5ef8200d5bcd2cce0ad9a7b38d438e5979c58c15ab072d",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL10_5.sav": {
+     "sha256": "7254a3f664d590bad270d14bb1d173a45ac9dac9111b5e496b93b4ee60a588cb",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_1.sav": {
+     "sha256": "c0830fd1bb639bf02cdf89809723ba08ffbe4b0ed2e4376c9c2566f03a50a742",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_2.sav": {
+     "sha256": "f66cff741730804db560c3ec7eece3ed33a7e857f104c0ff0e366380032d484f",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_3.sav": {
+     "sha256": "d1dc63455fa32f13b329113c10a0bab6100ac068282a083f8a2495b5f97336b1",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_4.sav": {
+     "sha256": "4ac201a7f4363c1526346e87618bee179b2fdb9d5ac386959ff425a9b0f04d30",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_5.sav": {
+     "sha256": "d9d7bf3c9b329a7e8fbef37e50283dc8fe19223d0159f9f31025c1e0d6d69f9d",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    },
+    "LEVEL11_DOT.sav": {
+     "sha256": "9b2c7c6f7941a837465798f4036e7d8df1b76a9e39f7d801614048b3a8b90e3e",
+     "declared_in": "analysis/phase3_render_descriptors.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_knowledge_closure.py",
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_contact_objects_and_drops.md",
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration8_render_replay_durability.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_render_descriptors.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "phase3_pristine_training_gameplay_i5.sav",
+      "level01.sav",
+      "level02.sav",
+      "level03.sav",
+      "level04.sav",
+      "level05.sav",
+      "level_06.sav",
+      "level_07.sav",
+      "level_08.sav",
+      "level_09.sav",
+      "level_10.sav",
+      "level_11.sav",
+      "level_12.sav",
+      "level_13.sav",
+      "level_14.sav",
+      "level_15.sav",
+      "movies/Bonus_Level_01.movie.sav",
+      "movies/Bonus_Level_02.movie.sav",
+      "movies/Bonus_Level_03.movie.sav",
+      "training_all_stuff_collected_ending.sav",
+      "level01_end_of_stage.sav",
+      "LEVEL02_ENDING.sav",
+      "LEVEL04_ENDING.sav",
+      "LEVEL05_ENDING.sav",
+      "LEVEL07_ENDING.sav",
+      "LEVEL12_ENDING.sav",
+      "LEVEL14_ENDING.sav",
+      "LEVEL08_DIM.sav",
+      "LEVEL08_MANNY.sav",
+      "LEVEL08_ROSIE.sav",
+      "LEVEL08_TUCKROLL.sav",
+      "LEVEL10_1.sav",
+      "LEVEL10_2.sav",
+      "LEVEL10_3.sav",
+      "LEVEL10_4.sav",
+      "LEVEL10_5.sav",
+      "LEVEL11_1.sav",
+      "LEVEL11_2.sav",
+      "LEVEL11_3.sav",
+      "LEVEL11_4.sav",
+      "LEVEL11_5.sav",
+      "LEVEL11_DOT.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_scene_asset_graph.py": {
+   "tool_sha256": "09bae92e22dd93e47ea963ee43261527790f204eb9568e0a5b97fc6decd77ffc",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_scene_asset_graph.py",
+     "classification": "local_media"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_scene_asset_graph.json",
+     "tracked": true,
+     "sha256": "a714ea00c8db7af2855b8d85fd136d9dae9583ab5bf4bb3d2b48fd4b8f907b49"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/phase2_completion_oracle.json",
+    "analysis/phase3_jr_tables.json",
+    "analysis/phase3_transition_reset.json",
+    "tools/build_baselines.json"
+   ],
+   "artifact_fixtures": {
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_scene_asset_graph.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_scene_graph.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_scene_asset_load_graph.md",
+    "ObsidianVault/Experiments/EXP_2026-08-01_scene_to_level_data_law.md",
+    "ObsidianVault/Experiments/EXP_2026-08-05_phase4_f08_scene_asset_binding.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-12_phase3_architecture_maps.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  },
+  "tools/phase3_semantic_lifetime.py": {
+   "tool_sha256": "b5e8db75f289e0b8e9e70344577d73f046b0774d53bc282e3e7e647aa78225a1",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_semantic_lifetime.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused> --stage stage01_anthill",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build-release/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build-release/bin/duckstation-qt --binary-sha256 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build-release/bin/duckstation-qt",
+       "sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_semantic_lifetime.json",
+     "tracked": true,
+     "sha256": "f1b7fade61e898e1acc32c244287913ddc5e6c9684d8f6f421fb3a3f3a6b8121"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/phase2_completion_oracle.json",
+    "analysis/phase3_transition_reset.json",
+    "config/semantic_state.yaml"
+   ],
+   "artifact_fixtures": {
+    "movies/go_to_end/LEVEL01.movie.json": {
+     "sha256": "bfedc0d0f4828998fc598257b35ad090180ad6cb01ea317bc40229f977dc40fb",
+     "declared_in": "analysis/phase3_semantic_lifetime.json",
+     "field": "fixture_sha256"
+    },
+    "build/SCUS_942.88.patched": {
+     "sha256": "991fc38c131fe1139df30e9719a222a06a140054f1f8ee46b6321bbd9c0e6808",
+     "declared_in": "analysis/phase3_semantic_lifetime.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase4_camera_controls.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-15_phase4_jump_controller.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_semantic_lifetime.json",
+     "run_provenance_present": true,
+     "save_anchors": [],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained binary path/SHA-256 differs from every declared live mode",
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity",
+      "retained RPC binary identity differs from every declared live mode"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_sfx_interface.py": {
+   "tool_sha256": "aa0ae1a4d5090a765eec0d29b5b6fcb5ece498e9dba14140c50207950239363f",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_sfx_interface.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused> --lo -24 --hi 48",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build-release/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build-release/bin/duckstation-qt --binary-sha256 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build-release/bin/duckstation-qt",
+       "sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_sfx_interface.json",
+     "tracked": true,
+     "sha256": "5834c7ade88f52eae967283523a66d1e1a8dede08b64faa13431b09b4674161f"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "level01.sav": {
+     "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+     "declared_in": "analysis/phase3_sfx_interface.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_sfx_interface.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "level01.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained binary path/SHA-256 differs from every declared live mode",
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity",
+      "retained RPC binary identity differs from every declared live mode"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_spin_functional.py": {
+   "tool_sha256": "88bfe1c5864576b380582115f40141b5dae319d4bcee52a73128e5c66045a383",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_spin_functional.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build-release/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build-release/bin/duckstation-qt --binary-sha256 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build-release/bin/duckstation-qt",
+       "sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_spin_functional.json",
+     "tracked": true,
+     "sha256": "4cd5dcc7b7361e27afb63a97cec3b20aff54ccbf015e46a916b26ef8d5c256ae"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/phase2_spin_disproof.json"
+   ],
+   "artifact_fixtures": {
+    "level01.sav": {
+     "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+     "declared_in": "analysis/phase3_spin_functional.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_gate.py",
+    "tests/test_phase4_spin_heading.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_a07_spin_external_lead.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_a07_spin_move_disproof.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_spin_functional.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "level01.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained binary path/SHA-256 differs from every declared live mode",
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity",
+      "retained RPC binary identity differs from every declared live mode"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_thud_trace.py": {
+   "tool_sha256": "c3f89207a91e00a07956d5839a8c19d9c85cd2b7f3710bf1ecb09d155f6d3d40",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_thud_trace.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build-release/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build-release/bin/duckstation-qt --binary-sha256 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build-release/bin/duckstation-qt",
+       "sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_thud.json",
+     "tracked": true,
+     "sha256": "558d1881f5598863e225728be530c5908e44afb08dbd2940f5d866944e082c61"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "level_09.sav": {
+     "sha256": "5e915f22186273047ffcf06d717aeebc2ae02dab3b0025d79f4f31afd80ca487",
+     "declared_in": "analysis/phase3_thud.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_thud.py",
+    "tests/test_phase4_d18.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_thud_bug_bar_boss.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_thud_bug_bar_boss_binding.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_thud.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "level_09.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained binary path/SHA-256 differs from every declared live mode",
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity",
+      "retained RPC binary identity differs from every declared live mode"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_training_anchor_fixture.py": {
+   "tool_sha256": "b16ac6e6a2dc83b207be5443422b2960516b270256cb0c5f916c316740102f1c",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_training_anchor_fixture.py --output phase3_pristine_training_gameplay_i5.sav --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build/bin/duckstation-qt --binary-sha256 ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build/bin/duckstation-qt",
+       "sha256": "ebcfaf3c1dfd69df79bc1859c965f2b65b2e3c91d6e3f2e8c52dfe364bd7cae9"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_training_anchor_fixture.json",
+     "tracked": true,
+     "sha256": "4158d6dd17f3a303be924942a86c8460c1d3fc349d6bbfdb595de363d521210f"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/phase0_2_external_fixture_set.json"
+   ],
+   "artifact_fixtures": {
+    "phase3_pristine_training_gameplay_i5.sav": {
+     "sha256": "d41c000504313cccfcf2920dd928ab864b27bf71e699b05a6c0b7d4e030a8795",
+     "declared_in": "analysis/phase3_training_anchor_fixture.json",
+     "field": "fixture_sha256"
+    },
+    "collecting_FLIK_LEVELTRAINING.movie.json": {
+     "sha256": "ad2bd05c18521ad885fe82c3bf448270390bbca2b426c8ce7f0565a14ac16df9",
+     "declared_in": "analysis/phase3_training_anchor_fixture.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py"
+   ],
+   "notes": [
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration5_strict_pristine_training_anchor.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_training_anchor_fixture.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "phase3_pristine_training_gameplay_i5.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_transition_reset.py": {
+   "tool_sha256": "b3a2623e24f25d992235b31b3b632cba9b0dbb3473ce1ee74f91dea6f6eecd66",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/live_toolchain_snapshot.py",
+     "sha256": "6357b79cf33180d1f2a3449c438aa66e5d052444ef9e931ddcfee00406763a99"
+    },
+    {
+     "path": "tools/launch_repro_playback.sh",
+     "sha256": "39bbd413af3e00310e9f18fd42631c4a0804a20c07b682534cdb957bc63480d6"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_transition_reset.py --all --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused> --toolchain-snapshot </tmp/config>/toolchain/snapshot_manifest.json --card-seed ~/.cache/abl/abl_card_seed.mcd",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/live_toolchain_snapshot.py --snapshot-dir </tmp/config>/toolchain --binary-rel build-release/bin/duckstation-qt\ntools/launch_repro_playback.sh --config-dir </tmp/config> --port <port> --token <token> --binary <owned-sibling-path-from-snapshot-helper> --fork-launcher </tmp/config>/toolchain/scripts/debugger-client/launch_debugger_instance.sh --client </tmp/config>/toolchain/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\" --card-seed ~/.cache/abl/abl_card_seed.mcd --bootstrap-fastboot",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary <owned-sibling-path-from-snapshot-helper> --binary-sha256 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4 --profile movie-replay-v1",
+      "settings_profile": "movie-replay-v1",
+      "immutable_snapshot_required": true,
+      "binary": {
+       "path": "~/duckstation/build-release/bin/duckstation-qt",
+       "sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_transition_reset.json",
+     "tracked": true,
+     "sha256": "414ba73b8620f5c2a5df47233ad52b0f766dcb0543b54cffe004f3d128ad2d63"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "movies/go_to_end/LEVEL00-Training.movie.json": {
+     "sha256": "b4bad8a7650b9cc35657718f5a0857147b20fe75a0707c0b2e7413ea3af3bd7e",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL01.movie.json": {
+     "sha256": "bfedc0d0f4828998fc598257b35ad090180ad6cb01ea317bc40229f977dc40fb",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL02.movie.json": {
+     "sha256": "09daafa2f94a2252e805dea1096e82458bca6864863092b2269ffe57b6dcc502",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL03.movie.json": {
+     "sha256": "5c4dc18ee31da4cd2b76546e0b41886969290b871b31e56e435591cf1947fb0c",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL04.movie.json": {
+     "sha256": "b0bd400e4508d6792d653b6c33c5de7b5eaf8d63a02c18ee9bf1c37c903e1383",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL05.movie.json": {
+     "sha256": "fb6f2ff5844cc31b793d0a405c90c9dc26d22ed311edab16d5b601297f011da5",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL06.movie.json": {
+     "sha256": "1705866beea326ab758cfb073a4b86e4ab9609fb5aa12100ea993d857ea03ea6",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL07.movie.json": {
+     "sha256": "69e4563302bb00db8dcb4ef3eba64a240424befcf9e2a1cec05a5c47c62d111a",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL08.movie.json": {
+     "sha256": "20a41c608a09cdeaf4add4dc6f6ed038c061beb39deab95a0b0dd3fc044c3ef8",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL09.movie.json": {
+     "sha256": "9f64ce552df06d681da9c7471c11882b2f2708331b6955b46938b864783bed95",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL10.movie.json": {
+     "sha256": "26dc3c521288a6d99249c2adef6fdaceaedab703a02f553b83d91e10a3252f02",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL11.movie.json": {
+     "sha256": "1d735afdf45d00cf943fc22c64a229f3003d71f2d3a06cabde9d464a18896ebf",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL12.movie.json": {
+     "sha256": "e0af35c023240465f2106567aa41602082cfceef88f87b750002f73ff36904ad",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL13.movie.json": {
+     "sha256": "37860b9139cc14e298eb1b9b0c5a4baa392109cb6edc5efb6c33b87e16c6ed47",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL14.movie.json": {
+     "sha256": "256b0252f03c7e2e868c77ab7eba46a3e140de8b796c11892820975d86448eb0",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "movies/go_to_end/LEVEL15.movie.json": {
+     "sha256": "ce573bb375b6c590529dc048d838bbc2f85e6c227a724fa11b711506dffb1256",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    },
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_transition_reset.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase3_evidence_inventory.py",
+    "tests/test_phase3_gate.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration10_hook_toolchain_closure.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_transition_reset.json",
+     "run_provenance_present": true,
+     "save_anchors": [],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained binary path/SHA-256 differs from every declared live mode",
+      "retained immutable snapshot differs from current RPC source identity"
+     ],
+     "source_dependency_gaps": [
+      "retained dependency SHA-256 differs for tools/launch_repro_playback.sh"
+     ],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_unknown_fields.py": {
+   "tool_sha256": "e8e61a0ebec735e52884ae1dc504b7b174defcfa3752310194e8c4e1e50b6c7c",
+   "shared_dependencies": [
+    {
+     "path": "tools/live_session_provenance.py",
+     "sha256": "beba411532b4a593c5d09ff85849e942ae252bdc5624a7c0559f743e3eb47678"
+    },
+    {
+     "path": "tools/launch_phase3_debugger.py",
+     "sha256": "0fc9fb2e2680dc4f023a4a80d49f3a16d230b983a189cb3ff6a4684cedf48821"
+    }
+   ],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_unknown_fields.py --port <port> --token <token> --config-dir </tmp/config> --instance-state <recreated|reused>",
+     "classification": "live",
+     "reproduction": {
+      "launcher_command": "python3 tools/launch_phase3_debugger.py start --config-dir </tmp/config> --port <port> --token <token> --binary ~/duckstation/build-release/bin/duckstation-qt --fork-launcher ~/duckstation/scripts/debugger-client/launch_debugger_instance.sh --client ~/duckstation/scripts/debugger-client/duckstation_debug_client.py --disc \"<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue\"",
+      "settings_command": "python3 tools/verify_live_session_environment.py --config-dir </tmp/config> --port <port> --binary ~/duckstation/build-release/bin/duckstation-qt --binary-sha256 2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4 --profile isolated-defaults-v1",
+      "settings_profile": "isolated-defaults-v1",
+      "immutable_snapshot_required": false,
+      "binary": {
+       "path": "~/duckstation/build-release/bin/duckstation-qt",
+       "sha256": "2ddaad7b1fdbca78110e3a871fd15496923e03be470d2e08e356a006b460dcf4"
+      },
+      "media": {
+       "pin_source": "tools/build_baselines.json",
+       "cue": {
+        "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).cue",
+        "sha1": "25adb139e50ba28c2d9c1ecab4528e9cf004b1d5"
+       },
+       "tracks": [
+        {
+         "path": "<operator-root>/Disney-Pixar A Bug's Life (v1.0).bin",
+         "sha1": "0bc1a29748d4bd608d076495d085e825574880d1"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_unknown_fields.json",
+     "tracked": true,
+     "sha256": "5af9d01db3269f4f8a427b3c639260a9ea3df4d040517abe0624e264c0bc7c5e"
+    }
+   ],
+   "source_path_literals": [],
+   "artifact_fixtures": {
+    "level01.sav": {
+     "sha256": "5f29b29d2254be1928a01132c2cf6424d426c7ea1308ac709ea4fd737dbbe8a2",
+     "declared_in": "analysis/phase3_unknown_fields.json",
+     "field": "fixture_sha256"
+    },
+    "red_berry_thrown.sav": {
+     "sha256": "febe3e7f52f3dc43b74d8f3b6140b5c408cfddd81ce1a46479a16f088c3c0d81",
+     "declared_in": "analysis/phase3_unknown_fields.json",
+     "field": "fixture_sha256"
+    },
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_unknown_fields.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Playbooks/Game Solving Roadmap/Phase 3 - Reconstruct Semantic Architecture and State Ownership.md"
+   ],
+   "live_artifact_provenance": [
+    {
+     "artifact": "analysis/phase3_unknown_fields.json",
+     "run_provenance_present": true,
+     "save_anchors": [
+      "level01.sav",
+      "red_berry_thrown.sav"
+     ],
+     "state_inspections_complete": true,
+     "pristine_save_origin_gaps": [],
+     "declared_environment_gaps": [
+      "retained binary path/SHA-256 differs from every declared live mode",
+      "retained run differs from current RPC manifest semantic identity",
+      "retained run differs from current RPC source identity",
+      "retained RPC binary identity differs from every declared live mode"
+     ],
+     "source_dependency_gaps": [],
+     "reproduction_guard_gaps": []
+    }
+   ],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": true
+  },
+  "tools/phase3_xrefs.py": {
+   "tool_sha256": "31058206bc1e90411b98fb8dd783bfb34a165455e15b17d1e4800f0b7358bab2",
+   "shared_dependencies": [],
+   "modes": [
+    {
+     "command": "python3 tools/phase3_xrefs.py",
+     "classification": "local_media"
+    }
+   ],
+   "outputs": [
+    {
+     "path": "analysis/phase3_xrefs.json",
+     "tracked": true,
+     "sha256": "66a5f2058c0543987bc50cf2dfbecd4e4c69a8cd225c25c9b151f027ea3f4535"
+    }
+   ],
+   "source_path_literals": [
+    "analysis/phase3_dispatch_map.json",
+    "analysis/phase3_jr_tables.json",
+    "config/overlays.yml",
+    "config/semantic_state.yaml"
+   ],
+   "artifact_fixtures": {
+    "REBUILD/files/SCUS_942.88": {
+     "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+     "declared_in": "analysis/phase3_xrefs.json",
+     "field": "fixture_sha256"
+    }
+   },
+   "guards": [
+    "tests/test_phase4_checkpoint_respawn.py"
+   ],
+   "notes": [
+    "ObsidianVault/Canon/Systems/SYS_record_layouts_and_lifetimes.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration2_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-13_phase3_iteration3_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_iteration4_durability_closure.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-14_phase3_ratchet_iteration6_training_anchor_lifecycle.md",
+    "ObsidianVault/Experiments/Runtime Tests/EXP_2026-07-16_phase4_safe_respawn_anchor.md"
+   ],
+   "live_artifact_provenance": [],
+   "uses_hardcoded_default_token": false,
+   "accepts_config_dir": false
+  }
+ },
+ "summary": {
+  "generators_discovered": 29,
+  "generators_declared": 29,
+  "artifacts_discovered": 30,
+  "artifacts_declared": 30,
+  "missing_generator_declarations": [],
+  "stale_generator_declarations": [],
+  "orphan_artifacts": [],
+  "missing_outputs": [],
+  "live_artifacts_without_run_provenance": [],
+  "live_save_artifacts_without_preload_state_inspection": [],
+  "live_save_artifacts_with_non_pristine_origin": [
+   "analysis/phase3_record_probe.json"
+  ],
+  "live_tools_with_hardcoded_default_token": [],
+  "live_tools_without_config_dir_argument": [],
+  "live_mode_environment_declaration_gaps": [],
+  "live_artifact_environment_mismatches": [
+   "analysis/phase3_camera_record.json: retained RPC binary identity differs from every declared live mode",
+   "analysis/phase3_camera_record.json: retained binary path/SHA-256 differs from every declared live mode",
+   "analysis/phase3_camera_record.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_camera_record.json: retained run differs from current RPC source identity",
+   "analysis/phase3_fn_ptr_fields.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_fn_ptr_fields.json: retained run differs from current RPC source identity",
+   "analysis/phase3_jalr_callbacks.json: retained RPC binary identity differs from every declared live mode",
+   "analysis/phase3_jalr_callbacks.json: retained binary path/SHA-256 differs from every declared live mode",
+   "analysis/phase3_jalr_callbacks.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_jalr_callbacks.json: retained run differs from current RPC source identity",
+   "analysis/phase3_record_probe.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_record_probe.json: retained run differs from current RPC source identity",
+   "analysis/phase3_render_descriptors.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_render_descriptors.json: retained run differs from current RPC source identity",
+   "analysis/phase3_semantic_lifetime.json: retained RPC binary identity differs from every declared live mode",
+   "analysis/phase3_semantic_lifetime.json: retained binary path/SHA-256 differs from every declared live mode",
+   "analysis/phase3_semantic_lifetime.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_semantic_lifetime.json: retained run differs from current RPC source identity",
+   "analysis/phase3_sfx_interface.json: retained RPC binary identity differs from every declared live mode",
+   "analysis/phase3_sfx_interface.json: retained binary path/SHA-256 differs from every declared live mode",
+   "analysis/phase3_sfx_interface.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_sfx_interface.json: retained run differs from current RPC source identity",
+   "analysis/phase3_spin_functional.json: retained RPC binary identity differs from every declared live mode",
+   "analysis/phase3_spin_functional.json: retained binary path/SHA-256 differs from every declared live mode",
+   "analysis/phase3_spin_functional.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_spin_functional.json: retained run differs from current RPC source identity",
+   "analysis/phase3_thud.json: retained RPC binary identity differs from every declared live mode",
+   "analysis/phase3_thud.json: retained binary path/SHA-256 differs from every declared live mode",
+   "analysis/phase3_thud.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_thud.json: retained run differs from current RPC source identity",
+   "analysis/phase3_training_anchor_fixture.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_training_anchor_fixture.json: retained run differs from current RPC source identity",
+   "analysis/phase3_transition_reset.json: retained binary path/SHA-256 differs from every declared live mode",
+   "analysis/phase3_transition_reset.json: retained immutable snapshot differs from current RPC source identity",
+   "analysis/phase3_unknown_fields.json: retained RPC binary identity differs from every declared live mode",
+   "analysis/phase3_unknown_fields.json: retained binary path/SHA-256 differs from every declared live mode",
+   "analysis/phase3_unknown_fields.json: retained run differs from current RPC manifest semantic identity",
+   "analysis/phase3_unknown_fields.json: retained run differs from current RPC source identity"
+  ],
+  "live_artifact_source_dependency_mismatches": [
+   "analysis/phase3_transition_reset.json: retained dependency SHA-256 differs for tools/launch_repro_playback.sh"
+  ],
+  "live_artifact_reproduction_guard_failures": [],
+  "current_live_toolchain_gaps": [],
+  "tracked_input_mutations": [
+   ".gitignore",
+   "AGENTS.md",
+   "ObsidianVault/Canon/Systems/SYS_collision_and_floor_planes.md",
+   "analysis/phase0_2_external_fixture_set.json",
+   "analysis/phase0_2_knowledge_closure_report.json",
+   "analysis/phase2_negative_coverage_map.json",
+   "analysis/phase3_hook_contracts.json",
+   "analysis/phase3_knowledge_audit.json",
+   "analysis/phase3_overlay_map.json",
+   "analysis/phase3_ownership_graph.json",
+   "analysis/phase3_record_probe.json",
+   "analysis/phase3_render_descriptors.json",
+   "analysis/phase4_b06_promotion_residuals.json",
+   "analysis/phase4_b09_frontier.json",
+   "analysis/phase4_b09_launch_plant_reachability.json",
+   "analysis/phase4_e16_dod_scorecard.json",
+   "analysis/phase4_f00_state_owner_probe.json",
+   "analysis/phase4_f05_f07_written_bar_assessment.json",
+   "analysis/phase4_f06_f14_written_bar_assessment.json",
+   "analysis/phase4_f08_written_bar_assessment.json",
+   "analysis/phase4_f09_written_bar_assessment.json",
+   "analysis/phase4_f11_written_bar_assessment.json",
+   "analysis/phase4_f12_f13_f15_overlay_residency_pin.json",
+   "analysis/phase4_f12_f13_f15_written_bar_assessment.json",
+   "analysis/phase4_f16_f18_written_bar_assessment.json",
+   "analysis/phase4_loop_limit_origins.json",
+   "config/semantic_state.yaml",
+   "engineering-specs/phase4-closure.md",
+   "mod/berry_projectile.h",
+   "mod/build.py",
+   "mod/caves/tier3_collision.c",
+   "mod/caves/tier3_otrender.c",
+   "mod/module_matrix.yaml",
+   "src_re/berry_homing.c",
+   "src_re/brown_seed_plants.c",
+   "src_re/collision_source_converter_80030f60.c",
+   "src_re/contact_walker_800586b0.c",
+   "src_re/fmv_movie_dispatch_800b6250.c",
+   "src_re/fmv_player_streaming.c",
+   "src_re/grain_harvester_80051db4.c",
+   "src_re/green_seed_plants.c",
+   "src_re/pickup_handlers_80054288_80054554.c",
+   "src_re/re_types.h",
+   "src_re/source3f_dispatch_80053814.c",
+   "tests/test_g3_ready_replacement.py",
+   "tests/test_native_terrain_semantic_compiler.py",
+   "tests/test_ps1_scenario.py",
+   "tests/test_ps1_scenario_identity.py",
+   "tests/test_semantic_state.py",
+   "tools/abl_blender/export_g3_native_profile.py",
+   "tools/abl_blender/export_native_terrain_semantics.py",
+   "tools/abl_blender/g3_coord_contract.py",
+   "tools/abl_blender/g3_native_ready_replacement_scene.py",
+   "tools/abl_blender/make_native_terrain_minimal_scene.py",
+   "tools/build_g3_native.py",
+   "tools/emit_collision_reheight.py",
+   "tools/emit_floor_planes.py",
+   "tools/floor_source_map.py",
+   "tools/g3_bigland_stager.py",
+   "tools/g3_native_gameplay_objects.py",
+   "tools/g3_native_replacement_build.py",
+   "tools/heightfield_collision.py",
+   "tools/native_collision_mesh_codec.py",
+   "tools/native_dat_inject.py",
+   "tools/native_terrain_export.py",
+   "tools/native_terrain_semantic_compiler.py",
+   "tools/phase3_ownership_graph.py",
+   "tools/ps1_scenario.py",
+   "tools/regress_g3_native_authoring.py",
+   "tools/run_ps1_scenario.py",
+   "tools/scenarios/duckstation/g3_ready_replacement_objects.yaml",
+   "tools/semantic_state.py",
+   "tools/tier3_lanes.py",
+   "tools/trace_g3_native_collision_selector.py",
+   "tools/validate_g3_native_preflight.py"
+  ]
+ },
+ "closure_ready": false
+}

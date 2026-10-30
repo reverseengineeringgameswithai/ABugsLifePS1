@@ -1,0 +1,61 @@
+schema_version: 1
+phase4_row: A13_cycle_plant_output
+status: substantiated_partial
+disposition: high_value_row_specific_work_exhausted
+
+target:
+  executable: REBUILD/files/SCUS_942.88
+  sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+
+state:
+  base: 0x800A6598
+  count: 5
+  stride: 1
+  width: u8
+  lanes: [brown, blue, green, purple, yellow]
+  packed_fields:
+    selected_output: {mask: 0xF0, shift: 4, natural_domain: [1, 4]}
+    maximum_available_output: {mask: 0x0F, shift: 0, natural_domain: [1, 4]}
+  natural_invariant: 1 <= selected_output <= maximum_available_output <= 4
+
+input_contract:
+  owner: 0x80047284
+  block: 0x80047A88-0x80047B9C
+  current_input: 0x80082488
+  previous_input: 0x80082380
+  x_mask: 0x4000
+  required: [carried_seed, rising_edge, scene_not_0x11, maximum_available_output_at_least_2]
+  accepted_effects:
+    - selected_output advances and wraps to 1 above the ceiling
+    - 0x8003E760 updates the lane token descriptor
+    - 0x8005044C receives event -16
+    - 0x800824A4 is armed to 120
+  denied_effects: none
+
+lifecycle:
+  timeout:
+    timer: 0x800824A4
+    value: 120
+    result: all selected nibbles normalize to their low-nibble ceilings
+  respawn: selector bytes preserved
+  level_load:
+    clear: 0x80046B68 memset player block 0x800A6500 for 168 bytes
+    post_clear_default: 0x80046BEC writes brown selector 0x11
+    resulting_selectors: [0x11, 0x00, 0x00, 0x00, 0x00]
+  memory_card_persistence: none found; selectors are per-level runtime state
+
+consumer:
+  owner: 0x8005BDBC
+  table: 0x8007A448
+  rows: 20
+  index: color * 4 + selected_output - 1
+  bounds_check: false
+
+durable_guard: tools/phase4_a13_static.c
+analysis: analysis/phase4_a13_static.json
+canon: ObsidianVault/Canon/Systems/Seed_plant_output_binding.md
+experiment: ObsidianVault/Experiments/EXP_2026-08-03_phase4_a13_bounded_exhaustion.md
+
+strict_runtime_oracle_needed:
+  - movies/Phase4/Interpreter/A13_wrap_timeout.movie.json
+  - movies/Phase4/Interpreter/A13_denied_one_tier.movie.json

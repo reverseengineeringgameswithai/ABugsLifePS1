@@ -1,0 +1,142 @@
+schema: abl-phase4-frontier-seed/1
+target:
+  id: F01_request_word_frontier
+  row_id: F01_anthill
+  scope_id: scene_transition_request_word
+  scope_statement: >
+    Every reader and writer of the scene-transition request word 0x800823A0 and its
+    countdown timer 0x80082470, reachable from the collision region-code dispatch host
+    and the scene-flow consumer, across the resident executable and all shipped overlays.
+roots:
+  # image-qualified: 16 entry addresses in the index are shared by more than one
+  # overlay, so an address alone is not an identity
+  - {image: SCUS_942_88, entry: "0x80048138"}   # player_vertical_update, hosts the dispatch
+  - {image: SCUS_942_88, entry: "0x8004a700"}   # transition initiator / damage handler
+windows:
+  - id: transition_request
+    start: 0x800823A0
+    end: 0x800823A2
+  - id: transition_timer
+    start: 0x80082470
+    end: 0x80082472
+categories:
+  - id: callers
+    disposition: required
+    evidence: >
+      Extracted by inverting the whole 1,190-record call graph in
+      analysis/phase4_static_frontier_index.json, not by a store-site census.
+  - id: callees
+    disposition: required
+    evidence: Transitive direct-call closure from the two declared roots.
+  - id: callbacks
+    disposition: required
+    evidence: >
+      ENUMERATED BY DERIVATION, NOT BOUNDED. tools/phase4_callback_probe.c decodes every
+      aligned word of all 21 hash-verified images and reports every code address
+      materialised by an adjacent lui/addiu or lui/ori pair, classified by how the value
+      leaves the site: stored to a slot, passed in an argument register at a jal, or called
+      through jalr. Every retained site lands EXACTLY on a function entry, which is the
+      check that the probe is finding function pointers rather than constants. The
+      registration groups become callback groups here, each emitted complete=false, because
+      the probe is POSITIVE-ONLY -- a pointer built across a basic block, loaded out of
+      data, or copied through a third register is invisible to it. The earlier
+      not_applicable was unsound for the opposite reason: the static index has no
+      callback-record field, so "zero callback records" was an absence of data.
+  - id: indirect_tables
+    disposition: required
+    evidence: >
+      Every indirect call site inside the closure is emitted as its own table with
+      complete=false, so an unenumerated target set cannot pass silently.
+  - id: overlays
+    disposition: required
+    evidence: >
+      All 21 shipped overlay images are declared in the universe with their expected
+      sha256 from the static index.
+  - id: readers
+    disposition: required
+    evidence: Static-index memory accesses resolved into the declared windows.
+  - id: writers
+    disposition: required
+    evidence: Static-index memory accesses resolved into the declared windows.
+  - id: downstream_consumers
+    disposition: required
+    evidence: >
+      Assigned explicitly by consumer_category_overrides below; the whole-universe access
+      seed brings every window reader into the frontier, and the scene-flow readers are
+      tagged as downstream consumers rather than inferred from reachability.
+consumer_category_overrides:
+  # the scene-flow / HUD readers of the two windows are their downstream consumers
+  - {image: SCUS_942_88, entry: "0x8004FCA0", categories: [downstream_consumers]}  # scene_flow_dispatcher
+  - {image: SCUS_942_88, entry: "0x8004FA40", categories: [downstream_consumers]}  # main_shell_state_machine
+  - {image: SCUS_942_88, entry: "0x800526F4", categories: [downstream_consumers]}  # hud_draw
+  - {image: SCUS_942_88, entry: "0x8005518C", categories: [downstream_consumers]}  # sfx_voice_trigger_gl_glue
+# Per-image census completeness is DERIVED from this receipt, not declared here.
+# The receipt is pinned by sha256 so it cannot drift underneath a query that
+# still validates; the extractor re-checks both the hash and the static-index
+# hash the receipt was built against.
+evidence_receipts:
+  static_asm_gate:
+    path: analysis/phase4_static_asm_prerequisites.json
+    sha256: 10b7e72d6117d9517baae09684698c7670ea25272dcbb13a5eb15ce177cd24ec
+  static_census:
+    path: analysis/phase4_frontier_static_census.json
+    sha256: 170682091a85bf3ee491e876998d970d05b9ca296e026e8849d4dede572a778c
+# A boundary owner is keyed by an EDGE IDENTITY (source@0xSITE->target). This
+# extractor emits no direct-call edge whose target is outside the query, so
+# there is no edge for an owner to own, and the extractor rejects any entry that
+# does not match one. The two entries this list used to carry were keyed by
+# category NAMES, which no edge identity can equal, so they could only ever be
+# reported unused -- that was the whole of UNUSED_BOUNDARY_OWNER.
+boundary_owners: []
+residuals:
+  # covered_ids are GENERATED from `covers`; the extractor reconciles the union
+  # against the exact set of unknowns the query emits and fails closed on any
+  # difference. Hand-typing generated identities is how the previous coverage
+  # list came to name only itself.
+  - id: indirect_call_targets_unenumerated
+    covers: [indirect_call_tables]
+    boundary: >
+      Every indirect call site inside the selected closure has an unenumerated target set.
+    evidence: >
+      The window-access enumeration in this query does NOT depend on reachability. Every
+      function record in all 21 images is scanned for statically resolved window accesses
+      and every hit is seeded as a root before the call graph is expanded
+      (root_provenance.access_seeded_whole_universe), and an independent linear scan of
+      every aligned word of every hash-verified image supplies the accesses the static
+      index's CFG never saw (accesses_from_binary_supplement). An unenumerated indirect
+      target is therefore a function whose statically resolved window accesses are ALREADY
+      emitted here: the unenumerated edge can hide a control-flow PATH, not an ACCESS.
+      LIMIT, stated rather than buried: this holds only for accesses whose effective
+      address is statically resolved. The index's per-function accesses are CFG-reachable
+      only, the linear scan proves a base only from $gp or an immediately preceding lui,
+      and everything else is retained in analysis/phase4_f01_frontier_blockers.json -- which
+      is why mechanical_completeness.complete is false and MECHANICALLY_INCOMPLETE stands.
+    next_experiment: >
+      Enumerate each site's target set from its target source. analysis/phase4_static_asm_prerequisites.json
+      already classifies all 139 resident jalr sites (135 memory_load, 3 immediate calls to
+      the BIOS 0x000000B0 vector, 1 arithmetic) and 57 of these 58 sites are in that
+      inventory; the 58th is in the MEMORY overlay, which that resident-only gate does not
+      cover. Note that the gate's 87 resolved target sets are all `jr` switch islands and
+      resolve none of these `jalr` sites.
+    intersects_dimension: false
+    disposition: owned_boundary
+    proof_basis: materialization_census
+  - id: callback_target_sets_unbounded
+    covers: [incomplete_callbacks]
+    boundary: >
+      The callback registration groups recovered by the function-pointer census enumerate
+      registration SITES; they do not bound the target SET of any group.
+    evidence: >
+      analysis/phase4_frontier_static_census.json retains every site with its materialising
+      pc, its consumer, its slot or registrar, and the function entry it names. The same
+      reachability-independent argument as the indirect-call residual applies: a callback
+      target is a function in one of the 21 images, and every statically resolved window
+      access in every one of them is already emitted into this query.
+    next_experiment: >
+      Bound the target set by pairing each registration slot with the jalr that loads it --
+      the mover-VM jalr at 0x8004D1E8 reads actor+0x7C while the recovered registrations
+      write actor+0x74, so the pairing is not assumed -- and by extending the probe to
+      pointers materialised across a basic block.
+    intersects_dimension: false
+    disposition: owned_boundary
+    proof_basis: materialization_census

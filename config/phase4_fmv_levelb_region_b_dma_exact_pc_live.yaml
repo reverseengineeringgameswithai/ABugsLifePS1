@@ -1,0 +1,144 @@
+schema: abl-phase4-fmv-levelb-region-b-dma-exact-pc-live-config/1
+campaign_id: fmv_playback
+row_id: E15_fmv
+dimension: lifecycle
+lane: static
+escalation_id: P4-R6-ITER4-E15-LEVELB-REGIONB-EXACT-PC-DMA-PROVENANCE
+missing_fact_id: E15/completed-level-b-region-b-exact-pc-dma-provenance
+work_packet:
+  path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-215707-213677-r6/iteration-2-work-packet.json
+  sha256: f21670a25d96a549c5fd63095e3d2af1c4f2f6d61f151f0d3cd56324387b1edc
+  bytes: 3507
+immutable_before_ledger:
+  path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-215707-213677-r6/iteration-2-escalations-before.json
+  sha256: 5e8fdd9b4cdd0a26b364457e25df130b36157af64211a891c1f4ca20314cc2fd
+  bytes: 481975
+generated_live_ledger:
+  path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-231245-213677-r7/iteration-1-escalations-before.json
+  sha256: fdefbe804f634d2f6f39fb2022f1b8e6bc4e27d8145401983c909b52cf67d3ac
+offline_basis:
+  receipt:
+    path: ~/.local/state/flik-phase4-method-ratchet/runs/phase4-20260728-160544-213677-r2/iteration-1-receipts/offline-fmv-levelb-region-b-dma-index.receipt.json
+    sha256: ecfd091f44f49943e5e8431ba92e823d55c155f6317a7e6242fcc841934d9126
+    bytes: 1760
+  external_index:
+    path: ~/Downloads/ABL-external-evidence/derived/Phase4/fmv-lifecycle-v2/index.json
+    sha256: e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab
+    bytes: 16060589
+  result_sha256: dba41729dc61fa7bfe6d4c5a52d06d6c022fe2a51fdedce0067b924b7022a399
+static_basis:
+  subwindow:
+    path: analysis/phase4_fmv_levelb_region_b_dma_subwindow.json
+    sha256: c7d3696ea7fbd0276b57f64f0790b57351932bb10a84e68cf6e80985d5120f07
+  adapter_readiness:
+    path: analysis/phase4_fmv_levelb_region_b_dma_exact_pc_arm.json
+    sha256: 39d230035b3fa1b8a622b36173c2c0397b913da42bca3e72ab012a3e0d4c5f79
+  exact_pc_plan:
+    path: config/phase4_fmv_levelb_region_b_dma_exact_pc_arm.yaml
+    sha256: ecccdbcc8360704592f9052c4ffab35cd863316d91bf636ebad55344691a0bf6
+  exact_pc_adapter:
+    path: tools/phase4_duckstation_exact_pc_batch.py
+    sha256: 497820c593964694eefb3d4b246910548e6063839defc3631aa499d1664353be
+passive_plan:
+  path: config/phase4_fmv_levelb_region_b_dma_exact_pc_passive_batch.yaml
+  sha256: 3b3b48235556e3db2e69f2dacd9d889ebeecd5fa063b54a79c3de6b58c50fc66
+  adapter: tools/phase4_duckstation_late_batch.py
+  receipt_id: e15-levelb-region-b-dma-exact-pc-passive-prelude
+  execution_bound: {clock: emulator_frame, start: 0, stop: 15896, stop_inclusive: false}
+  capture_window: {clock: emulator_frame, start: 15800, stop: 15896, stop_inclusive: false}
+precise_plan:
+  receipt_ids:
+    - e15-levelb-region-b-dma-exact-pc-native
+    - e15-levelb-region-b-dma-exact-pc-repeat
+  anchor:
+    kind: cold_boot_movie
+    movie: movies/100% Runs/LEVEL01.movie.json
+    movie_sha256: ece62d4e6f92b887b0500dd8ac3bec48f3638ad5d9858cda7d5b0afb3a8d2602
+    media_serial: SCUS-94288
+    media_sha256: 2aeafad70d12b1bd0dc63bbb106f22ced4fae070cea8eef9de4f11072e944566
+    settings_profile: fresh-isolated-defaults-v1
+    start: {clock: emulator_frame, value: 0}
+  atomic_anchor:
+    method: scenario.runBatch
+    recipe: bootAndRun
+    target_frame: 15816
+    max_frames: 15816
+    jobs_per_receipt: 1
+    require_paused: true
+    require_atomic_result: true
+  direct_observer:
+    method: transferLog.start
+    start_stop:
+      {method: debugger.runUntilAddress, pc: 0x80046078, boundary: before_instruction}
+    required_registers: {pc: 0x80046078, a0: 18, a1: 0x800B5788}
+    arm_sequence: [transferLog.clear, transferLog.start]
+    terminal_stop:
+      {method: debugger.runUntilAddress, pc: 0x800460C4, boundary: before_instruction}
+    execution_bound: {clock: emulator_frame, start: 0, stop: 15880, stop_inclusive: false}
+    capture_window: {clock: emulator_frame, start: 15816, stop: 15880, stop_inclusive: false}
+    max_status_polls_per_stop: 512
+    max_pages: 10
+    max_records: 100000
+    max_bytes: 67108864
+    require_contiguous_indexes: true
+    require_truncated: false
+  control:
+    only_difference: independent_fresh_isolated_profile
+    require_equal:
+      [identity, anchor, stops, registers, ordered_transfers, frame, cycle, ram, movie]
+  passive_prelude_receipt_id: e15-levelb-region-b-dma-exact-pc-passive-prelude
+receipt_admission:
+  schema: abl-phase4-exact-pc-receipt-admission/1
+  state: implemented
+  validator:
+    path: tools/phase4_method_metrics.py
+    sha256: 5f3aa7741f24bb930c177a847a387427c3b417bad5d93ca30f4fda6052e491dd
+  observer_plan_schema: abl-phase4-observer-plan/2
+  guard_nodes:
+    - tests/test_phase4_method_metrics.py::test_full_direct_exact_pc_receipt_is_admitted_by_outer_validator
+    - tests/test_phase4_method_metrics.py::test_direct_exact_pc_receipt_mutations_fail_closed
+    - tests/test_phase4_method_metrics.py::test_falsified_direct_exact_pc_receipt_is_adapter_replayed_and_closed
+    - tests/test_phase4_method_metrics.py::test_bounded_exact_pc_falsifier_requires_retained_pause
+    - tests/test_phase4_method_metrics.py::test_historical_observer_schema_cannot_admit_direct_command_events
+    - tests/test_phase4_method_metrics.py::test_strict_live_receipt_recomputes_plans_media_cleanup_and_counters
+    - tests/test_phase4_method_metrics.py::test_levelb_legacy_observers_are_hash_derived_non_dma_normalizations
+    - tests/test_phase4_method_metrics.py::test_normalized_legacy_interface_observer_does_not_block_new_dma
+  required_before_execution:
+    - retain normalized debugger.capabilities, source, running-binary and
+      mounted-media identity result bodies before scenario.runBatch
+    - retain one completed scenario.runBatch and later scenario.getBatch
+      event for each precise receipt's paused frame-15816 atomic anchor
+    - retain every direct exact-PC command/result event under the same owned
+      server-session ID after the atomic anchor
+    - retain complete transfer pages, finite counters and typed numeric-PID
+      stop plus confirmation
+    - admit the direct observer stream through the candidate-HEAD v2 receipt
+      validator without changing historical receipt semantics
+  forbidden:
+    - execute either plan from this iteration's immutable before-ledger
+    - author digest-only identity substitutes
+    - hide the direct observer inside a scenario.runBatch observer list
+    - count a partial or truncated transfer stream
+claim_boundary:
+  escalation_predeclared: true
+  passive_plan_predeclared: true
+  exact_native_and_repeat_receipts_predeclared: true
+  before_ledger_authorized: true
+  receipt_admission_complete: true
+  live_executed: false
+  live_receipts: 0
+  dma_events_claimed: 0
+  dimension_promoted: false
+  next_lane: live
+  next_action: >-
+    Bank this mutation-guarded direct-command v2 receipt admission without
+    launching DuckStation. In a later work packet, close the strictly wider
+    passive receipt first; only then execute the independently repeated
+    exact-PC receipts admitted by this immutable before-ledger and require
+    fresh campaign-verifier consumption before any behavioral promotion.
+  not_claimed:
+    - a native DMA event, sector predecessor, cycle, transfer count or result
+    - native success of CdRead or completion of CdReadSync
+    - an executed exact-PC live receipt or native DMA result
+    - a lifecycle or other roadmap-dimension promotion
+    - a live operation inside this deliberately static work packet

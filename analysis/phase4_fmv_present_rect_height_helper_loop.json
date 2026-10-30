@@ -1,0 +1,626 @@
+{
+  "_comment": "Generated from hash-verified pristine retail bytes, a closed derived-pristine offline query, and a retained bounded function trace. No copyrighted input bytes are retained.",
+  "caller_frontier": {
+    "commit_direct_callers": [
+      {
+        "mnemonic": "jal 0x800b6a7c",
+        "pc": "0x800B6C34",
+        "word": "0x0C02DA9F"
+      }
+    ],
+    "helper_direct_callers": [
+      {
+        "mnemonic": "jal 0x800b6c24",
+        "pc": "0x800B70A0",
+        "word": "0x0C02DB09"
+      },
+      {
+        "mnemonic": "jal 0x800b6c24",
+        "pc": "0x800B7280",
+        "word": "0x0C02DB09"
+      }
+    ],
+    "jalr_sites": [],
+    "raw_target_references": [],
+    "scope": [
+      "0x800B5788",
+      "0x800B9A4C"
+    ],
+    "unclassified_callers": []
+  },
+  "campaign": "fmv_playback",
+  "claim_boundary": {
+    "corrected_claim": "Pristine 0x800B6C24 calls 0x800B6A7C exactly once per invocation. The player calls the helper once at 0x800B70A0 before its outer loop and once at 0x800B7280 per outer-loop iteration. Only a0 is semantic at the commit entry; a1, a2 and a3 are overwritten before use, so the retained 1/1/9 classes are incidental register snapshots. The trace therefore partitions as one initialization call plus ten outer-loop calls, while nine is only the count of the final incidental class in that bounded window.\n",
+    "dimension_promoted": false,
+    "falsifier": "Reject the corrected claim if either function has another direct or indirect caller, 0x800B6C24 calls the commit function other than exactly once per invocation, the initialization call can be revisited by the player back edge, any of a1/a2/a3 is read before its asserted first definition, a0 is not the stable 0x800CABE0 boundary, the 1/1/9 runtime partition differs, either function lacks a conventional guest return, or a load-bearing opcode/artifact/schema mutation leaves the focused guard green.\n",
+    "lifecycle_promoted": false,
+    "next_lane": "static",
+    "next_method": "Keep the corrected helper ABI and outer-loop partition banked. Before any new live control, statically reconstruct the remaining native Pause/stop trigger producers and the caller-owned post-helper exit decisions.\n",
+    "not_claimed": [
+      "a fixed nine-iteration helper or player loop",
+      "semantic meaning for retained a1, a2 or a3 values",
+      "a new decoded-record type in config/record_types.yaml",
+      "execution outside the retained function-trace window",
+      "a direct machine return for the observer-synthesized first exit",
+      "lifecycle or any other nine-dimension promotion"
+    ],
+    "packet_claim": "The pristine 0x800B6C24 helper contains a finite loop whose static bound produces the retained 1, 1 and 9 argument-class counts.\n"
+  },
+  "commit_entry_abi": {
+    "StGetNext_call": {
+      "a0_output_store": {
+        "mnemonic": "sw a0,0(a3)",
+        "pc": "0x80070D50",
+        "word": "0xACE40000"
+      },
+      "a1_output_store": {
+        "mnemonic": "sw a2,0(t0)",
+        "pc": "0x80070D54",
+        "word": "0xAD060000"
+      },
+      "call": {
+        "mnemonic": "jal 0x80070c9c",
+        "pc": "0x800B6A98",
+        "word": "0x0C01C327"
+      },
+      "explicit_a1_preservation": {
+        "mnemonic": "addu t0,a1,zero",
+        "pc": "0x80070CC8",
+        "word": "0x00A04021"
+      },
+      "external_asm_sha256": "3ee73d63990afa5b1d21049fb2945969cbdd3cbd863e8cc4048f062bd9335b94",
+      "guest_return": {
+        "mnemonic": "jr ra",
+        "pc": "0x80070D58",
+        "word": "0x03E00008"
+      },
+      "output_a0_definition": {
+        "mnemonic": "addiu a0,sp,24",
+        "pc": "0x800B6A94",
+        "word": "0x27A40018"
+      },
+      "output_a1_definition": {
+        "mnemonic": "addiu a1,sp,28",
+        "pc": "0x800B6A9C",
+        "word": "0x27A5001C"
+      },
+      "preservation_pin": "3ee73d63990afa5b1d21049fb2945969cbdd3cbd863e8cc4048f062bd9335b94"
+    },
+    "classification": "single_semantic_argument_a0",
+    "computed_first_accesses": {
+      "a0": {
+        "access": "read",
+        "instruction": {
+          "mnemonic": "addu s1,a0,zero",
+          "pc": "0x800B6A84",
+          "word": "0x00808821"
+        }
+      },
+      "a1": {
+        "access": "definition",
+        "instruction": {
+          "mnemonic": "addiu a1,sp,28",
+          "pc": "0x800B6A9C",
+          "word": "0x27A5001C"
+        }
+      },
+      "a2": {
+        "access": "definition",
+        "instruction": {
+          "mnemonic": "addu a2,zero,zero",
+          "pc": "0x800B6B8C",
+          "word": "0x00003021"
+        }
+      },
+      "a3": {
+        "access": "definition",
+        "instruction": {
+          "mnemonic": "addu a3,zero,zero",
+          "pc": "0x800B6B90",
+          "word": "0x00003821"
+        }
+      }
+    },
+    "dead_on_entry_arguments": {
+      "a1": {
+        "computed_first_access": {
+          "access": "definition",
+          "instruction": {
+            "mnemonic": "addiu a1,sp,28",
+            "pc": "0x800B6A9C",
+            "word": "0x27A5001C"
+          }
+        },
+        "first_definition": {
+          "mnemonic": "addiu a1,sp,28",
+          "pc": "0x800B6A9C",
+          "word": "0x27A5001C"
+        }
+      },
+      "a2": {
+        "StGetNext_computed_first_access": {
+          "access": "definition",
+          "instruction": {
+            "mnemonic": "addu a2,v1,v0",
+            "pc": "0x80070CB4",
+            "word": "0x00623021"
+          }
+        },
+        "StGetNext_first_definition": {
+          "mnemonic": "addu a2,v1,v0",
+          "pc": "0x80070CB4",
+          "word": "0x00623021"
+        },
+        "computed_first_access": {
+          "access": "definition",
+          "instruction": {
+            "mnemonic": "addu a2,zero,zero",
+            "pc": "0x800B6B8C",
+            "word": "0x00003021"
+          }
+        },
+        "first_definition": {
+          "mnemonic": "addu a2,zero,zero",
+          "pc": "0x800B6B8C",
+          "word": "0x00003021"
+        }
+      },
+      "a3": {
+        "StGetNext_computed_first_access": {
+          "access": "definition",
+          "instruction": {
+            "mnemonic": "addu a3,a0,zero",
+            "pc": "0x80070C9C",
+            "word": "0x00803821"
+          }
+        },
+        "StGetNext_entry_definition": {
+          "mnemonic": "addu a3,a0,zero",
+          "pc": "0x80070C9C",
+          "word": "0x00803821"
+        },
+        "computed_first_access": {
+          "access": "definition",
+          "instruction": {
+            "mnemonic": "addu a3,zero,zero",
+            "pc": "0x800B6B90",
+            "word": "0x00003821"
+          }
+        },
+        "first_definition": {
+          "mnemonic": "addu a3,zero,zero",
+          "pc": "0x800B6B90",
+          "word": "0x00003821"
+        }
+      }
+    },
+    "guest_return": {
+      "mnemonic": "jr ra",
+      "pc": "0x800B6C1C",
+      "word": "0x03E00008"
+    },
+    "helper_computed_first_accesses": {
+      "a0": {
+        "access": "read",
+        "instruction": {
+          "mnemonic": "addu s0,a0,zero",
+          "pc": "0x800B6C2C",
+          "word": "0x00808021"
+        }
+      },
+      "a1": {
+        "access": "definition",
+        "instruction": {
+          "mnemonic": "lw a1,0(v0)",
+          "pc": "0x800B6C60",
+          "word": "0x8C450000"
+        }
+      },
+      "a2": null,
+      "a3": null
+    },
+    "internal_retry_back_edge": {
+      "budget": "0x007FFFFF",
+      "classification": "StGetNext_poll_not_helper_invocation_loop",
+      "mnemonic": "bne s0,zero,0x800b6a98",
+      "pc": "0x800B6AA8",
+      "target": "0x800B6A98",
+      "word": "0x1600FFFB"
+    },
+    "semantic_arguments": {
+      "a0": {
+        "binding": {
+          "mnemonic": "addu s1,a0,zero",
+          "pc": "0x800B6A84",
+          "word": "0x00808821"
+        },
+        "role": "fmv_player_boundary_pointer",
+        "value_from_both_player_calls": "0x800CABE0"
+      }
+    }
+  },
+  "dimension": "lifecycle",
+  "falsifier": {
+    "corrected_claim": {
+      "checks": {
+        "both_functions_have_conventional_guest_returns": true,
+        "complete_fmv_caller_frontier_has_no_indirect_calls": true,
+        "helper_calls_commit_once_per_invocation": true,
+        "incidental_classes_excluded_from_record_schema": true,
+        "initialization_call_not_revisited_by_back_edge": true,
+        "offline_index_answer_absent": true,
+        "only_a0_semantic_on_commit_entry": true,
+        "retained_trace_partitions_one_plus_ten": true,
+        "synthetic_first_exit_kept_as_observer_provenance": true
+      },
+      "claim": "Pristine 0x800B6C24 calls 0x800B6A7C exactly once per invocation. The player calls the helper once at 0x800B70A0 before its outer loop and once at 0x800B7280 per outer-loop iteration. Only a0 is semantic at the commit entry; a1, a2 and a3 are overwritten before use, so the retained 1/1/9 classes are incidental register snapshots. The trace therefore partitions as one initialization call plus ten outer-loop calls, while nine is only the count of the final incidental class in that bounded window.\n",
+      "outcome": "survived"
+    },
+    "packet_claim": {
+      "claim": "The pristine 0x800B6C24 helper contains a finite loop whose static bound produces the retained 1, 1 and 9 argument-class counts.\n",
+      "outcome": "falsified",
+      "reasons": [
+        "0x800B6C24_has_no_back_edge",
+        "repeated_calls_are_owned_by_outer_player_loop",
+        "nine_is_bounded_trace_class_count_not_static_bound"
+      ]
+    }
+  },
+  "functions": {
+    "StGetNext": {
+      "end": "0x80070D60",
+      "name": "StGetNext",
+      "sha256": "df38b6d6615d67a04728ce1da6a087c6493f6d4c928be5740e3129ff9dde7082",
+      "size": 196,
+      "start": "0x80070C9C"
+    },
+    "fmv_decode_commit_dimensions": {
+      "end": "0x800B6C24",
+      "name": "fmv_decode_commit_dimensions",
+      "sha256": "2529f62e28c9ccd986e93c57fca8aa18adf345553eac570113077b14d22949ee",
+      "size": 424,
+      "start": "0x800B6A7C"
+    },
+    "fmv_decode_one_record": {
+      "end": "0x800B6CA4",
+      "name": "fmv_decode_one_record",
+      "sha256": "9d91718d072e2af77e13cff008ed3a935655e8facd4bb53f50ff0febd2c5d074",
+      "size": 128,
+      "start": "0x800B6C24"
+    },
+    "fmv_player": {
+      "end": "0x800B752C",
+      "name": "fmv_player",
+      "sha256": "a4848c83be180bc58eed123b6f80d656b9240b15eab890a1d2debd306c1afe0f",
+      "size": 1988,
+      "start": "0x800B6D68"
+    }
+  },
+  "generated": "2026-07-28",
+  "helper_single_call_ownership": {
+    "active_index_read": {
+      "mnemonic": "lw v0,8(s0)",
+      "pc": "0x800B6C48",
+      "word": "0x8E020008"
+    },
+    "active_index_toggle": {
+      "mnemonic": "sw v0,8(s0)",
+      "pc": "0x800B6C54",
+      "word": "0xAE020008"
+    },
+    "back_edges": [],
+    "boundary_argument_binding": {
+      "mnemonic": "addu s0,a0,zero",
+      "pc": "0x800B6C2C",
+      "word": "0x00808021"
+    },
+    "classification": "single_call_wrapper_not_loop",
+    "commit_call": {
+      "mnemonic": "jal 0x800b6a7c",
+      "pc": "0x800B6C34",
+      "word": "0x0C02DA9F"
+    },
+    "commit_calls_per_invocation": 1,
+    "commit_result_binding": {
+      "mnemonic": "addu s1,v0,zero",
+      "pc": "0x800B6C3C",
+      "word": "0x00408821"
+    },
+    "entry": {
+      "mnemonic": "addiu sp,sp,-32",
+      "pc": "0x800B6C24",
+      "word": "0x27BDFFE0"
+    },
+    "guest_return": {
+      "mnemonic": "jr ra",
+      "pc": "0x800B6C9C",
+      "word": "0x03E00008"
+    },
+    "no_record_latch_store": {
+      "mnemonic": "sb v0,-26028(at)",
+      "pc": "0x800B6C84",
+      "word": "0xA0229A54"
+    },
+    "selected_block_read": {
+      "mnemonic": "lw a1,0(v0)",
+      "pc": "0x800B6C60",
+      "word": "0x8C450000"
+    }
+  },
+  "inputs": {
+    "config": {
+      "path": "config/phase4_fmv_present_rect_height_helper_loop.yaml",
+      "sha256": "17275624c1bfc6158a5c70e0d9e7073798e9e198f54c1fc758a35052c300abfd"
+    },
+    "fmv_bin": {
+      "identity_verified": true,
+      "path": "REBUILD/files/FMV/FMV.BIN",
+      "sha256": "a2ba85b4404f55e5b99189513e10959d2c8b99c9ba5c1f5aadcdbc26633f9fc9",
+      "size": 509800
+    },
+    "prior_evidence": {
+      "analysis/phase4_fmv_present_rect_height_function_trace_result.json": "6064fe8a9720854cfb9b2ab14876a0c50c976e04c361f089897beec2c235604d",
+      "analysis/phase4_fmv_present_rect_height_static_ownership.json": "998d975f91d218d2d8e71b94e713d66679a6cef455b9d0797523508510725673"
+    },
+    "resident_executable": {
+      "identity_verified": true,
+      "path": "REBUILD/files/SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+      "size": 471040
+    }
+  },
+  "lane": "static",
+  "offline_localization": {
+    "command": [
+      "python3",
+      "tools/phase4_offline_receipt_query.py",
+      "--input",
+      "@run/iteration-1-receipts/inputs/fmv-lifecycle-v2.index.json",
+      "--output",
+      "@run/iteration-1-receipts/outputs/fmv-helper-loop-index-search.json",
+      "--query-json",
+      "@query"
+    ],
+    "exit_code": 0,
+    "external_index_bytes": 16060589,
+    "external_index_sha256": "e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab",
+    "finding": "The retained frame-boundary index contains none of the exact helper, call-instruction, argument-class, or synthetic-unwind leads; pristine static bytes therefore own this question.",
+    "output_sha256": "a3939a48467c6e31eb9114c296d5efa5362feefb3aeb9fe03eae841d4ce7f3a1",
+    "preservation_sha256": "503d2f99feaf64b3a44cf03abeedebabb7f650ddf1fdede9a512e53c34c6a46c",
+    "reader": {
+      "path": "tools/phase4_offline_receipt_query.py",
+      "scope": "repo",
+      "sha256": "00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846"
+    },
+    "receipt_sha256": "3412a5254070301df57bbf6d6972043c48ff10cb79102a33bae2f34dc0a14558",
+    "stdout_sha256": "bf6d15363b59d2dd48e0d3cc4ff9a4e4577ce43de049899bcdde9416a6c6057c",
+    "zero_match_terms": [
+      "0x800B6A7C",
+      "0x800B6C24",
+      "0x800B6C34",
+      "1, 1 and 9",
+      "argument_classes",
+      "synthetic unwind"
+    ]
+  },
+  "player_call_partition": {
+    "boundary_materialization": [
+      {
+        "mnemonic": "lui s0,0x800d",
+        "pc": "0x800B7098",
+        "word": "0x3C10800D"
+      },
+      {
+        "mnemonic": "addiu s0,s0,-21536",
+        "pc": "0x800B709C",
+        "word": "0x2610ABE0"
+      }
+    ],
+    "boundary_preservation": {
+      "mnemonic": "addu s3,s0,zero",
+      "pc": "0x800B70D4",
+      "word": "0x02009821"
+    },
+    "classification": "one_initialization_call_then_outer_loop_calls",
+    "fixed_iteration_bound": null,
+    "initialization_call": {
+      "argument_delay_slot": {
+        "mnemonic": "addu a0,s0,zero",
+        "pc": "0x800B70A4",
+        "word": "0x02002021"
+      },
+      "call": {
+        "mnemonic": "jal 0x800b6c24",
+        "pc": "0x800B70A0",
+        "word": "0x0C02DB09"
+      },
+      "calls_per_player_invocation": 1
+    },
+    "outer_loop_back_edge": {
+      "can_revisit_initialization_call": false,
+      "mnemonic": "bne v0,zero,0x800b70e0",
+      "pc": "0x800B745C",
+      "target": "0x800B70E0",
+      "word": "0x1440FF20"
+    },
+    "outer_loop_call": {
+      "argument_delay_slot": {
+        "mnemonic": "addu a0,s3,zero",
+        "pc": "0x800B7284",
+        "word": "0x02602021"
+      },
+      "call": {
+        "mnemonic": "jal 0x800b6c24",
+        "pc": "0x800B7280",
+        "word": "0x0C02DB09"
+      },
+      "calls_per_outer_loop_iteration": 1
+    },
+    "outer_loop_top": {
+      "mnemonic": "jal 0x8003a2dc",
+      "pc": "0x800B70E0",
+      "word": "0x0C00E8B7"
+    }
+  },
+  "retained_trace_join": {
+    "argument_classes": [
+      {
+        "arguments": [
+          "0x800cabe0",
+          "0x00000048",
+          "0x00000000",
+          "0x00000048"
+        ],
+        "call_count": 1,
+        "entry_frames": [
+          4450
+        ]
+      },
+      {
+        "arguments": [
+          "0x800cabe0",
+          "0x00000600",
+          "0x00000005",
+          "0x00000000"
+        ],
+        "call_count": 1,
+        "entry_frames": [
+          4455
+        ]
+      },
+      {
+        "arguments": [
+          "0x800cabe0",
+          "0x00000600",
+          "0x801ff6d0",
+          "0x00000000"
+        ],
+        "call_count": 9,
+        "entry_frames": [
+          4460,
+          4464,
+          4468,
+          4472,
+          4476,
+          4480,
+          4484,
+          4488,
+          4492
+        ]
+      }
+    ],
+    "call_instruction": "0x800B6C34",
+    "calls": 11,
+    "function_events": 22,
+    "headroom_events": 10,
+    "interpretation": "The ordered trace begins with the one pre-loop helper call and continues with ten outer-loop calls. Its final a1-a3 residue class happens nine times; that is not a static loop bound.",
+    "return_address": "0x800B6C3C",
+    "static_call_site_partition": [
+      {
+        "calls": 1,
+        "class_index": 0,
+        "owner": "player_initialization_call_0x800B70A0"
+      },
+      {
+        "calls": 10,
+        "class_indexes": [
+          1,
+          2
+        ],
+        "owner": "player_outer_loop_call_0x800B7280"
+      }
+    ],
+    "synthetic_exit_indexes": [
+      2
+    ]
+  },
+  "row": "E15_fmv",
+  "schema": "abl-phase4-fmv-present-rect-height-helper-loop/1",
+  "schema_decisions": {
+    "phase4_fmv": {
+      "helper_contract": {
+        "artifact": "analysis/phase4_fmv_present_rect_height_helper_loop.json",
+        "boundary": "The helper invokes the commit function exactly once per helper call. The player invokes the helper once during initialization and once per outer loop iteration. The retained 1/1/9 a1-a3 classes are incidental caller-saved register snapshots, not three decoded-record types; nine is only the final class count inside the bounded trace window.",
+        "commit_function": [
+          2148231804,
+          2148232228
+        ],
+        "dead_on_entry_arguments": {
+          "a1": {
+            "classification": "caller_saved_passthrough",
+            "first_definition": 2148231836
+          },
+          "a2": {
+            "classification": "caller_saved_passthrough",
+            "first_definition": 2148232076
+          },
+          "a3": {
+            "classification": "caller_saved_passthrough",
+            "first_definition": 2148232080
+          }
+        },
+        "helper_function": [
+          2148232228,
+          2148232356
+        ],
+        "helper_to_commit_call_instruction": 2148232244,
+        "player_initialization_call": 2148233376,
+        "player_outer_loop_back_edge": 2148234332,
+        "player_outer_loop_call": 2148233856,
+        "retained_trace_partition": {
+          "fixed_nine_loop_bound": false,
+          "incidental_argument_class_counts": [
+            1,
+            1,
+            9
+          ],
+          "player_initialization_calls": 1,
+          "player_outer_loop_calls": 10
+        },
+        "semantic_entry_arguments": [
+          "a0"
+        ]
+      },
+      "path": "config/phase4_fmv.yaml",
+      "schema": "abl-phase4-fmv/11",
+      "sha256": "63f60045562aa2ec113ac060b3fec8c5c0b562f45cc5e02e4f78ff49077b0d64"
+    },
+    "record_types": {
+      "decision": "No record was added because a1-a3 are dead on entry, not decoded-record fields.",
+      "fmv_or_decode_record_ids": [],
+      "path": "config/record_types.yaml",
+      "sha256": "b8a6d9bc944efe0cfb5fa75942a04ffa165427d41370698ece4202ad6ae9e0b7"
+    }
+  },
+  "source_dependencies": {
+    "asm/hand_written/80070c9c_StGetNext.s": "3ee73d63990afa5b1d21049fb2945969cbdd3cbd863e8cc4048f062bd9335b94",
+    "config/phase4_fmv.yaml": "63f60045562aa2ec113ac060b3fec8c5c0b562f45cc5e02e4f78ff49077b0d64",
+    "config/record_types.yaml": "b8a6d9bc944efe0cfb5fa75942a04ffa165427d41370698ece4202ad6ae9e0b7",
+    "src_re/fmv_player_streaming.c": "efdb5096970580b40eeb6565de7d95a2767097a1c5f5c2cfb9749acd8991d5f7",
+    "src_re/fmv_present_rect_height_ownership.c": "42ed3be89926b51b232b42944a44ac610be6d2642874525c6dbb90f55a73b330",
+    "tools/phase4_fmv_present_rect_height_helper_loop.py": "71e46950a30b28054a3eb03db8b76c4a1a1b66f8fb0adbf41fdf1b7491508adc",
+    "tools/phase4_offline_receipt_query.py": "00b24a80a1847f4d2660f4cd38117cbea51e6a20f1ce44a5d9e060db79269846",
+    "tools/repro_inputs.sha256": "d0afeaf584450a0253ecb60d3de37e6d966c981bbb2f07d6cd043439f095e231"
+  },
+  "source_status": {
+    "StGetNext": "hash_pinned_external_asm",
+    "fmv_overlay": "documentation_grade_semantic_c",
+    "matching_c_claimed": false,
+    "semantic_c": {
+      "src_re/fmv_player_streaming.c": "efdb5096970580b40eeb6565de7d95a2767097a1c5f5c2cfb9749acd8991d5f7",
+      "src_re/fmv_present_rect_height_ownership.c": "42ed3be89926b51b232b42944a44ac610be6d2642874525c6dbb90f55a73b330"
+    }
+  },
+  "summary": {
+    "dead_on_entry_argument_registers": 3,
+    "direct_commit_callers": 1,
+    "direct_helper_callers": 2,
+    "helper_back_edges": 0,
+    "indirect_fmv_calls": 0,
+    "offline_exact_term_matches": 0,
+    "promoted_dimensions": 0,
+    "retained_initialization_calls": 1,
+    "retained_outer_loop_calls": 10,
+    "semantic_entry_arguments": 1
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "phase4_row": "D19",
+  "subject": "Molt crowd type-71 projectile berry grant",
+  "method": "C static decode of pristine retail ASM/data",
+  "input": {
+    "path": "REBUILD/files/SCUS_942.88",
+    "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "load_va": "0x80010000",
+    "header_bytes": 2048
+  },
+  "allocator_abi": {
+    "entry": "0x8005A0E0",
+    "caller_stack_type_argument": "sp+0x1C",
+    "callee_register": "t0",
+    "metadata_table": "0x8007941C",
+    "metadata_stride": 20
+  },
+  "crowd_projectile": {
+    "constructor_type": 71,
+    "metadata_row": "0x800799A8",
+    "action_id": 32,
+    "action_dispatch_target": "0x800588FC",
+    "model_id": 240,
+    "equip_store_pc": "0x80058934",
+    "equip_store_instruction": "0xA0206597",
+    "equip_store_semantics": "sb zero,0x6597(at): player equipped berry index becomes 0 (native red)"
+  },
+  "player_throw": {
+    "equipped_red_index": 0,
+    "constructor_type": 2,
+    "metadata_row": "0x80079444",
+    "action_id": 2
+  },
+  "conclusion": "Type 71 is the crowd-thrown collectible that arms Flik with red. It is not the damaging red projectile; after collection, Flik's Square throw allocates type 2.",
+  "evidence_boundary": "Static data and control flow prove the behavior for any type-71 player contact. A replay is not required to identify the grant semantics or the subsequent type-2 throw path."
+}

@@ -1,0 +1,127 @@
+schema: abl-phase4-downhill-slide/1
+description: >
+  Authoritative pristine-game contract for A06 downhill abdomen slide. It
+  binds the state-4 landing initializer, context-reused timer-12 carry latch,
+  exact component boundary, carry-only decay, steering, terrain interface,
+  animation, contact class, lifecycle, and Riverbed Flight exception. It also
+  supersedes the claim that shared state 5 or raw animation counters alone
+  identify the action.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_downhill_slide.json
+  evidence_sha256: a78387f11f089b49adfeff3a4e728e7f2a14163a8cded2fc507c4ccb7c4214f6
+  generator: tools/phase4_downhill_slide.py
+  slide_movie: movies/Phase_Helpers/buttslide_carry_handstand.movie.json
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+
+decisive_sites:
+  timer_12_component_setup: '0x800484A4..0x800484C0'
+  held_grounded_state_5_constant: '0x80048CE4'
+  state_5_or_6_writer: '0x80048D64'
+  state_4_ground_contact_reader: '0x80048DD8'
+  landing_aux_writer: '0x80048DF8'
+  landing_timer_writer: '0x80048E00'
+  landing_state_writer: '0x80048E0C'
+  timer_positive_decrement: '0x80048ED4'
+  component_latch: '0x80048EEC..0x80048F3C'
+  animation_28_writer: '0x80056860'
+  contact_timer_12_compare: '0x8004B170..0x8004B178'
+
+decoded_input:
+  action_word: {address: '0x80082488', type: u16}
+  cross_mask: '0x4000'
+  user_sequence: moving jump, release Cross, press Cross again for state 4, and keep Cross held through terrain contact
+  owner: resident player update 0x80048138..0x800498AB
+
+native_entry:
+  prerequisite: state 4 reaches collision-reported ground contact
+  initializer:
+    vertical_aux: {address: '0x800A6584', type: s16, value: -6144}
+    action_timer: {address: '0x800A657A', type: s16, written_value: 12}
+    state: {address: '0x800A6580', type: s16, value: 1}
+    velocity_y: {address: '0x800A6530', type: s32, value: 0}
+  continuation: the next held-Cross grounded update selects shared state 5
+  retained_first_sample: timer is 12 when eligible carry re-arms it, otherwise 11 after the same-update positive decrement
+
+carry_latch:
+  timer: {address: '0x800A657A', type: s16, active_value: 12}
+  update: positive values decrement once per resident player update
+  rearm_value_after_decrement: 11
+  predicate: Cross held and either forward_component >= 768 or abs(lateral_component) >= 768
+  component_threshold_inclusive_min: 768
+  forward_component: {address: '0x800A6538', type: s32}
+  lateral_component: {address: '0x800A653C', type: s32}
+  forward_decay_per_player_update: 2
+  lateral_decay_per_player_update: 8
+  target_component_while_active: 0
+  acceleration: none while timer 12; motion carries and decays
+  animation: 28
+  failure: timer continues 11 toward 0 and animation leaves 28, even if held Cross keeps shared state 5
+
+steering:
+  heading: {address: '0x800A6520', type: u32, domain: '0..4095'}
+  behavior: direction input still changes the 12-bit heading and redirects carried world motion while the timer-12 latch remains active
+  causal_control: removing only Left over movie frames 451..491 kept state 5/timer 12 but changed heading and X/Z outcome at frame 492
+
+terrain:
+  explicit_slope_predicate: null
+  boundary: >
+    The rearm slice reads Cross and carried components, not floor_y or a slope
+    normal. The downhill requirement is an emergent interface: resident
+    collision and terrain update Y/floor_y and the carried components consumed
+    by the next player update.
+  observed: the pinned Training and cold-boot LEVEL01 controls traverse changing floor_y while timer 12 persists
+  non_scope: E02 owns internal floor/wall/ledge resolver geometry and E05 owns animation asset decoding
+
+termination:
+  cross_release_grounded: shared state 0
+  cross_release_airborne_from_state_5: shared state 6
+  carry_threshold_failure: timer decrements below 12 and animation exits 28
+  held_cross_after_timer_expiry: may retain shared state 5; this is not an active slide signature
+  native_movie: Cross release at frame 712 yields state 0 by frame 714
+
+damage_contact:
+  owner: resident proximity updater 0x8004ABF4..0x8004B6AB
+  class: non-offensive carry state
+  target_result: none of 28 distinct active actor id/flag classes selected offensive response -20 or 30
+  player_result: 8 classes retained ordinary health 4->3 contact and 20 preserved health 4
+  distinction: negative action_timer is the generic kick attack class; positive timer 12 is not
+  boundary: family AI, HP/death, permanence, bosses, and overlay-special contacts remain separate campaigns
+
+lifecycle:
+  initialization: scene/action initialization clears the context-reused player timer/state before input consumption
+  allocation_reuse: no A06-private allocation exists; player action, timer, components, heading, and collision fields are resident shared state
+  reset: timer threshold failure decays the latch; Cross release retires shared state 5 as grounded state 0 or airborne state 6
+  pause: pause freezes position, heading, velocity/components, timer, state, grounded, aux, and animation; resume continues the native controller
+  death_respawn: same-scene native respawn changed a marked timer/state/animation 12/5/28 to timer/state 0/0 and accepted a fresh state-4 landing into state 5
+  unload_transition: resident code persists while scene initialization replaces transient player/world state and stage overlays
+  persistence: slide timer/state/components are transient gameplay state and are not serialized progression
+  capacity: one resident player tuple; no action pool, queue, or dynamic allocation
+  residency: player, input, animation selector, collision interface, and ordinary proximity contact are resident
+  exceptional_path: Riverbed Flight remained state 0, animation 4, timer 0 under the native sequence
+
+mod_contract:
+  owner: Preserve resident input, player-update, collision, animation, and proximity ordering and explicitly name every new hook.
+  readers: Enumerate decoded input, timer/state/grounded/aux, heading/components/velocity, collision/floor, animation, render, camera, audio, pause, respawn, actor contact, stage-overlay, boss, and Flight consumers.
+  writers: Do not add unordered writes to decoded input, action timer, shared state, grounded, vertical aux, headings, components, world velocity, position/floor, animation, health, or actor response.
+  valid_domains: Actions/state/grounded are u16/s16 context fields; timer is context-reused s16; headings are 0..4095; components, positions, floor and velocity are signed s32; animation is s16.
+  initialization: Initialize MOD-private slide state before the first resident update and never infer slide readiness from state 5 or stale timer/animation bytes alone.
+  reset: Clear private slide state on latch loss, Cross release, pause-shell reset, damage/death/respawn/reload, plant takeover, special-controller takeover, and every scene transition.
+  retirement: Retire injected Cross/direction and overlay-scoped hooks before player, collision, actor, boss, or Flight owners unload.
+  consumers: Input, player update, collision, animation, render, camera, audio, pause, respawn, ordinary actors, enemy families, bosses, stage overlays, plants, and Flight.
+  capacity: Declare every private hook/cave/table bound; A06 itself has one player tuple and no allocation pool.
+  residency: Keep persistent MOD-private state outside overlay-owned memory and scope stage-specific terrain/contact hooks to their actual lifetime.
+  unsafe_assumptions:
+    - Shared state 5 is also used by ordinary landing/skid, expired abdomen impact, and swinging; it does not identify A06.
+    - Raw player+0x42/+0x46 values 11/12 are animation counters, not the action state or timer-12 latch.
+    - Timer cadence and component decay are per resident player update, not emulator frame.
+    - The initializer writes 12, but a slow first retained sample is 11 after same-update decrement.
+    - Forward threshold is signed >=768; the lateral alternative uses absolute magnitude >=768.
+    - No explicit slope predicate exists in the latch; do not bypass collision or treat floor_y change as a decoded slope-normal law.
+    - Timer expiry and Cross release are distinct: expiry retires animation/carry while state 5 can remain held.
+    - The slide is not a generic offensive attack; ordinary actor-specific contact can still damage Flik.
+    - Riverbed Flight and boss/overlay-special motion/contact remain separate owners.
+    - Save-state breadth supplements but does not replace the retained cold-boot Cross branch.

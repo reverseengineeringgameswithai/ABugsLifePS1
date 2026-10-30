@@ -1,0 +1,121 @@
+{
+ "_comment": "Reachability and target of knockdown store 0x8004AFB0. Regenerate: tools/phase4_knockdown_reachability.py",
+ "clear_site": "0x8004AFB0",
+ "function": "actor_player_contact_resolver (0x8004ABF4)",
+ "verdict": "REACHABLE. The chain is only self-contradictory along the path where player+0x84 == 1; the branch at 0x8004AEBC takes the other path, which bypasses the actor+0x6C := 10 write and leaves actor+0x5E free to be non-zero.",
+ "structural_checks": {
+  "store_is_in_a_jal_delay_slot": true,
+  "jal_target": "0x8005044C",
+  "store_insn_is_sh_zero_0x7e_fp": true,
+  "player_base_materialization_is_pinned": true,
+  "fp_plus_four_is_pinned": true,
+  "fp": "0x800A6504",
+  "store_effective_address": "0x800A6582",
+  "store_avoids_power_slot": true,
+  "absolute_read_at_0x8004AEB4": "0x800A6584",
+  "that_read_is_player_plus_0x84": true,
+  "CORRECTION_fp_base": "An earlier revision called fp a runtime object pointer and treated this as a possible power-slot clear. The image pins v1=0x800A6500 and fp=v1+4, so the store always lands at player+0x82."
+ },
+ "guards": [
+  {
+   "pc": "0x8004AE9C",
+   "reads": "actor+0x5C & 0x20",
+   "required": "!= 0",
+   "note": "beq -> 0x8004B0C4 when clear; bit 0x20 of the actor flag word must be SET"
+  },
+  {
+   "pc": "0x8004AEA8",
+   "reads": "actor+0x5C & 0x40",
+   "required": "== 0",
+   "note": "bne -> 0x8004B67C when set; bit 0x40 must be CLEAR"
+  },
+  {
+   "pc": "0x8004AEBC",
+   "reads": "player+0x84",
+   "required": "!= 1",
+   "note": "THE DECIDING BRANCH. bne v1,1 -> 0x8004AEFC takes the path that BYPASSES the actor+0x6C := 10 write. When player+0x84 == 1 the fall-through path writes actor+0x6C := 10 (if actor+0x5E != 0) and 0x8004AF04 then diverts, making the clear unreachable. This is the guard the earlier probe never controlled."
+  },
+  {
+   "pc": "0x8004AF04",
+   "reads": "actor+0x6C",
+   "required": "== 0",
+   "note": "bne -> 0x8004B67C; must be zero on entry, which the bypass preserves"
+  },
+  {
+   "pc": "0x8004AF18",
+   "reads": "player+0x00 < actor+0x08",
+   "required": "true",
+   "note": "slt/beq -> 0x8004B054; a positional test between the player and the actor"
+  },
+  {
+   "pc": "0x8004AF2C",
+   "reads": "player+0x9F",
+   "required": "== 0",
+   "note": "bne -> 0x8004B054"
+  },
+  {
+   "pc": "0x8004AF3C",
+   "reads": "actor+0x5E",
+   "required": "!= 0",
+   "note": "beq -> 0x8004AFC0; the actor-side knockdown enable"
+  },
+  {
+   "pc": "0x8004AF4C",
+   "reads": "player+0x2C",
+   "required": ">= 0",
+   "note": "bltz -> 0x8004AFC0; player vertical velocity must not be negative (not rising)"
+  },
+  {
+   "pc": "0x8004AF5C",
+   "reads": "player+0x7C",
+   "required": "!= 0",
+   "note": "beq -> 0x8004AFBC; the player must already be in an action-locked state"
+  },
+  {
+   "pc": "0x8004AF6C",
+   "reads": "player+0x84",
+   "required": "!= 17",
+   "note": "beq -> 0x8004AFBC; combined with 0x8004AEBC this pins player+0x84 to a value that is neither 1 nor 17"
+  }
+ ],
+ "effects": [
+  {
+   "pc": "0x8004AF7C",
+   "effect": "actor+0x6C  := 10"
+  },
+  {
+   "pc": "0x8004AF8C",
+   "effect": "actor+0x50  := actor+0x08 & ~1"
+  },
+  {
+   "pc": "0x8004AF94",
+   "effect": "player+0x2C := -1536   (launched upward -- the knockback)"
+  },
+  {
+   "pc": "0x8004AF9C",
+   "effect": "player+0x84 := 3"
+  },
+  {
+   "pc": "0x8004AFA4",
+   "effect": "player+0x7C := 5       (hit-reaction action state)"
+  },
+  {
+   "pc": "0x8004AFA8",
+   "effect": "player+0x80 := 0"
+  },
+  {
+   "pc": "0x8004AFAC",
+   "effect": "jal play_sound(-15, actor+4)"
+  },
+  {
+   "pc": "0x8004AFB0",
+   "effect": "player+0x82 := 0       (jal delay slot; NOT the power slot)"
+  },
+  {
+   "pc": "0x8004AFB4",
+   "effect": "j 0x8004B67C"
+  }
+ ],
+ "why_earlier_probes_missed_it": "The earlier attempt poked player+0x7C := 17 to satisfy 0x8004AF5C, but never controlled player+0x84, which 0x8004AEBC tests against 1. It also never controlled the actor-side fields (0x5C bits, 0x5E, 0x6C). With player+0x84 == 1 the clear is genuinely unreachable, so the probe was measuring the wrong path and the zero-event execTrace was consistent with that.",
+ "runtime_confirmation": "Historical oracle: at a known contact, set player+0x84 to a value that is neither 1 nor 17, player+0x7C non-zero, player+0x2C >= 0, player+0x9F == 0, actor+0x5E non-zero, actor+0x6C == 0, actor+0x5C with bit 0x20 set and bit 0x40 clear; then watch 0x8004AFB0 for execution and confirm there is NO write to the slot. Confirm player+0x2C == -1536 and player+0x7C == 5 afterwards, which distinguishes a real knockdown from an incidental event."
+}

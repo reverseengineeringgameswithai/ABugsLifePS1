@@ -1,0 +1,53 @@
+schema_version: 1
+id: pristine_thud_completion_request_control
+description: >-
+  Replay the centrally pinned pristine-serial Thud recording to the eighth
+  reset, NOP only the save-owned master-state request store at 0x800B3E84,
+  and assert that counter eight, fade, HP-zero and retirement still occur while
+  Bug Bar remains in scene 14 at the natural scene-exit boundary.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: thud_completion_request_origin
+    trigger: {type: movie_frame, target: 3738, max_frames: 3750, timeout_seconds: 240}
+    assertions:
+      - {id: completion_origin_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: completion_origin_counter, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 7}
+      - {id: completion_origin_master, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+      - {id: completion_origin_fade, type: memory, address: 0x80082470, width: s16, op: eq, expected: 0}
+      - {id: completion_origin_request_word, type: memory, address: 0x800B3E84, width: u32, op: eq, expected: 0xA42223A0}
+      - {id: completion_origin_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}
+    after:
+      - type: rpc
+        id: suppress_only_thud_completion_master_store
+        method: debugger.writeU32
+        params: {address: 0x800B3E84, value: 0}
+  - id: thud_completion_request_suppressed
+    trigger: {type: movie_frame, target: 3740, max_frames: 4, timeout_seconds: 60}
+    assertions:
+      - {id: completion_suppressed_request_word, type: memory, address: 0x800B3E84, width: u32, op: eq, expected: 0}
+      - {id: completion_suppressed_counter, type: memory, address: 0x800B4CC8, width: u32, op: eq, expected: 8}
+      - {id: completion_suppressed_master, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+      - {id: completion_suppressed_fade, type: memory, address: 0x80082470, width: s16, op: eq, expected: 149}
+      - {id: completion_suppressed_actor_hp_restored, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 50}
+  - id: thud_completion_suppressed_retirement
+    trigger: {type: movie_frame, target: 3900, max_frames: 165, timeout_seconds: 120}
+    assertions:
+      - {id: completion_suppressed_retired_scene, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: completion_suppressed_retired_hp, type: memory, address: 0x8009FDEE, width: s16, op: eq, expected: 0}
+      - {id: completion_suppressed_retired_flags, type: memory, address: 0x8009FDDC, width: u16, op: eq, expected: 0x0055}
+      - {id: completion_suppressed_retired_live_slot, type: memory, address: 0x80090748, width: u32, op: eq, expected: 0}
+  - id: thud_completion_scene_exit_prevented
+    trigger: {type: movie_frame, target: 4040, max_frames: 145, timeout_seconds: 120}
+    assertions:
+      - {id: completion_suppressed_scene_retained, type: memory, address: 0x80082504, width: u32, op: eq, expected: 14}
+      - {id: completion_suppressed_master_retained, type: memory, address: 0x800823A0, width: u16, op: eq, expected: 0}
+      - {id: completion_suppressed_fade_expired, type: memory, address: 0x80082470, width: s16, op: eq, expected: 0}
+      - {id: completion_suppressed_live_slot_remains_clear, type: memory, address: 0x80090748, width: u32, op: eq, expected: 0}
+      - {id: completion_suppressed_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

@@ -1,0 +1,102 @@
+schema: abl-phase4-swinging/1
+description: >
+  Authoritative pristine-game contract for A16. It binds the resident swing
+  pool, natural acquisition, attachment-index ownership, pendulum velocity
+  publication, fresh-Cross release, camera/actor consumers, and lifecycle. It
+  neither claims rope rendering asset internals nor installs a MOD hook.
+
+provenance:
+  media: Disney-Pixar A Bug's Life (v1.0).cue and its hash-pinned track
+  executable: REBUILD/files/SCUS_942.88
+  executable_sha256: 1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20
+  evidence: analysis/phase4_swinging.json
+  generator: tools/phase4_swinging.py
+  cold_boot_movie: movies/go_to_end/LEVEL01.movie.json
+  strict_pristine_controls: [in_front_of_swing.sav, on_swing.sav]
+
+attachment:
+  player_index:
+    address: '0x800A658C'
+    type: s16
+    domain: '0 detached; 1..8 selects pool slot 0..7'
+  acquire_owner: '0x80041AC4..0x80042427'
+  detach_owner: '0x80041A74..0x80041AC3'
+  acquire_index_writer: '0x80041CF8 stores the selected 1-based pool index'
+  detach_index_writer: '0x80041AB8 clears the player attachment index'
+  acquire_gate: >
+    Player attachment index 0; player state 1, 2, or 6; active unclaimed
+    record within its camera gate; nearest selectable rope node squared
+    distance at most 0xFFFF.
+  natural_input: Up toward the rope plus Cross from in_front_of_swing.sav
+  attached_tuple: {state: 5, grounded: 0, animation: 4}
+  release_input: fresh Cross while attached
+  release_tuple: {state: 1, animation: 3, attachment_index: 0}
+
+pool:
+  base: '0x8009C870'
+  capacity: 8
+  stride: '0x344'
+  active_count_offset: '0x00:s16'
+  claim_offset: '0x04:s16'
+  claim_lifecycle: '0 available; 1 attached; -30 native release marker, then recovers toward 0'
+  dynamic_velocity_offsets: ['0x0C:s16', '0x0E:s16', '0x10:s16']
+  relative_xyz_offsets: ['0x14:s32', '0x18:s32', '0x1C:s32']
+  selected_node_offset: '0x20:s32'
+  anchor_xyz_offsets: ['0x24:s32', '0x28:s32', '0x2C:s32']
+  reset_owner: '0x8003F5FC..0x8003F61F clears +0x00 in all eight records'
+  applicability:
+    stage01_anthill: [16, 12, 16]
+    stage11_the_tree: [16, 22, 16, 22, 16, 16, 19]
+    bonus2_mushrooms: [16, 12, 16]
+    note: Bonus 2 reuses the Stage 1 scene layout; the other 16 gameplay anchors have no active records.
+
+pendulum:
+  anchor_y_bias: 15000
+  velocity_publication:
+    record: ['+0x0C', '+0x0E', '+0x10']
+    player: ['+0x2C', '+0x30', '+0x34']
+    writers: ['0x800423C8', '0x800423DC', '0x800423F0']
+  steering: >
+    The player owner supplies heading-derived drive components to the same
+    acquisition/pendulum function while attached. Emulator frames are not the
+    native-update cadence.
+  release_impulse: 'native player owner doubles horizontal X/Z velocity and subtracts 2048 from vertical velocity at the fresh-Cross branch'
+
+dependencies:
+  player: '0x80048138 owner selects acquisition, attached state, steering, and release'
+  collision: consumes the player position/velocity proposal and damaging contact invokes native detach
+  camera: '0x8004DF18 owner reads attachment index at 0x8004E0AC'
+  actor_animation: '0x800563D4 owner uses 0x80042DCC to read the selected swing anchor'
+  render: '0x80042428 updates/renders the same visual-sprite records; E05 retains asset decoding'
+  audio: no swing-specific sound boundary is claimed by A16
+  lifecycle: pause freezes player and pool; damage detaches; scene initialization resets active records
+
+lifecycle:
+  initialization: Scene resource load populates at most eight records; reset clears every active count before repopulation.
+  capacity: Exactly eight 0x344-byte records; a player index can select only slots 0..7.
+  allocation_reuse: Records are scene-owned fixed slots, not heap identities; Stage 1 and Bonus 2 share a layout.
+  reset: Detach clears the player index and writes -30 to the selected claim; scene reset clears all active counts.
+  retirement: Claim 1 transfers back through -30 and recovers toward 0; damaging contact also invokes native detach.
+  pause: The attached player tuple and all eight pool records remain frozen.
+  death_respawn: Native damaging contact detaches before fatal flow; same-scene respawn remains detached.
+  unload_transition: Non-applicable scene anchors have zero active records and a zero attachment index.
+  persistence: Attachment, claim, node selection, relative transform, and pendulum state are transient gameplay state.
+
+mod_contract:
+  owner: Preserve the resident player, pool, collision, camera, actor-animation, render, and reset order and explicitly name every hook.
+  readers: Enumerate player index, record activity/claim/node/transform/velocity, input edge, collision, camera, actor animation, render, pause, damage, respawn, and transition consumers.
+  writers: Do not add unordered writes to attachment index, record claim/activity/node/transform/velocity, player state/velocity/position, camera state, or lifecycle clears.
+  valid_domains: Attachment index is s16 0..8; pool capacity is 8; record stride is 0x344; active count and claim are s16; positions and relative transforms are s32; record velocities are s16.
+  initialization: Initialize private swing state before the first resident reader and never infer ownership from stale record bytes or state 5 alone.
+  reset: Clear private attachment state on release, damaging contact, pause-shell reset, death/respawn/reload, takeover, and every transition.
+  retirement: Release each claimed record exactly once and retire injected input and overlay-scoped hooks before player, pool, camera, actor, render, or scene owners unload.
+  consumers: Input, player, collision, pool update, actor animation, render, camera, audio, pause, damage, respawn, stages, bonuses, and overlays.
+  capacity: Declare hook/cave/table bounds; never emit attachment indices outside 0..8 or expand records without updating every 0x344-stride consumer.
+  residency: Keep persistent private state outside overlay memory and scope scene-record references to their declared scene lifetime.
+  unsafe_assumptions:
+    - State 5 does not uniquely identify swinging.
+    - The player index is 1-based while pool slots are 0-based.
+    - Record claim -30 is a release/cooldown value, not a free Boolean.
+    - Bonus 2 reuses Stage 1 records; filename or nominal stage name is not scene identity.
+    - Emulator frames are not native pendulum updates.
+    - E02 collision, E05 asset decoding, E12 audio, and A17 manual camera controls retain separate owners.

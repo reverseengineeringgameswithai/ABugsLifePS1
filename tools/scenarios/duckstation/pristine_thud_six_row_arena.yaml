@@ -1,0 +1,64 @@
+schema_version: 1
+id: pristine_thud_six_row_arena
+description: >-
+  Replay the pinned pristine-serial Thud recording and assert the four natural
+  rolling-arena row contacts. Rows 1 and 5 are separate matched controls; this
+  scenario does not claim named models, GPU ownership, or arena completion.
+target:
+  disc: ~/Downloads/ABL/Disney-Pixar A Bug's Life (v1.0).cue
+  expected_serial: SCUS-94288
+launch: {profile: generic}
+playback:
+  movie: thud_boss_movie.movie.json
+  load_start_state: true
+  require_reproducible: true
+phases:
+  - id: arena_row2_pre_contact
+    trigger: {type: movie_frame, target: 977, max_frames: 990, timeout_seconds: 180}
+    assertions:
+      - {id: row2_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: row2_pre_speed, type: memory, address: 0x800B4BF0, width: s16, op: eq, expected: -90}
+      - {id: row2_pre_ramp, type: memory, address: 0x800B4C80, width: u32, op: eq, expected: 112}
+  - id: arena_row2_contact
+    trigger: {type: movie_frame, target: 978, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: row2_post_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: row2_post_speed, type: memory, address: 0x800B4BF0, width: s16, op: eq, expected: 90}
+      - {id: row2_post_ramp, type: memory, address: 0x800B4C80, width: u32, op: eq, expected: 0}
+  - id: arena_row3_pre_contact
+    trigger: {type: movie_frame, target: 1097, max_frames: 125, timeout_seconds: 120}
+    assertions:
+      - {id: row3_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: row3_pre_speed, type: memory, address: 0x800B4BF2, width: s16, op: eq, expected: 144}
+      - {id: row3_pre_ramp, type: memory, address: 0x800B4C84, width: u32, op: eq, expected: 100}
+  - id: arena_row3_contact
+    trigger: {type: movie_frame, target: 1098, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: row3_post_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 2}
+      - {id: row3_post_speed, type: memory, address: 0x800B4BF2, width: s16, op: eq, expected: -144}
+      - {id: row3_post_ramp, type: memory, address: 0x800B4C84, width: u32, op: eq, expected: 0}
+  - id: arena_row4_pre_contact
+    trigger: {type: movie_frame, target: 1469, max_frames: 375, timeout_seconds: 180}
+    assertions:
+      - {id: row4_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: row4_pre_speed, type: memory, address: 0x800B4BF4, width: s16, op: eq, expected: -110}
+      - {id: row4_pre_ramp, type: memory, address: 0x800B4C88, width: u32, op: eq, expected: 104}
+  - id: arena_row4_contact
+    trigger: {type: movie_frame, target: 1470, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: row4_post_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 2}
+      - {id: row4_post_speed, type: memory, address: 0x800B4BF4, width: s16, op: eq, expected: 110}
+      - {id: row4_post_ramp, type: memory, address: 0x800B4C88, width: u32, op: eq, expected: 0}
+  - id: arena_row0_pre_contact
+    trigger: {type: movie_frame, target: 3123, max_frames: 1660, timeout_seconds: 240}
+    assertions:
+      - {id: row0_pre_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 4}
+      - {id: row0_pre_speed, type: memory, address: 0x800B4BEC, width: s16, op: eq, expected: -100}
+      - {id: row0_pre_ramp, type: memory, address: 0x800B4C78, width: u32, op: eq, expected: 92}
+  - id: arena_row0_contact
+    trigger: {type: movie_frame, target: 3124, max_frames: 3, timeout_seconds: 60}
+    assertions:
+      - {id: row0_post_health, type: memory, address: 0x800A6594, width: s16, op: eq, expected: 3}
+      - {id: row0_post_speed, type: memory, address: 0x800B4BEC, width: s16, op: eq, expected: 100}
+      - {id: row0_post_ramp, type: memory, address: 0x800B4C78, width: u32, op: eq, expected: 0}
+      - {id: arena_movie_reproducible, type: rpc, method: movie.status, path: reproducible, op: eq, expected: true}

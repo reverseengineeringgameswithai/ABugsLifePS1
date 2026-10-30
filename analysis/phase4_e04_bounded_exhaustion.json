@@ -1,0 +1,116 @@
+{
+  "schema": "abl.phase4.bounded_exhaustion.v1",
+  "row": "E04_camera_system",
+  "date": "2026-08-04",
+  "disposition": "substantiated_partial_bounded_exhausted",
+  "method": {
+    "order": [
+      "validated retained trace capsule",
+      "offline C capsule query",
+      "pristine executable and overlay ASM census in C",
+      "cross-row reconciliation with A17 and C14"
+    ],
+    "live_duckstation_required": false,
+    "interpreter_movie_required": false,
+    "reason_no_live_replay": "The retained capsule, existing Interpreter evidence, and pristine static code answer every named Phase 4 mechanism question. A new replay would only repeat observed motion without adding a missing evidence domain."
+  },
+  "retained_capsule_gate": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/a10-a11-v2-20260719/Phase_Helpers__carry_handstand",
+    "manifest_sha256": "5188a58af0c5c347b5f2a7685e12748631686823edf78ad15c2649d716f02a26",
+    "complete": true,
+    "truncated": false,
+    "records": 1359,
+    "movie_frame_range": [0, 1358],
+    "independent_control_fingerprint": "exact",
+    "offline_query_source": "tools/phase4_a10_camera.c",
+    "offline_query_binary_sha256": "4f7b8757441e914e2fe1fc0dc752124fe41c11ba31f9a33670f1c20ca6ad9908",
+    "offline_query_output_sha256": "047606f5b86612bfcb7d21a3064cb8b1fc1e3ff15d49d3bae847476b2ec9b68e",
+    "result": "Normal derived-camera updates continue through the handstand interval; no independent camera latch or hidden source appears."
+  },
+  "static_investigation": {
+    "tool": "tools/phase4_e04_static_closure.c",
+    "investigation_source_sha256": "8e31775d449ad5bfe923b6ed6cc864a6686c6a18fce128e98c82c086f7679f20",
+    "binary_sha256": "5d48b8fbb5e1561dcd06e473f93e0eb39e451be6261f87f4e495346752beef57",
+    "output_sha256": "5faf2ea46ae01884fa3cbbbcc402aa55bfe43489c46d459de2609a62386fd919",
+    "pristine_exe_sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20",
+    "overlay_bins_scanned": 20
+  },
+  "camera_struct": {
+    "address": "0x80095358",
+    "fields": {
+      "+0x18": "Final view pitch. It shortest-arc quarter-steps toward the vertical atan2 result.",
+      "+0x1A": "Final view yaw. It shortest-arc quarter-steps toward the horizontal target-minus-position atan2 result.",
+      "+0x1E": "Signed camera boom distance.",
+      "+0x20": "Follow/orbit heading used to place the target around Flik; R1 suppresses its angular step.",
+      "+0x22_low": "Profile/control byte.",
+      "+0x22_high": "Signed decrementing countdown/control byte, not a stable camera submode enumeration.",
+      "+0x24": "Player-state-gated look/lead offset amplitude. It ramps by two between 0 and 32 and contributes sine/cosine offsets using +0x1A.",
+      "+0x2A": "Twelve-bit terrain/region clearance pitch accumulator. Region-query results move it by 0x20 toward 0x400 or back toward zero and may also force boom-distance contraction."
+    }
+  },
+  "resident_profiles": {
+    "table": "0x80077F40",
+    "authorship": "hardcoded resident data, not per-level camera nodes",
+    "valid_entry_count": 6,
+    "entries": [
+      {"index": 0, "normal_distance": 400, "alternate_distance": 700, "leash_squared": 1000000, "vertical_offset": 12288},
+      {"index": 1, "normal_distance": 900, "alternate_distance": 1200, "leash_squared": 1960000, "vertical_offset": 12288},
+      {"index": 2, "normal_distance": 1400, "alternate_distance": 1400, "leash_squared": 4000000, "vertical_offset": 12288},
+      {"index": 3, "normal_distance": 1400, "alternate_distance": 1400, "leash_squared": 4000000, "vertical_offset": 24576},
+      {"index": 4, "normal_distance": 900, "alternate_distance": 1200, "leash_squared": 1960000, "vertical_offset": 24576},
+      {"index": 5, "normal_distance": 400, "alternate_distance": 700, "leash_squared": 1000000, "vertical_offset": 24576}
+    ],
+    "r1_profile": {
+      "distance": 1400,
+      "vertical_offset": 24576,
+      "leash_squared": 1960000,
+      "world_radius": 44800
+    }
+  },
+  "producer_boundary": {
+    "normal_follow_calls": ["0x8004EC10", "0x8004EC54"],
+    "setpiece_update_call": "0x8004EC5C",
+    "telescope_start": {
+      "function": "0x8004D9E8",
+      "resident_callers": ["0x8004D730"]
+    },
+    "polar_setpiece_start": {
+      "function": "0x8004DA94",
+      "resident_callers": 0,
+      "overlay_direct_callers": 13,
+      "overlay_distribution": {
+        "LEVEL01/L1": 1,
+        "LEVEL02": 1,
+        "LEVEL02/L1": 2,
+        "LEVEL03/L1": 1,
+        "LEVEL04": 2,
+        "LEVEL04/L1": 1,
+        "LEVEL05": 1,
+        "LEVEL05/L1": 2,
+        "LEVEL07": 2
+      }
+    },
+    "cinematic_selector": "0x8004EA8C",
+    "cinematic_phase_states": [1, 2, 3, 4],
+    "cinematic_source_rule": "flags bit 1 selects the setpiece source; otherwise the normal follow source is copied to 0x8009EC50",
+    "suppression_rule": "flags bit 2 holds 0x800A6590 bit 2"
+  },
+  "cross_row_evidence": {
+    "A17": "Full-bounded manual-camera producer, controls, priority, release behavior, profile selection, leash, region query, and candidate rejection.",
+    "C14": "Bounded-exhausted telescope trigger, shared-state lifecycle, route corpus, presentation masking, early return, and parked normal-follow camera during setpiece motion.",
+    "cinematic_camera_canon": "Shared block, start functions, selector, phase machine, suppression bit, returning telescope control, and a level-ending Council Chamber case."
+  },
+  "superseded_claims": [
+    "The +0x22 high byte is not an enumerated 0x0A/0x0B submode field; it is a signed countdown/control byte.",
+    "The normal camera presets are not authored per-level camera nodes; the six valid presets are resident hardcoded table entries.",
+    "+0x1A and +0x20 are not unresolved target/actual aliases: +0x1A is final view yaw and +0x20 is the follow/orbit heading.",
+    "+0x2A is not an unknown mode; it is the terrain/region clearance pitch accumulator."
+  ],
+  "bounded_residuals": [
+    "A content-level artistic catalog of every overlay cinematic shot.",
+    "A semantic gameplay name for the player +0x38 value that gates +0x24; its camera-side transfer function is already exact.",
+    "A visual catalog of every terrain and line-of-sight arrangement; the region query, candidate rejection, clearance response, and distance contraction mechanisms are already pinned.",
+    "Pointer-derived aliases outside the completed direct-address census."
+  ],
+  "closure_rationale": "The remaining items are naming or content-enumeration work with minimal mechanistic return. They do not leave an unresolved trigger, camera field role, input rule, normal/setpiece source boundary, profile parameter, or transition mechanism required by the Phase 4 row."
+}

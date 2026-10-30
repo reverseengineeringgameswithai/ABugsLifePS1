@@ -1,0 +1,745 @@
+schema: abl-phase4-thud/7
+rows: [D18_thud, F09_bug_bar]
+owner: bosses_special_objectives
+campaign_state: active_partial
+
+runtime_code_regions:
+  - start: 0x800B3D9C
+    end_exclusive: 0x800B3E98
+    name: thud_counter8_completion_request_runtime
+    classification: confirmed_save_owned_runtime_code
+    identity: >-
+      Exact bytes from the centrally pinned Thud save-state replay. The
+      counter-8 branch and paired master-state/fade stores are hash-bound in
+      analysis/phase4_thud_completion.json and do not supply staged provenance.
+    evidence: analysis/phase4_thud_completion.json
+  - start: 0x800B4814
+    end_exclusive: 0x800B4B24
+    name: thud_six_row_arena_runtime
+    classification: confirmed_save_owned_runtime_code
+    identity: >-
+      Exact bytes from the centrally pinned Thud save-state replay. Six typed
+      path records and six pass-2 mesh joins are separately hash-bound in
+      analysis/phase4_thud_arena.json; neither claim supplies staged provenance.
+    evidence: analysis/phase4_thud_arena.json
+  - start: 0x800B3ED4
+    end_exclusive: 0x800B4004
+    name: thud_post_restore_save_owned_runtime
+    classification: confirmed_save_owned_runtime_code
+    identity: >-
+      Exact bytes from the centrally pinned Thud save-state replay. The region
+      matches neither staged LEVEL08 executable and must not inherit a staged
+      overlay identity.
+    evidence: analysis/phase4_thud_defeat.json
+
+pristine_oracle:
+  movie: {path: thud_boss_movie.movie.json, sha256: 70e5988852315924e7eba7f8ba23632545ad329878e3e5b8a59de91955bcddaa, frames: 4113, format_version: 1}
+  state: {path: thud_boss_movie.movie.sav, sha256: 789d9b601d592748af934c162513e91f1e63a8d2bbe8ce2cb3b9c16876b32a99, media_class: pristine}
+  authority: >-
+    Save inspection and mounted pristine CUE/BIN hashes are mandatory. The
+    filename and JSON serial are not media or mechanic proof.
+
+scene_and_actor:
+  scene: {id: 14, asset: 'level08\level5b', stage_label: stage09_bug_bar}
+  actor_pool: {base: 0x8009FD80, stride: 0x84, slot: 0}
+  live_table_slot: 0x80090748
+  actor:
+    id: {address: 0x8009FD80, width: u32, value: 36}
+    flags: {address: 0x8009FDDC, width: u16, initial: 0x4055, retired: 0x0055, active_mask: 0x4000}
+    hp: {address: 0x8009FDEE, width: s16, initial: 50, defeated: 0}
+    vm_ip: {address: 0x8009FDF0, width: u32, observed: [0x800777A4, 0x800777A6]}
+    callback: {address: 0x8009FDFC, width: u32, value: 0x8004A0F4}
+    source: {address: 0x8009FE00, width: u32, value: 0x80094A38}
+
+recorded_player_projectile_launch:
+  input_window: {start_frame: 896, end_frame_exclusive: 918, edited_field: ports.0.square, mutation: false}
+  passive_boundaries:
+    pre: {target_movie_frame: 896, throw_windup: 6, in_flight_count: 2, slot_26_action: 4}
+    post: {target_movie_frame: 915, throw_windup: 9, in_flight_count: 3, slot_26_action: 2, slot_26_ttl: 99}
+  exact_allocation:
+    allocator: 0x8005A0E0
+    caller: {jal: 0x8004724C, return_address: 0x80047254, owner: resident_player_throw_dispatcher}
+    action_id: {address: 0x800B12E8, instruction_pc: 0x8005A1D8, word: 0xA6020020, old: 4, new: 2}
+    lifetime_ttl: {address: 0x800B12EA, instruction_pc: 0x8005A1E4, new: 100}
+    damage_class: {address: 0x800B12FC, instruction_pc: 0x8005A270, new: 0}
+  square_cleared_control:
+    aligned_boundary: {target_movie_frame: 896, full_ram_register_cycle_equal: true}
+    post_launch: {natural: [9, 3, 2, 99], square_cleared: [0, 2, 4, 0]}
+    damage: {natural: [48, 2], square_cleared: [50, 4]}
+    first_reset: {natural: [50, 1, 4294801440], square_cleared: [50, 0, 4294798880]}
+  boundary: >-
+    The in-memory branch clears only Square and retains no derivative recording.
+    This binds one recorded player-throw allocation and its first contact/reset.
+    It does not assign berry color from the sampled selector, and it does not
+    bind a Thud-owned attack.
+
+natural_damage_and_restore:
+  passive_trace_boundaries:
+    pre_damage: {target_movie_frame: 964, hp: 50, action_id: 2, damage_class: 0, overlay_target_hp: 50}
+    damaged: {target_movie_frame: 965, hp: 48, action_id: 2, damage_class: 0, overlay_target_hp: 50}
+    held: {target_movie_frame: 966, hp: 48, action_id: 2, damage_class: 0, overlay_target_hp: 50}
+    restored: {target_movie_frame: 967, hp: 50, action_id: 2, damage_class: 0, overlay_target_hp: 50}
+  contact_record:
+    pool: 0x800B0D18
+    stride: 0x38
+    slot: 26
+    record: 0x800B12C8
+    action_id: {address: 0x800B12E8, width: u8, value: 2}
+    damage_class: {address: 0x800B12FC, width: u8, value: 0}
+  exact_writers:
+    damage: {instruction_pc: 0x800590E4, word: 0xA642006E, instruction: 'sh v0, 0x6e(s2)', old: 50, new: 48}
+    restore: {instruction_pc: 0x800B3ED0, word: 0xA662006E, instruction: 'sh v0, 0x6e(s3)', old: 48, new: 50}
+  ownership:
+    damage: >-
+      0x8005905C is an inner class-dispatch block in the resident 0x80058AF8
+      contact-vs-actor handler. Class 0 takes the -2 branch before 0x800590E4.
+    restore: >-
+      Resident call 0x80054A64 enters the save-owned runtime overlay at
+      0x800B3C70; it reads target u32 0x800B4C70 before 0x800B3ED0 restores HP.
+  one_field_controls:
+    damage_class: {address: 0x800B12FC, control: 0, mutation: 127, control_hp: 48, mutation_hp: 46, frames: 1}
+    overlay_target_hp: {address: 0x800B4C70, control: 50, mutation: 49, control_hp: 50, mutation_hp: 49, frames: 2}
+  boundary: >-
+    The preceding launch section binds the recorded player projectile that
+    becomes this first action-2 contact. These controls bind one decrement and
+    one restore source, not a complete hit curve or boss attack policy.
+
+post_restore_thud_owned_launch:
+  passive_trace_boundaries:
+    pre:
+      target_movie_frame: 970
+      movie_playback_index: 969
+      derived_countdown: 9
+      slot_17: {action_id: 1, lifetime_ttl: 0, damage_class: 0}
+      cumulative_calls: {overlay_allocator_call: 1, allocator_entry: 6}
+    post:
+      target_movie_frame: 971
+      movie_playback_index: 970
+      derived_countdown: 8
+      slot_17: {action_id: 20, lifetime_ttl: 200, damage_class: 128}
+      cumulative_calls: {overlay_allocator_call: 2, allocator_entry: 7}
+    authority: >-
+      Each boundary is a cycle/RAM/register-neutral traceToFrame pair on the
+      pinned pristine recording. Their one-frame count delta is one call at
+      0x800B3FF0 and one allocator entry at 0x8005A0E0.
+  exact_allocation:
+    actor: 0x8009FD80
+    contact_pool: {base: 0x800B0D18, stride: 0x38, slot: 17, record: 0x800B10D0}
+    caller: {jal: 0x800B3FF0, allocator: 0x8005A0E0, return_address: 0x800B3FF8, owner: save_owned_thud_overlay}
+    action_id: {address: 0x800B10F0, instruction_pc: 0x8005A1D8, word: 0xA6020020, old: 1, new: 20}
+    lifetime_ttl: {address: 0x800B10F2, instruction_pc: 0x8005A1E4, new: 200}
+    damage_class: {address: 0x800B1104, instruction_pc: 0x8005A270, new: 128}
+    accounting: {access_events: 27, truncated: false, overlay_call_events: 1, allocator_events: 1}
+  countdown_zero_control:
+    aligned_boundary: {target_movie_frame: 970, full_ram_register_cycle_pc_sp_equal: true}
+    single_field: {address: 0x800B4CB4, width: u32, control: 9, mutation: 0}
+    frames: 1
+    outcomes:
+      control: {derived_countdown: 8, action_id: 20, lifetime_ttl: 200, damage_class: 128}
+      countdown_zero: {derived_countdown: 0, action_id: 1, lifetime_ttl: 0, damage_class: 0}
+    endpoint: {emulator_frame_equal: true, movie_frame_equal: true, pc_sp_equal: true, mutation_minus_control_cycle: -1}
+  boundary: >-
+    Actor ownership, exact caller and the one-field suppression bind one
+    Thud-owned action-20 contact-object source/launch. This launch section alone
+    does not assign its target, hit, damage amount, completion effect, or other
+    variants; the following sections separately bind its native player-proximity
+    grain effect, one textured-billboard presentation and one launch-sound
+    request/SPU event sequence.
+
+action20_launch_sound:
+  exact_request:
+    caller: {instruction_pc: 0x800B3FFC, word: 0x0C014113, owner: save_owned_thud_overlay}
+    callee: {address: 0x8005044C, name: play_sound, return_address: 0x800B4004}
+    arguments: {signed_cue: -14, unsigned_a0: 0xFFFFFFF2, position_context: 0x8009FD84, actor: 0x8009FD80}
+    attribution_window:
+      start_target_movie_frame: 967
+      frames: 10
+      caller_events: 1
+      play_sound_events: 3
+      positive_sfx_dispatch_events: 0
+      truncated: false
+  resident_static_path:
+    range: [0x8005044C, 0x800507F8]
+    length: 940
+    sha256: ffd93c418662e743429c966f4080065688227dcee6b17aab0ba4b21d383331b1
+    source: asm/hand_written/8005044c_play_sound.s
+  exact_call_nop_control:
+    aligned_boundary: {target_movie_frame: 970, full_ram_register_cycle_pc_sp_equal: true}
+    single_instruction: {address: 0x800B3FFC, control: 0x0C014113, mutation: 0x00000000, changed_bytes: 4, code_invalidated: true}
+    endpoint:
+      target_movie_frame: 980
+      emulator_frame: 327724
+      movie_playback_index: 980
+      emulator_frame_equal: true
+      movie_frame_equal: true
+      pc_equal: true
+      sp_equal: true
+      natural_pc: 0x800104B8
+      nop_pc: 0x800104B8
+      nop_minus_natural_cycle: 1
+      action20_record_equal: true
+      gameplay_state_equal: true
+    spu_events:
+      natural_total: 13
+      call_nop_total: 7
+      truncated: false
+      shared_event_frame: 327722
+      natural_early_key_ons:
+        start_address: 0x00009E10
+        frames: [327715, 327716, 327718, 327720]
+        voices: [1, 9, 2, 10]
+      call_nop_early_key_ons: 0
+  boundary: >-
+    NOPing only the exact save-owned -14 play_sound call removes six bounded
+    emulated SPU events, including four early key-ons at sample start 0x00009E10,
+    while preserving the action-20 object and gameplay endpoint. This does not
+    name a sound asset, retain audio bytes, prove a waveform or host-speaker
+    drain, bind natural-hit frequency, or complete the general E12 audio owner.
+
+action20_controlled_grain_effect:
+  natural_passive_boundaries:
+    pre_contact: {target_movie_frame: 972, movie_playback_index: 971, grain: 0, action_id: 20, active_gate: 200, radius_add: 100, state: 24}
+    next_frame_miss: {target_movie_frame: 973, movie_playback_index: 972, grain: 0, action_id: 20, active_gate: 199, radius_add: 100, state: 24}
+    later_flight: {target_movie_frame: 1021, movie_playback_index: 1020, grain: 0, action_id: 20, active_gate: 175, radius_add: 100, state: 24}
+    natural_retirement: {target_movie_frame: 1023, movie_playback_index: 1022, grain: 0, action_id: 20, active_gate: 0, radius_add: 100, state: 24}
+    authority: >-
+      All four are fresh cycle-neutral traceToFrame pairs. The resident action-20
+      handler entry 0x80054EAC and grain store 0x80054F9C are absent, so this
+      recorded trajectory misses and retires without collection.
+  resident_static_path:
+    dispatch_entry: {address: 0x8001B5B8, width: 4, target: 0x800589B8, sha256: c242b0ea2b3482a29d2095f40e7e1b3ef01db3ec842208e0db7f5dfeeb86563b}
+    action20_tail: {address: 0x800589B8, length: 80, sha256: 3801270967aa9a0088252f050c8e5cf1c089ea64a4861b8a68e81f635311e600}
+    grain_increment_slice: {address: 0x80054F88, length: 28, sha256: 26aab7214fda929923bfa0176d2fb5c65c52f06ed3d6e95ab8860f1a4a1987cb}
+    path: [0x800589B8, 0x80054EAC, 0x80054F9C, 0x800589E0, 0x800589E4, 0x800589FC, 0x8005044C]
+  walker_gate:
+    player_y_bias: -7360
+    scaled_delta: {x: '(player_x - record_x) * 0x300 >> 13', y: '(player_y - 0x1CC0 - record_y) * 0x100 >> 13', z: '(player_z - record_z) * 0x300 >> 13'}
+    radius: '300 + signed record+0x28'
+    condition: 'scaled_distance_squared < radius_squared and record+0x22 > 0 and (record+0x33 & 2) != 0'
+  radius_control:
+    aligned_boundary: {target_movie_frame: 972, full_ram_register_cycle_pc_sp_equal: true}
+    single_field: {address: 0x800B10F8, width: s16, control: 100, mutation: 6000}
+    changed_bytes: [{address: 0x800B10F8, before: 100, after: 112}, {address: 0x800B10F9, before: 0, after: 23}]
+    frames: 1
+    outcomes:
+      before: {grain: 0, player_health: 4, action_id: 20, active_gate: 200, radius_add: 100, state: 24}
+      control: {grain: 0, player_health: 4, action_id: 20, active_gate: 199, radius_add: 100, state: 24}
+      radius_enlarged: {grain: 1, player_health: 4, action_id: 20, active_gate: 1, radius_add: 6000, state: 16}
+    endpoint: {emulator_frame_equal: true, movie_frame_equal: true, cycle_equal: true, mutation_minus_control_cycle: 0, control_pc: 0x80010508, mutation_pc: 0x80010508}
+  exact_effect:
+    grain_increment: {address: 0x800A65A1, instruction_pc: 0x80054F9C, word: 0xA0430000, old: 0, new: 1}
+    record_state: {address: 0x800B10FC, instruction_pc: 0x800589E0, word: 0xA650000A, old: 24, new: 16}
+    record_active_gate: {address: 0x800B10F2, instruction_pc: 0x800589E4, word: 0xA6570000, new: 1}
+    bookkeeping: {call: 0x800589FC, target: 0x8005044C, result: -1, record: 0x800B10D0, return_address: 0x80058A04}
+    accounting: {access_events: 10, truncated: false, dispatch_events: 1, handler_events: 1, grain_store_events: 1, state_store_events: 1, active_store_events: 1, bookkeeping_call_events: 1}
+  boundary: >-
+    The one-field radius intervention proves that this Thud-owned action-20
+    contact object targets the resident player-proximity walker and invokes the
+    native grain increment/state/active/bookkeeping path. It does not prove a
+    natural hit, damage, hit frequency, other variants,
+    objective completion, or campaign closure. The next section independently
+    binds one visual presentation; the preceding section independently binds
+    one launch-sound request/SPU sequence.
+
+natural_reward_volley_frequency:
+  evidence: {artifact: analysis/phase4_thud_volley.json, sha256: ae923a520f57caeb244c670a27385491aac8359e3077816429d8ab28c6dca05d}
+  passive_settled_boundaries:
+    target_movie_frames: [994, 1336, 1736, 2154, 2548, 2964, 3334, 3754, 4113]
+    phase_counters: [1, 2, 3, 4, 5, 6, 7, 8, 8]
+    cumulative_allocator_calls: [10, 20, 30, 40, 50, 60, 70, 70, 70]
+    grain: [0, 0, 0, 4, 8, 12, 14, 14, 14]
+    all_cycle_neutral: true
+  exact_execution_counts:
+    countdown_store_0x800B3F24: 70
+    equality_to_five_path_0x800B3F34: 7
+    general_path_0x800B3F7C: 63
+    allocator_call_0x800B3FF0: 70
+    sound_call_0x800B3FFC: 70
+    resident_action20_tail_0x800589B8: 14
+    resident_grain_store_0x80054F9C: 14
+    resident_action9_handler_0x80058864: 4
+    resident_action9_health_store_0x80058890: 4
+  first_natural_action9_pickup:
+    passive_targets: [1432, 1433]
+    post_step_movie_indices: [1431, 1432]
+    health: [2, 3]
+    cumulative_handler_calls: [0, 1]
+    cumulative_health_stores: [0, 1]
+    contact:
+      pool_slot: 47
+      action_id: 9
+      lifetime_ttl: [62, 1]
+      position: [126549, -348, -14770]
+      radius_add: 100
+      state: 7
+      flags: 226
+    trace_authority: Both endpoints are independently cycle/RAM/register neutral.
+  resident_action9_handler:
+    range: [0x80058864, 0x8005889C]
+    length: 56
+    sha256: e89382b9e86e29907d3cee300e6c7b706884bd20f352f2ff217c06e6f799f849
+    decisive_instructions:
+      state_7: {instruction_pc: 0x80058864, word: 0x24100007}
+      health_load: {instruction_pc: 0x80058880, word: 0x94620000}
+      health_increment: {instruction_pc: 0x80058888, word: 0x24420001}
+      health_store: {instruction_pc: 0x80058890, word: 0xA4620000, observed: [2, 3]}
+  matched_variant_control:
+    origin: {target_movie_frame: 970, full_ram_register_cycle_pc_sp_equal: true}
+    single_field: {address: 0x800B4CB4, width: u32, control: 9, mutation: 6, changed_bytes: 1}
+    next_iteration:
+      natural: {derived_countdown: 8, slot17_action_id: 20, ttl: 200, state: 24}
+      mutation: {derived_countdown: 5, slot17_action_id: 9, ttl: 200, state: -42}
+    endpoint: {emulator_frame_equal: true, movie_frame_equal: true, cycle_equal: true, pc_sp_equal: true, mutation_minus_control_cycle: 0}
+  typed_variant:
+    action_20: grain contact through the independently bound resident action-20 dispatch
+    action_9: health leaf through the independently retained resident contact-action dispatch and semantic C sources
+  retirement: {counter_8_additional_allocator_calls: 0, final_active_action9: 0, final_active_action20: 0, final_grain: 14, cumulative_natural_action9_pickups: 4}
+  boundary: >-
+    In this one complete recording, seven reset suffixes each issue exactly ten
+    reward allocations: nine general action-20 contacts and one countdown-five
+    action-9 health-leaf contact. Fourteen action-20 records naturally reach the
+    resident grain store and four action-9 records naturally reach the exact
+    true-health increment store. The first raises health 2 to 3 at the passive
+    1432/1433 boundary. This binds recorded-fight frequency, a second reward
+    variant and one natural health effect, not universal collection/drop rates,
+    complete attack policy, retry behavior or D18/F09 completion.
+
+action20_textured_billboard_presentation:
+  source_suppression_control:
+    aligned_boundary: {target_movie_frame: 970, full_ram_register_cycle_pc_sp_equal: true}
+    single_field: {address: 0x800B4CB4, width: u32, control: 9, mutation: 0}
+    endpoint:
+      target_movie_frame: 980
+      emulator_frame: 327724
+      movie_playback_index: 980
+      emulator_frame_equal: true
+      movie_frame_equal: true
+      sp_equal: true
+      pc_equal: false
+      suppressed_minus_natural_cycle: 0
+      natural_pc: 0x800104B8
+      suppressed_pc: 0x80010508
+    outcomes:
+      natural: {action_id: 20, active_gate: 195}
+      countdown_zero: {action_20_absent: true, sampled_reused_action_id: 4, sampled_active_gate: 12}
+    mutation_changed_bytes: [{address: 0x800B4CB4, before: 9, after: 0}]
+  in_memory_frame_diff:
+    dimensions: [800, 610]
+    changed_pixels: 593
+    total_pixels: 488000
+    normalized_score: 0.0012151639344262295
+    max_difference: 251
+    mean_absolute_difference: 0.06294006147540984
+    bounding_boxes: [{x: 449, y: 159, width: 28, height: 35}]
+    retention: No framebuffer, PNG, capture, texture or other copyrighted asset bytes are retained.
+  natural_object_pick:
+    query: {x: 295, y: 65}
+    pixel_rgba: [107, 156, 0, 255]
+    draw: {frame: 327721, command: 'GP0(2c) quad', command_id: 44, primitive: quad}
+    geometry:
+      screen_rect: {x: 799, y: 322, width: 20, height: 13}
+      screen_vertices: [[799, 322], [818, 322], [799, 334], [818, 334]]
+      uv: [[240, 112], [255, 112], [240, 127], [255, 127]]
+    texture: {bpp: 4bpp, page_x: 512, page_y: 0, clut_x: 880, clut_y: 221}
+    source: {ram_address: 0x001CF3D4, dma_source: 0x001CF3D4, vertex_pointer: 0x001CF3D8, probable_ordering_table_entry: 0x001CF3D0}
+  resident_renderer:
+    range: [0x80014844, 0x80014AD4]
+    length: 656
+    sha256: 7fa7b409bac944db9fb8a779fe26d9965930b9ca986002f8e849875ff2e36a0e
+    classification: contact_record_billboard_render
+    slot_17_reads: {total: 22, frames: [327716, 327722]}
+    packet_writes: {window: [0x801CF3D0, 64], total: 16, frame: 327716, truncated: false}
+    accounting: {access_total: 118, slot_watch_hits: 102, packet_watch_hits: 16, truncated: false}
+  boundary: >-
+    Suppressing only the save-owned source allocation removes one exact
+    593-pixel region at an equal frame and cycle. GPU object picking and the
+    resident renderer trace join the natural pixels to slot 17 action 20 and a
+    textured contact-record billboard. This does not identify the texture/model
+    asset by name or bind damage, natural-hit frequency, other variants,
+    objective completion, or campaign closure.
+
+rolling_boulder_contact:
+  passive_trace_boundaries:
+    pre:
+      target_movie_frame: 1466
+      movie_playback_index: 1465
+      player_health: 3
+      player_position: [104318, 1478, -20326]
+      thud_hp: 50
+    post:
+      target_movie_frame: 1472
+      movie_playback_index: 1471
+      player_health: 2
+      player_position: [99005, -934, -18472]
+      thud_hp: 50
+    authority: >-
+      Each boundary is a cycle/RAM/register-neutral traceToFrame pair on the
+      pinned pristine recording. Interpreter-only attribution is separate.
+  save_owned_runtime_block:
+    address: 0x800B4814
+    length: 784
+    instruction_count: 196
+    sha256: 4169c4691a2d31867a9d237d006d91a83b5d3a2d2485c8669f0fed3e3032218d
+    extent: {first_instruction: 0x800B4814, last_instruction: 0x800B4B20}
+    structure:
+      object_rotation_rows: 10
+      transform_collision_rows: 6
+      object_rotation_call: 0x800292DC
+      pass2_transform_call: 0x80029508
+      collision_candidate_call: 0x80037320
+      squared_distance_compare: 0x800B4A60
+      player_raw_gate: {instruction: 0x800B4A74, field: 0x800A6592, sampled: 0}
+      resident_transition_damage_call: {instruction: 0x800B4AE0, target: 0x8004A700, a3: 0}
+      health_store: {instruction: 0x8004A888, address: 0x800A6594, old: 3, new: 2}
+    identity_boundary: >-
+      The block is exact only for the inspected save-restored Region-A image;
+      it is not laundered into either staged LEVEL08 candidate.
+  resident_interfaces:
+    pass2_object_transform_update:
+      range: [0x80029508, 0x80029578]
+      pristine_exe_sha256: 0ab98c91ed6f02ae6ed0303a47f021a5ad254ea5b13be7d7998e30d6b48bedf2
+      source_status: byte_matched_c
+    collision_candidate_builder:
+      range: [0x80037320, 0x800376A0]
+      pristine_exe_sha256: 6ba1df922159d2b9bfcdf36860e667411ff3a8a2afdd769137510775e0e5984a
+      source_status: hand_written_asm
+    resident_level_transition_initiator:
+      range: [0x8004A700, 0x8004AA34]
+      pristine_exe_sha256: 006837971da56526412ace711aa560d72eef0b9aff8ee0c9087c97303edc1626
+      source_status: hand_written_asm
+  contact_frame_rows:
+    - {row: 0, phase_address: 0x800B4C78, threshold_address: 0x800B4C0C, squared_distance: 13266474, threshold: 490000, inside: false, transformed_position: [767, -1573, 1691]}
+    - {row: 1, phase_address: 0x800B4C7C, threshold_address: 0x800B4C10, squared_distance: 64727638, threshold: 250000, inside: false, transformed_position: [-4885, -429, -807]}
+    - {row: 2, phase_address: 0x800B4C80, threshold_address: 0x800B4C14, squared_distance: 46873046, threshold: 160000, inside: false, transformed_position: [-3438, -561, 1198]}
+    - {row: 3, phase_address: 0x800B4C84, threshold_address: 0x800B4C18, squared_distance: 16903332, threshold: 490000, inside: false, transformed_position: [-892, -670, -1021]}
+    - {row: 4, phase_address: 0x800B4C88, threshold_address: 0x800B4C1C, squared_distance: 454805, threshold: 490000, inside: true, transformed_position: [3448, -547, -919]}
+    - {row: 5, phase_address: 0x800B4C8C, threshold_address: 0x800B4C20, squared_distance: 7953178, threshold: 490000, inside: false, transformed_position: [5085, -864, 1278]}
+  row_4_threshold_control:
+    aligned_boundary: {target_movie_frame: 1466, full_ram_register_cycle_pc_sp_equal: true}
+    single_field: {address: 0x800B4C1C, width: u32, control: 490000, mutation: 0}
+    frames: 6
+    outcomes:
+      control: {player_health: 2, player_position: [99005, -934, -18472]}
+      threshold_zero: {player_health: 3, player_position: [99005, -934, -18472]}
+    endpoint: {emulator_frame_equal: true, movie_frame_equal: true, pc_equal: true, sp_equal: true, cycle_equal: true, threshold_zero_minus_control_cycle: 0, control_pc: 0x8004FEA4, threshold_zero_pc: 0x8004FEA4}
+    conclusion: >-
+      Only row 4 is inside its sampled squared-distance threshold. Zeroing only
+      that threshold prevents the natural 3-to-2 player-health decrement while
+      endpoint frame, cycle, PC, SP and player position remain equal.
+  transient_visual_context:
+    config: /tmp/abl-phase4-i23-thud-explore-20331.5d7V9P
+    captures:
+      - {target_movie_frame: 1466, sha256: 696e37e7fa6573a7c50991356dbfe9f0ff75ed014ed743d56fd26f969c1c598d}
+      - {target_movie_frame: 1470, sha256: f702fae1ef35a5aab3d9048b0442a334f41490b2314220d7c63ec327bf4f1e3f}
+      - {target_movie_frame: 1472, sha256: b0594f0f68cee9b8b889ec634f9f9dcbc9a073e9ac759773f0b93f0333004aa8}
+    observation: A large rolling boulder visibly overlaps the player in the contact window.
+    boundary: >-
+      PNG bytes remain transient under /tmp and are not committed. The image
+      supplies visual context only; the six-row trace and one-field control bind
+      code causality and do not identify a GPU draw owner.
+  six_row_policy:
+    evidence: {artifact: analysis/phase4_thud_arena.json, sha256: 5680b4cb34b9af76f03850ce541126cc0c8d73d4ffd32190fd286e13100f723a}
+    path_records:
+      count: 6
+      point_count_each: 58
+      sha256:
+        - 132ff47bb6b7122c7dab69b5427cb1e1f261dc2e50610013c886a3276d248067
+        - 46bcd9eab3373a5ba355c01e44d4933d088cbbe8016d494a32ddea0f7d696aa6
+        - 59414101ee1f03559b5d4e0ed7b7ad699e1d86ba6b3c8dfed4ca4ba6fc1c082f
+        - b5b8d96df9db1f0e82e93def0e8ea07202203c4a346d09700d82211b377e263a
+        - 077beda7cc84dbc8fb96daa816593808dc5026bf6ba76794f8b4e7d5f8a2eab2
+        - c29535663cd4e12cb8b05d3465fc8a8fd040273c7d800f036e85506313fae805
+    model_identity:
+      basis: Each pass-2 mesh slice is bounded by the next pass-2 mesh pointer; only address, length and SHA-256 metadata are retained.
+      distinct_hashes: 6
+      sha256:
+        - beec3593aa4ab0580489b768bdd717451d0f52928a89ef96b753edbbe8b7197a
+        - 072ed18f06e921761194813a474945434df37aed1d2dc4321b6fa624c447bf12
+        - 2e89b66ec8d92d785c849750d4de88d2a5eb350525d0fdbe5063e274746648b4
+        - aee67cb5e884db404eef34b71072999157ec0b6b7d6b3c82ee261c5db72e91b7
+        - be0ab4aa8794fb2095051bd36a425e1a7a08ddb02c596aebaa2dd3feb47fc1d9
+        - 1c41db4681a619e42d3f9c3c163b07bd059b6ca8f5a2a3e6fb74024870c710ab
+    tables:
+      angular_increment_s16: [-100, 120, 90, -144, -110, 128, 32, 32, 32, 64]
+      ramp_cap_s16: [92, 96, 112, 100, 104, 88]
+      squared_distance_u32: [490000, 250000, 160000, 490000, 490000, 490000]
+    natural_contacts:
+      rows: [2, 3, 4, 0]
+      outcome: Per-row ramp clears, angular increment reverses and player health decreases by one at a passive cycle-neutral boundary.
+    controlled_contacts:
+      row_1: {threshold: [250000, 700000], squared_distance: 607965, health: [4, 3], speed: [120, -120], ramp: [96, 0]}
+      row_5: {threshold: [490000, 1000000], squared_distance: 916961, health: [2, 1], speed: [128, -128], ramp: [88, 0]}
+      alignment: Full RAM, registers, frame, cycle, PC and SP match before each one-u32 write; endpoints share frame/cycle and player/object positions.
+    counter_8_linkage:
+      trace_targets: [3742, 3816, 3897, 3903, 4042]
+      row_loop_cumulative_counts: [11226, 11448, 11694, 11712, 12120]
+      boundary: The row loop continues after counter 8; counts are reported without inferring a separate geometry-completion request.
+    scenarios:
+      - tools/scenarios/duckstation/pristine_thud_six_row_arena.yaml
+      - tools/scenarios/duckstation/pristine_thud_arena_row1_control.yaml
+      - tools/scenarios/duckstation/pristine_thud_arena_row5_control.yaml
+  completion_boundary: >-
+    All six path/model runtime identities and the common transform, candidate,
+    distance, ramp-clear, reversal and one-health contact law are directly
+    reproduced, including post-counter-8 execution. Named visual/GPU ownership,
+    other boss attacks and retry or persistence policy remain open. The exact
+    counter-8 objective-completion request is separately bound below and is not
+    assigned to any one arena row or GPU draw owner.
+
+natural_phase_reset_cycles:
+  damage_target_movie_frames: [965, 1311, 1711, 2125, 2523, 2939, 3309, 3739]
+  restore_target_movie_frames: [967, 1313, 1713, 2127, 2525, 2941, 3311, 3741]
+  passive_observations:
+    damage_hp: [48, 48, 48, 48, 48, 48, 48, 48]
+    restore_hp: [50, 50, 50, 50, 50, 50, 50, 50]
+    counter_before: [0, 1, 2, 3, 4, 5, 6, 7]
+    counter_after: [1, 2, 3, 4, 5, 6, 7, 8]
+    master_after: [0, 0, 0, 0, 0, 0, 0, 1]
+    grain_after: [0, 0, 0, 4, 8, 12, 14, 14]
+    derived_after: [9, 9, 9, 9, 9, 9, 9, 0]
+    eighth_restore: {phase_path_coordinate: 156704, heading: 32, motion_timer: 149, phase_timer: 3}
+  state:
+    timer: {address: 0x800B4C44, width: u32}
+    phase_path_coordinate: {address: 0x800B4CB0, width: u32, sentinels: [0xFFFD6E20, 0x00026E20], artifact_legacy_key: arena_position}
+    derived_grain_value: {address: 0x800B4CB4, width: u32}
+    counter: {address: 0x800B4CC8, width: u32, transition: [0, 8]}
+    heading: {address: 0x800B4CD0, width: u32}
+    motion_timer: {address: 0x800B4CD8, width: u32}
+    grain: {address: 0x800A65A1, width: u8}
+  exact_guard_controls:
+    target_equals_hp: {target_address: 0x800B4C70, mutation: 48, hp_after: 48, counter_after: 0}
+    signed_hp_floor: {hp_address: 0x8009FDEE, mutation: 20, hp_after: 20, counter_after: 0}
+    arena_sentinel: {address: 0x800B4CB0, mutation: 0, hp_after: 50, counter_after: 0}
+    counter_eight: {address: 0x800B4CC8, mutation: 7, counter_after: 8, master_after: 1, heading_after: 32, motion_timer_after: 149}
+    grain_formula: {address: 0x800A65A1, mutation: 41, derived_control: 9, derived_mutation: 8}
+    master_timer:
+      shared_setup: {address: 0x800B4C44, value: 0}
+      mutation: {address: 0x800823A0, value: 1}
+      control_after: {hp: 50, timer: 105, counter: 1, master: 0}
+      mutation_after: {hp: 48, timer: 0, counter: 0, master: 1}
+  evidence_boundary: >-
+    Passive traceToFrame pairs carry natural timing. Point execTrace watches and
+    equal-frame mutations force the interpreter and attribute branch operands or
+    causality only. The historical artifact key arena_position is narrowed to a
+    Thud phase path coordinate below; it does not establish rolling-arena
+    geometry or ownership. The separate exact_completion_request section binds
+    the counter-8 request without treating the coordinate as its owner.
+
+exact_completion_request:
+  evidence: {artifact: analysis/phase4_thud_completion.json, sha256: 95a7fa0bcf04244fbb91724413e489023cf297373851df3d77904923c4b5c937}
+  passive_boundaries:
+    before: {target_movie_frame: 3739, movie_playback_index: 3738, scene: 14, master_state: 0, fade_timer: 0, counter: 7, actor_hp: 48}
+    after: {target_movie_frame: 3742, movie_playback_index: 3741, scene: 14, master_state: 1, fade_timer: 149, counter: 8, actor_hp: 50}
+    retired: {target_movie_frame: 3903, movie_playback_index: 3902, scene: 14, actor_hp: 0, flags: 0x0055, live_slot: 0}
+    scene_exit: {target_movie_frame: 4042, movie_playback_index: 4041, scene: 0, master_state: 1, actor_hp: 0, flags: 0x0055, live_slot: 0}
+  runtime_slice:
+    address: 0x800B3D9C
+    length: 252
+    instruction_count: 63
+    sha256: 8ecf4b069584326f0ecc30acd387d168b34a355e618d5ff20c2a5c0c3dcfe53e
+    classification: save_owned_region_a_runtime_exact_media_identity
+    decisive_instructions:
+      counter_store: {instruction_pc: 0x800B3DB0, word: 0xAC224CC8, instruction: 'sw v0, 0x4cc8(at)'}
+      counter_eight_gate: {instruction_pc: 0x800B3DB4, word: 0x14430039, instruction: 'bne v0, v1, 0x800b3e9c'}
+      master_state_request: {instruction_pc: 0x800B3E84, word: 0xA42223A0, instruction: 'sh v0, 0x23a0(at)', old: 0, new: 1}
+      fade_timer_request: {instruction_pc: 0x800B3E90, word: 0xA4222470, instruction: 'sh v0, 0x2470(at)', old: 0, new: 150}
+  matched_single_instruction_control:
+    origin: {target_movie_frame: 3739, full_ram_sha256: 28b551289d038afbb43c0c04faee4f5d3a65d93cde557a34e9316da82a395c52, registers_sha256: f0523ac8660796362e7cb29949b1b9e0fa77111e460e67046bcb3c09f65a7020, full_origin_equal: true}
+    mutation: {instruction_pc: 0x800B3E84, old_word: 0xA42223A0, new_word: 0, changed_bytes: 4, code_invalidated: true}
+    immediate: {natural: [14, 1, 149, 8, 50], suppressed: [14, 0, 149, 8, 50]}
+    retirement: {natural: [14, 1, 0, 0x0055, 0], suppressed: [14, 0, 0, 0x0055, 0], player_and_actor_positions_equal: true}
+    exit: {natural: [0, 1, 0, 0x0055, 0], suppressed: [14, 0, 0, 0x0055, 0], player_and_actor_positions_equal: true}
+  boundary: >-
+    The eighth reset's master-state store is the causal objective-completion
+    request into resident scene flow; the paired fade store remains active when
+    that one request instruction is suppressed. HP zero and retirement are
+    preserved in both branches, while only the natural branch exits scene 14.
+    This closes the exact request boundary, not D18/F09 attack, lifecycle or
+    representative-breadth packages.
+
+post_counter_8_actor_path:
+  passive_boundaries:
+    start:
+      target_movie_frame: 3741
+      phase_path_coordinate: 156704
+      actor_position: [121858, -39328, -1751]
+      actor_motion_target_x_unknown_30_z: [156704, -608, 156704]
+      heading: 32
+      motion_timer: 149
+    middle:
+      target_movie_frame: 3815
+      phase_path_coordinate: 61984
+      actor_position: [102808, -39328, -3845]
+      actor_motion_target_x_unknown_30_z: [61984, -608, 61984]
+      heading: 1216
+      motion_timer: 112
+    end:
+      target_movie_frame: 3896
+      phase_path_coordinate_signed: -40416
+      actor_position: [532, -39328, -1551]
+      actor_motion_target_x_unknown_30_z: [-40416, -608, -40416]
+  exact_join:
+    path_decrement: {instruction_pc: 0x800B43A8, delta: -2560}
+    actor_target_x_store: {offset: 0x28, instruction_pc: 0x800B43B8}
+    actor_target_z_store: {offset: 0x34, instruction_pc: 0x800B43BC}
+    actor_target_x_reader: 0x8004CD6C
+    actor_target_z_reader: 0x8004C928
+    heading_store: 0x800B44BC
+    motion_timer_store: 0x800B4470
+    actor_position_writers:
+      early: {x: 0x8004CD64, z: 0x8004CDCC}
+      late: {x: 0x8004CE08, z: 0x8004CE38}
+  one_field_control:
+    address: 0x800B4CB0
+    mutation_delta: 4096
+    end_deltas:
+      phase_path_coordinate: 4096
+      actor_position: [4096, 0, 0]
+      actor_motion_target_x_unknown_30_z: [4096, 0, 4096]
+      player_position: [0, 0, 0]
+    retirement: Both branches reach HP 0, flags 0x0055 and live slot 0 at target 3902.
+  boundary: >-
+    Only actor offsets +0x28 and +0x34 are assigned X/Z motion-target semantics;
+    +0x30 is retained as an unknown raw field. The exact +4096 propagation binds
+    the Thud actor path, not rolling-arena geometry or the phase completion rule.
+
+natural_defeat:
+  passive_trace_boundaries:
+    pre_defeat: {target_movie_frame: 3896, scene: 14, hp: 50, live_slot: 0x8009FD80}
+    hp_zero: {target_movie_frame: 3900, scene: 14, hp: 0, live_slot: 0x8009FD80}
+    retired: {target_movie_frame: 3902, scene: 14, flags: 0x0055, live_slot: 0}
+    scene_exit: {target_movie_frame: 4041, scene: 0, live_slot: 0}
+  target_semantics: >-
+    traceToFrame target names the next input index; playback_index displayed at
+    each post-step boundary is target minus one.
+  exact_writers:
+    hp_zero: {instruction_pc: 0x800B4528, word: 0xA660006E, instruction: 'sh zero, 0x6e(s3)'}
+    active_clear: {instruction_pc: 0x8004D270, word: 0xA6220000, instruction: 'sh v0, 0x0(s1)'}
+    live_table_clear: {instruction_pc: 0x8004D43C, word: 0xAC200748, instruction: 'sw zero, 0x748(at)'}
+  access_log_boundary: >-
+    Interpreter-only accessLog evidence attributes writers but is not timing or
+    behavior authority. Fixed-frame behavior comes from passive cycle-neutral
+    control/instrumented trace pairs.
+
+event_program:
+  selector: 19
+  id: program_19
+  entry: 0x80077798
+  instruction_count: 5
+  decode_complete: true
+  loop: {ip: 0x800777A6, raw: 0xFFFF, op: jump_back, target: 0x800777A4}
+  boundary: >-
+    E07 fully decodes this five-instruction parking loop. It does not by itself
+    encode Thud's complete overlay/callback-owned attack or phase policy.
+
+runtime_overlay_identity:
+  region_a_base: 0x800B39A0
+  saved_runtime_hashes:
+    length_3500: 65ed1a05668fedd73050c03cde965b7eb75ab3354694e4c3394f165119e9384e
+    length_4064: d08da1b843674c62d9c153b62cb2e90e0c9d9284a2f3260e4d61e0d68beae3d2
+  staged_candidates:
+    LEVEL08_LEVEL: a0c0ac1da5c3a75296f0d79428ba1155f2f5d1ede3e2dcf9ffaee03fd8d2fec5
+    LEVEL08_LEVEL1: 506abc378359b61c2975b7f829becb32a6c632bf2cf8d55f0bb5146d139db605
+  writer_slice: {address: 0x800B4518, length: 36, sha256: 971ab8241ab58d147d4dc0b8c2548cda182195982cdcc6b6de84b81014dad177}
+  completion_request_slice:
+    address: 0x800B3D9C
+    length: 252
+    instruction_count: 63
+    sha256: 8ecf4b069584326f0ecc30acd387d168b34a355e618d5ff20c2a5c0c3dcfe53e
+  reset_owner_slice:
+    address: 0x800B3C70
+    length: 612
+    instruction_count: 153
+    sha256: 6f01004b1528e9c2adac072c8afc9acb695637d0be3d4ffbb78061ed06b33574
+    control_transfers:
+      0x800B3CA0: {op: bne, target: 0x800B3CBC}
+      0x800B3CC8: {op: bne, target: 0x800B3D30}
+      0x800B3CDC: {op: bne, target: 0x800B3D20}
+      0x800B3D18: {op: j, target: 0x800B3D30}
+      0x800B3D50: {op: beq, target: 0x800B3ED4}
+      0x800B3D58: {op: bne, target: 0x800B3ED4}
+      0x800B3D88: {op: beq, target: 0x800B3D9C}
+      0x800B3D94: {op: bne, target: 0x800B3EC4}
+      0x800B3DB4: {op: bne, target: 0x800B3E9C}
+      0x800B3E40: {op: bne, target: 0x800B3E74}
+      0x800B3E94: {op: j, target: 0x800B3EC4}
+      0x800B3EAC: {op: bne, target: 0x800B3EBC}
+  post_restore_attack_slice:
+    address: 0x800B3ED4
+    length: 308
+    instruction_count: 77
+    sha256: 10992dee6815d74e6b89109980f16d6c60f0230d94f52f0730b7e217d30badba
+    control_transfers:
+      0x800B3EE4: {op: beq, target: 0x800B3EF8}
+      0x800B3EF0: {op: jal, target: 0x8004C10C}
+      0x800B3F04: {op: blez, target: 0x800B4004}
+      0x800B3F18: {op: beq, target: 0x800B4004}
+      0x800B3F2C: {op: bne, target: 0x800B3F7C}
+      0x800B3F74: {op: j, target: 0x800B3FF0}
+      0x800B3FF0: {op: jal, target: 0x8005A0E0}
+      0x800B3FFC: {op: jal, target: 0x8005044C}
+  rule: >-
+    The save-restored runtime bytes match neither staged candidate, so the HP
+    store is an exact save-owned runtime Region-A slice, not a staged-file identity.
+
+ownership_boundaries:
+  confirmed:
+    - Recorded Square input in frames 896..917 launches one native player projectile through resident caller 0x8004724C and allocator 0x8005A0E0.
+    - Clearing only Square suppresses that action-2 allocation, its HP 50-to-48 contact and the first phase-counter increment.
+    - One natural action-2/class-0 contact decrements Thud HP 50 to 48 at resident 0x800590E4.
+    - The save-owned overlay target u32 at 0x800B4C70 restores HP 48 to 50 at 0x800B3ED0.
+    - Equal-frame one-field controls independently change the decrement to 4 and restored value to 49.
+    - Eight natural HP 48-to-50 reset cycles advance the phase counter from 0 to 8 and alternate the exact signed arena sentinels.
+    - The eighth natural restore enters master state 1 with heading 32 and motion timer 149.
+    - The exact save-owned continuation at 0x800B3ED4 naturally calls the resident allocator from 0x800B3FF0 with Thud actor 0x8009FD80 and initializes slot 17 as action 20, TTL 200 and class 128.
+    - Zeroing only derived countdown 0x800B4CB4 at target 970 prevents that action-20 allocation at the next equal movie/emulator frame.
+    - The recorded action-20 trajectory keeps grain at zero and retires with active gate zero; passive coverage contains neither its resident handler nor grain writer.
+    - Enlarging only slot-17 signed radius_add from 100 to 6000 crosses the resident player-proximity gate and causes grain 0-to-1, record state 24-to-16 and active gate 199-to-1 through exact resident writers.
+    - Seven natural reset suffixes execute exactly 70 reward allocations: 63 general action-20 paths and seven countdown-five action-9 health-leaf paths; 14 action-20 records naturally reach resident grain store 0x80054F9C before the final counter-8 boundary.
+    - At a full-RAM/register/cycle/PC/SP-equal target-970 origin, changing only derived countdown 9 to 6 makes the next allocation choose action 9 instead of action 20 at the same emulator/movie frame, cycle, PC and SP; three fresh iteration-34 replays reproduced exact endpoint equality.
+    - Save-owned 0x800B3FFC calls resident play_sound with cue -14 and actor-position context 0x8009FD84; NOPing only that call preserves slot 17 and the gameplay endpoint while removing four early 0x00009E10 SPU key-ons from the bounded trace.
+    - A save-owned six-row object-transform loop joins six distinct 58-point typed paths to six distinct bounded pass-2 mesh payloads before resident transform/candidate interfaces and per-row distance thresholds.
+    - Rows 0, 2, 3 and 4 naturally clear their ramp, reverse angular increment and decrement health by one under passive cycle-neutral tracing.
+    - Matched one-u32 threshold controls make naturally negative rows 1 and 5 execute the same ramp-clear, reversal and one-health transition at equal endpoint frames with identical player/object positions. Two fresh iteration-1 replays place both rows at equal endpoint cycles with distinct PCs. Both origins match in full RAM/register/cycle/frame/PC/SP.
+    - Zeroing only row 4 threshold 0x800B4C1C prevents the natural player-health 3-to-2 decrement at an equal-frame/cycle/position/PC/SP endpoint; transient visual context shows a rolling-boulder overlap.
+    - Passive count deltas show the six-row loop continuing after the natural counter-8/master-state transition and through the reproduced retirement/scene-exit suffix.
+    - Phase path coordinate 0x800B4CB0 decrements by 2560, feeds actor X/Z motion targets at +0x28/+0x34, and causally controls final actor X.
+    - Matched controls bind target equality, signed HP below 21, exact arena sentinel, counter 8, grain threshold and master/timer gates in the reset-owner front half.
+    - At the counter-8 boundary, save-owned 0x800B3E84 requests master state 1 and paired 0x800B3E90 requests fade 150; suppressing only the first store preserves counter eight, fade, HP zero and retirement but prevents scene 14 from unloading.
+    - The natural replay changes Thud HP 50 to 0 through runtime instruction 0x800B4528.
+    - Resident mover_updater clears active bit 0x4000 and live-table slot 0.
+    - The same replay subsequently changes scene 14 to scene 0.
+  not_confirmed:
+    - Berry color for the bound player projectile; named sound-asset/waveform identity, host-speaker drain, universal action-9 collection/drop policy and health-domain breadth, damage or completion effect for the bound Thud-owned reward contacts; or other attack sources.
+    - Complete boss attack policy, unsampled continuation paths after 0x800B3ED0, a complete berry-power curve, named arena visual/GPU ownership, retry, or persistence policy.
+    - Completion of either D18 or F09.
+  dependencies: E07 supplies the decoded VM interface; E02/E08/E16 retain collision, mover-catalog and loading boundaries without conferring boss completion.
+
+lifecycle_frontier:
+  initialization: State begins with scene 14, actor id 36, HP 50, active flags 0x4055 and live slot 0.
+  capacity: One observed slot in the 64-record actor pool; no boss-instance capacity claim.
+  allocation_reuse: Actor bytes persist after live-table retirement; slot reuse is not reproduced.
+  reset: Eight overlay target-field restores, seven exact ten-item reward volleys with one causal action-9 variant selection and 14 natural grain pickups, the reset-owner front-half guards, the exact counter-8 objective-completion request, all six arena-row contact policies and one post-counter-8 actor path are bound; other attack sources and retry/checkpoint reset remain open.
+  retirement: HP zero precedes persistent active-bit/live-table retirement.
+  unload_transition: Scene 14 changes to scene 0 after retirement; loader/resource owners remain E16.
+  death_respawn: Player health/lives are observed dependencies only; this is boss defeat, not a C16 player-death campaign.
+  persistence: Save/load and frontend persistence remain open.
+
+mod_contract:
+  owner: A future Thud modification needs a residency-qualified MOD-private phase/attack owner distinct from the five-instruction event-VM parking loop.
+  readers: Enumerate HP, flags, live-slot, contact radius/state/active gate, grain, phase path, arena geometry and downstream master/fade scene-flow consumers before changing policy.
+  writers: Preserve resident damage, action-20 grain/state/active/bookkeeping, overlay target restore/HP-zero stores, the counter-8 master/fade request pair, and resident retirement ordering until full phase owners are reproduced.
+  valid_domains: HP is signed s16 storage; flags are u16 with only bit 0x4000 assigned here; actor/live pointers must name the fixed pool.
+  initialization: Establish scene-qualified actor and runtime-overlay identity before installing any hook.
+  reset: Define retry, checkpoint, scene-load, save-load and frontend policy explicitly.
+  retirement: Clear active ownership and live-table reachability before scene replacement or slot reuse.
+  consumers: D18/F09 boss, objective, arena, collision, rendering, audio, HUD and overlay-loading campaigns.
+  capacity: Preserve the 64-record resident actor-pool bound and independently establish any boss-private capacity.
+  residency: Resident mover PCs are stable; 0x800B4528 is valid only for the exact captured runtime Region-A identity.
+  unsafe_assumptions: A filename, serial, sampled selector, bare Region-A address, transient active clear, HP poke, actor path, or defeat suffix cannot establish the full fight.
+
+open_work:
+  - Resolve named sound-asset/waveform identity under E12 if needed, widen action-9 collection/drop and health-domain breadth, cover other attack sources and continue unsampled boss policy after 0x800B4004.
+  - Resolve named arena visual/GPU ownership separately from the now-complete six-row runtime path/model/contact policy, actor path and exact counter-8 objective-completion request.
+  - Reproduce initialization, re-engagement, retry/checkpoint, scene reload and persistence breadth.
+  - Cover exceptional and failure paths before promoting D18 or F09.

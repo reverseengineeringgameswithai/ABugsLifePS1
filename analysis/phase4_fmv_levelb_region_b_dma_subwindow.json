@@ -1,0 +1,643 @@
+{
+  "_comment": "Generated from hash-verified pristine retail executable and MEMORY.BIN bytes plus retained low-level E15 evidence. No copyrighted input bytes are retained.",
+  "campaign": "fmv_playback",
+  "cdread_direct_call_census": {
+    "all_resident_calls": [
+      {
+        "classification": "selected_memory_bin_file_helper",
+        "pc": "0x80046078",
+        "word": "0x0C01C1A6"
+      },
+      {
+        "classification": "separate_resident_cdread_wrapper",
+        "pc": "0x8006FFEC",
+        "word": "0x0C01C1A6"
+      }
+    ],
+    "selected_path_calls": [
+      "0x80046078"
+    ],
+    "target": "0x80070698",
+    "unclassified_calls": []
+  },
+  "claim_boundary": {
+    "closed_sub_boundary": "completed_level_b_region_b_dma_exact_pc_subwindow",
+    "dimension_promoted": false,
+    "lifecycle_promoted": false,
+    "next_action": "Implement and validate a tracked exact-PC fallback adapter that starts from the retained cold-boot movie, stops before 0x80046078, verifies a0=18 and a1=0x800B5788, clears and arms transferLog, and stops again before common epilogue 0x800460C4. Predeclare a new escalation and wider passive control only after that finite two-breakpoint plan is machine-valid. Do not launch DuckStation or reuse either rejected frame-window observer before the immutable before-ledger admits it.\n",
+    "next_lane": "static",
+    "not_claimed": [
+      "any observed DMA or CD-ROM event",
+      "the first DMA cycle, LBA sequence, transfer direction or result",
+      "native success of CdRead or completion of CdReadSync",
+      "lifecycle or any other nine-dimension promotion",
+      "method-trial admission of the retained passive investigator receipt"
+    ]
+  },
+  "destination_liveness": [
+    {
+      "delay_slot": {
+        "mnemonic": "addu a0,zero,zero",
+        "pc": "0x800503D0",
+        "word": "0x00002021"
+      },
+      "fact": "scene setup calls resource selector zero",
+      "pc": "0x800503CC"
+    },
+    {
+      "callee": {
+        "mnemonic": "jal 0x80046330",
+        "pc": "0x8003D310",
+        "word": "0x0C0118CC"
+      },
+      "fact": "selector zero materializes a1=0x800B5788",
+      "low_half": {
+        "mnemonic": "addiu a1,a1,22408",
+        "pc": "0x8003D30C",
+        "word": "0x24A55788"
+      },
+      "pc": "0x8003D308"
+    },
+    {
+      "fact": "universal_file_loader preserves a1 in fp",
+      "instruction": {
+        "mnemonic": "addu s8,a1,zero",
+        "pc": "0x80046340",
+        "word": "0x00A0F021"
+      },
+      "pc": "0x80046340"
+    },
+    {
+      "delay_slot": {
+        "mnemonic": "addu a1,s8,zero",
+        "pc": "0x80046420",
+        "word": "0x03C02821"
+      },
+      "fact": "file helper call restores a1 from fp",
+      "pc": "0x8004641C"
+    },
+    {
+      "fact": "file helper preserves a1 in s3",
+      "instruction": {
+        "mnemonic": "addu s3,a1,zero",
+        "pc": "0x80045FD4",
+        "word": "0x00A09821"
+      },
+      "pc": "0x80045FD4"
+    },
+    {
+      "fact": "CdRead a1 is restored from s3",
+      "instruction": {
+        "mnemonic": "addu a1,s3,zero",
+        "pc": "0x80046074",
+        "word": "0x02602821"
+      },
+      "pc": "0x80046074"
+    }
+  ],
+  "dimension": "lifecycle",
+  "exact_pc_subwindow": {
+    "causality_scope": "one CdRead submission, its CdReadSync wait and optional post-read CPU tail restore",
+    "cdread_submissions_between_stops": 1,
+    "direct_calls_between_stops": [
+      {
+        "mnemonic": "jal 0x80070698",
+        "pc": "0x80046078",
+        "target": "0x80070698",
+        "word": "0x0C01C1A6"
+      },
+      {
+        "mnemonic": "jal 0x8007079c",
+        "pc": "0x80046090",
+        "target": "0x8007079C",
+        "word": "0x0C01C1E7"
+      },
+      {
+        "mnemonic": "jal 0x8005f79c",
+        "pc": "0x800460B8",
+        "target": "0x8005F79C",
+        "word": "0x0C017DE7"
+      }
+    ],
+    "finite": true,
+    "later_universal_loader_retry_excluded": true,
+    "prior_fmv_transfer_history_excluded_by_clear": true,
+    "start": {
+      "actions_after_stop_before_resume": [
+        "transferLog.clear",
+        "transferLog.start"
+      ],
+      "boundary": "before_instruction",
+      "instruction": {
+        "mnemonic": "jal 0x80070698",
+        "pc": "0x80046078",
+        "word": "0x0C01C1A6"
+      },
+      "pc": "0x80046078",
+      "register_assertions": {
+        "a0": 18,
+        "a1": "0x800B5788"
+      }
+    },
+    "stop": {
+      "boundary": "before_instruction",
+      "instruction": {
+        "mnemonic": "lw ra,56(sp)",
+        "pc": "0x800460C4",
+        "word": "0x8FBF0038"
+      },
+      "pc": "0x800460C4",
+      "reached_by": [
+        "failed CdRead submission",
+        "completed CdReadSync path"
+      ]
+    },
+    "transfer_log_capacity": 100000
+  },
+  "falsifier": {
+    "checks": {
+      "common_stop_reached_by_success_and_failure": true,
+      "destination_liveness_complete": true,
+      "global_cdread_calls_classified": true,
+      "indirect_calls_in_selected_function_set_zero": true,
+      "later_loader_retry_outside_subwindow": true,
+      "memory_bin_sector_count_exact": true,
+      "natural_teardown_frame_exact": true,
+      "pristine_executable_identity_exact": true,
+      "pristine_memory_bin_identity_exact": true,
+      "replacement_owner_predecessor_contract_survived": true,
+      "retained_offline_query_reused_not_repeated": true,
+      "sector_tail_save_restore_classified": true,
+      "selected_cdread_call_unique": true,
+      "work_packet_identity_exact": true
+    },
+    "outcome": "survived"
+  },
+  "generated": "2026-07-28",
+  "inputs": {
+    "memory_bin": {
+      "bytes": 36448,
+      "identity_verified": true,
+      "media_class": "pristine_authority",
+      "path": "REBUILD/files/BITS/MEMORY.BIN",
+      "sha256": "e3f8697223e3a1a1bdfa385d417ce87928eaff40ea3e26d1a64f6f25234d8e37"
+    },
+    "prior_evidence": {
+      "analysis/phase4_fmv_levelb_first_call.json": "31d22808c045a2ea54586e25fd0de5a93a537fdf9a190f8750ded85e98acaa67",
+      "analysis/phase4_fmv_levelb_region_b_dma_late_result.json": "b0ec7e9fa015d94180fc26f74c376d7e343e53ee72a13d29ec5a00ef901d6433",
+      "analysis/phase4_fmv_region_b_replacement_ownership.json": "03b5a8d9a518f5c00624f81248b721e98a513b987d8e1456e142c682cc1087a4"
+    },
+    "resident_executable": {
+      "bytes": 471040,
+      "identity_verified": true,
+      "path": "REBUILD/files/SCUS_942.88",
+      "sha256": "1aa28954a1871d0799bf306a5ae746d17b143fce6d1965740f798862be519d20"
+    }
+  },
+  "lane": "static",
+  "natural_anchor": {
+    "common_teardown_frame": 15816,
+    "completed_level_b_return_pc": "0x80050324",
+    "destination": "0x800B5788",
+    "resource_path": "bits\\memory.bin",
+    "resource_selector": 0
+  },
+  "offline_reuse": {
+    "answer": "The retained derived-pristine index has no exact DMA/CD/Region-B event or instruction attribution for this route. No duplicate offline query was opened.",
+    "counted_as_iteration_2_query": false,
+    "external_index_sha256": "e232f9cd3da57de3f794495b0789904c6cb36bd8152e67f3f7d12576d5c828ab",
+    "receipt_sha256": "ecfd091f44f49943e5e8431ba92e823d55c155f6317a7e6242fcc841934d9126"
+  },
+  "row": "E15_fmv",
+  "schema": "abl-phase4-fmv-levelb-region-b-dma-subwindow/1",
+  "source_dependencies": {
+    "asm/hand_written/8003cf2c_resource_id_dat_load_dispatcher.s": "7a387e17d7e6c2ac5d4481f08316355af952ebc180aeac1c165f232c4a289c80",
+    "asm/hand_written/80045fc4_file_lookup_cdsearchfile.s": "a6abb91ccf156b46b862bd91634fe29540e2b72fde99c2c97dbbf2a65b06751d",
+    "asm/hand_written/80046330_universal_file_loader.s": "d80780f1cf096a1742389f4ac7d4c46c07baaa882a3096481ba262be90e42e03",
+    "asm/hand_written/8004fca0_scene_flow_dispatcher.s": "80c4643d6584bb0706a6905b939a76225dc0fa92d6c9eebf526337969d349098",
+    "asm/hand_written/800502c4_sub_800502c4.s": "81a8b5cbb3833024def4274c0aa8d9d4479a954fe9d5907b2defc509a78c2ad8",
+    "config/phase4_fmv_levelb_region_b_dma_subwindow.yaml": "cead97372665a5345c639afd7600db9dd87dbe297f81546b4d7b3bd1ec830a1d",
+    "src/main/8003f5b8_load_memory_bin.c": "b01cb0119eb05174ef063ef6c3b80e7ac9f9f43a1b232db8866bb091afb89ea2",
+    "src/main/8005038c_scene_setup_and_load.c": "c48cb85d1e1770dfd50eaa4cb7f133bc839a2189e43a24a0064cd65dd8ee2304",
+    "src_re/fmv_levelb_region_b_dma_subwindow.c": "183125e5325a1edaacb2b00582988a5917e66b70f79186cce8450efcfb092c6a",
+    "tools/phase4_fmv_levelb_region_b_dma_subwindow.py": "3c359e46901a5430f509dce9daebb49244aa89fc0c43771f581c413aec986401"
+  },
+  "static_functions": {
+    "file_lookup_cdsearchfile": {
+      "bytes": 288,
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8006d8e8",
+          "pc": "0x80045FF8",
+          "target": "0x8006D8E8",
+          "word": "0x0C01B63A"
+        },
+        {
+          "mnemonic": "jal 0x8006f690",
+          "pc": "0x80046004",
+          "target": "0x8006F690",
+          "word": "0x0C01BDA4"
+        },
+        {
+          "mnemonic": "jal 0x8006db4c",
+          "pc": "0x80046030",
+          "target": "0x8006DB4C",
+          "word": "0x0C01B6D3"
+        },
+        {
+          "mnemonic": "jal 0x8005f79c",
+          "pc": "0x80046068",
+          "target": "0x8005F79C",
+          "word": "0x0C017DE7"
+        },
+        {
+          "mnemonic": "jal 0x80070698",
+          "pc": "0x80046078",
+          "target": "0x80070698",
+          "word": "0x0C01C1A6"
+        },
+        {
+          "mnemonic": "jal 0x8007079c",
+          "pc": "0x80046090",
+          "target": "0x8007079C",
+          "word": "0x0C01C1E7"
+        },
+        {
+          "mnemonic": "jal 0x8005f79c",
+          "pc": "0x800460B8",
+          "target": "0x8005F79C",
+          "word": "0x0C017DE7"
+        }
+      ],
+      "end": "0x800460E4",
+      "sha256": "37b4f2f8ea955f11a4e8d6d86a067b65bc5a1061c48f868ed4f10bb71e73502a",
+      "start": "0x80045FC4"
+    },
+    "other_cdread_wrapper": {
+      "bytes": 108,
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8006dd34",
+          "pc": "0x8006FFCC",
+          "target": "0x8006DD34",
+          "word": "0x0C01B74D"
+        },
+        {
+          "mnemonic": "jal 0x8006d8e8",
+          "pc": "0x8006FFDC",
+          "target": "0x8006D8E8",
+          "word": "0x0C01B63A"
+        },
+        {
+          "mnemonic": "jal 0x80070698",
+          "pc": "0x8006FFEC",
+          "target": "0x80070698",
+          "word": "0x0C01C1A6"
+        },
+        {
+          "mnemonic": "jal 0x8007079c",
+          "pc": "0x8006FFF8",
+          "target": "0x8007079C",
+          "word": "0x0C01C1E7"
+        }
+      ],
+      "end": "0x8007001C",
+      "sha256": "9cd6d313e1e9db05085b221dd37f659cce45da8d28d626dcc6e0168c7229cd57",
+      "start": "0x8006FFB0"
+    },
+    "resource_selector_zero_path": {
+      "bytes": 32,
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x80046330",
+          "pc": "0x8003D310",
+          "target": "0x80046330",
+          "word": "0x0C0118CC"
+        }
+      ],
+      "end": "0x8003D318",
+      "sha256": "d23c1e881ffe8d666969334095c15d26fee7a772d60f1a492d8c873104d9b9fc",
+      "start": "0x8003D2F8"
+    },
+    "selected_transfer_subwindow": {
+      "bytes": 80,
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x80070698",
+          "pc": "0x80046078",
+          "target": "0x80070698",
+          "word": "0x0C01C1A6"
+        },
+        {
+          "mnemonic": "jal 0x8007079c",
+          "pc": "0x80046090",
+          "target": "0x8007079C",
+          "word": "0x0C01C1E7"
+        },
+        {
+          "mnemonic": "jal 0x8005f79c",
+          "pc": "0x800460B8",
+          "target": "0x8005F79C",
+          "word": "0x0C017DE7"
+        }
+      ],
+      "end": "0x800460C8",
+      "sha256": "bb3fe5cd00ed4f8df9d787cf3d5ac9db5b2174a941a0ca6ce816909d21808a31",
+      "start": "0x80046078"
+    },
+    "universal_file_loader": {
+      "bytes": 520,
+      "direct_calls": [
+        {
+          "mnemonic": "jal 0x8005f76c",
+          "pc": "0x8004636C",
+          "target": "0x8005F76C",
+          "word": "0x0C017DDB"
+        },
+        {
+          "mnemonic": "jal 0x8005f74c",
+          "pc": "0x80046378",
+          "target": "0x8005F74C",
+          "word": "0x0C017DD3"
+        },
+        {
+          "mnemonic": "jal 0x8005f74c",
+          "pc": "0x800463EC",
+          "target": "0x8005F74C",
+          "word": "0x0C017DD3"
+        },
+        {
+          "mnemonic": "jal 0x8005f74c",
+          "pc": "0x80046404",
+          "target": "0x8005F74C",
+          "word": "0x0C017DD3"
+        },
+        {
+          "mnemonic": "jal 0x80045fc4",
+          "pc": "0x8004641C",
+          "target": "0x80045FC4",
+          "word": "0x0C0117F1"
+        },
+        {
+          "mnemonic": "jal 0x8005f7bc",
+          "pc": "0x80046438",
+          "target": "0x8005F7BC",
+          "word": "0x0C017DEF"
+        },
+        {
+          "mnemonic": "jal 0x80062560",
+          "pc": "0x8004644C",
+          "target": "0x80062560",
+          "word": "0x0C018958"
+        },
+        {
+          "mnemonic": "jal 0x80062a4c",
+          "pc": "0x80046480",
+          "target": "0x80062A4C",
+          "word": "0x0C018A93"
+        },
+        {
+          "mnemonic": "jal 0x800625fc",
+          "pc": "0x80046488",
+          "target": "0x800625FC",
+          "word": "0x0C01897F"
+        },
+        {
+          "mnemonic": "jal 0x800651d0",
+          "pc": "0x80046490",
+          "target": "0x800651D0",
+          "word": "0x0C019474"
+        },
+        {
+          "mnemonic": "jal 0x80062c70",
+          "pc": "0x80046498",
+          "target": "0x80062C70",
+          "word": "0x0C018B1C"
+        },
+        {
+          "mnemonic": "jal 0x80062ec8",
+          "pc": "0x800464A0",
+          "target": "0x80062EC8",
+          "word": "0x0C018BB2"
+        },
+        {
+          "mnemonic": "jal 0x80062bfc",
+          "pc": "0x800464B4",
+          "target": "0x80062BFC",
+          "word": "0x0C018AFF"
+        },
+        {
+          "mnemonic": "jal 0x800625fc",
+          "pc": "0x800464CC",
+          "target": "0x800625FC",
+          "word": "0x0C01897F"
+        },
+        {
+          "mnemonic": "jal 0x80062560",
+          "pc": "0x800464D4",
+          "target": "0x80062560",
+          "word": "0x0C018958"
+        }
+      ],
+      "end": "0x80046538",
+      "sha256": "060b385746f65e02f70cc95cbeedff8fbb0cc6c951b238294526e248701a9e28",
+      "start": "0x80046330"
+    }
+  },
+  "static_instructions": {
+    "0x8003D2F8": {
+      "mnemonic": "bne s4,zero,0x8003d330",
+      "pc": "0x8003D2F8",
+      "word": "0x1680000D"
+    },
+    "0x8003D308": {
+      "mnemonic": "lui a1,0x800b",
+      "pc": "0x8003D308",
+      "word": "0x3C05800B"
+    },
+    "0x8003D30C": {
+      "mnemonic": "addiu a1,a1,22408",
+      "pc": "0x8003D30C",
+      "word": "0x24A55788"
+    },
+    "0x8003D310": {
+      "mnemonic": "jal 0x80046330",
+      "pc": "0x8003D310",
+      "word": "0x0C0118CC"
+    },
+    "0x80045FD4": {
+      "mnemonic": "addu s3,a1,zero",
+      "pc": "0x80045FD4",
+      "word": "0x00A09821"
+    },
+    "0x80046050": {
+      "mnemonic": "sll a2,s1,11",
+      "pc": "0x80046050",
+      "word": "0x001132C0"
+    },
+    "0x80046054": {
+      "mnemonic": "slt v0,s0,a2",
+      "pc": "0x80046054",
+      "word": "0x0206102A"
+    },
+    "0x80046058": {
+      "mnemonic": "beq v0,zero,0x80046070",
+      "pc": "0x80046058",
+      "word": "0x10400005"
+    },
+    "0x8004605C": {
+      "mnemonic": "addu a1,s3,s0",
+      "pc": "0x8004605C",
+      "word": "0x02702821"
+    },
+    "0x80046068": {
+      "mnemonic": "jal 0x8005f79c",
+      "pc": "0x80046068",
+      "word": "0x0C017DE7"
+    },
+    "0x8004606C": {
+      "mnemonic": "subu a2,a2,s0",
+      "pc": "0x8004606C",
+      "word": "0x00D03023"
+    },
+    "0x80046070": {
+      "mnemonic": "addu a0,s1,zero",
+      "pc": "0x80046070",
+      "word": "0x02202021"
+    },
+    "0x80046074": {
+      "mnemonic": "addu a1,s3,zero",
+      "pc": "0x80046074",
+      "word": "0x02602821"
+    },
+    "0x80046078": {
+      "mnemonic": "jal 0x80070698",
+      "pc": "0x80046078",
+      "word": "0x0C01C1A6"
+    },
+    "0x8004607C": {
+      "mnemonic": "ori a2,s2,0x80",
+      "pc": "0x8004607C",
+      "word": "0x36460080"
+    },
+    "0x80046080": {
+      "mnemonic": "bne v0,zero,0x80046090",
+      "pc": "0x80046080",
+      "word": "0x14400003"
+    },
+    "0x80046088": {
+      "mnemonic": "j 0x800460c4",
+      "pc": "0x80046088",
+      "word": "0x08011831"
+    },
+    "0x80046090": {
+      "mnemonic": "jal 0x8007079c",
+      "pc": "0x80046090",
+      "word": "0x0C01C1E7"
+    },
+    "0x80046098": {
+      "mnemonic": "bgtz v0,0x80046090",
+      "pc": "0x80046098",
+      "word": "0x1C40FFFD"
+    },
+    "0x800460A8": {
+      "mnemonic": "beq v0,zero,0x800460c0",
+      "pc": "0x800460A8",
+      "word": "0x10400005"
+    },
+    "0x800460B8": {
+      "mnemonic": "jal 0x8005f79c",
+      "pc": "0x800460B8",
+      "word": "0x0C017DE7"
+    },
+    "0x800460C0": {
+      "mnemonic": "addu v0,s0,zero",
+      "pc": "0x800460C0",
+      "word": "0x02001021"
+    },
+    "0x800460C4": {
+      "mnemonic": "lw ra,56(sp)",
+      "pc": "0x800460C4",
+      "word": "0x8FBF0038"
+    },
+    "0x80046340": {
+      "mnemonic": "addu s8,a1,zero",
+      "pc": "0x80046340",
+      "word": "0x00A0F021"
+    },
+    "0x8004641C": {
+      "mnemonic": "jal 0x80045fc4",
+      "pc": "0x8004641C",
+      "word": "0x0C0117F1"
+    },
+    "0x80046420": {
+      "mnemonic": "addu a1,s8,zero",
+      "pc": "0x80046420",
+      "word": "0x03C02821"
+    },
+    "0x800503CC": {
+      "mnemonic": "jal 0x8003cf2c",
+      "pc": "0x800503CC",
+      "word": "0x0C00F3CB"
+    },
+    "0x800503D0": {
+      "mnemonic": "addu a0,zero,zero",
+      "pc": "0x800503D0",
+      "word": "0x00002021"
+    },
+    "0x8006FFEC": {
+      "mnemonic": "jal 0x80070698",
+      "pc": "0x8006FFEC",
+      "word": "0x0C01C1A6"
+    }
+  },
+  "summary": {
+    "dimension_promoted": false,
+    "exact_pc_stops": 2,
+    "global_cdread_calls": 2,
+    "new_live_receipts": 0,
+    "new_offline_queries": 0,
+    "sector_tail_overlap_bytes": 416,
+    "selected_cdread_calls": 1,
+    "transfer_sectors": 18,
+    "unclassified_cdread_calls": 0
+  },
+  "transfer_geometry": {
+    "file_bytes": 36448,
+    "padded_transfer_bytes": 36864,
+    "post_cdread_tail_restore": {
+      "bytes": 416,
+      "destination": "0x800B5788+36448",
+      "pc": "0x800460B8",
+      "source": "0x8009B890"
+    },
+    "pre_cdread_tail_save": {
+      "bytes": 416,
+      "destination": "0x8009B890",
+      "pc": "0x80046068",
+      "source": "0x800B5788+36448"
+    },
+    "sector_bytes": 2048,
+    "sector_count": 18,
+    "sector_tail_overlap_bytes": 416,
+    "tail_copies_are_dma": false
+  },
+  "work_packet": {
+    "claim": "For the retained natural completed-Level-B state-one return, the first Region-B replacement submission is the unique CdRead call at 0x80046078 with a1 preserved as 0x800B5788. Every guest-owned predecessor edge from the completed-Level-B return at 0x80050324 through the selected scene-flow branch, selector-zero resource path, universal loader and file helper is statically classified, so a pre-instruction stop at 0x80046078 is the latest safe exact late-arm boundary that excludes all prior FMV transfer history without missing the replacement submission.",
+    "evidence_domain": "static pristine executable control flow, call graph, xrefs, argument liveness, and source status",
+    "falsifier": "Falsify the claim if any predecessor path materializes or submits Region B earlier, reaches another CdRead callsite, yields an unclassified direct or indirect edge, fails to preserve destination 0x800B5788 into a1, can enter 0x80046078 after the submission, or can bypass the selected scene-flow/selector-zero chain. Also reject any future live plan that arms after executing 0x80046078, retains pre-boundary transfer events, or fails to prove the destination register at the stop.",
+    "first_unmet_dimension": "lifecycle",
+    "predicted_authoritative_machine_layer": {
+      "artifact": "analysis/phase4_fmv_levelb_region_b_dma_subwindow.json",
+      "configuration": "config/phase4_fmv_levelb_region_b_dma_subwindow.yaml",
+      "generator": "tools/phase4_fmv_levelb_region_b_dma_subwindow.py",
+      "guard": "tests/test_phase4_fmv_levelb_region_b_dma_subwindow.py",
+      "semantic_source": "src_re/fmv_levelb_region_b_dma_subwindow.c"
+    },
+    "rows": [
+      "E15_fmv"
+    ],
+    "selected_campaign": "fmv_playback",
+    "sha256": "a46b663a3d6e8cc86ff441b9b892ff8945164c08d5562e4369e7761a6e55947b"
+  }
+}

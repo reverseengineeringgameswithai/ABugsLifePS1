@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "row_id": "D10",
+  "assessment_date": "2026-08-02",
+  "status": "confirmed_scoped",
+  "scope": "Training spider qualifying-interaction chain, Bonus 1 unlock, scene-0x10 handoff, earned-guard commit, and return to journey menu",
+  "scope_exclusions": [
+    "internal rules of the playable Bonus 1 stage",
+    "FMV content and rendering",
+    "save-file persistence across power cycle"
+  ],
+  "capsule": {
+    "path": "~/Downloads/ABL-external-evidence/trace-capsules/Phase4/bonus-objectives-v2-20260719/Bonus_Level_01",
+    "manifest_complete": true,
+    "capture_complete": true,
+    "capture_truncated": false,
+    "capture_error": "",
+    "forced_cached_interpreter": true,
+    "movie_sha256": "37083359bf7319acd323f3980fa96a6b0a676909209e2adf7a7986fe738f10cc",
+    "start_state_sha256": "9d117f3b5780a4b9ecaf57b2491b600b662e7891a6a04ebc83f2d76895da95c1",
+    "records_reconstructed": 3654,
+    "domain_hash_checks": 10962,
+    "domain_hash_mismatches": 0,
+    "passive_flow_instruction_count": 145850969
+  },
+  "timeline": [
+    {"movie_frame": 128, "stomp_streak": 1},
+    {"movie_frame": 352, "stomp_streak": 2},
+    {"movie_frame": 590, "stomp_streak": 3},
+    {"movie_frame": 742, "stomp_streak": 4},
+    {"movie_frame": 1072, "stomp_streak": 0, "bonus_flags": "0x02", "transition_latch": 6, "fade_timer_first_observed": 29},
+    {"movie_frame": 1131, "scene": "0x10"},
+    {"movie_frame": 1722, "transition_latch": 0},
+    {"movie_frame": 2742, "bonus_flags": "0x22"},
+    {"movie_frame": 3206, "scene": "0x00"}
+  ],
+  "static_asm": {
+    "container": "FUNC_8004ABF4",
+    "qualifying_branch": "0x8004B31C reads signed halfword interaction+0x0A; nonzero branches to 0x8004B35C",
+    "earned_guard": "0x8004B36C tests bonus flag bit 0x20",
+    "bonus_scene_guard": "0x8004B384 excludes current scene 0x10",
+    "progress": "0x8004B398 computes old_count+114 and 0x8004B3A0 writes it to 0x80082444",
+    "increment": "0x8004B3A8 writes old_count+1 to 0x8008223C",
+    "threshold": "0x8004B3AC requires new_count==5",
+    "unlock": "0x8004B3B4 ORs low bit 0x02",
+    "transition": "0x8004B3C0 writes latch 6 and 0x8004B3CC writes fade 30",
+    "success_reset": "0x8004B3D0 clears the counter"
+  },
+  "direct_writer_census": {
+    "asm_files_scanned_excluding_two_known_function_representations": 2261,
+    "asm_lines_scanned": 226254,
+    "alternate_direct_gp_relative_writes": [
+      "0x8004A6C4: unconditional clear",
+      "0x8004A854: unconditional clear"
+    ],
+    "alternate_increment_found": false,
+    "claim_boundary": "This is a direct GP-relative ASM writer census, not an alias-analysis proof."
+  },
+  "controls": {
+    "positive": "The fifth accepted interaction sets the unlock, latch, fade, and resets the streak before entering scene 0x10.",
+    "negative": "At four accepted interactions the scene remains Training and the transition latch remains zero; a later interval leaves the count at four until the fifth accepted event.",
+    "lifecycle": "The same capsule covers Training, unlock, the Bonus Level wrapper, high earned-guard commit, and return to scene 0."
+  },
+  "executable_gate": {
+    "scenario": "tools/scenarios/duckstation/bonus1_five_spider_stomps.yaml",
+    "prior_unlock_phases_passed": true,
+    "return_phase_added_2026_08_02": true,
+    "return_phase_rerun": true,
+    "report_sha256": "48bd6c15841532bd293796e49af1f754e41ad6f1a39258a3b0f6584c779fa97d",
+    "assertions_passed": 9,
+    "assertions_failed": 0
+  },
+  "compiled_logic_guard": {
+    "path": "tools/phase4_d10_logic_guard.c",
+    "cases_passed": [
+      "four_does_not_unlock",
+      "five_unlocks_exactly",
+      "earned_guard_is_side_effect_free",
+      "bonus_scene_guard_is_side_effect_free",
+      "shared_transition_reset_clears_streak"
+    ],
+    "source_sha256": "2079d0418927e8fb0b21a2273bc5184e4e2ae84e1d4bbb5bf37984187a7be727",
+    "output_sha256": "489d1c5d8f258fd65503aa2729fb52e2a356bfba4527268d4f050d3fdea81c3c"
+  },
+  "movie_requirement": "No new Interpreter movie is required for the scoped D10 claim. The retained movie is CachedInterpreter and must not be armed with execTrace; request a new Interpreter recording only for new per-instruction questions not answered by the capsule.",
+  "decision": "D10 is confirmed for its scoped spider-chain and handoff claim. Move on after banking the evidence."
+}
